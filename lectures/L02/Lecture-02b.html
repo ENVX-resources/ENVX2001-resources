@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Januar Harianto">
+
+<title>Lecture 02b – Sampling designs II</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f249475e52cfe1a8e33717ce9f888b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d909103555c686b7b5c1d4ab025589b6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d909103555c686b7b5c1d4ab025589b6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d909103555c686b7b5c1d4ab025589b6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ENVX2001 Lectures</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-house-chimney" aria-label="house-chimney"></i></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lecture 02b – Sampling designs II</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../assets/images/usydlogo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../assets/images/usydlogo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><strong>Home</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Module 1: Designed studies</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L01/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L01 – Introduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L02/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L02 – Sampling designs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L03 – 1-way ANOVA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Module 2: Finding patterns</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L07/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L07 – Regression modelling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L08/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L08 – Model development</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/L09/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L09 – Model assessment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lecture-02b.html"><i class="bi bi-file-slides"></i>RevealJS (ochre)</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 02b – Sampling designs II</h1>
+<p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Januar Harianto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Jan 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="welcome-back" class="level1">
+<h1>Welcome back!</h1>
+</section>
+<section id="in-the-last-lecture" class="level1">
+<h1>In the last lecture…</h1>
+<div class="incremental">
+<ul class="incremental">
+<li>We learned about <strong>simple random sampling</strong></li>
+<li>Each unit had an equal chance of being selected</li>
+<li>We calculated confidence intervals for population estimates</li>
+<li>We saw some limitations of this approach (not always representative)</li>
+</ul>
+</div>
+<section id="simple-random-sampling" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="simple-random-sampling">Simple random sampling</h2>
+<p><img src="images/simple_random.png" class="img-fluid"></p>
+<div class="fragment">
+<p><strong>Each unit has an equal chance of being selected.</strong></p>
+</div>
+<div class="fragment">
+<section id="not-always-the-case-but-still-a-good-technique." class="level3">
+<h3 class="anchored" data-anchor-id="not-always-the-case-but-still-a-good-technique.">Not <em>always</em> the case, but still a good technique.</h3>
+</section>
+</div>
+</section>
+<section id="simple-random-sampling-1" class="level2" data-auto-animate="true">
+<h2 data-auto-animate="true" class="anchored" data-anchor-id="simple-random-sampling-1">Simple random sampling</h2>
+<p><strong>Each unit has an equal chance of being selected.</strong></p>
+<section id="not-always-the-case-but-still-a-good-technique.-1" class="level3">
+<h3 class="anchored" data-anchor-id="not-always-the-case-but-still-a-good-technique.-1">Not <em>always</em> the case, but still a good technique.</h3>
+</section>
+</section>
+<section id="simple-random-sampling-potential-problems" class="level2">
+<h2 class="anchored" data-anchor-id="simple-random-sampling-potential-problems">Simple random sampling: potential problems</h2>
+<div class="fragment">
+<p>Imagine tossing 10 random points onto a landscape.</p>
+</div>
+<div class="fragment">
+<section id="by-pure-chance" class="level3">
+<h3 class="anchored" data-anchor-id="by-pure-chance">By pure chance…</h3>
+<ul>
+<li>We might miss some important areas entirely</li>
+<li>Or sample some areas too much</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="this-is-more-likely-when" class="level3">
+<h3 class="anchored" data-anchor-id="this-is-more-likely-when">This is more likely when:</h3>
+<ul>
+<li>Sample size is small</li>
+<li>The landscape has distinct zones</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="simple-random-sampling-theoretical-example" class="level2">
+<h2 class="anchored" data-anchor-id="simple-random-sampling-theoretical-example">Simple random sampling: theoretical example</h2>
+<div class="fragment">
+<p>If an area has:</p>
+<ul>
+<li>80% grassland</li>
+<li>20% wetland</li>
+</ul>
+</div>
+<div class="fragment">
+<p>With simple random sampling:</p>
+<ul>
+<li>We expect ~8 samples in grassland, ~2 in wetland</li>
+<li>But by chance, we might get:
+<ul>
+<li>10 grassland, 0 wetland!</li>
+<li>Or 6 grassland, 4 wetland</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<section id="but-what-if-we-have-more-information-about-the-population" class="level3">
+<h3 class="anchored" data-anchor-id="but-what-if-we-have-more-information-about-the-population">But what if we have more information about the population?</h3>
+</section>
+</div>
+</section>
+<section id="soil-carbon-example" class="level2">
+<h2 class="anchored" data-anchor-id="soil-carbon-example">Soil carbon example</h2>
+<div class="fragment">
+<section id="soil-carbon" class="level3">
+<h3 class="anchored" data-anchor-id="soil-carbon">Soil carbon</h3>
+<p><img src="images/datastory.png" class="img-fluid" style="width:50.0%"></p>
+</section>
+</div>
+<div class="fragment">
+<section id="different-land-types" class="level3">
+<h3 class="anchored" data-anchor-id="different-land-types">Different land types</h3>
+<ul>
+<li>Land type A covers 62% of the area, land type B covers 38%</li>
+<li>Type A has a <strong>higher</strong> chance of being selected with simple random sampling</li>
+<li><strong>Can we use this information to our advantage?</strong></li>
+</ul>
+</section>
+</div>
+</section>
+</section>
+<section id="simple-stratified-random-sampling" class="level1">
+<h1><del>Simple</del> Stratified random sampling</h1>
+<section id="stratified-random-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="stratified-random-sampling">Stratified random sampling</h2>
+<section id="steps" class="level3">
+<h3 class="anchored" data-anchor-id="steps">3 steps</h3>
+<div class="incremental">
+<ol class="incremental" type="1">
+<li><strong>Divide</strong> the population into <strong>homogeneous</strong> subgroups (strata).</li>
+<li><strong>Sample</strong> from each stratum using simple random sampling.</li>
+<li><strong>Pool</strong> (or <strong>combine</strong>) the estimates from each stratum to get an overall population estimate.</li>
+</ol>
+</div>
+</section>
+<div class="fragment">
+<section id="real-world-example" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-example">Real-world example</h3>
+<p>If studying plant biodiversity in a national park:</p>
+<ul>
+<li>Step 1: Divide park into strata (e.g., forest, grassland, wetland)</li>
+<li>Step 2: Take random samples within each habitat type</li>
+<li>Step 3: Combine data to estimate overall biodiversity, giving proper weight to each habitat’s area</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="strata-rules" class="level2">
+<h2 class="anchored" data-anchor-id="strata-rules">Strata rules</h2>
+<section id="strata-are" class="level3">
+<h3 class="anchored" data-anchor-id="strata-are">Strata are…</h3>
+<div class="incremental">
+<ul class="incremental">
+<li><strong>Mutually exclusive and collectively exhaustive</strong> (simple explanation: every sample belongs to exactly one stratum – no overlaps, no leftovers)</li>
+<li><strong>Homogeneous</strong> - Samples within a stratum should be similar to each other (less variable than the overall population)</li>
+<li><strong>Each stratum must be sampled</strong> - The goal is to ensure every important group is represented</li>
+</ul>
+</div>
+<div class="fragment">
+<p><img src="images/stratified.png" class="img-fluid"></p>
+</div>
+</section>
+</section>
+<section id="good-vs.-poor-stratification-choices" class="level2">
+<h2 class="anchored" data-anchor-id="good-vs.-poor-stratification-choices">Good vs.&nbsp;poor stratification choices</h2>
+<div class="fragment">
+<section id="everyday-examples" class="level3">
+<h3 class="anchored" data-anchor-id="everyday-examples">Everyday examples</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="good-strata" class="level4">
+<h4 class="anchored" data-anchor-id="good-strata">Good strata</h4>
+<ul>
+<li><strong>University students</strong>: Undergrad, Masters, PhD</li>
+<li><strong>Forest types</strong>: Deciduous, Coniferous, Mixed</li>
+<li><strong>Income levels</strong>: Low, Medium, High</li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="poor-strata-choices" class="level4">
+<h4 class="anchored" data-anchor-id="poor-strata-choices">Poor strata choices</h4>
+<ul>
+<li><strong>Interests</strong>: Sports fans, Music lovers, Foodies (a person can be in multiple groups)</li>
+<li><strong>Water quality</strong>: Clean, Somewhat polluted (too subjective, not clearly defined)</li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section id="advantages" class="level2">
+<h2 class="anchored" data-anchor-id="advantages">Advantages</h2>
+<section id="we-address" class="level3">
+<h3 class="anchored" data-anchor-id="we-address">We address:</h3>
+<ul>
+<li><strong>Bias</strong>. Each stratum is sampled, so the sample is representative of the population.</li>
+<li><strong>Accuracy</strong>. Each stratum is represented by a minimum number of sampling units.</li>
+<li><strong>Insight</strong>. We can compare strata and make inferences about the population.</li>
+</ul>
+</section>
+<div class="fragment">
+<section id="does-this-make-simple-random-sampling-obsolete" class="level3">
+<h3 class="anchored" data-anchor-id="does-this-make-simple-random-sampling-obsolete">Does this make simple random sampling obsolete?</h3>
+<ul>
+<li><strong>No</strong>. <em>Still</em> a good technique.</li>
+<li>With large enough samples, the two methods will converge.</li>
+<li>Chance of <em>not</em> selecting a unit from a stratum is always there, but reduces as the sample size increases.</li>
+</ul>
+</section>
+</div>
+</section>
+</section>
+<section id="stratified-random-sampling-estimates" class="level1">
+<h1>Stratified random sampling: estimates</h1>
+<section id="what-are-we-trying-to-achieve-with-our-calculations" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-we-trying-to-achieve-with-our-calculations">What are we trying to achieve with our calculations?</h2>
+<section id="the-statistical-journey" class="level3">
+<h3 class="anchored" data-anchor-id="the-statistical-journey">The statistical journey</h3>
+<div class="fragment">
+<p>Once we have our stratified sample, we need to:</p>
+<ol type="1">
+<li><strong>Estimate the population central tendency</strong>: Calculate the pooled mean</li>
+<li><strong>Quantify our uncertainty</strong>: Calculate the pooled standard error</li>
+<li><strong>Create an inference tool</strong>: Build a confidence interval</li>
+<li><strong>Make decisions</strong>: Compare estimates, test hypotheses</li>
+</ol>
+<p>All of these steps must account for our stratified design.</p>
+</div>
+</section>
+</section>
+<section id="the-statistical-workflow-for-stratified-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="the-statistical-workflow-for-stratified-sampling">The statistical workflow for stratified sampling</h2>
+<section id="four-key-steps" class="level3">
+<h3 class="anchored" data-anchor-id="four-key-steps">Four key steps:</h3>
+<ol type="1">
+<li><strong>Pooled Mean (<span class="math inline">\(\bar{y}_{s}\)</span>)</strong>: Sum of (stratum weight × stratum mean)
+<ul>
+<li>Best estimate of the population parameter</li>
+</ul></li>
+<li><strong>Pooled Standard Error</strong>: <span class="math display">\[SE(\bar{y}_{s}) = \sqrt{\sum w_i^2 \times \frac{s_i^2}{n_i}}\]</span>
+<ul>
+<li>Accounts for stratum weights and within-stratum variability</li>
+</ul></li>
+<li><strong>t-Critical Value</strong>: Based on <span class="math inline">\(df = n - L\)</span> and α = 0.05
+<ul>
+<li>Accounts for sample size in uncertainty estimates</li>
+</ul></li>
+<li><strong>Confidence Interval</strong>: <span class="math display">\[\text{Pooled mean} \pm (t-\text{critical} \times SE(\bar{y}_{s}))\]</span>
+<ul>
+<li>Range likely containing true population mean</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="accounting-for-strata-using-weight" class="level2">
+<h2 class="anchored" data-anchor-id="accounting-for-strata-using-weight">Accounting for strata using “weight”</h2>
+<section id="weighted-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="weighted-estimates">Weighted estimates</h3>
+<ul>
+<li>We need to “weigh” the estimates from each stratum to account for the different stratum sizes and inclusion probabilities.</li>
+<li>Most of the time, we use the stratum size as the weight to calculate <strong>weighted estimates</strong>.</li>
+<li>The <em>overall</em> population estimate is the sum of the weighted estimates from each stratum, i.e.&nbsp;we <em>pool the individual strata information into a single, overall population estimate</em>.</li>
+</ul>
+</section>
+<div class="fragment">
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<div class="incremental">
+<ul class="incremental">
+<li>A forest contains two types of trees: A and B, with 60% and 40% of the population, respectively.</li>
+<li>We want to estimate the <strong>mean height</strong> of the trees.</li>
+<li>Take <strong>10</strong> height measurements, of which 7 are randomly selected from type A and 3 are randomly selected from type B.</li>
+<li>The <strong>pooled estimate</strong> for the <em>mean height</em> of the trees is: <span class="math display">\[0.6 \times \text{average height of A} + 0.4 \times \text{average height of B}\]</span></li>
+</ul>
+</div>
+</section>
+</div>
+</section>
+</section>
+<section id="data-story-soil-carbon" class="level1">
+<h1>Data story: soil carbon</h1>
+<section id="soil-carbon-data" class="level2">
+<h2 class="anchored" data-anchor-id="soil-carbon-data">Soil carbon data</h2>
+<section id="our-case-study" class="level3">
+<h3 class="anchored" data-anchor-id="our-case-study">Our case study</h3>
+<p>Soil carbon content was measured at 7 locations across the area. The amounts were: 48, 56, 90, 78, 86, 71, 42 tonnes per hectare (t/ha).</p>
+<p><img src="images/datastory.png" class="img-fluid" style="width:60.0%"></p>
+</section>
+<div class="fragment">
+<section id="setting-up-the-data-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-the-data-in-r">Setting up the data in R</h3>
+<p>We know which land type each sample came from:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>landA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>)  <span class="co"># stratum A samples (62% of the area)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>landB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">42</span>)      <span class="co"># stratum B samples (38% of the area) </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</div>
+</section>
+<section id="pooled-mean-bar-y_s" class="level2">
+<h2 class="anchored" data-anchor-id="pooled-mean-bar-y_s">Pooled mean <span class="math inline">\(\bar y_{s}\)</span></h2>
+<blockquote class="blockquote">
+<p>The pooled mean is our best estimate of the overall population mean, taking into account the different stratum sizes.</p>
+</blockquote>
+<div class="fragment">
+<p><span class="math display">\[\bar{y}_{s} = \sum_{i=1}^L \bar{y}_i \times w_i\]</span></p>
+<p><strong>In simple terms:</strong></p>
+<ul>
+<li>We calculate the mean for each stratum separately (<span class="math inline">\(\bar{y}_i\)</span>)</li>
+<li>We multiply each stratum’s mean by its weight (<span class="math inline">\(w_i\)</span>)</li>
+<li>We add these weighted means together to get the overall pooled mean</li>
+</ul>
+</div>
+</section>
+<section id="calculating-pooled-mean-soil-carbon-example" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-pooled-mean-soil-carbon-example">Calculating pooled mean: soil carbon example</h2>
+<div class="fragment">
+<p>We first define the weights <span class="math inline">\(w_i\)</span> for each stratum based on their area:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<p>Then we calculate the weighted mean:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(landA) <span class="sc">*</span> weight[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mean</span>(landB) <span class="sc">*</span> weight[<span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>weighted_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.86833</code></pre>
+</div>
+</div>
+<p>This is like saying: “62% of our land has soil carbon like land type A, and 38% has soil carbon like land type B, so our overall estimate takes both into account in these proportions.”</p>
+</div>
+</section>
+<section id="pooled-standard-error-of-the-mean-sebar-y_s" class="level2">
+<h2 class="anchored" data-anchor-id="pooled-standard-error-of-the-mean-sebar-y_s">Pooled standard error of the mean <span class="math inline">\(SE(\bar y_{s})\)</span></h2>
+<section id="the-formula-looks-similar-to-a-standard-error" class="level3">
+<h3 class="anchored" data-anchor-id="the-formula-looks-similar-to-a-standard-error">The formula looks similar to a standard error…</h3>
+<p><span class="math display">\[SE(\bar y_{s}) = \sqrt{\color{blue}{{\sum_{i=1}^L w_i^2}} \times \frac{s_i^2}{n_i}}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What’s different?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Instead of a single variance term, we use the sum of weighted variances from each stratum</li>
+<li>The <span class="math inline">\(\color{blue}{w_i^2}\)</span> term ensures we account for the relative size of each stratum</li>
+<li>Each stratum contributes its own variance (<span class="math inline">\(s_i^2\)</span>) and sample size (<span class="math inline">\(n_i\)</span>)</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="t-critical-value" class="level2">
+<h2 class="anchored" data-anchor-id="t-critical-value"><span class="math inline">\(t\)</span>-critical value</h2>
+<section id="degrees-of-freedom-df" class="level3">
+<h3 class="anchored" data-anchor-id="degrees-of-freedom-df">Degrees of freedom <span class="math inline">\(df\)</span></h3>
+<p><span class="math display">\[df = n - L\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the total number of samples and <span class="math inline">\(L\)</span> is the number of strata.</p>
+<div class="fragment">
+<ul>
+<li>The degrees of freedom tells us how much “free information” we have for making estimates</li>
+<li>For stratified sampling, we lose one degree of freedom for each stratum</li>
+<li><strong>Example:</strong> If we have 12 samples in 3 strata:
+<ul>
+<li>The degrees of freedom is <span class="math inline">\(12 - 3 = 9\)</span></li>
+<li>Think of it this way: 9 samples can be placed anywhere, but we must have at least 1 sample in each of the 3 strata</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<div class="fragment">
+<section id="in-r" class="level3">
+<h3 class="anchored" data-anchor-id="in-r">In R</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(landA) <span class="sc">+</span> <span class="fu">length</span>(landB) <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>t_crit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.570582</code></pre>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section id="confidence-interval-for-stratified-random-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-interval-for-stratified-random-sampling">95 % Confidence interval for stratified random sampling</h2>
+<section id="the-formula" class="level3">
+<h3 class="anchored" data-anchor-id="the-formula">The formula</h3>
+<p><span class="math display">\[95\%\ CI = \bar y_{s} \pm t^{0.025}_{n-L} \times SE(\bar y_{s})\]</span></p>
+<p>where <span class="math inline">\(L\)</span> is the number of strata, <span class="math inline">\(n\)</span> is the total number of samples, and <span class="math inline">\(\bar y_{s}\)</span> is the weighted mean of the strata.</p>
+<p><strong>In simple terms:</strong></p>
+<div class="incremental">
+<ul class="incremental">
+<li>We’re creating a range where we’re 95% confident the true population mean lies</li>
+<li>We start with our best estimate (the pooled mean <span class="math inline">\(\bar y_{s}\)</span>)</li>
+<li>We add and subtract a “margin of error” (which depends on our sample size and variability)</li>
+<li>The margin of error = <span class="math inline">\(t\)</span>-critical value × standard error</li>
+</ul>
+</div>
+</section>
+<section id="visualising-this" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-this">Visualising this:</h3>
+<pre><code>Lower bound ← [Pooled mean - Margin of error] ... [Pooled mean + Margin of error] → Upper bound</code></pre>
+</section>
+</section>
+<section id="confidence-interval-for-stratified-random-sampling-1" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-interval-for-stratified-random-sampling-1">95 % Confidence interval for stratified random sampling</h2>
+<section id="putting-it-all-together" class="level3">
+<h3 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>varA <span class="ot">&lt;-</span> <span class="fu">var</span>(landA) <span class="sc">/</span> <span class="fu">length</span>(landA)  <span class="co"># variance of the mean for A</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>varB <span class="ot">&lt;-</span> <span class="fu">var</span>(landB) <span class="sc">/</span> <span class="fu">length</span>(landB)  <span class="co"># variance of the mean for B</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>weighted_var <span class="ot">&lt;-</span> weight[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varA <span class="sc">+</span> weight[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varB</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>weighted_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(weighted_var)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">L95 =</span> weighted_mean <span class="sc">-</span> t_crit <span class="sc">*</span> weighted_se,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">u95 =</span> weighted_mean <span class="sc">+</span> t_crit <span class="sc">*</span> weighted_se</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     L95      u95 
+61.04864 76.68803 </code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="comparison" class="level1">
+<h1>Comparison</h1>
+<section id="simple-random-vs.-stratified-random-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="simple-random-vs.-stratified-random-sampling">Simple random vs.&nbsp;stratified random sampling</h2>
+<p>What if we had used stratified random sampling instead of simple random sampling (and collected the same amount of data)?</p>
+<section id="what-differences-can-you-see" class="level3">
+<h3 class="anchored" data-anchor-id="what-differences-can-you-see">What differences can you see?</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually printing the results below as SRS data is in previous lecture</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>compare <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Design =</span> <span class="fu">c</span>(<span class="st">"Simple Random"</span>, <span class="st">"Stratified Random"</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="fl">67.29</span>, <span class="fl">68.9</span>), </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Var (mean)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">50.83</span>, <span class="fl">9.30</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">L95 =</span> <span class="fu">c</span>(<span class="fl">49.85</span>, <span class="dv">61</span>), </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">U95 =</span> <span class="fu">c</span>(<span class="fl">84.73</span>, <span class="fl">76.7</span>), </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(compare)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Design</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Var (mean)</th>
+<th style="text-align: right;">L95</th>
+<th style="text-align: right;">U95</th>
+<th style="text-align: right;">df</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Simple Random</td>
+<td style="text-align: right;">67.29</td>
+<td style="text-align: right;">50.83</td>
+<td style="text-align: right;">49.85</td>
+<td style="text-align: right;">84.73</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stratified Random</td>
+<td style="text-align: right;">68.90</td>
+<td style="text-align: right;">9.30</td>
+<td style="text-align: right;">61.00</td>
+<td style="text-align: right;">76.70</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="visual-comparison-of-95-confidence-intervals" class="level2">
+<h2 class="anchored" data-anchor-id="visual-comparison-of-95-confidence-intervals">Visual comparison of 95% confidence intervals</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a visual comparison of confidence intervals</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">55</span>, </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"Stratified sampling gives a</span><span class="sc">\n</span><span class="st">narrower confidence interval</span><span class="sc">\n</span><span class="st">(more precise estimate)"</span>, </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Lecture-02b_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<section id="key-insights" class="level3">
+<h3 class="anchored" data-anchor-id="key-insights">Key insights:</h3>
+<ul>
+<li>Both methods give similar estimates of the mean</li>
+<li>Stratified sampling produces a much narrower confidence interval</li>
+<li>The variance of the mean is about 5 times smaller with stratified sampling</li>
+<li>This means stratified sampling is much more precise with the same number of samples</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="efficiency">Efficiency</h2>
+<section id="what-is-sampling-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-sampling-efficiency">What is sampling efficiency?</h3>
+<ul>
+<li>A measure of how much “bang for your buck” you get with different sampling methods</li>
+<li>Calculated as a ratio: <span class="math display">\[\text{Efficiency} = \frac{\text{Variance of SRS}}{\text{Variance of Stratified}}\]</span></li>
+</ul>
+</section>
+<div class="fragment">
+<section id="in-simple-terms" class="level3">
+<h3 class="anchored" data-anchor-id="in-simple-terms">In simple terms:</h3>
+<ul>
+<li>Efficiency &gt; 1: Stratified sampling is better (more precise with same sample size)</li>
+<li>Efficiency = 5 means: You’d need 5 times as many samples with simple random sampling to get the same precision as stratified sampling</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="in-r-1" class="level3">
+<h3 class="anchored" data-anchor-id="in-r-1">In R</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>efficiency <span class="ot">&lt;-</span> <span class="fl">50.83</span> <span class="sc">/</span> <span class="fl">9.30</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>efficiency</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.465591</code></pre>
+</div>
+</div>
+<p>How many samples would we have had to collect using simple random sampling to achieve the same precision as our stratified sample?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">*</span> efficiency, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38</code></pre>
+</div>
+</div>
+<p>So we would need about 38 samples with simple random sampling to get the same precision that we achieved with just 7 samples using stratified sampling!</p>
+</section>
+</div>
+</section>
+<section id="tips-on-implementation" class="level2">
+<h2 class="anchored" data-anchor-id="tips-on-implementation">Tips on implementation</h2>
+<ul>
+<li>The most difficult part is to <strong>identify</strong> the strata and <strong>assign</strong> the sampling units to the strata</li>
+<li>Common stratification variables in environmental science:
+<ul>
+<li><strong>Spatial</strong>: elevation bands, soil types, vegetation zones</li>
+<li><strong>Temporal</strong>: seasons, time of day, growth stages</li>
+<li><strong>Management</strong>: treatment types, land-use history</li>
+</ul></li>
+<li><strong>Strata sampling size</strong>: allocate samples to strata based on the size of the strata, either proportional to:
+<ul>
+<li>the size of the strata (e.g.&nbsp;60% of area = 60% of samples)</li>
+<li>the variance of the strata (more samples where variation is higher)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="monitoring" class="level1">
+<h1>Monitoring</h1>
+<p>What if we come back and do another set of soil carbon measurements?</p>
+<section id="the-change-in-mean-delta-bar-y" class="level2">
+<h2 class="anchored" data-anchor-id="the-change-in-mean-delta-bar-y">The change in mean <span class="math inline">\(\Delta \bar y\)</span></h2>
+<section id="important-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="important-considerations">Important considerations</h3>
+<div class="incremental">
+<ul class="incremental">
+<li>We want to measure change in soil carbon over time</li>
+<li>Key question: <strong>How do we select sites for the second measurement?</strong>
+<ol class="incremental" type="1">
+<li>Return to the <strong>same sites</strong>?</li>
+<li>Select completely <strong>new sites</strong>?</li>
+</ol></li>
+<li>This choice affects our statistical analysis (covariance)</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="monitoring-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="monitoring-estimates">Monitoring estimates</h2>
+<section id="change-in-mean-delta-bar-y" class="level3">
+<h3 class="anchored" data-anchor-id="change-in-mean-delta-bar-y">Change in mean <span class="math inline">\(\Delta \bar y\)</span></h3>
+<blockquote class="blockquote">
+<p>The difference between the means of the two sets of measurements.</p>
+</blockquote>
+<p><span class="math display">\[\Delta \bar y = \bar y_2 - \bar y_1\]</span></p>
+<p>where <span class="math inline">\(\bar y_2\)</span> and <span class="math inline">\(\bar y_1\)</span> are the means of the second and first set of measurements, respectively.</p>
+</section>
+</section>
+<section id="uncertainty-in-change-estimates" class="level2">
+<h2 class="anchored" data-anchor-id="uncertainty-in-change-estimates">Uncertainty in change estimates</h2>
+<div class="fragment">
+<section id="variance-of-the-change-in-mean-vardeltabar-y" class="level3">
+<h3 class="anchored" data-anchor-id="variance-of-the-change-in-mean-vardeltabar-y">Variance <em>of the change in mean</em> <span class="math inline">\(Var(\Delta{\bar y})\)</span></h3>
+<p>This tells us how precise our estimate of the change is. It depends on:</p>
+<p><span class="math display">\[Var(\Delta{\bar y}) = Var(\bar y_2) + Var(\bar y_1) - 2 \times Cov(\bar y_2, \bar y_1)\]</span></p>
+<p><strong>In simple terms:</strong></p>
+<ul>
+<li>The uncertainty in our change estimate comes from the uncertainties in both measurements</li>
+<li>However, if we sample the same sites twice, they are related to each other (covariance)</li>
+<li>This relationship usually reduces the overall uncertainty in our change estimate</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<p><strong>Important:</strong> Visiting the same sites twice (paired sampling) usually gives more precise estimates of change than visiting different sites each time!</p>
+</div>
+</section>
+<section id="covariance-and-site-selection" class="level2">
+<h2 class="anchored" data-anchor-id="covariance-and-site-selection">Covariance and site selection</h2>
+<section id="quick-decision-guide" class="level3">
+<h3 class="anchored" data-anchor-id="quick-decision-guide">Quick decision guide</h3>
+<ol type="1">
+<li><strong>Same sites?</strong> Use paired approach:
+<ul>
+<li>Sites are the same in both visits</li>
+<li>Use paired t-test</li>
+<li>Account for covariance between visits</li>
+</ul></li>
+<li><strong>Different sites?</strong> Use independent approach:
+<ul>
+<li>New random sites in second visit</li>
+<li>Use two-sample t-test</li>
+<li>No covariance between visits</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="what-is-covariance" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-covariance">What is covariance?</h2>
+<div class="fragment">
+<p>Covariance measures how two measurements relate to each other:</p>
+<p><strong>Example with soil carbon:</strong></p>
+<ul>
+<li>Site 1: First visit = 90 t/ha, Second visit = 95 t/ha</li>
+<li>Site 2: First visit = 48 t/ha, Second visit = 52 t/ha</li>
+<li>Site 3: First visit = 71 t/ha, Second visit = 75 t/ha</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>What do you notice?</strong> Sites with high carbon in the first measurement still have high carbon in the second measurement (positive covariance).</p>
+<p><strong>Why this matters:</strong> Knowing the first measurement helps us predict the second one, reducing uncertainty in our estimate of change.</p>
+</div>
+<div class="fragment">
+<p><strong>Practical takeaway:</strong> When measuring change over time, returning to the same sites usually gives more precise results because it removes site-to-site variation.</p>
+</div>
+</section>
+<section id="calculating-the-95-ci-for-the-change-in-mean" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-95-ci-for-the-change-in-mean">Calculating the 95% CI for the change in mean</h2>
+<section id="the-formula-looks-similar-to-before" class="level3">
+<h3 class="anchored" data-anchor-id="the-formula-looks-similar-to-before">The formula looks similar to before:</h3>
+<p><span class="math display">\[95\%\ CI = \Delta \bar y \pm t^{0.025}_{n-1} \times SE(\Delta \bar y)\]</span></p>
+</section>
+<div class="fragment">
+<section id="in-plain-language" class="level3">
+<h3 class="anchored" data-anchor-id="in-plain-language">In plain language:</h3>
+<ul>
+<li>We have our best estimate of the change (the difference between the two means)</li>
+<li>We add and subtract a margin of error to create a range</li>
+<li>We’re 95% confident that the true change falls within this range</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<section id="the-standard-error-of-the-change-sedelta-bar-y" class="level3">
+<h3 class="anchored" data-anchor-id="the-standard-error-of-the-change-sedelta-bar-y">The standard error of the change <span class="math inline">\(SE(\Delta \bar y)\)</span></h3>
+<ul>
+<li>This tells us how precise our estimate of the change is</li>
+<li>It’s complicated to calculate by hand, especially when we visit the same sites twice</li>
+<li>If we visit the same sites twice, we need to account for their relationship (covariance)</li>
+</ul>
+</section>
+</div>
+<div class="fragment">
+<p><strong>Good news!</strong> You don’t need to calculate this by hand!</p>
+<ul>
+<li>R can do these calculations for you using the <code>t.test()</code> function</li>
+<li>For same sites: use <code>paired = TRUE</code> option</li>
+<li>For different sites: use <code>paired = FALSE</code> option</li>
+<li>We’ll practice this in the lab!</li>
+</ul>
+</div>
+</section>
+<section id="thanks" class="level2">
+<h2 class="anchored" data-anchor-id="thanks">Thanks!</h2>
+<section id="questions" class="level3">
+<h3 class="anchored" data-anchor-id="questions">Questions?</h3>
+<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built using the SOLES Quarto handbook template</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>The University of Sydney</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

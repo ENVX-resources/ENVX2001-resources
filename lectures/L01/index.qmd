@@ -1,0 +1,15 @@
+---
+title: "Lecture 01"
+---
+
+**Lecture 01a -- Welcome** [Full Screen](Lecture-01a.qmd) | [PDF](Lecture-01a.pdf) 
+
+```{=html}
+<iframe class="slide-deck" src="Lecture-01a.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+**Lecture 01b -- The beginning is the end: a revision** [Full Screen](Lecture-01b.qmd) | [PDF](Lecture-01b.pdf)
+
+```{=html}
+<iframe class="slide-deck" src="Lecture-01b.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
+```

@@ -1,0 +1,15 @@
+---
+title: "Lecture 03"
+---
+
+**Lecture 03a -- *t*-tests** [Full Screen](Lecture-03a.qmd) | [PDF](Lecture-03a.pdf)
+
+```{=html}
+<iframe class="slide-deck" src="Lecture-03a.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+**Lecture 03b -- One-way ANOVA** [Full Screen](Lecture-03b.qmd) | [PDF](Lecture-03b.pdf)
+
+```{=html}
+<iframe class="slide-deck" src="Lecture-03b.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
+```

@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# commit-msg hook: friendly reminder about commit prefixes.
+# This never blocks a commit — it only prints a tip if no prefix is found.
+
+msg=$(head -1 "$1")
+
+case "$msg" in
+  lecture:*|tutorial:*|lab:*|project:*|site:*|data:*|admin:*)
+    # Known prefix found — nothing to do.
+    ;;
+  *)
+    echo >&2 ""
+    echo >&2 "Tip: consider using a prefix like 'lecture:', 'tutorial:', 'lab:', etc."
+    echo >&2 "See CLAUDE.md for the full list."
+    echo >&2 ""
+    ;;
+esac
+
+exit 0

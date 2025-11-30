@@ -1,0 +1,9 @@
+---
+title: "Lecture 07"
+---
+
+**Lecture 07 -- Regression modelling**: [Full screen](Lecture-07.qmd) | [PDF](Lecture-07.pdf)
+
+```{=html}
+<iframe class="slide-deck" src="Lecture-07.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
+```

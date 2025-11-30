@@ -1,0 +1,382 @@
+---
+title: Lecture 03b -- One-way ANOVA
+author: Januar Harianto
+format: ochre-revealjs
+execute:
+  echo: true
+  warning: false
+  message: false
+toc: true
+toc-depth: 1
+toc-title: Outline
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+
+# Why ANOVA?
+
+## The problem with multiple $t$-tests
+
+Suppose we want to compare weight gain of chicks fed on **4 different diets**.
+
+::: fragment
+With $t$-tests, we'd need $\binom{4}{2} = 6$ pairwise comparisons:
+
+1-2, 1-3, 1-4, 2-3, 2-4, 3-4
+:::
+
+::: fragment
+Even if there are no true differences, each test has a 5% chance of incorrectly finding significance. How does that add up?
+
+```{r}
+prob_all_correct <- 0.95^6
+prob_all_correct
+```
+
+We have a **`r round((1 - prob_all_correct) * 100, 1)`%** chance that at least one test result will be incorrect!
+:::
+
+
+## We need a better method
+
+The [problem of multiple comparisons](https://en.wikipedia.org/wiki/Multiple_comparisons_problem) requires a technique that considers **all** treatments at once.
+
+::: fragment
+### ANOVA -- Analysis of Variance
+
+Before deciding *which* treatments differ, we first consider:
+
+::: incremental
+1. Differences **between** the treatment groups -- **between-treatment effects**
+2. Differences **within** each treatment group -- **within-treatment effects**
+   - due to random environmental fluctuations, genetics, experimental error
+:::
+:::
+
+
+# Chick weight data
+
+## The experiment
+
+:::: columns
+::: {.column width="40%"}
+![](images/chicks.jpg)
+
+- 20 chicks
+- 4 diets
+- 5 replicates per diet
+- Response: weight gain (g)
+:::
+
+::: {.column width="60%"}
+::: fragment
+```{r}
+chicks_wide <- read.csv("data/chicks.csv")
+chicks_wide
+```
+:::
+:::
+::::
+
+
+## Reshaping the data
+
+```{r}
+chicks <- read.csv("data/chicks.csv") |>
+  pivot_longer(
+    cols = starts_with("Diet"),
+    names_to = "diet",
+    values_to = "weight"
+  ) |>
+  mutate(diet = as.factor(diet))
+
+chicks
+```
+
+
+# ANOVA concepts
+
+## Terminology
+
+- **Factor** (or treatment): the categorical variable of interest (here: diet)
+- **Levels**: the categories within a factor (here: Diet 1, Diet 2, Diet 3, Diet 4)
+- **Replicates**: the number of observations per level (here: $r = 5$)
+- $t$ = number of treatments; $N$ = total observations = $r \times t = 20$
+
+::: fragment
+This is a **one-way** (or one-factor) ANOVA because there is only one factor (diet).
+:::
+
+
+## Which model best describes the data?
+
+```{r}
+#| label: group_means_plot
+#| fig-align: center
+#| code-fold: true
+overall_mean <- mean(chicks$weight)
+group_means <- chicks |>
+  group_by(diet) |>
+  summarise(mean_wt = mean(weight))
+
+p1 <- ggplot(chicks, aes(diet, weight)) +
+  geom_point(size = 3, alpha = 0.6) +
+  geom_point(data = group_means, aes(diet, mean_wt),
+    shape = 18, size = 5, colour = "red") +
+  labs(title = "Group means (red)", x = "Diet", y = "Weight (g)")
+
+p2 <- ggplot(chicks, aes(diet, weight)) +
+  geom_point(size = 3, alpha = 0.6) +
+  geom_hline(yintercept = overall_mean, colour = "blue",
+    linewidth = 1, linetype = "dashed") +
+  labs(title = "Overall mean (blue)", x = "Diet", y = "Weight (g)")
+
+library(patchwork)
+p1 + p2
+```
+
+Does the **group means model** (left) explain the data better than the **overall mean model** (right)?
+
+
+# Model equation
+
+## Same form as the $t$-test
+
+$$y_{ij} = \mu_i + \varepsilon_{ij}$$
+
+- $i = 1, 2, \ldots, t$ (treatment); $j = 1, 2, \ldots, n_i$ (replicate)
+
+In the chick example:
+
+- $y_{ij}$ = observed weight gain for the $j$th chick on Diet $i$
+- $\mu_i$ = mean weight gain for chicks on Diet $i$
+- $\varepsilon_{ij}$ = random error (residual)
+
+
+# Assumptions
+
+## Checking normality
+
+:::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+ggplot(chicks, aes(diet, weight)) +
+  geom_boxplot() +
+  labs(x = "Diet", y = "Weight (g)")
+```
+:::
+::: {.column width="50%"}
+```{r}
+shapiro.test(chicks$weight)
+```
+
+$p > 0.05$: we can assume normality.
+:::
+::::
+
+
+## Checking equal variances
+
+- $\sigma_1^2 = \sigma_2^2 = \ldots = \sigma_t^2$
+- General guide: $\frac{\text{largest SD}}{\text{smallest SD}} < 2.0$
+- Alternatively, use **Bartlett's test** of homogeneity of variance:
+
+```{r}
+bartlett.test(weight ~ diet, data = chicks)
+```
+
+::: {.callout-warning}
+Bartlett's test is **sensitive to non-normality**. Only use it when normality is reasonable.
+:::
+
+
+# Hypothesis test
+
+## Hypotheses
+
+- **Null hypothesis**: $H_0: \mu_1 = \mu_2 = \ldots = \mu_t$
+- **Alternative hypothesis**: $H_1$: not all $\mu_i$ are equal
+
+::: {.callout-important}
+ANOVA only tells us that **at least two** group means are different -- not *which* ones.
+:::
+
+
+## The concept: partition variability
+
+Partition the total variability into components:
+
+$$SS_{\text{total}} = SS_{\text{treatment}} + SS_{\text{residual}}$$
+
+- $SS_{\text{treatment}}$: variation **between** groups (due to diet)
+- $SS_{\text{residual}}$: variation **within** groups (random error)
+
+::: fragment
+If the treatment has a real effect, $SS_{\text{treatment}}$ should be **large** relative to $SS_{\text{residual}}$.
+:::
+
+
+# Variance partitioning
+
+## Total sum of squares: $SS_{\text{total}}$
+
+$$SS_{\text{total}} = \sum(y_{ij} - \bar{y})^2$$
+
+```{r}
+overall_mean <- mean(chicks$weight)
+ss_total <- sum((chicks$weight - overall_mean)^2)
+ss_total
+```
+
+
+## Treatment sum of squares: $SS_{\text{treatment}}$
+
+$$SS_{\text{treatment}} = \sum n_i \times (\bar{y}_i - \bar{y})^2$$
+
+```{r}
+group_means <- chicks |>
+  group_by(diet) |>
+  summarise(grp_mean = mean(weight))
+
+ss_trt <- sum(5 * (group_means$grp_mean - overall_mean)^2)
+ss_trt
+```
+
+
+## Residual sum of squares: $SS_{\text{residual}}$
+
+$$SS_{\text{residual}} = \sum(y_{ij} - \bar{y}_i)^2$$
+
+```{r}
+chicks_with_means <- chicks |>
+  left_join(group_means, by = "diet")
+
+ss_res <- sum((chicks_with_means$weight - chicks_with_means$grp_mean)^2)
+ss_res
+```
+
+::: fragment
+**Check**: $SS_{\text{total}} = SS_{\text{treatment}} + SS_{\text{residual}}$
+
+```{r}
+c(ss_total, ss_trt + ss_res)
+```
+:::
+
+
+# ANOVA table
+
+## Structure
+
+| Source | df | SS | MS | F |
+|--------|----|----|----|----|
+| Treatment | $t - 1$ | $SS_{\text{trt}}$ | $SS_{\text{trt}} / (t-1)$ | $MS_{\text{trt}} / MS_{\text{res}}$ |
+| Residual | $N - t$ | $SS_{\text{res}}$ | $SS_{\text{res}} / (N-t)$ | |
+| **Total** | $N - 1$ | $SS_{\text{total}}$ | | |
+
+- $N$ = total observations, $t$ = number of treatment levels
+- **Mean Squares** (MS) standardise SS so they are comparable
+- The larger the ratio $MS_{\text{trt}} / MS_{\text{res}}$, the stronger the treatment effect
+
+## Using `aov()` in R
+
+```{r}
+model <- aov(weight ~ diet, data = chicks)
+summary(model)
+```
+
+
+## Interpreting the results
+
+```{r}
+#| echo: false
+aov_summary <- summary(model)[[1]]
+f_val <- round(aov_summary$`F value`[1], 2)
+p_val <- round(aov_summary$`Pr(>F)`[1], 4)
+ms_res <- round(aov_summary$`Mean Sq`[2], 1)
+```
+
+- $F = `r f_val`$ with $df = 3, 16$
+- $p = `r p_val`$ which is $< 0.05$, so we **reject** $H_0$
+- There are **significant differences** in mean weight gain amongst the 4 diets
+
+::: fragment
+### How much variability is explained?
+
+$$\frac{SS_{\text{treatment}}}{SS_{\text{total}}} = \frac{`r round(ss_trt, 0)`}{`r round(ss_total, 0)`} = `r round(ss_trt / ss_total * 100, 1)`\%$$
+
+The diets explain about `r round(ss_trt / ss_total * 100)`% of the total variability in chick weight gain.
+:::
+
+
+# Post-hoc: which groups differ?
+
+## Confidence intervals for group means
+
+We can examine 95% CIs for each treatment mean:
+
+$$95\% \text{ CI} = \bar{y}_i \pm t^{0.025}_{N-t} \times SE(\bar{y}_i)$$
+
+where $SE(\bar{y}_i) = \sqrt{MS_{\text{res}} / n_i}$
+
+
+## Using `emmeans`
+
+```{r}
+library(emmeans)
+emm <- emmeans(model, "diet")
+emm
+```
+
+
+## Visualising group comparisons
+
+```{r}
+#| label: plot_ci
+#| fig-align: center
+plot(emm, comparisons = TRUE) +
+  labs(x = "Weight (g)", y = "Diet")
+```
+
+Groups with **overlapping** arrows are **not** significantly different from each other.
+
+
+# Summary
+
+## $t$-test vs ANOVA
+
+::: incremental
+- **$t$-test**: compares means of **2** groups
+- **ANOVA**: compares means of **2 or more** groups simultaneously
+- ANOVA avoids the inflated Type I error rate from multiple $t$-tests
+- The ANOVA $F$-test tells us *if* differences exist, but not *where*
+- Post-hoc methods (e.g. `emmeans`) identify *which* pairs differ
+:::
+
+
+## Next week
+
+- How to better identify which pairs are significantly different
+- How to test and interpret model assumptions using **residual diagnostics**
+
+
+## References
+
+- Quinn & Keough (2002), Chapter 7: Section 7.1
+- Mead et al. (2002), Chapter 18: Sections 18.1--18.3
+
+
+## Thanks! {.center-h}
+
+### Questions?
+
+This presentation is based on the [SOLES Quarto reveal.js template][soles-revealjs] and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
+
+
+[soles-revealjs]: https://github.com/usyd-soles-edu/soles-revealjs
+[cc-by]: http://creativecommons.org/licenses/by/4.0/

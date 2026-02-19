@@ -9,6 +9,11 @@ editor:
 execute:
   freeze: auto # re-render only when source changes
 
+profile:
+  default: exercise
+  group:
+    - [exercise, solution]
+
 website:
   page-navigation: true
   # title: SOLES-TEMLPATE-001

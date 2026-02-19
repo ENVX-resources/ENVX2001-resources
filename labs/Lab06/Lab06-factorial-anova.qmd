@@ -38,8 +38,10 @@ library(knitr)
 kable(tdata)
 ```
 
+::: {.question}
 ### Question 1.1
 *(i)* Import the data into R and describe the data using numerical and graphical summaries.  In particular does the exploratory data analysis (EDA) show any difference in *S.typhinerium* density between the levels of each of the treatment factors (a) sorbic acid (b) pH (c) water activity?  Is there evidence of an interaction using interaction plots.  No need to look at marginal means as the interaction plots summarise these.
+:::
 
 ::: {.callout-tip}
 Some hints for the EDA are:
@@ -55,7 +57,7 @@ Some hints for the EDA are:
 boxplot(Density~pH,data=salm)
 ```
 
-* to create interaction plots use the `interaction.plot` or `emmip` function. You will need one of these for each 2-way interaction in your model. 
+* to create interaction plots use the `interaction.plot` or `emmip` function. You will need one of these for each 2-way interaction in your model.
 
 :::
 
@@ -64,8 +66,8 @@ boxplot(Density~pH,data=salm)
 ```
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 ```{r}
 library(readxl)
 salm<-read_excel("data/Data6.xlsx",sheet="Salmonella")
@@ -126,7 +128,7 @@ emmip(salm.aov.2, Activity ~ Sorbic.Acid, CIs = TRUE)
 
 ```
 
-The `Activity` and `Sorbic.Acid` interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different `Activity` levels are quite well separated in most cases which is further evidence of a treatment effect for `Activity`.  
+The `Activity` and `Sorbic.Acid` interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different `Activity` levels are quite well separated in most cases which is further evidence of a treatment effect for `Activity`.
 ```{r}
 interaction.plot(salm$pH,salm$Activity,salm$Density)
 
@@ -135,32 +137,34 @@ interaction.plot(salm$pH,salm$Activity,salm$Density)
  emmip(salm.aov.2, Activity ~ pH, CIs = TRUE)
 ```
 
-The `Activity` and `pH` interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different `Activity` levels are quite well separated in most cases which is further evidence of a treatment effect for `Activity`. 
-
+The `Activity` and `pH` interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different `Activity` levels are quite well separated in most cases which is further evidence of a treatment effect for `Activity`.
+:::
 :::
 
+::: {.question}
 ### Question 1.2
-*(ii)* Write out the model you are fitting in terms of main effects and interactions, words are fine.  Note, that each of these will have an associated statistical hypotheses.  Obtain an ANOVA for these data, including appropriate interaction terms in the model.  
+*(ii)* Write out the model you are fitting in terms of main effects and interactions, words are fine.  Note, that each of these will have an associated statistical hypotheses.  Obtain an ANOVA for these data, including appropriate interaction terms in the model.
 
 What do you notice in the ANOVA table when your run the full 3-way factorial ANOVA?  Use the `summary` function to extract the ANOVA table.
 
-Run the model again but only include the interactions involving two factors: **do not include the three factor interaction term**.  Why are we not including the three factor interaction? 
+Run the model again but only include the interactions involving two factors: **do not include the three factor interaction term**.  Why are we not including the three factor interaction?
+:::
 
 :::{.callout-tip}
 Look at the data in Excel and **manually** calculate the mean `Density` for when `pH` = 5.0, `Activity` = 0.78 and `Sorbic.Acid` = 0.  How many observations were used to calculate the mean?
 
 :::
 
-The model in words is: 
+The model in words is:
 
 ::: {.content-visible when-profile="solution"}
-
+::: {.ans}
 ```{r}
 #
 ```
 
 
-### Solution {style="color:green;"}
+### Solution
 
 density =  sorbic acid + pH + activity (main effects) + 
 
@@ -179,11 +183,13 @@ summary(salm.aov)
 salm.aov.2<-aov(Density~Sorbic.Acid*pH*Activity-Sorbic.Acid:pH:Activity,data=salm)
 summary(salm.aov.2)
 ```
-
+:::
 :::
 
+::: {.question}
 ### Question 1.3
 *(iii)* Test that the model assumptions have been met.
+:::
 
 ```{r}
 #
@@ -191,8 +197,8 @@ summary(salm.aov.2)
 
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The residual diagnostics show that the data is normally distributed, has constant variance and has no obvious outliers.  The response has been log transformed so this is no surprise.
 ```{r}
 
@@ -212,19 +218,21 @@ library(performance)
 check_model(salm.aov.2)
 
 ```
-
+:::
 :::
 
+::: {.question}
 ### Question 1.4
 *(iv)* What are the significant effects in the model?  For the significant effects we conduct post-hoc tests the Tukey's Test to determine which pairs are significantly different. Write overall conclusions, in terms of the statistical hypothesis testing and in terms of the biological description of the experiment.
+:::
 
 ```{r}
 #
 ```
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The ANOVA shows that none of the 2 factor interactions are significant which means we can examine the main effects individually.  The significant effects are `pH` and `Sorbic.Acid` with P-values less than 0.05.
 ```{r}
 summary(salm.aov.2)
@@ -235,14 +243,14 @@ Tukey test for the significant effects is shown below.
 emmeans(salm.aov.2, pairwise ~ Sorbic.Acid)
 
 ```
-Increased concentrations of sorbic acid result in significant reductions in Salmonella levels. There was a far greater reduction in Salmonella when the the `Sorbic.Acid` was increased from `0` to `100`, compared with `100` to `200`, suggesting that a saturation effect may be occurring. 
+Increased concentrations of sorbic acid result in significant reductions in Salmonella levels. There was a far greater reduction in Salmonella when the the `Sorbic.Acid` was increased from `0` to `100`, compared with `100` to `200`, suggesting that a saturation effect may be occurring.
 
 ```{r}
 
 emmeans(salm.aov.2, pairwise ~ Activity)
 ```
 As the `Activity` increases, the $log_{e}$(Density) of Salmonella increases approximately exponentially, and based on the Tukey Test the increase is significant at each increase in water activity with the exception of between `0.78` and `0.82`.
-
+:::
 :::
 
 
@@ -256,8 +264,8 @@ Provide graphical summaries of the data, analyse the experiment, conduct any pos
 ```
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 First we read in the data and convert to `factor` if required.
 
 ```{r}
@@ -272,12 +280,12 @@ str(pot)
 
 Graphical summaries for the main effects are easier to interpret than summary statistics.
 
-The boxplots based on `Variety` show that `Pontiac` is the worst performing.  
+The boxplots based on `Variety` show that `Pontiac` is the worst performing.
 ```{r}
 boxplot(Yield~Variety,data=pot,main=" ",xlab="Variety",ylab="Yield")
 ```
 
-The boxplots for each level of `Chemical` show that `Dithane10` results in the greatest yield.  
+The boxplots for each level of `Chemical` show that `Dithane10` results in the greatest yield.
 ```{r}
 boxplot(Yield~Chemical,data=pot,main=" ",xlab="Chemical",ylab="Yield")
 ```
@@ -296,7 +304,7 @@ The interaction plot below shows the lines to be reasonably parallel so an inter
 interaction.plot(pot$Variety,pot$Chemical,pot$Yield)
 ```
 
-The residual diagnostics show that the data is normally distributed, has constant variance and has no obvious outliers. 
+The residual diagnostics show that the data is normally distributed, has constant variance and has no obvious outliers.
 ```{r}
 pot.aov<-aov(Yield~Block+Chemical*Variety,data=pot)
 par(mfrow=c(2,2))
@@ -333,6 +341,6 @@ plot(emmeans(pot.aov, pairwise ~ Chemical), comparisons = TRUE)
 
 ```
 The results are quite clean with one level resulting in significantly greater mean yield for both treatment factors; `Desire` for `Variety` and `Dithane10` for `Chemical`.  From this we would recommend the use of `Desire` and `Dithane10` for maximise yield via supressing potato blight.
-
+:::
 :::
 

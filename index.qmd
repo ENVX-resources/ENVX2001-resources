@@ -12,7 +12,7 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 
 ### Module 1: Designed studies
 
-::: {tbl-colwidths="[10,40,25,25]"}
+::: {tbl-colwidths="[10,45,25,20]"}
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
 | 1 | [Introduction][L01] | [Tutorial 01][T01] | [Lab 01][Lab01] |
@@ -25,7 +25,7 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 
 ### Module 2: Finding patterns in data
 
-::: {tbl-colwidths="[10,40,25,25]"}
+::: {tbl-colwidths="[10,45,25,20]"}
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
 | 7  | [Regression modelling][L07] | [Tutorial 07][T07] | [Lab 07][Lab07] |

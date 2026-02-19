@@ -1,7 +1,6 @@
 ---
 title: "ENVX2001 - Model selection"
 # revised-by: aca
-format: html
 editor: visual
 ---
 

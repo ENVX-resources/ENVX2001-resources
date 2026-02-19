@@ -1,7 +1,6 @@
 ---
 title: Lab 03
 # revised-by:
-format: sandstone-html
 resources:
   - data/diatoms.xlsx
 ---

@@ -3,7 +3,6 @@ title: Lab 01
 # revised-by: alex
 subtitle: ENVX2001 Applied Statistical Methods
 description: The University of Sydney
-format: html
 toc: true
 bibliography: references.bib
 ---

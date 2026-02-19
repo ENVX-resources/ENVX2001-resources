@@ -49,7 +49,7 @@ Just like last week, we strongly recommend that you go through this lab with pen
 We'll talking about painting, after all.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/d4/Brushes-and-paint.jpg')
+knitr::include_graphics('images/brushes-paint.jpg')
 ```
 
 *Paintbrushes belonging to Charlyn Marina Khater, Lebanese designer and painter. We can use colour to represent different subcategories within our data. From Wikimedia Commons (2014), by Fox212121.*
@@ -73,7 +73,7 @@ Sometimes, the way we create subcategories is very obvious. For example, it is c
 Sometimes, however, things are not so easy. For example, how do you organise books on your bookshelf? Do you group books by subject -- science, history, art, home and gardening? Do you group them by length? By how likely you are to read them in the next few days? A combination of the above?
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/f2/Old_books.jpg')
+knitr::include_graphics('images/old-books.jpg')
 ```
 
 *Old books collected by the Basking Ridge Historical Society. Some of these books have no titles on their cover pages. From Wikimedia Commons (2008), by William Hoiles from Basking Ridge, NJ, USA.*
@@ -85,7 +85,7 @@ In this case, the food/drink divide is a univariate problem, while book organisa
 ### Exercise: Distances
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/d4/Euclid%27s_Elements%2C_1482.jpg')
+knitr::include_graphics('images/euclids-elements.jpg')
 ```
 
 *A page with marginalia from the first printed edition of Euclid's* 'Elements', *printed by Erhard Ratdolt in 1482. The* 'Elements' *is one of the oldest surviving mathematical treatises. It was written in 300BC, and exclusively tackles the subject of angles, distances, and geometric arrangements on a flat surface, a field of maths known today as 'Euclidean Geometry'. From Folger Shakespeare Library Digital Image Collection, original link: http://luna.folger.edu/luna/servlet/s/2c163w.*
@@ -101,7 +101,7 @@ If you are completing this lab remotely, try the same exercise with your friends
 :::
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/e/ed/Food_basket.jpg')
+knitr::include_graphics('images/food-basket.jpg')
 ```
 
 *Food basket. Vegetables come in a range of flavours and textures. Different people prefer different ones. From Wikimedia Commons (2012), by liz west from Boxborough, MA.*
@@ -153,7 +153,7 @@ Distance measures are not limited to 3 dimensions in the mathematical world -- i
 In the next example, we will use a semi-metric known as the **Bray-Curtis Dissimilarity**. The Bray-Curtis Dissimilarity is very popular in ecological studies. It is especially useful when analysing species abundance data.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/1/12/Estonian_Museum_of_Natural_History_Specimen_No_180314_photo_%28g1_g1-5028_1_jpg%29.jpg')
+knitr::include_graphics('images/museum-specimen.jpg')
 ```
 
 *Photo of a* Platystrophia biforata *fossil from Schlotheim (1820).* Platystrophia *belongs to a group of animals called brachiopods, which were common in the late Ordovician Period (\~ 450 mya). When fossilised, brachiopods look like clams. When living, many brachipods have a long, fleshy pedicle/stalk that anchors them to the seabed. Specimen stored in the Estonian Museum of Natural History. From Wikimedia Commons (2015), uploaded by Tõnis Saadre.*
@@ -205,7 +205,7 @@ Also notice there are many genera with 0 abundance in this sample. Zero data is 
 Now, suppose we asked the question: which rock samples are similar to each other, and which are different? Take a moment to think about how you would answer this question. Would you compare the samples one at a time, or is there a better way?
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/6/6e/Trilobiti_.jpg')
+knitr::include_graphics('images/trilobite.jpg')
 ```
 
 *Trilobite fossils (the ones in this picture are not from Cincinnati). Trilobites are a famous group of extinct arthropods from the palaeozoic era (539\~251 mya). From Wikimedia Commons (2006), by Muzejní komplex Národního muzea.*
@@ -366,7 +366,7 @@ Unlike when we used Bray-Curtis dissimilarity, the numbers are no longer between
 That's a lot of numbers. Time for pictures, what do you say?
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/9/93/Water_colour_painting_by_Mong_kyaw_sing_marma.jpg')
+knitr::include_graphics('images/watercolour-painting.jpg')
 ```
 
 *A watercolour painting titled: 'Nature and peoples life in cht', by artist Mong kyaw sing marma. Cluster Analysis uses the distance matrices we learned about just now to colour-code multivariate datasets. From Wikimedia Commons (2019).*
@@ -586,7 +586,7 @@ In this case, 2 clusters would have sufficed. But I wanted 3 to drop the cool re
 :::
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Iglesia_de_Nuestra_Señora_de_La_Blanca%2C_Cardejón%2C_España%2C_2012-09-01%2C_DD_02.JPG/1920px-Iglesia_de_Nuestra_Señora_de_La_Blanca%2C_Cardejón%2C_España%2C_2012-09-01%2C_DD_02.JPG')
+knitr::include_graphics('images/iglesia-blanca.jpg')
 ```
 
 *A field of sunflowers in Cardejón, Spain. Dividing a single field into multiple sampling strata is one instance where k-means clustering can be useful. From Wikipedia (2012), by Diego Delso.*
@@ -797,7 +797,7 @@ You can see that the three clusters are, in fact, nice and distinct. If we could
 That's all for k-means clustering!
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/8/82/Clarkia_pulchella_-_Jardin_des_Plantes.jpg')
+knitr::include_graphics('images/clarkia-pulchella.jpg')
 ```
 *The vibrant* Clarkia pulchella, *a woody annual plant native to North America. In the next exercise, we will look at genetic data gathered from a closely related species,* Clarkia springvillensis. *From Wikimedia Commons (2016), by Dinkum.*
 
@@ -806,7 +806,7 @@ knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/8/82/Cla
 The last part of our lab moves away from non-hierarchical clustering and into **hierarchical clustering**. There are many hierarchical clustering methods, but the one we will use today is called the Unweighted Pair Group Method with Arithmetic Mean, or **UPGMA**.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/fa/The_Ancestors_Tale_Mammals_Phylogenetic_Tree_in_mya.png')
+knitr::include_graphics('images/phylogenetic-tree.png')
 ```
 *A dendrogram, or 'tree'. Trees are useful ways to depict ranked relationships between objects; in this case, the relationship between different mammal species. From Wikimedia Commons (2007), by Fred Hsu.*
 
@@ -907,7 +907,7 @@ The GS sites represent a clear "outgroup", in that GS1 and GS2 are very differen
 :::
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/5/56/CSIRO_ScienceImage_75_Mountain_Ash_Eucalyptus_regnans_Magdena_Tasmania.jpg')
+knitr::include_graphics('images/mountain-ash-eucalyptus.jpg')
 ```
 *An open forest dominated by Mountain Ash* (Eucalyptus regnans). *Mountain Ash are native to Tasmania, and adult Mountain Ashes can grow to be some of the tallest trees in the world, beaten only by the redwoods of North America. From Wikimedia Commons (2000), by the Commonwealth Scientific and Industrial Research Organisation (CSIRO).*
 

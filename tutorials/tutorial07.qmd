@@ -27,7 +27,7 @@ Import the data from the "Loyn" tab in the MS Excel file.
 
 ```{r}
 library(readxl)
-loyn <- read_xlsx("mlr.xlsx", "Loyn")
+loyn <- read_xlsx("data/mlr.xlsx", "Loyn")
 ```
 
 Often, the first step in model development is to examine the data. This is a good way to get a feel for the data and to identify any issues that may need to be addressed. In this case, we will examine the data using histograms and a correlation matrix.

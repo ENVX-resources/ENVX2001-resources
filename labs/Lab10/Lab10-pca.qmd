@@ -66,7 +66,7 @@ Well, let's see.
 ### Exercise: Irises
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/a/af/Iris_versicolor_SCA-0769.jpg')
+knitr::include_graphics('images/iris-versicolor.jpg')
 ```
 
 *The beautiful* Iris versicolor *, also called the harlequin blueflag, a species of wildflower native to the marshes of North America. From Wikimedia Commons (2016), by R. A. Nonenmacher.*
@@ -208,7 +208,7 @@ However, this time we need to deal with correlations between multiple *response*
 How do we do that? Enter multivariate statistics.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/2/2e/City_view%3B%3B_black_and_white.jpg')
+knitr::include_graphics('images/city-view-bw.jpg')
 ```
 
 *City view from the Kuala Lumpar Tower, Malaysia. The magic of photographs lie in their ability to project 3D objects onto 2D planes without losing a sense of reality. From Wikimedia Commons (2018), by itsfatxn.*
@@ -224,7 +224,7 @@ To push this analogy further, think of all the different tools and techniques ar
 **Principle Component Analysis (PCA)** is very much like an artist's camera. Next week, we will learn about **Cluster Analysis**, which works more like a paintbrush. In week 12, we will encounter **Non-metric Multidimensional Scaling (nMDS)**, which I like to think of as the pen-and-ink doodles of the statistical world.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/0/0d/Vintage_cameras_%28Unsplash%29.jpg')
+knitr::include_graphics('images/vintage-cameras.jpg')
 ```
 
 *A set of vintage cameras. Photography is one of many ways to compress the 3D world into a 2D image. From Wikimedia Commons (2014), by Jeff Sheldon.*
@@ -306,7 +306,7 @@ Picture a bicycle -- a real, solid bicycle that you can push around and ride. On
 This angle?
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/3/31/Roadster_bicycle_%28Dutch%29.jpg')
+knitr::include_graphics('images/roadster-bicycle.jpg')
 ```
 
 *A Roadster (Dutch) bicycle, side view. From Wikimedia Commons (2018), by Petar Milošević.*
@@ -314,7 +314,7 @@ knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/3/31/Roa
 Or this angle?
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/8/8f/Bicycles_against_wall_in_23_Foster_St_car_park_%28Unsplash%29.jpg')
+knitr::include_graphics('images/bicycles-wall.jpg')
 ```
 
 *Two bicycles on 23 Foster St, Boston, United States, front and back views. From Wikimedia Commons (2016), by Myles Tan.*
@@ -330,7 +330,7 @@ In our case, we will use the built-in R function `prcomp()` to perform our PCAs,
 ## Part 2: How to Perform a PCA Without Panicking
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/e/e4/Beer_in_berlin.jpg')
+knitr::include_graphics('images/beer-berlin.jpg')
 ```
 
 *Beer in Berlin. From Wikimedia Commons (2004), by k.ivoutin; Flickr: https://www.flickr.com/photos/ivoutin/1403816845/.*
@@ -444,7 +444,7 @@ summary(pca_beer) # Tells us how much variance each PC explains.
 What do these numbers mean? We will talk about that in the next section. For now, let's practice running a few more PCAs using the `prcomp()` function to get you comfortable with the process.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/f0/Eastern_Grey_kangaroo%2C_Majura_Nature_Reserve_ACT_01.jpg')
+knitr::include_graphics('images/eastern-grey-kangaroo.jpg')
 ```
 
 *A young eastern grey kangaroo* (Macropus giganteus) *in Majura Nature Reserve, ACT. From Wikimedia Commons (2016), by Thennicke.*
@@ -572,7 +572,7 @@ How did you go?
 ## Part 3: Admiring Your Handiwork
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/d4/French_Boule_Bread.jpg')
+knitr::include_graphics('images/french-bread.jpg')
 ```
 
 *Boule, a classic French bread. Bakers take a long time to prepare their loaves beforehand, even though the baking process itself is taken care of by their ovens. Bakers must take their loaves out of their ovens at the right time to slice, decorate, and package each loaf nicely for their customers. We should do the same with our PCA results. From Wikimedia Commons (2014), by Lehightrails.*
@@ -692,7 +692,7 @@ It seems that while we did successfully rotate our dataset to a new perspective,
 The good news is that going from 7D space to 2D space is actually very *easy* now that we have our PCs. The photograph has already been taken -- all that is left is to print it out. 
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/8/8f/The_trail_traverses_the_steep_scree_slope._-_panoramio.jpg')
+knitr::include_graphics('images/scree-slope-trail.jpg')
 ```
 *Stony deposits, or scree, at the base of a mountain. There is a sudden change in slope as solid rock transitions into unconsolidated material. From Wikimedia Commons (2013), by Sergey Pashko.*
 
@@ -806,7 +806,7 @@ We have come to the end of the lesson, so now it is time to explore a multivaria
 Your demonstrators will be there to help you, and so will your classmates. We strongly encourage you to collaborate with your peers on this exercise. 
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/dc/House_Sparrow%28Passer_domesticus%29.jpg')
+knitr::include_graphics('images/house-sparrow.jpg')
 ```
 *House Sparrow* (Passer domesticus), *a small bird native to the Northern Hemisphere. House sparrows are so named for their ability to live in urban settings. From Wikimedia Commons (2004), by Mathias Appel.*
 

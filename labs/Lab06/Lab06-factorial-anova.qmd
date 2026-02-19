@@ -1,5 +1,6 @@
 ---
 title: "Lab 6 - Factorial Designs"
+# revised-by:
 subtitle: ENVX2001 Applied Statistical Methods
 description: The University of Sydney
 date: today

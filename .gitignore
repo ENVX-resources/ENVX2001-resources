@@ -33,6 +33,7 @@
 /.quarto/
 _book/
 _site/
+_site-solution/
 
 
 # Quarto temporary files

@@ -102,11 +102,11 @@ Check the structure of the iris dataset using the str() function.
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 ```{r}
-str(iris) # All variables are numeric, except for 'Species', which is a factor. 
+str(iris) # All variables are numeric, except for 'Species', which is a factor.
 ```
 
 Everything in this dataset is either a number or a factor. Perfect. We are ready for analysis.
@@ -124,7 +124,7 @@ Choose one of the four response variables in `iris`, and use `ggplot2` to make a
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 Here is a box plot for sepal length:

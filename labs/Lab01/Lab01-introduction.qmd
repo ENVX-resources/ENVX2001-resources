@@ -72,7 +72,7 @@ Based on what you saw in the presentation, or read from the article, what are yo
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### What we think
 
 Without any idea of what Ripple's study entails, it is difficult to judge the validity of MacNulty's criticisms. However, criticisms in science should always be welcomed and taken seriously, even if they challenge established ideas. Let's run through some exercises to sharpen our statistical intuition before we return to this problem.
@@ -102,7 +102,7 @@ Find out where Lady Elliot Island is located on a map. Why might the sea stars t
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 Lady Elliot Island marks the southern end of the Great Barrier Reef. According to a study by Thompson and Thompson (1982), blue sea stars shrink noticeably within a week of low food availability. The same study also notes that larger sea stars of this species tend to live in deeper waters.
@@ -153,7 +153,7 @@ And describe what each of them do using comments.
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 This is how we would have done it:
@@ -400,7 +400,7 @@ After reading the data, it is good practice to verify that everything has been i
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 This is what we found:
@@ -438,24 +438,24 @@ iii) Use the `[,]` operator to select the first column of the `water` dataset.
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 This is what we did:
 
-i)  
+i)
 
 ```{r}
 water[3, 1] # Third row, first column
 ```
 
-ii) 
+ii)
 
 ```{r}
 water[9,] # Ninth row
 ```
 
-iii) 
+iii)
 
 ```{r}
 water[,1] # First column
@@ -488,7 +488,7 @@ Use the `summary()` function on column SO4. Do you think the values in this colu
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 ```{r}
@@ -751,13 +751,13 @@ Check the structure of the `Yellowstone` dataset.
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 This is what we did:
 
 ```{r}
-str(Yellowstone) 
+str(Yellowstone)
 ```
 
 Notice that words come up as `chr`, which stands for 'character'. Characters cannot be analysed statistically - they must first be converted into either numbers or factors.
@@ -804,7 +804,7 @@ ii) Select the first five rows of the `Yellowstone` dataset.
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Solution
 
 For part i), apply the `[,]` function directly:
@@ -859,9 +859,9 @@ What do you notice about the times each of these sites were surveyed?
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Solution
-Here's what we did: 
+Here's what we did:
 ```{r}
 ggplot(Yellowstone_1, aes(x = year, y = site_full))+
   geom_line()+
@@ -893,7 +893,7 @@ Let's revisit the debate between MacNulty and Ripple with a better grasp of the 
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 #### What we think
 
 While we disagree with MacNulty's claim that Ripple's study was 'invalid', we do agree that Ripple's survey methods could have used some improvements. In particular, we think each survey site should have been fixed through time, so that 'before' and 'after' measurements came from the same set of trees (i.e. a paired study design).

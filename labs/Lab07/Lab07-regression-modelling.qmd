@@ -1,0 +1,387 @@
+---
+title: "ENVX2001 Lab 07 - Regression model development"
+subtitle: ENVX2001 Applied Statistical Methods
+description: The University of Sydney
+date: today
+date-format: "[Semester 1,] YYYY"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Learning outcomes
+
+In this lab, you will work towards achieving learning outcomes [L03](), and [L05]().
+
+### Lab objectives
+
+In this lab, we will:
+
+-   [ ] Identify best predictors for model - Exercise 1
+-   [ ] Fit model and check assumptions - Exercise 1
+-   [ ] Interpret model output - Exercise 1
+
+::: callout-tip
+Please work on this exercise by creating your own R Markdown file.
+:::
+
+### Preparation
+
+- [ ] Install or update the `performance` package
+
+```{r}
+#| eval: false
+
+#install.packages("performance")
+library(performance)
+```
+
+This package is really good for checking your models. 
+For this lab, we will focus on the `check_model()` function, which gives us nice pretty diagnostic plots for models:
+
+::: panel-tabset
+
+```{r}
+#| echo : false
+#| warning : false
+#| error : false
+iris_lm<- lm(iris$Petal.Length~iris$Sepal.Length)
+```
+
+### `plot()`
+```{r}
+par(mfrow=c(2,2))
+plot(iris_lm)
+par(mfrow=c(1,1))
+```
+
+### `check_model()` from `performance`
+```{r}
+#| warning : false
+library(performance)
+check_model(iris_lm)
+```
+
+:::
+
+
+## Exercise 1: Modelling bird abundance
+
+We will now use the transformed data in `loyn` for this exercise. If you have not already figured out how to perform the transformation, or if something is wrong, you may use the `loyn` tab in the `mlr.xlsx` MS Excel document. Alternatively, the code to convert the data is below.
+
+::: callout-tip
+This is the same data we used in the walkthrough exercise
+:::
+
+
+```{r}
+# Load library if needed
+library(readxl)
+# reset the data import just in case it has been modified
+loyn <- read_xlsx("data/mlr.xlsx", "Loyn")
+# make transformations
+
+loyn <- loyn %>%
+    mutate(
+        L10AREA = log10(AREA),
+        L10DIST = log10(DIST),
+        L10LDIST = log10(LDIST)
+    )
+
+# check
+glimpse(loyn)
+```
+
+### Best single predictor?
+
+::: question
+### Question 1
+
+Obtain the correlation between ABUND and all of the predictor variables using `cor()`. Based on these, what would you expect to be the best single predictor of ABUND?
+:::
+
+```{r}
+#| eval: false
+cor(loyn)
+```
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+```{r}
+cor(loyn)
+```
+
+The best single predictor would be `L10AREA` as this has the highest *r* (r = 0.74)
+:::
+
+### Assumptions and interpretation
+
+::: question
+### Question 2
+
+Use multiple linear regression to see whether ABUND can be predicted from L10AREA and GRAZE. Are the assumptions met? Is there a significant relationship? *Note: we are using these 2 predictors as they have the largest absolute correlations. Use `lm()` and specify the model as `ABUND ~ L10AREA + GRAZE`.*
+:::
+
+```{r}
+#| eval: false
+lm.mod1 <- lm(ABUND ~ GRAZE + L10AREA, data = loyn)
+
+par(mfrow = c(2, 2))
+plot(lm.mod1)
+par(mfrow = c(1, 1))
+
+summary(lm.mod1)
+```
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+```{r mlmod}
+lm.mod1 <- lm(ABUND ~ GRAZE + L10AREA, data = loyn)
+
+par(mfrow = c(2, 2))
+plot(lm.mod1)
+par(mfrow = c(1, 1))
+
+summary(lm.mod1)
+```
+
+This is a significant model as both b1 and b2 are significant and the model is significant.
+
+The residuals look reasonable. They are approximately normally distributed (both right hand plots), but possibly the variance is not totally constant and there are possibly a few values with high leverage (left hand plots).
+:::
+
+::: question
+### Question 3
+
+How good is the model based on the (i) *r*^2^ (ii) adjusted *r*^2^? Use `summary()`.
+:::
+
+```{r}
+#| eval: false
+summary(lm.mod1)$r.squared
+summary(lm.mod1)$adj.r.squared
+```
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+The Adjusted *r*^2^ is lower than the *r*^2^, but we would opt for the adjusted *r*^2^ as it takes the number of predictors into account. Overall the model is ok, explaining 64.0% of variation in Abundance.
+:::
+
+::: question
+### Question 4
+
+Which variable(s) has the most significant effect(s)? *(Refer specifically to the t probabilities in the table of predictors and their estimated parameters or coefficients in the output of `summary()`)*. Interpret the p-values in terms of dropping predictor variables.
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Both `L10AREA` and `GRAZE` are highly significant, `L10AREA` is the most significant. In terms of effect, a 1 unit change in `GRAZE` results in a -2.9 decrease in abundance (with `L10AREA` remaining constant), while a 1 unit change in `L10AREA`, (therefore a 10 unit change in `AREA`) results in a 6.9 increase in abundance (`GRAZE` holding constant).
+:::
+
+::: question
+## Question 5
+
+Repeat the multiple regression, but this time include YRS.ISOL as a predictor variable (it has the 3rd largest absolute correlation). This will allow you to assess the effect of YRS.ISOL with the other variables taken into account.
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+```{r}
+lm.mod2 <- lm(ABUND ~ GRAZE + L10AREA + YR.ISOL, data=loyn)
+```
+:::
+
+::: question
+### Question 6
+
+Check assumptions, do the residuals look ok? If you are happy with the assumptions, you can proceed to interpret the model output.
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+```{r}
+par(mfrow=c(2,2))
+plot(lm.mod2)
+par(mfrow=c(1,1))
+```
+
+The residuals look OK, but YR.ISOL is borderline significant (p = 0.0768).
+:::
+
+::: question
+### Question 7
+
+Compare the *r*^2^ and adjusted *r*^2^ values with those you calculated for the 2 predictor model, Which is the better model? Why?
+:::
+
+```{r}
+#| eval: false
+summary(lm.mod2)
+```
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Both of these are greater than for model in step 3, so this is a better model.
+:::
+
+## Exercise 2: California streamflow
+
+
+The following dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. I have reduced this to three variables labelled `lake_sabrina` (Lake Sabrina), `pine_creek` (Big Pine Creek), `rock_creek` (Rock Creek), and the dependent variable stream runoff volume (measured in ML/year) at a site near Bishop, California (labelled `runoff_volume`).
+
+Note the variables have already been log-transformed to increase normality of the residuals in the regressions.
+
+Start with a full model and manually remove the variables one at a time, checking every time whether removal of a variable actually improves the model.
+
+```{r readDataStream}
+# read in the data
+stream_data <- read_xlsx("data/california_streamflow.xlsx", "streamflow")
+names(stream_data)
+```
+
+```{r Exercise1, eval=T, echo=T}
+s.mod_full <-lm(runoff_volume~lake_sabrina + pine_creek + rock_creek, data=stream_data)
+s.mod_full <-lm(runoff_volume~., data=stream_data) ## you can also use the . to indicate use all variables
+summary(s.mod_full)
+```
+
+### Partial F-Tests
+
+The above analysis tells us that both `pine_creek` & `rock_creek` are significant, according to the t-test, in the model and `lake_sabrina` is not? This involves performing Partial F-Tests as discussed in the lecture.
+
+This can be done in **R** by using `anova()` on two model objects. To be able to compare the models and run the anova, you need to make objects of all the possible model combinations you want to compare.
+
+```{r PartialFtests1, echo=T, eval = F}
+s.mod_reduced <- lm(runoff_volume ~ rock_creek + pine_creek, data=stream_data)
+anova(s.mod_reduced, s.mod_full)
+```
+
+The last row gives the results of the partial F-test.
+
+::: question
+### Question 1
+
+Should we remove `lake_sabrina` from the model?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Yes, we should remove lake_sabrina as the p-value is \> 0.05 and opt for the simpler model.
+:::
+
+::: question
+### Question 2
+
+Is the p-value for the f-test the same as for the t-test?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Yes, P-values for the t-statistic and for the Partial F-statistic are related (Partial F = t^2^)
+:::
+
+::: question
+### Question 3
+
+Write out the hypotheses you are testing.
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+H~0~: $\beta_{lake_sabrina} = 0$\
+H~1~: $\beta_{lake_sabrina} \neq 0$
+:::
+
+Perform a Partial F-Test to work out if the removal of `lake_sabrina` and `pine_creek` improves upon the full model.
+
+```{r}
+s.mod_reduced2  <- lm(runoff_volume ~ lake_sabrina + pine_creek,data=stream_data)
+anova(s.mod_reduced2, s.mod_full)
+```
+
+::: question
+### Question 4
+
+Which variable should be added to the model containing rock_creek?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+lake_sabrina does not improve the model with only rock_creek ($\beta_{lake_sabrina} = 0$), so we can say that we should add pine_creek to the model containing rock_creek.
+
+Remember: H0: No difference between the models, so choose the simplest H1: Full model is better
+:::
+
+::: question
+### Question 5
+
+Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.
+:::
+
+```{r SolutionPartialF_again, echo = T, eval = F}
+s.mod_reduced3  <- lm(runoff_volume ~ rock_creek,data=stream_data)
+anova(s.mod_reduced3, s.mod_full)
+```
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Fitting with only rock_creek does not improve model fit (P\<0.05) and so we can conclude that the better model is the one with pine_creek and rock_creek as predictors, with lake_sabrina removed.
+:::
+
+::: question
+### Question 6
+
+What is your optimal model?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+The best model is: $runoff_volume = \beta_0 + \beta_1 rock_creek + \beta_2pine_creek+ error$
+:::
+
+<hr>
+
+## Review
+
+-   Simple linear regressions model the relationship between two variables
+
+    -   We can also make linear models with more than one predictor
+
+-   We can use histograms and correlation matrices to do some preliminary exploration of the data
+
+-   If any variables are skewed, we can transform them
+
+-   Looking at a correlation matrix to identify the best predictors (for both simple and multiple linear regression)
+
+-   Fit model using `lm()` function
+
+-   Check assumptions:
+
+    -   Collinearity (multiple linear regression only)
+    -   Linearity
+    -   Independence
+    -   Normality
+    -   Equal variance
+- Use `summary()` to look at model output and interpret it
+  - F-test : overall model significance
+  - Coefficients table : individual predictors' significance
+  - R^2^ : How much variation in the data is explained by the model?
+
+That's it for today! Great work fitting simple and multiple linear regression! Next week we jump into stepwise selection!
+
+### Attribution

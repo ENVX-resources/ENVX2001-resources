@@ -1,0 +1,39 @@
+---
+title: "ENVX2001 Lab - Predictive modelling"
+subtitle: ENVX2001 Applied Statistical Methods
+description: The University of Sydney
+date: today
+date-format: "[Semester 1,] YYYY"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Learning Outcomes
+
+In this lab, you will work towards achieving learning outcomes
+
+## Lab Objectives
+
+In this lab, we will:
+
+- []
+- []
+
+
+:::{.callout-tip}
+Please work on this exercise by creating your own R Markdown file.
+:::
+
+## Exercise 1:
+
+## Exercise 2:
+
+## Take home exercise:
+
+## Review
+
+### Attribution 
+

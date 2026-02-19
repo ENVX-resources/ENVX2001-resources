@@ -1,0 +1,149 @@
+---
+title: "ENVX2001 - Model selection"
+format: html
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Learning Outcomes
+
+In this lab, you will work towards achieving learning outcomes
+
+## Lab Objectives
+
+In this lab, we will:
+
+- []
+- []
+
+:::{.callout-tip}
+Please work on this exercise by creating your own R Markdown file.
+:::
+
+
+## Exercise 1: Model quality - multiple vs adjusted *r*^2^ 
+
+Data:  *California_streamflow* spreadsheet  
+
+Import the "California_streamflow" sheet into R.
+
+```{r}
+# Load library if needed
+library(readxl)
+# Load data
+stream_data <- read_xlsx("data/california_streamflow.xlsx", "streamflow")
+```
+
+in this exercise we will use the same data as last week. To jog your memory, the dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. Through model selection via partial F-test we have the final model as below:
+
+```{r}
+fit <- lm(runoff_volume ~ rock_creek + pine_creek, data = stream_data)
+```
+
+We will now add a totally useless variable to the dataset. This variable is a random number generated from a normal distribution with mean 3 and standard deviation 2. We use the `set.seed()` function to make sure that everybody gets the same random values.
+
+```{r}
+set.seed(100) # to make sure everybody gets the same results
+
+# this generates the random number into the dataset
+stream_data$random_no <- rnorm(n = nrow(stream_data), mean = 3, sd = 2) 
+```
+  
+We will see the impact of including a totally useless variable, such as this random variable, has on measures of model quality, *r*^2^ and adjusted *r*^2^ values.
+
+**Task: create two regression models:**
+
+1.  `runoff_volume ~ rock_creek + pine_creek` 
+2.  `runoff_volume ~ rock_creek + pine_creek + random_no`  
+
+:::{.question}
+### Question 2
+Compare each in terms of their multiple *r*^2^ and adjusted *r*^2^ values. Which performance measure (multiple *r*^2^ or adj *r*^2^) would you use to identify which predictors to use in your model?  
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+There is only a small difference in the multiple *r*^2^ and adj *r*^2^ between the models, but one goes up and the other goes down. 
+Since the random number is a totally useless value, this demonstrates that the adjusted *r*^2^ is the better performance measure to use. 
+
+
+```{r randno_solution, eval = T, echo = T}
+mod_rand1 <- lm(runoff_volume ~ rock_creek + pine_creek,data = stream_data)
+summary(mod_rand1)
+
+mod_rand2 <- lm(runoff_volume ~ rock_creek + pine_creek + random_no ,data = stream_data)
+summary(mod_rand2)
+```
+
+:::
+## Exercise 2: Fish productivity
+
+Fish communities were surveyed in lakes across a eutrophication gradient to investigate the relatioship between productivity and fish diversity.
+
+The datasheet has thefollowing variables:
+
+- `lake_id` Unique identifier for each lake 
+- `chla` Log-transformed Chlorophyll a
+- `richness` Log-transformed species richness
+- `evenness` Log-transformed Pielou’s evenness 	
+- `abundance` Log-transformed abundance per unit effort (NPUE) 	
+- `biomass` Log-transformed biomass per unit effort (BPUE) 
+- `productivity` Log-transformed productivity proxy
+
+```{r}
+#Load library if necessary
+library(tidyverse)
+
+#Read in data
+fish_data <- read_csv("data/fish_communities.csv")
+
+#Have a look at the structure of the data
+str(fish_data)
+```
+
+Explore the data on your own before making any models. 
+(*Hint:* remember that we are only interested in the numeric variables for our linear models)
+
+:::{.question}
+### Question 1
+
+Are there any obvious relationships between the response variable (productivity) and the other variables?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+```{r}
+#correlation matrix
+cor(fish_data[,-1])
+
+#Plot the variables
+
+pairs(fish_data[,-1])
+```
+Productivity has a strong relationship with biomass and abundance
+:::
+
+:::{.question}
+### Question 2
+
+Are there any other patterns or potential issues you can see from the exploratory plots?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+Biomass is also highly correlated with abundance, so collinearity might be an issue.
+:::
+
+
+## Take home exercise:
+
+## Review
+
+### Attribution

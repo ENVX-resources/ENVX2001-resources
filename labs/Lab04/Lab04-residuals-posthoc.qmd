@@ -29,16 +29,18 @@ All of the data for this practical is in the **Data4.xlsx** file.
 ## Exercise 1 - Diatoms in streams (Walk-through)
 Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey's test.  The data is found in the **Diatoms** worksheet.
 
+::: {.question}
 ### Question 1.1
 *(i)* Importing and processing data, then fitting an ANOVA model
 
 ```{r}
 # write your code here
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 ```{r}
 library(readxl)
@@ -49,7 +51,9 @@ anova.diatoms<-aov(Diversity~Zinc,data=diatoms)
 summary(anova.diatoms)
 ```
 :::
+:::
 
+::: {.question}
 ### Question 1.2
 *(ii)* Statistical test of the assumption of constant variance
 
@@ -59,7 +63,7 @@ Statistics is made up of different tribes and some tribes use hypothesis testing
 
 * $H_1:\ not\ all\ \sigma_i^2\ are\ equal\ \left(i\ =\ BACK,\ LOW,\ MED,\ HIGH\right)$
 
-We prefer to use numerical and graphical diagnostics, e.g. residuals plots, but this is more to show you other possibilities.  You can use this as a different line of evidence for testing assumptions if you wish. 
+We prefer to use numerical and graphical diagnostics, e.g. residuals plots, but this is more to show you other possibilities.  You can use this as a different line of evidence for testing assumptions if you wish.
 
 :::{.callout-warning}
 It won't work if the data is non-normal and only use it if the data has one treatment factor with a completely randomised design!
@@ -69,33 +73,37 @@ It won't work if the data is non-normal and only use it if the data has one trea
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 ```{r}
 
 bartlett.test(rstandard(anova.diatoms)~diatoms$Zinc)
 
 ```
-Based on the P-value being > 0.05 we could state that we retain the null hypothesis and that the variances are equal.  
+Based on the P-value being > 0.05 we could state that we retain the null hypothesis and that the variances are equal.
 
 :::
+:::
 
+::: {.question}
 ### Question 1.3
 
 *(iii)* Identify significant differences
 
-In Topic 3 we used the `emmeans` package to extract means for each group and their associated 95% CI.  The `emmeans` is useful to produce a plot showing the mean and 95% CI which is a nice way to present the results. 
+In Topic 3 we used the `emmeans` package to extract means for each group and their associated 95% CI.  The `emmeans` is useful to produce a plot showing the mean and 95% CI which is a nice way to present the results.
 
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 ```{r,warning=F, message=F}
 #install.packages("emmeans",repos="http://cran.csiro.au/")
@@ -105,20 +113,23 @@ plot(emmeans(anova.diatoms, "Zinc"))
 
 ```
 
-Based on the non-overlapping confidence intervals the only pairs of groups that are significantly different are `HIGH` and `LOW`.  However more correctly we are looking at whether the difference in means = 0 which is a slightly different question to seeing if the 95% CI around the mean overlaps. 
+Based on the non-overlapping confidence intervals the only pairs of groups that are significantly different are `HIGH` and `LOW`.  However more correctly we are looking at whether the difference in means = 0 which is a slightly different question to seeing if the 95% CI around the mean overlaps.
 
 :::
+:::
 
+::: {.question}
 ### Question 1.4
 *(iv)*The another approach is to use a **Tukey's test** which we can extract using the `emmeans(model-goes-here, pairwise ~ your-treatment)` function from the `emmeans` package. Note there are many other post-hoc tests that have come and gone, but we will just focus on one of them.
 
 ```{r}
 
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 ```{r}
 
@@ -131,16 +142,20 @@ emmeans(anova.diatoms,pairwise ~ Zinc)
 * 'LOW' and 'HIGH';
 
 :::
+:::
 
+::: {.question}
 ### Question 1.5
 *(v)* Another way to present the results is to use the `plot()` function to show the confidence intervals and the comparisons among them.
 
 ```{r}
 
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 ```{r}
 plot(emmeans(anova.diatoms, "Zinc"), comparisons = TRUE)
 ```
@@ -148,7 +163,9 @@ plot(emmeans(anova.diatoms, "Zinc"), comparisons = TRUE)
 
 In the plot function above, we’ve specified `comparisons = TRUE`. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.
 :::
+:::
 
+::: {.question}
 ### Question 1.6
 An alternative base R function for Tukey tests is `TukeyHSD()`. It creates a set of confidence intervals on the differences between the means of the levels of a factor. Also plot the results from this function.
 
@@ -160,19 +177,22 @@ If the confidence interval does not cross over 0, then that pair significantly d
 ```{r}
 #
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 ```{r}
-TukeyHSD(anova.diatoms, conf.level = 0.95) 
+TukeyHSD(anova.diatoms, conf.level = 0.95)
 ```
 
-We can also plot the results from `TukeyHSD()` to easily see where, if any, the differences are. 
+We can also plot the results from `TukeyHSD()` to easily see where, if any, the differences are.
 
 ```{r}
 plot(TukeyHSD(anova.diatoms))
 ```
 
+:::
 :::
 
 #
@@ -197,16 +217,18 @@ The four groups of fish were codes as follows, with 10 fish per group:
 
 The data is found in the **Prolactin** worksheet.
 
+::: {.question}
 ### Question 2.1
 *(i)* Import the data into R, perform some exploratory data analysis to make **tentative** suggestions about differences between means and the likelihood of the data meeting the assumptions.
 
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 ```{r}
 library(readxl)
 fish<-read_excel("data/Data4.xlsx",sheet="Prolactin")
@@ -214,7 +236,7 @@ fish$Treatment <- as.factor(fish$Treatment)
 str(fish)
 ```
 
-First we create some boxplots for each group which show there are difference in median between each of the treatments.  There looks like some treatment effect.  In terms of the assumptions the spread of data in each treatment looks different based on the size of the boxes and length of the whiskers.  However for each group the upper and lower whisker lengths are similiar so the distribution is likely to be symmetrical (normal). 
+First we create some boxplots for each group which show there are difference in median between each of the treatments.  There looks like some treatment effect.  In terms of the assumptions the spread of data in each treatment looks different based on the size of the boxes and length of the whiskers.  However for each group the upper and lower whisker lengths are similiar so the distribution is likely to be symmetrical (normal).
 ```{r}
 boxplot(Prolactin ~ Treatment, ylab = "Prolactin concentration", data = fish)
 ```
@@ -227,17 +249,20 @@ aggregate(Prolactin ~ Treatment, sd, data = fish)
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.2
 *(ii)* Fit an ANOVA model and test the assumption of normality using a QQ plot and a histogram - both based on standardised residuals.
 
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 The QQ plot and the histogram indicate the data is normally distributed.
 
@@ -249,9 +274,11 @@ hist(rstandard(pro.aov))
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.3
-*(iii)*  Assess the assumption of constant variance by: 
+*(iii)*  Assess the assumption of constant variance by:
 
 * examine the plot of the standardised residuals against fitted values;
 ```{r}
@@ -282,10 +309,11 @@ Note there are many tests: `method = c("bartlett", "fligner", "levene", "auto")`
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 This plots shows an increasing spread (fanning) of the residuals as the fitted values increase.  The assumption of constant variance is not tenable.
 ```{r}
@@ -326,13 +354,16 @@ out[3]/out[1]
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.4
 *(iv)* The data does not meet the assumptions so log transform ('log' function) the response and repeat *(ii)* and *(iii)* to test the assumptions;
 
 ```{r}
 #
 ```
+:::
 
 ::: {callout-tip}
 In R you can transform data in the model formula see below or you could create a new column in your data frame, for example `fish$logProlactin<-log(fish$Prolactin)`.
@@ -340,7 +371,8 @@ In R you can transform data in the model formula see below or you could create a
 
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The log transformation has not changed the distribution dramatically, it is still normally distributed.
 
 ```{r}
@@ -361,16 +393,20 @@ out[3]/out[4]
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.5
 *(v)* If the assumptions are met and there is significant F-test perform Tukey tests and identify which pairs are significantly different.
 
 ```{r}
 #
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The ANOVA table indicates we reject the null hypothesis.
 ```{r}
 summary(pro.aov)
@@ -392,21 +428,25 @@ TukeyHSD(pro.aov)
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.6
 *(vi)* One issue is that we have performed our hypothesis testing on the log scale.  This means there are some steps to be made if we wish to interpret the data on the original scale; e.g. provide a 95% CI on the original scale.  We will step through these.
 
-Suppose the biologist was primarily interested in comparing the prolactin concentrations for A (saltwater cysts, day 1) vs B (freshwater, no cysts, day 1). 
+Suppose the biologist was primarily interested in comparing the prolactin concentrations for A (saltwater cysts, day 1) vs B (freshwater, no cysts, day 1).
 
-* Find the means and CI from the output of the `TukeyHSD()` or `emmeans()` function.  
-* The CI and mean are on the log scale, so back-transform the difference in the means (`exp()` function), the lower and upper end-point 95% CI.  Note that the upper and lower tail are not of equal length on the original scale. 
+* Find the means and CI from the output of the `TukeyHSD()` or `emmeans()` function.
+* The CI and mean are on the log scale, so back-transform the difference in the means (`exp()` function), the lower and upper end-point 95% CI.  Note that the upper and lower tail are not of equal length on the original scale.
 
 ```{r}
 #
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 ```{r}
 
 tukey.results <- TukeyHSD(pro.aov)
@@ -423,7 +463,9 @@ exp(0.001593344) # lower CI
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 2.7
 *(vii)* Now have an estimate of the difference in the means on the original scale.  It actually corresponds to a ratio on the original scale.  The reason is based on log laws, we can write the difference between 2 logged numbers (A and B) as a log of their ratio (A/B);
 
@@ -438,12 +480,15 @@ So the back-transformed difference between the pairs of the means is a ratio.
 Note: if we were to back-transform the group means on the log scale we would get the geometric mean on the original scale.
 
 Provide a biological interpretation for this estimate and confidence interval.  Use the CI to decided if there is a significant difference between Treatment A and Treatment B.
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"} 
+::: {.ans}
+### Solution
 
 Since we interpret the back-transformed difference as a ratio, we conclude that the mean prolactin concentration in Treatment B is estimated as 1.75 that in Treatment A.  However, the 95% CI for this ratio extends from 1.002 to 3.045.  Since the 95% CI for the ratio >1 (just), this also demonstrates the mean prolactin concentrations for Treatments A and B do differ significantly (P < 0.05).  Note if the ratio (on the original prolaction scale) is 1, then, this implies meanB / meanA = 1, i.e. $mean_{B} = mean_{A}$.
 
+:::
 :::
 
 
@@ -456,34 +501,38 @@ The effect of weight gain in dressed broiler chickens was determined after five 
 
 The data is found in the **Broilers** worksheet.
 
+::: {.question}
 ### Question 3.1
 *(i)*  Write down the null and alternate hypothesis. What is the treatment factor, and how many levels does it have? What are the sample sizes for each group ($n_i$)?
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 
 $$H_0:\ \mu_A=\mu_B=\mu_C=\mu_D$$
 
-$$H_1:\ not\ all\ \mu_i\ are\ equal$$ 
+$$H_1:\ not\ all\ \mu_i\ are\ equal$$
 
-where i (i = A, B, C, D) is the population mean weight gain for broilers in selection group i.  
+where i (i = A, B, C, D) is the population mean weight gain for broilers in selection group i.
 The treatment factor is the selection group, with t = 4 levels in this factor.  There are r = 25 chicks in each selection group (equal replication).
 
 :::
+:::
 
+::: {.question}
 ### Question 3.2
 
-*(ii)*  Import the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met?  What about normality?  Try a formal Bartlett’s test using the `bartlett.test` or `check_homogeneity()` function. Use residual diagnostics to assess the assumptions.   
+*(ii)*  Import the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met?  What about normality?  Try a formal Bartlett’s test using the `bartlett.test` or `check_homogeneity()` function. Use residual diagnostics to assess the assumptions.
 
 ```{r}
 #
 ```
-
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The summary statistics by group indicate the data is likely to be normally distributed (mean ~ median) and the variances are equal.  This confirmed by boxplots for each group.
 
 ```{r}
@@ -506,7 +555,7 @@ hist(rstandard(broilers.aov))
 plot(broilers.aov, which = 1)
 ```
 
-The Bartlett's test indicates the variance are equal.
+The Bartlett’s test indicates the variance are equal.
 ```{r}
 bartlett.test(rstandard(broilers.aov) ~ broilers$Group)
 ```
@@ -520,35 +569,42 @@ check_homogeneity(broilers.aov, method = "bartlett")
 ```
 
 :::
+:::
 
 
+::: {.question}
 ### Question 3.3
 *(iii)*  Note that the results of the analysis can only be used when the assumptions of the analysis have been met. If you believe that the assumptions are met, then what would your conclusions of the analysis of variance be? You should use the `summary()` function applied to your `aov()` object to obtain the ANOVA table.
 
 ```{r}
 #
 ```
-
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 The ANOVA table indicates we reject the null hypothesis.
 ```{r}
 summary(broilers.aov)
 ```
 
 :::
+:::
 
+::: {.question}
 ### Question 3.4
 
-*(iv)*  Without any formal analysis, consider the result of the group means in relation to the group treatment - i.e. type of selection. Would this pattern be expected?  If appropriate perform a Tukey test.  
+*(iv)*  Without any formal analysis, consider the result of the group means in relation to the group treatment - i.e. type of selection. Would this pattern be expected?  If appropriate perform a Tukey test.
 
 ```{r}
 #
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution {style="color:green;"}
+::: {.ans}
+### Solution
 Looking at the sample means, this pattern might be expected from the breeding experiment: weight gain appears to be related to the degree of weight selection in each generation.  For Group 1 (A), the heaviest 10% of birds were used, as this breed did result in the highest wait gain, with lesser increases for Groups 2 (B) and 3 (C).  Similarly, since Group 4 (D) was obtained by crossing Groups 1 and 3, then an intermediate result might be expected – and this is what occurred here.
 
 ```{r}
@@ -569,4 +625,5 @@ or
 TukeyHSD(broilers.aov)
 ```
 
+:::
 :::

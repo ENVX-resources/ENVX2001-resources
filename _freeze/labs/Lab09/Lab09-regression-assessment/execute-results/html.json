@@ -1,0 +1,15 @@
+{
+  "hash": "41a64c2cca0fc7f7d272c942ec9a9a1f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"ENVX2001 Lab - Predictive modelling\"\n# revised-by: aca\nsubtitle: ENVX2001 Applied Statistical Methods\ndescription: The University of Sydney\ndate: today\ndate-format: \"[Semester 1,] YYYY\"\n---\n\n\n\n## Learning Outcomes\n\nIn this lab, you will work towards achieving learning outcomes\n\n## Lab Objectives\n\nIn this lab, we will:\n\n- []\n- []\n\n\n:::{.callout-tip}\nPlease work on this exercise by creating your own R Markdown file.\n:::\n\n## Exercise 1:\n\n## Exercise 2:\n\n## Take home exercise:\n\n## Review\n\n### Attribution \n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

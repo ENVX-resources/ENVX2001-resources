@@ -48,7 +48,7 @@ There are two crucial skills we want to help you develop this semester:
 In our experience, these skills are best learned without the help of AI. In weeks 7-12, when we introduce more complex statistical concepts, is where GenAI can really help.
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/9/98/Aspens_at_Sunset%2C_Purgatory.jpg')
+knitr::include_graphics('images/aspens-sunset.jpg')
 ```
 
 *Aspen grove in Yellowstone National Park, from Wikimedia Commons (2008), by John Fowler.*
@@ -60,7 +60,7 @@ To recap the story from our presentation (or article, for remote students), a st
 However, Ripple's study was criticized by another group of scientists; Daniel MacNulty and his team argued that Ripple's methods were flawed, and that while the wolves of Yellowstone National Park may have caused a weak trophic cascade in some areas of the park, this effect was not nearly as strong or as universal as Ripple had claimed [@macnulty2025].
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/c/cb/Wolves_of_Yellowstone_%2821575454571%29.jpg')
+knitr::include_graphics('images/wolves-yellowstone.jpg')
 ```
 
 *Grey wolf in Yellowstone National Park, from Wikimedia Commons (2013), by Mike van Dalen.*
@@ -86,7 +86,7 @@ Without any idea of what Ripple's study entails, it is difficult to judge the va
 *The following exercise involves a fabricated story and simulated data*
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/c/c4/Linckia_laevigata_108616340.jpg')
+knitr::include_graphics('images/linckia-laevigata.jpg')
 ```
 
 *Blue sea star* (Linckia laevigata)*, from Wikimedia Commons (2017), by João D'Andretta.*
@@ -194,7 +194,7 @@ summary(stars) # Also gives you the 1st and 3rd quartiles, minimum value, and ma
 That's a lot of functions to remember! Don't worry, you can always ask R for help. Use the `?` symbol. For example, to find out more about the `mean()` function, you can type `?mean` into your console (your console is located at the bottom of your screen).
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/fe/Black_Noddy_Lady_Elliot.JPG')
+knitr::include_graphics('images/black-noddy.jpg')
 ```
 
 *Black noddy* (Anous minutus)*, a seabird found on the palm trees of Lady Elliot Island. From Wikimedia Commons (2007), by Dalgo UK*
@@ -347,7 +347,7 @@ Before we move onto the next section, now is a good time to take a 5-minute brea
 *The following exercise involves real data from @lovett2000*
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/db/Diamond_Notch_Falls%2C_Spruceton%2C_NY%2C_2021.jpg')
+knitr::include_graphics('images/diamond-notch-falls.jpg')
 ```
 
 *Diamond Notch Falls in Westkill Mountain, one of the many mountains in New York's Catskill Park. From Wikimedia Commons (2021), by Daniel Case.*
@@ -502,7 +502,7 @@ The median and mean are very similar, so the distribution is probably close to s
 ::::
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/8/85/Evergreen_Mountain_in_autumn_from_Buck_Ridge_Lookout%2C_Catskills.jpg')
+knitr::include_graphics('images/evergreen-mountain.jpg')
 ```
 
 *Catskill Mountains in the fall. From Wikimedia Commons (2016), by Daniel Case.*
@@ -697,7 +697,7 @@ For theme, I stuck with `theme_classic()` - a personal favourite.
 :::
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/5/50/Lymnaea_stagnalis_-_Spitzschlammschnecke.jpg')
+knitr::include_graphics('images/lymnaea-stagnalis.jpg')
 ```
 
 *A freshwater snail* (Lymnaea stagnalis) *in algae. From Wikimedia Commons (2009), by Peter Pfeiffer.*
@@ -719,7 +719,7 @@ For now, let's take a 5-minute break, and then we will revisit the Yellowstone c
 *The following case study involves real data from @hobbs2024, which was used by Ripple et al. (2025) in their analysis*
 
 ```{r, echo = FALSE}
-knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/f6/Heart_Spring_and_Lion_Geyser_in_Yellowstone_NP.jpg')
+knitr::include_graphics('images/heart-spring-geyser.jpg')
 ```
 
 *Lion geyser and Heart Spring in Yellowstone National Park. From Wikimedia Commons (2008), by Brocken Inaglory.*

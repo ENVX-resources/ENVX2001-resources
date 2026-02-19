@@ -18,8 +18,8 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 | 2 | [Sampling designs][L02] | [Tutorial 02][T02] | [Lab 02][Lab02] |
 | 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] | [Lab 03][Lab03] |
 | 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] | [Lab 04][Lab04] |
-| 5 | Experimental design | [Tutorial 05][T05] | [Lab 05][Lab05] |
-| 6 | ANOVA with blocking | [Tutorial 06][T06] | [Lab 06][Lab06] |
+| 5 | [Experimental design][L05] | [Tutorial 05][T05] | [Lab 05][Lab05] |
+| 6 | [ANOVA with blocking][L06] | [Tutorial 06][T06] | [Lab 06][Lab06] |
 
 ### Module 2: Finding patterns in data
 
@@ -37,6 +37,8 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 [L02]: lectures/L02/index.qmd
 [L03]: lectures/L03/index.qmd
 [L04]: lectures/L04/index.qmd
+[L05]: lectures/L05/index.qmd
+[L06]: lectures/L06/index.qmd
 [L07]: lectures/L07/index.qmd
 [L08]: lectures/L08/index.qmd
 [L09]: lectures/L09/index.qmd

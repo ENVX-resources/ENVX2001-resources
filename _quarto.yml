@@ -60,12 +60,12 @@ website:
           href: lectures/L02/index.qmd
         - text: "L03 -- 1-way ANOVA"
           href: lectures/L03/index.qmd
-        # - text: "L04 -- Residuals & post hoc"
-        #   href: lectures/L04/index.qmd
-        # - text: "L05 -- Experimental design"
-        #   href: lectures/L05/index.qmd
-        # - text: "L06 -- ANOVA with blocking"
-        #   href: lectures/L06/index.qmd
+        - text: "L04 -- Residuals & post hoc"
+          href: lectures/L04/index.qmd
+        - text: "L05 -- Experimental design"
+          href: lectures/L05/index.qmd
+        - text: "L06 -- ANOVA with blocking"
+          href: lectures/L06/index.qmd
     - section: "**Module 2: Finding patterns**"
       contents:
         - text: "L07 -- Regression modelling"

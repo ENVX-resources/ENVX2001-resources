@@ -307,7 +307,9 @@ ggplot(diatoms, aes(x = Zinc, y = Diversity)) +
 ```
 
 :::
-### Question 1 {style="color:#e64626;"}
+
+::: {.question}
+### Question 1
 
 What can you say about the the different levels of Zinc from looking at the mean and standard deviation values when running the following?
 
@@ -324,26 +326,33 @@ tapply(
     FUN = sd
 )
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution 1 {style="color:green;"}
+::: {.ans}
+### Solution 1
 
-The mean diatom diversity for the `HIGH` level of Zn concentration is much smaller than the other groupings indicating that there is something happening, more formal hypothesis testing is needed to determine whether this is significant. 
+The mean diatom diversity for the `HIGH` level of Zn concentration is much smaller than the other groupings indicating that there is something happening, more formal hypothesis testing is needed to determine whether this is significant.
 
-In terms of the variance of each group these are quite uniform. 
+In terms of the variance of each group these are quite uniform.
 
 Note: the assumption of constant variance (more on this next week) is likely to be met. For example, the ratio of the largest standard deviation to the smallest standard deviation (0.503/0.427) is less than 2.
 :::
+:::
 
 
-### Question 2 {style="color:#e64626;"}
+::: {.question}
+### Question 2
 
 Can you interpret and describe the boxplot above?
+:::
 
 ::: {.content-visible when-profile="solution"}
-### Solution 2 {style="color:green;"}
-- Based on the median values the smallest diversity is associated with the `HIGH` level of Zn concentration.  
-- The $Q_1$ and $Q_3$ (the "box part") for the `HIGH` level of Zn do not overlap with the others levels of Zn, but the boxes overlap with each other for the other levels. This is some initial evidence that it will be likely that all the different levels of Zn will have the same diversity with the exception of the `HIGH` level of Zn. 
+::: {.ans}
+### Solution 2
+- Based on the median values the smallest diversity is associated with the `HIGH` level of Zn concentration.
+- The $Q_1$ and $Q_3$ (the "box part") for the `HIGH` level of Zn do not overlap with the others levels of Zn, but the boxes overlap with each other for the other levels. This is some initial evidence that it will be likely that all the different levels of Zn will have the same diversity with the exception of the `HIGH` level of Zn.
+:::
 :::
 
 
@@ -434,13 +443,16 @@ comb
 ```
 
 
-### Question 3 {style="color:#e64626;"}
+::: {.question}
+### Question 3
 
 Perform some checks to verify the two-sample t-test (or one-way ANOVA) is appropriate, i.e. investigate the shape of the distributions, and the standard deviations.
+:::
 
 
 ::: {.content-visible when-profile="solution"}
-### Solution 3 {style="color:green;"}
+::: {.ans}
+### Solution 3
 
 ```{r}
 library(readxl)
@@ -457,70 +469,85 @@ boxplot(CombWt ~ Hormone, ylab = "Comb weight (g)", data = combs)
 
 Descriptive statistics and boxplot would indicate that the two-sample t-test (or one-way ANOVA) would be appropriate as they appear to meet model assumptions of normality and equal variance.
 :::
+:::
 
 
-### Question 4 {style="color:#e64626;"}
+::: {.question}
+### Question 4
 In R, perform a 2-sample t-test using the `t.test()` function, and use the `var.equal = TRUE` argument to ensure a standard 2-sample t-test is performed. Interpret the output.
+:::
 
 
 ::: {.content-visible when-profile="solution"}
-### Solution 4 {style="color:green;"}
+::: {.ans}
+### Solution 4
 
 ```{r}
 t.test(CombWt ~ Hormone, var.equal = TRUE, data = combs)
 ```
 
-- The t-test (*t* = 3.38, *df* = 20, *P* = 0.003) indicates that the means are significantly different, with the chicks given Hormone A (mean = 97 g) having a significantly higher weight than those given Hormone C (mean 56 g). 
-- The estimated difference is 41 g, but the 95% CI for this estimate is between 15.7 and 66.3 g (A above C). 
+- The t-test (*t* = 3.38, *df* = 20, *P* = 0.003) indicates that the means are significantly different, with the chicks given Hormone A (mean = 97 g) having a significantly higher weight than those given Hormone C (mean 56 g).
+- The estimated difference is 41 g, but the 95% CI for this estimate is between 15.7 and 66.3 g (A above C).
 - Since this 95% CI does not include zero, this also indicates the means differ significantly.
-
+:::
 :::
 
 
-### Question 5 {style="color:#e64626;"}
+::: {.question}
+### Question 5
 
 Next, perform a one-way ANOVA using the `aov` function, followed by `summary`, and interpret the results.
+:::
 
 ::: {.content-visible when-profile="solution"}
-
-### Solution 5 {style="color:green;"}
+::: {.ans}
+### Solution 5
 
 ```{r}
 combs.aov <- aov(CombWt ~ Hormone, data = combs)
 summary(combs.aov)
 ```
 
-The results (*F* = 11.4, *df* = 1, 20, *P* = 0.003) indicates that the means are significantly different, with the chicks given Hormone A (mean = 97 g) having a significantly higher weight than those given Hormone C (mean 56 g). 
+The results (*F* = 11.4, *df* = 1, 20, *P* = 0.003) indicates that the means are significantly different, with the chicks given Hormone A (mean = 97 g) having a significantly higher weight than those given Hormone C (mean 56 g).
+:::
 :::
 
-### Question 6 {style="color:#e64626;"}
+::: {.question}
+### Question 6
 
 Compare the t-test and ANOVA outputs. What do you notice about:
 
 i.	the degrees of freedom;
 ii.	the P-value?
+:::
 
 
 
 ::: {.content-visible when-profile="solution"}
-### Solution 6 {style="color:green;"}
+::: {.ans}
+### Solution 6
 
 i. The *df* of *t* are 20, the denominator *df* for the ANOVA *F* statistic is also 20.
 ii. They are the same (*P*-value = 0.03) for both tests.
 :::
+:::
 
-### Question 7 {style="color:#e64626;"}
+::: {.question}
+### Question 7
 
 When there are only two treatment groups, the observed *F* and *t* values are related by *F* = $t^2$. Demonstrate this for the observed values in this exercise.
+:::
 
 
 
 ::: {.content-visible when-profile="solution"}
-### Solution 7 {style="color:green;"}
+::: {.ans}
+### Solution 7
 
-When there are only two treatment groups, the observed *F*- and *t*-values are related by *F* = $t^2$.  
+When there are only two treatment groups, the observed *F*- and *t*-values are related by *F* = $t^2$.
 
-Demonstration: ($t_{obs}$)2 = $(3.38)^2$ = $F_{obs}$ of 11.4. 
+Demonstration: ($t_{obs}$)2 = $(3.38)^2$ = $F_{obs}$ of 11.4.
+:::
 :::
 
 ## Exercise 3 -- lambs
@@ -567,8 +594,8 @@ Remember to:
 
 
 ::: {.content-visible when-profile="solution"}
-
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 First we read the data into R and the change the `Breed` variable to a `factor` after assesing the structure of the data.
 ```{r}
 #| message: false
@@ -597,7 +624,7 @@ Note the median and mean for each `Breed` are similar which is an indicator of a
 boxplot(Ig ~ Breed, ylab = "Ig level (g/100 ml)", data = lambs)
 ```
 
-Now to assess whether the variances are equal. 
+Now to assess whether the variances are equal.
 
 ```{r}
 vars <- tapply(
@@ -627,7 +654,7 @@ lambs.aov <- aov(Ig ~ Breed, data = lambs)
 summary(lambs.aov)
 ```
 
-The *P*-value is below 0.05 so we reject the null hypothesis. Now explore which pair(s) of means are different. 
+The *P*-value is below 0.05 so we reject the null hypothesis. Now explore which pair(s) of means are different.
 
 ```{r}
 #| warning: false
@@ -637,10 +664,10 @@ emmeans(lambs.aov, "Breed")
 plot(emmeans(lambs.aov, "Breed"))
 ```
 
-- Based on the the ANOVA table our conclusions are there are significant differences between the Ig means between the three breeds of lambs (*F* = 14.6; *df* = 2, 41; *P* < 0.0001). 
-- The 95% CI of the the mean for Breed 1 does not overlap with the 95% CI of the other means. 
-- Therefore, Breed 1 has substantially less immunoglobulin  (1.59 ± 0.10 g/100ml) than the other two: Breed 2: 2.23 ± 0.11 g/100ml, and Breed 3: 2.23 ± 0/.10 g/100ml (expressed as mean ± standard error). 
-
+- Based on the the ANOVA table our conclusions are there are significant differences between the Ig means between the three breeds of lambs (*F* = 14.6; *df* = 2, 41; *P* < 0.0001).
+- The 95% CI of the the mean for Breed 1 does not overlap with the 95% CI of the other means.
+- Therefore, Breed 1 has substantially less immunoglobulin  (1.59 ± 0.10 g/100ml) than the other two: Breed 2: 2.23 ± 0.11 g/100ml, and Breed 3: 2.23 ± 0/.10 g/100ml (expressed as mean ± standard error).
+:::
 :::
 
 

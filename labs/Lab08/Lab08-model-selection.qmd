@@ -60,16 +60,17 @@ We will see the impact of including a totally useless variable, such as this ran
 1.  `runoff_volume ~ rock_creek + pine_creek` 
 2.  `runoff_volume ~ rock_creek + pine_creek + random_no`  
 
-:::{.question}
+::: {.question}
 ### Question 2
-Compare each in terms of their multiple *r*^2^ and adjusted *r*^2^ values. Which performance measure (multiple *r*^2^ or adj *r*^2^) would you use to identify which predictors to use in your model?  
+Compare each in terms of their multiple *r*^2^ and adjusted *r*^2^ values. Which performance measure (multiple *r*^2^ or adj *r*^2^) would you use to identify which predictors to use in your model?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
-There is only a small difference in the multiple *r*^2^ and adj *r*^2^ between the models, but one goes up and the other goes down. 
-Since the random number is a totally useless value, this demonstrates that the adjusted *r*^2^ is the better performance measure to use. 
+There is only a small difference in the multiple *r*^2^ and adj *r*^2^ between the models, but one goes up and the other goes down.
+Since the random number is a totally useless value, this demonstrates that the adjusted *r*^2^ is the better performance measure to use.
 
 
 ```{r randno_solution, eval = T, echo = T}
@@ -80,6 +81,7 @@ mod_rand2 <- lm(runoff_volume ~ rock_creek + pine_creek + random_no ,data = stre
 summary(mod_rand2)
 ```
 
+:::
 :::
 ## Exercise 2: Fish productivity
 
@@ -109,14 +111,15 @@ str(fish_data)
 Explore the data on your own before making any models. 
 (*Hint:* remember that we are only interested in the numeric variables for our linear models)
 
-:::{.question}
+::: {.question}
 ### Question 1
 
 Are there any obvious relationships between the response variable (productivity) and the other variables?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 ```{r}
 #correlation matrix
@@ -128,17 +131,20 @@ pairs(fish_data[,-1])
 ```
 Productivity has a strong relationship with biomass and abundance
 :::
+:::
 
-:::{.question}
+::: {.question}
 ### Question 2
 
 Are there any other patterns or potential issues you can see from the exploratory plots?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Biomass is also highly correlated with abundance, so collinearity might be an issue.
+:::
 :::
 
 

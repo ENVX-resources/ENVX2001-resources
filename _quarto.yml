@@ -21,7 +21,7 @@ website:
     left: "Built using the SOLES Quarto handbook template"
 
   navbar:
-    title: ENVX2001 Lectures
+    title: ENVX2001 Resources
     # background: "#F1F1F1" # "#ff3333" "#424242"
     # logo: "images/logo_white.png"
     pinned: false

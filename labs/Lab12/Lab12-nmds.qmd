@@ -1,0 +1,270 @@
+---
+title: "nMDS and PERMANOVA"
+subtitle: ENVX2001 Applied Statistical Methods
+description: The University of Sydney
+date: today
+date-format: "[Semester 1,] YYYY"
+---
+
+
+## **Readings**
+
+Quinn, G. P. and Keough, M. J. (2002, 2023) *Experimental Design and Data Analysis for Biologists*. Cambridge University Press (1^st^  and 2^nd^ edition).
+
+Han, S. Y., Filippi, P., Román Dobarco, M., Harianto, J., Crowther M. S., and Bishop, T. F. A. (2023). Multivariate analysis for soil science. In *'Encyclopedia of Soils in the Environment (Second Edition)'*. (Ed. M. J. Goss and M. Oliver) pp. 499-508. Academic Press: Oxford.
+
+## **Learning outcomes**
+
+At the end of this practical students should be able to:
+
+1.          Calculate a similarity matrix or transformed data
+
+2.          Plot an ordination using Non-metric Multidimensional Scaling (nMDS)
+
+3.          Statistically test differences between factors using a ANOSIM and PERMANOVA
+
+4.          Determine what contributes most to the differences using a SIMPER analysis
+
+Working directory Set the working directory for this tutorial and ensure you copy all data into this directory and save your code into the directory. setwd("C:/Users/.")
+
+## **Exercise 1: Copepod Communities in Norway**
+
+It is thought that copepod (a marine invertebrate) assemblages in Solbergstrand, Norway are affected by nutrient levels. There were 4 spatially independent sites for each treatment in;
+
+a)         Control sites (C),
+
+b)         Low nutrient sites(L) and
+
+c)          High nutrient sites (H).
+
+We want to know if there is a pattern in species assemblages using nMDS, whether there is a statistically significant difference between treatments using ANOSIM and what species contribute to these differences via SIMPER.
+
+First you need to load the packages vegan and MASS and file CopepodData.csv
+
+```{r}
+library(vegan)
+library(MASS)
+
+CopepodData <- read.csv("data/CopepodData.csv", header = TRUE)
+
+```
+
+Now the data is entered, let's apply a 4th root transformation. This will take the emphasis from the more common species. Other transformations include the square root transformation and the log transformation. Other transformations included square root, presence/absence and log. You can also standardise the data if there are differences in the amount of sampling (which there isn't here).
+
+```{r}
+TransCopepodData <- (CopepodData[,2:20])^(1/4)
+```
+
+Now let's generate a Bray-Curtis dissimilarity matrix on this transformed data and perform a nMDS. Bray-Curtis similarities are useful for this kind of data, as they did not group sites by shared absences. For environmental data, a Euclidean distance would be more useful.
+
+```{r}
+copepod.dis <- vegdist(TransCopepodData, method="bray")
+```
+
+Now let's look at the nMDS with labels for Community and take a note of the stress value (how well the ordination represents the data). A great stress value is \<0.1, an OK stress value is between 0.1 and 0.2, and \>0.2 is not so good. A stress greater than 0.3 is essentially arbitrary.
+
+Next we plot the nMDS, labelling the sites with treatment.
+
+```{r}
+pchs<- c(0:2)
+Copepod_Factor <- factor(CopepodData$Treatment)
+nMDS_copepod <- metaMDS(TransCopepodData, distance="bray", k=2) 
+plot_copepod <- ordiplot(nMDS_copepod, display = "sites", type="n") 
+points(nMDS_copepod, col="black", pch = pchs[Copepod_Factor])
+legend("topright", bty = "n", legend = levels(Copepod_Factor), pch = pchs)
+
+nMDS_copepod
+
+```
+
+**Exercise**: Can you see a separation between treatments for copepod assemblages?
+
+**Exercise**: What is the stress and is it good?
+
+Let's test if the groups are significantly different using ANOSIM (Analysis of Similarities), a non-parametric permutation test. We will use 999 permutations to calculate the significance level.
+
+So, let's test for Treatment
+
+```{r}
+copepod.anosim <- with(CopepodData, anosim(copepod.dis, CopepodData$Treatment))
+summary(copepod.anosim)
+plot(copepod.anosim)
+
+```
+Is there a significant difference between the different treatments? We can see that using a brand-new ANOSIM code.
+
+```{r}
+
+# Extract a grouping factor (e.g., Management type)
+group <- CopepodData$Treatment
+
+# Perform ANOSIM for all groups combined
+anosim_all <- anosim(copepod.dis, group)
+print(anosim_all)
+pairwise.anosim <- function(copepod.dis, group, p.adjust.method = "holm", ...) {
+  # Ensure grouping is a factor
+  group <- factor(group)
+  groups <- levels(group)
+  
+  # Generate all unique pairs of group levels
+  pairs <- t(combn(groups, 2))
+  
+  # Prepare storage for results
+  results <- data.frame(
+    group1  = character(),
+    group2  = character(),
+    R       = numeric(),
+    p.value = numeric(),
+    stringsAsFactors = FALSE
+  )
+  
+  # Loop through each pair
+  for (i in seq_len(nrow(pairs))) {
+    g1 <- pairs[i, 1]
+    g2 <- pairs[i, 2]
+    
+    # Subset the data to just these two groups
+    keep <- group %in% c(g1, g2)
+    dist_sub <- as.dist(as.matrix(copepod.dis)[keep, keep])
+    group_sub <- droplevels(group[keep])
+    
+    # Run ANOSIM
+    anosim_res <- anosim(dist_sub, group_sub, ...)
+    
+    # Store results
+    results <- rbind(
+      results,
+      data.frame(
+        group1  = g1,
+        group2  = g2,
+        R       = anosim_res$statistic,
+        p.value = anosim_res$signif,
+        stringsAsFactors = FALSE
+      )
+    )
+  }
+  
+  # Adjust p-values for multiple comparisons
+  results$p.adjusted <- p.adjust(results$p.value, method = p.adjust.method)
+  
+  return(results)
+}
+
+pairwise_results <- pairwise.anosim(copepod.dis, group, p.adjust.method = "holm")
+pairwise_results
+
+```
+
+
+
+
+**Exercise**: Was there a significant difference between treatments for copepod assemblages? What was the Global R value? Were there significant differences between sites?
+
+To see what species of copepods are contributing to the differences between treatments, we can use a SIMPER analysis (Similarity Percentages). The average is the amount that species contributes to the dissimilarity between the groups. The sd is the standard devation (i.e the variation) of the average dissimilarity contribution. The ratio is the average dissimilarity/sd. The ava and avb are the average abundances of that species to the group. The cumsum is the ordered cumulative contribution to the dissimilarity between groups. Note we can ignore the cumulative 70%.
+
+Note we use the ratio as the rank for the species that mostly separate the groups.
+
+If R approaches 1 the dissimilarity between groups is greater than the dissimilarity within groups, if R is close to 0 the dissimilarity within groups is about the same as the dissimilarity between groups, and if R approaches -1, the variation within groups is greater than the dissimilarity between groups.
+
+```{r}
+copepod.simper <- simper(TransCopepodData, CopepodData$Treatment)
+summary(copepod.simper)
+```
+
+**Exercise**: Which species most contribute to the separation between treatments?
+
+## **Exercise 2: Analysis of ant assemblages from different Sydney Vegetation Communties**
+
+This is a study of the diversity of ants found in bushland remnants in the Sydney region. The ants were sampled with pitfall traps in the ground, and taken back to the lab to determine their species and relative abundance in each sample.
+
+In this example we are looking at a  collection of ants sampled in different vegetation communities ("Community") and whether they were sampled in the interior or on the edge of the vegetation community ("Sample"). We expected that the abundance and diversity of ants (the assemblage) would be different in different vegetation communities, and that the diversity of ants would be different in the interior to the edge of the vegetation community.
+
+This leads to three multivariate null hypotheses.
+
+H0: There is no difference in ant assemblage between the different vegetation communities.
+
+H0: There is no difference in ant assemblage between the interior and the edge of the community.
+
+H0: There is no interaction between the vegetation community and the location for the ant assemblages
+
+We want to know if there is a pattern in species assemblages using nMDS, whether there is a statistically significant difference between communities and samples using PERMANOVA, and what species contribute to these differences via SIMPER.
+
+First you need to load the packages vegan and MASS and file AntData.csv,
+
+```{r}
+library(vegan)
+library(MASS)
+
+AntData <- read.csv("data/AntDataTotal.csv", header = TRUE)
+
+```
+
+Now the data is entered, let's apply a 4th root transformation, like in the example above,
+
+```{r}
+TransAntData <- (AntData[,4:103])^(1/4)
+```
+
+Now let's generate a Bray-Curtis dissimilarity matrix on this transformed data.
+
+```{r}
+ant.dis <- vegdist(TransAntData, method = "bray")
+```
+
+Now let's look at the nMDS with labels for Community and take a note of the stress value (how well the ordination represents the data). A great stress value is \<0.1, an OK stress value is between 0.1 and 0.2, and \>0.2 is not so good. A stress greater than 0.3 is essentially arbitrary.
+
+```{r}
+pchs<- c(0:5)
+
+Ant_Factor <- factor(AntData$Community)
+nMDS_Ant <- metaMDS(TransAntData, distance="bray", k=2)
+plot_Ant <- ordiplot(nMDS_Ant, display = "sites", type="n") 
+points(nMDS_Ant, col="black", pch = pchs[Ant_Factor])
+legend("topright", bty = "n", legend = levels(Ant_Factor), pch = pchs)
+nMDS_Ant
+
+```
+
+**Exercise**: Can you see a separation between communties?
+
+**Exercise**: What is the stress and is it good?
+
+We can test for differences between Communities, Samples and their Interactions using PERMANOVA (called Adonis in the package vegan). This is better for analyses with at least 2 factors than ANOSIM, as it can test the interactions. We use 999 permutations to calculate the significance (p) value. You interpret the PERMANOVA table like an ANOVA Table, except permutations are used to generate the p value,
+
+```{r}
+
+# PERMANOVA with interaction using adonis2
+adonis2(vegdist(TransAntData) ~ Community * Sample,
+        data = AntData,
+        permutations = 999,
+        by = "terms")
+
+```
+
+**Exercise**: Is there a significant difference for the Community, Sample and/or their interaction?
+
+If we find an overall significant p value, we need to see which level is significant from which other level. Here we can do pairwise tests (a bit like *post-hoc* tests in ANOVAs), with the p value adjusted with a Bonferroni correction. Here we need to create a function to do this, as it is not standard in the vegan package. So copy and paste this function.
+
+To do the pairwise tests, there is a new R command on github and you can copy this text below to do it. This is for the Community factor in the ant data.
+
+Note the first time you do this, you need to first install Rtools from here https://cran.r-project.org/bin/windows/Rtools/
+
+```{r}
+library(devtools)
+install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+library(pairwiseAdonis)
+pairwise.adonis(TransAntData, AntData$Community)
+
+```
+
+**Exercise**: Which communities are significantly different from each other?
+
+To see what species are contributing to the differences between the vegetation communities, we can again use a SIMPER analysis (Similarity Percentages)
+
+```{r}
+antsim <- simper(TransAntData, AntData$Community)
+summary(antsim)
+
+```
+
+**Exercise**: Which species of ants are the most important for the separation of communities?

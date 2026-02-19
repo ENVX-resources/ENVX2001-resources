@@ -140,7 +140,8 @@ You should copy and paste this data into your own document and run `stratified` 
 
 Look at the code and see if you can understand how a data frame is created in R. The `data.frame` function is used to create a data frame, and the `c` function is used to create vectors of data. Each vector forms a column in the data frame.
 
-### Question 1 {style="color:#e64626;"}
+::: {.question}
+### Question 1
 
 Estimate the mean and associated 95% CI assuming **stratified** random sampling using the `carbon` dataset. We can use the `weighted.mean` function to calculate the weighted mean, and the `qt` function to calculate the t-critical value for a 95% CI. You should find out what these functions do by seeking their help documentation using the `?` operator.
 
@@ -153,11 +154,12 @@ Estimate the mean and associated 95% CI assuming **stratified** random sampling 
 ::: column-margin
 Tip: you can manipulate the object and subset specific rows, columns or cells using `$` and `[]` respectively. For example, to access the `mean` column of the `carbon` dataset, you can use `carbon$mean`. To access the mean value for the `Forest` stratum, you can use `carbon$mean[1]`.
 :::
-
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 1 {style="color:green;"}
+::: {.ans}
+### Solution 1
 
 First calculate each of weighted mean, the t-critical value for a 95% CI, and the standard error of the mean:
 ```{r}
@@ -191,6 +193,7 @@ Above, the results are combined into a single vector object `ci_stratified` whic
 
 -- **End of Solution 1** --
 :::
+:::
 
 ## Exercise 2 - Soil carbon: what if...?
 
@@ -219,13 +222,16 @@ $$95\% CI = \bar y \pm t^{0.025}_{n-1} \times \sqrt{Var(\bar y)}$$
 
 where $n$ is the total number of samples, and $t^{0.025}_{n-1}$ is the t-critical value for the 95% CI.
 
-### Question 2 {style="color:#e64626;"}
+::: {.question}
+### Question 2
 
 Estimate the mean and associated 95% CI assuming **simple random sampling** using the `overall` dataset.
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 2 {style="color:green;"}
+::: {.ans}
+### Solution 2
 
 ```{r}
 # Mean value is already given
@@ -247,16 +253,19 @@ ci_overall
 
 -- **End of Solution 2** --
 :::
+:::
 
 
-### Question 3 {style="color:#e64626;"}
+::: {.question}
+### Question 3
 
 Would you recommend stratified random sampling for future surveys? Provide evidence from the results of questions 2 and 3.
-
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 3 {style="color:green;"}
+::: {.ans}
+### Solution 3
 
 Yes, the 95% CI is smaller, albeit marginally when stratified random sampling is adopted.
 Another metric is the efficiency of stratification which is:
@@ -273,6 +282,7 @@ sum(var_mean) / sum(weighted_var_mean)
 The results show that stratified random sampling is 1.28 times more efficient than simple random sampling. This means that to achieve the same level of precision, simple random sampling would require approximately 1.28 times more samples than stratified random sampling. So to achieve the same precision with simple random sampling, we would need approximately $1.28 * 44 = 57$ samples.
 
 -- **End of Solution 3** --
+:::
 :::
 
 ## Exercise 3 - Kangaroos
@@ -320,15 +330,18 @@ rerun <- c(12, 11, 13, 14, 9)
 kangaroos <- data.frame(baseline, rerun)
 ```
 
-### Question 4 {style="color:#e64626;"}
+::: {.question}
+### Question 4
 Intuitively, what would be the impact on the precison with which we estimate the mean when:
 
 (a) we resample the same locations in the repeat survey?
 (b) we sample at different locations in the repeat survey?
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 4 {style="color:green;"}
+::: {.ans}
+### Solution 4
 
 (a) When we resample the same locations, we include the covariance term which describes the relationship between the observations in the 2 surveys. This will reduce the variance of the change in mean, and hence the 95% CI will be narrower.
 (b) When we sample at different locations, we assume the covariance is equal to 0. This will increase the variance of the change in mean, and hence the 95% CI will be wider.
@@ -337,12 +350,14 @@ Therefore, intuitively we should always sample at the same location for both sur
 
 -- **End of Solution 4** --
 :::
+:::
 
 ### Different locations
 
 Let's assume that the resampled locations are completely different from the baseline survey. This means that the covariance term is equal to 0. 
 
-### Question 5 {style="color:#e64626;"}
+::: {.question}
+### Question 5
 
 Use R to estimate the 95% CI for the change in mean between the 2 surveys. The equation is:
 
@@ -370,10 +385,12 @@ var(t2)
 # t-critical value for a 95% CI with 8 degrees of freedom:
 qt(0.975, 8)
 ```
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 5 {style="color:green;"}
+::: {.ans}
+### Solution 5
 
 Since we sample different locations in the repeat survey the covariance is equal to 0. 
 
@@ -407,14 +424,16 @@ Therefore the mean change is `r delta_mean` and the 95% CI is [`r round(L95, 2)`
 -- **End of Solution 5** --
 
 :::
+:::
 
 ### Same locations
 
 Now let's assume that the resampled locations are the same as the baseline survey. This means that the covariance term is *not* equal to 0.
 
-### Question 6 {style="color:#e64626;"}
+::: {.question}
+### Question 6
 
-Assuming we resampled the **same locations** as the baseline survey, use R to estimate the 95% CI for the change in mean between the 2 surveys. 
+Assuming we resampled the **same locations** as the baseline survey, use R to estimate the 95% CI for the change in mean between the 2 surveys.
 
 ::: column-margin
 Note: when we sample at same locations between surveys the *df* = number of paired sites - 1 = 5 - 1 = 4.
@@ -423,11 +442,12 @@ Note: when we sample at same locations between surveys the *df* = number of pair
 Hint: the following formulae are used:
 
 $$\Delta \bar y = \bar y_2 - \bar y_1$$ $$Var(\Delta \bar y) = Var( \bar y_2) + Var( \bar y_1) - 2 \times Cov(\bar y_1, \bar y_2)$$
-
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 6 {style="color:green;"}
+::: {.ans}
+### Solution 6
 
 Since we sample at the same locations we have to include the covariance term. 
 
@@ -446,21 +466,24 @@ Therefore the mean change is `r delta_mean` and the 95% CI is [`r round(L95, 2)`
 -- **End of Solution 6** --
 
 :::
+:::
 
-### Question 7 {style="color:#e64626;"}
+::: {.question}
+### Question 7
 
 Was there a significant change in the mean number of kangaroos between the study period, if we assume the same locations were resampled, or if different locations were sampled?
-
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-
-### Solution 7 {style="color:green;"}
+::: {.ans}
+### Solution 7
 
 If the 95% CI does not include 0 we can reject the null hypothesis and state that there is a significant change in the mean kangaroo numbers between the 2 survey times. This would be true for both scenarios.
 
 -- **End of Solution 7** --
 
+:::
 :::
 
 
@@ -472,15 +495,16 @@ Any statistical software, including R, will not tell you if you have made a mist
 
 In th case of this kangaroo study, the results are the same for both scenarios, which means that the implications lie in the context of future studies.
 
-### Question 8 {style="color:#e64626;"}
+::: {.question}
+### Question 8
 
 In the future, would you re-sample the same sites, or visit new sites in a kangaroo monitoring program of the same woodland?
-
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-
-#### Solution 8 {style="color:green;"}
+::: {.ans}
+#### Solution 8
 
 In this case, it would be better to visit new locations. Looking at the 95% CI, we can see that the precision of the estimate is higher when we sample at different locations between surveys since the bandwidth is smaller compared to when we sample at the same locations. This means that we can be more confident in the estimate of the change in mean when we sample at different locations.
 
@@ -489,6 +513,7 @@ Note that the rationale here is that we are assuming that the same locations are
 
 -- **End of Solution 8** --
 
+:::
 :::
 
 
@@ -501,13 +526,16 @@ Without manually calculating and comparing the 95% CI, we can use the `t.test()`
 
 Check your answers in R by trying to perform both of these using the `t.test()` function. Assume the variances are equal for the two-sample $t$-test (use the argument `var.equal = TRUE`for this).
 
-### Question 9 {style="color:#e64626;"}
+::: {.question}
+### Question 9
 
 Compare the 95% CI for each scenario between the `t.test()` results and the ones you calculated manually. Are they same?
+:::
 
 ::: {.content-visible when-profile="solution"}
 
-### Solution 9 {style="color:green;"}
+::: {.ans}
+### Solution 9
 
 ```{r}
 # Two-sample t-test
@@ -525,6 +553,7 @@ The results are identical to the ones we calculated manually.
 
 -- **End of Solution 9** --
 
+:::
 :::
 
 ## Thanks!

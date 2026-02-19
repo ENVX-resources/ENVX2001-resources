@@ -1,0 +1,95 @@
+---
+title: "Tutorial 08"
+subtitle: "ENVX2001 -- Applied Statistical Methods"
+format: html
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Exercise 1: Backward elimination in R
+
+Data:  *Dippers* spreadsheet
+
+
+[Dippers](https://en.wikipedia.org/wiki/Dipper) are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. 
+
+Twenty-two sites were included in the survey. Some of the variables have been transformed. 
+
+The variables measured were:  
+
+- `Altitude` site altitude
+- `Hardness` water hardness
+- `RiverSlope` river-bed slope
+- `LogCadd` the numbers of caddis fly larvae, transformed
+- `LogStone` the numbers of stonefly larvae, transformed
+- `LogMay` the numbers of mayfly larvae, transformed
+- `LogOther` the numbers of all other invertebrates collected, transformed
+- `Br_Dens` the number of breeding pairs of dippers per 10 km of river  
+
+In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.
+
+```{r readingData}
+library(readxl)
+Dippers <- read_xlsx("data/mlr.xlsx" , sheet = "Dippers")
+glimpse(Dippers)
+```
+
+You may explore the data on your own (hint: look at last week's exercise on histogram and scatterplot matrices).
+
+::: {.content-visible when-profile="solution"}
+```{r}
+pairs(Dippers)
+cor(Dippers)
+```
+
+:::
+
+When ready, perform a backward elimination starting from the full model: 
+
+```{r}
+#| eval: false
+FullMod <- lm(Br_Dens ~ ., data=Dippers)
+RedMod <- step(FullMod, direction = "backward")
+summary(FullMod)
+summary(RedMod)
+AIC(FullMod, RedMod)
+```
+
+:::{.question}
+### Question 1
+
+Which model is chosen? Why?
+:::
+
+::: {.content-visible when-profile="solution"}
+### Answer {style="color:green;"}
+
+The reduced model is chosen as it is better and has the lower AIC. In addition, the adjusted *r*^2^ is higher for the reduced model, indicating that the reduced model is a better fit to the data. 
+
+```{r VarSelectSolution, echo = T, eval = T}
+
+FullMod <- lm(Br_Dens ~ ., data=Dippers)
+RedMod <- step(FullMod, direction = "backward", trace = 0) # backward selection
+
+# Plot as table (a good trick for reports!)
+compare <- AIC(FullMod, RedMod) %>% # get AIC data frame
+  # then, add adjusted r-squared values in a new column using `mutate()`
+  mutate(adj_r2 = c(summary(FullMod)$adj.r.squared, summary(RedMod)$adj.r.squared)) %>%
+  # then, round all numeric values to 2 decimal places
+  mutate(across(where(is.numeric), \(x) round(x, 2)))
+
+knitr::kable(compare)
+```
+
+
+```{r}
+summary(FullMod)
+summary(RedMod)
+AIC(FullMod, RedMod)
+```
+
+:::

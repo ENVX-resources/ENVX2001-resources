@@ -4,6 +4,7 @@ subtitle: ENVX2001 Applied Statistical Methods
 description: The University of Sydney
 format: html
 toc: true
+bibliography: references.bib
 ---
 
 ## Learning Outcomes
@@ -54,13 +55,9 @@ knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/9/98/Asp
 
 ### First Thoughts
 
-To recap the story from our presentation (or article, for remote students), a study by Ripple et al. (2025) found new evidence to support the already popular idea that wolves are a keystone species in Yellowstone National Park. By modelling the rate of willow regrowth before and after wolves were reintroduced to the park, Ripple and his team found that the wolves had an enormous, positive effect on the park's ecosystem.[^1]
+To recap the story from our presentation (or article, for remote students), a study by Ripple et al. (2025) found new evidence to support the already popular idea that wolves are a keystone species in Yellowstone National Park. By modelling the rate of willow regrowth before and after wolves were reintroduced to the park, Ripple and his team found that the wolves had an enormous, positive effect on the park's ecosystem [@ripple2025].
 
-[^1]: Ripple, W. J., Beschta, R. L., Wolf, C., Painter, L. E., & Wirsing, A. J. (2025). The Strength of the Yellowstone Trophic Cascade after Wolf Reintroduction. Global Ecology and Conservation, 58. https://doi.org/10.1016/j.gecco.2025.e03428
-
-However, Ripple's study was criticized by another group of scientists; Daniel MacNulty and his team argued that Ripple's methods were flawed, and that while the wolves of Yellowstone National Park may have caused a weak trophic cascade in some areas of the park, this effect was not nearly as strong or as universal as Ripple had claimed.[^2]
-
-[^2]: MacNulty, D. R., Cooper, D., Procko, M., & Clark-Wolf, T. J. (2025). Flawed analysis invalidates claim of a strong Yellowstone trophic cascade after wolf reintroduction: A comment on Ripple et al. (2025). Global Ecology and Conservation, 63. https://doi.org/10.1016/j.gecco.2025.e03899N.
+However, Ripple's study was criticized by another group of scientists; Daniel MacNulty and his team argued that Ripple's methods were flawed, and that while the wolves of Yellowstone National Park may have caused a weak trophic cascade in some areas of the park, this effect was not nearly as strong or as universal as Ripple had claimed [@macnulty2025].
 
 ```{r, echo = FALSE}
 knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/c/cb/Wolves_of_Yellowstone_%2821575454571%29.jpg')
@@ -96,9 +93,7 @@ knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/c/c4/Lin
 
 A marine scientist (we'll call her Stella) is studying benthic invertebrates on Lady Elliot Island, and notices that the blue sea stars (*Linckia laevigata*) from this island seem to be smaller than those in other parts of the Great Barrier Reef. She wonders if her eyes are deceiving her.
 
-To get to the bottom of this, she collects 16 sea stars from Lady Elliot Island and measures one random arm from each of them to the nearest 0.1 cm. She knows that the typical length of a blue sea star's arm is around 11.5 cm. [^3]
-
-[^3]: Thomson, G., & Thompson, C. (1982). Movement and size stucture in a poulation of the blue starfish Linckia laevigata (L.) at Lizard Island, Great Barrier Reef. Marine and Freshwater Research, 33(3), 561. https://doi.org/10.1071/mf9820561
+To get to the bottom of this, she collects 16 sea stars from Lady Elliot Island and measures one random arm from each of them to the nearest 0.1 cm. She knows that the typical length of a blue sea star's arm is around 11.5 cm [@thomson1982].
 
 ::: callout-note
 #### Building Habits
@@ -349,9 +344,7 @@ Before we move onto the next section, now is a good time to take a 5-minute brea
 
 ### Exercise: Water Chemistry
 
-*The following exercise involves real data from Lovett et al. (2000)*[^4]
-
-[^4]: *Lovett GM, Weathers KC & Sobczak WV (2000) Ecological Applications 10: 73-84.*
+*The following exercise involves real data from @lovett2000*
 
 ```{r, echo = FALSE}
 knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/d/db/Diamond_Notch_Falls%2C_Spruceton%2C_NY%2C_2021.jpg')
@@ -711,9 +704,7 @@ knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/5/50/Lym
 
 ### Section Summary
 
-According to a study in Finland, it takes upwards of 500 micromoles/litre of sulphate to cause noticeable harm to aquatic crustaceans and molluscs. [^5] The values from Lovett's study were far below this (check our histograms from earlier). So, it might seem like the freshwater ecosystems of Catskill Park are safe... for now.
-
-[^5]: Juha Karjalainen, Hu, X., Mikko Mäkinen, Karjalainen, A. K., Järvistö, J., Kaisa Järvenpää, Sepponen, M., & Leppänen, M. T. (2023). Sulfate sensitivity of aquatic organism in soft freshwaters explored by toxicity tests and species sensitivity distribution. Ecotoxicology and Environmental Safety, 258, 114984–114984. https://doi.org/10.1016/j.ecoenv.2023.114984
+According to a study in Finland, it takes upwards of 500 micromoles/litre of sulphate to cause noticeable harm to aquatic crustaceans and molluscs [@karjalainen2023]. The values from Lovett's study were far below this (check our histograms from earlier). So, it might seem like the freshwater ecosystems of Catskill Park are safe... for now.
 
 However, we must take note of two important thing: Firstly, harmful pollutant levels can be very ecosystem-specific. It is entirely possible for one ecosystems to be more sensitive than another to the same level of sulphate pollution. Secondly, sulphate was not the only pollutant Lovett's team measured. In fact, their main concern was nitrate saturation (NO3).
 
@@ -725,9 +716,7 @@ For now, let's take a 5-minute break, and then we will revisit the Yellowstone c
 
 ### Case Study: Back to Yellowstone
 
-*The following case study involves real data from Hobbs et al. (2024)[^6], which was used by Ripple et al. (2025) in their analysis*
-
-[^6]: *Thompson Hobbs, Johnston, D. B., Marshall, K. N., Wolf, E. C., & Cooper, D. J. (2024). Does restoring apex predators to food webs restore ecosystems? Large carnivores in Yellowstone as a model system. Ecological Monographs, 94(2). https://doi.org/10.1002/ecm.1598*
+*The following case study involves real data from @hobbs2024, which was used by Ripple et al. (2025) in their analysis*
 
 ```{r, echo = FALSE}
 knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/f/f6/Heart_Spring_and_Lion_Geyser_in_Yellowstone_NP.jpg')

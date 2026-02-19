@@ -5,8 +5,6 @@ subtitle: ENVX2001 Applied Statistical Methods
 description: The University of Sydney
 date: today
 date-format: "[Semester 1,] YYYY"
-resources:
-  - data/carbon.xlsx
 ---
 
 {{< pagebreak >}}

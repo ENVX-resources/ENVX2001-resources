@@ -14,23 +14,23 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 1 | [Introduction][L01] | [Tutorial 01][T01] | -- |
-| 2 | [Sampling designs][L02] | [Tutorial 02][T02] | -- |
-| 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] | -- |
-| 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] | -- |
-| 5 | Experimental design | [Tutorial 05][T05] | -- |
-| 6 | ANOVA with blocking | [Tutorial 06][T06] | -- |
+| 1 | [Introduction][L01] | [Tutorial 01][T01] | [Lab 01][Lab01] |
+| 2 | [Sampling designs][L02] | [Tutorial 02][T02] | [Lab 02][Lab02] |
+| 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] | [Lab 03][Lab03] |
+| 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] | [Lab 04][Lab04] |
+| 5 | Experimental design | [Tutorial 05][T05] | [Lab 05][Lab05] |
+| 6 | ANOVA with blocking | [Tutorial 06][T06] | [Lab 06][Lab06] |
 
 ### Module 2: Finding patterns in data
 
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 7  | [Regression modelling][L07] | [Tutorial 07][T07] | -- |
-| 8  | [Regression model development][L08] | [Tutorial 08][T08] | -- |
-| 9  | [Regression model assessment][L09] | -- | -- |
-| 10 | Principle component analysis | [Tutorial 10][T10] | -- |
-| 11 | Clustering | [Tutorial 11][T11] | -- |
-| 12 | Multidimensional scaling | [Tutorial 12][T12] | -- |
+| 7  | [Regression modelling][L07] | [Tutorial 07][T07] | [Lab 07][Lab07] |
+| 8  | [Regression model development][L08] | [Tutorial 08][T08] | [Lab 08][Lab08] |
+| 9  | [Regression model assessment][L09] | -- | [Lab 09][Lab09] |
+| 10 | Principle component analysis | [Tutorial 10][T10] | [Lab 10][Lab10] |
+| 11 | Clustering | [Tutorial 11][T11] | [Lab 11][Lab11] |
+| 12 | Multidimensional scaling | [Tutorial 12][T12] | [Lab 12][Lab12] |
 
 <!-- Links -->
 [L01]: lectures/L01/index.qmd
@@ -51,3 +51,15 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 [T10]: tutorials/tutorial10.qmd
 [T11]: tutorials/tutorial11.qmd
 [T12]: tutorials/tutorial12.qmd
+[Lab01]: labs/Lab01/Lab01-introduction.qmd
+[Lab02]: labs/Lab02/Lab02-sample-designs.qmd
+[Lab03]: labs/Lab03/Lab03-oneway-anova.qmd
+[Lab04]: labs/Lab04/Lab04-residuals-posthoc.qmd
+[Lab05]: labs/Lab05/Lab05-exp-designs.qmd
+[Lab06]: labs/Lab06/Lab06-factorial-anova.qmd
+[Lab07]: labs/Lab07/Lab07-regression-modelling.qmd
+[Lab08]: labs/Lab08/Lab08-model-selection.qmd
+[Lab09]: labs/Lab09/Lab09-regression-assessment.qmd
+[Lab10]: labs/Lab10/Lab10-pca.qmd
+[Lab11]: labs/Lab11/Lab11-clustering.qmd
+[Lab12]: labs/Lab12/Lab12-nmds.qmd

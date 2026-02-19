@@ -1,0 +1,429 @@
+---
+title: "Lab 5 - Experimental Design"
+subtitle: ENVX2001 Applied Statistical Methods
+description: The University of Sydney
+date: today
+date-format: "[Semester 1,] YYYY"
+resources:
+  - data/Data5.xlsx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+:::{.callout-tip}
+## Learning outcomes
+At the end of this lab students should be able to:
+
+* distinguish between sampling units and experimental units;
+
+* use R to generate randomisations for CRDs and RCBDs;
+
+* use R to analyse experiments with blocking, and assess the usefulness of blocking.
+
+All of the data for this lab is in the **Data5.xlsx** file.
+:::
+
+## Exercise 1 - Randomisation for a CRD using R (Walk-through)
+Consider a glass house experiment conducted on a bench on which it was judged that the growing conditions would be consistent across the bench. The experimenter had five different smoked water treatments for assisting the germination of *Banksia* seeds. She had 50 dishes on which she could place seeds randomly selected from a uniform batch of *Banksia* seeds. The dishes were to be placed on the bench and each of the five water solutions allocated randomly to 10 of the dishes. 
+
+### Question 1.1
+*(i)*	What would the degrees of freedom be in a corresponding ANOVA table? 
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}
+
+* Treatment df = t – 1 = 5 – 1	=  4
+
+* Residual df =	N – t = 50 – 5	= 45
+
+* Total df = N – 1 = 50 – 1	= 49
+
+:::
+
+### Question 1.2
+*(ii)*	Suppose that Treatment 1 was a control.  In situations where the comparisons of interest are of the other treatments (2 to 5) with the control, and not amongst the other treatments, it can be advantageous to increase the number of control replicates to 20. What are the degrees of freedom in the corresponding ANOVA table?
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}
+
+* Treatment df = t – 1 = 5 – 1	=  4
+
+* Residual df =	N – t = 60 – 5	= 55
+
+* Total df = N – 1 = 60 – 1	= 59
+
+:::
+
+### Question 1.3
+*(iii)* The formula for standard error of the difference (SED) is:
+
+$SED=\sqrt{Resid\ MS\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}$.
+
+Given the SED formula, what percentage improvement (i.e. reduction) has been achieved for the SED between Treatment 1 and 2 when there are equal replicates *(i)* versus unequal replicates *(ii)*?  Assume the Residual MS is a constant.
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}
+For the equal replicate design:
+
+$SED=\sqrt{Resid\ MS\left(\frac{1}{10}+\frac{1}{10}\right)}\approx0.447\times\sqrt{Resid\ MS}$.  
+
+For the second design:
+
+$SED=\sqrt{Resid\ MS\left(\frac{1}{20}+\frac{1}{10}\right)}\approx0.387\times\sqrt{Resid\ MS}$.
+
+So SED(extra control rep) / SED(equal rep) = 0.387 / 0.447 = 0.866, i.e. a 13.4% reduction in the SED.
+
+:::
+
+## Exercise 2 - The balance between the number of sampling units and experimental units (Walk-through)
+Horticulturalists have been studying the nutrient requirements of lettuce growing in a sand medium; in particular they are looking at the nitrate concentration in leaf petioles in response to varying applied nitrogen nutrient levels (5, 11, 18 and 32 mmol/L).  Lettuce plants are grown in separate pots, so different nitrogen levels may be applied to individual pots, and one or more leaves sampled per plant.  They are also interested in optimising their experimental protocol for future studies; consequently they conducted five separate experiments where they sampled different number of leaves per plant, and differing number of plants, but kept the total number of leaves sampled at 128 in each experiment.  The experiments were conducted as follows:
+
+* Experiment 1:  16 leaves per plant; 2 plants per treatment;
+
+* Experiment 2:  8 leaves per plant; 4 plants per treatment;
+
+* Experiment 3:  4 leaves per plant; 8 plants per treatment;
+
+* Experiment 4:  2 leaves per plant; 16 plants per treatment;
+
+* Experiment 5:  1 leaf per plant; 32 plants per treatment.
+
+Similar lettuce plants were used across all five experiments, and in all cases, a CRD was used to allocate the plants amongst the treatments.  The datasets are located in the *Data5.xlsx* file.  There are separate sheets for each Experiment called *Experiment1*, *Experiment2*, etc.
+
+### Question 2.1
+*(i)* What are the experimental units and what are the sampling units in the above experiments.  For each experiment, how many experimental units and how many sampling units are used?
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}
+
+The experimental unit is the plant, and the sampling unit is the leaf on the plant.  All experiments have 128 sampling units (leaves).  However, the number of experimental units varies, and is: Experiment 1: 8; Experiment 2: 16; Experiment 3: 32; Experiment 4: 64; and Experiment 5: 128.
+
+:::
+
+### Question 2.2
+*(ii)* When there are multiple sampling units per experimental unit, in simple situations (as is here), an appropriate method is simply to average the responses over all the sampling units belonging to an experimental unit, and analyse these.  So in this case, we need to average the observed nitrate values over all the leaves in the plant.  The code below shows how to do this using a function called `rowMeans` which finds the average in a row across multiple columns.  Here we do this for *Experiment1*.   
+
+```{r}
+# 
+```
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r}
+library(readxl)
+exp1<-read_excel("data/Data5.xlsx",sheet="Experiment1")
+exp1$treatment<-as.factor(exp1$treatment)
+exp1$response<-rowMeans(exp1[,3:18])
+str(exp1)
+```
+
+:::
+
+### Question 2.3
+
+*(iii)* Perform a one-way ANOVA on these average data. (It will also be helpful to obtain the treatment means using the `emmeans` function, as done in previous topics.  What are your conclusions about the effect of varying applied nitrogen levels?  You don't have to look at post-hoc tests, just examine the F-test.
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r, message=F,warning=F}
+mod1<-aov(response~treatment,data=exp1)
+summary(mod1)
+library(emmeans)
+emmeans(mod1,"treatment")
+```
+
+Conclusion: There are no significant differences in mean nitrate level across the four nitrogen treatment groups (F = 0.045; df = 3,4; P = 0.99). 
+:::
+
+### Question 2.4
+*(iV)* Repeat this for Experiments 2 to 5.  What are your conclusions in each experiment?
+
+Experiment 2: 8 leaves per plant, 4 plants per treatment
+
+```{r}
+# 
+```
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r, message=F,warning=F}
+exp2<-read_excel("data/Data5.xlsx",sheet="Experiment2")
+exp2$treatment<-as.factor(exp2$treatment)
+exp2$response<-rowMeans(exp2[,3:10])
+mod2<-aov(response~treatment,data=exp2)
+summary(mod2)
+library(emmeans)
+emmeans(mod2,"treatment")
+```
+
+:::
+
+Experiment 3: 4 leaves per plant, 8 plants per treatment
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r, message=F,warning=F}
+exp3<-read_excel("data/Data5.xlsx",sheet="Experiment3")
+exp3$treatment<-as.factor(exp3$treatment)
+exp3$response<-rowMeans(exp3[,3:6])
+mod3<-aov(response~treatment,data=exp3)
+summary(mod3)
+library(emmeans)
+emmeans(mod3,"treatment")
+```
+:::
+
+Experiment 4: 2 leaves per plant, 16 plants per treatment
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r, message=F,warning=F}
+exp4<-read_excel("data/Data5.xlsx",sheet="Experiment4")
+exp4$treatment<-as.factor(exp4$treatment)
+exp4$response<-rowMeans(exp4[,3:4])
+mod4<-aov(response~treatment,data=exp4)
+summary(mod4)
+library(emmeans)
+emmeans(mod4,"treatment")
+```
+
+:::
+
+Experiment 5: 1 leaf per plant, 32 plants per treatment.  Note, no averaging required as sampling unit = experimental unit.
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}
+```{r, message=F,warning=F}
+exp5<-read_excel("data/Data5.xlsx",sheet="Experiment5")
+exp5$treatment<-as.factor(exp5$treatment)
+exp5$response<-exp5$leaf1
+mod5<-aov(response~treatment,data=exp5)
+summary(mod5)
+library(emmeans)
+emmeans(mod5,"treatment")
+```
+
+While Experiment 2 also did not indicate significant differences in mean nitrate level across the four nitrogen treatments, significant differences were detected in the subsequent experiments, particularly in Experiments 3 and 4.  There is a trend of increasing mean nitrate concentrations with increasing nitrogen treatment, indicating a dose-response relationship.
+:::
+
+### Question 2.5
+*(v)* Summarise the results in terms of the balance between sampling plants versus leaves, and what recommendations would you make for future studies?
+
+```{r}
+#
+```
+
+
+::: {.content-visible when-profile="solution"}
+
+### Solution {style="color:green;"}  
+
+With a fixed number of leaves (sampling units), increasing the number of plants and reducing the number of leaves sampled per plant results in an increased significance for the treatment effect being detected.  However, there is evidence that only sampling one leaf per plant results in a moderate decline in the significance levels.  These findings are seen when either the Residual MS, F or P-values are used to make this assessment.  So for this scheme, it would be recommended to use Experiment 3 or Experiment 4 protocols.  Note that the standard errors of means (SE) also decline with increasing plants per treatments, though this changes little with eight or more.
+
+```{r, echo=FALSE}
+Experiment<-c(1,2,3,4,5)
+Plants_Per_Treatment<-c(2,4,8,16,32)
+Leaves_Per_Plant<-c(16,8,4,2,1)
+Resid_MS<-c(0.155,0.111,0.108,0.239,0.308)
+F_Stat<-c(0.04,0.91,5.82,5.76,3.22)
+P_Value<-c(0.986,0.465,0.003,0.002,0.025)
+SE<-c(0.278,0.167,0.116,0.122,0.098)
+gdat<-cbind(Experiment,Plants_Per_Treatment,Leaves_Per_Plant,Resid_MS,F_Stat,P_Value,SE)
+library(knitr)
+kable(gdat)
+```
+
+:::
+
+### Question 2.6
+*(vi)*	There are two sources of random variation encountered in these experiments:
+
+-variation between leaves within a plant; and
+ 	
+-variation between plants within the same treatment group.
+ 	
+How do you think your recommendations might change in *(iv)* if:
+
+-there was (virtually) no variation between leaves within a plant; only between plants; or
+	
+-there was (virtually) no variation between plants, only variation between leaves within a plant.
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+If there is virtually no variation between leaves within a plant, then just using one leaf per plant would be sufficient, so Experiment 5 would be the optimal protocol here.
+
+If there is much leaf to leaf variation, but little between-plant variation, then it is best to increase the number of leaves sampled per plant, and use fewer plants.  So Experiment 1 might be optimal here (but this would give the very minimal level of replication, so for a cautionary approach, Experiment 2 might be used).
+
+:::
+
+## Exercise 3 - A paired t-test generalises to a one-way ANOVA – RCBD
+Fifteen farms cooperated in a field trial in which a normal fattening ration for pigs (ration A) was compared with the same rations supplemented with a small trace of copper (ration B).  Each farmer set up two pens of pigs, as similar as possible in all respects, and allocated the two rations at random, ration A to one pen and ration B to the other.  The mean weight gains per pen (g/day) are stored in the two columns of the **copper** sheet in the **Data5.xlsx** file.
+
+This description clearly suggests the design is an RCBD, with 15 farms but only 2 treatments.  As we have seen, a paired design is the simplest form of RCBD.  In this example we will not worry about model assumptions.
+
+### Question 3.1
+
+*(i)* Firstly analyse the data using a paired t-test.  Assuming you read the data is as a data frame called `copper` the code is `t.test(x=copper$RationA,y=copper$RationB,paired=T)`.  Interpret the results.
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+
+```{r}
+library(readxl)
+copper<-read_excel("data/Data5.xlsx",sheet = "copper")
+head(copper)
+t.test(x=copper$RationA,y=copper$RationB,paired=T)
+```
+Pigs fed Ration B (copper supplement) have a significantly higher weight gain than those on Ration A (P = 0.006).  On average, the cupper supplemented pigs (B) have a weight gain of 41 g/day more than the control, but a 95% confidence interval for this difference is between 14.0 and 67.9 g/day more.
+
+:::
+
+### Question 3.2
+*(ii)* Next we will obtain an analysis of the data using ANOVA.    To do this analysis however, you will first need to re-arrange the data set into a form suitable for ANOVA.  That is, you will need a single column of weight gains, a column of treatment identifiers, and a column indicating the Farm number.  The code below will do this for you:
+
+* `dat<-stack(copper[,2:3])`
+
+* `farms<-rep(c(1:15),times=2)`
+
+* `coppern<-cbind(farms,dat)`
+
+The first line stacks (using the `stack` function) the 2 columns of weight gain on top of each other (column name is `values`) and adds a column indicating which ration is associated with each weight gain value (column name is `ind`).
+
+The second line repeats (using the `rep` function) the values of farm numbers twice so for each of the weight gains we have an associated farm.
+
+The third line joins the two data frames together (using the `cbind` function) to create the new stacked dataset which can be used by the `aov` function.
+
+```{r}
+head(copper)
+dat<-stack(copper[,2:3])
+farms<-rep(c(1:15),times=2)
+coppern<-cbind(farms,dat)
+str(coppern)
+```
+
+### Question 3.3
+
+*(iii)* The general code for performing an 1-way anova with a randomised complete block design is:
+
+`aov(response~block+treatment,data=data)` 
+
+In this example the `response` is the weight gain, `blocks` are farms and the `treatment` is ration. Your names will be different.  Having obtained the analysis, check that the results from the ANOVA is identical to the paired t-test:
+
+* the same *P*-value;
+
+* the same test statistic (though expressed as an *F*-statistic instead of a *t*-statistic, with *F* = $t^2$ to that from the paired *t*-test.
+
+```{r}
+# 
+```
+
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r}
+block.anova<-aov(values~as.factor(farms)+ind,data=coppern)
+anova(block.anova)
+```
+Comparisons with paired t-test.
+
+* P = 0.006 in both analyses
+
+* $t^2$ =  $(–3.25)^2$ = 10.59 = F  
+
+* Residual df = 14 = df for t-test
+
+:::
+
+## Exercise 4 - One-way ANOVA - RCBD
+
+Three diets for hamsters were tested for differences in weight gain after a specified period of time. Six inbred lines were used with three hamsters selected from each line. The three diets were assigned at random to the hamsters in each line.  The data is in the **hamsters** sheet in the **Data5.xlsx** file.
+
+### Question 4.1  
+
+*(i)* Are the mean weight gains the same across diets? Are any diets more or less effective than other diets? You will need to use the `emmeans` package and its `emmeans()` function. Read in the data and perform post-hoc tests.
+
+
+```{r}
+# 
+```
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+
+```{r}
+library(readxl)
+hamster<-read_excel("data/Data5.xlsx",sheet="hamster")
+head(hamster)
+hamster$Diet<-as.factor(hamster$Diet)
+hamster$Inbred_Line<-as.factor(hamster$Inbred_Line)
+block.anova<-aov(Wt_Gain~Inbred_Line+Diet,data=hamster)
+anova(block.anova)
+```
+
+Perform post-hoc tests.
+
+```{r}
+library(emmeans)
+emmeans(block.anova, pairwise ~ Diet)
+```
+
+There are significant differences in mean weigh gain of hamsters amongst the three diets (F = 9.56; df = 2, 10; P = 0.005).  Based on the post-hoc tests, hamsters fed diet 1 had a significantly higher weight gain than those fed diets 2 or 3, whereas there was no significant difference between weights for hamsters on Diets 2 and 3.
+
+:::
+
+### Question 4.2  
+*(ii)* Re-run the analysis without blocking, i.e. as a CRD.  Are the conclusions different?  Would you use blocking in the future?  What proportion of the variation was explained by blocking?
+
+```{r}
+# 
+```
+
+::: {.content-visible when-profile="solution"}
+### Solution {style="color:green;"}
+```{r}
+crd.anova<-aov(Wt_Gain~Diet,data=hamster)
+anova(crd.anova)
+```
+
+We now have a non-significant F-test.  Based on Block SS in the original analysis value of 71.167, we can see that the majority of the Residual SS (90.167) in the CRD is from the between-block differences.  By including the block effect through the RCBD we have dramatically reduced the Residual SS.
+
+The proportion of variation explained by the Blocking is:
+
+$\frac{Block\ SS}{Total\ SS}=\frac{71.167}{126.5}=0.56$.
+
+Therefore 56% of the variation in the response is explained by the blocking.  This is compelling evidence for using blocking in future versions of the experiment.
+
+:::
+

@@ -1,0 +1,112 @@
+---
+title: "Tutorial 12: nMDS and PERMANOVA"
+# reviewed-by:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PERMANOVA, SIMPER and nMDS Analysis
+
+We are going to use the same dataset as last tutorial, but do very different analyses.
+
+## Setup
+
+To do these in R, you need to use the vegan package, so first load it and the MASS package:
+
+```{r}
+#| message: false
+#| warning: false
+library(vegan)
+library(MASS)
+library(ggplot2)
+```
+
+## Load the data
+
+Next load the bird data:
+
+```{r}
+Birds <- read.csv("data/macnally.csv", header = TRUE)
+```
+
+## Transform the data
+
+Let's transform the data using a fourth-root transformation:
+
+```{r}
+TransBirdsData <- (Birds[, 3:104])^(1/4)
+```
+
+## Bray-Curtis Dissimilarity Matrix
+
+Now let's generate a Bray-Curtis dissimilarity matrix on this data and perform a nMDS. Note this data has already been standardised.
+
+```{r}
+Bird.dis <- vegdist(TransBirdsData, method = "bray")
+```
+
+## nMDS Ordination
+
+Let's plot the nMDS and label with Habitat Type:
+
+```{r}
+pchs <- c(0:5)
+Bird_Factor <- factor(Birds$HABITAT)
+nMDS_Bird <- metaMDS(TransBirdsData, distance = "bray", k = 2)
+
+plot_Bird <- ordiplot(nMDS_Bird, display = "sites", type = "n")
+points(nMDS_Bird, col = "black", pch = pchs[Bird_Factor])
+legend("topright", bty = "n", legend = levels(Bird_Factor), pch = pchs)
+```
+
+```{r}
+nMDS_Bird
+```
+
+## ANOSIM
+
+Let's do an ANOSIM, using Habitat as the Factor:
+
+```{r}
+Bird.anosim <- with(TransBirdsData, anosim(Bird.dis, Birds$HABITAT))
+summary(Bird.anosim)
+```
+
+## PERMANOVA
+
+Let's do a PERMANOVA, with HABITAT as a factor. PERMANOVA is called `adonis` in the vegan package. Note `adonis` is being replaced by `adonis2`, which is basically the same.
+
+```{r}
+adonis2(TransBirdsData ~ HABITAT, data = Birds, permutations = 999)
+```
+
+## Pairwise Comparisons
+
+If we find an overall significant p-value, we need to see which level is significant from which other level. Here we can do pairwise tests (a bit like post-hoc tests in ANOVAs), with the p-value adjusted with a Bonferroni correction.
+
+To do the pairwise tests, there is a new R command on GitHub. Note the first time you do this, you need to first install Rtools from [here](https://cran.r-project.org/bin/windows/Rtools/).
+
+```{r}
+#| eval: false
+library(devtools)
+install_github("pmartinezarbizu/pairwiseAdonis/pairwiseAdonis")
+```
+
+```{r}
+#| eval: false
+library(pairwiseAdonis)
+pairwise.adonis(TransBirdsData, Birds$HABITAT)
+```
+
+## SIMPER Analysis
+
+To see what species are contributing to the differences between the vegetation communities, we can use a SIMPER analysis (Similarity Percentages):
+
+```{r}
+Birdsim <- simper(TransBirdsData, Birds$HABITAT)
+summary(Birdsim)
+```
+
+The SIMPER analysis shows which species contribute most to the dissimilarity between habitat groups. This helps identify indicator species or species that drive community differences.

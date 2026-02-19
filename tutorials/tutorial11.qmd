@@ -1,0 +1,73 @@
+---
+title: "Tutorial 11: Clustering"
+# reviewed-by:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dissimilarity Matrices and Clustering
+
+We are going to analyse the bird assemblage data from the lecture.
+
+## Setup
+
+Load the vegan package:
+
+```{r}
+#| message: false
+#| warning: false
+library(vegan)
+```
+
+## Load the data
+
+Read the data:
+
+```{r}
+macnally <- read.csv("data/macnally.csv", row.names = 1)
+head(macnally, 1)
+```
+
+## Calculate Bray-Curtis Dissimilarity
+
+Calculate the Bray-Curtis dissimilarity:
+
+```{r}
+Braydistance <- vegdist(macnally[, 3:102])
+```
+
+## Hierarchical Clustering
+
+Apply hierarchical clustering using the UPGMA method ("average"):
+
+```{r}
+hc <- hclust(Braydistance, method = "average")
+```
+
+## Plot the Dendrogram
+
+Plot the dendrogram:
+
+```{r}
+plot(hc)
+```
+
+Let's add some labels, and look at the potential number of clusters:
+
+```{r}
+plot(hc, las = 1, 
+     main = "Cluster diagram of Bird Assemblages",
+     xlab = "Site", 
+     ylab = "Bray-Curtis Dissimilarity")
+rect.hclust(hc, 2, border = "red")
+rect.hclust(hc, 5, border = "darkgreen")
+```
+
+The rectangles show potential groupings at different levels of the dendrogram:
+
+- **Red rectangles**: 2 clusters
+- **Green rectangles**: 5 clusters
+
+The choice of how many clusters to use depends on your research question and the level of dissimilarity that is meaningful for your study.

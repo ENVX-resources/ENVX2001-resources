@@ -1,8 +1,6 @@
 ---
 title: "Tutorial 08"
-subtitle: "ENVX2001 -- Applied Statistical Methods"
-format: html
-editor: visual
+# reviewed-by: ACA, 2026
 ---
 
 ```{r setup, include=FALSE}

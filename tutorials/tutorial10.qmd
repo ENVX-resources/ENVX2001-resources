@@ -1,0 +1,165 @@
+---
+title: "Tutorial 10: PCA and Factor Analysis"
+# reviewed-by:
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PCA and Factor Analysis
+
+Students in class gave "Characteristics of a good ecology lecturer". They scored from 1-10 on a range of characteristics:
+
+- accessible
+- attractive
+- Wide range of topics
+- Do teaching research
+- Dress well
+- Complex issues
+- Example exam questions
+- Notes before
+- humour
+- Easy marking
+- Move around lecture
+- Detailed lecture notes
+- Clear objective to lecture
+- Solicit questions
+- Use textbook closely
+- Focus on primary research
+- Use their own research
+- Teach in team
+- Understand principles of teaching
+- Use pointers
+- respected
+
+The students also indicated whether they were:
+
+- a gender (male/female)
+- studied mainly a system (marine/terrestrial)
+- studied mainly an organismal group (plants/animals)
+
+We are going to use principal components analysis and factor analysis to interpret this dataset.
+
+## Setup
+
+Load these packages to make the plots look better:
+
+```{r}
+#| message: false
+#| warning: false
+library(EFAtools)
+library(ggplot2)
+library(ggfortify)
+```
+
+## Load the data
+
+First open your dataset:
+
+```{r}
+lecturers <- read.csv("data/lecturers.csv", header = TRUE)
+```
+
+## Correlation matrix
+
+Let's first do a correlation matrix:
+
+```{r}
+cor(lecturers[, 8:28])
+Corrmatrix <- cor(lecturers[, 8:28])
+```
+
+## Bartlett's Test of Sphericity
+
+Now we can do the Bartlett's Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.
+
+```{r}
+BARTLETT(Corrmatrix, N = 34, cor_method = c("pearson"))
+```
+
+## Principal Components Analysis
+
+Note: to make this a PCA based on a correlation matrix, we have to scale the variables, hence `scale = TRUE`. There are two main principal components functions, but they are very similar. Note `prcomp` calls the loadings "rotations", not to be confused with rotations below.
+
+```{r}
+pca1 <- prcomp(lecturers[, 8:28], scale = TRUE)
+pca2 <- princomp(lecturers[, 8:28], cor = TRUE)
+```
+
+```{r}
+summary(pca1)
+summary(pca2)
+```
+
+## Loadings
+
+Let's look at the loadings. Called "rotations" in `prcomp` and "loadings" in `princomp`. They are the Pearson's correlation between that variable and that Principal Component.
+
+```{r}
+pca1
+loadings(pca2)
+```
+
+## Screeplot
+
+To do a screeplot, follow the commands below. Note this is the standard deviations, which are just square root of the variances or eigenvalues.
+
+```{r}
+screeplot(pca1, type = "lines")
+```
+
+## Principal Component Scores
+
+To get your principal components scores for plotting and analysis, do the following:
+
+```{r}
+pca1$x
+```
+
+So to combine them with the original variables, do this:
+
+```{r}
+lecturerpcscores <- cbind(lecturers, pca1$x)
+```
+
+## Biplot
+
+We can produce a biplot in ggplot2, using the factor gender as the colour:
+
+```{r}
+autoplot(pca1, data = lecturerpcscores, colour = 'gender')
+```
+
+We could add the loadings, but they are a bit messy, best to look at loadings or rotations tables.
+
+You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.
+
+## ANOVA on PC scores
+
+You can use this file to do the ANOVAs, you will have to do yourself. For example for differences in PC scores for gender:
+
+```{r}
+AOV1 <- aov(lecturerpcscores$PC1 ~ gender, data = lecturerpcscores)
+summary(AOV1)
+```
+
+You can do something similar for your projects and regression, using your PC scores as the predictors.
+
+## Boxplot
+
+To do a boxplot of variables use ggplot2:
+
+```{r}
+ggplot(lecturerpcscores, aes(x = gender, y = PC1)) +
+  geom_boxplot()
+```
+
+## Factor Analysis with Varimax Rotation
+
+To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax:
+
+```{r}
+fa1 <- factanal(lecturers[, 8:28], 10, rotation = "varimax")
+fa1
+```

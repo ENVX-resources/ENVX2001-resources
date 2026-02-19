@@ -131,7 +131,7 @@ What happens if we add even more variables?
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Food for thought
 
 To accomodate for a third variable, we need a third axis. Since we have already used the width and breadth of the room, the only physical dimension left to us is height (you could also call it depth).
@@ -304,7 +304,7 @@ Which rock sample is the least similar to sample 2D003? Which one is the most si
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: callout-tip
+::: {.ans}
 ##### Solution
 
 We can use the `which.max()` and `which.min()` functions again, but this time on the third row:
@@ -388,7 +388,7 @@ Check the structure of the `iris` dataset using the `str()` function. Remember t
 :::
 
 :::: {.content-visible when-profile="solution"}
-::: {.callout-tip collapse="true"}
+::: {.ans}
 ##### Solution
 
 ```{r}

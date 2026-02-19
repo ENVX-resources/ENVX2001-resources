@@ -1,15 +1,11 @@
 ---
 title: "Lecture 06"
+resources:
+  - "ENVX2001_Week6_lecture_notes.qmd"
 ---
-<!-- 
-### Lecture 06a
-[Full Screen](lecture-06.qmd) | [PDF]() 
 
-```{=html}
-<iframe class="slide-deck" src="lecture-06.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
-``` 
--->
+**Lecture 06 -- ANOVA with blocking**
 
-::: callout-important
-**Lecture 06 is not available in Quarto. Please refer to the Canvas site to access the lecture material.**
-:::
+{{< pdf Lecture_Topic6.pdf width="100%" height="600" button="Download PDF" >}}
+
+[Download Lecture Notes](ENVX2001_Week6_lecture_notes.qmd)

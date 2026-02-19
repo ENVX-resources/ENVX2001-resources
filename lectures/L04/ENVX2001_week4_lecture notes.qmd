@@ -1,0 +1,536 @@
+---
+title: "Week 4 lecture code and notes"
+subtitle: ENVX2001 Applied Statistical Methods
+author: "Aaron Greenville"
+format:
+  html:
+    toc: true # true will include a table of contents
+    code-fold: false # change to true to hide code by default.
+    embed-resources: true # Important! Must include so that plots are embedded in the HTML output.
+editor: visual
+---
+
+## Load packages
+
+First lets load some helpful packages
+
+```{r}
+library(moments) # for some summary statistics
+
+```
+
+# Synthetic Example
+
+First we will generate some synthetic data to illustrate the concepts of ANOVA and the assumptions of the model. Here you will see the workflow for fitting an ANOVA model, checking the assumptions and then performing post-hoc tests.
+
+Let's generate some synthetic data. We will generate data from 4 treatments with different means. This will help illustrate the assumptions of the ANOVA model.
+
+```{r}
+set.seed(123) # for reproducibiity
+
+##Generate data
+rep <- 25
+Treatment <- as.factor(rep(LETTERS[1:4], each = rep))
+mu <- rep(c(1, 2, 3, 1.5), each = rep)
+y <- exp(rnorm(4*rep, mu, 1))
+```
+
+## Raw data exploration
+
+It is always a good idea to explore the raw data before fitting any models. This can help identify any potential issues with the data that may need to be addressed before fitting the model.
+
+::: callout-tip
+`par(mfrow = c(1,2))` is used to set the layout of the plots. The first number is the number of rows and the second number is the number of columns. `par(mfrow = c(1,1))` is used to reset the layout to the default.
+:::
+
+```{r}
+
+par(mfrow = c(1,2))
+plot(y ~ Treatment)
+hist(y,main="",xlab="Y")
+par(mfrow = c(1,1))
+
+```
+
+Already we see there could be issues with the data. The data is right skewed and the variance is not constant across the treatments. This is a common issue with ecological data and is why we often need to transform the data before fitting the model.
+
+Generate some summary statistics for the data
+
+```{r}
+##Summary stats by treatment
+tapply(y,Treatment,median)
+tapply(y,Treatment,mean)
+tapply(y,Treatment,skewness)
+tapply(y,Treatment,kurtosis)
+```
+
+The above summary statistics show that the data is right skewed and has a high kurtosis. This is not ideal for ANOVA and is consistent with the above plots.
+
+::: callout-tip
+The skewness and kurtosis are measures of the shape of the distribution. Skewness measures the asymmetry of the distribution and kurtosis measures the thickness of the tails of the distribution.
+:::
+
+## Fit ANOVA
+
+Fit the ANOVA model to the data. This is done using the `aov` function in R. The model is fitted using the formula `y ~ Treatment` where `y` is the response variable and `Treatment` is the factor variable.
+
+It seems weird to fit the model to the data before checking the assumptions, but we need to calculate the residuals from the model to use to test our assumptions. We now focus on the residuals of the model, not the raw data.
+
+```{r}
+y.aov <- aov(y ~ Treatment)
+
+```
+
+## Check assumptions
+
+The assumptions of the ANOVA model are that the residuals are normally distributed and have constant variance. We can check these assumptions using a variety of diagnostic plots and tests.
+
+There are two main schools of thought on how to check these assumptions. The first is to check the residuals of the model and use formal statistical tests (an older approach), the second is to use graphical approaches. The more statistical tests you do the greater the chance of a type 1 error - more on that when we get to post-hoc tests.
+
+::: callout-tip
+The residuals are the difference between the observed values and the predicted values from the model.
+:::
+
+### Formal statistical tests
+
+Here we will use the Shapiro-Wilk test to test the normality of the residuals. We will also use the Bartlett test to test the homogeneity of variance. As a comparison, we will also use the raw data to test for normality, but this isn't the best approach (see tutorial for more).
+
+#### Normality tests
+
+Shapiro-Wilk test on the raw data. Note how we need to use the `tapply` function to apply the test to each treatment level. If you have lots of treatments or a more complex model you may need to use a different approach.
+
+```{r}
+tapply(y,Treatment,shapiro.test)
+
+```
+
+**Graphical approach**
+
+```{r}
+par(mfrow = c(2,2))
+tapply(y,Treatment,hist)
+par(mfrow = c(1,1))
+```
+
+Shapiro-Wilk test on the residuals of the model
+
+```{r}
+shapiro.test(resid(y.aov))
+
+```
+
+Much easier! The residuals are not normally distributed, but we still need to check the variance.
+
+**Graphical approach**
+
+```{r}
+par(mfrow = c(1,2))
+hist(y.aov$resid,main="",xlab="Residuals")
+hist(rstandard(y.aov),main="",xlab="Standardised Residuals")
+par(mfrow = c(1,1))
+```
+
+Better approach is to use QQplots. This is a graphical approach to check the normality of the residuals. The residuals should fall on the line if they are normally distributed.
+
+```{r}
+par(mfrow = c(1,2))
+
+qqnorm(rstandard(y.aov)) # standarised residuals
+qqline(rstandard(y.aov))
+qqnorm(resid(y.aov)) # residuals
+qqline(resid(y.aov))
+
+par(mfrow = c(1,1))
+
+```
+
+::: callout-tip
+The standardised residuals are the residuals divided by the standard deviation of the residuals. This is a way to standardise the residuals so they are easier to interpret. You can use either the residuals or the standardised residuals to check the assumptions. Note how the y-axis is different between the two plots.
+:::
+
+```{r}
+skewness(rstandard(y.aov))
+```
+
+Note the skewness of the residuals is 3.7 which is very high. This is consistent with the right skewed data we generated.
+
+#### Equal variance tests
+
+**Graphical approach**
+
+```{r}
+par(mfrow = c(1,2))
+plot(fitted(y.aov),rstandard(y.aov),xlab="fitted values",ylab="standardised residuals")
+abline(0,0)
+plot(fitted(y.aov),resid(y.aov),xlab="fitted values",ylab="residuals")
+abline(0,0)
+par(mfrow = c(1,1))
+
+```
+
+::: callout-tip
+The residuals should be homoscedastic, meaning they have constant variance across the range of the fitted values. This is an assumption of the ANOVA model. We are looking for no pattern in the residuals as the fitted values increase. Similar to the QQplot, you can use the residuals or standarised residuals. Note how the y-axis is different between the two plots.
+:::
+
+```{r}
+tapply(y,Treatment,sd)
+```
+
+The standard deviations of the residuals are not constant across the treatments. This is consistent with the right skewed data we generated.
+
+**Formal statistical test**
+
+Equal variance tests. These are ok for simple models, but can be problematic for more complex models. The Bartlett test is used to test the homogeneity of variance across the treatments. Recommended to use the graphical approach above.
+
+```{r}
+bartlett.test(rstandard(y.aov) ~ Treatment)
+```
+
+The Bartlett test is significant, indicating that the variances are not equal across the treatments. This is consistent with the graphical approach.
+
+## Assumptions not met - now what?
+
+The assumptions of the ANOVA model are not met. The residuals are not normally distributed and the variance is not constant across the treatments. This is consistent with the right skewed data we generated.
+
+So we need to transform the data to meet the assumptions of the model. A common transformation is the log transformation. This is often used for right skewed data.
+
+The workflow is the same as above, but we will use the transformed data. If the log transformation doesn't work, you can try other transformations or use a non-parametric test. You need to repeat the above steps for each transformation.
+
+## Fit ANOVA
+
+Fit the ANOVA model to the transformed data. This is done using the `aov` function in R. The model is fitted using the formula `log(y) ~ Treatment` where `log(y)` is the response variable and `Treatment` is the factor variable.
+
+```{r}
+y.aov <- aov(log(y) ~ Treatment)
+
+```
+
+## Data exploration on the transformed data
+
+```{r}
+##Raw data
+par(mfrow = c(1,2))
+plot(log(y) ~ Treatment)
+hist(log(y),main="",xlab="Y")
+par(mfrow = c(1,1))
+
+```
+
+```{r}
+
+skewness(y.aov$residuals)
+```
+
+Looking better! The skewness of the residuals is now 0.1 which is much better than the 3.7 we had before.
+
+## Check assumptions
+
+### Normality tests
+
+**Graphical approach**
+
+```{r}
+par(mfrow = c(1,2))
+hist(y.aov$resid,main="",xlab="Residuals")
+hist(rstandard(y.aov),main="",xlab="Standardised Residuals")
+par(mfrow = c(1,1))
+
+```
+
+Histograms of the residuals and standardised residuals show the residuals are now normally distributed.
+
+```{r}
+par(mfrow = c(1,2))
+qqnorm(rstandard(y.aov))
+qqline(rstandard(y.aov))
+
+qqnorm(resid(y.aov))
+qqline(resid(y.aov))
+
+par(mfrow = c(1,1))
+
+```
+
+The QQplots show the residuals are now normally distributed.
+
+### Equal variance tests
+
+```{r}
+par(mfrow = c(1,2))
+plot(fitted(y.aov),rstandard(y.aov),xlab="fitted values",ylab="standardised residuals")
+abline(0,0)
+
+plot(fitted(y.aov),resid(y.aov),xlab="fitted values",ylab="residuals")
+abline(0,0)
+par(mfrow = c(1,1))
+```
+
+There are no patterns in the residuals as the fitted values increase, indicating the variance is constant across the treatments.
+
+```{r}
+tapply(log(y),Treatment,sd)
+```
+
+The standard deviations of the residuals are now constant across the treatments.
+
+## ANOVA results
+
+Now that the assumptions of the ANOVA model are met, we can look at the ANOVA results.
+
+```{r}
+summary(y.aov)
+```
+
+The ANOVA results show that the treatment has a significant effect on the response variable. We don't know what is driving the result, so we need to do post-hoc tests to determine which treatments are different from each other.
+
+# Post-hoc test
+
+Again there are two main schools of thought on how to do post-hoc tests. The first is to use formal statistical tests, the second is to use graphical approaches. The more statistical tests you do the greater the chance of a type 1 error.
+
+**Formal statistical tests** There are many post-hoc tests available to determine which treatments are different from each other. The most common is the Tukey HSD test. This is a conservative test that controls the family-wise error rate. There are other tests available, but they are less conservative and can lead to more type 1 errors.
+
+We will illustrate two functions in R to do the Tukey HSD test. The first is the `TukeyHSD` function and the second is the `emmeans` function. The `emmeans` function is more flexible and can be used for more complex models.
+
+```{r}
+TukeyHSD(y.aov)
+```
+
+The above results show that all treatment levels are different from each other, except D and C. The first column `diff` is the difference between the means, the second column `lwr` is the lower bound of the confidence interval and the third column `upr` is the upper bound of the confidence interval. The last column `p adj` is the p-value adjusted for multiple comparisons.
+
+::: callout-tip
+Using the emmeans package (recommended way) to do the Tukey HSD test. This is more flexible and can be used for more complex models.
+:::
+
+The `emmeans` function calculates the estimated marginal means for each treatment level and then calculates the differences between the means. The `pairwise` argument is used to specify which treatments to compare. The `adjust` argument is used to specify the method to adjust for multiple comparisons. The default is the Tukey HSD test.
+
+```{r}
+library(emmeans)
+emmeans(y.aov, pairwise ~ Treatment)
+
+```
+
+The above results show the same results as the `TukeyHSD` function. There are two tables in the output. The first table shows the estimated marginal means for each treatment level. The second table shows the differences between the means and the p-values adjusted for multiple comparisons. See how estimate is the same a diff in the TukeyHSD output.
+
+**Graphical approach**
+
+```{r}
+plot(emmeans(y.aov, pairwise ~ Treatment))
+```
+
+The above plot shows the differences between the means and the confidence intervals. The confidence intervals that do not cross zero are significantly different from each other.
+
+::: callout-tip
+The graphical approach is a good way to visualise the differences between the means. It is often easier to interpret than the tables of results. However it is up to use to decide which approach to use. Just justify it and often a combination of both helps you understand the results better until you get more experience.
+:::
+
+# Example data - chicken weights
+
+## Read in data and check structure
+
+```{r}
+chicks <- read.csv("Chick weights.csv")
+head(chicks) # first 6 records
+
+```
+
+We need to check the structure of the data to make sure it is in the correct format. The `Diet` variable is a factor variable, so we need to convert it to a factor using the `as.factor` function. The `WtGain` variable is a numeric variable, so we don't need to do anything to it.
+
+```{r}
+str(chicks)
+```
+
+```{r}
+
+chicks$Diet <- as.factor(chicks$Diet)
+str(chicks)
+```
+
+## Data exploration
+
+### summary stats
+
+Calculate the summary statistics for the data. This will help us understand the data better and identify any potential issues.
+
+```{r}
+summary(chicks)
+```
+
+```{r}
+summary(chicks$WtGain)
+```
+
+Lets have a look at the means, sd, skewness and kurtosis for the data. This will help us understand the shape of the data and identify any potential issues.
+
+```{r}
+aggregate(WtGain ~ Diet, mean, data = chicks)
+
+aggregate(WtGain ~ Diet, sd, data = chicks)
+
+aggregate(WtGain ~ Diet, summary, data = chicks)
+```
+
+```{r}
+
+#Summary stats by treatment
+library(moments)
+tapply(chicks$WtGain,chicks$Diet,median)
+tapply(chicks$WtGain,chicks$Diet,mean)
+tapply(chicks$WtGain,chicks$Diet,skewness)
+tapply(chicks$WtGain,chicks$Diet,kurtosis)
+```
+
+```{r}
+boxplot(WtGain ~ Diet, data = chicks, ylab = "Weight gain (g)")
+
+```
+
+Can you see any issues with the data?
+
+## Testing assumptions
+
+### Graphical approach
+
+**Normality tests**
+
+Fit the model to the data
+
+```{r}
+model.aov <- aov(WtGain ~ Diet, data = chicks)# one-way anova
+```
+
+```{r}
+par(mfrow = c(2,2))
+hist(model.aov$resid,main="",xlab="Residuals")
+hist(rstandard(model.aov),main="",xlab="Standardised Residuals")
+
+
+qqnorm(rstandard(model.aov), main = "Normal Q-Q Plot:Standardised Residuals")
+qqline(rstandard(model.aov))
+
+qqnorm(resid(model.aov), main = "Normal Q-Q Plot:Residuals")
+qqline(resid(model.aov))
+par(mfrow = c(1,1))
+```
+
+```{r}
+skewness(rstandard(model.aov))
+```
+
+skewness of the residuals is -0.77.
+
+There is some skewness in the residuals, but it is not too bad. The QQplots show the residuals are normally distributed, but with some values below the line.
+
+**Equal variance tests**
+
+```{r}
+par(mfrow = c(1,2))
+plot(fitted(model.aov),rstandard(model.aov),xlab="fitted values",ylab="standardised residuals")
+abline(0,0, lty=2)
+
+plot(fitted(model.aov),resid(model.aov),xlab="fitted values",ylab="residuals")
+abline(0,0, lty=2)
+par(mfrow = c(1,1))
+```
+
+Note you only need one of these plots, but I've included both to show you the difference between the residuals and standardised residuals.
+
+There isn't a pattern in the residuals as the fitted values increase, indicating the variance is constant across the treatments.
+
+A quicker coding approach is to use the `plot` function on the model object. This will give you a range of diagnostic plots for the model.
+
+```{r}
+par(mfrow = c(2,2))
+plot(model.aov)
+par(mfrow = c(1,1))
+```
+
+The plots of interest are the residuals vs fitted values and the normal Q-Q plot of the residuals. The residuals vs fitted values plot shows no pattern in the residuals as the fitted values increase. The normal Q-Q plot of the residuals shows the residuals are normally distributed.
+
+If you just want to pull out these two plots, you can use this code:
+
+```{r}
+par(mfrow = c(1,2))
+plot(model.aov, which = c(1,2))
+
+par(mfrow = c(1,1))
+
+```
+
+### Formal test approach
+
+**Equal variance tests**
+
+```{r}
+bartlett.test(rstandard(model.aov) ~ chicks$Diet)
+```
+
+**Normality test**
+
+```{r}
+shapiro.test(resid(model.aov))
+
+```
+
+## ANOVA results
+
+```{r}
+summary(model.aov)
+```
+
+The ANOVA results show that the diet has a significant effect on the weight gain of the chicks. The p-value is less than 0.05, so we can reject the null hypothesis that the means are equal.
+
+## Example Kruskal-Wallis test (not really needed for the chick data)
+
+```{r}
+model.kruskal <- kruskal.test(WtGain ~ Diet, data = chicks)
+model.kruskal
+```
+
+::: callout-note
+Note the Kruskal-Wallis test is not significant, but the ANOVA test is. This is because the Kruskal-Wallis test is a non-parametric test and is less powerful than the ANOVA test.
+:::
+
+## Post-hoc tests
+
+Using the Tukey HSD test to determine which treatments are different from each other.
+
+```{r}
+TukeyHSD(model.aov)
+```
+
+From the table above, we can see that diet 4 is different from the other diets and the difference is positve i.e. chicks on diet 4 have a higher weight gain than the other diets.
+
+You can also plot the results of the Tukey HSD test to visualise the differences between the means.
+
+```{r}
+plot(TukeyHSD(model.aov))
+```
+
+Alternative method is to use the `emmeans` function to do the Tukey HSD test. This is more flexible and can be used for more complex models.
+
+```{r}
+# install.packages("emmeans")
+library(emmeans)
+```
+
+```{r}
+emmeans(model.aov, ~ Diet)
+```
+
+```{r}
+emmeans(model.aov, pairwise ~ Diet)
+```
+
+```{r}
+plot(emmeans(model.aov, pairwise ~ Diet))
+```
+
+```{r}
+plot(emmeans(model.aov, pairwise ~ Diet), comparisons = TRUE)
+```
+
+::: callout-tip
+In the plot function above, we've specified `comparisons = TRUE`. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.
+:::
+
+What would you conclude from the above plot and recommend to a farmer wanting to maximise growth?

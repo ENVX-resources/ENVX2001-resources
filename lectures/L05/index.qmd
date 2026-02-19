@@ -1,16 +1,11 @@
 ---
 title: "Lecture 05"
+resources:
+  - "ENVX2001_Week5_lecture_notes.qmd"
 ---
 
-<!-- 
-[Full Screen](lecture-05.qmd) | [PDF]() 
+**Lecture 05 -- Experimental design**
 
-```{=html}
-<iframe class="slide-deck" src="lecture-05.html" height="450" width="747" style="border: 1px solid #2e3846;"></iframe>
-``` 
--->
+{{< pdf Lecture_Topic5.pdf width="100%" height="600" button="Download PDF" >}}
 
-
-::: callout-important
-**Lecture 05 is not available in Quarto. Please refer to the Canvas site to access the lecture material.**
-:::
+[Download Lecture Notes](ENVX2001_Week5_lecture_notes.qmd)

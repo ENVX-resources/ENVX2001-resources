@@ -3,6 +3,7 @@ project:
   render:
     - "*.qmd"
     - "!*.md"
+    - "!**/ENVX2001_*.qmd"
 editor:
   render-on-save: true
 execute:

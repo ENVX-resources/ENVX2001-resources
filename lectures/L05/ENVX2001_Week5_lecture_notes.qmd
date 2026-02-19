@@ -1,0 +1,233 @@
+---
+title: "Week 5 Lecture code and notes"
+subtitle: ENVX2001 Applied Statistical Methods
+author: "Aaron Greenville"
+format:
+  html:
+    toc: true # true will include a table of contents
+    code-fold: false # change to true to hide code by default.
+    embed-resources: true # Important! Must include so that plots are embedded in the HTML output.
+editor: visual
+---
+
+## Randomized Complete Block Designs (RCBD)
+
+Randomized Complete Block Designs (RCBD) are a common experimental design used in agricultural and ecological research. The design is used to control for the effects of uncontrolled variables that may influence the response variable.
+
+In a RCBD, the experimental units are grouped into blocks. Each block contains a random sample of the experimental units. The treatments are then randomly assigned to the experimental units within each block. This design allows for the effects of the blocks to be controlled for when analyzing the treatment effects.
+
+### Example of a paired design
+
+In a paired design, each experimental unit is paired with another unit that is similar in characteristics. The treatments are then randomly assigned to one unit in each pair. This design is used to control for the effects of uncontrolled variables that may influence the response variable.
+
+For example, a study was undertaken to compare the species richess between burnt and unburnt sites habitats. In this study, ten different sites were selected, each site contained a burnt and unburnt treatment close to each other to minimise spatial confounding.
+
+The site can be regarded as a block as we need to adjust for variability between sites, before we assess fire treatment differences.
+
+The data collected is stored in `fire.csv` and contains the following columns:
+
+-   `Site`: The site number 1:10
+-   `Fire_treatment`: Burnt or unburnt treatment level.
+-   `SpRich`: The number of species observed at each site.
+
+### Load data and fit ANOVA model
+
+```{r}
+fire <- read.csv("fire.csv")
+str(fire) # 'Site' initially as an integer, not a factor
+fire$Site <- as.factor(fire$Site)
+str(fire) # data frame now ready
+
+```
+
+See how site is now a factor, which is what we want for the blocking term.
+
+### Fit ANOVA model
+
+Our RCBD equation is:
+
+$$
+Species \: richness = \mu + Site + Fire \: treatment + \epsilon
+$$
+
+where $\mu$ is the overall mean, $Site$ is the blocking term, $Fire \: treatment$ is the treatment term, and $\epsilon$ is the error term.
+
+We now need to write the above equation into R using the `Site` and `Fire_treatment` variables and fit the ANOVA model.
+
+```{r}
+# Fit ANOVA model
+fire.aov <- aov(SpRich ~ Site + Fire_treatment, data = fire)
+summary(fire.aov)
+
+```
+
+::: callout-note
+The blocking term `Site` is entered into the model first, followed by the treatment term `Fire_treatment`. This is because we want to control for the variability between sites before assessing the treatment effects.
+:::
+
+### Check assumptions
+
+We should also check the residuals to ensure they are normally distributed and homoscedastic.
+
+```{r}
+par(mfrow=c(1,2))
+plot(fire.aov, which=1)
+plot(fire.aov, which=2)
+par(mfrow=c(1,1))
+
+```
+
+We can assume that the residuals are normally distributed and homoscedastic, as the QQ plot is close to the line and the residuals are evenly spread around zero.
+
+### Conclusion
+
+The ANOVA results show that the effect of fire treatment on species richness is not significant (F~1,9~ = 4.244, P = 0.07). The residuals appear to be normally distributed and homoscedastic, as the QQ plot is close to the line and the residuals are evenly spread around zero.
+
+## Paired t-test
+
+Since the data is paired, we can use a paired t-test to compare the means of the two treatments. The following code demonstrates how to perform a paired t-test in R.
+
+Example from the fire data set, comparing the species richness between burnt and unburnt sites. Lets use a paired t-test to compare the means of the two treatments. The code is:
+
+```{r}
+
+# Perform paired t-test
+t.test(fire$SpRich[fire$Fire_treatment == "Burnt"], fire$SpRich[fire$Fire_treatment == "Unburnt"], paired = TRUE)
+
+```
+
+::: callout-tip
+The paired t-test is used to compare the means of two treatments when the data is paired. In this case, the data is paired by site, so we use the `paired = TRUE` argument in the `t.test()` function.
+
+`fire$SpRich[fire$Fire_treatment == "Burnt"]` selects the species richness values for the burnt treatment, and `fire$SpRich[fire$Fire_treatment == "Unburnt"]` selects the species richness values for the unburnt treatment.
+:::
+
+Note how the p-value is the same as the ANOVA test, as the paired t-test is a special case of the ANOVA test.
+
+### Example 2 of a paired t-test
+
+Two wheat varieties (A and B) were trialled on each of 8 farms (Clewer and Scarisbrick 2001, p.47-48). Removed farm effects: take differences between two treatments on each farm. Proceed with a 2-sample paired t-test (= 1-sample t-test on the differences)
+
+```{r}
+# Load data
+VarA<-c(17.8,18.5,12.2,19.7,10.8,11.9,15.6,12.5)
+VarB<-c(14.7,15.2,12.9,18.3,10.1,12.2,13.5,9.9)
+
+# Perform paired t-test
+t.test(VarA,VarB,paired=T)
+
+```
+
+There was a significant difference between varieties (t = 2.84, P = 0.025 , df =7). Variety A had a higher yield than variety B with a mean difference of 1.53 kg (SE: ±0.54 kg) or report confidence interval (95% CI: 0.26, 2.79 kg).
+
+## More than two treatments
+
+When there are more than two treatments, we can use an ANOVA to compare the means of the treatments.
+
+### Example Rice ANOVA w/ Blocking
+
+Pearce et al. (1988) outlines an experiment where 5 levels of nitrogen are applied to 3 varieties of rice (resulting in 5 x 3 = 15 treatment combinations). In this study, 4 blocks of land were used with 15 plots per block.
+
+A separate randomisation is performed within each block:\
+one of the 15 treatments is randomly allocated to one of the 15 plots
+
+The following code demonstrates how to analyze data from a RCBD using R. The data used in this example is from a study on the effect of different levels of nitrogen on the yield of rice. The data is stored in an Excel file called `Data5.xlsx` and contains the following columns:
+
+-   `Block`: The block number 1:4
+-   `Nitrogen`: The nitrogen treatment levels (0, 40, 70, 100, 130)
+-   `Yield`: The yield of rice in kg/ha
+-   `Treatment`: The treatment levels (1:15)
+-   `Variety`: The variety of rice (A, B, C)
+
+We will fit an ANOVA model to the data to determine if there is a significant effect of treatment (15 levels) on rice yield.
+
+Our equation is:
+
+$$
+Yield = \mu + Block + Treatment + \epsilon
+$$
+
+where $\mu$ is the overall mean, $Block$ is the blocking term, $Treatment$ is the treatment term, and $\epsilon$ is the error term.
+
+### Load data and fit ANOVA model
+
+```{r}
+library(readxl)
+rice<-read_excel("Data5.xlsx",sheet="Rice")
+str(rice)
+
+rice$Treatment <- as.factor(rice$Treatment)
+rice$Nitrogen <- as.factor(rice$Nitrogen)
+rice$Block <- as.factor(rice$Block)
+```
+
+Fit the ANOVA model. Use the equation above to guide you. The blocking term `Block` is entered into the model first, followed by the treatment term `Treatment`. 
+```{r}
+rice.aov <- aov(Yield ~ Block + Treatment, data = rice)
+
+```
+
+### Check assumptions
+
+We should also check the residuals to ensure they are normally distributed and homoscedastic (equal variance).
+
+```{r}
+par(mfrow=c(2,2))
+hist(rstandard(rice.aov))
+qqnorm(rstandard(rice.aov))
+abline(0,1)
+plot(fitted(rice.aov),rstandard(rice.aov))
+
+par(mfrow=c(1,1))
+
+```
+
+::: callout-note
+There are many different ways of doing the same thing in R. The `hist()` function is used to create a histogram of the residuals, the `qqnorm()` function is used to create a QQ plot of the residuals, and the `plot()` function is used to create a plot of the fitted values against the residuals.
+
+You could have used the `plot()` function to create all of these plots at once, but I wanted to show you how to create each plot individually.
+:::
+
+The residuals appear to be normally distributed and homoscedastic, as the QQ plot is close to the line and there are no patterns in the residuals.
+
+```{r}
+summary(rice.aov)
+
+```
+
+There is a significant effect of the combination of nitrogen and variety treatments on rice yield (F~14,42~ = 20.75, P \< 0.01). So we can investigate further with post-hoc tests.
+
+:::{.callout-tip}
+
+When presenting ANOVA results, it is important to include the F-statistic, degrees of freedom, and p-value. Note the two numbers of degrees of freedom: the first is the degrees of freedom for the treatment effect, and the second is the degrees of freedom for the error term. For the F-statistic these are presented as subscripts next to the F. Remember to use this convention in your scientific reports. For more complex designs,it is usually easier to present the whole ANOVA table in your report and reference the table.
+:::
+
+### Post-hoc tests
+
+```{r}
+library(emmeans) # for means and 95% CIs
+emmeans(rice.aov, ~ Treatment)
+
+```
+
+```{r}
+emmeans(rice.aov, pairwise ~ Treatment)
+
+```
+
+### Plotting the results
+
+```{r}
+plot(emmeans(rice.aov, ~ Treatment))
+
+plot(emmeans(rice.aov, ~ Treatment), comparisons = TRUE)
+
+```
+
+::: callout-tip
+In the plot function above, we've specified `comparisons = TRUE`. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.
+:::
+
+### Conclusion
+
+The ANOVA results show that there is a significant effect of the combination of nitrogen and variety treatments on rice yield (F~14,42~ = 20.75, P \< 0.01). Post-hoc tests show that there are significant differences between some of the treatment levels. Given there are a large number of pairwise comparisons, you would direct the reader to the important ones that answer your hypotheses and present the results in a table.

@@ -1,7 +1,11 @@
 ---
 title: "Lecture 04"
+resources:
+  - "ENVX2001_week4_lecture notes.qmd"
 ---
 
-**Lecture 04 -- Residual diagnostics & post hoc tests** 
+**Lecture 04 -- Residual diagnostics & post hoc tests**
 
 {{< pdf Lecture-04.pdf width="100%" height="600" button="Download PDF" >}}
+
+[Download Lecture Notes](ENVX2001_week4_lecture notes.qmd)

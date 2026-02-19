@@ -14,18 +14,64 @@ section-divs: false
 
 ### Module 1: Designed studies
 
+#### Week 1
 - [Lecture 01](lectures/L01/index.qmd) -- Introduction
+- ~~Tutorial 01~~
+- ~~Lab 01~~
+
+#### Week 2
 - [Lecture 02](lectures/L02/index.qmd) -- Sampling designs
+- ~~Tutorial 02~~
+- ~~Lab 02~~
+
+#### Week 3
 - [Lecture 03](lectures/L03/index.qmd) -- 1-way ANOVA
+- ~~Tutorial 03~~
+- ~~Lab 03~~
+
+#### Week 4
 - [Lecture 04](lectures/L04/index.qmd) -- Residual diagnostics & post hoc tests
+- ~~Tutorial 04~~
+- ~~Lab 04~~
+
+#### Week 5
 - ~~Lecture 05 -- Experimental design~~
+- ~~Tutorial 05~~
+- ~~Lab 05~~
+
+#### Week 6
 - ~~Lecture 06 -- ANOVA with blocking~~
+- ~~Tutorial 06~~
+- ~~Lab 06~~
 
 ### Module 2: Finding patterns in data
 
+#### Week 7
 - [Lecture 07](lectures/L07/index.qmd) -- Regression modelling
+- ~~Tutorial 07~~
+- ~~Lab 07~~
+
+#### Week 8
 - [Lecture 08](lectures/L08/index.qmd) -- Regression model development
+- ~~Tutorial 08~~
+- ~~Lab 08~~
+
+#### Week 9
 - [Lecture 09](lectures/L09/index.qmd) -- Regression model assessment
+- ~~Tutorial 09~~
+- ~~Lab 09~~
+
+#### Week 10
 - ~~Lecture 10 -- Principle component analysis~~
+- ~~Tutorial 10~~
+- ~~Lab 10~~
+
+#### Week 11
 - ~~Lecture 11 -- Clustering~~
+- ~~Tutorial 11~~
+- ~~Lab 11~~
+
+#### Week 12
 - ~~Lecture 12 -- Multidimensional scaling~~
+- ~~Tutorial 12~~
+- ~~Lab 12~~

@@ -14,23 +14,23 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 1 | [Introduction][L01] | -- | -- |
-| 2 | [Sampling designs][L02] | -- | -- |
-| 3 | [1-way ANOVA][L03] | -- | -- |
-| 4 | [Residual diagnostics & post hoc tests][L04] | -- | -- |
-| 5 | Experimental design | -- | -- |
-| 6 | ANOVA with blocking | -- | -- |
+| 1 | [Introduction][L01] | [Tutorial 01][T01] | -- |
+| 2 | [Sampling designs][L02] | [Tutorial 02][T02] | -- |
+| 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] | -- |
+| 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] | -- |
+| 5 | Experimental design | [Tutorial 05][T05] | -- |
+| 6 | ANOVA with blocking | [Tutorial 06][T06] | -- |
 
 ### Module 2: Finding patterns in data
 
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 7  | [Regression modelling][L07] | -- | -- |
-| 8  | [Regression model development][L08] | -- | -- |
+| 7  | [Regression modelling][L07] | [Tutorial 07][T07] | -- |
+| 8  | [Regression model development][L08] | [Tutorial 08][T08] | -- |
 | 9  | [Regression model assessment][L09] | -- | -- |
-| 10 | Principle component analysis | -- | -- |
-| 11 | Clustering | -- | -- |
-| 12 | Multidimensional scaling | -- | -- |
+| 10 | Principle component analysis | [Tutorial 10][T10] | -- |
+| 11 | Clustering | [Tutorial 11][T11] | -- |
+| 12 | Multidimensional scaling | [Tutorial 12][T12] | -- |
 
 <!-- Links -->
 [L01]: lectures/L01/index.qmd
@@ -40,3 +40,14 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 [L07]: lectures/L07/index.qmd
 [L08]: lectures/L08/index.qmd
 [L09]: lectures/L09/index.qmd
+[T01]: tutorials/tutorial01.qmd
+[T02]: tutorials/tutorial02.qmd
+[T03]: tutorials/tutorial03.qmd
+[T04]: tutorials/tutorial04.qmd
+[T05]: tutorials/tutorial05.qmd
+[T06]: tutorials/tutorial06.qmd
+[T07]: tutorials/tutorial07.qmd
+[T08]: tutorials/tutorial08.qmd
+[T10]: tutorials/tutorial10.qmd
+[T11]: tutorials/tutorial11.qmd
+[T12]: tutorials/tutorial12.qmd

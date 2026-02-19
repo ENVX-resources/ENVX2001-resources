@@ -97,7 +97,7 @@ glimpse(loyn)
 
 ### Best single predictor?
 
-::: question
+::: {.question}
 ### Question 1
 
 Obtain the correlation between ABUND and all of the predictor variables using `cor()`. Based on these, what would you expect to be the best single predictor of ABUND?
@@ -109,7 +109,8 @@ cor(loyn)
 ```
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 ```{r}
 cor(loyn)
@@ -117,10 +118,11 @@ cor(loyn)
 
 The best single predictor would be `L10AREA` as this has the highest *r* (r = 0.74)
 :::
+:::
 
 ### Assumptions and interpretation
 
-::: question
+::: {.question}
 ### Question 2
 
 Use multiple linear regression to see whether ABUND can be predicted from L10AREA and GRAZE. Are the assumptions met? Is there a significant relationship? *Note: we are using these 2 predictors as they have the largest absolute correlations. Use `lm()` and specify the model as `ABUND ~ L10AREA + GRAZE`.*
@@ -138,7 +140,8 @@ summary(lm.mod1)
 ```
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 ```{r mlmod}
 lm.mod1 <- lm(ABUND ~ GRAZE + L10AREA, data = loyn)
@@ -154,8 +157,9 @@ This is a significant model as both b1 and b2 are significant and the model is s
 
 The residuals look reasonable. They are approximately normally distributed (both right hand plots), but possibly the variance is not totally constant and there are possibly a few values with high leverage (left hand plots).
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 3
 
 How good is the model based on the (i) *r*^2^ (ii) adjusted *r*^2^? Use `summary()`.
@@ -168,45 +172,52 @@ summary(lm.mod1)$adj.r.squared
 ```
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 The Adjusted *r*^2^ is lower than the *r*^2^, but we would opt for the adjusted *r*^2^ as it takes the number of predictors into account. Overall the model is ok, explaining 64.0% of variation in Abundance.
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 4
 
 Which variable(s) has the most significant effect(s)? *(Refer specifically to the t probabilities in the table of predictors and their estimated parameters or coefficients in the output of `summary()`)*. Interpret the p-values in terms of dropping predictor variables.
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Both `L10AREA` and `GRAZE` are highly significant, `L10AREA` is the most significant. In terms of effect, a 1 unit change in `GRAZE` results in a -2.9 decrease in abundance (with `L10AREA` remaining constant), while a 1 unit change in `L10AREA`, (therefore a 10 unit change in `AREA`) results in a 6.9 increase in abundance (`GRAZE` holding constant).
 :::
+:::
 
-::: question
+::: {.question}
 ## Question 5
 
 Repeat the multiple regression, but this time include YRS.ISOL as a predictor variable (it has the 3rd largest absolute correlation). This will allow you to assess the effect of YRS.ISOL with the other variables taken into account.
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 ```{r}
 lm.mod2 <- lm(ABUND ~ GRAZE + L10AREA + YR.ISOL, data=loyn)
 ```
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 6
 
 Check assumptions, do the residuals look ok? If you are happy with the assumptions, you can proceed to interpret the model output.
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 ```{r}
 par(mfrow=c(2,2))
@@ -216,8 +227,9 @@ par(mfrow=c(1,1))
 
 The residuals look OK, but YR.ISOL is borderline significant (p = 0.0768).
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 7
 
 Compare the *r*^2^ and adjusted *r*^2^ values with those you calculated for the 2 predictor model, Which is the better model? Why?
@@ -229,9 +241,11 @@ summary(lm.mod2)
 ```
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Both of these are greater than for model in step 3, so this is a better model.
+:::
 :::
 
 ## Exercise 2: California streamflow
@@ -268,41 +282,47 @@ anova(s.mod_reduced, s.mod_full)
 
 The last row gives the results of the partial F-test.
 
-::: question
+::: {.question}
 ### Question 1
 
 Should we remove `lake_sabrina` from the model?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Yes, we should remove lake_sabrina as the p-value is \> 0.05 and opt for the simpler model.
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 2
 
 Is the p-value for the f-test the same as for the t-test?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Yes, P-values for the t-statistic and for the Partial F-statistic are related (Partial F = t^2^)
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 3
 
 Write out the hypotheses you are testing.
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 H~0~: $\beta_{lake_sabrina} = 0$\
 H~1~: $\beta_{lake_sabrina} \neq 0$
+:::
 :::
 
 Perform a Partial F-Test to work out if the removal of `lake_sabrina` and `pine_creek` improves upon the full model.
@@ -312,21 +332,23 @@ s.mod_reduced2  <- lm(runoff_volume ~ lake_sabrina + pine_creek,data=stream_data
 anova(s.mod_reduced2, s.mod_full)
 ```
 
-::: question
+::: {.question}
 ### Question 4
 
 Which variable should be added to the model containing rock_creek?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 lake_sabrina does not improve the model with only rock_creek ($\beta_{lake_sabrina} = 0$), so we can say that we should add pine_creek to the model containing rock_creek.
 
 Remember: H0: No difference between the models, so choose the simplest H1: Full model is better
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 5
 
 Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.
@@ -338,21 +360,25 @@ anova(s.mod_reduced3, s.mod_full)
 ```
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 Fitting with only rock_creek does not improve model fit (P\<0.05) and so we can conclude that the better model is the one with pine_creek and rock_creek as predictors, with lake_sabrina removed.
 :::
+:::
 
-::: question
+::: {.question}
 ### Question 6
 
 What is your optimal model?
 :::
 
 ::: {.content-visible when-profile="solution"}
-### Answer {style="color:green;"}
+::: {.ans}
+### Answer
 
 The best model is: $runoff_volume = \beta_0 + \beta_1 rock_creek + \beta_2pine_creek+ error$
+:::
 :::
 
 <hr>

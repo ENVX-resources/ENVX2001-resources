@@ -8,9 +8,7 @@ anchor-sections: false
 section-divs: false
 ---
 
-**This site contains ONLY SOME of the lectures, tutorials, and labs for ENVX2001.** It is meant for lecturers to publish their content in a structured way and has not been designed for student use. Most of the content is still in development and will be updated throughout the semester. If you happen to stumble upon this site, feel free to have a look around... but be aware that the content is *not* final and may contain errors.
-
-**ENVX2001 students should always navigate to [Canvas](https://canvas.sydney.edu.au/) to access the ENVX2001 page and view the course material in the right context.  If you are looking for a specific lecture, please refer to the Canvas page for the course.**
+This site hosts lectures, tutorials, and labs for ENVX2001. Some content is still being developed and may be incomplete. Students can find all course material on [Canvas](https://canvas.sydney.edu.au/).
 
 ### Module 1: Designed studies
 

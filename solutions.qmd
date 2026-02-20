@@ -1,0 +1,50 @@
+---
+title: Lab Solutions
+anchor-sections: false
+section-divs: false
+---
+
+Lab worksheets with answers included. Each lab is available as HTML (for viewing online) or PDF (for download).
+
+::: {tbl-colwidths="[10,40,25,25]"}
+| Week | Lab | HTML | PDF |
+|------|-----|------|-----|
+| 1  | Introduction | [Lab 01][S01] | [{{< fa file-pdf >}}][S01pdf] |
+| 2  | Sample Designs | [Lab 02][S02] | [{{< fa file-pdf >}}][S02pdf] |
+| 3  | One-way ANOVA | [Lab 03][S03] | [{{< fa file-pdf >}}][S03pdf] |
+| 4  | Assumptions & Multiple Comparisons | [Lab 04][S04] | [{{< fa file-pdf >}}][S04pdf] |
+| 5  | Experimental Design | [Lab 05][S05] | [{{< fa file-pdf >}}][S05pdf] |
+| 6  | Factorial Designs | [Lab 06][S06] | [{{< fa file-pdf >}}][S06pdf] |
+| 7  | Regression Model Development | [Lab 07][S07] | [{{< fa file-pdf >}}][S07pdf] |
+| 8  | Model Selection | [Lab 08][S08] | [{{< fa file-pdf >}}][S08pdf] |
+| 9  | Predictive Modelling | [Lab 09][S09] | [{{< fa file-pdf >}}][S09pdf] |
+| 10 | PCA | [Lab 10][S10] | [{{< fa file-pdf >}}][S10pdf] |
+| 11 | Clustering | [Lab 11][S11] | [{{< fa file-pdf >}}][S11pdf] |
+| 12 | nMDS and PERMANOVA | [Lab 12][S12] | [{{< fa file-pdf >}}][S12pdf] |
+:::
+
+<!-- Links -->
+[S01]: solutions/Lab01/Lab01-introduction.html
+[S02]: solutions/Lab02/Lab02-sample-designs.html
+[S03]: solutions/Lab03/Lab03-oneway-anova.html
+[S04]: solutions/Lab04/Lab04-residuals-posthoc.html
+[S05]: solutions/Lab05/Lab05-exp-designs.html
+[S06]: solutions/Lab06/Lab06-factorial-anova.html
+[S07]: solutions/Lab07/Lab07-regression-modelling.html
+[S08]: solutions/Lab08/Lab08-model-selection.html
+[S09]: solutions/Lab09/Lab09-regression-assessment.html
+[S10]: solutions/Lab10/Lab10-pca.html
+[S11]: solutions/Lab11/Lab11-clustering.html
+[S12]: solutions/Lab12/Lab12-nmds.html
+[S01pdf]: solutions/Lab01/Lab01-introduction.pdf
+[S02pdf]: solutions/Lab02/Lab02-sample-designs.pdf
+[S03pdf]: solutions/Lab03/Lab03-oneway-anova.pdf
+[S04pdf]: solutions/Lab04/Lab04-residuals-posthoc.pdf
+[S05pdf]: solutions/Lab05/Lab05-exp-designs.pdf
+[S06pdf]: solutions/Lab06/Lab06-factorial-anova.pdf
+[S07pdf]: solutions/Lab07/Lab07-regression-modelling.pdf
+[S08pdf]: solutions/Lab08/Lab08-model-selection.pdf
+[S09pdf]: solutions/Lab09/Lab09-regression-assessment.pdf
+[S10pdf]: solutions/Lab10/Lab10-pca.pdf
+[S11pdf]: solutions/Lab11/Lab11-clustering.pdf
+[S12pdf]: solutions/Lab12/Lab12-nmds.pdf

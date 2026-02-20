@@ -75,8 +75,7 @@ tibble(
         style = cell_text(weight = "bold"),
         locations = cells_body(columns = "Aspect")
     ) |>
-    opt_table_font(font = "sans-serif") |>
-    tab_options(table.width = pct(100))
+    tab_options(table.width = pct(100), table.font.names = "Lato")
 ```
 
 We will focus on the fundamentals behind **observational studies** this week.

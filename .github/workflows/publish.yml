@@ -17,9 +17,23 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render and Publish
+      - name: Render exercise site
+        uses: quarto-dev/quarto-actions/render@v2
+
+      - name: Render solution site
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          quarto-args: --profile solution
+
+      - name: Copy solution labs into exercise site
+        run: |
+          mkdir -p _site/solutions
+          cp -r _site-solution/labs/* _site/solutions/
+
+      - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: "false"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The University of Sydney">
+
+<title>Lab 02</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
+</head>
+
+<body class="floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Lab 02</h1>
+            <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
+                  <div>
+        <div class="description">
+          The University of Sydney
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Semester 1, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercise-1-soil-carbon-walk-through" id="toc-exercise-1-soil-carbon-walk-through" class="nav-link active" data-scroll-target="#exercise-1-soil-carbon-walk-through">Exercise 1 – Soil carbon (walk-through)</a>
+  <ul class="collapse">
+  <li><a href="#calculating-the-95-confidence-interval-of-the-mean" id="toc-calculating-the-95-confidence-interval-of-the-mean" class="nav-link" data-scroll-target="#calculating-the-95-confidence-interval-of-the-mean">Calculating the 95% confidence interval of the mean</a></li>
+  <li><a href="#doing-the-calculations-in-r" id="toc-doing-the-calculations-in-r" class="nav-link" data-scroll-target="#doing-the-calculations-in-r">Doing the calculations in R</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#solution-1" id="toc-solution-1" class="nav-link" data-scroll-target="#solution-1">Solution 1</a></li>
+  </ul></li>
+  <li><a href="#exercise-2---soil-carbon-what-if" id="toc-exercise-2---soil-carbon-what-if" class="nav-link" data-scroll-target="#exercise-2---soil-carbon-what-if">Exercise 2 - Soil carbon: what if…?</a>
+  <ul class="collapse">
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2">Solution 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#solution-3" id="toc-solution-3" class="nav-link" data-scroll-target="#solution-3">Solution 3</a></li>
+  </ul></li>
+  <li><a href="#exercise-3---kangaroos" id="toc-exercise-3---kangaroos" class="nav-link" data-scroll-target="#exercise-3---kangaroos">Exercise 3 - Kangaroos</a>
+  <ul class="collapse">
+  <li><a href="#should-we-return-to-the-same-locations" id="toc-should-we-return-to-the-same-locations" class="nav-link" data-scroll-target="#should-we-return-to-the-same-locations">Should we return to the same locations?</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#solution-4" id="toc-solution-4" class="nav-link" data-scroll-target="#solution-4">Solution 4</a></li>
+  <li><a href="#different-locations" id="toc-different-locations" class="nav-link" data-scroll-target="#different-locations">Different locations</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#solution-5" id="toc-solution-5" class="nav-link" data-scroll-target="#solution-5">Solution 5</a></li>
+  <li><a href="#same-locations" id="toc-same-locations" class="nav-link" data-scroll-target="#same-locations">Same locations</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#solution-6" id="toc-solution-6" class="nav-link" data-scroll-target="#solution-6">Solution 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#solution-7" id="toc-solution-7" class="nav-link" data-scroll-target="#solution-7">Solution 7</a></li>
+  <li><a href="#putting-it-together" id="toc-putting-it-together" class="nav-link" data-scroll-target="#putting-it-together">Putting it together</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  </ul></li>
+  <li><a href="#exercise-4-equivalence-to-t-tests" id="toc-exercise-4-equivalence-to-t-tests" class="nav-link" data-scroll-target="#exercise-4-equivalence-to-t-tests">Exercise 4 – Equivalence to <span class="math inline">t</span>-tests</a>
+  <ul class="collapse">
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#solution-9" id="toc-solution-9" class="nav-link" data-scroll-target="#solution-9">Solution 9</a></li>
+  </ul></li>
+  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks!</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab02-sample-designs.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<div style="page-break-after: always;"></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>LEARNING OUTCOMES
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At the end of this practical students should be able to:</p>
+<ul>
+<li>explain conceptually the benefits of re-sampling (or not) the same units for monitoring studies.</li>
+<li>use R to create rudimentary sampling designs;</li>
+<li>estimate means and associated CIs for simple random designs;</li>
+<li>estimate means and associated CIs for stratified random designs;</li>
+<li>use R for estimating the change in means (and associated CIs) for monitoring schemes when the sample units are (i) resampled (ii) not resampled.</li>
+</ul>
+</div>
+</div>
+<section id="exercise-1-soil-carbon-walk-through" class="level2 page-columns page-full" style="color:navy;">
+<h2 style="color:navy;" class="anchored" data-anchor-id="exercise-1-soil-carbon-walk-through">Exercise 1 – Soil carbon (walk-through)</h2>
+<p>Karunaratne et al.&nbsp;(2012)<sup>1</sup> measured soil carbon (%) in the Cox’s creek catchment in northern NSW using a stratified random sampling scheme. The results are summarised below.</p>
+<ul>
+<li><strong>USE</strong> is the land use type;</li>
+<li><strong>N</strong> is the number of samples collected;</li>
+<li><strong>MEAN</strong> is the mean soil carbon content;</li>
+<li><strong>VARIANCE</strong> is the variance of the mean;</li>
+<li><strong>PERCENT_AREA</strong> is the percentage of the catchment area represented by each land use type.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><sup>1</sup>Karunaratne S. B., Bishop T. F. A., Odeh I. O. A., Baldock J. A., Marchant B. P. (2014) Estimating change in soil organic carbon using legacy data as the baseline: issues, approaches and lessons to learn. <em>Soil Research</em> <strong>52</strong>, 349-365.</p>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">use</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">variance</th>
+<th style="text-align: right;">percent_area</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Forest</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dryland Cropping</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pasture-Vertosol</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1.06</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pasture-Other</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Irrigated</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Overall</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Recall that the confidence interval for the mean is an effective way to communicate the precision of the estimates (how well we know the true mean), and is derived from the standard error of the mean.</p>
+<section id="calculating-the-95-confidence-interval-of-the-mean" class="level3 page-columns page-full" style="color:navy;">
+<h3 style="color:navy;" class="anchored" data-anchor-id="calculating-the-95-confidence-interval-of-the-mean">Calculating the 95% confidence interval of the mean</h3>
+<p>The <em>weighted</em> mean (<span class="math inline">y_s</span>) and variance (<span class="math inline">Var(\bar y_s)</span>) of the mean for a stratified random sample are given by:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Weighted mean:</p>
+<ol type="1">
+<li>Calculate mean value per stratum</li>
+<li>Multiply each mean value by the weight of the stratum</li>
+<li>Sum the weighted mean values to get the overall mean</li>
+</ol>
+</div></div><p><span class="math display">\bar y_s = \sum_{i=1}^L \bar y_i \times w_i</span></p>
+<p>where <span class="math inline">L</span> is the number of strata, <span class="math inline">\bar y_i</span> is the mean of stratum <span class="math inline">i</span>, and <span class="math inline">w_i</span> is the weight of stratum <span class="math inline">i</span>, and</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Weighted variance of the mean:</p>
+<ol type="1">
+<li>Calculate the variance of the mean for each stratum</li>
+<li>Multiply the variance of the mean by the <strong>square</strong> of the weight of the stratum</li>
+<li>Sum all the weighted variances to get the overall variance of the mean</li>
+</ol>
+</div></div><p><span class="math display">Var(\bar y_s) = \sum_{i=1}^L w_i^2 \times Var(\bar y_i)</span></p>
+<p>where <span class="math inline">Var(\bar y_i)</span> is the variance of the mean for stratum <span class="math inline">i</span>.</p>
+<p>We can then calculate the 95% CI for the mean:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>95% CI for the mean:</p>
+<ul>
+<li>Weighted mean <strong>plus</strong> (t-critical value <span class="math inline">\times</span> standard error of the mean)</li>
+<li>Weighted mean <strong>minus</strong> (t-critical value <span class="math inline">\times</span> standard error of the mean)</li>
+</ul>
+</div></div><p><span class="math display">95\% CI = \bar y_s \pm t^{0.025}_{n-L} \times \sqrt{Var(\bar y_s)}</span></p>
+<p>where <span class="math inline">L</span> = number of strata, <span class="math inline">n</span> = total number of samples, <span class="math inline">t^{0.025}_{n-L}</span> is the t-critical value for the 95% CI and <span class="math inline">\sqrt{Var(\bar y_s)}</span> is the variance of the mean for the stratified random sample.</p>
+<p>Is stratified random sampling a good idea for this study? Let’s find out.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Understanding how to calculate the 95% CI using summary statistics is examinable</strong>. If you find it difficult to understand the mathematical notation, it might be easier to rewrite them in your own words – for example, see the side notes.</p>
+</div>
+</div>
+</section>
+<section id="doing-the-calculations-in-r" class="level3" style="color:navy;">
+<h3 style="color:navy;" class="anchored" data-anchor-id="doing-the-calculations-in-r">Doing the calculations in R</h3>
+<p>The data is provided below. The first is the <code>stratified</code> dataset, which contains the mean and variance of the soil carbon content for each land use type.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>stratified <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Forest"</span>, <span class="st">"Dryland Cropping"</span>, <span class="st">"Pasture-Vertosol"</span>, <span class="st">"Pasture-Other"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Irrigated"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">0.65</span>, <span class="fl">0.96</span>, <span class="fl">1.06</span>, <span class="fl">1.31</span>, <span class="fl">0.78</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance =</span> <span class="fu">c</span>(<span class="fl">1.4</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_area =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">6</span>, <span class="dv">4</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You should copy and paste this data into your own document and run <code>stratified</code> to view the data.</p>
+<p>Look at the code and see if you can understand how a data frame is created in R. The <code>data.frame</code> function is used to create a data frame, and the <code>c</code> function is used to create vectors of data. Each vector forms a column in the data frame.</p>
+</section>
+<section id="question-1" class="level3 question page-columns page-full">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Estimate the mean and associated 95% CI assuming <strong>stratified</strong> random sampling using the <code>carbon</code> dataset. We can use the <code>weighted.mean</code> function to calculate the weighted mean, and the <code>qt</code> function to calculate the t-critical value for a 95% CI. You should find out what these functions do by seeking their help documentation using the <code>?</code> operator.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?weighted.mean</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?qt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Tip: you can manipulate the object and subset specific rows, columns or cells using <code>$</code> and <code>[]</code> respectively. For example, to access the <code>mean</code> column of the <code>carbon</code> dataset, you can use <code>carbon$mean</code>. To access the mean value for the <code>Forest</code> stratum, you can use <code>carbon$mean[1]</code>.</p>
+</div></div></section>
+<section id="solution-1" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-1">Solution 1</h3>
+<p>First calculate each of weighted mean, the t-critical value for a 95% CI, and the standard error of the mean:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Weighted mean:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(stratified<span class="sc">$</span>mean, stratified<span class="sc">$</span>percent_area)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># t-crit value for a 95% CI</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>degrees_freedom <span class="ot">&lt;-</span> <span class="fu">sum</span>(stratified<span class="sc">$</span>n) <span class="sc">-</span> <span class="fu">nrow</span>(stratified)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> degrees_freedom)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># SE of the mean: variance/n * weight^2</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>weight <span class="ot">&lt;-</span> stratified<span class="sc">$</span>percent_area <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>weighted_var_mean <span class="ot">&lt;-</span> stratified<span class="sc">$</span>variance <span class="sc">/</span> stratified<span class="sc">$</span>n <span class="sc">*</span> weight<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>SE_mean <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(weighted_var_mean))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>SE_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1330347</code></pre>
+</div>
+</div>
+<p>Then we can calculate the 95% CI:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% CI</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ci_stratified <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> weighted_mean,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">L95 =</span> weighted_mean <span class="sc">-</span> (tcrit <span class="sc">*</span> SE_mean),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">U95 =</span> weighted_mean <span class="sc">+</span> (tcrit <span class="sc">*</span> SE_mean)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ci_stratified</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    mean      L95      U95 
+0.946800 0.677712 1.215888 </code></pre>
+</div>
+</div>
+<p>Above, the results are combined into a single vector object <code>ci_stratified</code> which contains the mean and the lower (L95) and upper (U95) bounds of the 95% CI.</p>
+<p>– <strong>End of Solution 1</strong> –</p>
+</section>
+</section>
+<section id="exercise-2---soil-carbon-what-if" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2---soil-carbon-what-if">Exercise 2 - Soil carbon: what if…?</h2>
+<p><strong><em>What if the authors had used simple random sampling?</em></strong> Below is the data object <code>overall</code> which contains the overall mean and variance of the soil carbon content for the entire catchment. It is also the last row of the table above.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>overall <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">"Overall"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="dv">44</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fl">0.92</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance =</span> <span class="dv">1</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_area =</span> <span class="dv">100</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Calculating the 95% CI for the mean using simple random sampling is similar to the stratified random sampling. The only difference is that the variance of the mean is calculated using the overall variance and sample size.</p>
+<p><span class="math display">Var(\bar y) = \frac{Var(y)}{n}</span></p>
+<p>where <span class="math inline">Var(y)</span> is the variance of the entire dataset and <span class="math inline">n</span> is the total number of samples.</p>
+<p>Thus the 95% CI for the mean is:</p>
+<p><span class="math display">95\% CI = \bar y \pm t^{0.025}_{n-1} \times \sqrt{Var(\bar y)}</span></p>
+<p>where <span class="math inline">n</span> is the total number of samples, and <span class="math inline">t^{0.025}_{n-1}</span> is the t-critical value for the 95% CI.</p>
+<section id="question-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Estimate the mean and associated 95% CI assuming <strong>simple random sampling</strong> using the <code>overall</code> dataset.</p>
+</section>
+<section id="solution-2" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-2">Solution 2</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean value is already given</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the variance of the mean</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>var_mean <span class="ot">&lt;-</span> overall<span class="sc">$</span>variance <span class="sc">/</span> overall<span class="sc">$</span>n</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine the t-critical value for a 95% confidence interval</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>tcrit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> overall<span class="sc">$</span>n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ci_overall <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> overall<span class="sc">$</span>mean,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">L95 =</span> overall<span class="sc">$</span>mean <span class="sc">-</span> tcrit <span class="sc">*</span> <span class="fu">sqrt</span>(var_mean),</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">U95 =</span> overall<span class="sc">$</span>mean <span class="sc">+</span> tcrit <span class="sc">*</span> <span class="fu">sqrt</span>(var_mean)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ci_overall</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean       L95       U95 
+0.9200000 0.6159722 1.2240278 </code></pre>
+</div>
+</div>
+<p>– <strong>End of Solution 2</strong> –</p>
+</section>
+<section id="question-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Would you recommend stratified random sampling for future surveys? Provide evidence from the results of questions 2 and 3.</p>
+</section>
+<section id="solution-3" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-3">Solution 3</h3>
+<p>Yes, the 95% CI is smaller, albeit marginally when stratified random sampling is adopted. Another metric is the efficiency of stratification which is:</p>
+<p><span class="math display">\frac{Var\left(\overline{y}_{SiR}\right)}{Var\left(\overline{y}_{StR}\right)}=\frac{0.02273}{0.01770}=1.28</span></p>
+<p>or, in R:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(var_mean) <span class="sc">/</span> <span class="fu">sum</span>(weighted_var_mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.284156</code></pre>
+</div>
+</div>
+<p>The results show that stratified random sampling is 1.28 times more efficient than simple random sampling. This means that to achieve the same level of precision, simple random sampling would require approximately 1.28 times more samples than stratified random sampling. So to achieve the same precision with simple random sampling, we would need approximately <span class="math inline">1.28 * 44 = 57</span> samples.</p>
+<p>– <strong>End of Solution 3</strong> –</p>
+</section>
+</section>
+<section id="exercise-3---kangaroos" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="exercise-3---kangaroos">Exercise 3 - Kangaroos</h2>
+<section id="should-we-return-to-the-same-locations" class="level3">
+<h3 class="anchored" data-anchor-id="should-we-return-to-the-same-locations">Should we return to the same locations?</h3>
+<p>In this exercise we will explore the impact that resampling the locations has on the precision (width of the 95% CI) with which we estimate the change in mean between 2 surveys. We will also show the equivalence of this to 2-sample t-tests.</p>
+<p>The key equation for estimating the variance of the change in mean is:</p>
+<p><span class="math display">Var (\Delta\bar{y}) =
+  Var (\Delta\bar{y}_2) +
+  Var (\Delta\bar{y}_1) -
+  2 \times Cov(y_1, y_2) </span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">Var (\Delta\bar{y})</span> is the variance of the change in mean between 2 surveys;</li>
+<li><span class="math inline">Var (\Delta\bar{y}_2)</span> is the variance of the mean for the 1st survey (baseline);</li>
+<li><span class="math inline">Var (\Delta\bar{y}_1)</span> is the variance of the mean for the 2nd survey (repeat);</li>
+<li><span class="math inline">Cov(y_1, y_2)</span> is the covariance between the means of the 2 surveys.</li>
+</ul>
+<p>When we resample the same locations, we include the covariance term which describes the relationship between the observations in the 2 surveys. If resample at <strong>different locations</strong> we assume the <strong>covariance is equal to 0</strong>, that is:</p>
+<p><span class="math display"> Var (\Delta\bar{y}) = Var (\Delta\bar{y}_2) + Var (\Delta\bar{y}_1) </span></p>
+<p>In this exercise we will consider a study where kangaroos (number/km<sup>2</sup>) were counted in a woodland in an initial survey, and then 2 years later. The data is below.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   5 obs. of  2 variables:
+ $ baseline: num  4 2 6 1 3
+ $ rerun   : num  12 11 13 14 9</code></pre>
+</div>
+</div>
+<p>Can you generate a <code>data.frame</code> object from the output above? Try it yourself first, and then click on show the code below to see the answer (Note: PDF output will not hide the answer).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rerun <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">9</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>kangaroos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(baseline, rerun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="question-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Intuitively, what would be the impact on the precison with which we estimate the mean when:</p>
+<ol type="a">
+<li>we resample the same locations in the repeat survey?</li>
+<li>we sample at different locations in the repeat survey?</li>
+</ol>
+</section>
+<section id="solution-4" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-4">Solution 4</h3>
+<ol type="a">
+<li>When we resample the same locations, we include the covariance term which describes the relationship between the observations in the 2 surveys. This will reduce the variance of the change in mean, and hence the 95% CI will be narrower.</li>
+<li>When we sample at different locations, we assume the covariance is equal to 0. This will increase the variance of the change in mean, and hence the 95% CI will be wider.</li>
+</ol>
+<p>Therefore, intuitively we should always sample at the same location for both surveys, but whether we do or not will depend on the experimental design and the research question!</p>
+<p>– <strong>End of Solution 4</strong> –</p>
+</section>
+<section id="different-locations" class="level3">
+<h3 class="anchored" data-anchor-id="different-locations">Different locations</h3>
+<p>Let’s assume that the resampled locations are completely different from the baseline survey. This means that the covariance term is equal to 0.</p>
+</section>
+<section id="question-5" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>Use R to estimate the 95% CI for the change in mean between the 2 surveys. The equation is:</p>
+<p><span class="math display">95\%\ CI=\Delta\left(\bar{y}\right)\pm t_{df}^{0.025}\times\sqrt{Var\left(\Delta\bar{y}\right)}</span></p>
+<p>You will need to calculate <span class="math inline">{Var}\left(\Delta\left(\bar{y}_1\right)\right)</span>, <span class="math inline">Var\left(\Delta\left(\bar{y}_2\right)\right)</span>, and <span class="math inline">Cov\left(\bar{y}_1,\bar{y}_2\right)</span>.</p>
+<p>As a starting point R script for calculating the covariance and variance for the <strong>observations</strong> is below, as is the code to calculate the t critical value (<span class="math inline">t_{df}^{0.025}</span>). When we sample at different locations between surveys: <span class="math display">df = n_{1}+ n_{2} - 2 = 5 + 5 - 2 = 8</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to isolate data from the two sampling periods:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>baseline</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>rerun</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: functions below are not assigned to objects.</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To calculate covariance:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(t0, t2)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># To calculate variances:</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(t0)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(t2)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># t-critical value for a 95% CI with 8 degrees of freedom:</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="solution-5" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-5">Solution 5</h3>
+<p>Since we sample different locations in the repeat survey the covariance is equal to 0.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the  data to objects t0 and t2</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>baseline</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>rerun</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the critical value for a 95% confidence interval using the t-distribution with 8 degrees of freedom</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>tcrit1 <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">8</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean difference between t2 and t0</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>delta_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(t2) <span class="sc">-</span> <span class="fu">mean</span>(t0)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the variance of t2 and t0 and divide by their respective sample sizes</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>V_delta_mean <span class="ot">&lt;-</span> <span class="fu">var</span>(t2) <span class="sc">/</span> <span class="fu">length</span>(t2) <span class="sc">+</span> <span class="fu">var</span>(t0) <span class="sc">/</span> <span class="fu">length</span>(t0)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the lower bound of the 95% confidence interval</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>L95 <span class="ot">&lt;-</span> delta_mean <span class="sc">-</span> tcrit1 <span class="sc">*</span> <span class="fu">sqrt</span>(V_delta_mean)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the upper bound of the 95% confidence interval</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>U95 <span class="ot">&lt;-</span> delta_mean <span class="sc">+</span> tcrit1 <span class="sc">*</span> <span class="fu">sqrt</span>(V_delta_mean)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">mean =</span> delta_mean, <span class="at">L95 =</span> L95, <span class="at">U95 =</span> U95)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean       L95       U95 
+ 8.600000  5.794625 11.405375 </code></pre>
+</div>
+</div>
+<p>Therefore the mean change is 8.6 and the 95% CI is [5.79,11.41].</p>
+<p>– <strong>End of Solution 5</strong> –</p>
+</section>
+<section id="same-locations" class="level3">
+<h3 class="anchored" data-anchor-id="same-locations">Same locations</h3>
+<p>Now let’s assume that the resampled locations are the same as the baseline survey. This means that the covariance term is <em>not</em> equal to 0.</p>
+</section>
+<section id="question-6" class="level3 question page-columns page-full">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>Assuming we resampled the <strong>same locations</strong> as the baseline survey, use R to estimate the 95% CI for the change in mean between the 2 surveys.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note: when we sample at same locations between surveys the <em>df</em> = number of paired sites - 1 = 5 - 1 = 4.</p>
+</div></div><p>Hint: the following formulae are used:</p>
+<p><span class="math display">\Delta \bar y = \bar y_2 - \bar y_1</span> <span class="math display">Var(\Delta \bar y) = Var( \bar y_2) + Var( \bar y_1) - 2 \times Cov(\bar y_1, \bar y_2)</span></p>
+</section>
+<section id="solution-6" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-6">Solution 6</h3>
+<p>Since we sample at the same locations we have to include the covariance term.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tcrit2 <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">4</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>delta_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(t2) <span class="sc">-</span> <span class="fu">mean</span>(t0)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>V_delta_mean <span class="ot">&lt;-</span> <span class="fu">var</span>(t2) <span class="sc">/</span> <span class="fu">length</span>(t2) <span class="sc">+</span> <span class="fu">var</span>(t0) <span class="sc">/</span> <span class="fu">length</span>(t0) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="fu">cov</span>(t0, t2) <span class="sc">/</span> <span class="fu">length</span>(t0))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>L95 <span class="ot">&lt;-</span> delta_mean <span class="sc">-</span> tcrit2 <span class="sc">*</span> <span class="fu">sqrt</span>(V_delta_mean)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>U95 <span class="ot">&lt;-</span> delta_mean <span class="sc">+</span> tcrit2 <span class="sc">*</span> <span class="fu">sqrt</span>(V_delta_mean)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">mean =</span> delta_mean, <span class="at">L95 =</span> L95, <span class="at">U95 =</span> U95)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean       L95       U95 
+ 8.600000  5.245209 11.954791 </code></pre>
+</div>
+</div>
+<p>Therefore the mean change is 8.6 and the 95% CI is [5.25,11.95].</p>
+<p>– <strong>End of Solution 6</strong> –</p>
+</section>
+<section id="question-7" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<p>Was there a significant change in the mean number of kangaroos between the study period, if we assume the same locations were resampled, or if different locations were sampled?</p>
+</section>
+<section id="solution-7" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-7">Solution 7</h3>
+<p>If the 95% CI does not include 0 we can reject the null hypothesis and state that there is a significant change in the mean kangaroo numbers between the 2 survey times. This would be true for both scenarios.</p>
+<p>– <strong>End of Solution 7</strong> –</p>
+</section>
+<section id="putting-it-together" class="level3">
+<h3 class="anchored" data-anchor-id="putting-it-together">Putting it together</h3>
+<p>As you should realise by now, the same data <em>may</em> produce different results depending on how it was analysed. This is the <strong>danger</strong> of statistics: <strong>not clearly understanding the assumptions and implications of an experimental design can lead to incorrect analysis and conclusions.</strong></p>
+<p>Any statistical software, including R, will not tell you if you have made a mistake in your analysis. It is up to you to understand the implications of your design and to ensure that your work is appropriate.</p>
+<p>In th case of this kangaroo study, the results are the same for both scenarios, which means that the implications lie in the context of future studies.</p>
+</section>
+<section id="question-8" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-8">Question 8</h3>
+<p>In the future, would you re-sample the same sites, or visit new sites in a kangaroo monitoring program of the same woodland?</p>
+</section>
+<section id="solution-8" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-8">Solution 8</h4>
+<p>In this case, it would be better to visit new locations. Looking at the 95% CI, we can see that the precision of the estimate is higher when we sample at different locations between surveys since the bandwidth is smaller compared to when we sample at the same locations. This means that we can be more confident in the estimate of the change in mean when we sample at different locations.</p>
+<p>Note that the rationale here is that we are assuming that the same locations are representative of the woodland as a whole. If this is not the case, then we would need to consider a different approach.</p>
+<p>– <strong>End of Solution 8</strong> –</p>
+</section>
+</section>
+<section id="exercise-4-equivalence-to-t-tests" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-equivalence-to-t-tests">Exercise 4 – Equivalence to <span class="math inline">t</span>-tests</h2>
+<p>The scenario when we <em>resample at different locations</em> between surveys is actually the equivalent to a <strong>two-sample <span class="math inline">t</span>-test</strong>, and the scenario when we <em>resample the same locations</em> is equivalent to a <strong>paired <span class="math inline">t</span>-test</strong>.</p>
+<p>Without manually calculating and comparing the 95% CI, we can use the <code>t.test()</code> function in R to perform both of these tests.</p>
+<p>Check your answers in R by trying to perform both of these using the <code>t.test()</code> function. Assume the variances are equal for the two-sample <span class="math inline">t</span>-test (use the argument <code>var.equal = TRUE</code>for this).</p>
+<section id="question-9" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-9">Question 9</h3>
+<p>Compare the 95% CI for each scenario between the <code>t.test()</code> results and the ones you calculated manually. Are they same?</p>
+</section>
+<section id="solution-9" class="level3 ans">
+<h3 class="anchored" data-anchor-id="solution-9">Solution 9</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-sample t-test</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(t2, t0, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fit1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  t2 and t0
+t = 7.0692, df = 8, p-value = 0.0001052
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  5.794625 11.405375
+sample estimates:
+mean of x mean of y 
+     11.8       3.2 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paired t-test</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(t2, t0, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fit2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  t2 and t0
+t = 7.1174, df = 4, p-value = 0.00206
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+  5.245209 11.954791
+sample estimates:
+mean difference 
+            8.6 </code></pre>
+</div>
+</div>
+<p>The 95% CI for the two-sample <span class="math inline">t</span>-test is 5.7946249, 11.4053751 and for the paired <span class="math inline">t</span>-test is 5.2452086, 11.9547914.</p>
+<p>The results are identical to the ones we calculated manually.</p>
+<p>– <strong>End of Solution 9</strong> –</p>
+</section>
+</section>
+<section id="thanks" class="level2">
+<h2 class="anchored" data-anchor-id="thanks">Thanks!</h2>
+<p>Did you know you can also knit to PDF? Check the documentation for <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">R Markdown</a> or <a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto</a> for more information.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built using the SOLES Quarto handbook template</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>The University of Sydney</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

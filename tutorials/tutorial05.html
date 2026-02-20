@@ -77,9 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -108,20 +110,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
 
+<link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tutorial 05: Experimental Design and ANOVA</h1>
+            <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Semester 1</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -153,34 +199,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Tutorial 05: Experimental Design and ANOVA</h1>
-<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Semester 1</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>In this week’s lectures we covered complete randomised designs (CRD) and randomized block designs (RBD) for experiments with one factor or treatment. We also covered analysis of variance (ANOVA) as a method to analyse data from these experimental designs.</p>
@@ -454,13 +482,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 </section>
-<section id="control-of-variation-completely-randomised-design-crd" class="level1" data-number="4">
+<section id="control-of-variation-completely-randomised-design-crd" class="level1 page-columns page-full" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Control of Variation: Completely Randomised Design (CRD)</h1>
 <p>In a Completely Randomised Design (CRD), experimental units are randomly assigned to treatments. This design is appropriate when the experimental units are homogeneous and there are no known sources of variation that need to be controlled.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="images/Slide1.PNG" class="img-fluid figure-img" width="767"></p>
-<figcaption>Completely Randomised Design</figcaption>
+<figcaption class="margin-caption">Completely Randomised Design</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -614,13 +642,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <hr>
 </section>
 </section>
-<section id="control-of-variation-randomised-complete-block-design-rcbd" class="level1" data-number="5">
+<section id="control-of-variation-randomised-complete-block-design-rcbd" class="level1 page-columns page-full" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Control of Variation: Randomised Complete Block Design (RCBD)</h1>
 <p>In a Randomised Complete Block Design (RCBD), experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block. This design is appropriate when there are known sources of variation that need to be controlled.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="images/Slide2.PNG" class="img-fluid figure-img"></p>
-<figcaption>Randomised Complete Block Design</figcaption>
+<figcaption class="margin-caption">Randomised Complete Block Design</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">

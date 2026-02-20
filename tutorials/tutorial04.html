@@ -77,9 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -108,10 +110,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -140,17 +177,40 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tutorial 04: ANOVA Assumptions and Post-hoc Tests</h1>
+            <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Semester 1</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -182,34 +242,16 @@ window.Quarto = {
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Tutorial 04: ANOVA Assumptions and Post-hoc Tests</h1>
-<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Semester 1</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>In this week’s lectures we covered how to check the assumptions of ANOVA using residual diagnostics, and how to determine which pairs of treatment means are significantly different using post-hoc tests. A solid understanding of these concepts is essential for conducting robust statistical analyses in R and before we move to more complex models in future weeks.</p>
@@ -248,7 +290,7 @@ window.Quarto = {
 <p><img src="images/Lecture_Topic4.png" class="img-fluid"></p>
 <p>We will assume we have formed a hypothesis, designed an experiment, collected data and entered it into R. In our case we have chosen an ANOVA for our model and now need to do an assessment of model assumptions.</p>
 </section>
-<section id="assessing-anova-assumptions-using-residuals" class="level1" data-number="2">
+<section id="assessing-anova-assumptions-using-residuals" class="level1 page-columns page-full" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Assessing ANOVA Assumptions Using Residuals</h1>
 <p>First we need to understand a few key concepts.</p>
 <section id="what-are-residuals" class="level2" data-number="2.1">
@@ -267,9 +309,9 @@ window.Quarto = {
 </div>
 </div>
 <p>Mathematically, the residual for each observation can be calculated as:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \text{Residual} = \text{Observed Value} - \text{Predicted Value}
-\]</span></p>
+</span></p>
 <p>Residuals have key advantages over raw data for testing assumptions and you will be required to use the residuals of your model to test the assumptions of ANOVA and regression from now on.</p>
 <p>Key advantages of using residuals:</p>
 <ul>
@@ -402,13 +444,13 @@ Important
 <section id="statistical-tests-and-graphical-approaches" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="statistical-tests-and-graphical-approaches"><span class="header-section-number">2.3</span> Statistical tests and graphical approaches</h2>
 </section>
-<section id="exercise-2-diatoms-in-streams" class="level2" data-number="2.4">
+<section id="exercise-2-diatoms-in-streams" class="level2 page-columns page-full" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="exercise-2-diatoms-in-streams"><span class="header-section-number">2.4</span> Exercise 2: Diatoms in streams</h2>
 <p>Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the <strong>Diatoms</strong> worksheet.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="images/Sea_ice_diatoms.jpeg" class="img-fluid figure-img" width="486"></p>
-<figcaption>Image credit: B. Caissie, https://diatoms.org/</figcaption>
+<figcaption class="margin-caption">Image credit: B. Caissie, https://diatoms.org/</figcaption>
 </figure>
 </div>
 <p>A researcher is interested in the effect of zinc pollution on the diversity of diatom communities in streams. They set up an experiment with four levels of zinc concentration: background (back), low, medium, and high. After a certain period, they measure the diversity of diatom species in each stream.</p>
@@ -451,7 +493,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>a QQ plot of the residuals;</li>
 <li>plot residuals against fitted values.</li>
 </ul>
-<p>It is good practice to base this on the standardised residuals which can be extracted from a model object using the <code>rstandard</code> function. Standardised residuals are <span class="math inline">\(\sim N(0,1)\)</span>, and make it easier to interpret the plots for outliers. Based on the normal distribution 95% of observations fall within ±2 SD’s of the mean or in the case of standardised residuals ±2.</p>
+<p>It is good practice to base this on the standardised residuals which can be extracted from a model object using the <code>rstandard</code> function. Standardised residuals are <span class="math inline">\sim N(0,1)</span>, and make it easier to interpret the plots for outliers. Based on the normal distribution 95% of observations fall within ±2 SD’s of the mean or in the case of standardised residuals ±2.</p>
 <p><strong>Histogram of standardised residuals:</strong></p>
 <p>The figure below presents the histogram of the standardised residuals. The majority of the observations plot as a bell-shaped (normal) distribution. The exception are 2 observations less than -2. Given there are 34 observations this is about 6% of the dataset so acceptable given we expect 95% observations to be in the interval of ~[-2, 2].</p>
 <div class="cell">

@@ -77,9 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -108,10 +110,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -140,17 +177,40 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tutorial 03</h1>
+            <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Semester 1</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -180,34 +240,16 @@ window.Quarto = {
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Tutorial 03</h1>
-<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Semester 1</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <section id="welcome" class="level2" data-number="0.1">
@@ -237,7 +279,7 @@ window.Quarto = {
 <section id="reading-ms-excel-files" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Reading MS Excel files</h1>
 <p>We will work with the <code>diatoms.xlsx</code> file in this section. Download the file from Canvas or your course materials.</p>
-<section id="introduction" class="level2" data-number="1.1">
+<section id="introduction" class="level2 page-columns page-full" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -253,12 +295,12 @@ Note
 </div>
 </div>
 <p>Data import in R can be tricky because it involves learning how to work with file paths and working directories. In this section we will import the <code>Diatoms</code> worksheet from the <code>diatoms.xlsx</code> file. This data has been mixed with other information such as exploratory work and calculations, so we will need to specify the range of cells that we are interested in to import the data appropriately.</p>
-<div id="fig-diatoms-excel" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-diatoms-excel" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-diatoms-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/diatoms-excel.jpeg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diatoms-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-diatoms-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: We need to separate the raw data (which we are interested in) from other information such as exploratory work and calculations (which we may <em>not</em> be interested in). Screenshot taken directly from the <code>diatoms.xlsx</code> file.
 </figcaption>
 </figure>
@@ -273,15 +315,15 @@ Figure&nbsp;1: We need to separate the raw data (which we are interested in) fro
 <li>If you are working with a script file (like an R script), the working directory might be different! You can use <code>setwd()</code> to change the working directory, <strong>but this is not recommended</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, use RStudio projects to set the working directory — see Tutorial 1 for more information or check out the <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">documentation</a> from Posit.</li>
 </ul>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The <code>setwd()</code> function is not recommended because it is not reproducible: it can cause issues when sharing your code with others, or when working on different computers. Instead, use RStudio projects to set the working directory.</p></div></div></section>
-<section id="move-the-file" class="level2" data-number="1.3">
+<section id="move-the-file" class="level2 page-columns page-full" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="move-the-file"><span class="header-section-number">1.3</span> Move the file</h2>
 <p>Move <code>diatoms.xlsx</code> to the working directory. This will simplify the file path for data import.</p>
-<div id="fig-data-location" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-data-location" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-data-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/data-location.jpeg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-data-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Place data in the working directory to simplify the file path for data import. In this screenshot, <code>diatoms.xlsx</code> has been placed in the folder that contains an <code>.Rproj</code> file.
 </figcaption>
 </figure>
@@ -295,16 +337,16 @@ Figure&nbsp;2: Place data in the working directory to simplify the file path for
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="moving-the-file-and-updating-the-path" class="level2" data-number="1.4">
+<section id="moving-the-file-and-updating-the-path" class="level2 page-columns page-full" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="moving-the-file-and-updating-the-path"><span class="header-section-number">1.4</span> Moving the file and updating the path</h2>
 <p>Suppose you want to organise your project files and put all data files in a single folder. You can do this by creating a new folder in the same directory as your Quarto file, and moving the data file(s) into it.</p>
 <p>Here, we create a folder called <code>data</code> and move the <code>diatoms.xlsx</code> file into it.</p>
-<div id="fig-datafolder" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<div id="fig-datafolder" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
 <div aria-describedby="fig-datafolder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/datafolder.gif" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datafolder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-datafolder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Create a folder called <code>data</code> (but it can be any other name, really), and move your data file(s) to this folder. You will have to update the path to the file in the <code>read_excel()</code> function to read the data from the new location.
 </figcaption>
 </figure>
@@ -348,7 +390,7 @@ Note
 <ul>
 <li>What does the F-statistic tell us?</li>
 <li>What is the difference between the treatment and residual sum of squares?</li>
-<li>What is total mean squares (<span class="math inline">\(MS_{tot}\)</span>) and what relationship does it have with the variance of the data?</li>
+<li>What is total mean squares (<span class="math inline">MS_{tot}</span>) and what relationship does it have with the variance of the data?</li>
 <li>Can the degrees of freedom tell us whether an experiment is balanced or unbalanced?</li>
 </ul>
 <p>In practice, R can perform an ANOVA and generate the table in a <em>split second</em>. Many people tend to ignore much of the table and focus on the p-value, which diminishes the value of all the other information in the table. We hope that by doing this exercise you will appreciate what is arguably one of the most popular statistical tests in the world. It can also help you assess the quality of any publication that uses ANOVA!</p>
@@ -419,23 +461,23 @@ Note
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Planting_Density</td>
-<td style="text-align: left;"><span class="math inline">\(a\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">a</span></td>
+<td style="text-align: left;"><span class="math inline">d</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(b\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(g\)</span></td>
+<td style="text-align: left;"><span class="math inline">b</span></td>
+<td style="text-align: left;"><span class="math inline">e</span></td>
+<td style="text-align: left;"><span class="math inline">g</span></td>
 <td style="text-align: left;">-</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(c\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"><span class="math inline">c</span></td>
+<td style="text-align: left;"><span class="math inline">f</span></td>
+<td style="text-align: left;"><span class="math inline">h</span></td>
 <td style="text-align: left;">-</td>
 </tr>
 </tbody>
@@ -448,7 +490,7 @@ Note
 <li>Equations from the lectures, which you can use to calculate the missing values. Those equations are also provided in the table below.</li>
 <li>The treatment MS value for <code>Planting_density</code> is known at 152.96.</li>
 <li>The overall standard deviation is 5.11 for all the data. That is, if we were to pool all the data together, the standard deviation would be 5.11.</li>
-<li>Hint: the total mean sum of squares <span class="math inline">\(MS_{tot}\)</span> is approximately the overall variance of the data.</li>
+<li>Hint: the total mean sum of squares <span class="math inline">MS_{tot}</span> is approximately the overall variance of the data.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -483,23 +525,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(t - 1\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(SS_{trt}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(MS_{trt} = SS_{trt} / df_{trt}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(MS_{trt}/MS_{res}\)</span></td>
+<td style="text-align: left;"><span class="math inline">t - 1</span></td>
+<td style="text-align: left;"><span class="math inline">SS_{trt}</span></td>
+<td style="text-align: left;"><span class="math inline">MS_{trt} = SS_{trt} / df_{trt}</span></td>
+<td style="text-align: left;"><span class="math inline">MS_{trt}/MS_{res}</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(N - t\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(SS_{res}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(MS_{res} = SS_{res} / df_{res}\)</span></td>
+<td style="text-align: left;"><span class="math inline">N - t</span></td>
+<td style="text-align: left;"><span class="math inline">SS_{res}</span></td>
+<td style="text-align: left;"><span class="math inline">MS_{res} = SS_{res} / df_{res}</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(N - 1\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(SS_{tot}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(MS_{tot} = SS_{tot} / df_{tot}\)</span></td>
+<td style="text-align: left;"><span class="math inline">N - 1</span></td>
+<td style="text-align: left;"><span class="math inline">SS_{tot}</span></td>
+<td style="text-align: left;"><span class="math inline">MS_{tot} = SS_{tot} / df_{tot}</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -523,11 +565,11 @@ Tip
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It’s easy to fill in the <strong>degrees of freedom</strong> values for <span class="math inline">\(Treatment\)</span>, <span class="math inline">\(Residual\)</span> and <span class="math inline">\(Total\)</span>, so let’s start with that. If: <span class="math display">\[t = 3\]</span> <span class="math display">\[N = 15\]</span> where <span class="math inline">\(t\)</span> is the number of treatments and <span class="math inline">\(N\)</span> is the total number of samples/replicates, then:</p>
+<p>It’s easy to fill in the <strong>degrees of freedom</strong> values for <span class="math inline">Treatment</span>, <span class="math inline">Residual</span> and <span class="math inline">Total</span>, so let’s start with that. If: <span class="math display">t = 3</span> <span class="math display">N = 15</span> where <span class="math inline">t</span> is the number of treatments and <span class="math inline">N</span> is the total number of samples/replicates, then:</p>
 <ul>
-<li><strong>Treatment df</strong> <span class="math inline">\(= t - 1 = 3 - 1 = 2\)</span></li>
-<li><strong>Residual df</strong> <span class="math inline">\(= N - t = 15 - 3 = 12\)</span></li>
-<li><strong>Total df</strong> <span class="math inline">\(= N - 1 = 15 - 1 = 14\)</span></li>
+<li><strong>Treatment df</strong> <span class="math inline">= t - 1 = 3 - 1 = 2</span></li>
+<li><strong>Residual df</strong> <span class="math inline">= N - t = 15 - 3 = 12</span></li>
+<li><strong>Total df</strong> <span class="math inline">= N - 1 = 15 - 1 = 14</span></li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
@@ -544,23 +586,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{2}</span></td>
+<td style="text-align: left;"><span class="math inline">d</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{12}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{12}</span></td>
+<td style="text-align: left;"><span class="math inline">e</span></td>
+<td style="text-align: left;"><span class="math inline">h</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{14}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{14}</span></td>
+<td style="text-align: left;"><span class="math inline">f</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -593,13 +635,13 @@ Tip
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>STEP 2: Total mean sum of squares <span class="math inline">\(MS_{tot}\)</span>
+<span class="screen-reader-only">Warning</span>STEP 2: Total mean sum of squares <span class="math inline">MS_{tot}</span>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>To calculate total mean sum of squares <span class="math inline">\(MS_{tot}\)</span>, we can use the overall standard deviation <span class="math inline">\(s = 5.11\)</span> to estimate the total variance, which is equivalent to the total mean square. We can calculate <span class="math inline">\(MS_{tot}\)</span> by squaring the overall standard deviation <span class="math inline">\(s^2\)</span>: <span class="math display">\[MS_{tot} = s^2_{tot} = 5.11^2 = 26.1121\]</span></p>
+<p>To calculate total mean sum of squares <span class="math inline">MS_{tot}</span>, we can use the overall standard deviation <span class="math inline">s = 5.11</span> to estimate the total variance, which is equivalent to the total mean square. We can calculate <span class="math inline">MS_{tot}</span> by squaring the overall standard deviation <span class="math inline">s^2</span>: <span class="math display">MS_{tot} = s^2_{tot} = 5.11^2 = 26.1121</span></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -615,23 +657,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">2</span></td>
+<td style="text-align: left;"><span class="math inline">d</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"><span class="math inline">12</span></td>
+<td style="text-align: left;"><span class="math inline">e</span></td>
+<td style="text-align: left;"><span class="math inline">h</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{26.11}\)</span></td>
+<td style="text-align: left;"><span class="math inline">14</span></td>
+<td style="text-align: left;"><span class="math inline">f</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{26.11}</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -655,7 +697,7 @@ Tip
 <section id="when-you-look-at-the-total-mean-square-value-what-does-it-tell-you-about-the-spread-of-the-data" class="level4 callout-body-container callout-body">
 <h4 class="anchored" data-anchor-id="when-you-look-at-the-total-mean-square-value-what-does-it-tell-you-about-the-spread-of-the-data">When you look at the total mean square value, what does it tell you about the “spread” of the data?</h4>
 <p>The total mean square is the variance of the data as a whole (i.e.&nbsp;not treatment-specific). It tells us how much the data varies from the <strong>overall</strong> mean. The larger the value, the more spread out the data is.</p>
-<p>A large value for <span class="math inline">\(MS_{tot}\)</span> can be due to a large treatment effect or a large residual effect. The F-statistic will help us determine which one it is.</p>
+<p>A large value for <span class="math inline">MS_{tot}</span> can be due to a large treatment effect or a large residual effect. The F-statistic will help us determine which one it is.</p>
 </section>
 </div>
 </div>
@@ -665,15 +707,15 @@ Tip
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>STEP 3: Total <span class="math inline">\(SS_{tot}\)</span> and Treatment <span class="math inline">\(SS_{trt}\)</span> sum of squares
+<span class="screen-reader-only">Warning</span>STEP 3: Total <span class="math inline">SS_{tot}</span> and Treatment <span class="math inline">SS_{trt}</span> sum of squares
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since we know that a mean sum of squares is calculated by dividing the sum of squares by the degrees of freedom i.e.&nbsp;<span class="math display">\[MS = \frac{SS}{df}\]</span> then, rearranging the equation we have: <span class="math display">\[SS = MS \times df\]</span></p>
-<p>We can calculate the total sum of squares <span class="math inline">\(SS_{tot}\)</span> by multiplying the total mean square <span class="math inline">\(MS_{tot}\)</span> by the total degrees of freedom <span class="math inline">\(df_{tot}\)</span>: <span class="math display">\[SS_{tot} = MS_{tot} \times df_{tot} = 26.1121 \times 14 = 365.5694\]</span></p>
-<p>The same can be done for the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span>: <span class="math display">\[SS_{trt} = MS_{trt} \times df_{trt} = 152.96 \times 2 = 305.92\]</span></p>
+<p>Since we know that a mean sum of squares is calculated by dividing the sum of squares by the degrees of freedom i.e.&nbsp;<span class="math display">MS = \frac{SS}{df}</span> then, rearranging the equation we have: <span class="math display">SS = MS \times df</span></p>
+<p>We can calculate the total sum of squares <span class="math inline">SS_{tot}</span> by multiplying the total mean square <span class="math inline">MS_{tot}</span> by the total degrees of freedom <span class="math inline">df_{tot}</span>: <span class="math display">SS_{tot} = MS_{tot} \times df_{tot} = 26.1121 \times 14 = 365.5694</span></p>
+<p>The same can be done for the treatment sum of squares <span class="math inline">SS_{trt}</span>: <span class="math display">SS_{trt} = MS_{trt} \times df_{trt} = 152.96 \times 2 = 305.92</span></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -689,23 +731,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{305.92}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">2</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{305.92}</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"><span class="math inline">12</span></td>
+<td style="text-align: left;"><span class="math inline">e</span></td>
+<td style="text-align: left;"><span class="math inline">h</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{365.60}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"><span class="math inline">14</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{365.60}</span></td>
+<td style="text-align: left;"><span class="math inline">26.11</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -728,8 +770,8 @@ Tip
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <section id="what-is-the-difference-between-the-treatment-and-residual-sum-of-squares" class="level4 callout-body-container callout-body">
 <h4 class="anchored" data-anchor-id="what-is-the-difference-between-the-treatment-and-residual-sum-of-squares">What is the difference between the treatment and residual sum of squares?</h4>
-<p>The treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> is the variation between the treatment means and the overall mean. It tells us how much the treatment means differ from the overall mean.</p>
-<p>The residual sum of squares <span class="math inline">\(SS_{res}\)</span> is the variation between the individual observations and their treatment means. It tells us how much the individual observations differ from their treatment means.</p>
+<p>The treatment sum of squares <span class="math inline">SS_{trt}</span> is the variation between the treatment means and the overall mean. It tells us how much the treatment means differ from the overall mean.</p>
+<p>The residual sum of squares <span class="math inline">SS_{res}</span> is the variation between the individual observations and their treatment means. It tells us how much the individual observations differ from their treatment means.</p>
 <p>By simply looking at the sum of squares, we can tell how much of the variation is due to the treatment and how much is due to the residual. The F-statistic will help us determine which one is more important.</p>
 </section>
 </div>
@@ -740,14 +782,14 @@ Tip
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>STEP 4: Residual <span class="math inline">\(SS_{res}\)</span> and <span class="math inline">\(MS_{res}\)</span>
+<span class="screen-reader-only">Warning</span>STEP 4: Residual <span class="math inline">SS_{res}</span> and <span class="math inline">MS_{res}</span>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since total sum of squares <span class="math inline">\(SS_{tot}\)</span> is the sum of the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> and the residual sum of squares <span class="math inline">\(SS_{res}\)</span>, we can calculate the residual sum of squares <span class="math inline">\(SS_{res}\)</span> by subtracting the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> from the total sum of squares <span class="math inline">\(SS_{tot}\)</span>: <span class="math display">\[SS_{res} = SS_{tot} - SS_{trt} = 365.5694 - 305.92 = 59.6494\]</span></p>
-<p>We can then calculate the residual mean square <span class="math inline">\(MS_{res}\)</span> by dividing the residual sum of squares <span class="math inline">\(SS_{res}\)</span> by the residual degrees of freedom <span class="math inline">\(df_{res}\)</span>: <span class="math display">\[MS_{res} = \frac{SS_{res}}{df_{res}} = \frac{59.6494}{12} = 4.970783\]</span></p>
+<p>Since total sum of squares <span class="math inline">SS_{tot}</span> is the sum of the treatment sum of squares <span class="math inline">SS_{trt}</span> and the residual sum of squares <span class="math inline">SS_{res}</span>, we can calculate the residual sum of squares <span class="math inline">SS_{res}</span> by subtracting the treatment sum of squares <span class="math inline">SS_{trt}</span> from the total sum of squares <span class="math inline">SS_{tot}</span>: <span class="math display">SS_{res} = SS_{tot} - SS_{trt} = 365.5694 - 305.92 = 59.6494</span></p>
+<p>We can then calculate the residual mean square <span class="math inline">MS_{res}</span> by dividing the residual sum of squares <span class="math inline">SS_{res}</span> by the residual degrees of freedom <span class="math inline">df_{res}</span>: <span class="math display">MS_{res} = \frac{SS_{res}}{df_{res}} = \frac{59.6494}{12} = 4.970783</span></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -763,23 +805,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"><span class="math inline">2</span></td>
+<td style="text-align: left;"><span class="math inline">305.92</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">i</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{59.65}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{4.97}\)</span></td>
+<td style="text-align: left;"><span class="math inline">12</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{59.65}</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{4.97}</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"><span class="math inline">14</span></td>
+<td style="text-align: left;"><span class="math inline">365.60</span></td>
+<td style="text-align: left;"><span class="math inline">26.11</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -801,8 +843,8 @@ Tip
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <section id="why-do-we-need-to-calculate-mean-sums-of-squares-ms-if-we-already-have-the-sum-of-squares-ss" class="level4 callout-body-container callout-body">
-<h4 class="anchored" data-anchor-id="why-do-we-need-to-calculate-mean-sums-of-squares-ms-if-we-already-have-the-sum-of-squares-ss">Why do we need to calculate mean sums of squares <span class="math inline">\(MS\)</span> if we already have the sum of squares <span class="math inline">\(SS\)</span>?</h4>
-<p>The mean sum of squares <span class="math inline">\(MS\)</span> is a measure of the variation in the data that is independent of the degrees of freedom i.e.&nbsp;standardised. This makes it easier to compare the variation between different treatments and the residual variation. The resulting F-statistic is therefore also independent of the degrees of freedom.</p>
+<h4 class="anchored" data-anchor-id="why-do-we-need-to-calculate-mean-sums-of-squares-ms-if-we-already-have-the-sum-of-squares-ss">Why do we need to calculate mean sums of squares <span class="math inline">MS</span> if we already have the sum of squares <span class="math inline">SS</span>?</h4>
+<p>The mean sum of squares <span class="math inline">MS</span> is a measure of the variation in the data that is independent of the degrees of freedom i.e.&nbsp;standardised. This makes it easier to compare the variation between different treatments and the residual variation. The resulting F-statistic is therefore also independent of the degrees of freedom.</p>
 </section>
 </div>
 </div>
@@ -818,7 +860,7 @@ Tip
 </div>
 <div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Finally, we can calculate the F-statistic by dividing the treatment mean square <span class="math inline">\(MS_{trt}\)</span> by the residual mean square <span class="math inline">\(MS_{res}\)</span>: <span class="math display">\[F = \frac{MS_{trt}}{MS_{res}} = \frac{152.96}{4.970783} = 30.7781\]</span></p>
+<p>Finally, we can calculate the F-statistic by dividing the treatment mean square <span class="math inline">MS_{trt}</span> by the residual mean square <span class="math inline">MS_{res}</span>: <span class="math display">F = \frac{MS_{trt}}{MS_{res}} = \frac{152.96}{4.970783} = 30.7781</span></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -834,23 +876,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\mathbf{30.78}\)</span></td>
+<td style="text-align: left;"><span class="math inline">2</span></td>
+<td style="text-align: left;"><span class="math inline">305.92</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">\mathbf{30.78}</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(59.65\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(4.97\)</span></td>
+<td style="text-align: left;"><span class="math inline">12</span></td>
+<td style="text-align: left;"><span class="math inline">59.65</span></td>
+<td style="text-align: left;"><span class="math inline">4.97</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"><span class="math inline">14</span></td>
+<td style="text-align: left;"><span class="math inline">365.60</span></td>
+<td style="text-align: left;"><span class="math inline">26.11</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>
@@ -895,23 +937,23 @@ Tip
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
-<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(30.78\)</span></td>
+<td style="text-align: left;"><span class="math inline">2</span></td>
+<td style="text-align: left;"><span class="math inline">305.92</span></td>
+<td style="text-align: left;"><span class="math inline">152.96</span></td>
+<td style="text-align: left;"><span class="math inline">30.78</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Residual</td>
-<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(59.65\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(4.97\)</span></td>
+<td style="text-align: left;"><span class="math inline">12</span></td>
+<td style="text-align: left;"><span class="math inline">59.65</span></td>
+<td style="text-align: left;"><span class="math inline">4.97</span></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
-<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"><span class="math inline">14</span></td>
+<td style="text-align: left;"><span class="math inline">365.60</span></td>
+<td style="text-align: left;"><span class="math inline">26.11</span></td>
 <td style="text-align: left;"></td>
 </tr>
 </tbody>

@@ -77,9 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-b19b45ac4525c7fe3e82d339614ecfd2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -108,20 +110,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
+}</script><style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
 
+<link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Tutorial 06: Factorial Designs</h1>
+            <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Semester 1</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -147,34 +193,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Tutorial 06: Factorial Designs</h1>
-<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">Semester 1</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>In this week’s lectures we covered factorial designs, main effects and interactions. We applied these concepts by using analysis of variance (ANOVA) as a method to analyse data from these experimental designs.</p>
@@ -208,13 +236,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="factorial-treatment-structure" class="level1" data-number="2">
+<section id="factorial-treatment-structure" class="level1 page-columns page-full" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Factorial Treatment Structure</h1>
 <p>Factorial treatment structures involve experiments where there are two or more treatment factors, each with two or more levels. In these designs, all possible combinations of the levels of each factor are included in the experiment. For example, in a 2-way factorial design with factors A and B, where factor A has 2 levels (A1 and A2) and factor B has 3 levels (B1, B2, and B3), the treatment combinations would be A1B1, A1B2, A1B3, A2B1, A2B2, and A2B3.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="images/Slide3.PNG" class="img-fluid figure-img"></p>
-<figcaption>Factorial designs have more than one treatment or factor. For each treatment there are two or more levels.</figcaption>
+<figcaption class="margin-caption">Factorial designs have more than one treatment or factor. For each treatment there are two or more levels.</figcaption>
 </figure>
 </div>
 <section id="main-effects-and-interactions" class="level2" data-number="2.1">
@@ -426,13 +454,13 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <hr>
 </section>
 </section>
-<section id="factorial-design-with-blocking" class="level1" data-number="3">
+<section id="factorial-design-with-blocking" class="level1 page-columns page-full" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Factorial Design with Blocking</h1>
 <p>A factorial design with blocking is an experimental design that combines the principles of factorial treatment structures with blocking techniques to control for variability in experimental units. Blocking is used to group similar experimental units together, reducing the impact of confounding variables and improving the precision of the experiment.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
 <p><img src="images/Slide4.PNG" class="img-fluid figure-img"></p>
-<figcaption>Factorial design with blocking. Factorial designs have more than one treatment or factor. For each treatment there are two or more levels. The experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block.</figcaption>
+<figcaption class="margin-caption">Factorial design with blocking. Factorial designs have more than one treatment or factor. For each treatment there are two or more levels. The experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block.</figcaption>
 </figure>
 </div>
 <p>These designs have main effects and interactions as before, but also have blocking effects. You need to be able to identify these in the ANOVA table and plots.</p>

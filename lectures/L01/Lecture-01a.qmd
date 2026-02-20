@@ -151,21 +151,21 @@ ggplot(dogs, aes(x = location, y = latency, fill = location)) +
 
 *You'll learn to compare multiple treatments with **ANOVA** (Weeks 3--6).*
 
-## How are plants adapting to drought?
+## How big is that penguin?
 
-Capeweed populations collected across a natural aridity gradient in southern Australia were grown under controlled conditions to test whether plants from drier areas had evolved drought-resistant traits.
+Researchers at Palmer Station, Antarctica measured body dimensions of three penguin species over three years. Heavier penguins tend to have longer flippers -- but how strong is that relationship?
 
 ```{r}
-#| label: plant-aridity
+#| label: penguin-regression
 #| code-fold: true
 #| warning: false
 #| message: false
-plants <- read.csv("data/regression_plant-aridity_clean.csv")
+penguins <- palmerpenguins::penguins
 
-ggplot(plants, aes(x = aridity, y = stomatal_conductance)) +
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm") +
-  labs(x = "Aridity index", y = "Stomatal conductance") +
+  labs(x = "Flipper length (mm)", y = "Body mass (g)") +
   theme_minimal(base_size = 18)
 ```
 

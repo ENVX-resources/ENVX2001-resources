@@ -2,17 +2,10 @@ subtitle: "ENVX2001 -- Applied Statistical Methods"
 date: today
 date-format: "[Semester 1]"
 format:
-  html:
-    theme: zephyr
-    code-summary: "Show the code"
-    code-overflow: wrap
-    fontsize: 11pt
-    toc: true
+  sandstone-html:
     toc-depth: 3
     number-sections: true
     number-depth: 2
-reference-location: margin
-citation-location: margin
 execute:
   freeze: auto
 sidebar: false

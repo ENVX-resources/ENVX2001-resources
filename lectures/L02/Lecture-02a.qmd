@@ -1,5 +1,8 @@
 ---
 title: "Lecture 02a -- Sampling designs"
+subtitle: ENVX2001 Applied Statistical Methods
+date: last-modified
+date-format: "MMM YYYY"
 author: Januar Harianto
 format:
   ochre-revealjs: default

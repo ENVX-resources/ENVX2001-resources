@@ -1,5 +1,8 @@
 ---
 title: "Lecture 02"
+subtitle: ENVX2001 Applied Statistical Methods
+date: last-modified
+date-format: "MMM YYYY"
 ---
 
 **Lecture 02a -- Sampling designs** [Full Screen](Lecture-02a.qmd) | [PDF](Lecture-02a.pdf) 

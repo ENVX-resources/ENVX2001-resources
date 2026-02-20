@@ -1,5 +1,8 @@
 ---
 title: "Regression: modelling"
+subtitle: ENVX2001 Applied Statistical Methods
+date: last-modified
+date-format: "MMM YYYY"
 author: Liana Pozza
 format:
   ochre-revealjs: default

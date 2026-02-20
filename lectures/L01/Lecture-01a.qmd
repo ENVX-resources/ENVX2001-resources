@@ -1,6 +1,8 @@
 ---
 title: Lecture 01a -- Welcome
 subtitle: ENVX2001 Applied Statistical Methods
+date: last-modified
+date-format: "MMM YYYY"
 author:
   - name: "Januar Harianto"
     email: "januar.harianto@sydney.edu.au"

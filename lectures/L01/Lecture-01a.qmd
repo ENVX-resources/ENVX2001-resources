@@ -8,7 +8,9 @@ author:
     affiliation: Lecturer, SOLES
     attributes:
       corresponding: true
-format: ochre-revealjs
+format:
+  ochre-revealjs: default
+  ochre-typst: default
 
 ---
 

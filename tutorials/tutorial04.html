@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorial 04: ANOVA Assumptions and Post-hoc Tests</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f249475e52cfe1a8e33717ce9f888b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#experimental-design-workflow" id="toc-experimental-design-workflow" class="nav-link active" data-scroll-target="#experimental-design-workflow"><span class="header-section-number">1</span> Experimental Design Workflow</a></li>
+  <li><a href="#assessing-anova-assumptions-using-residuals" id="toc-assessing-anova-assumptions-using-residuals" class="nav-link" data-scroll-target="#assessing-anova-assumptions-using-residuals"><span class="header-section-number">2</span> Assessing ANOVA Assumptions Using Residuals</a>
+  <ul class="collapse">
+  <li><a href="#what-are-residuals" id="toc-what-are-residuals" class="nav-link" data-scroll-target="#what-are-residuals"><span class="header-section-number">2.1</span> What are residuals?</a></li>
+  <li><a href="#exercise-1-why-use-residuals" id="toc-exercise-1-why-use-residuals" class="nav-link" data-scroll-target="#exercise-1-why-use-residuals"><span class="header-section-number">2.2</span> Exercise 1: Why use residuals?</a>
+  <ul class="collapse">
+  <li><a href="#testing-assumptions-using-residuals" id="toc-testing-assumptions-using-residuals" class="nav-link" data-scroll-target="#testing-assumptions-using-residuals">1.1) Testing assumptions using residuals</a></li>
+  </ul></li>
+  <li><a href="#statistical-tests-and-graphical-approaches" id="toc-statistical-tests-and-graphical-approaches" class="nav-link" data-scroll-target="#statistical-tests-and-graphical-approaches"><span class="header-section-number">2.3</span> Statistical tests and graphical approaches</a></li>
+  <li><a href="#exercise-2-diatoms-in-streams" id="toc-exercise-2-diatoms-in-streams" class="nav-link" data-scroll-target="#exercise-2-diatoms-in-streams"><span class="header-section-number">2.4</span> Exercise 2: Diatoms in streams</a>
+  <ul class="collapse">
+  <li><a href="#importing-and-processing-data-then-fitting-an-anova-model" id="toc-importing-and-processing-data-then-fitting-an-anova-model" class="nav-link" data-scroll-target="#importing-and-processing-data-then-fitting-an-anova-model">2.1) Importing and processing data, then fitting an ANOVA model</a></li>
+  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions">2.2) Testing assumptions</a></li>
+  <li><a href="#testing-the-assumption-of-constant-variance-homoscedasticity" id="toc-testing-the-assumption-of-constant-variance-homoscedasticity" class="nav-link" data-scroll-target="#testing-the-assumption-of-constant-variance-homoscedasticity">Testing the assumption of constant variance (homoscedasticity)</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#identifying-significant-differences-post-hoc-tests" id="toc-identifying-significant-differences-post-hoc-tests" class="nav-link" data-scroll-target="#identifying-significant-differences-post-hoc-tests"><span class="header-section-number">3</span> Identifying Significant Differences: Post-hoc Tests</a></li>
+  <li><a href="#family-wise-error-rate-and-power-trade-off" id="toc-family-wise-error-rate-and-power-trade-off" class="nav-link" data-scroll-target="#family-wise-error-rate-and-power-trade-off"><span class="header-section-number">4</span> Family-wise Error Rate and Power Trade-off</a>
+  <ul class="collapse">
+  <li><a href="#exercise-3-family-wise-error-rate" id="toc-exercise-3-family-wise-error-rate" class="nav-link" data-scroll-target="#exercise-3-family-wise-error-rate"><span class="header-section-number">4.1</span> Exercise 3: Family-wise error rate</a></li>
+  <li><a href="#power-trade-off" id="toc-power-trade-off" class="nav-link" data-scroll-target="#power-trade-off"><span class="header-section-number">4.2</span> Power trade-off</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions"><span class="header-section-number">5.1</span> Example exam questions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tutorial 04: ANOVA Assumptions and Post-hoc Tests</h1>
+<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Semester 1</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this week’s lectures we covered how to check the assumptions of ANOVA using residual diagnostics, and how to determine which pairs of treatment means are significantly different using post-hoc tests. A solid understanding of these concepts is essential for conducting robust statistical analyses in R and before we move to more complex models in future weeks.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key learning outcomes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Understand and apply components of the experimental design workflow.</p></li>
+<li><p>Assess whether a fitted ANOVA model meets its statistical assumptions using residuals.</p>
+<ul>
+<li>What are residuals?</li>
+<li>What are the assumptions of an ANOVA?</li>
+<li>What tests and graphical approaches to use to test assumptions?</li>
+</ul></li>
+<li><p>Identify which pair(s) of treatment means are significantly different.</p>
+<ul>
+<li>When to do a post-hoc test</li>
+<li>Statistical tests and graphical methods for post-hoc tests</li>
+<li>Family-wise error rate and power trade-off.</li>
+</ul></li>
+</ul>
+<p>Data for this tutorial is in the <strong>Data4.xlsx</strong> file.</p>
+</div>
+</div>
+<section id="experimental-design-workflow" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Experimental Design Workflow</h1>
+<p>In this tutorial we will work through the experimental design workflow for a one-way ANOVA.</p>
+<p>We introduced the workflow outlined by Fox, G. A., S. Negrete-Yankelevich, and V. J. Sosa. (2015). <a href="https://global.oup.com/academic/product/ecological-statistics-9780199672547">Ecological statistics: contemporary theory and application</a>. Oxford University Press, USA.</p>
+<p><img src="images/Lecture_Topic4.png" class="img-fluid"></p>
+<p>We will assume we have formed a hypothesis, designed an experiment, collected data and entered it into R. In our case we have chosen an ANOVA for our model and now need to do an assessment of model assumptions.</p>
+</section>
+<section id="assessing-anova-assumptions-using-residuals" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Assessing ANOVA Assumptions Using Residuals</h1>
+<p>First we need to understand a few key concepts.</p>
+<section id="what-are-residuals" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-are-residuals"><span class="header-section-number">2.1</span> What are residuals?</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Residuals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Residuals are the differences between the observed values and the values predicted by our statistical model. In the context of ANOVA, residuals help us assess how well our model fits the data.</p>
+</div>
+</div>
+<p>Mathematically, the residual for each observation can be calculated as:</p>
+<p><span class="math display">\[
+\text{Residual} = \text{Observed Value} - \text{Predicted Value}
+\]</span></p>
+<p>Residuals have key advantages over raw data for testing assumptions and you will be required to use the residuals of your model to test the assumptions of ANOVA and regression from now on.</p>
+<p>Key advantages of using residuals:</p>
+<ul>
+<li>They isolate the unexplained variation in the data after accounting for the effects of the independent variables.</li>
+<li>They allow us to assess the assumptions of the model more directly, as they should ideally be randomly distributed if the model is appropriate.</li>
+<li>They are the best way to test for assumptions of more complex models where there are multiple factors, which we will introduce in following weeks.</li>
+</ul>
+</section>
+<section id="exercise-1-why-use-residuals" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="exercise-1-why-use-residuals"><span class="header-section-number">2.2</span> Exercise 1: Why use residuals?</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This exercise illustrates why it is not ideal to test the normality assumption using all of the observations irrespective of the treatments or the size of dataset.</p>
+</div>
+</div>
+<p>First we will create 2 synthetic datasets which we sample 50 times (<code>n=50</code>) from a normally distributed population. Both underlying populations have the same variation (<code>sd=3</code>) but have a different mean (<code>mean=10</code>, <code>mean=40</code>). We then plot the histograms for each individually, both groups combined and the combined residuals (observation minus group mean).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">40</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(group1, <span class="at">main =</span> <span class="st">"A: Group1"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(group2, <span class="at">main =</span> <span class="st">"B: Group2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1, group2), <span class="at">main =</span> <span class="st">"C: Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1 <span class="sc">-</span> <span class="fu">mean</span>(group1), group2 <span class="sc">-</span> <span class="fu">mean</span>(group2)), <span class="at">main =</span> <span class="st">"D: Residuals Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>We can see that histogram of each group is normally distributed (A, B), however when we combine the data we have 2 distinct groupings centred on the mean of each group (C). Therefore, if we look at the raw data irrespective of the groups we <strong>would not see a normally distributed dataset</strong>. This is because the effect of individual treatments (or groups) is different so each observation is perturbed according to the treatment it receives or group it is in. If we examine the residuals (D), the treatment (or group) effects have been removed and we can then test if the data is normal or has constant variance. It requires fitting of a model to the data, in this case a 1-way ANOVA model. This is why we test the assumptions on the residuals. You could look at the distribution of each group separately but then for some experiments the replication is small so it is hard to assess normality, using residuals allows all of the observations to be pooled together.</p>
+<section id="testing-assumptions-using-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="testing-assumptions-using-residuals">1.1) Testing assumptions using residuals</h3>
+<p>Now we will fit a one-way ANOVA model to the data and extract the residuals to test the assumptions of normality and homogeneity of variance.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(group1, group2),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Group1"</span>, <span class="st">"Group2"</span>), <span class="at">each =</span> <span class="dv">50</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit a one-way ANOVA model</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract residuals</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>residuals_anova <span class="ot">&lt;-</span> <span class="fu">residuals</span>(anova_model)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of residuals</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(residuals_anova, <span class="at">main =</span> <span class="st">"Histogram of Residuals"</span>, <span class="at">xlab =</span> <span class="st">"Residuals"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that the histogram of the residuals appears to be normally distributed.</p>
+<p>Let’s compare this to the histogram of the raw data (also plot C above).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of raw data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>value, <span class="at">main =</span> <span class="st">"Histogram of Raw Data"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The histogram of the raw data shows two distinct peaks corresponding to the two groups, indicating that the data is not normally distributed when considering all observations together. This highlights the importance of using residuals to assess normality in the context of ANOVA.</p>
+<p>We can also create a Q-Q plot to further assess normality.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q-Q plot of residuals</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(residuals_anova)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(residuals_anova, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Q-Q plot shows that the residuals closely follow the reference line, indicating that they are approximately normally distributed.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>ANOVA has several key assumptions:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Independence</strong>: The observations are independent of each other.</li>
+<li><strong>Normality</strong>: The residuals of the model are normally distributed.</li>
+<li><strong>Homogeneity of variances</strong>: The variances across the different groups are equal.</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="statistical-tests-and-graphical-approaches" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="statistical-tests-and-graphical-approaches"><span class="header-section-number">2.3</span> Statistical tests and graphical approaches</h2>
+</section>
+<section id="exercise-2-diatoms-in-streams" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="exercise-2-diatoms-in-streams"><span class="header-section-number">2.4</span> Exercise 2: Diatoms in streams</h2>
+<p>Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the <strong>Diatoms</strong> worksheet.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Sea_ice_diatoms.jpeg" class="img-fluid figure-img" width="486"></p>
+<figcaption>Image credit: B. Caissie, https://diatoms.org/</figcaption>
+</figure>
+</div>
+<p>A researcher is interested in the effect of zinc pollution on the diversity of diatom communities in streams. They set up an experiment with four levels of zinc concentration: background (back), low, medium, and high. After a certain period, they measure the diversity of diatom species in each stream.</p>
+<section id="importing-and-processing-data-then-fitting-an-anova-model" class="level3">
+<h3 class="anchored" data-anchor-id="importing-and-processing-data-then-fitting-an-anova-model">2.1) Importing and processing data, then fitting an ANOVA model</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/Data4.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Diatoms"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>diatoms<span class="sc">$</span>Zinc <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
+ $ Stream   : chr [1:34] "Eagle" "Blue" "Blue" "Blue" ...
+ $ Zinc     : Factor w/ 4 levels "BACK","HIGH",..: 1 1 1 1 1 1 1 1 3 3 ...
+ $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...
+ $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+Zinc         3  2.567  0.8555   3.939 0.0176 *
+Residuals   30  6.516  0.2172                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="testing-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="testing-assumptions">2.2) Testing assumptions</h3>
+<p>To test the model assumptions we encourage you to produce 3 figures:</p>
+<ul>
+<li>histogram of the residuals;</li>
+<li>a QQ plot of the residuals;</li>
+<li>plot residuals against fitted values.</li>
+</ul>
+<p>It is good practice to base this on the standardised residuals which can be extracted from a model object using the <code>rstandard</code> function. Standardised residuals are <span class="math inline">\(\sim N(0,1)\)</span>, and make it easier to interpret the plots for outliers. Based on the normal distribution 95% of observations fall within ±2 SD’s of the mean or in the case of standardised residuals ±2.</p>
+<p><strong>Histogram of standardised residuals:</strong></p>
+<p>The figure below presents the histogram of the standardised residuals. The majority of the observations plot as a bell-shaped (normal) distribution. The exception are 2 observations less than -2. Given there are 34 observations this is about 6% of the dataset so acceptable given we expect 95% observations to be in the interval of ~[-2, 2].</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Q-Q plot:</strong></p>
+<p>The QQ plot below shows that the observed quantiles match the theoretical quantiles (assuming normality) based on the observations reasonably following the 1:1 line. We can assume the data is normally distributed.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(anova.diatoms))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An alternative method for testing normality is to use the Shapiro-Wilk test. This test has the null hypothesis that the data is normally distributed. A p-value &gt; 0.05 indicates we fail to reject the null hypothesis and therefore the data is normally distributed.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  rstandard(anova.diatoms)
+W = 0.96923, p-value = 0.4405</code></pre>
+</div>
+</div>
+<p>The p-value is &gt; 0.05 so we can assume the data is normally distributed.</p>
+</section>
+<section id="testing-the-assumption-of-constant-variance-homoscedasticity" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-assumption-of-constant-variance-homoscedasticity">Testing the assumption of constant variance (homoscedasticity)</h3>
+<p>The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. This is the case here. We don’t want to see <em>fanning</em> where the spread of residuals increases or decreases while the fitted values increase.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(anova.diatoms), <span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternatively we can use the Bartlett test to test for homogeneity of variance using the residuals. The null hypothesis is that the variances are equal across groups. A p-value &gt; 0.05 indicates we fail to reject the null hypothesis and therefore the variances are equal.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.diatoms) <span class="sc">~</span> diatoms<span class="sc">$</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  rstandard(anova.diatoms) by diatoms$Zinc
+Bartlett's K-squared = 0.25337, df = 3, p-value = 0.9685</code></pre>
+</div>
+</div>
+<p>The p-value is &gt; 0.05 so we can assume the variances are equal.</p>
+<p>We can also use the built-in <code>plot()</code> function to produce the diagnostics plots.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>or:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anova.diatoms, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anova.diatoms, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="identifying-significant-differences-post-hoc-tests" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Identifying Significant Differences: Post-hoc Tests</h1>
+<p>Now that we have tested the assumptions of the ANOVA and found them to be acceptable we can determine which pairs of treatment means are significantly different. We can do this using Tukey’s Honest Significant Difference using the <code>emmeans</code> package.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>When to do a post-hoc test?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Post-hoc tests are performed after an ANOVA when there are significant differences among group means. The purpose of post-hoc tests is to identify which specific pairs of group means are significantly different from each other.</p>
+<p><strong>Don’t do a post-hoc test if the ANOVA is not significant!</strong></p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'</code></pre>
+</div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tukey.diatoms <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, pairwise <span class="sc">~</span> <span class="st">"Zinc"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tukey.diatoms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$emmeans
+ Zinc emmean    SE df lower.CL upper.CL
+ BACK   1.80 0.165 30    1.461     2.13
+ HIGH   1.28 0.155 30    0.961     1.60
+ LOW    2.03 0.165 30    1.696     2.37
+ MED    1.72 0.155 30    1.401     2.04
+
+Confidence level used: 0.95 
+
+$contrasts
+ contrast    estimate    SE df t.ratio p.value
+ BACK - HIGH   0.5197 0.226 30   2.295  0.1219
+ BACK - LOW   -0.2350 0.233 30  -1.008  0.7457
+ BACK - MED    0.0797 0.226 30   0.352  0.9847
+ HIGH - LOW   -0.7547 0.226 30  -3.333  0.0117
+ HIGH - MED   -0.4400 0.220 30  -2.003  0.2096
+ LOW - MED     0.3147 0.226 30   1.390  0.5153
+
+P value adjustment: tukey method for comparing a family of 4 estimates </code></pre>
+</div>
+</div>
+<p>The output shows the pairwise comparisons between the different Zinc treatments. The <code>p.value</code> column indicates whether the differences between the means are statistically significant. A p-value less than 0.05 indicates a significant difference between the treatment means.</p>
+<p>From the results, we can see that:</p>
+<ul>
+<li>The comparison between Zinc High and Zinc low has a p-value of 0.0117, indicating a significant difference in means.</li>
+<li>The other comparisons were not significant as their p-values are greater than 0.05.</li>
+</ul>
+<p>We can also visualise the results using a plot.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tukey.diatoms, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Interpreting the plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the confidence intervals do not cross over each other, then that pair significantly differs from each other.</p>
+</div>
+</div>
+<p>This plot shows the estimated marginal means (EMM) for each Zinc treatment. In the plot function above, we’ve specified <code>comparisons = TRUE</code>. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.</p>
+<p>Overall, this analysis allows us to identify which Zinc treatments have significantly different effects on diatom diversity in streams.</p>
+<p>We will explore this experiment further in the practical.</p>
+<hr>
+</section>
+<section id="family-wise-error-rate-and-power-trade-off" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Family-wise Error Rate and Power Trade-off</h1>
+<section id="exercise-3-family-wise-error-rate" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="exercise-3-family-wise-error-rate"><span class="header-section-number">4.1</span> Exercise 3: Family-wise error rate</h2>
+<p>When conducting multiple pairwise comparisons, the family-wise error rate increases. To control the family-wise error rate, post-hoc tests like Tukey’s HSD are used, which adjust the significance levels to account for the number of comparisons being made.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Family-wise error rate
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The family-wise error rate is the probability of making at least one Type I error (false positive) among all the comparisons.</p>
+</div>
+</div>
+<p>Tukey’s HSD test is designed to maintain the overall family-wise error rate at a specified level (commonly 0.05) while still providing sufficient power to detect true differences between group means.</p>
+<p>However, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</p>
+<p>Therefore, it is important to carefully consider the number of comparisons being made and choose appropriate post-hoc tests that balance the need for controlling Type I errors with the desire to maintain adequate statistical power.</p>
+<p>Let’s look at an example of the trade-off between family-wise error rate and power using simulation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>family_wise_errors <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(tukey_result<span class="sc">$</span>group[, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    family_wise_errors <span class="ot">&lt;-</span> family_wise_errors <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>family_wise_error_rate <span class="ot">&lt;-</span> family_wise_errors <span class="sc">/</span> n_simulations</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>family_wise_error_rate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.044</code></pre>
+</div>
+</div>
+<p>In this simulation, we create 5 groups with 10 observations each, and we run 1000 simulations. We fit a one-way ANOVA model to the data and perform Tukey’s HSD test for pairwise comparisons. We count how many times at <em>least one comparison is significant (p-value &lt; 0.05)</em> across all simulations to estimate the family-wise error rate (~0.04 or 4% error rate).</p>
+<p>The resulting family-wise error rate should be close to the nominal level of 0.05, demonstrating that Tukey’s HSD test effectively controls the family-wise error rate while maintaining reasonable power to detect true differences between group means.</p>
+<p>If we don’t use a post-hoc test and just do multiple t-tests we can see how the family-wise error rate increases. For example let’s not adjust the p-values for multiple comparisons:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>family_wise_errors_no_adjust <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_groups <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (k <span class="cf">in</span> (j <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n_groups) {</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>      t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(j, k)))</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>      p_values <span class="ot">&lt;-</span> <span class="fu">c</span>(p_values, t_test_result<span class="sc">$</span>p.value)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(p_values <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    family_wise_errors_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>family_wise_error_rate_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">/</span> n_simulations</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>family_wise_error_rate_no_adjust</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.286</code></pre>
+</div>
+</div>
+<p>In this simulation, we perform multiple t-tests without adjusting the p-values for multiple comparisons. We count how many times at <em>least one comparison is significant (p-value &lt; 0.05)</em> across all simulations to estimate the family-wise error rate.</p>
+<p>The resulting family-wise error rate should be significantly higher than the nominal level of 0.05 (i.e.&nbsp;~0.286 or 29% error rate!), demonstrating that not adjusting for multiple comparisons leads to an increased risk of Type I errors.</p>
+<p>This example highlights the importance of using post-hoc tests like Tukey’s HSD to control the family-wise error rate when conducting multiple pairwise comparisons in ANOVA.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Visual methods for multiple comparisons
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Statistical tests for multiple comparisons can sometimes be difficult to interpret, especially when there are many groups involved. Hence many propose graphical methods as a more powerful way to determine which groups are different, as we saw in the plot above.</p>
+</div>
+</div>
+</section>
+<section id="power-trade-off" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="power-trade-off"><span class="header-section-number">4.2</span> Power trade-off</h2>
+<p>When conducting multiple comparisons, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Statistical power
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Statistical power is the probability of correctly rejecting the null hypothesis when it is false (i.e., detecting a true effect).</p>
+</div>
+</div>
+<p>To illustrate this trade-off, we can simulate data with a known effect size and compare the power of Tukey’s HSD test to that of unadjusted t-tests.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>true_effect_size <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>power_tukey <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>power_t_test <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> true_effect_size, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)),</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (tukey_result<span class="sc">$</span>group[<span class="st">"2-1"</span>, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    power_tukey <span class="ot">&lt;-</span> power_tukey <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>  t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (t_test_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    power_t_test <span class="ot">&lt;-</span> power_t_test <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>power_tukey_rate <span class="ot">&lt;-</span> power_tukey <span class="sc">/</span> n_simulations</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>power_t_test_rate <span class="ot">&lt;-</span> power_t_test <span class="sc">/</span> n_simulations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print results:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Adjusted for family-rate errors using Tukey's test. Proportion correctly detected:"</span>, power_tukey_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted for family-rate errors using Tukey's test. Proportion correctly detected: 0.299 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Unadjusted t-tests. Proportion correctly detected:"</span>, power_t_test_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unadjusted t-tests. Proportion correctly detected: 0.568 </code></pre>
+</div>
+</div>
+<p>In this simulation, we create 5 groups with 10 observations each, where one group has a true effect size of 1. We run 1000 simulations and fit a one-way ANOVA model to the data. We then perform Tukey’s HSD test and unadjusted t-tests to compare the power of each method in detecting the true effect.</p>
+<p>The resulting power rates indicate the proportion of simulations in which each method correctly detected the true effect. We expect the power of the unadjusted t-tests to be <em>higher (~57%)</em> than that of Tukey’s HSD test <em>(~30%)</em>, demonstrating the trade-off between controlling the family-wise error rate and maintaining statistical power.</p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Summary</h1>
+<p>In this tutorial, we covered the following key concepts:</p>
+<ul>
+<li>The importance of using residuals to assess the assumptions of ANOVA.</li>
+<li>How to test the assumptions of normality and homogeneity of variances using graphical methods and statistical tests.</li>
+<li>When to perform post-hoc tests and how to interpret the results of Tukey’s test.</li>
+<li>The trade-off between controlling the family-wise error rate and maintaining statistical power when conducting multiple comparisons.</li>
+</ul>
+<p>By understanding and applying these concepts, you will be better equipped to conduct robust experimental design and statistical analyses in R and interpret the results accurately.</p>
+<section id="example-exam-questions" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="example-exam-questions"><span class="header-section-number">5.1</span> Example exam questions</h2>
+<ol type="1">
+<li><p>Explain why residuals are used to assess the assumptions of ANOVA instead of the raw data. Provide an example to illustrate your explanation.</p></li>
+<li><p>Describe the assumptions of ANOVA and outline the graphical and statistical methods used to test these assumptions using residuals.</p></li>
+<li><p>A researcher conducts a one-way ANOVA and finds a significant effect of treatment on a response variable. Explain when and why post-hoc tests are necessary, and describe how to interpret the results of Tukey’s Honest Significant Difference (HSD) test.</p></li>
+<li><p>Discuss the trade-off between controlling the family-wise error rate and maintaining statistical power when conducting multiple comparisons. Provide an example to illustrate this trade-off.</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built using the SOLES Quarto handbook template</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>The University of Sydney</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

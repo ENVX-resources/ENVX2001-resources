@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorial 03</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f249475e52cfe1a8e33717ce9f888b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-113d1d727a567fe0204cb2a46e2fe4d1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome"><span class="header-section-number">0.1</span> Welcome</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">0.2</span> Getting started</a></li>
+  <li><a href="#reading-ms-excel-files" id="toc-reading-ms-excel-files" class="nav-link" data-scroll-target="#reading-ms-excel-files"><span class="header-section-number">1</span> Reading MS Excel files</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#find-the-working-directory" id="toc-find-the-working-directory" class="nav-link" data-scroll-target="#find-the-working-directory"><span class="header-section-number">1.2</span> Find the working directory</a></li>
+  <li><a href="#move-the-file" id="toc-move-the-file" class="nav-link" data-scroll-target="#move-the-file"><span class="header-section-number">1.3</span> Move the file</a></li>
+  <li><a href="#moving-the-file-and-updating-the-path" id="toc-moving-the-file-and-updating-the-path" class="nav-link" data-scroll-target="#moving-the-file-and-updating-the-path"><span class="header-section-number">1.4</span> Moving the file and updating the path</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">1.5</span> Exercises</a></li>
+  </ul></li>
+  <li><a href="#the-anova-table" id="toc-the-anova-table" class="nav-link" data-scroll-target="#the-anova-table"><span class="header-section-number">2</span> The ANOVA table</a>
+  <ul class="collapse">
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1"><span class="header-section-number">2.1</span> Introduction</a></li>
+  <li><a href="#a-zombie-apocalypse" id="toc-a-zombie-apocalypse" class="nav-link" data-scroll-target="#a-zombie-apocalypse"><span class="header-section-number">2.2</span> A zombie apocalypse</a></li>
+  <li><a href="#lets-begin" id="toc-lets-begin" class="nav-link" data-scroll-target="#lets-begin"><span class="header-section-number">2.3</span> Let’s begin!</a></li>
+  <li><a href="#final-anova-table" id="toc-final-anova-table" class="nav-link" data-scroll-target="#final-anova-table"><span class="header-section-number">2.4</span> Final ANOVA table</a></li>
+  <li><a href="#bonus-doing-it-in-r" id="toc-bonus-doing-it-in-r" class="nav-link" data-scroll-target="#bonus-doing-it-in-r"><span class="header-section-number">2.5</span> Bonus: doing it in R</a></li>
+  <li><a href="#do-you-reject-the-null-hypothesis" id="toc-do-you-reject-the-null-hypothesis" class="nav-link" data-scroll-target="#do-you-reject-the-null-hypothesis"><span class="header-section-number">2.6</span> Do you reject the null hypothesis?</a></li>
+  <li><a href="#which-treatment-means-are-different" id="toc-which-treatment-means-are-different" class="nav-link" data-scroll-target="#which-treatment-means-are-different"><span class="header-section-number">2.7</span> Which treatment means are different?</a></li>
+  </ul></li>
+  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done"><span class="header-section-number">3</span> Done!</a>
+  <ul class="collapse">
+  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks!</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tutorial 03</h1>
+<p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Semester 1</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="welcome" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="welcome"><span class="header-section-number">0.1</span> Welcome</h2>
+<p><strong>Welcome to Tutorial 03</strong>. In this tutorial we will show you how to:</p>
+<ol type="1">
+<li>Import data in various ways into R, focusing on MS Excel files</li>
+<li>Manually calculate a one-way Analysis of Variance (ANOVA)</li>
+</ol>
+</section>
+<section id="getting-started" class="level2 page-columns page-full" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">0.2</span> Getting started</h2>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In some instances you will see notes like this one in the margin, which often contain useful tips or reminders.</p>
+</div></div><ul>
+<li>These tutorials are designed to be comprehensive yet accessible. I recommend following along and grasping the statistical concepts as much as you can.</li>
+<li>You will need to <strong>create your own Quarto (recommended) or R Markdown document</strong> to complete the exercises. In RStudio, go to
+<ul>
+<li><code>File -&gt; New File -&gt; Quarto Document...</code> or</li>
+<li><code>File -&gt; New File -&gt; R Markdown...</code> and follow the intuitive prompts.</li>
+</ul></li>
+<li><strong>For those of you who are interested in furthering your data science skills and are keen to learn more</strong>, I have included optional sections. These techniques are <em>not</em> necessary for you to get through ENVX2001 — <strong>we do <em>not</em> cover code in the exams</strong>. Nevertheless these skills come handy in report writing and data analysis and can be a great addition to your projects.</li>
+<li>If you have any suggestions for improvement, please let me know! Send me an email (you can find my details on Canvas).</li>
+</ul>
+</section>
+<section id="reading-ms-excel-files" class="level1 page-columns page-full" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Reading MS Excel files</h1>
+<p>We will work with the <code>diatoms.xlsx</code> file in this section. Download the file from Canvas or your course materials.</p>
+<section id="introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Starting this week you will be regularly reading data from both <code>.csv</code> and <code>.xlsx</code> files for your labs and assignments. We have found that many students struggle with this even though they have been taught how to do it in ENVX1002, so we have created this section as a refresher, focusing on the more complex <code>.xlsx</code> file format. If you already know how to import files like a pro, feel free to skip ahead.</p>
+</div>
+</div>
+<p>Data import in R can be tricky because it involves learning how to work with file paths and working directories. In this section we will import the <code>Diatoms</code> worksheet from the <code>diatoms.xlsx</code> file. This data has been mixed with other information such as exploratory work and calculations, so we will need to specify the range of cells that we are interested in to import the data appropriately.</p>
+<div id="fig-diatoms-excel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diatoms-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/diatoms-excel.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diatoms-excel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: We need to separate the raw data (which we are interested in) from other information such as exploratory work and calculations (which we may <em>not</em> be interested in). Screenshot taken directly from the <code>diatoms.xlsx</code> file.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="find-the-working-directory" class="level2 page-columns page-full" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="find-the-working-directory"><span class="header-section-number">1.2</span> Find the working directory</h2>
+<p>Use <code>getwd()</code> to check the current working directory. This is the location on your computer where R will look for files.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>If you are working with a document file (like a Quarto or R Markdown file), the working directory is the location of the document file.</li>
+<li>If you are working with a script file (like an R script), the working directory might be different! You can use <code>setwd()</code> to change the working directory, <strong>but this is not recommended</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, use RStudio projects to set the working directory — see Tutorial 1 for more information or check out the <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects">documentation</a> from Posit.</li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The <code>setwd()</code> function is not recommended because it is not reproducible: it can cause issues when sharing your code with others, or when working on different computers. Instead, use RStudio projects to set the working directory.</p></div></div></section>
+<section id="move-the-file" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="move-the-file"><span class="header-section-number">1.3</span> Move the file</h2>
+<p>Move <code>diatoms.xlsx</code> to the working directory. This will simplify the file path for data import.</p>
+<div id="fig-data-location" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/data-location.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Place data in the working directory to simplify the file path for data import. In this screenshot, <code>diatoms.xlsx</code> has been placed in the folder that contains an <code>.Rproj</code> file.
+</figcaption>
+</figure>
+</div>
+<p>Then, use <code>read_excel()</code> from the <code>readxl</code> package to read the file, noting the file path, the worksheet name, and the range of cells that contain the data. Below we have assigned the output to an object called <code>diatoms</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/diatoms.xlsx"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Diatoms"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="st">"A1:D35"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="moving-the-file-and-updating-the-path" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="moving-the-file-and-updating-the-path"><span class="header-section-number">1.4</span> Moving the file and updating the path</h2>
+<p>Suppose you want to organise your project files and put all data files in a single folder. You can do this by creating a new folder in the same directory as your Quarto file, and moving the data file(s) into it.</p>
+<p>Here, we create a folder called <code>data</code> and move the <code>diatoms.xlsx</code> file into it.</p>
+<div id="fig-datafolder" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-datafolder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/datafolder.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-datafolder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Create a folder called <code>data</code> (but it can be any other name, really), and move your data file(s) to this folder. You will have to update the path to the file in the <code>read_excel()</code> function to read the data from the new location.
+</figcaption>
+</figure>
+</div>
+<p>We then update the path to the file in the <code>read_excel()</code> function by adding the folder name <code>data/</code> to the file path.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"data/diatoms.xlsx"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> <span class="st">"Diatoms"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="st">"A1:D35"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">1.5</span> Exercises</h2>
+<p>Here are some quick exercises to see if you can navigate your way around file paths in R.</p>
+<ol type="1">
+<li>Create a new folder called <code>output</code> inside the <code>data</code> folder and move the <code>diatoms.xlsx</code> file into it. How will you update the <code>path</code> in the <code>read_excel()</code> function to reflect this change?</li>
+<li>Rename the <code>output</code> folder to <code>raw</code>.</li>
+<li>Rename the <code>data</code> folder to <code>diatoms</code> and update the code.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="the-anova-table" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The ANOVA table</h1>
+<section id="introduction-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="introduction-1"><span class="header-section-number">2.1</span> Introduction</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this section you will use the summary statistics from an experiment to calculate the missing values in the ANOVA table <em>manually</em>.</p>
+<p><strong>Importantly</strong>, the point of this exercise is to appreciate the ANOVA table and how it is constructed, <em>not so much to do the calculations</em>. For example, you should be able to answer the following questions:</p>
+<ul>
+<li>What does the F-statistic tell us?</li>
+<li>What is the difference between the treatment and residual sum of squares?</li>
+<li>What is total mean squares (<span class="math inline">\(MS_{tot}\)</span>) and what relationship does it have with the variance of the data?</li>
+<li>Can the degrees of freedom tell us whether an experiment is balanced or unbalanced?</li>
+</ul>
+<p>In practice, R can perform an ANOVA and generate the table in a <em>split second</em>. Many people tend to ignore much of the table and focus on the p-value, which diminishes the value of all the other information in the table. We hope that by doing this exercise you will appreciate what is arguably one of the most popular statistical tests in the world. It can also help you assess the quality of any publication that uses ANOVA!</p>
+<p><strong>ANOVA table calculations and interpretation are <em>both</em> examinable.</strong></p>
+</div>
+</div>
+</section>
+<section id="a-zombie-apocalypse" class="level2 page-columns page-full" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="a-zombie-apocalypse"><span class="header-section-number">2.2</span> A zombie apocalypse</h2>
+<p>You and a small community have survived the zombie apocalypse. It is a world with no computers but you have many books and some goats. You have managed to perform an experiment to explore how best to feed your goats. You wish to analyse the data and have to do the ANOVA “by hand” and reconstruct an ANOVA table.</p>
+<p>In your maize fodder crop experiment, you tested three planting densities (20, 30, 40 plants/unit area) across 15 similar plots resulting in a total of 5 plots per planting density. The sample means and standard deviations (kg of dry matter/plot) for each planting density are shown below:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Treatment</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Std.Dev</th>
+<th style="text-align: left;">Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">20 plants per unit area</td>
+<td style="text-align: right;">17.58</td>
+<td style="text-align: right;">2.70</td>
+<td style="text-align: left;">7.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30 plants per unit area</td>
+<td style="text-align: right;">27.18</td>
+<td style="text-align: right;">1.89</td>
+<td style="text-align: left;">3.577</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">40 plants per unit area</td>
+<td style="text-align: right;">27.14</td>
+<td style="text-align: right;">2.02</td>
+<td style="text-align: left;">4.093</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Overall</td>
+<td style="text-align: right;">23.97</td>
+<td style="text-align: right;">5.11</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>You wish to perform an analysis of variance (ANOVA) to determine if the density of planting influenced the total dry weight of maize for the plot. The ANOVA table comes to mind and is mostly empty; below is what you have so far:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Missing values in the ANOVA table have been labelled <code>a</code> to <code>i</code> for the purpose of this exercise.</p>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">df</th>
+<th style="text-align: left;">sum sq</th>
+<th style="text-align: left;">mean sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Planting_Density</td>
+<td style="text-align: left;"><span class="math inline">\(a\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(b\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(g\)</span></td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(c\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>You want to calculate the missing values in the ANOVA table above given the following:</p>
+<ul>
+<li>You have access to the summary statistics that make up the table.</li>
+<li>Equations from the lectures, which you can use to calculate the missing values. Those equations are also provided in the table below.</li>
+<li>The treatment MS value for <code>Planting_density</code> is known at 152.96.</li>
+<li>The overall standard deviation is 5.11 for all the data. That is, if we were to pool all the data together, the standard deviation would be 5.11.</li>
+<li>Hint: the total mean sum of squares <span class="math inline">\(MS_{tot}\)</span> is approximately the overall variance of the data.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The formulas for the ANOVA table are as follows:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 40%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(t - 1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(SS_{trt}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(MS_{trt} = SS_{trt} / df_{trt}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(MS_{trt}/MS_{res}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(N - t\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(SS_{res}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(MS_{res} = SS_{res} / df_{res}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(N - 1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(SS_{tot}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(MS_{tot} = SS_{tot} / df_{tot}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-begin" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="lets-begin"><span class="header-section-number">2.3</span> Let’s begin!</h2>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>STEP 1: Degrees of freedom
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It’s easy to fill in the <strong>degrees of freedom</strong> values for <span class="math inline">\(Treatment\)</span>, <span class="math inline">\(Residual\)</span> and <span class="math inline">\(Total\)</span>, so let’s start with that. If: <span class="math display">\[t = 3\]</span> <span class="math display">\[N = 15\]</span> where <span class="math inline">\(t\)</span> is the number of treatments and <span class="math inline">\(N\)</span> is the total number of samples/replicates, then:</p>
+<ul>
+<li><strong>Treatment df</strong> <span class="math inline">\(= t - 1 = 3 - 1 = 2\)</span></li>
+<li><strong>Residual df</strong> <span class="math inline">\(= N - t = 15 - 3 = 12\)</span></li>
+<li><strong>Total df</strong> <span class="math inline">\(= N - 1 = 15 - 1 = 14\)</span></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{12}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{14}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Test your understanding 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<section id="what-does-the-degrees-of-freedom-tell-us-about-the-balance-of-the-experiment" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="what-does-the-degrees-of-freedom-tell-us-about-the-balance-of-the-experiment">What does the degrees of freedom tell us about the balance of the experiment?</h4>
+<p>If the sum of the degrees of freedom for the treatment and residual is equal to the total degrees of freedom, then the experiment is balanced. If not, then the experiment is unbalanced i.e.&nbsp;the number of replicates is not the same for each treatment.</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>STEP 2: Total mean sum of squares <span class="math inline">\(MS_{tot}\)</span>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To calculate total mean sum of squares <span class="math inline">\(MS_{tot}\)</span>, we can use the overall standard deviation <span class="math inline">\(s = 5.11\)</span> to estimate the total variance, which is equivalent to the total mean square. We can calculate <span class="math inline">\(MS_{tot}\)</span> by squaring the overall standard deviation <span class="math inline">\(s^2\)</span>: <span class="math display">\[MS_{tot} = s^2_{tot} = 5.11^2 = 26.1121\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(d\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(f\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{26.11}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Test your understanding 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<section id="when-you-look-at-the-total-mean-square-value-what-does-it-tell-you-about-the-spread-of-the-data" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="when-you-look-at-the-total-mean-square-value-what-does-it-tell-you-about-the-spread-of-the-data">When you look at the total mean square value, what does it tell you about the “spread” of the data?</h4>
+<p>The total mean square is the variance of the data as a whole (i.e.&nbsp;not treatment-specific). It tells us how much the data varies from the <strong>overall</strong> mean. The larger the value, the more spread out the data is.</p>
+<p>A large value for <span class="math inline">\(MS_{tot}\)</span> can be due to a large treatment effect or a large residual effect. The F-statistic will help us determine which one it is.</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>STEP 3: Total <span class="math inline">\(SS_{tot}\)</span> and Treatment <span class="math inline">\(SS_{trt}\)</span> sum of squares
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since we know that a mean sum of squares is calculated by dividing the sum of squares by the degrees of freedom i.e.&nbsp;<span class="math display">\[MS = \frac{SS}{df}\]</span> then, rearranging the equation we have: <span class="math display">\[SS = MS \times df\]</span></p>
+<p>We can calculate the total sum of squares <span class="math inline">\(SS_{tot}\)</span> by multiplying the total mean square <span class="math inline">\(MS_{tot}\)</span> by the total degrees of freedom <span class="math inline">\(df_{tot}\)</span>: <span class="math display">\[SS_{tot} = MS_{tot} \times df_{tot} = 26.1121 \times 14 = 365.5694\]</span></p>
+<p>The same can be done for the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span>: <span class="math display">\[SS_{trt} = MS_{trt} \times df_{trt} = 152.96 \times 2 = 305.92\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{305.92}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(e\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(h\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{365.60}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Test your understanding 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<section id="what-is-the-difference-between-the-treatment-and-residual-sum-of-squares" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="what-is-the-difference-between-the-treatment-and-residual-sum-of-squares">What is the difference between the treatment and residual sum of squares?</h4>
+<p>The treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> is the variation between the treatment means and the overall mean. It tells us how much the treatment means differ from the overall mean.</p>
+<p>The residual sum of squares <span class="math inline">\(SS_{res}\)</span> is the variation between the individual observations and their treatment means. It tells us how much the individual observations differ from their treatment means.</p>
+<p>By simply looking at the sum of squares, we can tell how much of the variation is due to the treatment and how much is due to the residual. The F-statistic will help us determine which one is more important.</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>STEP 4: Residual <span class="math inline">\(SS_{res}\)</span> and <span class="math inline">\(MS_{res}\)</span>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since total sum of squares <span class="math inline">\(SS_{tot}\)</span> is the sum of the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> and the residual sum of squares <span class="math inline">\(SS_{res}\)</span>, we can calculate the residual sum of squares <span class="math inline">\(SS_{res}\)</span> by subtracting the treatment sum of squares <span class="math inline">\(SS_{trt}\)</span> from the total sum of squares <span class="math inline">\(SS_{tot}\)</span>: <span class="math display">\[SS_{res} = SS_{tot} - SS_{trt} = 365.5694 - 305.92 = 59.6494\]</span></p>
+<p>We can then calculate the residual mean square <span class="math inline">\(MS_{res}\)</span> by dividing the residual sum of squares <span class="math inline">\(SS_{res}\)</span> by the residual degrees of freedom <span class="math inline">\(df_{res}\)</span>: <span class="math display">\[MS_{res} = \frac{SS_{res}}{df_{res}} = \frac{59.6494}{12} = 4.970783\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{59.65}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{4.97}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Test your understanding 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<section id="why-do-we-need-to-calculate-mean-sums-of-squares-ms-if-we-already-have-the-sum-of-squares-ss" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="why-do-we-need-to-calculate-mean-sums-of-squares-ms-if-we-already-have-the-sum-of-squares-ss">Why do we need to calculate mean sums of squares <span class="math inline">\(MS\)</span> if we already have the sum of squares <span class="math inline">\(SS\)</span>?</h4>
+<p>The mean sum of squares <span class="math inline">\(MS\)</span> is a measure of the variation in the data that is independent of the degrees of freedom i.e.&nbsp;standardised. This makes it easier to compare the variation between different treatments and the residual variation. The resulting F-statistic is therefore also independent of the degrees of freedom.</p>
+</section>
+</div>
+</div>
+<div class="callout callout-style-simple callout-warning no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>STEP 5: F-Statistic
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Finally, we can calculate the F-statistic by dividing the treatment mean square <span class="math inline">\(MS_{trt}\)</span> by the residual mean square <span class="math inline">\(MS_{res}\)</span>: <span class="math display">\[F = \frac{MS_{trt}}{MS_{res}} = \frac{152.96}{4.970783} = 30.7781\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathbf{30.78}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(59.65\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(4.97\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Test your understanding 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<section id="what-does-the-f-statistic-tell-us" class="level4 callout-body-container callout-body">
+<h4 class="anchored" data-anchor-id="what-does-the-f-statistic-tell-us">What does the F-statistic tell us?</h4>
+<p>The F-statistic is a measure of the variation between the treatment means and the residual variation. It tells us how much the treatment means differ from the overall mean relative to how much the individual observations differ from their treatment means. If the F-statistic is large (i.e.&nbsp;greater than 1), then the treatment means differ from the overall mean more than the individual observations differ from their treatment means. This means that the treatment means are significantly different from each other. The F-statistic is used to test the null hypothesis that the treatment means are equal.</p>
+</section>
+</div>
+</div>
+</section>
+<section id="final-anova-table" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="final-anova-table"><span class="header-section-number">2.4</span> Final ANOVA table</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Df</th>
+<th style="text-align: left;">Sum Sq</th>
+<th style="text-align: left;">Mean Sq</th>
+<th style="text-align: left;">F value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(305.92\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(152.96\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(30.78\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: left;"><span class="math inline">\(12\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(59.65\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(4.97\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;"><span class="math inline">\(14\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(365.60\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(26.11\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="bonus-doing-it-in-r" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="bonus-doing-it-in-r"><span class="header-section-number">2.5</span> Bonus: doing it in R</h2>
+<p>In code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define known values</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">15</span> <span class="co"># total no. of samples/replicates</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="co"># no. of treatments</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ms_trt <span class="ot">&lt;-</span> <span class="fl">152.96</span> <span class="co"># treatment MS</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sd_overall <span class="ot">&lt;-</span> <span class="fl">5.11</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df_trt <span class="ot">&lt;-</span> t <span class="sc">-</span> <span class="dv">1</span>    <span class="co"># a: treatment df</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df_residual <span class="ot">&lt;-</span> N <span class="sc">-</span> t  <span class="co"># b: residual df</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>df_total <span class="ot">&lt;-</span> N <span class="sc">-</span> <span class="dv">1</span>   <span class="co"># c: total df</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ms_total <span class="ot">&lt;-</span> sd_overall<span class="sc">^</span><span class="dv">2</span>    <span class="co"># h: total Mean Sq</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> ms_total <span class="sc">*</span> df_total <span class="co"># f: total Sum Sq</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ss_trt <span class="ot">&lt;-</span> ms_trt <span class="sc">*</span> df_trt    <span class="co"># d: treatment Sum Sq</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ss_residual <span class="ot">&lt;-</span> ss_total <span class="sc">-</span> ss_trt    <span class="co"># e: residual Sum Sq</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ms_residual <span class="ot">&lt;-</span> ss_residual<span class="sc">/</span>df_residual <span class="co"># g: residual Mean Sq </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>f_statistic <span class="ot">&lt;-</span> ms_trt<span class="sc">/</span>ms_residual <span class="co"># i: F value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If we fill the table:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="at">Source =</span> <span class="fu">c</span>(<span class="st">"Treatment"</span>, <span class="st">"Residual"</span>, <span class="st">"Total"</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a> <span class="at">Df =</span> <span class="fu">c</span>(df_trt, df_residual, df_total),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> <span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">c</span>(ss_trt, ss_residual, ss_total), <span class="dv">1</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> <span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">c</span>(ms_trt, ms_residual, ms_total), <span class="dv">1</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> <span class="st">`</span><span class="at">F value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">round</span>(f_statistic, <span class="dv">1</span>), <span class="st">""</span>, <span class="st">""</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">Sum.Sq</th>
+<th style="text-align: right;">Mean.Sq</th>
+<th style="text-align: left;">F.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Treatment</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">305.9</td>
+<td style="text-align: right;">153.0</td>
+<td style="text-align: left;">30.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">59.6</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">365.6</td>
+<td style="text-align: right;">26.1</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="do-you-reject-the-null-hypothesis" class="level2 page-columns page-full" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="do-you-reject-the-null-hypothesis"><span class="header-section-number">2.6</span> Do you reject the null hypothesis?</h2>
+<p>To determine whether we reject the null hypothesis, we need to compare the F-statistic to the F<sub>critical</sub> value. The F<sub>critical</sub> value is the value of F that we would expect to see if the null hypothesis were true. If the F-statistic is greater than the F<sub>critical</sub> value, then we reject the null hypothesis.</p>
+<p>To obtain the F<sub>critical</sub> value, we need the degrees of freedom for the treatment and residual and the alpha level (usually 0.05). We then look up the F<sub>critical</sub> value in an F-distribution table or use the <code>qf()</code> function in R.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Use <a href="https://www.statology.org/f-critical-value-r/">this resource</a> to help you learn more about the <code>qf()</code> function in R.</p>
+</div></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="at">p =</span> .<span class="dv">05</span>, <span class="co"># critical or alpha p value</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">df1 =</span> <span class="dv">2</span>,  <span class="co"># treatment degrees of freedom</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">df2 =</span> <span class="dv">12</span>,  <span class="co"># residual degrees of freedom</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co"># use FALSE for probability that F-stat &gt; F_crit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.885294</code></pre>
+</div>
+</div>
+<p>Since our F-statistic is 30.78, which is higher than the F<sub>critical</sub> value of 3.89, we can say that for our data P &lt; 0.05 and we reject the null hypothesis that the treatment means are equal.</p>
+</section>
+<section id="which-treatment-means-are-different" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="which-treatment-means-are-different"><span class="header-section-number">2.7</span> Which treatment means are different?</h2>
+<p>To determine which treatment means are different, we can perform a post-hoc test such as Tukey’s HSD test. This test will tell us which treatment means are significantly different from each other.</p>
+<p>Since we do not have access to R (in our zombie apocalypse scenario!), we will not be able to perform the Tukey’s HSD test here. But can the original table give us a hint?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(maize)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Treatment</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Std.Dev</th>
+<th style="text-align: left;">Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">20 plants per unit area</td>
+<td style="text-align: right;">17.58</td>
+<td style="text-align: right;">2.70</td>
+<td style="text-align: left;">7.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30 plants per unit area</td>
+<td style="text-align: right;">27.18</td>
+<td style="text-align: right;">1.89</td>
+<td style="text-align: left;">3.577</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">40 plants per unit area</td>
+<td style="text-align: right;">27.14</td>
+<td style="text-align: right;">2.02</td>
+<td style="text-align: left;">4.093</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Overall</td>
+<td style="text-align: right;">23.97</td>
+<td style="text-align: right;">5.11</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>From the table above we can see that the mean kg of dry matter per plot for the 30 and 40 plants per unit area are very similar. This suggests that the treatment means for 30 and 40 plants per unit area are not significantly different from each other. The treatment mean for 20 plants per unit area is probably significantly different from the other two treatments.</p>
+<p>But beware! This is only a hint and not a definitive answer. We need to perform a post-hoc test to be sure. This will be covered in the labs!</p>
+<hr>
+</section>
+</section>
+<section id="done" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Done!</h1>
+<section id="thanks" class="level3 unnumbered page-columns page-full">
+<h3 class="unnumbered anchored" data-anchor-id="thanks">Thanks!</h3>
+<p>This is the end of the tutorial.</p>
+
+
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>If you have any questions or suggestions, let me know during the lectures or via email. You know where to find me!</p>
+</div></div></section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built using the SOLES Quarto handbook template</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>The University of Sydney</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

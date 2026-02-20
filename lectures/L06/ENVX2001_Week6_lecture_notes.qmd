@@ -1,0 +1,281 @@
+---
+title: "Week 6 Lecture code and notes"
+subtitle: ENVX2001 Applied Statistical Methods
+author: "Aaron Greenville"
+format:
+  html:
+    toc: true # true will include a table of contents
+    code-fold: false # change to true to hide code by default.
+    embed-resources: true # Important! Must include so that plots are embedded in the HTML output.
+editor: visual
+---
+
+## Factorial treatment structures
+
+A factorial treatment structure is one where the treatments are arranged in a factorial design. This means that each treatment is a combination of two or more factors. For example, a 2x2 factorial design has two factors, each with two levels. This results in four treatments in total.
+
+These designs are useful for testing the effects of multiple factors and their interactions. The main effects are the effects of each factor on the response variable, while the interaction effects are the effects of the combination of factors on the response variable.
+
+::: callout-note
+Factorial designs are useful for testing the effects of multiple factors and their interactions, so you are actually testing multiple hypotheses at once. This can be a powerful way to test the effects of multiple factors on a response variable. From example, a 2 factor design can test the main effects of each factor and the interaction between the two factors - that's three hypotheses in one experiment!
+:::
+
+## Example: 2-way factorial experiment with randomised complete block design.
+
+From our example from last week:
+
+Pearce *et al.* (1988) outlines an experiment where 5 levels of nitrogen are applied to 3 varieties of rice (resulting in 5 x 3 = 15 treatment combinations). In this study, 4 blocks of land were used with 15 plots per block.
+
+A separate randomisation is performed within each block:\
+one of the 15 treatments is randomly allocated to one of the 15 plots.
+
+This is an 5 x 3 factorial design in an RCBD with 4 blocks.
+
+The following code demonstrates how to analyze data from a factorial RCBD using R. The data used in this example is from a study on the effect of different levels of nitrogen on the yield of rice. The data is stored in an Excel file called `Data5.xlsx` and contains the following columns:
+
+-   `Block`: The block number 1:4
+-   `Nitrogen`: The nitrogen treatment levels (0, 40, 70, 100, 130)
+-   `Yield`: The yield of rice in kg/ha
+-   `Treatment`: The treatment levels (1:15)
+-   `Variety`: The variety of rice (A, B, C)
+
+Our equation is:
+
+$$
+Yield = \mu + Block + Variety + Nitrogen + Variety \times Nitrogen + \epsilon
+$$
+
+where $\mu$ is the overall mean, $Block$ is the blocking term, $Variety$ and $Nitrogen$ are the treatment terms (or main effects), $Variety \times Nitrogen$ is the interaction term and $\epsilon$ is the error term.
+
+### Load data and check structure
+
+```{r}
+# Perform ANOVA on 5 x 3 factorial TD in an RCBD with 4 blocks:
+library(readxl)
+rice<-read_excel("Data6.xlsx",sheet="Rice")
+head(rice)
+str(rice) # check structure
+
+rice$Treatment <- as.factor(rice$Treatment)
+rice$Nitrogen <- as.factor(rice$Nitrogen)
+rice$Block <- as.factor(rice$Block)
+str(rice) # confirm
+```
+
+### Fit the ANOVA model
+
+Fit the ANOVA model. Use the equation above to guide you. The blocking term `Block` is entered into the model first, followed by the treatment terms `Variety`, `Nitrogen` and the interaction term `Variety:Nitrogen`.
+
+```{r}
+rice.aov <- aov(Yield ~ Block + Variety + Nitrogen + Variety:Nitrogen, data = rice)
+
+```
+
+or equivalently:
+
+```{r}
+rice.aov <- aov(Yield ~ Block + Variety*Nitrogen, data = rice)
+
+```
+
+::: callout-tip
+The `*` operator in the formula `Variety*Nitrogen` includes the main effects of `Variety` and `Nitrogen` as well as their interaction term. This is equivalent to `Variety + Nitrogen + Variety:Nitrogen`.
+
+This is just a shorthand way of writing the formula to save on typing in R.
+:::
+
+### Check assumptions
+
+We should also check the residuals to ensure they are normally distributed and homoscedastic (equal variance).
+
+```{r}
+par(mfrow=c(1,2))
+plot(rice.aov, which = 1:2) # residual diagnostics
+par(mfrow=c(1,1))
+```
+
+The residuals appear to be normally distributed and homoscedastic, as the QQ plot is close to the line and there are no patterns in the residuals.
+
+### Summary of ANOVA
+
+```{r}
+summary(rice.aov)
+
+```
+
+The ANOVA table shows that the main effects of `Variety` and `Nitrogen` and interaction terms. This matches the equation and model we specified.
+
+Nitrogen has a significant effect on yield, but Variety does not. The interaction term is also not significant.
+
+::: callout-tip
+Always read an ANOVA or regression table with interactions from the bottom up. This is because the interaction term is the last term in the model, so it is the last term to be tested. If the interaction term is not significant, you can then proceed to the main effects but if it is significant you can't. This is because the interaction term is a combination of the main effects, so if the interaction is significant, both the main effects are influencing your response variable. In this case `Yield`.
+:::
+
+### Post-hoc tests
+
+If the interaction term is significant, you can perform post-hoc tests to determine which treatment combinations are significantly different from each other. This is done using the `emmeans` package in R.
+
+There is a useful function in the `emmeans` package called `emmip()` that can plot the interaction between two factors. This can be useful for visualising the interaction between two factors. We will demonstrate it here, but given the interaction term is not significant, we usually don't unless it helps illustrate our hypothesis.
+
+```{r}
+library(emmeans)
+emmip(rice.aov, Variety ~ Nitrogen, CIs = TRUE) # interaction plot
+```
+
+::: callout-tip
+The `CIs = TRUE` argument adds confidence intervals to the plot. This can be useful for visualising the uncertainty in the estimates. Interestingly, variety A has a lower yield at Nitrogen level 70 that doesn't overlap with the other varieties. Note the P-value is 0.06 for the interaction. This difference wasn't large enough for a significant result at our threshold P\<0.05.
+:::
+
+We could also perform post-hoc tests to determine which main effect treatment combinations are significantly different from each other. Lets look at Nitrogen levels, as it was significant.
+
+```{r}
+emmeans(rice.aov, pairwise ~ Nitrogen)
+```
+
+This will give us the pairwise comparisons between the Nitrogen levels. The Tukey adjustment is used to correct for multiple comparisons.
+
+::: callout-note
+The Tukey adjustment is used to correct for multiple comparisons. It is a conservative test that controls the family-wise error rate. This means that the probability of making a Type I error (rejecting the null hypothesis when it is true) is controlled at a certain level (usually 0.05).
+:::
+
+We can also plot the results of the post-hoc tests for Nitrogen.
+
+```{r}
+plot(emmeans(rice.aov, ~ Nitrogen), comparisons = TRUE)
+```
+
+This will give us a plot of the estimated marginal means (EMMs) for each Nitrogen level, with confidence intervals and the results of the pairwise comparisons.
+
+## Example 3-way factorial experiment with randomised complete block design.
+
+In the example above, we looked at a 2-way factorial experiment. We can extend this to a 3-way factorial experiment. This is where we have three factors, each with multiple levels. This results in a larger number of treatment combinations, so it is important to have a large enough sample size to detect significant effects.
+
+We have performed an experiment to investigate maize yield on witchweed-affected areas.
+
+Factors included:
+
+-   4 fertilisers: none; super only; super + manure; super + N + K
+-   Infested vs Uninfested with witchweed
+-   Two varieties of maize (A and B)
+
+So Treatment Design is a 4 x 2 x 2 Factorial treatment structure
+
+Experimental Design was a RCBD: - 2 Blocks - Each Block has 4 x 2 x 2 = 16 plots
+
+The data is stored in an Excel file called `Data6.xlsx` and contains the following columns:
+
+-   `Block`: The block number 1:2
+-   `Fertiliser`: The fertiliser treatment levels (F1 = none, F2 = super only, F3 = super+manure, F4 = super+N+K)
+-   `Witchweed`: Infested vs Uninfested with witchweed
+-   `Yield`: The yield of maize in kg/ha
+-   `Variety`: The variety of maize (A, B)
+
+Our equation is:
+
+$$
+Yield = \mu + Block + Fertiliser + Witchweed + Variety + Fertiliser \times Witchweed + Fertiliser \times Variety + Witchweed \times Variety + Fertiliser \times Witchweed \times Variety + \epsilon
+$$
+
+where $\mu$ is the overall mean, $Block$ is the blocking term, $Fertiliser$, $Witchweed$ and $Variety$ are the treatment terms (or main effects), $Fertiliser \times Witchweed$, $Fertiliser \times Variety$, $Witchweed \times Variety$ are the interaction terms and $Fertiliser \times Witchweed \times Variety$ is the three-way interaction term and $\epsilon$ is the error term.
+
+### Load data and check structure
+
+```{r}
+# Perform ANOVA on 4 x 2 x 2 factorial TD in an RCBD with 2 blocks:
+library(readxl)
+witch<-read_excel("Data6.xlsx",sheet="Witchweed")
+head(witch)
+str(witch) # check structure
+
+witch$Block <- as.factor(witch$Block)
+witch$Variety <- as.factor(witch$Variety)
+witch$Witchweed <- as.factor(witch$Witchweed)
+witch$Fertiliser <- as.factor(witch$Fertiliser)
+str(witch) # confirm
+```
+
+### Fit the ANOVA model
+
+Fit the ANOVA model. Use the equation above to guide you. The blocking term `Block` is entered into the model first, followed by the treatment terms `Fertiliser`, `Witchweed`, `Variety` and the interaction terms `Fertiliser:Witchweed`, `Fertiliser:Variety`, `Witchweed:Variety` and the three-way interaction term `Fertiliser:Witchweed:Variety`.
+
+```{r}
+maize.aov <- aov(Yield ~ Block + Fertiliser + Witchweed + Variety + Fertiliser:Witchweed + Fertiliser:Variety + Witchweed:Variety + Fertiliser:Witchweed:Variety, data = witch)
+
+```
+
+or equivalently:
+
+```{r}
+maize.aov <- aov(Yield ~ Block + Fertiliser*Witchweed*Variety, data = witch)
+
+```
+
+### Check assumptions
+
+We should also check the residuals to ensure they are normally distributed and homoscedastic (equal variance).
+
+```{r}
+par(mfrow=c(1,2))
+plot(maize.aov, which = 1:2) # residual diagnostics
+par(mfrow=c(1,1))
+```
+
+The residuals appear to be homoscedastic, as there are no patterns in the residuals, but the QQ plot is not perfectly normal. This is not uncommon in real data, but it is something to be aware of.
+
+::: callout-note
+While ANOVA is robust to violations of normality, it is still a good idea to try transforming the data (yield) and check the residuals again ensure they are approximately normally distributed. Not shown here, but you could try a log transformation of the yield data and refit the model. When we do, it improves normality of the residuals, but there is a strong fanning pattern in the residuals vs fitted plot. This suggests that the model does not meet the assumption of equal variance (which is worse!). So we will use the untransformed data.
+:::
+
+### Summary of ANOVA
+
+```{r}
+summary(maize.aov)
+
+```
+
+The ANOVA table shows that the main effects of `Fertiliser`, `Witchweed` and `Variety` and interaction terms. This matches the equation and model we specified.
+
+::: callout-tip
+Remember to read the ANOVA table from the bottom up. Start with the 3-way interaction term and work your way up to the main effects. If the 3-way interaction term is not significant, you can then proceed to the 2-way interactions and main effects. If the 3-way interaction term is significant, you can't. If the 3-way interaction term is not significant but the 2-way interactions are significant, you can't proceed to the main effects.
+:::
+
+### Post-hoc tests
+
+If the interaction terms are significant, you can perform post-hoc tests to determine which treatment combinations are significantly different from each other. This is done using the `emmeans` package in R.
+
+We will illustrate how to do this for the 3-way interactions, but given the 3-way interaction term is not significant, we usually don't unless it helps illustrate our hypothesis.
+
+```{r}
+# Assessing all three terms w/interaction
+
+emmip(maize.aov, Witchweed ~ Fertiliser | Variety, CIs = TRUE)
+
+```
+
+::: callout-note
+You can see why graphical approaches are useful for visualising interactions. The plot shows the interaction between Witchweed and Fertiliser for each Variety. This can be useful for visualising the interaction between three factors and a lot easier than using the Tukey Test tables!
+:::
+
+This will give us a plot of the estimated marginal means (EMMs) for each Witchweed level, with confidence intervals and the results of the pairwise comparisons.
+
+```{r}
+# Assess interaction: variety:witchweed
+emmeans(maize.aov, pairwise ~ Variety*Witchweed)
+
+emmip(maize.aov, Witchweed ~ Variety, CIs = TRUE)
+
+```
+
+```{r}
+# Assess interaction: witchweed:fertiliser
+emmeans(maize.aov, pairwise ~ Witchweed*Fertiliser)
+
+emmip(maize.aov, Witchweed ~ Fertiliser,  CIs = TRUE)
+
+```
+
+### Conclusion
+
+In this example, we have demonstrated how to analyse a 3-way factorial experiment in an RCBD using R. We have shown how to fit the ANOVA model, check the assumptions, and perform post-hoc tests to determine which treatment combinations are significantly different from each other.
+
+Here there was a significant interaction of Witchweed and Fertiliser, and Witchweed with Variety. This suggests that the effect of Witchweed on maize yield depends on the type of fertiliser used and the variety of maize grown. From the post-hoc tests, we can determine which combinations of Witchweed, Fertiliser and Variety are significantly different from each other to guide decisions.

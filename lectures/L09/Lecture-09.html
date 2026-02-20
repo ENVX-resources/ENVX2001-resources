@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-4279360f14831a022364d2ef6b4efa56.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
+
+  <meta name="author" content="Liana Pozza">
+  <title>Regression: predictive modelling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-b3e01583ec44b7c7851a6cdbb03cd1cd.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/ochre/logo_charcoal.svg" data-background-position="bottom 4em center" data-background-size="10%" class="quarto-title-block center">
+  <h1 class="title">Regression: predictive modelling</h1>
+  <p class="subtitle">ENVX2001 Applied Statistical Methods</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Liana Pozza 
+</div>
+</div>
+</div>
+
+  <p class="date">Feb 2026</p>
+</section>
+<section id="predictive-modelling" class="title-slide slide level1 center">
+<h1>Predictive modelling</h1>
+<blockquote>
+<p>“The best way to predict the future is to create it.”</p>
+</blockquote>
+<p>– Peter Ferdinand Drucker, 1909–2005</p>
+</section>
+
+<section>
+<section id="our-workflow-so-far" class="title-slide slide level1 center">
+<h1>Our workflow so far</h1>
+
+</section>
+<section id="workflow" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Workflow</h2>
+<ol type="1">
+<li><span style="color: #D0D3D4;">Model development</span>
+<ul>
+<li><span style="color: #D0D3D4;">Explore: visualise, summarise</span></li>
+<li><span style="color: #D0D3D4;">Transform predictors: linearise, reduce skewness/leverage</span></li>
+<li><span style="color: #D0D3D4;">Model: fit, check assumptions, interpret, transform. Repeat.</span></li>
+</ul></li>
+<li><span style="color: #D0D3D4;">Variable selection</span>
+<ul>
+<li><span style="color: #D0D3D4;">VIF: remove predictors with high variance inflation factor</span></li>
+<li><span style="color: #D0D3D4;">Model selection: stepwise selection, AIC, principle of parsimony, assumption checks</span></li>
+</ul></li>
+<li>Predictive modelling
+<ul>
+<li><strong>Predict</strong>: Use the model to predict new data</li>
+<li><strong>Validate</strong>: Evaluate the model’s performance</li>
+</ul></li>
+</ol>
+</section>
+<section id="previously-on-envx2001" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Previously on ENVX2001…</h2>
+<p>We fitted a multiple linear regression model to the data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Ozone) <span class="sc">~</span> Temp <span class="sc">+</span> Solar.R <span class="sc">+</span> Wind, <span class="at">data =</span> airquality)</span>
+<span id="cb1-2" class="hljs-ln-code"><a></a><span class="fu">summary</span>(fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(Ozone) ~ Temp + Solar.R + Wind, data = airquality)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.06193 -0.29970 -0.00231  0.30756  1.23578 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -0.2621323  0.5535669  -0.474 0.636798    
+Temp         0.0491711  0.0060875   8.077 1.07e-12 ***
+Solar.R      0.0025152  0.0005567   4.518 1.62e-05 ***
+Wind        -0.0615625  0.0157130  -3.918 0.000158 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.5086 on 107 degrees of freedom
+  (42 observations deleted due to missingness)
+Multiple R-squared:  0.6644,    Adjusted R-squared:  0.655 
+F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+</section>
+<section id="predictions-by-hand" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Predictions by hand</h2>
+<p><span class="math display">\[ \widehat{log(Ozone)}=-0.262 + \color{darkorchid}{0.0492} \cdot Temp + \color{darkorange}{0.00252} \cdot Solar.R - \color{seagreen}{0.0616} \cdot Wind \]</span></p>
+<p>On a certain day, we measured (<em>in imperial units</em>):</p>
+<ul>
+<li><span style="color: darkorchid">temperature <code>Temp</code> to be 80 degrees Fahrenheit</span></li>
+<li><span style="color: darkorange">solar radiation <code>Solar.R</code> to be 145 units (Langleys)</span></li>
+<li><span style="color: seagreen">wind speed <code>Wind</code> to be 10.9 miles per hour</span></li>
+</ul>
+<p><strong>What is the predicted ozone level?</strong></p>
+<p><span class="math display">\[\widehat{log(Ozone)}= -0.262 + \color{darkorchid}{0.0492 \cdot 80} + \color{darkorange}{0.00252 \cdot 145} - \color{seagreen}{0.0616 \cdot 10.9}\]</span></p>
+<p>Easy! The two things we need to think about are…</p>
+<ul>
+<li><strong>What is the uncertainty in this prediction?</strong></li>
+<li><strong>Can this model be used to predict ozone if we collect new data in the future?</strong></li>
+</ul>
+</section>
+<section id="uncertainty" class="slide level2">
+<h2>Uncertainty</h2>
+<ul>
+<li><strong>Confidence interval</strong>: uncertainty in the <strong>mean</strong> response at a given predictor value.</li>
+<li><strong>Prediction interval</strong>: uncertainty in a <strong>single</strong> response at a given predictor value.</li>
+</ul>
+<h3 id="what-it-means">What it means</h3>
+<blockquote>
+<p><strong>95% confidence interval</strong>: Given the parameters of the model, we are 95% confident that the <em>mean</em> response at a given predictor value is between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>95% prediction interval</strong>: Given the parameters of the model, we are 95% confident that a <em>single</em> response at a given predictor value is between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+</blockquote>
+</section>
+<section id="equations" class="slide level2">
+<h2>Equations</h2>
+<p>The equation to calculate any prediction interval is:</p>
+<p><span class="math display">\[ \widehat{y} \pm t_{\alpha/2} \cdot se(\widehat{y}) \]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\widehat{y}\)</span> is the predicted value</li>
+<li><span class="math inline">\(t_{\alpha/2}\)</span> is the critical value of the t-distribution for a given confidence level</li>
+<li><span class="math inline">\(se(\widehat{y})\)</span> is the standard error of the prediction</li>
+</ul>
+<p>The difference in calculating a confidence interval and a prediction interval is in the standard error of the prediction.</p>
+</section>
+<section id="equations-1" class="slide level2">
+<h2>Equations</h2>
+<h3 id="ci-standard-error-of-the-fit">CI: standard error of the fit</h3>
+<p><span class="math display">\[ se(\widehat{y}) = \sqrt{MSE \cdot \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)} \]</span></p>
+<h3 id="pi-standard-error-of-the-prediction">PI: standard error of the prediction</h3>
+<p><span class="math display">\[ se(\widehat{y}) = \sqrt{MSE \cdot \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)}\]</span></p>
+<ul>
+<li><span class="math inline">\(x_0\)</span> is value of the predictor for which we want a response</li>
+<li><span class="math inline">\(MSE\)</span> is the mean squared error of the fit (<span class="math inline">\(SS_{xx}\)</span>)</li>
+<li><span class="math inline">\(\sum_{i=1}^n (x_i - \bar{x})^2\)</span> is the sum of squares of the predictor values</li>
+<li><span class="math inline">\(n\)</span> is the number of observations</li>
+<li><span class="math inline">\(\bar{x}\)</span> is the mean of the predictor values</li>
+</ul>
+<p>The prediction interval formula has an additional term (<span class="math inline">\(1 \cdot MSE\)</span>). There is uncertainty that the <em>mean</em> prediction will be similar to the observed, and additional uncertainty/variability for a <em>single</em> response (equivalent to the MSE). <strong>Thus the confidence interval is always narrower than the prediction interval.</strong></p>
+</section>
+<section id="predictions-in-r" class="slide level2">
+<h2>Predictions in R</h2>
+<ul>
+<li>First, we need to create a new data frame with the predictor values we want to predict at – it must include all variables in the fitted model.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>predict_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Temp =</span> <span class="dv">80</span>, <span class="at">Solar.R =</span> <span class="dv">145</span>, <span class="at">Wind =</span> <span class="fl">10.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>We use the <code>predict()</code> function to obtain the predicted value.</li>
+<li>Specifying <code>interval = "confidence"</code> or <code>interval = "prediction"</code> also calculates the confidence or prediction interval.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> predict_df) <span class="co"># the predicted value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+3.365227 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> predict_df, <span class="at">interval =</span> <span class="st">"confidence"</span>) <span class="co"># predicted value and CI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 3.365227 3.246265 3.484189</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> predict_df, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="co"># predicted value and PI</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       fit      lwr      upr
+1 3.365227 2.350051 4.380404</code></pre>
+</div>
+</div>
+</section>
+<section id="visualising-ci-and-pi" class="slide level2">
+<h2>Visualising CI and PI</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>airquality<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> airquality) <span class="co"># predict for existing data</span></span>
+<span id="cb10-2"><a></a></span>
+<span id="cb10-3"><a></a>preds_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> airquality, <span class="at">interval =</span> <span class="st">"confidence"</span>) <span class="co"># confidence interval</span></span>
+<span id="cb10-4"><a></a>preds_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> airquality, <span class="at">interval =</span> <span class="st">"prediction"</span>) <span class="co"># prediction interval</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>We can now plot the CI and PI as shaded areas around the predicted line</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>p <span class="ot">&lt;-</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(pred, <span class="fu">log</span>(Ozone))) <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb11-4"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> preds_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed log(Ozone)"</span>, <span class="at">y =</span> <span class="st">"Predicted log(Ozone)"</span>) <span class="sc">+</span></span>
+<span id="cb11-9"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb11-10"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
+<section id="visualising-with-geom_smooth" class="slide level2">
+<h2>Visualising with <code>geom_smooth()</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><code>geom_smooth()</code> fits a linear model to obtain a smooth line</li>
+<li>For visualisation we can use <code>geom_smooth()</code> instead of <code>geom_line()</code> to fit smoothed lines</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>p <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">ggplot</span>(airquality, <span class="fu">aes</span>(pred, <span class="fu">log</span>(Ozone))) <span class="sc">+</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb12-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> preds_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> preds_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb12-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> preds_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> preds_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb12-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed log(Ozone)"</span>, <span class="at">y =</span> <span class="st">"Predicted log(Ozone)"</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb12-10"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Lecture-09_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>The hyperparameter <code>se = TRUE</code> fits a smoothed CI around the predicted line</li>
+<li>Smoothed with loess functions</li>
+<li>Cannot fit the prediction interval</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>p <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Lecture-09_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="calibration-and-validation" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">Calibration and validation</h1>
+<p>All is good when we want to assess uncertainty in a model that we have already fit.</p>
+<p>What if we want to know how well the model predicts <strong>new</strong> data, i.e.&nbsp;data that we did not use to fit the model?</p>
+</section>
+<section id="why-separate-calibration-and-validation-data" class="slide level2">
+<h2>Why separate calibration and validation data?</h2>
+<p>In model development we try many models and choose the one that <em>fits that specific dataset</em> very well.</p>
+<p>So our model <em>may be</em> too complex and overfits the data. If we predict onto new data (in the real world) <strong>the model does not give plausible predictions</strong>.</p>
+<p>Why might this be a problem?</p>
+<ul>
+<li>Predict the wrong <strong>ozone levels</strong> (and people with respiratory issues are not warned)</li>
+<li>Predict the wrong <strong>disease numbers</strong> (and local health services are not prepared)</li>
+<li>Predict the wrong <strong>crop yield</strong> (and farmers under/overapply fertiliser)</li>
+</ul>
+<p>Predictions can directly be used for decision-making, which has consequences.</p>
+</section>
+<section id="general-idea" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">General Idea</h2>
+<p>What if we want to know how well the model predicts <strong>new</strong> data, i.e.&nbsp;data that we did not use to fit the model?</p>
+<ul>
+<li>We build the model with one dataset (calibration).</li>
+<li>We validate the model’s predictions with an <strong>independent dataset</strong>.
+<ul>
+<li>If the model is good, we expect the predictions to be <em>close</em> to the actual values.</li>
+<li>If the model is bad, we expect the predictions to be <em>far</em> from the actual values.</li>
+</ul></li>
+<li>The dataset can be obtained by:
+<ul>
+<li>Collecting new data.</li>
+<li>Splitting the existing data into two parts before model building.
+<ul>
+<li>Data splitting</li>
+<li>Cross-validation</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="definitions" class="slide level2">
+<h2>Definitions</h2>
+<p>Sometimes the terms for calibration and validation can get muddled.</p>
+<p>Best practice:</p>
+<ul>
+<li>Calibration/Training Dataset: the data used to train the model</li>
+<li>Validation: the data used to fine tune the model (e.g.&nbsp;variable selection, hyperparameters in machine learning)</li>
+<li>Test: remaining data that has not been used in any kind of model training</li>
+</ul>
+<p>To keep things simple (and if datasets are small), also common:</p>
+<ul>
+<li>Calibration/Training: the data used to train the model</li>
+<li>Validation/Test: the data used to assess the model’s prediction performance</li>
+</ul>
+</section>
+<section id="our-data" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Our data</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 10px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #2D708EFF;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+</section>
+<section id="collecting-new-data" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Collecting new data</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 10px;">
+
+</div>
+<p><span class="absolute" style="color: #2D708EFF;top: 130px; left: 155px; " data-id="text1">Dataset (train)</span></p>
+<p><span class="math inline">\(+\)</span></p>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 200px; height: 50px; margin: 10px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #95D840FF;top: 130px; left: 700px; ">New dataset (test)</span></p>
+<p><br></p>
+<ul>
+<li>The best way to assess how well a model predicts new data is to collect new data.
+<ul>
+<li><span style="color: #2D708EFF"><strong>Training set</strong></span>: used to fit the model.</li>
+<li><span style="color: #95D840FF"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
+</ul></li>
+</ul>
+</section>
+<section id="collecting-new-data-1" class="slide level2">
+<h2>Collecting new data</h2>
+<h3 id="pros">Pros</h3>
+<ul>
+<li>The new data is completely independent of the data used to fit the model.</li>
+<li>More data to <em>fit</em> and <em>validate</em> compared to data splitting.</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li>It can be expensive and time-consuming to collect new data.</li>
+<li>Some data may be impossible to collect (e.g.&nbsp;historical data).</li>
+</ul>
+</section>
+<section id="data-splitting" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title">Data splitting</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 500px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 0px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+</section>
+<section id="data-splitting-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title">Data splitting</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+</section>
+<section id="data-splitting-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Data splitting</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+<p><br></p>
+<ul>
+<li>Split the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)
+<ul>
+<li><span style="color: #2D708EFF"><strong>Training set</strong></span>: used to fit the model.</li>
+<li><span style="color: #95D840FF"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-splitting-3" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Data splitting</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+<p><br></p>
+<ul>
+<li>Only possible for larger datasets (hundreds of observations)</li>
+<li>Split the existing dataset into calibration, validation and test datasets (70:15:15, etc.)
+<ul>
+<li><span style="color: #2D708EFF"><strong>Calibration set</strong></span>: used to fit the model.</li>
+<li><span style="color: #95D840FF"><strong>Validation set</strong></span>: used to test model development (prevent overfitting).</li>
+<li><span style="color: #D84095"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-splitting-4" class="slide level2">
+<h2>Data splitting</h2>
+<h3 id="pros-1">Pros</h3>
+<ul>
+<li>Compared to collecting new data, it is cheaper and faster to split existing data.</li>
+</ul>
+<h3 id="cons-1">Cons</h3>
+<ul>
+<li>We have <em>less</em> data to fit the model and <em>less</em> data to validate the model.</li>
+<li>How do we split the data? Randomly? By time? By location?</li>
+</ul>
+</section>
+<section id="k-fold-cross-validation" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
+<!-- Single dataset -->
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 0px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+</section>
+<section id="k-fold-cross-validation-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
+<!-- Cross-validated dataset (random split) -->
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 50px; margin: 0px;">
+
+</div>
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 50px; margin: 0px;">
+
+</div>
+</div>
+</section>
+<section id="k-fold-cross-validation-2" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
+<!-- Make bars smaller -->
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+</section>
+<section id="k-fold-cross-validation-3" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
+<!-- Add iterations -->
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 250px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 150px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #000; font-size: 18px;top: 55px; right: 790px; " data-id="text1">Iteration 1</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18px;top: 75px; right: 790px; " data-id="text2">Iteration 2</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18px;top: 95px; right: 790px; " data-id="text3">Iteration 3</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18px;top: 115px; right: 790px; " data-id="text4">And so on…</span></p>
+</section>
+<section id="k-fold-cross-validation-4" class="slide level2">
+<h2><em>k</em>-fold cross-validation</h2>
+<div class="r-hstack">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 250px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 150px; height: 20px; margin: 0px;">
+
+</div>
+</div>
+<p><span class="absolute" style="color: #000; font-size: 18px;top: 55px; right: 790px; " data-id="text1">Iteration 1</span> <span class="absolute" style="color: #000; font-size: 18px;top: 75px; right: 790px; " data-id="text2">Iteration 2</span> <span class="absolute" style="color: #000; font-size: 18px;top: 95px; right: 790px; " data-id="text3">Iteration 3</span> <span class="absolute" style="color: #000; font-size: 18px;top: 120px; right: 790px; " data-id="text4">3-fold cross-validation</span> <span class="absolute" style="color: #000; font-size: 18px;top: 120px; right: 660px; ">Fold 1</span> <span class="absolute" style="color: #000; font-size: 18px;top: 120px; right: 494px; ">Fold 2</span> <span class="absolute" style="color: #000; font-size: 18px;top: 120px; right: 328px; ">Fold 3</span></p>
+<p><br></p>
+<ul>
+<li>Like data splitting, where existing data is split into two parts:
+<ul>
+<li><span style="color: #2D708EFF"><strong>Training set</strong></span>: used to fit the model.</li>
+<li><span style="color: #95D840FF"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
+</ul></li>
+<li>The <strong>difference</strong> is that the splitting is done <em>multiple</em> times, and the model is fit and validated <em>multiple</em> times.</li>
+<li>Each iteration or fold is used for testing once.</li>
+</ul>
+</section>
+<section id="k-fold-cross-validation-5" class="slide level2">
+<h2><em>k</em>-fold cross-validation</h2>
+<h3 id="pros-2">Pros</h3>
+<ul>
+<li>Same as data splitting, but also:
+<ul>
+<li>The model is fit and validated <em>multiple</em> times, so we can get a better estimate of how well the model predicts new data.</li>
+<li>Greatly reduces overfitting as the model’s performance is not just a result of the particular way the data was split.</li>
+</ul></li>
+</ul>
+<h3 id="cons-2">Cons</h3>
+<ul>
+<li>Bias in small datasets: each fold may contain too little data to provide a representative sample.</li>
+<li>Each fold fits a <strong>new</strong> model so it is not used for interpretation, only for prediction quality.
+<ul>
+<li>Computationally more expensive.</li>
+</ul></li>
+</ul>
+</section>
+<section id="cross-validation" class="slide level2">
+<h2>Cross-validation</h2>
+<p><em>k</em>-fold cross-validation splits data in each fold randomly.</p>
+<p>If there is some underlying structure to the data, consider:</p>
+<ul>
+<li>Spatial cross-validation (e.g.&nbsp;fields on a farm, each fold is one field)</li>
+<li>Temporal cross-validation (e.g.&nbsp;time series data, each fold is a time period)</li>
+<li>Stratified cross-validation (e.g.&nbsp;each fold has the same proportion of each category)</li>
+</ul>
+</section></section>
+<section>
+<section id="assessing-prediction-quality" class="title-slide slide level1 center">
+<h1>Assessing prediction quality</h1>
+<p>How ‘good’ are the predictions? Observed vs predicted.</p>
+</section>
+<section id="visually" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Visually</h2>
+<ul>
+<li><strong>Plot</strong>: observed (<span class="math inline">\(y_i\)</span>) vs predicted (<span class="math inline">\(\hat y\)</span>) values</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Ozone), <span class="at">y =</span> pred)) <span class="sc">+</span></span>
+<span id="cb14-2" class="hljs-ln-code"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-3" class="hljs-ln-code"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb14-4" class="hljs-ln-code"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed log(Ozone)"</span>, <span class="at">y =</span> <span class="st">"Predicted log(Ozone)"</span>) <span class="sc">+</span></span>
+<span id="cb14-5" class="hljs-ln-code"><a></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-8-1.png" width="672" class="r-stretch"><p>We can also use metrics to quantify how well the model predicts new data:</p>
+<ul>
+<li>How close points are to the 1:1 line</li>
+<li>How <em>linear</em> the relationship is between observed and predicted values</li>
+</ul>
+</section>
+<section id="error" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Error</h2>
+<p>The smaller the error, the better the model.</p>
+<p><strong>Mean error</strong>: the average difference between observed and predicted values.</p>
+<ul>
+<li>Can be positive or negative to indicate over- or under-estimation (a measure of bias)</li>
+</ul>
+<p><span class="math display">\[ME = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><strong>Mean absolute error</strong>: the average (absolute) difference between observed and predicted values (residual).</p>
+<p><span class="math display">\[MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><strong>Mean squared error</strong>: the average of the squared residuals</p>
+<ul>
+<li>Squared so positive and negative errors do not cancel each other out</li>
+<li>Penalises poor predictions more</li>
+</ul>
+<p><span class="math display">\[MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]</span></p>
+<p><strong>Root mean squared error</strong>: the standard deviation of the residuals</p>
+<ul>
+<li>Squaring the error penalises poor predictions more</li>
+</ul>
+<p><span class="math display">\[RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+</section>
+<section id="linearity" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Linearity</h2>
+<p>The more linear the relationship between observed and predicted values, the better the model.</p>
+<p><strong>Pearson’s correlation coefficient (<em>r</em>)</strong>:</p>
+<ul>
+<li>A measure of the strength and direction of a linear relationship between two variables.</li>
+<li>Ranges from -1 to 1, with 0 indicating no relationship and 1 indicating a perfect positive linear relationship.</li>
+</ul>
+<p><span class="math display">\[r = \frac{\sum_{i=1}^{n} (y_i - \bar{y})(\hat{y}_i - \bar{\hat{y}})}{\sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2 \sum_{i=1}^{n} (\hat{y}_i - \bar{\hat{y}})^2}}\]</span></p>
+<p><strong>R<sup>2</sup></strong>:</p>
+<ul>
+<li>The proportion of variance explained by the variables in the model.</li>
+<li>When two variables are compared (e.g.&nbsp;observed vs predicted) it is the same as correlation squared.</li>
+<li>A value of 1 indicates a perfect linear relationship.</li>
+</ul>
+<p><span class="math display">\[R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span> <strong>Lin’s concordance correlation coefficient (<span class="math inline">\(\rho_c\)</span>)</strong>:</p>
+<ul>
+<li>A measure of agreement between two variables (based on covariance, variances, and difference in means).</li>
+<li>How well the points fit the 1:1 line.</li>
+<li>A value of 0 indicates no agreement and 1 indicating perfect agreement.</li>
+</ul>
+<p><span class="math display">\[LCCC = \frac{2\text{Cov}(X,Y)}{\text{Var}(X) + \text{Var}(Y) + (\mu_X - \mu_Y)^2}\]</span></p>
+</section>
+<section id="lccc-vs-r-and-r2" class="slide level2">
+<h2>LCCC vs <span class="math inline">\(r\)</span> and R<sup>2</sup></h2>
+<p>LCCC combines error and linearity so it better measures the fit to the 1:1 line.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">5</span>),</span>
+<span id="cb15-2"><a></a>  <span class="st">"45 degree line | CCC = 1"</span> <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">mutate</span>(<span class="st">"Location shift | CCC = 0.89"</span> <span class="ot">=</span> <span class="st">`</span><span class="at">45 degree line | CCC = 1</span><span class="st">`</span> <span class="sc">-</span> <span class="dv">15</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">mutate</span>(<span class="st">"Scale shift | CCC = 0.52"</span> <span class="ot">=</span> y <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">mutate</span>(<span class="st">"Location and scale shift | CCC = 0.67"</span> <span class="ot">=</span> y <span class="sc">*</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">20</span>)</span>
+<span id="cb15-6"><a></a></span>
+<span id="cb15-7"><a></a><span class="co"># pivot</span></span>
+<span id="cb15-8"><a></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">values_to =</span> <span class="st">"x"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">factor</span>(name, </span>
+<span id="cb15-11"><a></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"45 degree line | CCC = 1"</span>,</span>
+<span id="cb15-12"><a></a>      <span class="st">"Location shift | CCC = 0.89"</span>,</span>
+<span id="cb15-13"><a></a>      <span class="st">"Scale shift | CCC = 0.52"</span>,</span>
+<span id="cb15-14"><a></a>      <span class="st">"Location and scale shift | CCC = 0.67"</span>)))</span>
+<span id="cb15-15"><a></a></span>
+<span id="cb15-16"><a></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb15-17"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb15-18"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name) <span class="sc">+</span></span>
+<span id="cb15-19"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-20"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb15-21"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb15-22"><a></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb15-23"><a></a>  <span class="fu">geom_blank</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-9-1.png" width="672" class="r-stretch"></section>
+<section id="limitations" class="slide level2">
+<h2>Limitations</h2>
+<p>No one metric is perfect.</p>
+<p>Each prediction below has an LCCC of 0.6.</p>
+<p><a href="https://www.sciencedirect.com/science/article/pii/S1574954124003625">Wadoux and Minasny 2024</a> <img data-src="images/LCCC.jpg"></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Use multiple metrics to test prediction quality, and always plot the predicted vs observed.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="example-loyn-dataset" class="title-slide slide level1 center">
+<h1>Example: Loyn dataset</h1>
+<p>We will go through several examples to practice data splitting, cross-validation, and model evaluation.</p>
+</section>
+<section id="about" class="slide level2">
+<h2>About</h2>
+<p>Data on the relationship between bird abundance (bird ha<sup>-1</sup>) and the characteristics of forest patches at 56 locations in SE Victoria.</p>
+<p>The predictor variables are:</p>
+<ul>
+<li><code>ALT</code> Altitude (m)</li>
+<li><code>YR.ISOL</code> Year when the patch was isolated (years)</li>
+<li><code>GRAZE</code> Grazing (coded 1-5 which is light to heavy)</li>
+<li><code>AREA</code> Patch area (ha)</li>
+<li><code>DIST</code> Distance to nearest patch (km)</li>
+<li><code>LDIST</code> Distance to largest patch (km)</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/loyn.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dataset-splitting" class="slide level2">
+<h2>Dataset splitting</h2>
+<p>We will split the data into training and test sets.</p>
+<p>As the dataset is quite small, we will use a 80:20 split.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">set.seed</span>(<span class="dv">100</span>)</span>
+<span id="cb17-2"><a></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(loyn), <span class="at">size =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(loyn)) <span class="co"># randomly sample 20% of rows in the dataset</span></span>
+<span id="cb17-3"><a></a>loyn_train <span class="ot">&lt;-</span> loyn[<span class="sc">-</span>indexes, ] <span class="co"># remove the 20% - training dataset</span></span>
+<span id="cb17-4"><a></a>loyn_test <span class="ot">&lt;-</span> loyn[indexes, ] <span class="co"># select the 20% - test dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="checking-the-split" class="slide level2">
+<h2>Checking the split</h2>
+<p>Check out the <code>str()</code> of the data to see if the split worked (number of observations).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">str</span>(loyn_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [45 × 7] (S3: tbl_df/tbl/data.frame)
+ $ ABUND  : num [1:45] 5.3 2 1.5 17.1 13.8 3.8 2.2 3.3 27.6 1.8 ...
+ $ AREA   : num [1:45] 0.1 0.5 0.5 1 1 1 1 1 2 2 ...
+ $ YR.ISOL: num [1:45] 1968 1920 1900 1966 1918 ...
+ $ DIST   : num [1:45] 39 234 104 66 246 467 284 156 66 93 ...
+ $ LDIST  : num [1:45] 39 234 311 66 246 ...
+ $ GRAZE  : num [1:45] 2 5 5 3 5 5 5 4 3 5 ...
+ $ ALT    : num [1:45] 160 60 140 160 140 90 60 130 210 160 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">str</span>(loyn_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [11 × 7] (S3: tbl_df/tbl/data.frame)
+ $ ABUND  : num [1:11] 3 29.5 26 39.6 34.4 19.5 14.6 28.3 15.8 5 ...
+ $ AREA   : num [1:11] 1 973 18 49 96 6 2 34 5 4 ...
+ $ YR.ISOL: num [1:11] 1900 1970 1966 1972 1976 ...
+ $ DIST   : num [1:11] 311 337 40 1427 39 ...
+ $ LDIST  : num [1:11] 571 1323 3188 1557 519 ...
+ $ GRAZE  : num [1:11] 5 1 2 1 2 3 1 1 3 5 ...
+ $ ALT    : num [1:11] 130 190 190 180 175 170 210 110 130 120 ...</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="model-development" class="title-slide slide level1 center">
+<h1>Model development</h1>
+<p>From now on, we will work with the <strong>training set only</strong>.</p>
+</section>
+<section id="exploratory-data-analysis" class="slide level2">
+<h2>Exploratory data analysis</h2>
+<ul>
+<li>The next step is to visualise the data.</li>
+<li>Expore relationships between the predictors and the response via histograms, scatterplots, boxplots, correlations etc.</li>
+</ul>
+<p>In this lecture we will just look at histograms.</p>
+</section>
+<section id="histograms" class="slide level2">
+<h2>Histograms</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>loyn_train <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb22-3"><a></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb22-4"><a></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb22-5"><a></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb22-6"><a></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb22-8"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb22-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"><ul>
+<li>Looks like <code>AREA</code> <code>LDIST</code> and <code>DIST</code> are skewed – we will transform them so that they are more normally distributed.</li>
+</ul>
+</section>
+<section id="transforming-predictors" class="slide level2">
+<h2>Transforming predictors</h2>
+<p>We will use <code>log10()</code> to transform the predictors. The <code>mutate()</code> function from the <code>dplyr</code> package is useful for this as it can create new columns in the data frame with the transformed values.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>loyn_train <span class="ot">&lt;-</span> loyn_train <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a></a>    <span class="fu">mutate</span>(</span>
+<span id="cb23-3"><a></a>        <span class="at">AREA_L10 =</span> <span class="fu">log10</span>(AREA),</span>
+<span id="cb23-4"><a></a>        <span class="at">LDIST_L10 =</span> <span class="fu">log10</span>(LDIST),</span>
+<span id="cb23-5"><a></a>        <span class="at">DIST_L10 =</span> <span class="fu">log10</span>(DIST)</span>
+<span id="cb23-6"><a></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then, remove the untransformed variables from the dataset. Here we can use the <code>select()</code> function from the <code>dplyr</code> package to “delselect” columns by using the <code>-</code> sign.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>loyn_train <span class="ot">&lt;-</span> loyn_train <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a></a>    <span class="fu">select</span>(<span class="sc">-</span>AREA, <span class="sc">-</span>LDIST, <span class="sc">-</span>DIST)</span>
+<span id="cb24-3"><a></a></span>
+<span id="cb24-4"><a></a><span class="fu">str</span>(loyn_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [45 × 7] (S3: tbl_df/tbl/data.frame)
+ $ ABUND    : num [1:45] 5.3 2 1.5 17.1 13.8 3.8 2.2 3.3 27.6 1.8 ...
+ $ YR.ISOL  : num [1:45] 1968 1920 1900 1966 1918 ...
+ $ GRAZE    : num [1:45] 2 5 5 3 5 5 5 4 3 5 ...
+ $ ALT      : num [1:45] 160 60 140 160 140 90 60 130 210 160 ...
+ $ AREA_L10 : num [1:45] -1 -0.301 -0.301 0 0 ...
+ $ LDIST_L10: num [1:45] 1.59 2.37 2.49 1.82 2.39 ...
+ $ DIST_L10 : num [1:45] 1.59 2.37 2.02 1.82 2.39 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="final-inspection" class="slide level2">
+<h2>Final inspection</h2>
+<p>View the histograms again to check that the transformation worked.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>loyn_train <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb26-3"><a></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
+<span id="cb26-4"><a></a>    <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb26-5"><a></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb26-6"><a></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb26-8"><a></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb26-9"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> variable, <span class="at">scales =</span> <span class="st">"free"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
+<section id="full-model" class="slide level2">
+<h2>Full model</h2>
+<p>We start with a full model that includes all the predictors.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>full_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> ., <span class="at">data =</span> loyn_train)</span>
+<span id="cb27-2"><a></a><span class="fu">summary</span>(full_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ABUND ~ ., data = loyn_train)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.3445  -3.4647   0.1991   2.8689  14.1844 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -159.27533  109.13660  -1.459   0.1527    
+YR.ISOL        0.09334    0.05392   1.731   0.0916 .  
+GRAZE         -1.40912    1.03653  -1.359   0.1820    
+ALT            0.01657    0.02810   0.589   0.5590    
+AREA_L10       8.09629    1.78591   4.533 5.63e-05 ***
+LDIST_L10      2.05115    3.23927   0.633   0.5304    
+DIST_L10      -6.18596    4.83189  -1.280   0.2082    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.497 on 38 degrees of freedom
+Multiple R-squared:  0.6752,    Adjusted R-squared:  0.6239 
+F-statistic: 13.17 on 6 and 38 DF,  p-value: 5.277e-08</code></pre>
+</div>
+</div>
+</section>
+<section id="assumptions---round-1" class="slide level2">
+<h2>Assumptions - Round 1</h2>
+<p>As usual, we should check the assumptions of the model (CLINE + outliers). We will use the <code>check_model()</code> function from the <code>perfomance</code> package (because it looks nice and has interpretation instructions).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>performance<span class="sc">::</span><span class="fu">check_model</span>(full_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-18-1.png" width="672" class="r-stretch"></section>
+<section id="assumptions---round-1-1" class="slide level2">
+<h2>Assumptions - Round 1</h2>
+<p>We check multicollinearity with variable inflation factors (VIF) - VIFs are all &lt; 10, so there is no multicollinearity. All assumptions are thus met.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">check_model</span>(full_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-19-1.png" width="672" class="r-stretch"></section>
+<section id="backwards-stepwise-selection" class="slide level2">
+<h2>Backwards stepwise selection</h2>
+<p>Use the <code>step()</code> function perform backwards stepwise selection. This function uses AIC to select the best model.</p>
+<p>Depending on the dataset splitting, the best model may be different each time we randomly sample the data. In this case we should all have the same results as we set the seed.</p>
+<p>If we compare to the full model, the adjusted r-squared is slightly higher, and the AIC is lower.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>step_fit <span class="ot">&lt;-</span> <span class="fu">step</span>(full_fit, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=174.81
+ABUND ~ YR.ISOL + GRAZE + ALT + AREA_L10 + LDIST_L10 + DIST_L10
+
+            Df Sum of Sq    RSS    AIC
+- ALT        1     14.67 1618.5 173.22
+- LDIST_L10  1     16.92 1620.8 173.28
+- DIST_L10   1     69.18 1673.0 174.71
+&lt;none&gt;                   1603.9 174.81
+- GRAZE      1     78.00 1681.9 174.94
+- YR.ISOL    1    126.48 1730.3 176.22
+- AREA_L10   1    867.44 2471.3 192.26
+
+Step:  AIC=173.22
+ABUND ~ YR.ISOL + GRAZE + AREA_L10 + LDIST_L10 + DIST_L10
+
+            Df Sum of Sq    RSS    AIC
+- LDIST_L10  1     10.76 1629.3 171.52
+&lt;none&gt;                   1618.5 173.22
+- DIST_L10   1     85.56 1704.1 173.54
+- GRAZE      1     98.23 1716.8 173.87
+- YR.ISOL    1    117.80 1736.3 174.38
+- AREA_L10   1   1088.05 2706.6 194.35
+
+Step:  AIC=171.52
+ABUND ~ YR.ISOL + GRAZE + AREA_L10 + DIST_L10
+
+           Df Sum of Sq    RSS    AIC
+&lt;none&gt;                  1629.3 171.52
+- GRAZE     1     93.97 1723.3 172.04
+- YR.ISOL   1    107.73 1737.0 172.40
+- DIST_L10  1    114.60 1743.9 172.57
+- AREA_L10  1   1161.66 2791.0 193.74</code></pre>
+</div>
+</div>
+</section>
+<section id="the-selected-model" class="slide level2">
+<h2>The selected model</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">summary</span>(full_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ABUND ~ ., data = loyn_train)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.3445  -3.4647   0.1991   2.8689  14.1844 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -159.27533  109.13660  -1.459   0.1527    
+YR.ISOL        0.09334    0.05392   1.731   0.0916 .  
+GRAZE         -1.40912    1.03653  -1.359   0.1820    
+ALT            0.01657    0.02810   0.589   0.5590    
+AREA_L10       8.09629    1.78591   4.533 5.63e-05 ***
+LDIST_L10      2.05115    3.23927   0.633   0.5304    
+DIST_L10      -6.18596    4.83189  -1.280   0.2082    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.497 on 38 degrees of freedom
+Multiple R-squared:  0.6752,    Adjusted R-squared:  0.6239 
+F-statistic: 13.17 on 6 and 38 DF,  p-value: 5.277e-08</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">summary</span>(step_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ABUND ~ YR.ISOL + GRAZE + AREA_L10 + DIST_L10, data = loyn_train)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-18.1683  -3.1961   0.3374   3.4834  14.2021 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -135.17508  102.72850  -1.316    0.196    
+YR.ISOL        0.08323    0.05118   1.626    0.112    
+GRAZE         -1.50496    0.99082  -1.519    0.137    
+AREA_L10       8.61888    1.61392   5.340 3.98e-06 ***
+DIST_L10      -4.87726    2.90770  -1.677    0.101    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.382 on 40 degrees of freedom
+Multiple R-squared:  0.6701,    Adjusted R-squared:  0.6371 
+F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
+</div>
+</div>
+</div></div>
+</section>
+<section id="assumptions---round-2" class="slide level2">
+<h2>Assumptions - Round 2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>, <span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-23-1.png" width="672" class="r-stretch"></section></section>
+<section>
+<section id="model-validation" class="title-slide slide level1 center">
+<h1>Model validation</h1>
+<p>It looks like the model is good, so let’s bring in the test set to see how it performs!</p>
+</section>
+<section id="prepare-the-test-data" class="slide level2">
+<h2>Prepare the test data</h2>
+<p>Since the test data has not been transformed, we need to do that first.</p>
+<p>We then predict onto the training and test dataset using the reduced stepwise model.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>loyn_test <span class="ot">&lt;-</span> loyn_test <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a></a>    <span class="fu">mutate</span>(</span>
+<span id="cb38-3"><a></a>        <span class="at">AREA_L10 =</span> <span class="fu">log10</span>(AREA),</span>
+<span id="cb38-4"><a></a>        <span class="at">LDIST_L10 =</span> <span class="fu">log10</span>(LDIST),</span>
+<span id="cb38-5"><a></a>        <span class="at">DIST_L10 =</span> <span class="fu">log10</span>(DIST)</span>
+<span id="cb38-6"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb38-7"><a></a>    <span class="fu">select</span>(<span class="sc">-</span>AREA, <span class="sc">-</span>LDIST, <span class="sc">-</span>DIST)</span>
+<span id="cb38-8"><a></a></span>
+<span id="cb38-9"><a></a>loyn_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_train)</span>
+<span id="cb38-10"><a></a>loyn_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="plotting-observed-vs-predicted" class="slide level2">
+<h2>Plotting observed vs predicted</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_train, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
+<span id="cb39-5"><a></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb39-7"><a></a></span>
+<span id="cb39-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_test, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb39-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb39-10"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb39-11"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
+<span id="cb39-12"><a></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
+<span id="cb39-13"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb39-14"><a></a></span>
+<span id="cb39-15"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-25-1.png" width="672" class="r-stretch"></section>
+<section id="calculating-metrics---error" class="slide level2">
+<h2>Calculating metrics - error</h2>
+<p>Generally the training dataset will have lower error and higher linearity than the test dataset. If this difference is very large – it suggests the model is not applicable to the test data and overfitting.</p>
+<p>With error – lower is better. The following all measure error <strong>in the same units as the response variable</strong> (number of birds in each forest patch).</p>
+<h3 id="mean-error">Mean error</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.65</code></pre>
+</div>
+</div>
+<p>We expect the ME for the training dataset to be near 0 – a well-fitted linear regression model will have positive and negative residuals balance each other out.</p>
+<h3 id="mean-absolute-error">Mean absolute error</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.43</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.21</code></pre>
+</div>
+</div>
+<h3 id="root-mean-squared-error-caret-package">Root mean squared error (<code>caret</code> package)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.02</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.72</code></pre>
+</div>
+</div>
+</section>
+<section id="calculating-metrics-linearity" class="slide level2">
+<h2>Calculating metrics – linearity</h2>
+<p>With linearity – higher is better.</p>
+<p>Both training and test datasets perform similarly, which is a good sign the model is not overfitting.</p>
+<h3 id="pearsons-correlation-coefficient-r">Pearson’s correlation coefficient <em>r</em></h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.82</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.82</code></pre>
+</div>
+</div>
+<h3 id="r2">R<sup>2</sup></h3>
+<p>Can either square the correlation coefficient or use the <code>R2()</code> function from the <code>caret</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a><span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.67</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.68</code></pre>
+</div>
+</div>
+<h3 id="lins-concordance-correlation-coefficient-ccc-epir-package">Lin’s concordance correlation coefficient (CCC) (<code>epiR</code> package)</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.81</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="co"># put all data into a tible and kable it</span></span>
+<span id="cb64-2"><a></a><span class="fu">tibble</span>(</span>
+<span id="cb64-3"><a></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
+<span id="cb64-4"><a></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
+<span id="cb64-5"><a></a>        <span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb64-6"><a></a>        <span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb64-7"><a></a>    ),</span>
+<span id="cb64-8"><a></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
+<span id="cb64-9"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)),</span>
+<span id="cb64-10"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred))</span>
+<span id="cb64-11"><a></a>    ),</span>
+<span id="cb64-12"><a></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
+<span id="cb64-13"><a></a>        <span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb64-14"><a></a>        <span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb64-15"><a></a>    ),</span>
+<span id="cb64-16"><a></a>    <span class="at">cor =</span> <span class="fu">c</span>(</span>
+<span id="cb64-17"><a></a>        <span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb64-18"><a></a>        <span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb64-19"><a></a>    ),</span>
+<span id="cb64-20"><a></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
+<span id="cb64-21"><a></a>        <span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb64-22"><a></a>        <span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb64-23"><a></a>    ),</span>
+<span id="cb64-24"><a></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
+<span id="cb64-25"><a></a>        <span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
+<span id="cb64-26"><a></a>        <span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
+<span id="cb64-27"><a></a>    )</span>
+<span id="cb64-28"><a></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb64-29"><a></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: right;">ME</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">cor</th>
+<th style="text-align: right;">R2</th>
+<th style="text-align: right;">LCCC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Training</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">4.43</td>
+<td style="text-align: right;">6.02</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test</td>
+<td style="text-align: right;">-1.65</td>
+<td style="text-align: right;">5.21</td>
+<td style="text-align: right;">6.72</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">0.81</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li>The model fit for the training dataset is marginally better (slight overfitting, but not a concern)</li>
+<li>Small differences are also expected due to the small sample size or the chosen <code>set.seed()</code></li>
+<li>The model predicts bird abundance in forest patches in SE Victoria well (<strong><em>r</em></strong> = 0.82, <strong>LCCC</strong> = 0.81, <strong>MAE</strong> = 5.21 birds/patch, <strong>RMSE</strong> = 6.72 birds/patch).</li>
+</ul>
+</section></section>
+<section id="thanks" class="title-slide slide level1 center">
+<h1>Thanks!</h1>
+<p><strong>Questions? Comments?</strong></p>
+<p>Slides made with <a href="https://quarto.org">Quarto</a></p>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

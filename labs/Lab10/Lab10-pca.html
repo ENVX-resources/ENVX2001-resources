@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="The University of Sydney">
+
+<title>Lab 10</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f249475e52cfe1a8e33717ce9f888b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-51fe5a4f7ec1a64e28277353cc881824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-51fe5a4f7ec1a64e28277353cc881824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-51fe5a4f7ec1a64e28277353cc881824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
+<link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: #000;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: #000;
+background: white;
+      }
+</style><noscript>
+  <style>
+    section.level2 { display: block !important; }
+  </style>
+</noscript>
+<script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
+
+
+<link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
+</head>
+
+<body class="floating slimcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Lab 10</h1>
+            <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
+                  <div>
+        <div class="description">
+          The University of Sydney
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#buckle-up" id="toc-buckle-up" class="nav-link" data-scroll-target="#buckle-up">Buckle Up!</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
+  <li><a href="#part-1-why-pca-when-pca-who-pca" id="toc-part-1-why-pca-when-pca-who-pca" class="nav-link" data-scroll-target="#part-1-why-pca-when-pca-who-pca">Part 1: Why PCA? When PCA? Who PCA?</a>
+  <ul class="collapse">
+  <li><a href="#exercise-irises" id="toc-exercise-irises" class="nav-link" data-scroll-target="#exercise-irises">Exercise: Irises</a></li>
+  <li><a href="#practice-take-a-picture" id="toc-practice-take-a-picture" class="nav-link" data-scroll-target="#practice-take-a-picture">Practice: Take a Picture</a></li>
+  </ul></li>
+  <li><a href="#part-2-how-to-perform-a-pca-without-panicking" id="toc-part-2-how-to-perform-a-pca-without-panicking" class="nav-link" data-scroll-target="#part-2-how-to-perform-a-pca-without-panicking">Part 2: How to Perform a PCA Without Panicking</a>
+  <ul class="collapse">
+  <li><a href="#exercise-go-home-eigenvalues.-youre-drunk." id="toc-exercise-go-home-eigenvalues.-youre-drunk." class="nav-link" data-scroll-target="#exercise-go-home-eigenvalues.-youre-drunk.">Exercise: Go Home, Eigenvalues. You’re Drunk.</a></li>
+  <li><a href="#practice-youre-multidimensional-i-think-thats-a-compliment" id="toc-practice-youre-multidimensional-i-think-thats-a-compliment" class="nav-link" data-scroll-target="#practice-youre-multidimensional-i-think-thats-a-compliment">Practice: You’re Multidimensional (I Think That’s a Compliment)</a></li>
+  </ul></li>
+  <li><a href="#part-3-admiring-your-handiwork" id="toc-part-3-admiring-your-handiwork" class="nav-link" data-scroll-target="#part-3-admiring-your-handiwork">Part 3: Admiring Your Handiwork</a>
+  <ul class="collapse">
+  <li><a href="#exercise-new-year-new-me-new-variables" id="toc-exercise-new-year-new-me-new-variables" class="nav-link" data-scroll-target="#exercise-new-year-new-me-new-variables">Exercise: New Year, New Me, New Variables</a></li>
+  <li><a href="#practice-sparrows" id="toc-practice-sparrows" class="nav-link" data-scroll-target="#practice-sparrows">Practice: Sparrows</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab10-pca.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
+
+
+
+
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Perform Principal Component Analysis (PCA) on various datasets</li>
+<li>Interpret the output of PCA and Factor Analysis (FA) – Loadings, biplot, screeplot, rotations</li>
+</ol>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Decide if a dataset is suitable for multivariate analysis</label></li>
+<li><label><input type="checkbox">Perform a PCA in R</label></li>
+<li><label><input type="checkbox">Make a scree plot</label></li>
+<li><label><input type="checkbox">Interpret loadings</label></li>
+</ul>
+</section>
+<section id="buckle-up" class="level2">
+<h2 class="anchored" data-anchor-id="buckle-up">Buckle Up!</h2>
+<p>Welcome to week 10. We hope you’ve had fun so far in ENVX2001 :) From now until the end of the course, we will dive into the world of multivariate statistics.</p>
+<p>We’ve saved the best for last. Out of all the topics in this unit, multivariate statistics might just be the coolest one. In the beginning, you may find some aspects of this topic a little confusing; if that’s the case, please approach one of your demonstrators – they will happily help you out.</p>
+<p>By the end of this lab, you will know how to explore multivariate datasets in a simple and intuitive way.</p>
+<p>In particular, we will learn about a very common multivariate analysis technique: Principle Component Analysis, or PCA.</p>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>To prepare for this lab, please activate the following packages:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And download these files: <a href="data/bumpus_sparrows_clean.csv">bumpus_sparrows_clean.csv</a>, <a href="data/FactBeer.csv">FactBeer.csv</a>, <a href="data/kangaroo.csv">kangaroo.csv</a></p>
+<p>If you are a fan of learning from textbooks, here are some we recommend:</p>
+<ul>
+<li><p>Quinn, G. P. and Keough, M. J. (2002, 2024) <em>Experimental Design and Data Analysis for Biologists</em>. Cambridge University Press.</p></li>
+<li><p>Han, S. Y., Filippi, P., Román Dobarco, M., Harianto, J., Crowther M. S., and Bishop, T. F. A. (2023). Multivariate analysis for soil science. In <em>‘Encyclopedia of Soils in the Environment (Second Edition)’</em>. (Ed. M. J. Goss and M. Oliver) pp.&nbsp;499-508. Academic Press: Oxford.</p></li>
+</ul>
+<p>It is also a good idea to have pen and paper (or stylus and ipad) in hand while you go through this lab. One of the best ways to make sense of multivariate statistics is to draw lots of pictures.</p>
+<p>Ready? Let’s get started!</p>
+</section>
+<section id="part-1-why-pca-when-pca-who-pca" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="part-1-why-pca-when-pca-who-pca">Part 1: Why PCA? When PCA? Who PCA?</h2>
+<p>In the last 9 weeks of ENVX2001, we learned about t-tests, ANOVAs, simple linear regressions, multiple linear regressions, interactions, blocking terms …</p>
+<p>That’s a lot of statistical tools already. Do we really need more?</p>
+<p>Well, let’s see.</p>
+<section id="exercise-irises" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="exercise-irises">Exercise: Irises</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/iris-versicolor.jpg" class="img-fluid figure-img" width="1406"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>The beautiful</em> Iris versicolor <em>, also called the harlequin blueflag, a species of wildflower native to the marshes of North America. From Wikimedia Commons (2016), by R. A. Nonenmacher.</em></p>
+<p>One of my personal favourite datasets to explore, for almost any kind of analysis, is the iris dataset, which contains floral measurements from three different species of irises: <em>Iris versicolour</em>, <em>Iris setosa</em>, and <em>Iris virginica</em>.</p>
+<p>This dataset actually has a rather shady past; it was originally published in the ‘Annals of Eugenics’ by Ronald Fisher, one of the most influential figures in 20th Century Statistics, and a pretty controversial person. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;FISHER, R. A. (1936). THE USE OF MULTIPLE MEASUREMENTS IN TAXONOMIC PROBLEMS. <em>Annals of Eugenics, 7</em>(2), 179–188. https://doi.org/10.1111/j.1469-1809.1936.tb02137.x</p></div><div id="fn2"><p><sup>2</sup>&nbsp;FISHER, R. A. (1958). Cancer and Smoking. <em>Nature, 182</em>(4635), 596–596. https://doi.org/10.1038/182596a0</p></div></div><p>Fisher invented brilliant statisical concepts such as the F-Distribution (F for Fisher, if you were wondering) and the Analysis of Variance (ANOVA), but he also endorsed eugenics, feuded with his fellow academics, and refused to believe that smoking could increase the risk of lung cancer. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>A good example of how complex people can be, I suppose.</p>
+<p>Fortunately for us, the ‘Annals of Eugenics’ was brought down a long time ago, but the iris dataset survived as a training tool for statisticians.</p>
+<p>The iris dataset is built into R itself, and conveniently named <code>iris</code>. We can summon it like this:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The iris dataset
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>iris <span class="co"># It's LONG</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1            5.1         3.5          1.4         0.2     setosa
+2            4.9         3.0          1.4         0.2     setosa
+3            4.7         3.2          1.3         0.2     setosa
+4            4.6         3.1          1.5         0.2     setosa
+5            5.0         3.6          1.4         0.2     setosa
+6            5.4         3.9          1.7         0.4     setosa
+7            4.6         3.4          1.4         0.3     setosa
+8            5.0         3.4          1.5         0.2     setosa
+9            4.4         2.9          1.4         0.2     setosa
+10           4.9         3.1          1.5         0.1     setosa
+11           5.4         3.7          1.5         0.2     setosa
+12           4.8         3.4          1.6         0.2     setosa
+13           4.8         3.0          1.4         0.1     setosa
+14           4.3         3.0          1.1         0.1     setosa
+15           5.8         4.0          1.2         0.2     setosa
+16           5.7         4.4          1.5         0.4     setosa
+17           5.4         3.9          1.3         0.4     setosa
+18           5.1         3.5          1.4         0.3     setosa
+19           5.7         3.8          1.7         0.3     setosa
+20           5.1         3.8          1.5         0.3     setosa
+21           5.4         3.4          1.7         0.2     setosa
+22           5.1         3.7          1.5         0.4     setosa
+23           4.6         3.6          1.0         0.2     setosa
+24           5.1         3.3          1.7         0.5     setosa
+25           4.8         3.4          1.9         0.2     setosa
+26           5.0         3.0          1.6         0.2     setosa
+27           5.0         3.4          1.6         0.4     setosa
+28           5.2         3.5          1.5         0.2     setosa
+29           5.2         3.4          1.4         0.2     setosa
+30           4.7         3.2          1.6         0.2     setosa
+31           4.8         3.1          1.6         0.2     setosa
+32           5.4         3.4          1.5         0.4     setosa
+33           5.2         4.1          1.5         0.1     setosa
+34           5.5         4.2          1.4         0.2     setosa
+35           4.9         3.1          1.5         0.2     setosa
+36           5.0         3.2          1.2         0.2     setosa
+37           5.5         3.5          1.3         0.2     setosa
+38           4.9         3.6          1.4         0.1     setosa
+39           4.4         3.0          1.3         0.2     setosa
+40           5.1         3.4          1.5         0.2     setosa
+41           5.0         3.5          1.3         0.3     setosa
+42           4.5         2.3          1.3         0.3     setosa
+43           4.4         3.2          1.3         0.2     setosa
+44           5.0         3.5          1.6         0.6     setosa
+45           5.1         3.8          1.9         0.4     setosa
+46           4.8         3.0          1.4         0.3     setosa
+47           5.1         3.8          1.6         0.2     setosa
+48           4.6         3.2          1.4         0.2     setosa
+49           5.3         3.7          1.5         0.2     setosa
+50           5.0         3.3          1.4         0.2     setosa
+51           7.0         3.2          4.7         1.4 versicolor
+52           6.4         3.2          4.5         1.5 versicolor
+53           6.9         3.1          4.9         1.5 versicolor
+54           5.5         2.3          4.0         1.3 versicolor
+55           6.5         2.8          4.6         1.5 versicolor
+56           5.7         2.8          4.5         1.3 versicolor
+57           6.3         3.3          4.7         1.6 versicolor
+58           4.9         2.4          3.3         1.0 versicolor
+59           6.6         2.9          4.6         1.3 versicolor
+60           5.2         2.7          3.9         1.4 versicolor
+61           5.0         2.0          3.5         1.0 versicolor
+62           5.9         3.0          4.2         1.5 versicolor
+63           6.0         2.2          4.0         1.0 versicolor
+64           6.1         2.9          4.7         1.4 versicolor
+65           5.6         2.9          3.6         1.3 versicolor
+66           6.7         3.1          4.4         1.4 versicolor
+67           5.6         3.0          4.5         1.5 versicolor
+68           5.8         2.7          4.1         1.0 versicolor
+69           6.2         2.2          4.5         1.5 versicolor
+70           5.6         2.5          3.9         1.1 versicolor
+71           5.9         3.2          4.8         1.8 versicolor
+72           6.1         2.8          4.0         1.3 versicolor
+73           6.3         2.5          4.9         1.5 versicolor
+74           6.1         2.8          4.7         1.2 versicolor
+75           6.4         2.9          4.3         1.3 versicolor
+76           6.6         3.0          4.4         1.4 versicolor
+77           6.8         2.8          4.8         1.4 versicolor
+78           6.7         3.0          5.0         1.7 versicolor
+79           6.0         2.9          4.5         1.5 versicolor
+80           5.7         2.6          3.5         1.0 versicolor
+81           5.5         2.4          3.8         1.1 versicolor
+82           5.5         2.4          3.7         1.0 versicolor
+83           5.8         2.7          3.9         1.2 versicolor
+84           6.0         2.7          5.1         1.6 versicolor
+85           5.4         3.0          4.5         1.5 versicolor
+86           6.0         3.4          4.5         1.6 versicolor
+87           6.7         3.1          4.7         1.5 versicolor
+88           6.3         2.3          4.4         1.3 versicolor
+89           5.6         3.0          4.1         1.3 versicolor
+90           5.5         2.5          4.0         1.3 versicolor
+91           5.5         2.6          4.4         1.2 versicolor
+92           6.1         3.0          4.6         1.4 versicolor
+93           5.8         2.6          4.0         1.2 versicolor
+94           5.0         2.3          3.3         1.0 versicolor
+95           5.6         2.7          4.2         1.3 versicolor
+96           5.7         3.0          4.2         1.2 versicolor
+97           5.7         2.9          4.2         1.3 versicolor
+98           6.2         2.9          4.3         1.3 versicolor
+99           5.1         2.5          3.0         1.1 versicolor
+100          5.7         2.8          4.1         1.3 versicolor
+101          6.3         3.3          6.0         2.5  virginica
+102          5.8         2.7          5.1         1.9  virginica
+103          7.1         3.0          5.9         2.1  virginica
+104          6.3         2.9          5.6         1.8  virginica
+105          6.5         3.0          5.8         2.2  virginica
+106          7.6         3.0          6.6         2.1  virginica
+107          4.9         2.5          4.5         1.7  virginica
+108          7.3         2.9          6.3         1.8  virginica
+109          6.7         2.5          5.8         1.8  virginica
+110          7.2         3.6          6.1         2.5  virginica
+111          6.5         3.2          5.1         2.0  virginica
+112          6.4         2.7          5.3         1.9  virginica
+113          6.8         3.0          5.5         2.1  virginica
+114          5.7         2.5          5.0         2.0  virginica
+115          5.8         2.8          5.1         2.4  virginica
+116          6.4         3.2          5.3         2.3  virginica
+117          6.5         3.0          5.5         1.8  virginica
+118          7.7         3.8          6.7         2.2  virginica
+119          7.7         2.6          6.9         2.3  virginica
+120          6.0         2.2          5.0         1.5  virginica
+121          6.9         3.2          5.7         2.3  virginica
+122          5.6         2.8          4.9         2.0  virginica
+123          7.7         2.8          6.7         2.0  virginica
+124          6.3         2.7          4.9         1.8  virginica
+125          6.7         3.3          5.7         2.1  virginica
+126          7.2         3.2          6.0         1.8  virginica
+127          6.2         2.8          4.8         1.8  virginica
+128          6.1         3.0          4.9         1.8  virginica
+129          6.4         2.8          5.6         2.1  virginica
+130          7.2         3.0          5.8         1.6  virginica
+131          7.4         2.8          6.1         1.9  virginica
+132          7.9         3.8          6.4         2.0  virginica
+133          6.4         2.8          5.6         2.2  virginica
+134          6.3         2.8          5.1         1.5  virginica
+135          6.1         2.6          5.6         1.4  virginica
+136          7.7         3.0          6.1         2.3  virginica
+137          6.3         3.4          5.6         2.4  virginica
+138          6.4         3.1          5.5         1.8  virginica
+139          6.0         3.0          4.8         1.8  virginica
+140          6.9         3.1          5.4         2.1  virginica
+141          6.7         3.1          5.6         2.4  virginica
+142          6.9         3.1          5.1         2.3  virginica
+143          5.8         2.7          5.1         1.9  virginica
+144          6.8         3.2          5.9         2.3  virginica
+145          6.7         3.3          5.7         2.5  virginica
+146          6.7         3.0          5.2         2.3  virginica
+147          6.3         2.5          5.0         1.9  virginica
+148          6.5         3.0          5.2         2.0  virginica
+149          6.2         3.4          5.4         2.3  virginica
+150          5.9         3.0          5.1         1.8  virginica</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check the structure of the iris dataset using the str() function.</p>
+</div>
+</div>
+<p>It looks like the <code>iris</code> dataset contains quite a few variables. In particular, we have four response variables to test: sepal width, sepal length, petal width, and petal length (check out <a href="https://australian.museum/learn/teachers/learning/bugwise/plant2pollinator-support-materials/">this page</a> to learn more about flower anatomy). All of these are measured in centimeters.</p>
+<p>Our first instinct might be to analyse them one at a time. Let’s see how that works out:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Choose one of the four response variables in <code>iris</code>, and use <code>ggplot2</code> to make a box plot. What do you think? Is there a difference between the three iris species?</p>
+</div>
+</div>
+<p>Depending on which response variable you chose, you may or may not have seen much of a difference between the three species.</p>
+<p>For example, <em>Iris setosa</em> certainly seems to have shorter petals than the other two species:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'lightblue'</span>)<span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s run a one-way ANOVA to check.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use a one-way ANOVA to test whether petal length differs between the three iris species.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To run a one-way ANOVA in R, use the function <code>aov()</code>. Remember that petal length is the response variable in this case, and iris species is the explanatory variable.</p>
+<p>Structure your data as: <code>aov(response_variable ~ explanatory_variable, data = iris)</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here’s what we did:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ANOVA_petal_length <span class="ot">&lt;-</span> <span class="fu">aov</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span>iris) <span class="co"># Runs the test</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ANOVA_petal_length) <span class="co"># Prints the output</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+Species       2  437.1  218.55    1180 &lt;2e-16 ***
+Residuals   147   27.2    0.19                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>We found a p-value of &lt; 0.001, which means that at least one of the three iris species has a different average petal length to the others.</p>
+</div>
+</div>
+</div>
+<p>So… case closed? The irises are different, time to move on?</p>
+<p>Not so fast. Petal length is just one out of four response variables we could have analysed. What about the other three? Should we run 3 more ANOVAs?</p>
+<p>Unfortunately, performing multiple ANOVAs will run us into a series of problems.</p>
+<p>First, we have the multiple comparisons problem. We won’t discuss this topic in detail; but if you want to read up on it, I have linked an article here. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Ranganathan, P., Pramesh, C., &amp; Buyse, M. (2016). Common pitfalls in statistical analysis: The perils of multiple testing. <em>Perspectives in Clinical Research, 7</em>(2), 106. https://doi.org/10.4103/2229-3485.179436</p></div></div><p>Second, we have the problem of wasting our time. Really. You should be hanging out with your friends instead of running ANOVAs over and over.</p>
+<p>Remember the plot for petal length from earlier? Check out this plot for petal width:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Width)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">colour =</span> <span class="st">'black'</span>, <span class="at">fill =</span> <span class="st">'lightblue'</span>)<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looks… almost the same, right?</p>
+<p>That is because in our dataset, petal length and petal width are <strong>positively correlated</strong> – the iris species with long petals also tend to have wide petals. In fact, we could really combine petal width and length into a single characteristic: petal size.</p>
+<p>By now, we are used to thinking about correlations between explanatory and response variables – these are often the “effects” we look for in our experiments. We have also learned how to handle correlations between multiple explanatory variables – recall our labs in weeks 7-9, where we learned about linear regression.</p>
+<p>However, this time we need to deal with correlations between multiple <em>response</em> variables, a situation we have never encountered before.</p>
+<p>How do we do that? Enter multivariate statistics.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/city-view-bw.jpg" class="img-fluid figure-img" width="2592"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>City view from the Kuala Lumpar Tower, Malaysia. The magic of photographs lie in their ability to project 3D objects onto 2D planes without losing a sense of reality. From Wikimedia Commons (2018), by itsfatxn.</em></p>
+</section>
+<section id="practice-take-a-picture" class="level3">
+<h3 class="anchored" data-anchor-id="practice-take-a-picture">Practice: Take a Picture</h3>
+<p>All forms of multivariate statistics share a common goal: to distill a large collection of response variables into a small set of useful information.</p>
+<p>This process is called <strong>dimension reduction</strong>. I like to think of it as using mathematics to create a simple, low-dimensional (usually 2D) picture out of a complex, higher-dimensional (usually 4D+) situation.</p>
+<p>To push this analogy further, think of all the different tools and techniques artists use to depict the world around them. As science students, we also have a rich collection of tools with which to handle multivariate data.</p>
+<p><strong>Principle Component Analysis (PCA)</strong> is very much like an artist’s camera. Next week, we will learn about <strong>Cluster Analysis</strong>, which works more like a paintbrush. In week 12, we will encounter <strong>Non-metric Multidimensional Scaling (nMDS)</strong>, which I like to think of as the pen-and-ink doodles of the statistical world.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/vintage-cameras.jpg" class="img-fluid figure-img" width="2000"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>A set of vintage cameras. Photography is one of many ways to compress the 3D world into a 2D image. From Wikimedia Commons (2014), by Jeff Sheldon.</em></p>
+<p>I say PCA is like a camera, because it reduces the dimension of our sample space by directly projecting each sample point onto a lower dimensional plane. In technical terms, this is known as creating a <strong>linear map</strong>.</p>
+<p>Not all dimension reduction techniques work this way. Some preserve the <strong>relative distance</strong> or <strong>rank distance</strong> between points instead. We will talk more about these <strong>ordination techniques</strong> in week 12.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How come my sample points live in multi-dimensional space?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Each time we take a sample of anything (plants, soil, fur, etc.) we can measure many different characteristics.</p>
+<p>In univariate analysis, we only measure one characteristic; for example, soil pH. This gives us a single value per sample, which we can then plot on a number-line. The corresponding analysis will then be an ANOVA.</p>
+<p>In multivariate analysis, however, we can measure multiple characteristics; for example, soil pH along with soil texture, soil moisture, and soil nutrients. We can’t plot these measurements on a single number line anymore – we need one axis for each measurement.</p>
+<p>This is how your sample points can end up in multi-dimensional space. If you measure 8 response variables from each of your samples, then your data must occupy an 8-dimensional mathematical space.</p>
+<p>In the case of the <code>iris</code> dataset, we have 4 response variables. This means our sample points live in 4-dimensional space. We have to find a way to bring them down to 3 or 2-dimensions if we want to plot them nicely.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Import the <code>kangaroo.csv</code> dataset using <code>read.csv()</code>, and name it <code>kangaroo</code>.</p>
+<p>Check the structure of this dataset using <code>str()</code>. Compare it to the structure of the <code>iris</code> dataset.</p>
+<ol type="i">
+<li><p>How many response variables does <code>kangaroo</code> have? Is this more or fewer than <code>iris</code>? What dimensional space do the each of these datasets occupy?</p></li>
+<li><p>Recall that petal width and petal length were positively correlated in <code>iris</code>. Which response variables in <code>kangaroo</code> are positively correlated with each other?</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To check which variables are correlated in a dataset, you can use the <code>pairs()</code> function. Try it with the iris dataset first: <code>pairs(iris)</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The column names in <code>kangaroo</code> are as follows:</p>
+<ul>
+<li>BLEN = basillar length</li>
+<li>PLEN = palatilar length</li>
+<li>OLEN = occipitonasal length</li>
+<li>NLEN = nasal length</li>
+<li>PWID = palate width</li>
+<li>SPECIES = 1: Eastern Grey Kangaroo <em>(M. giganteus)</em>, 2: Western Grey Kangaroo <em>(M. fuliginosus)</em></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First, we read in the dataset and check its structure:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>kangaroo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/kangaroo.csv'</span>) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kangaroo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   27 obs. of  6 variables:
+ $ BLEN   : int  1439 1315 1294 1377 1470 1612 1388 1575 1717 1587 ...
+ $ PLEN   : int  985 895 872 954 987 1119 936 1100 1184 1115 ...
+ $ OLEN   : int  1503 1367 1421 1504 1563 1699 1500 1655 1821 1711 ...
+ $ NLEN   : int  629 564 606 660 672 778 616 727 810 778 ...
+ $ PWID   : int  230 230 239 248 236 281 227 295 307 293 ...
+ $ SPECIES: int  1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+<ol type="i">
+<li>There are 5 response variables here (BLEN, PLEN, OLEN, NLEN, and PWID), and one explanatory variable (SPECIES). In the <code>iris</code> dataset, we only had 4 response variables.</li>
+</ol>
+<p>This means the sample points in <code>kangaroo</code> occupy 5 dimensional space, while the sample points in <code>iris</code> occupy 4 dimensional space.</p>
+<p>Now, we can look for correlations between our variables. But we have to be a little bit clever here – we don’t want to include our explanatory variable <code>SPECIES</code> in our pairs plot, so we use <code>[,]</code> to select only the first 5 columns before applying <code>pairs()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(kangaroo[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It looks like just about all of our response variables are positively correlated with each other. This means that kangaroos with longer noses also had longer and wider palattes, etc.</p>
+</div>
+</div>
+</div>
+<p>Earlier, we mentioned that a PCA works by taking a 2D photograph of a multi-dimensional situation. This is only partly true. In reality, the real power of a PCA lies in what it does <em>before</em> it takes this photograph.</p>
+<section id="thought-experiment" class="level4">
+<h4 class="anchored" data-anchor-id="thought-experiment">Thought Experiment</h4>
+<p>Picture a bicycle – a real, solid bicycle that you can push around and ride. One day, you are commissioned to take a photograph of this bicycle for an information brochure. This brochure is meant to help people understand how a bicycle works by pointing out its various parts. Which angle would you take your photograph from?</p>
+<p>This angle?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/roadster-bicycle.jpg" class="img-fluid figure-img" width="2296"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>A Roadster (Dutch) bicycle, side view. From Wikimedia Commons (2018), by Petar Milošević.</em></p>
+<p>Or this angle?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/bicycles-wall.jpg" class="img-fluid figure-img" width="2969"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Two bicycles on 23 Foster St, Boston, United States, front and back views. From Wikimedia Commons (2016), by Myles Tan.</em></p>
+<p>When we reduce the number of dimensions in our data, we inevitably <strong>lose information</strong>. Even the best photographs cannot show you all sides of an object. Because of this, we need to be very careful which angle we take our photograph from, so as to lose the least amount of information.</p>
+<p>In the bicycle example, the first angle is the one I would prefer. This is because it shows me <strong>more of the bicycle</strong> than the second. The second picture is lovely, but it would make a poor addition to any information brochure, because most of the bicycle parts are hidden.</p>
+<p>The real power of a PCA is in its ability to <strong>rotate</strong> a multidimensional sample space until it finds the <strong>best angle</strong> from which to take a photograph of your data points. It does this through either one of two mathematical procedures: eigenvalue decomposition, or singular value decomposition.</p>
+<p>In our case, we will use the built-in R function <code>prcomp()</code> to perform our PCAs, which is based on singular value decomposition. Do not worry if you are not familiar with singular value decomposition; R will handle that step for you automatically.</p>
+</section>
+</section>
+</section>
+<section id="part-2-how-to-perform-a-pca-without-panicking" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="part-2-how-to-perform-a-pca-without-panicking">Part 2: How to Perform a PCA Without Panicking</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/beer-berlin.jpg" class="img-fluid figure-img" width="1632"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Beer in Berlin. From Wikimedia Commons (2004), by k.ivoutin; Flickr: https://www.flickr.com/photos/ivoutin/1403816845/.</em></p>
+<section id="exercise-go-home-eigenvalues.-youre-drunk." class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="exercise-go-home-eigenvalues.-youre-drunk.">Exercise: Go Home, Eigenvalues. You’re Drunk.</h3>
+<p>What makes a good beer? That was not my attempt to distract you – in fact, it was questions like these that first led psychologists and mathematicians to join forces and develop multivariate techniques. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Groenen, P. J. F., Borg, I., Blasius, J., &amp; Greenacre, M. J. (2014). The Past, Present, and Future of Multidimensional Scaling. <em>Visualization and verbalization of data</em> (pp.&nbsp;96–116). Crc Press, Taylor &amp; Francis Group.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;Ikasari, D. M., &amp; Lestari, E. R. (2019). Analysis of fast food restaurant competition based on consumer perception using multidimensional scaling (MDS) (case study in Malang City, East Java, Indonesia). <em>IOP Conference Series: Earth and Environmental Science, 230</em>. https://doi.org/10.1088/1755-1315/230/1/012060</p></div></div><p>Psychologists realised that people made even very simple decisions, such as which restaurants to visit or what clothes to buy, based on a huge number of interacting variables where the weight of any one variable is unclear. <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>For example, if you could walk out of this lab right now (don’t do it) and have a bite to eat, what would you go for? Rice paper rolls? Ramen? Pizza? How many variables might contribute to that decision? Price would be one, for sure. Taste might be another. What about the distance to the nearest Italian restaurant vs the nearest Japanese restaurant?</p>
+<p>Some of these variables might turn out to correlate with one another. For example, you may find that people who prefer restaurants that are nearby also tend to prefer restaurants that are affordable. We can combine these two variables together into one: “accessibility”.</p>
+<p>PCA deals with this by creating new set of response variables called principle components, or PCs – but more on that later.</p>
+<p>I’ll stop tempting you with food for now. Let’s get back to beer instead. Here are seven variables that people normally use to judge the quality of a beer:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Seven influential variables in a beer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Cost</li>
+<li>Bottle size</li>
+<li>Alcohol content</li>
+<li>Brand reputation</li>
+<li>Colour</li>
+<li>Aroma</li>
+<li>Taste</li>
+</ol>
+</div>
+</div>
+</div>
+<p>220 customers were asked to rate each of these variables from 0 to 100 based on how important they judge that variable to be. For example, a customer who scores “Cost” as 0 and “Brand Reputation” as 100 cares more about beer clout than financial security; whereas a customer who scores “Cost” as 100 and “Brand Reputation” as 0 just wants some free booze.</p>
+<p>Let’s take a look at this dataset.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Read the dataset <code>FactBeer.csv</code> into R and check its structure. Rename the dataset <code>beer</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can use the <code>read.csv()</code> function to read in our dataset, and the <code>str()</code> function to check its structure.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>beer <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/FactBeer.csv"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(beer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   220 obs. of  7 variables:
+ $ cost   : int  90 75 10 100 20 50 5 65 95 85 ...
+ $ size   : int  80 95 15 70 10 100 15 30 95 80 ...
+ $ alcohol: int  70 100 20 50 25 100 15 35 100 70 ...
+ $ reputat: int  20 50 85 30 35 30 75 80 0 40 ...
+ $ color  : int  50 55 40 75 30 90 20 80 80 60 ...
+ $ aroma  : int  70 40 30 60 35 75 10 60 70 50 ...
+ $ taste  : int  60 65 50 80 45 100 25 90 95 65 ...</code></pre>
+</div>
+</div>
+<p>All the variables in this dataset are numeric.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How many variables does the <code>beer</code> dataset have? Can we treat all of them as response variables?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This might seem like a trick question at first glance, because how can every variable be a response variable? We need an explanatory variable somewhere, don’t we?</p>
+<p>As strange as it might seem, we <em>can</em> in fact treat all 7 variables in <code>FactBeer</code> as response variables, and this is exactly what we will do for this exercise. What this means, however, is that our subsequent analyses will be <strong>descriptive</strong> rather than <strong>deductive/inferential</strong>.</p>
+<p>Researchers often use descriptive studies to refine their research questions. Then, they follow up on these questions with more rigorous, inferential tests. Think of descriptive statistics as a special case of Exploratory Data Analysis (EDA), if you will.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>How do I know if my study is multivariate?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No strict rule dictates whether your study should be univariate or multivariate. As a researcher, you are free to choose your response and explanatory variables depending on your research question. Whether you decide to choose multiple response variables or not is up to you.</p>
+<p>As a rule of thumb, whenever you are given a large dataset with more than three numeric variables, be aware that multivariate analysis is an option available to you.</p>
+</div>
+</div>
+<p>Our <code>beer</code> dataset definitely fits the criteria for multivariate analysis. We will treat all 7 variables in this dataset as response variables, and see if we can spot any patterns in them using a PCA.</p>
+<p>To run the PCA, we use the <code>prcomp()</code> function in R:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pca_beer <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(beer, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>PCA done – it’s that easy! Everything is over in a flash, just like taking a photograph.</p>
+<p>R stores the results of our PCA as a dataset, from which we need to pull out the very important ‘rotation’ column:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The ‘rotation’ column
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pca_beer<span class="sc">$</span>rotation,<span class="dv">6</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              PC1       PC2      PC3       PC4       PC5       PC6       PC7
+cost    -0.302309 -0.454046 0.084258  0.784602 -0.031082 -0.255689 -0.115793
+size    -0.366651 -0.417510 0.310547 -0.174129  0.213427  0.469571  0.546301
+alcohol -0.347204 -0.432492 0.086555 -0.578538 -0.275153 -0.364266 -0.376567
+reputat  0.404031  0.043831 0.884035  0.018842 -0.101951 -0.204916  0.024101
+color   -0.417815  0.356163 0.307245  0.085150  0.056377  0.487470 -0.596761
+aroma   -0.404393  0.379468 0.106137 -0.075887  0.595065 -0.541660  0.167180
+taste   -0.390233  0.399636 0.042278  0.077508 -0.714212 -0.091785  0.402108</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I used the `round()` function to round everything to 6dcp. You don't have to do this.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<p>We can then see our results by running <code>summary()</code>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A summary of our PCA results
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_beer) <span class="co"># Tells us how much variance each PC explains.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     1.8201 1.6173 0.75804 0.48978 0.36668 0.29231 0.19206
+Proportion of Variance 0.4733 0.3737 0.08209 0.03427 0.01921 0.01221 0.00527
+Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>What do these numbers mean? We will talk about that in the next section. For now, let’s practice running a few more PCAs using the <code>prcomp()</code> function to get you comfortable with the process.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/eastern-grey-kangaroo.jpg" class="img-fluid figure-img" width="2312"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>A young eastern grey kangaroo</em> (Macropus giganteus) <em>in Majura Nature Reserve, ACT. From Wikimedia Commons (2016), by Thennicke.</em></p>
+</section>
+<section id="practice-youre-multidimensional-i-think-thats-a-compliment" class="level3">
+<h3 class="anchored" data-anchor-id="practice-youre-multidimensional-i-think-thats-a-compliment">Practice: You’re Multidimensional (I Think That’s a Compliment)</h3>
+<p>Your turn! Let’s bring back the <code>iris</code> and <code>kangaroo</code> datasets.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Re-open the <code>iris</code> and <code>kangaroo</code> datasets, and check their structure.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Easy. We named them earlier, so now we can check their structure using the <code>str()</code> function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris) <span class="co"># the iris dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kangaroo) <span class="co"># the kangaroo dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   27 obs. of  6 variables:
+ $ BLEN   : int  1439 1315 1294 1377 1470 1612 1388 1575 1717 1587 ...
+ $ PLEN   : int  985 895 872 954 987 1119 936 1100 1184 1115 ...
+ $ OLEN   : int  1503 1367 1421 1504 1563 1699 1500 1655 1821 1711 ...
+ $ NLEN   : int  629 564 606 660 672 778 616 727 810 778 ...
+ $ PWID   : int  230 230 239 248 236 281 227 295 307 293 ...
+ $ SPECIES: int  1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Notice that both <code>iris</code> and <code>kangaroo</code> have categorical variables (“Species” for <code>iris</code> and “SPECIES” for <code>kangaroo</code>) as their last columns. Let’s remove these columns before we proceed with our PCA.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the <code>[,]</code> function to remove the last columns of <code>iris</code> and <code>kangaroo</code> respectively. Then, use the <code>&lt;-</code> operator to give these newly-cropped datasets their own names.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Remember that to filter for columns, we use the space behind the comma <code>[,*]</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>iris_cropped <span class="ot">&lt;-</span> iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># columns 1 to 4 of the iris dataset</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>kangaroo_cropped <span class="ot">&lt;-</span> kangaroo[,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># columns 1 to 5 of the kangaroo dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<p>Now go for it! Run a PCA on the <code>iris</code> dataset.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the <code>prcomp()</code> function to perform a PCA on the <code>iris</code> dataset.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Instead of <code>scale = TRUE</code>, you can use <code>scale = FALSE</code> for this PCA. You don’t have to scale your variables if they are all measured in the same units (in this case, centimeters).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One line of code should do the trick. Remember to use your cropped dataset, not the original <code>iris</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pca_iris <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris_cropped, <span class="at">scale =</span> <span class="cn">FALSE</span>) <span class="co"># I used "&lt;-" to name it "pca_iris".</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Easy? Summarise your results.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Select the “rotation” column from your PCA, and run <code>summary()</code> on your results.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Remember that you can select columns by name using the <code>$</code> operator.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The “rotation” column:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pca_iris<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     PC1         PC2         PC3        PC4
+Sepal.Length  0.36138659 -0.65658877  0.58202985  0.3154872
+Sepal.Width  -0.08452251 -0.73016143 -0.59791083 -0.3197231
+Petal.Length  0.85667061  0.17337266 -0.07623608 -0.4798390
+Petal.Width   0.35828920  0.07548102 -0.54583143  0.7536574</code></pre>
+</div>
+</div>
+<p>Results summary:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_iris)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1     PC2    PC3     PC4
+Standard deviation     2.0563 0.49262 0.2797 0.15439
+Proportion of Variance 0.9246 0.05307 0.0171 0.00521
+Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>That’s it! You have just performed your first PCA. Do you think you can do the whole thing by yourself without any hints? Give it a try:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Perform a PCA on the <code>kangaroo_cropped</code> dataset, extracting both the “rotation” column and the results summary.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Check the structure of <code>kangaroo_cropped</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kangaroo_cropped) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   27 obs. of  5 variables:
+ $ BLEN: int  1439 1315 1294 1377 1470 1612 1388 1575 1717 1587 ...
+ $ PLEN: int  985 895 872 954 987 1119 936 1100 1184 1115 ...
+ $ OLEN: int  1503 1367 1421 1504 1563 1699 1500 1655 1821 1711 ...
+ $ NLEN: int  629 564 606 660 672 778 616 727 810 778 ...
+ $ PWID: int  230 230 239 248 236 281 227 295 307 293 ...</code></pre>
+</div>
+</div>
+<p>We have 5 response variables and they are all numeric, so we can proceed with multivariate analysis.</p>
+<p>Perform the PCA:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pca_kangaroo <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(kangaroo_cropped)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Extract the “rotation” column:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pca_kangaroo<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            PC1        PC2         PC3         PC4        PC5
+BLEN 0.58361875 -0.6506053 -0.16256188 -0.03837344 -0.4562927
+PLEN 0.44909213 -0.1860983  0.55797993  0.26346878  0.6188104
+OLEN 0.58327608  0.4672692 -0.34309615 -0.51343366  0.2451927
+NLEN 0.32970748  0.5027396 -0.07404816  0.72415472 -0.3296403
+PWID 0.09374119  0.2664444  0.73418931 -0.37562947 -0.4899883</code></pre>
+</div>
+</div>
+<p>Summarise the results:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_kangaroo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                            PC1     PC2      PC3      PC4      PC5
+Standard deviation     295.5783 34.6311 21.40951 16.50136 13.25427
+Proportion of Variance   0.9765  0.0134  0.00512  0.00304  0.00196
+Cumulative Proportion    0.9765  0.9899  0.99499  0.99804  1.00000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>How did you go?</p>
+</section>
+</section>
+<section id="part-3-admiring-your-handiwork" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="part-3-admiring-your-handiwork">Part 3: Admiring Your Handiwork</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/french-bread.jpg" class="img-fluid figure-img" width="2016"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Boule, a classic French bread. Bakers take a long time to prepare their loaves beforehand, even though the baking process itself is taken care of by their ovens. Bakers must take their loaves out of their ovens at the right time to slice, decorate, and package each loaf nicely for their customers. We should do the same with our PCA results. From Wikimedia Commons (2014), by Lehightrails.</em></p>
+<p>Now that the technical part is done, let’s take some time to admire what we have created.</p>
+<p>We will revisit the results of our <code>beer</code> dataset and see what they tell us.</p>
+<section id="exercise-new-year-new-me-new-variables" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-new-year-new-me-new-variables">Exercise: New Year, New Me, New Variables</h3>
+<p>As a reminder, here are the results from our beer PCA:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The “rotation” column, rounded to 6dcp
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pca_beer<span class="sc">$</span>rotation,<span class="dv">6</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              PC1       PC2      PC3       PC4       PC5       PC6       PC7
+cost    -0.302309 -0.454046 0.084258  0.784602 -0.031082 -0.255689 -0.115793
+size    -0.366651 -0.417510 0.310547 -0.174129  0.213427  0.469571  0.546301
+alcohol -0.347204 -0.432492 0.086555 -0.578538 -0.275153 -0.364266 -0.376567
+reputat  0.404031  0.043831 0.884035  0.018842 -0.101951 -0.204916  0.024101
+color   -0.417815  0.356163 0.307245  0.085150  0.056377  0.487470 -0.596761
+aroma   -0.404393  0.379468 0.106137 -0.075887  0.595065 -0.541660  0.167180
+taste   -0.390233  0.399636 0.042278  0.077508 -0.714212 -0.091785  0.402108</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Results Summary
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_beer) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     1.8201 1.6173 0.75804 0.48978 0.36668 0.29231 0.19206
+Proportion of Variance 0.4733 0.3737 0.08209 0.03427 0.01921 0.01221 0.00527
+Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let’s interpret them one at a time.</p>
+<section id="the-loadings-table" class="level4">
+<h4 class="anchored" data-anchor-id="the-loadings-table">The Loadings Table</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a look at <code>pca_beer$rotation</code>. What do you think the numbers stand for?</p>
+</div>
+</div>
+<p>The “rotation” column of <code>pca_beer</code> is also called its <strong>loadings table</strong>. We will refer to it as such going forward.</p>
+<p>The easiest way to read a loadings table is to consider one column at a time. Each column in this table is a principle component, and the numbers in that column tells you which combination of variables went into creating that component.</p>
+<p>You can think of these principle components as a new set of axes.</p>
+<p>Remember that PCAs are good for finding the best angle from which to view multidimensional datasets. The 7 original variables in <code>FactBeer</code> (cost, reputation, etc.) represented our original point of view, while the 7 PCs (PC1, PC2, etc.) represent our new point of view.</p>
+<p>However, these new axes did not come out of nothing. The PCA used combinations from our 7 original variables to create them.</p>
+<p>Which combinations? The loadings table will tell us.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at the fourth column in our loadings table. Which of our 7 original variables went into creating PC4?</p>
+<p>Are some number in the column larger than others? What do you think this means?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>All 7 original variables went into creating PC4. However, some variables contributed more than others.</p>
+<p>For instance, cost and alcohol contributed the most (with loadings of +0.78 and -0.58 respectively), while reputation contributed the least (with a loading of only 0.02).</p>
+<p>This means that PC4 represents a preference for using cost as a way to judge beer quality (+ve loading for cost), and a preference against using alcohol levels to do the same (-ve loading for alcohol), but does not have much to do with reputation either way (~0 loading for reputation).</p>
+</div>
+</div>
+</div>
+<section id="giving-names-to-our-pcs" class="level5">
+<h5 class="anchored" data-anchor-id="giving-names-to-our-pcs">Giving names to our PCs</h5>
+<p>For the moment, our principle components are named: “PC1, PC2, PC3, etc.”; but we can give them new names based on our loadings table.</p>
+<p>You can be creative with these names – as long as they make sense. For example, let’s take a look at PC1.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look at the first column in our loadings table. Which of our original variables went into creating PC1? Which ones contributed the most? Are their loadings positive or negative?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Reputation contributed positively to PC1 (+0.40), but every other variable contributed negatively. The strength of the contributions are spread quite evenly between the variables.</p>
+</div>
+</div>
+</div>
+<p>Here, we see that PC1 is made up of a positive contribution from ‘reputation’ combined with negative contributions from the other 6 variables.</p>
+<p>This means that customers who scored high on the PC1 axis thought reputation was an important signal of beer quality (+ve loading), but every other variable was unimportant (-ve loading). On the other hand, customers who scored low on the PC1 axis thought precisely the opposite.</p>
+<p>In other words, PC1 separated customers who valued reputation from customers who valued other factors instead.</p>
+<p>Therefore, we can name PC1 something like “pretentiousness”.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Building Habits
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What would you name the other six PCs?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Here’s what I went with for PCs 1 to 4:</p>
+<p>PC2 = “drunk for buck”. This axis separates customers who prefer to judge a beer on its taste, colour, and aroma from those who prefer to get as much alcohol as possible for the least amount of money.</p>
+<p>PC3 = “aesthetic appeal”. This axis separates customers who value the reputation, size, and colour of beer from those who are indifferent to these characteristics.</p>
+<p>PC4 = “financial and moral consciousness”. This axis separates customers who value money from those who value alcohol.</p>
+<p>I will leave the rest up to you!</p>
+</div>
+</div>
+</div>
+<p>At this point, you may have noticed a problem. If the point of a PCA is to reduce the number of variables in our study, why do we still have 7 PCs?</p>
+<p>It seems that while we did successfully rotate our dataset to a new perspective, we are still working in 7D space.</p>
+<p>The good news is that going from 7D space to 2D space is actually very <em>easy</em> now that we have our PCs. The photograph has already been taken – all that is left is to print it out.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/scree-slope-trail.jpg" class="img-fluid figure-img" width="968"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Stony deposits, or scree, at the base of a mountain. There is a sudden change in slope as solid rock transitions into unconsolidated material. From Wikimedia Commons (2013), by Sergey Pashko.</em></p>
+</section>
+</section>
+<section id="the-scree-plot" class="level4">
+<h4 class="anchored" data-anchor-id="the-scree-plot">The Scree Plot</h4>
+<p>One very important thing to realise about our PCs is that they are ranked by the amount of variance they explain. In other words, sample points are more spread out along the PC1 axis than along the PC2 axis, and more spread out along the PC2 axis than along the PC3 axis, etc.</p>
+<p>Think back to the bicycle pictures from earlier. A bike is more ‘spread out’ in its side view, with all its features visible. On the other hand, these same features would be squished together in a front view.</p>
+<p>PC1 is like the side view of our data, while PC7 is like the front view. Along PC1, we can see more of our data because it is more spread out; along PC7, the same data looks like a congested cloud.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Our dataset with principle components ‘PC1’ and ‘PC2’ as the two viewing axes. Notice how the data is nicely spread out.</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>The same dataset with principle components ‘PC6’ and ‘PC7’ as the two viewing axes. Notice how congested the data becomes.</em></p>
+<p>If we remove the PC1 axis from our analysis, we will lose a lot of information. If we remove PC7, however, we will not lose much information at all.</p>
+<p>This is the key to dimension reduction – getting rid of all the bad photography angles, and keeping only the good ones.</p>
+<p>Let’s use a scree plot to decide which PCs we should keep, and which ones we should remove.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sharpen your skills
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take a look at the results summary of <code>pca_beer</code>. You should see a row in this table called “Proportion of Variance”.</p>
+<p>How much variance do each of the PCs explain? Which ones do you think we can remove without losing too much information?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To remind you, here is the summary for <code>pca_beer</code> we extracted earlier:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_beer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     1.8201 1.6173 0.75804 0.48978 0.36668 0.29231 0.19206
+Proportion of Variance 0.4733 0.3737 0.08209 0.03427 0.01921 0.01221 0.00527
+Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</code></pre>
+</div>
+</div>
+<p>PC1 explains around 47% of the variance, while PC2 explains 37%. The two of them explain almost 85% of the variance together. This means that we can remove PCs 3 to 7 and still retain a lot of information about our dataset.</p>
+<p>A scree plot will show us the same information in visual form.</p>
+</div>
+</div>
+</div>
+<p>To make a scree plot, we will use base R instead of ggplot (one of the few instances where I recommend base R over ggplot). The function we will use is called <code>screeplot()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca_beer, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>See the big drop-off after PC2? This is called the <strong>elbow</strong> of the scree plot. We can remove every PC after the elbow from our analysis; in this case, PCs 3 to 7.</p>
+<p>Another common protocol for removing PCs is <strong>Kaiser’s criterion</strong>, which says to remove every PC lower than 1 on the y-axis of your screeplot. In our case, that still means removing PCs 3 to 7.</p>
+<p>In most situations, I prefer the elbow protocol anyway.</p>
+<p>At this point, we can consider our exploratory PCA more or less complete. Out of 7 original variables, we created 2 new ones. These 2 new variables explain almost as much variation as the original 7, but take up far fewer dimensions.</p>
+<p>Pretty neat, right?</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Other forms of Factor Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PCA is one of many techniques that fall under the broad category of <strong>factor analysis</strong>. Factor analysis, in turn, is a subtopic under multivariate statistics.</p>
+<p>For your interest, here is a different function in R (called <code>factanal</code>) that executes a slightly different type of factor analysis using a type of rotation called “varimax rotation”. (Note: varimax rotation can be applied to PCAs as well, but we chose not to do so.)</p>
+<p>The outputs of this factor analysis are similar to those of a PCA; but instead of creating PCs, <code>factanal</code> creates <strong>latent variables</strong> (also called factors).</p>
+<p>Here is <code>factanal</code> applied to our <code>beer</code> dataset. See if you can spot some key differences between the loadings tables of this analysis and the PCA we performed earlier.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Factor analysis with Varimax rotation, applied to our beer dataset
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(beer, <span class="dv">3</span>, <span class="at">rotation=</span><span class="st">"varimax"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>fa1<span class="sc">$</span>loadings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+        Factor1 Factor2 Factor3
+cost             0.839   0.141 
+size             0.992         
+alcohol          0.904   0.255 
+reputat -0.342  -0.348  -0.629 
+color    0.994                 
+aroma    0.913           0.173 
+taste    0.913           0.261 
+
+               Factor1 Factor2 Factor3
+SS loadings      2.783   2.640   0.578
+Proportion Var   0.398   0.377   0.083
+Cumulative Var   0.398   0.775   0.857</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>What you might notice
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>It seems that the factors from our factor analysis are a little bit easier to interpret than the PCs from our PCA. This is because the varimax rotation constructed each factor so that they are influenced by only a few of the original variables.</p>
+<p>Recall that in our PCA, all 7 original variables contributed to PC1 in roughly equal proportions. In our factor analysis, however, Factor 1 is made up mostly of colour, aroma, and taste, with very little contribution from the other four variables.</p>
+<p>Sometimes this is a good thing, sometimes not. For more on this topic, please see the week 10 lectures.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="practice-sparrows" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="practice-sparrows">Practice: Sparrows</h3>
+<p>We have come to the end of the lesson, so now it is time to explore a multivariate dataset on your own from start to finish.</p>
+<p>Your demonstrators will be there to help you, and so will your classmates. We strongly encourage you to collaborate with your peers on this exercise.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/house-sparrow.jpg" class="img-fluid figure-img" width="1998"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>House Sparrow</em> (Passer domesticus), <em>a small bird native to the Northern Hemisphere. House sparrows are so named for their ability to live in urban settings. From Wikimedia Commons (2004), by Mathias Appel.</em></p>
+<section id="the-sparrow-dataset" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="the-sparrow-dataset">The sparrow dataset</h4>
+<p>In 1898, after a heavy storm, Professor Hermon Bumpus of Brown University came across a collection of house sparrows that had been injured in the storm. <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Some of these sparrows were dead, but others had just about survived.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Johnson, R. F., Niles, D. M., &amp; Rohwer, S. A. (1972). Hermon Bumpus and Natural Selection in the House Sparrow Passer domesticus. Evolution, 26(1), 20. https://doi.org/10.2307/2406980</p></div></div><p>Professor Bumpus wondered whether he could learn something about natural selection by studying these sparrows. In his study, he used a series of univariate analyses.</p>
+<p>Your task is to examine the same dataset using multivariate techniques.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Case study
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The name of the dataset is “bumpus_sparrows_clean.csv”. Load this dataset into R, and analyse it using multivariate techniques.</p>
+<p>We will leave it up to you to decide which variables to analyse and how to analyse them. Share your ideas with your classmates, and see what they think.</p>
+</div>
+</div>
+<p>That’s all for this week! We hope you had fun :)</p>
+<p>Thanks!</p>
+
+
+</section>
+</section>
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Built using the SOLES Quarto handbook template</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>The University of Sydney</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,6 +1,8 @@
 ---
 title: "Week 4 lecture code and notes"
 subtitle: ENVX2001 Applied Statistical Methods
+date: last-modified
+date-format: "MMM YYYY"
 author: "Aaron Greenville"
 format:
   html:

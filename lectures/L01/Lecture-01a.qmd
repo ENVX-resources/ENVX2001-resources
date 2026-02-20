@@ -128,20 +128,24 @@ ggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +
 
 *You'll learn to compare groups like this with **t-tests** (Weeks 1--3).*
 
-## Can crop rotation restore soil health?
+## Can dogs smell human stress?
 
-A greenhouse experiment tested how soil conditioned by different crops affects the growth of subsequent plantings.
+Researchers presented 18 pet dogs with food bowls at five locations, from "positive" (always rewarded) to "negative" (never rewarded). Dogs exposed to stressed human odours were slower to approach ambiguous locations — a sign of cognitive bias.
 
 ```{r}
-#| label: crop-rotation
+#| label: dog-odour
 #| code-fold: true
 #| warning: false
 #| message: false
-crops <- read.csv("data/crop_rotation_clean.csv")
+dogs <- read.csv("data/dog_odour_clean.csv")
+dogs$location <- factor(dogs$location,
+  levels = c("P", "NP", "M", "NN", "N"),
+  labels = c("Positive", "Near-pos", "Middle", "Near-neg", "Negative")
+)
 
-ggplot(crops, aes(x = training_crop, y = total_mass_g, fill = training_crop)) +
+ggplot(dogs, aes(x = location, y = latency, fill = location)) +
   geom_boxplot(show.legend = FALSE) +
-  labs(x = "Previous crop", y = "Total plant mass (g)") +
+  labs(x = "Bowl location", y = "Latency to approach (s)") +
   theme_minimal(base_size = 18)
 ```
 

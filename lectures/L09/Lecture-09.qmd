@@ -3,7 +3,8 @@ title: "Regression: predictive modelling"
 author: Liana Pozza
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 # format: revealjs
 # fontsize: 16pt
 execute:
@@ -439,13 +440,13 @@ $+$
 :::
 :::
 
-[Iteration 1]{style="color: #000; font-size: 18px;" .absolute top=55 right=790 data-id="text1"}
+[Iteration 1]{style="color: #000; font-size: 18pt;" .absolute top=55 right=790 data-id="text1"}
 
-[Iteration 2]{style="color: #000; font-size: 18px;" .absolute top=75 right=790 data-id="text2"}
+[Iteration 2]{style="color: #000; font-size: 18pt;" .absolute top=75 right=790 data-id="text2"}
 
-[Iteration 3]{style="color: #000; font-size: 18px;" .absolute top=95 right=790 data-id="text3"}
+[Iteration 3]{style="color: #000; font-size: 18pt;" .absolute top=95 right=790 data-id="text3"}
 
-[And so on...]{style="color: #000; font-size: 18px;" .absolute top=115 right=790 data-id="text4"}
+[And so on...]{style="color: #000; font-size: 18pt;" .absolute top=115 right=790 data-id="text4"}
 
 
 ## *k*-fold cross-validation 
@@ -478,13 +479,13 @@ $+$
 :::
 :::
 
-[Iteration 1]{style="color: #000; font-size: 18px;" .absolute top=55 right=790 data-id="text1"}
-[Iteration 2]{style="color: #000; font-size: 18px;" .absolute top=75 right=790 data-id="text2"}
-[Iteration 3]{style="color: #000; font-size: 18px;" .absolute top=95 right=790 data-id="text3"}
-[3-fold cross-validation]{style="color: #000; font-size: 18px;" .absolute top=120 right=790 data-id="text4"}
-[Fold 1]{style="color: #000; font-size: 18px;" .absolute top=120 right=660}
-[Fold 2]{style="color: #000; font-size: 18px;" .absolute top=120 right=494}
-[Fold 3]{style="color: #000; font-size: 18px;" .absolute top=120 right=328}
+[Iteration 1]{style="color: #000; font-size: 18pt;" .absolute top=55 right=790 data-id="text1"}
+[Iteration 2]{style="color: #000; font-size: 18pt;" .absolute top=75 right=790 data-id="text2"}
+[Iteration 3]{style="color: #000; font-size: 18pt;" .absolute top=95 right=790 data-id="text3"}
+[3-fold cross-validation]{style="color: #000; font-size: 18pt;" .absolute top=120 right=790 data-id="text4"}
+[Fold 1]{style="color: #000; font-size: 18pt;" .absolute top=120 right=660}
+[Fold 2]{style="color: #000; font-size: 18pt;" .absolute top=120 right=494}
+[Fold 3]{style="color: #000; font-size: 18pt;" .absolute top=120 right=328}
 
 <br>
 

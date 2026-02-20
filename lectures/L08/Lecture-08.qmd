@@ -3,7 +3,8 @@ title: "Regression: model development"
 author: Liana Pozza
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 # format: revealjs
 # fontsize: 16pt
 execute:

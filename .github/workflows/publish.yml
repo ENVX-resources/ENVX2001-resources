@@ -18,12 +18,10 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render exercise site
-        uses: quarto-dev/quarto-actions/render@v2
+        run: quarto render
 
       - name: Render solution site
-        uses: quarto-dev/quarto-actions/render@v2
-        with:
-          quarto-args: --profile solution
+        run: quarto render --profile solution
 
       - name: Copy solution labs into exercise site
         run: |

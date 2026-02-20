@@ -27,13 +27,13 @@ Staff | Structure | Attendance
 ::: {layout-ncol=4 style="text-align:center;"}
 
 
-![A. Prof Aaron Greenville](images/aaron.tiff){width=200}
+![A. Prof Aaron Greenville Unit Coordinator, Weeks 4-6](images/aaron.tiff){width=200}
 
-![Dr Liana Pozza](images/liana.jpeg){width=216}
+![Dr Liana Pozza Lecturer, Weeks 7-9](images/liana.jpeg){width=210}
 
-![Dr Januar Harianto](images/januar.jpeg){width=230}
+![Dr Januar Harianto Lecturer, Weeks 1-3](images/januar.jpeg){width=230}
 
-![Prof Mathew Crowther](images/matcrowther.jpeg){width=205}
+![Prof Mathew Crowther Professor, Weeks 9-11](images/matcrowther.jpeg){width=205}
 
 :::
 

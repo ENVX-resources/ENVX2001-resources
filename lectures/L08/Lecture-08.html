@@ -355,7 +355,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-2-1.png" width="672" class="r-stretch"></section>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="variance-bias-trade-off" class="slide level2">
 <h2>Variance-bias trade-off</h2>
 
@@ -695,7 +695,7 @@ Wind        -0.061562470 0.0157129654 -3.9179409 1.576806e-04</code></pre>
 <span id="cb24-6"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"ABUND"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-11-1.png" width="672" class="r-stretch"><ul>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><ul>
 <li>The predictors are on very different scales, which can cause problems for the model.</li>
 <li>The relationships don’t look particularly linear…and outliers.</li>
 <li>We will perform log<sub>10</sub> transforms of <code>AREA</code>, <code>LDIST</code>, and <code>DIST</code>.</li>
@@ -724,7 +724,7 @@ Wind        -0.061562470 0.0157129654 -3.9179409 1.576806e-04</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="checking-assumptions---no-transformation" class="slide level2">
 <h2>Checking assumptions - no transformation</h2>
 <div class="cell">
@@ -770,7 +770,7 @@ F-statistic: 8.561 on 6 and 49 DF,  p-value: 2.24e-06</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-14-1.png" width="672" class="r-stretch"></section>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="checking-assumptions---transformation" class="slide level2">
 <h2>Checking assumptions - transformation</h2>
 <div class="cell">
@@ -816,7 +816,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section></section>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="other-assumptions" class="title-slide slide level1 center">
 <h1>Other Assumptions</h1>
@@ -852,7 +852,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <span id="cb32-2"><a></a><span class="fu">plot</span>(loyn_fit, <span class="at">which =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-17-1.png" width="672" class="r-stretch"><ul>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"><ul>
 <li>Visually, points with Cook’s distance &gt; 0.5 are considered influential by default, but this is a somewhat arbitrary threshold.</li>
 <li>In practice, you should use a threshold that is appropriate for your data and model.</li>
 </ul>
@@ -863,7 +863,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>performance<span class="sc">::</span><span class="fu">check_model</span>(loyn_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-18-1.png" width="672" class="r-stretch"><div class="cell">
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>performance<span class="sc">::</span><span class="fu">check_outliers</span>(loyn_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>OK: No outliers detected.
@@ -883,7 +883,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(<span class="fu">cor</span>(loyn), <span class="at">method =</span> <span class="st">"number"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-20-1.png" width="672" class="r-stretch"></section>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
 <section id="calculating-vif" class="slide level2">
 <h2>Calculating VIF</h2>
 <div class="cell">
@@ -895,7 +895,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(loyn_fit)) <span class="co"># visual</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-08_files/figure-html/unnamed-chunk-21-1.png" width="672" class="r-stretch"><ul>
+<img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"><ul>
 <li><span class="math inline">\(1\)</span> = no correlation with other predictors.</li>
 <li><span class="math inline">\(&gt;10\)</span> is a sign for high, not tolerable correlation of model predictors (which need to be removed and the model refitted).</li>
 </ul>
@@ -1479,6 +1479,44 @@ Coefficients:
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

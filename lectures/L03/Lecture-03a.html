@@ -340,7 +340,7 @@ Januar Harianto
 <span id="cb5-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Breed"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-03a_files/figure-html/group_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"></section></section>
+<img data-src="Lecture-03a_files/figure-revealjs/group_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="model-and-hypotheses" class="title-slide slide level1 center">
 <h1>Model and hypotheses</h1>
@@ -399,7 +399,7 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="Lecture-03a_files/figure-html/t_dist_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><div class="callout callout-note callout-titled callout-style-default">
+<img data-src="Lecture-03a_files/figure-revealjs/t_dist_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -560,14 +560,14 @@ mean in group Breed1 mean in group Breed2
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03a_files/figure-html/outlier_check-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
+<p><img data-src="Lecture-03a_files/figure-revealjs/outlier_check-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03a_files/figure-html/outlier_check-2.png" class="quarto-figure quarto-figure-center" width="672"></p>
+<p><img data-src="Lecture-03a_files/figure-revealjs/outlier_check-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -840,6 +840,44 @@ W = 0.93704, p-value = 0.103</code></pre>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

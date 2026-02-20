@@ -10,7 +10,8 @@ author:
       corresponding: true
 format:
   ochre-revealjs: default
-  ochre-typst: default
+  ochre-typst:
+    fig-format: png
 
 ---
 
@@ -126,7 +127,7 @@ Statistics empowers you to:
 
 ## Sports Analytics
 
-![The 10 highest-seeded players averaged 3.48 rounds won in the Australian Open since 2011, compared to just 3.03 at Wimbledon. Source: fivethirtyeight](images/tennis.webp){fig-align="left"}
+![The 10 highest-seeded players averaged 3.48 rounds won in the Australian Open since 2011, compared to just 3.03 at Wimbledon. Source: fivethirtyeight](images/tennis.png){fig-align="left"}
 
 ## Your Path Ahead
 

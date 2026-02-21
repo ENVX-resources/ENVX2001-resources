@@ -48,8 +48,9 @@ Staff | Structure | Attendance
 
 ### Getting help
 
-- Post on **Ed** for questions — we usually respond the same day (weekdays).
-- **Drop-in sessions** (Zoom or in person) are available on request — just send us an email or post on Ed.
+- Ed Discussion board - best place for discussion and announcements
+- Emails - for private matters
+- Drop-in sessions - arrange with me (Januar) if you want to have a chat on Zoom
 
 
 ## Attendance
@@ -122,7 +123,7 @@ elk$mig_status <- factor(elk$mig_status,
 
 ggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +
   geom_boxplot(show.legend = FALSE) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d(end = 0.9) +
   labs(x = NULL, y = "Birth weight (kg)") +
   theme_minimal(base_size = 18)
 ```
@@ -149,7 +150,7 @@ ggplot(dog_means, aes(x = treatment, y = latency, colour = treatment)) +
   geom_jitter(width = 0.2, size = 3, alpha = 0.6) +
   stat_summary(fun = mean, geom = "crossbar", width = 0.5,
     linewidth = 0.8, colour = "black") +
-  scale_colour_viridis_d() +
+  scale_colour_viridis_d(end = 0.9) +
   labs(x = "Odour treatment", y = "Mean latency (s)") +
   theme_minimal(base_size = 18) +
   theme(legend.position = "none")
@@ -171,7 +172,7 @@ penguins <- palmerpenguins::penguins
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(colour = species), alpha = 0.6) +
   geom_smooth(method = "lm") +
-  scale_colour_viridis_d() +
+  scale_colour_viridis_d(end = 0.9) +
   labs(x = "Flipper length (mm)", y = "Body mass (g)") +
   theme_minimal(base_size = 18)
 ```
@@ -192,7 +193,7 @@ finches <- read.csv("data/darwin_finches_clean.csv")
 ggplot(finches, aes(x = beak_length, y = beak_depth, colour = species)) +
   geom_point(alpha = 0.5) +
   stat_ellipse(linewidth = 1) +
-  scale_colour_viridis_d() +
+  scale_colour_viridis_d(end = 0.9) +
   labs(x = "Beak length (mm)", y = "Beak depth (mm)", colour = "Species") +
   theme_minimal(base_size = 18)
 ```

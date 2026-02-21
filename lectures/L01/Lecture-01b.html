@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.27">
 
   <meta name="author" content="Januar Harianto">
-  <title>Lecture 01b – Revision</title>
+  <title>Lecture 01b – The fundamentals</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-945df11cfe02533d166420a10b935f00.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,7 +193,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/ochre/logo_charcoal.svg" data-background-position="bottom 4em center" data-background-size="10%" class="quarto-title-block center">
-  <h1 class="title">Lecture 01b – Revision</h1>
+  <h1 class="title">Lecture 01b – The fundamentals</h1>
   <p class="subtitle">ENVX2001 Applied Statistical Methods</p>
 
 <div class="quarto-title-authors">
@@ -207,45 +207,38 @@ Januar Harianto
   <p class="date">Feb 2026</p>
 </section>
 <section>
-<section id="refresher" class="title-slide slide level1 center">
-<h1>Refresher</h1>
+<section id="a-refresher-for-most" class="title-slide slide level1 center">
+<h1>A refresher (for most)</h1>
 
 </section>
-<section id="assumed-knowledge" class="slide level2">
-<h2>Assumed knowledge</h2>
+<section id="you-should-be-familiar-with-the-following-concepts" class="slide level2">
+<h2>You should be familiar with the following concepts:</h2>
 <ol type="1">
-<li>Samples, populations and statistical inference</li>
+<li>Populations, samples and statistical inference</li>
 <li>Probability distributions</li>
-<li>Parameter estimation
-<ul>
-<li>central tendency</li>
-<li>spread or variability</li>
-</ul></li>
-<li>Sampling distribution of the mean
-<ul>
-<li>Standard error</li>
-<li>Confidence intervals</li>
+<li>Parameter estimation: central tendency, spread and variability</li>
+<li>Sampling distribution of the mean: standard error, confidence intervals</li>
 <li>Central Limit Theorem</li>
-</ul></li>
 </ol>
+<p><strong>That’s it!</strong></p>
 </section>
-<section id="why-is-this-important" class="slide level2">
-<h2>Why is this important?</h2>
+<section id="why-review-these-concepts" class="slide level2">
+<h2>Why review these concepts?</h2>
 <ul>
-<li>Understanding sampling <strong>informs experimental design (Week 4 onward)</strong>. <em>How many samples do we need and are our samples representative?</em></li>
-<li>Recognising sample (<em>not sampling</em>) distributions helps us choose the right statistical model – e.g.&nbsp;<em>t</em>-test to compare two means that are normally distributed.</li>
-<li>Most statistical techniques use sample statistics for interpretation, e.g.&nbsp;the <em>t</em>-test can be explained using <strong>confidence intervals</strong>, and the ANOVA test can be interpreted in part using <strong>means</strong> and <strong>standard errors</strong>.</li>
+<li>These are concepts taught in first year statistics courses which we consider to be fundamental</li>
+<li>Even if you come from a unit/course that does not do R, <strong>you should at least be familiar with the basic building blocks of statistical thinking</strong></li>
 </ul>
-<p>All of these concepts will make more sense as we go through the course, but if you do not try to understand them now, you <strong>will</strong> struggle.</p>
+<div class="fragment">
+<p>Let’s go through these concepts together!</p>
+</div>
 </section></section>
 <section>
-<section id="samples-populations-and-statistical-inference" class="title-slide slide level1 center">
-<h1>Samples, populations and statistical inference</h1>
+<section id="samples-populations" class="title-slide slide level1 center">
+<h1>Samples, populations</h1>
 
 </section>
-<section id="populations-and-samples" class="slide level2">
-<h2>Populations and samples</h2>
-<h3 id="populations">Populations</h3>
+<section id="populations" class="slide level2">
+<h2>Populations</h2>
 <ul>
 <li><strong>All</strong> the possible units and their associated observations of interest</li>
 <li>Scientists are often interested in making <em>inferences</em> about populations, but measuring every unit is impractical</li>
@@ -260,38 +253,49 @@ Januar Harianto
 <section id="statistics-vs-parameters" class="slide level2">
 <h2>Statistics vs parameters</h2>
 <ul>
-<li>Characteristics of the <strong>population</strong> are called <em>parameters</em> (e.g.&nbsp;population mean or population regression slope)</li>
-<li>Characteristics of the <strong>sample</strong> are called <em>statistics</em> (e.g.&nbsp;sample mean or sample regression slope) – they are used to estimate the population parameters</li>
-<li>Statistics are what we use to help us understand the population</li>
-<li>Formal statistical methods can help us make inferences about the population based on the sample – statistical inference</li>
-<li><em>Not all statistical techniques are inferential, but many are</em></li>
+<li>Characteristics of the <strong>population</strong> are called <em>parameters</em> (e.g.&nbsp;the true average height of all trees in a forest)</li>
+<li>Characteristics of the <strong>sample</strong> are called <em>statistics</em> (e.g.&nbsp;the average height of 30 trees that we measured)</li>
+<li>In practice, we usually don’t know the true population parameters, so we use sample statistics as our best estimates</li>
+<li>Drawing conclusions about a population from sample data is called <strong>statistical inference</strong></li>
 </ul>
+<div class="fragment">
+<p><em>Not all statistical techniques are inferential – some are purely descriptive (e.g.&nbsp;summarising data with graphs or tables) – but inference is the main focus of this course.</em></p>
+</div>
 </section>
 <section id="sample-data" class="slide level2">
 <h2>Sample data</h2>
-<p>Sample data are usually collected as <strong>variables</strong>, which are the characteristics we measure or record from each object.</p>
+<p>Sample data are usually collected as <strong>variables</strong> – the characteristics we measure or record from each unit in our sample.</p>
 <div class="fragment">
 <p>Variables can be:</p>
 <h3 id="categorical-variables">Categorical Variables</h3>
 <ul>
-<li><strong>Nominal</strong>: categories without a natural order (e.g.&nbsp;colors, names)</li>
-<li><strong>Ordinal</strong>: categories with a natural order (e.g.&nbsp;ratings, rankings)</li>
+<li><strong>Nominal</strong>: categories without a natural order (e.g.&nbsp;soil type, land use)</li>
+<li><strong>Ordinal</strong>: categories with a natural order (e.g.&nbsp;soil quality: poor, fair, good)</li>
 </ul>
 <h3 id="numerical-variables">Numerical Variables</h3>
 <ul>
-<li><strong>Continuous</strong>: can take any value within a range (e.g.&nbsp;height, weight)</li>
-<li><strong>Discrete</strong>: can take only specific values (e.g.&nbsp;counts, presence/absence)</li>
+<li><strong>Continuous</strong>: can take any value within a range (e.g.&nbsp;height, temperature)</li>
+<li><strong>Discrete</strong>: can take only specific values (e.g.&nbsp;number of species, presence/absence)</li>
 </ul>
 </div>
 </section>
-<section id="you-decide-on-what-a-variable-represents" class="slide level2">
-<h2>YOU decide on what a variable represents</h2>
-<p>A numerical, continuous variable can be treated as a categorical variable if you decide to categorise it.</p>
+<section id="variable-types-can-overlap" class="slide level2">
+<h2>Variable types can overlap</h2>
+<p>The categories on the previous slide are useful guidelines, but in practice, variables can cross between types depending on how you use them.</p>
 <h3 id="examples">Examples</h3>
 <ul>
-<li class="fragment"><strong>height (in cm)</strong> – a numerical, <strong>continuous</strong> variable, can be treated as a categorical variable if you group it into categories (short, medium, tall)</li>
-<li class="fragment"><strong>age (in years)</strong> – a numerical, <strong>discrete</strong> variable, can be treated as a continuous variable (if we allow for certain <em>issues</em>)</li>
-<li class="fragment"><strong>treatment (A, B, C)</strong> – a categorical variable, can be treated as a numerical variable if we assign numbers to the treatments (1, 2, 3) and assume they are <strong>ordered</strong> e.g.&nbsp;effect of 1 &lt; 2 &lt; 3 – <em>the basis of non-parametric tests</em></li>
+<li class="fragment"><strong>height (in cm)</strong> – a numerical, <strong>continuous</strong> variable, but can be treated as categorical if you group it into categories (short, medium, tall)</li>
+<li class="fragment"><strong>age (in years)</strong> – a numerical, <strong>discrete</strong> variable, but often treated as continuous because the gaps between values are small relative to the range</li>
+<li class="fragment"><strong>treatment (A, B, C)</strong> – a categorical variable, but can be treated as numerical if we assign numbers to the treatments (1, 2, 3) and assume they are <strong>ordered</strong> e.g.&nbsp;effect of 1 &lt; 2 &lt; 3</li>
+</ul>
+</section>
+<section id="be-careful-when-converting-variables" class="slide level2">
+<h2>Be careful when converting variables</h2>
+<p>Converting a numerical variable to a categorical one means <strong>losing information</strong> – once you group heights into “short”, “medium” and “tall”, the exact measurements are gone.</p>
+<ul>
+<li class="fragment">A tree that is 5.1 m and a tree that is 9.9 m might both be called “tall”, but they are very different</li>
+<li class="fragment">Only categorise when there is good reason to do so, as this reduces your analysis power</li>
+<li class="fragment">Going the other way (categorical → numerical) doesn’t lose data, but it does <strong>add assumptions</strong> – e.g.&nbsp;that your categories have a meaningful order</li>
 </ul>
 </section></section>
 <section>
@@ -301,19 +305,21 @@ Januar Harianto
 </section>
 <section id="types-of-probability-distributions" class="slide level2">
 <h2>Types of probability distributions</h2>
-<p>Populations can be described by probability distributions, and by now, you should be familiar with these distributions and their properties</p>
+<p>Populations can be described by probability distributions. You may have encountered these common ones in first-year statistics:</p>
 <ul>
-<li class="fragment"><strong>Normal Distribution</strong>: Bell-shaped curve, symmetric around the mean. <strong>Data is continuous</strong></li>
-<li class="fragment"><strong>Binomial Distribution</strong>: Models success/failure outcomes in a fixed number of trials. <strong>Data is discrete</strong></li>
-<li class="fragment"><strong>Poisson Distribution</strong>: Models count data when events occur at a constant rate. <strong>Data is discrete</strong></li>
+<li class="fragment"><strong>Normal Distribution</strong>: Bell-shaped curve, symmetric around the mean. <strong>Data is continuous</strong> (e.g.&nbsp;heights, weights)</li>
+<li class="fragment"><strong>Binomial Distribution</strong>: Models success/failure outcomes in a fixed number of trials. <strong>Data is discrete</strong> (e.g.&nbsp;how many seeds germinate out of 10 planted)</li>
+<li class="fragment"><strong>Poisson Distribution</strong>: Models count data over a fixed area or time period. <strong>Data is discrete</strong> (e.g.&nbsp;number of weeds found in a 1 m² quadrat)</li>
 </ul>
 <div class="fragment">
-<p>Knowing the distribution of your data is important for choosing the right statistical model – although it is not always necessary.</p>
+<p>Knowing the distribution of your data helps you choose the right statistical model. We will return to this throughout the course.</p>
 </div>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a></a></span>
 <span id="cb1-3"><a></a><span class="fu">set.seed</span>(<span class="dv">908</span>)</span>
@@ -323,7 +329,7 @@ Januar Harianto
 <span id="cb1-7"><a></a></span>
 <span id="cb1-8"><a></a><span class="co"># normal</span></span>
 <span id="cb1-9"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(normal_data, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
-<span id="cb1-10"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb1-11"><a></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
 <span id="cb1-12"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Normal Distribution"</span>)</span>
 <span id="cb1-13"><a></a></span>
@@ -340,6 +346,7 @@ Januar Harianto
 <span id="cb1-24"><a></a><span class="co"># Arrange plots</span></span>
 <span id="cb1-25"><a></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb1-26"><a></a>p1 <span class="sc">|</span> p2 <span class="sc">/</span> p3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section></section>
@@ -350,10 +357,10 @@ Januar Harianto
 </section>
 <section id="measures-of-central-tendency" class="slide level2">
 <h2>Measures of central tendency</h2>
+<p>Central tendency tells you where the “middle” or “typical” value of your data falls. There are several ways to measure it, each with trade-offs.</p>
 <h3 id="mean-barx">Mean <span class="math inline">\(\bar{x}\)</span></h3>
 <ul>
-<li>The arithmetic average of all values in a dataset</li>
-<li>Sum of all values divided by number of observations</li>
+<li>The sum of all values divided by the number of observations – what <code>mean()</code> does in R</li>
 <li>Sensitive to extreme values (outliers)</li>
 </ul>
 <div class="fragment">
@@ -378,38 +385,34 @@ Januar Harianto
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section id="median-and-mode" class="slide level2">
+<h2>Median and mode</h2>
 <h3 id="median">Median</h3>
 <ul>
-<li>Middle value when data is ordered</li>
-<li>50th percentile of the data</li>
-<li>More robust to outliers than mean</li>
-<li>For even n, average of two middle values</li>
+<li>Sort your data from smallest to largest and take the middle value</li>
+<li>The median is resistant to extreme values, making it a better representation of typical observations when data is skewed</li>
 </ul>
 <div class="fragment">
 <h3 id="mode">Mode</h3>
 <ul>
-<li>Most frequently occurring value</li>
-<li>Can have multiple modes</li>
-<li>Only measure of central tendency for categorical data</li>
-<li>Not always meaningful for continuous data</li>
+<li>The most frequently occurring value in a dataset</li>
+<li>Can have multiple modes (e.g.&nbsp;a bimodal distribution has two peaks)</li>
+<li>The only measure of central tendency that works for categorical data</li>
 </ul>
 </div>
 </section>
 <section id="how-they-compare" class="slide level2">
 <h2>How they compare</h2>
 
-<img data-src="Lecture-01b_files/figure-revealjs/central-tendency-1.png" width="960" class="r-stretch"><p>Depending on the distribution of the data, the mean and median can be different, and this can tell you something about the data.</p>
+<img data-src="Lecture-01b_files/figure-revealjs/central-tendency-1.png" width="960" class="r-stretch"><p>When the mean and median are close, your data is roughly symmetric. When they differ substantially, the data is skewed – the mean shifts toward extreme values.</p>
 </section>
 <section id="measures-of-dispersion" class="slide level2">
 <h2>Measures of dispersion</h2>
+<p>Dispersion measures how spread out your data is. Two datasets can have identical means but very different spreads.</p>
 <h3 id="variance-s2">Variance <span class="math inline">\(s^2\)</span></h3>
 <ul>
-<li>Measures how spread out the data is from the mean</li>
-<li>Calculated as average squared deviations from the mean</li>
-<li>Squared units make it harder to interpret</li>
-<li>Sensitive to outliers (squares large deviations)</li>
+<li>The average squared distance of each value from the mean</li>
+<li>Since the result is in squared units (e.g.&nbsp;m²), it’s hard to interpret directly – we usually take the square root to get standard deviation</li>
 </ul>
 </section>
 <section id="measures-of-dispersion-1" class="slide level2">
@@ -443,15 +446,8 @@ Januar Harianto
 <h2>Measures of dispersion</h2>
 <h3 id="standard-deviation-s">Standard Deviation <span class="math inline">\(s\)</span></h3>
 <ul>
-<li>Square root of variance</li>
-<li>Same units as original data</li>
-<li>More interpretable than variance</li>
-<li>Empirical rule for normal distributions:
-<ul>
-<li>≈68% of data within ±1 SD</li>
-<li>≈95% of data within ±2 SD</li>
-<li>≈99.7% of data within ±3 SD</li>
-</ul></li>
+<li>The square root of variance – expressed in your data’s original units (e.g.&nbsp;metres, not metres²)</li>
+<li>Shows how far a typical observation is from the mean</li>
 </ul>
 <div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -465,12 +461,7 @@ Januar Harianto
 <div class="callout-content">
 <p><span class="math display">\[s = \sqrt{s^2}\]</span></p>
 <ul>
-<li>Simply the square root of variance</li>
-<li>For our example data {2,4,6,8}:
-<ul>
-<li><span class="math inline">\(s = \sqrt{6.67} \approx 2.58\)</span></li>
-</ul></li>
-<li>Interpretation: On average, values deviate about 2.58 units from the mean</li>
+<li>For our example data {2,4,6,8}: <span class="math inline">\(s = \sqrt{6.67} \approx 2.58\)</span></li>
 </ul>
 </div>
 </div>
@@ -479,11 +470,17 @@ Januar Harianto
 </section>
 <section id="visualising-standard-deviation" class="slide level2">
 <h2>Visualising standard deviation</h2>
+<p>For normally distributed data, standard deviation tells you what proportion of values fall within each range of the mean:</p>
+<ul>
+<li>about <strong>68%</strong> of values fall within ±1 SD</li>
+<li>about <strong>95%</strong> within ±2 SD</li>
+<li>about <strong>99.7%</strong> within ±3 SD</li>
+</ul>
 
 <img data-src="Lecture-01b_files/figure-revealjs/dispersion-1.png" width="960" class="r-stretch"></section>
 <section id="population-parameters-vs-sample-statistics" class="slide level2">
 <h2>Population parameters vs sample statistics</h2>
-<p>For those of you interested:</p>
+<p>Throughout the course you’ll see Greek letters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) for population parameters and Roman letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>) for sample statistics:</p>
 <h3 id="mean">Mean</h3>
 <table class="caption-top">
 <colgroup>
@@ -554,15 +551,15 @@ Januar Harianto
 <section id="why-n-1" class="slide level2">
 <h2>Why n-1?</h2>
 <ul>
-<li>When calculating sample variance, we use <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span> in the denominator</li>
-<li>This is called “<a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>”</li>
-<li>Why? Because we lose one “degree of freedom” when we estimate the mean:
-<ol type="1">
-<li>If you know the sample mean (<span class="math inline">\(\bar{x}\)</span>)</li>
-<li>And you know all but one value in your sample</li>
-<li>The last value is <em>constrained</em> - it must make the mean equal <span class="math inline">\(\bar{x}\)</span></li>
-</ol></li>
+<li>Sample variance uses <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span> in the denominator</li>
+<li>This correction (<a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>) accounts for bias when estimating the mean from the sample itself</li>
 </ul>
+<div class="fragment">
+<ul>
+<li>Here’s the logic: once you know the mean and all but one value, the last value is determined – it must satisfy the mean. Only <span class="math inline">\(n-1\)</span> values are truly free to vary</li>
+<li>These independent values are your <strong>degrees of freedom</strong></li>
+</ul>
+</div>
 </section></section>
 <section>
 <section id="sampling-distributions-and-clt" class="title-slide slide level1 center">
@@ -571,11 +568,14 @@ Januar Harianto
 </section>
 <section id="what-is-a-sampling-distribution" class="slide level2">
 <h2>What is a sampling distribution?</h2>
+<p>Imagine you collected your sample of 30 trees, calculated the mean height, then did it again – 1000 times. Each time, you’d get a slightly different mean.</p>
+<div class="fragment">
 <ul>
-<li>Distribution of a statistic (e.g., mean) calculated from repeated samples</li>
-<li>Shows how sample statistics vary from sample to sample</li>
-<li>Important for understanding sampling variability and making inferences</li>
+<li>The distribution of all those means is a <strong>sampling distribution</strong></li>
+<li>It shows how much your estimate (the sample mean) varies due to sampling randomness</li>
+<li>This foundation of statistical inference lets you quantify confidence in your estimates</li>
 </ul>
+</div>
 </section>
 <section id="sampling-distribution-of-the-mean" class="slide level2">
 <h2>Sampling distribution of the mean</h2>
@@ -589,14 +589,29 @@ Januar Harianto
 <p>– Sir Francis Galton, 1889, Natural Inheritance</p>
 <p>The Central Limit Theorem (CLT) states that for sufficiently large samples:</p>
 <ol type="1">
-<li>The sampling distribution of the mean follows a normal distribution</li>
-<li>The mean of the sampling distribution equals the population mean</li>
-<li>The standard deviation of the sampling distribution (standard error) = <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span></li>
+<li>The distribution of sample means becomes <strong>approximately normal</strong>, regardless of the population’s shape</li>
+<li>The average of those sample means equals the <strong>true population mean</strong></li>
+<li>The spread of the sampling distribution decreases as sample size increases: <span class="math inline">\(SE = \frac{\sigma}{\sqrt{n}}\)</span></li>
 </ol>
+<aside class="notes">
+<p>In short: with larger samples, their means form a predictable, bell-shaped pattern – even if the original data is skewed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="clt-in-action" class="slide level2">
 <h2>CLT in action</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Create a skewed population</span></span>
 <span id="cb2-2"><a></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
 <span id="cb2-3"><a></a>skewed_pop <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.5</span>))</span>
@@ -614,19 +629,22 @@ Januar Harianto
 <span id="cb2-15"><a></a></span>
 <span id="cb2-16"><a></a><span class="co"># Plot</span></span>
 <span id="cb2-17"><a></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-18"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> means, <span class="at">y =</span> ..density..),</span>
+<span id="cb2-18"><a></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> means, <span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
 <span id="cb2-19"><a></a>    <span class="at">data =</span> sample_dist_df,</span>
 <span id="cb2-20"><a></a>    <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span></span>
 <span id="cb2-21"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb2-22"><a></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> means), <span class="at">data =</span> sample_dist_df, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
 <span id="cb2-23"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>size, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
 <span id="cb2-24"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Sampling distributions for different sample sizes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">set.seed</span>(<span class="dv">239</span>)</span>
 <span id="cb3-2"><a></a><span class="co"># Generate a skewed distribution</span></span>
 <span id="cb3-3"><a></a>skewed <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
@@ -640,6 +658,7 @@ Januar Harianto
 <span id="cb3-11"><a></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">bins =</span> <span class="dv">50</span></span>
 <span id="cb3-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb3-13"><a></a>  <span class="fu">xlab</span>(<span class="st">"Height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"><ul>
@@ -647,9 +666,11 @@ Januar Harianto
 <li>We want to estimate the mean height of the trees in the forest.</li>
 </ul>
 </section>
-<section id="sample-no-summary-statistic" class="slide level2">
-<h2>1 sample (no summary statistic)</h2>
+<section id="sample-size-n-1" class="slide level2">
+<h2>Sample size: n = 1</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb4-3"><a></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
@@ -664,13 +685,16 @@ Januar Harianto
 <span id="cb4-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb4-13"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb4-14"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
-<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><p>With only one sample, we are not really seeing a sampling distribution – we are just replicating the same population distribution. A sampling distribution emerges when we take multiple samples and calculate their means.</p>
+<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><p>With a sample size of one, the sampling distribution mirrors the population – larger samples are needed to see convergence to normality.</p>
 </section>
-<section id="samples-1" class="slide level2">
-<h2>2 samples</h2>
+<section id="sample-size-n-2" class="slide level2">
+<h2>Sample size: n = 2</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb5-3"><a></a>    <span class="at">size =</span> <span class="dv">2</span>,</span>
@@ -685,16 +709,19 @@ Januar Harianto
 <span id="cb5-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb5-13"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb5-14"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><ul>
-<li>We sample 2 trees and calculate the mean height, and repeat this 1000 times.</li>
+<li>We sample 2 trees, calculate the sample mean, and repeat 1000 times.</li>
 <li>The distribution of sample means is starting to look more like a normal distribution.</li>
 </ul>
 </section>
-<section id="samples-2" class="slide level2">
-<h2>5 samples</h2>
+<section id="sample-size-n-5" class="slide level2">
+<h2>Sample size: n = 5</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb6-3"><a></a>    <span class="at">size =</span> <span class="dv">5</span>,</span>
@@ -709,16 +736,19 @@ Januar Harianto
 <span id="cb6-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb6-13"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb6-14"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><ul>
-<li>Five random samples per calculated mean, repeated 1000 times.</li>
+<li>Each sample mean is based on 5 observations, repeated 1000 times.</li>
 <li>The distribution is becoming more normal, and the spread is decreasing: estimate is getting more <strong>precise</strong>.</li>
 </ul>
 </section>
-<section id="samples-3" class="slide level2">
-<h2>30 samples</h2>
+<section id="sample-size-n-30" class="slide level2">
+<h2>Sample size: n = 30</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb7-3"><a></a>    <span class="at">size =</span> <span class="dv">30</span>,</span>
@@ -733,16 +763,19 @@ Januar Harianto
 <span id="cb7-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb7-13"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb7-14"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><ul>
-<li>Thirty random samples per calculated mean, repeated 1000 times.</li>
+<li>Each sample mean is based on 30 observations, repeated 1000 times.</li>
 <li>The distribution of sample means is very close to a normal distribution.</li>
 </ul>
 </section>
-<section id="samples-4" class="slide level2">
-<h2>50 samples</h2>
+<section id="sample-size-n-50" class="slide level2">
+<h2>Sample size: n = 50</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb8-3"><a></a>    <span class="at">size =</span> <span class="dv">50</span>,</span>
@@ -757,16 +790,19 @@ Januar Harianto
 <span id="cb8-12"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb8-13"><a></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
 <span id="cb8-14"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><ul>
-<li>Fifty random samples per calculated mean, repeated 1000 times.</li>
+<li>Each sample mean is based on 50 observations, repeated 1000 times.</li>
 <li><strong>How many samples is enough?</strong></li>
 </ul>
 </section>
-<section id="are-50-samples-normal-enough" class="slide level2">
-<h2>Are 50 samples “normal” enough?</h2>
+<section id="is-n-50-normal-enough" class="slide level2">
+<h2>Is n = 50 “normal” enough?</h2>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>skewed <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb9-3"><a></a>    <span class="at">size =</span> <span class="dv">50</span>,</span>
@@ -790,10 +826,11 @@ Januar Harianto
 <span id="cb9-21"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
 <span id="cb9-22"><a></a>  ) <span class="sc">+</span></span>
 <span id="cb9-23"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"><ul>
-<li>Fifty random samples per calculated mean, repeated 1000 times.</li>
+<li>Each sample mean is based on 50 observations, repeated 1000 times.</li>
 <li><strong>How many samples is enough?</strong></li>
 </ul>
 </section>
@@ -835,7 +872,7 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p>Increased sample size leads to a more accurate estimate of the population mean, reflected by the <strong>narrower distribution</strong> of the sample mean, which is captured by the <strong>standard error</strong>.</p>
+<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><p>Larger samples give more precise estimates of the population mean. The <strong>narrower distribution</strong> of sample means reflects this precision, measured by the <strong>standard error</strong>.</p>
 </section>
 <section id="effect-of-variability" class="slide level2">
 <h2>Effect of variability</h2>
@@ -863,15 +900,15 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"><p>Increased variability (i.e.&nbsp;wide range of tree heights) leads to a wider distribution of the sample mean (i.e.&nbsp;less precision), which is <em>also</em> reflected by the <strong>standard error</strong>.</p>
+<img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"><p>More variable populations (e.g.&nbsp;tree heights ranging from 1 m to 50 m) produce more spread in sample means. The <strong>standard error</strong> captures this reduced precision.</p>
 </section>
 <section id="clt-drives-statistical-inference" class="slide level2">
 <h2>CLT drives statistical inference</h2>
-<p>Because of how predictable the CLT applies to sample means, we can use this to make reasonably accurate inferences about the population mean, even if we do <em>not</em> know the population distribution.</p>
+<p>The CLT enables inference about the population mean without knowing the population distribution.</p>
 <ul>
-<li>A sampling distribution of the mean <em>will</em> be normally distributed for sufficiently large samples – how large is “sufficient” depends on the population distribution</li>
-<li>The mean of the sampling distribution trends towards the population mean with increasing sample size</li>
-<li>To determine how well the sample mean estimates the population mean, we use the standard error of the mean – basically a standard deviation of the sampling distribution</li>
+<li>With sufficient observations, the sampling distribution of the mean is approximately normal</li>
+<li>The centre of that distribution is the true population mean</li>
+<li>The standard error measures the spread – how precise your estimate is</li>
 </ul>
 </section></section>
 <section>
@@ -882,9 +919,8 @@ Januar Harianto
 <section id="standard-error-of-the-mean" class="slide level2">
 <h2>Standard Error of the Mean</h2>
 <ul>
-<li>Measures the precision of a sample mean</li>
-<li>Describes variation in sample means – around the true population mean</li>
-<li>Decreases as sample size increases, because we become more “confident” in our estimate</li>
+<li>The standard deviation of the sampling distribution – how much sample means vary across samples</li>
+<li>Decreases as sample size increases, so larger samples yield more precise estimates</li>
 </ul>
 <div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -911,27 +947,26 @@ Januar Harianto
 <h3 id="standard-deviation-sd">Standard Deviation (SD)</h3>
 <ul>
 <li>Describes variability in your <strong>data</strong></li>
-<li><strong>Stays constant regardless of sample size</strong></li>
+<li>Does not change with sample size</li>
 </ul>
 <h3 id="standard-error-se">Standard Error (SE)</h3>
 <ul>
 <li>Describes precision of your <strong>mean estimate</strong></li>
-<li><strong>Decreases with larger sample size (<span class="math inline">\(SE = \frac{SD}{\sqrt{n}}\)</span>)</strong></li>
+<li>Shrinks as sample size increases (<span class="math inline">\(SE = \frac{SD}{\sqrt{n}}\)</span>)</li>
 </ul>
-<p>When reporting statistics:</p>
+<p>When reporting:</p>
 <ul>
-<li>Use <strong>mean ± SE</strong> to show precision of your estimate</li>
-<li>Use <strong>mean ± SD</strong> to show spread of your raw data</li>
-<li>SE can appear deceptively small with large sample sizes – <strong>always report sample size</strong>!</li>
+<li><strong>mean ± SE</strong> shows how precisely you’ve estimated the mean — but SE can be misleadingly small with large samples, so always report <span class="math inline">\(n\)</span></li>
+<li><strong>mean ± SD</strong> shows the spread of your raw data</li>
 </ul>
 </section>
 <section id="confidence-intervals" class="slide level2">
 <h2>Confidence intervals</h2>
 <h3 id="what-is-a-confidence-interval">What is a confidence interval?</h3>
 <ul>
-<li>Range of values likely to contain the true population parameter</li>
-<li>Level of confidence (usually 95%) indicates reliability</li>
-<li>Wider intervals = less precise estimates</li>
+<li>A range of values that likely contains the true population parameter, computed from your sample</li>
+<li>95% is the standard choice</li>
+<li>Wider intervals indicate less precision</li>
 </ul>
 <div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -944,6 +979,9 @@ Januar Harianto
 </div>
 <div class="callout-content">
 <p><span class="math display">\[\bar{x} \pm (t_{n-1} \times SE_{\bar{x}})\]</span></p>
+<ul>
+<li>where <span class="math inline">\(t_{n-1}\)</span> comes from the t-distribution (covered next lecture)</li>
+</ul>
 </div>
 </div>
 </div>
@@ -952,32 +990,37 @@ Januar Harianto
 <section id="visualising-confidence-intervals" class="slide level2">
 <h2>Visualising confidence intervals</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Generate sample data</span></span>
-<span id="cb12-2"><a></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
-<span id="cb12-3"><a></a>sample_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb12-4"><a></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">30</span>),</span>
-<span id="cb12-5"><a></a>  <span class="at">value =</span> <span class="fu">c</span>(</span>
-<span id="cb12-6"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">15</span>),</span>
-<span id="cb12-7"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">110</span>, <span class="dv">15</span>),</span>
-<span id="cb12-8"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">105</span>, <span class="dv">15</span>)</span>
-<span id="cb12-9"><a></a>  )</span>
-<span id="cb12-10"><a></a>)</span>
-<span id="cb12-11"><a></a></span>
-<span id="cb12-12"><a></a><span class="co"># Calculate means and CIs</span></span>
-<span id="cb12-13"><a></a>ci_data <span class="ot">&lt;-</span> sample_data <span class="sc">%&gt;%</span></span>
-<span id="cb12-14"><a></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
-<span id="cb12-15"><a></a>  <span class="fu">summarise</span>(</span>
-<span id="cb12-16"><a></a>    <span class="at">mean =</span> <span class="fu">mean</span>(value),</span>
-<span id="cb12-17"><a></a>    <span class="at">se =</span> <span class="fu">sd</span>(value) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
-<span id="cb12-18"><a></a>    <span class="at">ci_lower =</span> mean <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="fu">n</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se,</span>
-<span id="cb12-19"><a></a>    <span class="at">ci_upper =</span> mean <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="fu">n</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
-<span id="cb12-20"><a></a>  )</span>
-<span id="cb12-21"><a></a></span>
-<span id="cb12-22"><a></a><span class="co"># Plot</span></span>
-<span id="cb12-23"><a></a><span class="fu">ggplot</span>(ci_data, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
-<span id="cb12-24"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb12-25"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> ci_lower, <span class="at">ymax =</span> ci_upper), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb12-26"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Means with 95% Confidence Intervals"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co">#| warning: false</span></span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a><span class="co"># Generate sample data</span></span>
+<span id="cb12-4"><a></a><span class="fu">set.seed</span>(<span class="dv">253</span>)</span>
+<span id="cb12-5"><a></a>sample_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-6"><a></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">30</span>),</span>
+<span id="cb12-7"><a></a>  <span class="at">value =</span> <span class="fu">c</span>(</span>
+<span id="cb12-8"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="dv">15</span>),</span>
+<span id="cb12-9"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">110</span>, <span class="dv">15</span>),</span>
+<span id="cb12-10"><a></a>    <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">105</span>, <span class="dv">15</span>)</span>
+<span id="cb12-11"><a></a>  )</span>
+<span id="cb12-12"><a></a>)</span>
+<span id="cb12-13"><a></a></span>
+<span id="cb12-14"><a></a><span class="co"># Calculate means and CIs</span></span>
+<span id="cb12-15"><a></a>ci_data <span class="ot">&lt;-</span> sample_data <span class="sc">%&gt;%</span></span>
+<span id="cb12-16"><a></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
+<span id="cb12-17"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-18"><a></a>    <span class="at">mean =</span> <span class="fu">mean</span>(value),</span>
+<span id="cb12-19"><a></a>    <span class="at">se =</span> <span class="fu">sd</span>(value) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
+<span id="cb12-20"><a></a>    <span class="at">ci_lower =</span> mean <span class="sc">-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="fu">n</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se,</span>
+<span id="cb12-21"><a></a>    <span class="at">ci_upper =</span> mean <span class="sc">+</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="fu">n</span>() <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> se</span>
+<span id="cb12-22"><a></a>  )</span>
+<span id="cb12-23"><a></a></span>
+<span id="cb12-24"><a></a><span class="co"># Plot</span></span>
+<span id="cb12-25"><a></a><span class="fu">ggplot</span>(ci_data, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb12-26"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-27"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> ci_lower, <span class="at">ymax =</span> ci_upper), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb12-28"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Means with 95% Confidence Intervals"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-01b_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"><p>We will learn more about confidence intervals in the next lecture.</p>

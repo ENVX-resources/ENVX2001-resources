@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-945df11cfe02533d166420a10b935f00.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -285,7 +285,7 @@ Januar Harianto <a href="https://orcid.org/0000-0001-5678-9012" class="quarto-ti
 </section>
 <section id="can-dogs-smell-human-stress" class="slide level2">
 <h2>Can dogs smell human stress?</h2>
-<p>Eighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls, looking for signs of anxiety.</p>
+<p>Eighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -296,18 +296,16 @@ Januar Harianto <a href="https://orcid.org/0000-0001-5678-9012" class="quarto-ti
 <span id="cb2-5"><a></a></span>
 <span id="cb2-6"><a></a>dog_means <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(latency <span class="sc">~</span> dog_id <span class="sc">+</span> treatment, <span class="at">data =</span> dogs, <span class="at">FUN =</span> mean)</span>
 <span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a><span class="fu">ggplot</span>(dog_means, <span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> latency, <span class="at">colour =</span> treatment)) <span class="sc">+</span></span>
-<span id="cb2-9"><a></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb2-10"><a></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"crossbar"</span>, <span class="at">width =</span> <span class="fl">0.5</span>,</span>
-<span id="cb2-11"><a></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">colour =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb2-12"><a></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb2-13"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Odour treatment"</span>, <span class="at">y =</span> <span class="st">"Mean latency (s)"</span>) <span class="sc">+</span></span>
-<span id="cb2-14"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
-<span id="cb2-15"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-8"><a></a><span class="fu">ggplot</span>(dog_means, <span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> latency, <span class="at">fill =</span> treatment)) <span class="sc">+</span></span>
+<span id="cb2-9"><a></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb2-11"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Odour treatment"</span>, <span class="at">y =</span> <span class="st">"Mean latency (s)"</span>) <span class="sc">+</span></span>
+<span id="cb2-12"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-01a_files/figure-revealjs/dog-odour-1.png" width="960" class="r-stretch"><p>What if there are more than 2 groups to compare? We use <strong>ANOVA</strong> (Weeks 3–6).</p>
+<img data-src="Lecture-01a_files/figure-revealjs/dog-odour-1.png" width="960" class="r-stretch"><p>What if there are more than 2 groups to compare? We use <strong>Analysis of Variances (ANOVA)</strong> (Weeks 3–6).</p>
 </section>
 <section id="how-big-is-that-penguin" class="slide level2">
 <h2>How big is that penguin?</h2>
@@ -319,33 +317,38 @@ Januar Harianto <a href="https://orcid.org/0000-0001-5678-9012" class="quarto-ti
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
 <span id="cb3-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> species), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Body mass (g)"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-5"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"#e64626"</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Linear"</span>)) <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">2</span>), <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">"#8f9ec9"</span>, <span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Quadratic"</span>)) <span class="sc">+</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb3-8"><a></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Linear =</span> <span class="st">"solid"</span>, <span class="at">Quadratic =</span> <span class="st">"solid"</span>)) <span class="sc">+</span></span>
+<span id="cb3-9"><a></a>  <span class="fu">guides</span>(<span class="at">linetype =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">colour =</span> <span class="fu">c</span>(<span class="st">"#e64626"</span>, <span class="st">"#8f9ec9"</span>)))) <span class="sc">+</span></span>
+<span id="cb3-10"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>, <span class="at">y =</span> <span class="st">"Body mass (g)"</span>, <span class="at">linetype =</span> <span class="st">"Model"</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
 <img data-src="Lecture-01a_files/figure-revealjs/penguin-regression-1.png" width="960" class="r-stretch"><p>We can model this relationship with <strong>regression</strong>, but how do we validate this against other models? You will learn to do this with <strong>model selection</strong> (Weeks 7–9).</p>
 </section>
-<section id="darwins-finches-evolution-you-can-measure" class="slide level2">
-<h2>Darwin’s finches: evolution you can measure</h2>
-<p>Peter and Rosemary Grant spent 40 years measuring beak morphology in Galápagos finches, documenting natural selection in real time.</p>
+<section id="hawks-of-iowa" class="slide level2">
+<h2>Hawks of Iowa</h2>
+<p>Researchers at Lake MacBride, Iowa trapped three hawk species over a decade and measured wing length, weight, culmen, and hallux on each bird.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>finches <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/darwin_finches_clean.csv"</span>)</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="fu">ggplot</span>(finches, <span class="fu">aes</span>(<span class="at">x =</span> beak_length, <span class="at">y =</span> beak_depth, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">stat_ellipse</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Beak length (mm)"</span>, <span class="at">y =</span> <span class="st">"Beak depth (mm)"</span>, <span class="at">colour =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
-<span id="cb4-8"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>hawks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/hawks_clean.csv"</span>)</span>
+<span id="cb4-2"><a></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(hawks[, <span class="fu">c</span>(<span class="st">"Wing"</span>, <span class="st">"Weight"</span>, <span class="st">"Culmen"</span>, <span class="st">"Hallux"</span>)], <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a></a>scores <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pca<span class="sc">$</span>x, <span class="at">Species =</span> hawks<span class="sc">$</span>Species)</span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a><span class="fu">ggplot</span>(scores, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">colour =</span> Species)) <span class="sc">+</span></span>
+<span id="cb4-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a></a>  <span class="fu">stat_ellipse</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a></a>  <span class="fu">scale_colour_viridis_d</span>(<span class="at">end =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"PC1"</span>, <span class="at">y =</span> <span class="st">"PC2"</span>, <span class="at">colour =</span> <span class="st">"Species"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-01a_files/figure-revealjs/darwin-finches-1.png" width="960" class="r-stretch"><p>Sometimes, patterns jump out to us in complex datasets. You will learn to find patterns like these with <strong>multivariate methods</strong> (Weeks 10–12).</p>
+<img data-src="Lecture-01a_files/figure-revealjs/hawks-pca-1.png" width="960" class="r-stretch"><p>We can represent multivariate data in fewer dimensions using <strong>multivariate methods</strong> (Weeks 10–12).</p>
 </section></section>
 <section>
 <section id="housekeeping" class="title-slide slide level1 center">
@@ -382,15 +385,15 @@ Januar Harianto <a href="https://orcid.org/0000-0001-5678-9012" class="quarto-ti
 </section>
 <section id="attendance" class="slide level2">
 <h2>Attendance</h2>
-<h3 id="lectures-are-compulsory-but-not-a-hurdle">Lectures are compulsory, but not a hurdle</h3>
+<h3 id="lectures-1">Lectures</h3>
 <ul>
-<li>You are expected to attend 80% of lectures, and attendance is recorded via Ed Discussion Boards</li>
-<li>Attendance is <strong>not</strong> a hurdle. We use attendance data to determine if students are engaging with the course</li>
+<li>You are expected to attend 80% of lectures</li>
+<li>We may collect attendance data to determine if students are engaging with the course</li>
 </ul>
 <h3 id="labs-are-compulsory-with-80-minimum-attendance">Labs are compulsory with 80% minimum attendance</h3>
 <ul>
 <li>Labs are the heart of this unit. No exceptions except through special consideration</li>
-<li>We will not record your attendance if you are not present for more than 50% of the lab session (we round things up)</li>
+<li>Attendance is recorded - we take attendance seriously and tutors may not record attendance for students who game the attendance system (e.g., signing in for a friend, leaving early without permission, etc.)</li>
 </ul>
 </section>
 <section id="assessments" class="slide level2">

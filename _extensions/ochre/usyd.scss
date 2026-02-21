@@ -235,6 +235,11 @@ $callout-color-important: $brand-heritagerose;
     }
 }
 
+.reveal .quarto-figure-center > figure > figcaption,
+.reveal .slide img.quarto-figure-center + p.caption {
+    text-align: center;
+}
+
 /* Tables */
 .reveal table {
     margin: auto;

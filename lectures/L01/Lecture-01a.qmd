@@ -72,7 +72,7 @@ ggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +
 
 ## Can dogs smell human stress?
 
-Eighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls, looking for signs of anxiety.
+Eighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls.
 
 ```{r}
 #| label: dog-odour
@@ -87,17 +87,15 @@ dogs$treatment <- factor(dogs$treatment,
 
 dog_means <- aggregate(latency ~ dog_id + treatment, data = dogs, FUN = mean)
 
-ggplot(dog_means, aes(x = treatment, y = latency, colour = treatment)) +
-  geom_jitter(width = 0.2, size = 3, alpha = 0.6) +
-  stat_summary(fun = mean, geom = "crossbar", width = 0.5,
-    linewidth = 0.8, colour = "black") +
-  scale_colour_viridis_d(end = 0.9) +
+ggplot(dog_means, aes(x = treatment, y = latency, fill = treatment)) +
+  geom_violin(alpha = 0.6) +
+  scale_fill_viridis_d(end = 0.9) +
   labs(x = "Odour treatment", y = "Mean latency (s)") +
   theme_minimal(base_size = 18) +
   theme(legend.position = "none")
 ```
 
-What if there are more than 2 groups to compare? We use **ANOVA** (Weeks 3--6).
+What if there are more than 2 groups to compare? We use **Analysis of Variances (ANOVA)** (Weeks 3--6).
 
 ## How big is that penguin?
 
@@ -121,27 +119,29 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 
 We can model this relationship with **regression**, but how do we validate this against other models? You will learn to do this with **model selection** (Weeks 7--9).
 
-## Darwin's finches: evolution you can measure
+## Hawks of Iowa: three species, four measurements
 
-Peter and Rosemary Grant spent 40 years measuring beak morphology in Galápagos finches, documenting natural selection in real time.
+Researchers at Lake MacBride, Iowa trapped three hawk species over a decade and measured wing length, weight, culmen, and hallux on each bird. With four variables per bird, we can use PCA to collapse the data into two dimensions.
 
 ```{r}
-#| label: darwin-finches
+#| label: hawks-pca
 #| code-fold: true
 #| echo: true
 #| warning: false
 #| message: false
-finches <- read.csv("data/darwin_finches_clean.csv")
+hawks <- read.csv("data/hawks_clean.csv")
+pca <- prcomp(hawks[, c("Wing", "Weight", "Culmen", "Hallux")], scale. = TRUE)
+scores <- data.frame(pca$x, Species = hawks$Species)
 
-ggplot(finches, aes(x = beak_length, y = beak_depth, colour = species)) +
+ggplot(scores, aes(x = PC1, y = PC2, colour = Species)) +
   geom_point(alpha = 0.5) +
   stat_ellipse(linewidth = 1) +
   scale_colour_viridis_d(end = 0.9) +
-  labs(x = "Beak length (mm)", y = "Beak depth (mm)", colour = "Species") +
+  labs(x = "PC1", y = "PC2", colour = "Species") +
   theme_minimal(base_size = 18)
 ```
 
-Sometimes, patterns jump out to us in complex datasets. You will learn to find patterns like these with **multivariate methods** (Weeks 10--12).
+Four measurements, reduced to two axes, and the species separate cleanly. You will learn to do this with **multivariate methods** (Weeks 10--12).
 
 # Housekeeping
 
@@ -179,15 +179,15 @@ Walking to the South Eveleigh Precinct takes about 20 minutes from Carslaw. You 
 
 ## Attendance
 
-### Lectures are compulsory, but not a hurdle
+### Lectures 
 
-- You are expected to attend 80% of lectures, and attendance is recorded via Ed Discussion Boards
-- Attendance is **not** a hurdle. We use attendance data to determine if students are engaging with the course
+- You are expected to attend 80% of lectures
+- We may collect attendance data to determine if students are engaging with the course
 
 ### Labs are compulsory with 80% minimum attendance
 
 - Labs are the heart of this unit. No exceptions except through special consideration
-- We will not record your attendance if you are not present for more than 50% of the lab session (we round things up)
+- Attendance is recorded. Tutor
 
 
 ## Assessments

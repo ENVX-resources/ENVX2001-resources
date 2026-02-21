@@ -307,6 +307,12 @@ $callout-color-important: $brand-heritagerose;
     }
 }
 
+// Fix r-stretch images sitting beside inline-block lists
+.reveal section > img.r-stretch,
+.reveal section > img.stretch {
+    display: block;
+}
+
 /* Utilities */
 .brand-ochre {
     color: $brand-ochre;

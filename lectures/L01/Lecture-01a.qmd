@@ -130,7 +130,7 @@ ggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +
 
 ## Can dogs smell human stress?
 
-Researchers presented 18 pet dogs with food bowls at five locations, from "positive" (always rewarded) to "negative" (never rewarded). Dogs exposed to stressed human odours were slower to approach ambiguous locations — a sign of cognitive bias.
+Eighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls, looking for signs of anxiety.
 
 ```{r}
 #| label: dog-odour
@@ -138,15 +138,19 @@ Researchers presented 18 pet dogs with food bowls at five locations, from "posit
 #| warning: false
 #| message: false
 dogs <- read.csv("data/dog_odour_clean.csv")
-dogs$location <- factor(dogs$location,
-  levels = c("P", "NP", "M", "NN", "N"),
-  labels = c("Positive", "Near-pos", "Middle", "Near-neg", "Negative")
+dogs$treatment <- factor(dogs$treatment,
+  levels = c("Baseline", "Relaxed", "Stressed")
 )
 
-ggplot(dogs, aes(x = location, y = latency, fill = location)) +
-  geom_boxplot(show.legend = FALSE) +
-  labs(x = "Bowl location", y = "Latency to approach (s)") +
-  theme_minimal(base_size = 18)
+dog_means <- aggregate(latency ~ dog_id + treatment, data = dogs, FUN = mean)
+
+ggplot(dog_means, aes(x = treatment, y = latency, colour = treatment)) +
+  geom_jitter(width = 0.2, size = 3, alpha = 0.6) +
+  stat_summary(fun = mean, geom = "crossbar", width = 0.5,
+    linewidth = 0.8, colour = "black") +
+  labs(x = "Odour treatment", y = "Mean latency (s)") +
+  theme_minimal(base_size = 18) +
+  theme(legend.position = "none")
 ```
 
 *You'll learn to compare multiple treatments with **ANOVA** (Weeks 3--6).*

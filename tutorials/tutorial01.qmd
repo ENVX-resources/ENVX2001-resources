@@ -51,8 +51,6 @@ Let's set up a new project for ENVX2001 in RStudio.
 Give your project a meaningful name, ideally with "ENVX2001" in it so you can identify it later. For example "ENVX2001 Labs".
 :::
 
-![](tutorial-01/tutorials/assets/rstudio-create-project.gif)
-
 ## Recommended folder structure
 
 Modern technology means that some of you may never have to touch the file system. However, it's still good to know how to organise your files. Search the internet for using the Finder (macOS) or the File Explorer (Windows) if you need a refresher.

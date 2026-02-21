@@ -15,12 +15,12 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 ::: {tbl-colwidths="[10,45,25,20]"}
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 1 | [Introduction][L01] | [Tutorial 01][T01] | [Lab 01][Lab01] [{{< fa file-pdf >}}][Lab01pdf] |
-| 2 | [Sampling designs][L02] | [Tutorial 02][T02] | [Lab 02][Lab02] [{{< fa file-pdf >}}][Lab02pdf] |
-| 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] | [Lab 03][Lab03] [{{< fa file-pdf >}}][Lab03pdf] |
-| 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] | [Lab 04][Lab04] [{{< fa file-pdf >}}][Lab04pdf] |
-| 5 | [Experimental design][L05] | [Tutorial 05][T05] | [Lab 05][Lab05] [{{< fa file-pdf >}}][Lab05pdf] |
-| 6 | [ANOVA with blocking][L06] | [Tutorial 06][T06] | [Lab 06][Lab06] [{{< fa file-pdf >}}][Lab06pdf] |
+| 1 | [Introduction][L01] | [Tutorial 01][T01] [{{< fa file-pdf >}}][T01pdf] | [Lab 01][Lab01] [{{< fa file-pdf >}}][Lab01pdf] |
+| 2 | [Sampling designs][L02] | [Tutorial 02][T02] [{{< fa file-pdf >}}][T02pdf] | [Lab 02][Lab02] [{{< fa file-pdf >}}][Lab02pdf] |
+| 3 | [1-way ANOVA][L03] | [Tutorial 03][T03] [{{< fa file-pdf >}}][T03pdf] | [Lab 03][Lab03] [{{< fa file-pdf >}}][Lab03pdf] |
+| 4 | [Residual diagnostics & post hoc tests][L04] | [Tutorial 04][T04] [{{< fa file-pdf >}}][T04pdf] | [Lab 04][Lab04] [{{< fa file-pdf >}}][Lab04pdf] |
+| 5 | [Experimental design][L05] | [Tutorial 05][T05] [{{< fa file-pdf >}}][T05pdf] | [Lab 05][Lab05] [{{< fa file-pdf >}}][Lab05pdf] |
+| 6 | [ANOVA with blocking][L06] | [Tutorial 06][T06] [{{< fa file-pdf >}}][T06pdf] | [Lab 06][Lab06] [{{< fa file-pdf >}}][Lab06pdf] |
 :::
 
 ### Module 2: Finding patterns in data
@@ -28,12 +28,12 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 ::: {tbl-colwidths="[10,45,25,20]"}
 | Week | Lecture | Tutorial | Lab |
 |------|---------|----------|-----|
-| 7  | [Regression modelling][L07] | [Tutorial 07][T07] | [Lab 07][Lab07] [{{< fa file-pdf >}}][Lab07pdf] |
-| 8  | [Regression model development][L08] | [Tutorial 08][T08] | [Lab 08][Lab08] [{{< fa file-pdf >}}][Lab08pdf] |
+| 7  | [Regression modelling][L07] | [Tutorial 07][T07] [{{< fa file-pdf >}}][T07pdf] | [Lab 07][Lab07] [{{< fa file-pdf >}}][Lab07pdf] |
+| 8  | [Regression model development][L08] | [Tutorial 08][T08] [{{< fa file-pdf >}}][T08pdf] | [Lab 08][Lab08] [{{< fa file-pdf >}}][Lab08pdf] |
 | 9  | [Regression model assessment][L09] | -- | [Lab 09][Lab09] [{{< fa file-pdf >}}][Lab09pdf] |
-| 10 | Principle component analysis | [Tutorial 10][T10] | [Lab 10][Lab10] [{{< fa file-pdf >}}][Lab10pdf] |
-| 11 | Clustering | [Tutorial 11][T11] | [Lab 11][Lab11] [{{< fa file-pdf >}}][Lab11pdf] |
-| 12 | Multidimensional scaling | [Tutorial 12][T12] | [Lab 12][Lab12] [{{< fa file-pdf >}}][Lab12pdf] |
+| 10 | Principle component analysis | [Tutorial 10][T10] [{{< fa file-pdf >}}][T10pdf] | [Lab 10][Lab10] [{{< fa file-pdf >}}][Lab10pdf] |
+| 11 | Clustering | [Tutorial 11][T11] [{{< fa file-pdf >}}][T11pdf] | [Lab 11][Lab11] [{{< fa file-pdf >}}][Lab11pdf] |
+| 12 | Multidimensional scaling | [Tutorial 12][T12] [{{< fa file-pdf >}}][T12pdf] | [Lab 12][Lab12] [{{< fa file-pdf >}}][Lab12pdf] |
 :::
 
 <!-- Links -->
@@ -57,6 +57,17 @@ This site hosts lectures, tutorials, and labs for ENVX2001. Some content is stil
 [T10]: tutorials/tutorial10.qmd
 [T11]: tutorials/tutorial11.qmd
 [T12]: tutorials/tutorial12.qmd
+[T01pdf]: tutorials/tutorial01.pdf
+[T02pdf]: tutorials/tutorial02.pdf
+[T03pdf]: tutorials/tutorial03.pdf
+[T04pdf]: tutorials/tutorial04.pdf
+[T05pdf]: tutorials/tutorial05.pdf
+[T06pdf]: tutorials/tutorial06.pdf
+[T07pdf]: tutorials/tutorial07.pdf
+[T08pdf]: tutorials/tutorial08.pdf
+[T10pdf]: tutorials/tutorial10.pdf
+[T11pdf]: tutorials/tutorial11.pdf
+[T12pdf]: tutorials/tutorial12.pdf
 [Lab01]: labs/Lab01/Lab01-introduction.qmd
 [Lab02]: labs/Lab02/Lab02-sample-designs.qmd
 [Lab03]: labs/Lab03/Lab03-oneway-anova.qmd

@@ -111,17 +111,17 @@ penguins <- palmerpenguins::penguins
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(colour = species), alpha = 0.6) +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", aes(linetype = "Linear")) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), aes(linetype = "Quadratic")) +
   scale_colour_viridis_d(end = 0.9) +
-  labs(x = "Flipper length (mm)", y = "Body mass (g)") +
+  labs(x = "Flipper length (mm)", y = "Body mass (g)", linetype = "Model") +
   theme_minimal(base_size = 18)
 ```
 
 We can model this relationship with **regression**, but how do we validate this against other models? You will learn to do this with **model selection** (Weeks 7--9).
 
-## Hawks of Iowa: three species, four measurements
-
-Researchers at Lake MacBride, Iowa trapped three hawk species over a decade and measured wing length, weight, culmen, and hallux on each bird. With four variables per bird, we can use PCA to collapse the data into two dimensions.
+## Hawks of Iowa
+Researchers at Lake MacBride, Iowa trapped three hawk species over a decade and measured wing length, weight, culmen, and hallux on each bird.
 
 ```{r}
 #| label: hawks-pca
@@ -141,7 +141,7 @@ ggplot(scores, aes(x = PC1, y = PC2, colour = Species)) +
   theme_minimal(base_size = 18)
 ```
 
-Four measurements, reduced to two axes, and the species separate cleanly. You will learn to do this with **multivariate methods** (Weeks 10--12).
+We can represent multivariate data in fewer dimensions using **multivariate methods** (Weeks 10--12).
 
 # Housekeeping
 

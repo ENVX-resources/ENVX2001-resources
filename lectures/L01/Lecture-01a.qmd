@@ -18,9 +18,7 @@ format:
 ---
 
 
-# About
-
-Staff | Structure | Attendance
+# This is ENVX2001
 
 ## Staff
  
@@ -38,67 +36,8 @@ Staff | Structure | Attendance
 :::
 
 
-## Structure
 
-
-### Scheduled sessions
-
-- Lectures run **Wednesdays 10 am–12 pm** in [Chemistry Lecture Theatre 3][clt03].
-- Labs are held at the **South Eveleigh Precinct** — Thursdays 9 am–12 pm, Fridays 10 am–1 pm or 2–5 pm.
-
-### Getting help
-
-- Ed Discussion board - best place for discussion and announcements
-- Emails - for private matters
-- Drop-in sessions - arrange with me (Januar) if you want to have a chat on Zoom
-
-
-## Attendance
-
-1. **Lectures**: Compulsory, but **not** a hurdle. If you choose to watch the recordings, understand that academic decisions (e.g. review of exams) will be made based on your attendance records for lectures and labs.
-2. **Labs**: Mandatory, 80% minimum attendance required. Attendance will be taken by QR code. If you miss a lab, you may attend another session that week -- send us an email!
-3. **Tutorials**: Self-guided (1 hour), complete before each week's lab.
-
-
-## Assessments
-
-Check [Unit Outline](https://www.sydney.edu.au/units/ENVX2001/2026-S1C-ND-CC)
-
-| Week | Assessment                                | Weight  | Type       |
-|------|-------------------------------------------|---------|------------|
-| 3    | Early Feedback Task                       | 1%      | Individual |
-| 5    | Project 1: Describing data                | 10%     | Individual |
-| 10   | Project 2: Analysing experimental data    | 20%     | Individual |
-| 13   | Project 3: Presentation (multivariate)    | 20%     | Group      |
-| -    | Quizzes (weekly, multiple due dates)      | 4%      | Individual |
-| -    | Exam (2 hours, MCQs + Short Answers)      | 45%     | Individual |
-
-
-# South Eveleigh Precinct
-Used to be known as the **Australian Technology Park** (ATP). *Still is, but it used to, too.*
-
-## Biomedical Building
-![Credit: Michael Wheatland](images/biomedical.jpg)
-
-
-## Directions
-
-### Buses
-[Courtesy buses][buses] are available:
-
-- The best option is to take the bus from **Fisher Library** to **Redfern Station**, then walk to the precinct (through the new station platform as “local traffic”).
-- Alternatively, direct buses are available -- but less frequent.
-
-### Driving
-Free parking is available around Henderson Road, but it is extremely crowded. We do *not* recommend driving to the precinct.
-
-## Walking
-Walking to the South Eveleigh Precinct takes about 20 minutes. However, you can save approximately 5 minutes by using Redfern station's community access gates, where you don't need to use an Opal card to get through.
-
-[If the map does not load, click here](https://maps.app.goo.gl/vs6aXA6YY4cL98Po7)
-<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3311.892510223299!2d151.19220377714373!3d-33.89242207028511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6b12b1d46683b08b%3A0x16d4584b9e392df3!2sCarslaw%20Building%2C%20University%20of%20Sydney%2C%20Camperdown%20NSW%2C%20Australia!3m2!1d-33.8885751!2d151.1903621!4m5!1s0x6b12b1ce3cfcd14d%3A0xe363fbe9239512d6!2s1%20Central%20Avenue%2C%20Eveleigh%20NSW%2C%20Australia!3m2!1d-33.896277999999995!2d151.19577999999998!5e0!3m2!1sen!2smy!4v1702530988987!5m2!1sen!2smy" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-# Your Statistical journey
+# Your statistical journey
 
 ```{r}
 #| label: setup-journey
@@ -113,6 +52,7 @@ In a partially migratory elk population in Alberta, Canada, researchers compared
 ```{r}
 #| label: elk-birthweight
 #| code-fold: true
+#| echo: true
 #| warning: false
 #| message: false
 elk <- read.csv("data/elk_calf_clean.csv")
@@ -128,7 +68,7 @@ ggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +
   theme_minimal(base_size = 18)
 ```
 
-*You'll learn to compare groups like this with **t-tests** (Weeks 1--3).*
+*You have already learnt to compare groups like this with **t-tests** (Weeks 1--3).*
 
 ## Can dogs smell human stress?
 
@@ -137,6 +77,7 @@ Eighteen pet dogs were exposed to odours from humans who were either relaxed or 
 ```{r}
 #| label: dog-odour
 #| code-fold: true
+#| echo: true
 #| warning: false
 #| message: false
 dogs <- read.csv("data/dog_odour_clean.csv")
@@ -156,15 +97,16 @@ ggplot(dog_means, aes(x = treatment, y = latency, colour = treatment)) +
   theme(legend.position = "none")
 ```
 
-*You'll learn to compare multiple treatments with **ANOVA** (Weeks 3--6).*
+What if there are more than 2 groups to compare? We use **ANOVA** (Weeks 3--6).
 
 ## How big is that penguin?
 
-Researchers at Palmer Station, Antarctica measured body dimensions of three penguin species over three years. Heavier penguins tend to have longer flippers -- but how strong is that relationship?
+Heavier penguins tend to have longer flippers -- but how strong is that relationship?
 
 ```{r}
 #| label: penguin-regression
 #| code-fold: true
+#| echo: true
 #| warning: false
 #| message: false
 penguins <- palmerpenguins::penguins
@@ -177,7 +119,7 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   theme_minimal(base_size = 18)
 ```
 
-*You'll learn to model relationships like this with **regression** (Weeks 7--9).*
+We can model this relationship with **regression**, but how do we validate this against other models? You will learn to do this with **model selection** (Weeks 7--9).
 
 ## Darwin's finches: evolution you can measure
 
@@ -186,6 +128,7 @@ Peter and Rosemary Grant spent 40 years measuring beak morphology in Galápagos 
 ```{r}
 #| label: darwin-finches
 #| code-fold: true
+#| echo: true
 #| warning: false
 #| message: false
 finches <- read.csv("data/darwin_finches_clean.csv")
@@ -198,41 +141,70 @@ ggplot(finches, aes(x = beak_length, y = beak_depth, colour = species)) +
   theme_minimal(base_size = 18)
 ```
 
-*You'll learn to find patterns in complex datasets with **multivariate methods** (Weeks 10--12).*
+Sometimes, patterns jump out to us in complex datasets. You will learn to find patterns like these with **multivariate methods** (Weeks 10--12).
 
+# Housekeeping
+
+## Lectures
+
+Wednesdays 10am - 12pm, Chemistry Lecture Theatre 3 (CLT03)
+
+![Copyright The University of Sydney](images/chemlt3.jpeg)
+
+## Labs
+
+Labs are held at the **South Eveleigh Precinct**
+
+![Credit: Michael Wheatland](images/biomedical.jpg)
+
+## Directions from Carslaw
+
+[If the map does not load, click here](https://maps.app.goo.gl/vs6aXA6YY4cL98Po7)
+<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3311.892510223299!2d151.19220377714373!3d-33.89242207028511!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x6b12b1d46683b08b%3A0x16d4584b9e392df3!2sCarslaw%20Building%2C%20University%20of%20Sydney%2C%20Camperdown%20NSW%2C%20Australia!3m2!1d-33.8885751!2d151.1903621!4m5!1s0x6b12b1ce3cfcd14d%3A0xe363fbe9239512d6!2s1%20Central%20Avenue%2C%20Eveleigh%20NSW%2C%20Australia!3m2!1d-33.896277999999995!2d151.19577999999998!5e0!3m2!1sen!2smy!4v1702530988987!5m2!1sen!2smy" width="1200" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+## Transport options
+
+### Buses
+[Courtesy buses][buses] are available from **Fisher Library** to **Redfern Station**. You  must then walk to the precint (10 minutes).
+
+
+### Driving
+Free parking is available around Henderson Road, but it is extremely crowded. We do *not* recommend driving to the precinct.
+
+### Walking
+Walking to the South Eveleigh Precinct takes about 20 minutes from Carslaw. You can save approximately 5 minutes by using Redfern station's community access gates.
+
+
+# Expectations
+
+## Attendance
+
+### Lectures are compulsory, but not a hurdle
+
+- You are expected to attend 80% of lectures, and attendance is recorded via Ed Discussion Boards
+- Attendance is **not** a hurdle. We use attendance data to determine if students are engaging with the course
+
+### Labs are compulsory with 80% minimum attendance
+
+- Labs are the heart of this unit. No exceptions except through special consideration
+- We will not record your attendance if you are not present for more than 50% of the lab session (we round things up)
+
+
+## Assessments
+
+Check [Unit Outline](https://www.sydney.edu.au/units/ENVX2001/2026-S1C-ND-CC)
+
+| Week | Assessment                                | Weight  | Type       |
+|------|-------------------------------------------|---------|------------|
+| 3    | Early Feedback Task                       | 1%      | Individual |
+| 5    | Project 1: Describing data                | 10%     | Individual |
+| 10   | Project 2: Analysing experimental data    | 20%     | Individual |
+| 13   | Project 3: Presentation (multivariate)    | 20%     | Group      |
+| -    | Quizzes (weekly, multiple due dates)      | 4%      | Individual |
+| -    | Exam (2 hours, MCQs + Short Answers)      | 45%     | Individual |
 
 
 # Doing well
-
-
-## Lecture attendance options
-### In-person vs. online recordings
-
-::: fragment
-**In-person benefits:**
-
-- Real-time interaction with peers and lecturers
-- Immediate feedback and clarification of concepts
-- Active participation in discussions and polls
-- Building connections with classmates
-
-**Online recording benefits:**
-
-- Flexibility to manage other commitments
-- Ability to pause and review complex concepts
-- Learn at your own pace
-- Convenient for those with long commutes
-:::
-
-## On-campus or online?
-
-Choose the option that best suits your learning style and circumstances. **If watching online, try to**:
-
-- Stay up to date with recordings to avoid falling behind
-- Use Ed discussion board actively for questions
-- **Attend some lectures in person when possible for key topics**
-
-There is a strong positive correlation between lecture attendance and final grades -- but it's not the only factor. *It may just be the case that students who attend lectures are more likely to keep up with the course material.*
 
 ## Put in the hours 
 - This is a **6 credit point** unit, which means that you are expected to spend **120 -- 150 hours** in total, including exam prep time (~10 h per week)!
@@ -242,9 +214,10 @@ There is a strong positive correlation between lecture attendance and final grad
 
 ## Ask questions
 
-- [**Ed**][edsite] is the *best* place to ask questions. We are way more responsive on **Ed** than on email.
-- We are *open* to the use of AI tools (including LLMs like ChatGPT) to help you answer questions about code... but don't use them to cheat *yourself* out of learning.
-- We have **drop-in sessions**, where you can jump in and have a chat on Zoom. We will announce the schedule on **Ed**.
+Don't be afraid to seek help. We are happy when students show genuine interest to learn and will do our best to support you. Here are some ways to ask questions:
+
+- [**Ed Discussion**][edsite] is the *best* place to ask questions. We are way more responsive on **Ed** than on email.
+- **Drop-in sessions** are available. Check Ed Discussion for times and links.
 
 # Learning outcomes
 
@@ -258,12 +231,16 @@ There is a strong positive correlation between lecture attendance and final grad
 - **LO7** appraise the validity of statistical analyses used publications.
 
 
-# Thanks for listening! Questions?
+# Questions?
 
 
 
 This presentation is based on the [SOLES Quarto reveal.js template](https://github.com/usyd-soles-edu/soles-revealjs) and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by] 
 
+
+## Take a break 
+
+We will resume the second half of the lecture in 10 minutes. Come on down if you have questions!
 
 <!-- Links -->
 [clt01]: https://venueweb.sydney.edu.au/F11.01.145

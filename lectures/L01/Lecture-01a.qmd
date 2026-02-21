@@ -111,10 +111,10 @@ penguins <- palmerpenguins::penguins
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(colour = species), alpha = 0.6) +
-  geom_smooth(method = "lm", aes(linetype = "Linear")) +
-  geom_smooth(method = "lm", formula = y ~ poly(x, 2), aes(linetype = "Quadratic")) +
+  geom_smooth(method = "lm", colour = "#e64626", se = FALSE) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), colour = "#8f9ec9", se = FALSE) +
   scale_colour_viridis_d(end = 0.9) +
-  labs(x = "Flipper length (mm)", y = "Body mass (g)", linetype = "Model") +
+  labs(x = "Flipper length (mm)", y = "Body mass (g)") +
   theme_minimal(base_size = 18)
 ```
 

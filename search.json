@@ -1838,98 +1838,77 @@
     "href": "lectures/L01/Lecture-01a.html#staff",
     "title": "Lecture 01a – Welcome",
     "section": "Staff",
-    "text": "Staff\n\n\n\n\n\n\nA. Prof Aaron Greenville Unit Coordinator, Weeks 4-6\n\n\n\n\n\n\n\nDr Liana Pozza Lecturer, Weeks 7-9\n\n\n\n\n\n\n\nDr Januar Harianto Lecturer, Weeks 1-3\n\n\n\n\n\n\n\nProf Mathew Crowther Professor, Weeks 9-11"
+    "text": "Staff\n\n\n\n\n\n\nA. Prof Aaron GreenvilleUnit CoordinatorWeeks 4-6\n\n\n\n\n\n\n\nDr Liana PozzaLecturerWeeks 7-9\n\n\n\n\n\n\n\nDr Januar HariantoLecturerWeeks 1-3\n\n\n\n\n\n\n\nProf Mathew CrowtherProfessorWeeks 9-11"
   },
   {
-    "objectID": "lectures/L01/Lecture-01a.html#structure",
-    "href": "lectures/L01/Lecture-01a.html#structure",
+    "objectID": "lectures/L01/Lecture-01a.html#does-migration-come-at-a-cost",
+    "href": "lectures/L01/Lecture-01a.html#does-migration-come-at-a-cost",
     "title": "Lecture 01a – Welcome",
-    "section": "Structure",
-    "text": "Structure\nThis unit includes lectures, self-guided tutorials, labs, discussions, and drop-in sessions.\n\nLectures: Tuesdays 10 AM, Wednesdays 11 AM, Chemistry Lecture Theatre 3\nTutorials: Self-guided (1 hour), complete before each week’s lab.\nLabs: South Eveleigh Precinct, Thursday 9 am – 12 pm, Friday 10 am – 1 pm, 2 pm – 5 pm\nDiscussion: Via Ed discussion, we usually respond the same day unless it is the weekend.\nDrop-in sessions: Scheduled as necessary (Zoom or in person). Email us to arrange a session."
+    "section": "Does migration come at a cost?",
+    "text": "Does migration come at a cost?\nIn a partially migratory elk population in Alberta, Canada, researchers compared calf birth weights between resident and migrant herds.\n\n\nCode\nelk &lt;- read.csv(\"data/elk_calf_clean.csv\")\nelk$mig_status &lt;- factor(elk$mig_status,\n  levels = c(\"Resident\", \"Eastern\"),\n  labels = c(\"Resident\", \"Migrant\")\n)\n\nggplot(elk, aes(x = mig_status, y = birth_wt, fill = mig_status)) +\n  geom_boxplot(show.legend = FALSE) +\n  scale_fill_viridis_d(end = 0.9) +\n  labs(x = NULL, y = \"Birth weight (kg)\") +\n  theme_minimal(base_size = 18)\n\n\n\nYou have already learnt to compare groups like this with t-tests (Weeks 1–3)."
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#can-dogs-smell-human-stress",
+    "href": "lectures/L01/Lecture-01a.html#can-dogs-smell-human-stress",
+    "title": "Lecture 01a – Welcome",
+    "section": "Can dogs smell human stress?",
+    "text": "Can dogs smell human stress?\nEighteen pet dogs were exposed to odours from humans who were either relaxed or stressed. Researchers then measured how long each dog took to approach food bowls, looking for signs of anxiety.\n\n\nCode\ndogs &lt;- read.csv(\"data/dog_odour_clean.csv\")\ndogs$treatment &lt;- factor(dogs$treatment,\n  levels = c(\"Baseline\", \"Relaxed\", \"Stressed\")\n)\n\ndog_means &lt;- aggregate(latency ~ dog_id + treatment, data = dogs, FUN = mean)\n\nggplot(dog_means, aes(x = treatment, y = latency, colour = treatment)) +\n  geom_jitter(width = 0.2, size = 3, alpha = 0.6) +\n  stat_summary(fun = mean, geom = \"crossbar\", width = 0.5,\n    linewidth = 0.8, colour = \"black\") +\n  scale_colour_viridis_d(end = 0.9) +\n  labs(x = \"Odour treatment\", y = \"Mean latency (s)\") +\n  theme_minimal(base_size = 18) +\n  theme(legend.position = \"none\")\n\n\n\nWhat if there are more than 2 groups to compare? We use ANOVA (Weeks 3–6)."
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#how-big-is-that-penguin",
+    "href": "lectures/L01/Lecture-01a.html#how-big-is-that-penguin",
+    "title": "Lecture 01a – Welcome",
+    "section": "How big is that penguin?",
+    "text": "How big is that penguin?\nHeavier penguins tend to have longer flippers – but how strong is that relationship?\n\n\nCode\npenguins &lt;- palmerpenguins::penguins\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(colour = species), alpha = 0.6) +\n  geom_smooth(method = \"lm\") +\n  scale_colour_viridis_d(end = 0.9) +\n  labs(x = \"Flipper length (mm)\", y = \"Body mass (g)\") +\n  theme_minimal(base_size = 18)\n\n\n\nWe can model this relationship with regression, but how do we validate this against other models? You will learn to do this with model selection (Weeks 7–9)."
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#darwins-finches-evolution-you-can-measure",
+    "href": "lectures/L01/Lecture-01a.html#darwins-finches-evolution-you-can-measure",
+    "title": "Lecture 01a – Welcome",
+    "section": "Darwin’s finches: evolution you can measure",
+    "text": "Darwin’s finches: evolution you can measure\nPeter and Rosemary Grant spent 40 years measuring beak morphology in Galápagos finches, documenting natural selection in real time.\n\n\nCode\nfinches &lt;- read.csv(\"data/darwin_finches_clean.csv\")\n\nggplot(finches, aes(x = beak_length, y = beak_depth, colour = species)) +\n  geom_point(alpha = 0.5) +\n  stat_ellipse(linewidth = 1) +\n  scale_colour_viridis_d(end = 0.9) +\n  labs(x = \"Beak length (mm)\", y = \"Beak depth (mm)\", colour = \"Species\") +\n  theme_minimal(base_size = 18)\n\n\n\nSometimes, patterns jump out to us in complex datasets. You will learn to find patterns like these with multivariate methods (Weeks 10–12)."
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#lectures",
+    "href": "lectures/L01/Lecture-01a.html#lectures",
+    "title": "Lecture 01a – Welcome",
+    "section": "Lectures",
+    "text": "Lectures\nWednesdays 10am - 12pm, Chemistry Lecture Theatre 3 (CLT03)\n\nCopyright The University of Sydney"
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#labs",
+    "href": "lectures/L01/Lecture-01a.html#labs",
+    "title": "Lecture 01a – Welcome",
+    "section": "Labs",
+    "text": "Labs\nLabs are held at the South Eveleigh Precinct\n\nCredit: Michael Wheatland"
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#directions-from-carslaw",
+    "href": "lectures/L01/Lecture-01a.html#directions-from-carslaw",
+    "title": "Lecture 01a – Welcome",
+    "section": "Directions from Carslaw",
+    "text": "Directions from Carslaw\nIf the map does not load, click here"
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#transport-options",
+    "href": "lectures/L01/Lecture-01a.html#transport-options",
+    "title": "Lecture 01a – Welcome",
+    "section": "Transport options",
+    "text": "Transport options\nBuses\nCourtesy buses are available from Fisher Library to Redfern Station. You must then walk to the precint (10 minutes).\nDriving\nFree parking is available around Henderson Road, but it is extremely crowded. We do not recommend driving to the precinct.\nWalking\nWalking to the South Eveleigh Precinct takes about 20 minutes from Carslaw. You can save approximately 5 minutes by using Redfern station’s community access gates."
   },
   {
     "objectID": "lectures/L01/Lecture-01a.html#attendance",
     "href": "lectures/L01/Lecture-01a.html#attendance",
     "title": "Lecture 01a – Welcome",
     "section": "Attendance",
-    "text": "Attendance\n\nLectures: Highly recommended but not compulsory. Lectures are recorded, capturing slides and audio only, which may miss important discussions.\nLabs: Mandatory, 80% minimum attendance required. Attendance will be taken by QR code. If you miss a lab, you may attend another session that week – send us an email!\nTutorials: Self-guided (1 hour), complete before each week’s lab."
+    "text": "Attendance\nLectures are compulsory, but not a hurdle\n\nYou are expected to attend 80% of lectures, and attendance is recorded via Ed Discussion Boards\nAttendance is not a hurdle. We use attendance data to determine if students are engaging with the course\n\nLabs are compulsory with 80% minimum attendance\n\nLabs are the heart of this unit. No exceptions except through special consideration\nWe will not record your attendance if you are not present for more than 50% of the lab session (we round things up)"
   },
   {
     "objectID": "lectures/L01/Lecture-01a.html#assessments",
     "href": "lectures/L01/Lecture-01a.html#assessments",
     "title": "Lecture 01a – Welcome",
     "section": "Assessments",
-    "text": "Assessments\nCheck Unit Outline\n\n\n\n\n\n\n\n\n\nWeek\nAssessment\nWeight\nType\n\n\n\n\n4\nEarly Feedback Task\n1%\nIndividual\n\n\n5\nProject 1: Describing data\n10%\nIndividual\n\n\n10\nProject 2: Analysing experimental data\n20%\nIndividual\n\n\n13\nProject 3: Presentation (multivariate)\n20%\nGroup\n\n\n-\nQuizzes (weekly, multiple due dates)\n4%\nIndividual\n\n\n-\nExam (2 hours, MCQs + Short Answers)\n45%\nIndividual"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#biomedical-building",
-    "href": "lectures/L01/Lecture-01a.html#biomedical-building",
-    "title": "Lecture 01a – Welcome",
-    "section": "Biomedical Building",
-    "text": "Biomedical Building\n\nCredit: Michael Wheatland"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#directions",
-    "href": "lectures/L01/Lecture-01a.html#directions",
-    "title": "Lecture 01a – Welcome",
-    "section": "Directions",
-    "text": "Directions\nBuses\nCourtesy buses are available:\n\nThe best option is to take the bus from Fisher Library to Redfern Station, then walk to the precinct (through the new station platform as “local traffic”).\nAlternatively, direct buses are available – but less frequent.\n\nDriving\nFree parking is available around Henderson Road, but it is extremely crowded. We do not recommend driving to the precinct."
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#walking",
-    "href": "lectures/L01/Lecture-01a.html#walking",
-    "title": "Lecture 01a – Welcome",
-    "section": "Walking",
-    "text": "Walking\nWalking to the South Eveleigh Precinct takes about 20 minutes. However, you can save approximately 5 minutes by using Redfern station’s community access gates, where you don’t need to use an Opal card to get through.\nIf the map does not load, click here"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#statistics-in-action",
-    "href": "lectures/L01/Lecture-01a.html#statistics-in-action",
-    "title": "Lecture 01a – Welcome",
-    "section": "Statistics in Action",
-    "text": "Statistics in Action\nModern science and decision-making are driven by data:\n\n\nResearch: From lab experiments to field studies\nPolicy: Environmental management decisions\nIndustry: Business analytics and optimisation\nInnovation: AI and machine learning – foundations"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#why-statistics-matters",
-    "href": "lectures/L01/Lecture-01a.html#why-statistics-matters",
-    "title": "Lecture 01a – Welcome",
-    "section": "Why Statistics Matters?",
-    "text": "Why Statistics Matters?\nStatistics empowers you to:\n\n\nTurn raw data into meaningful insights\nMake evidence-based decisions\nCommunicate findings effectively\nSolve complex real-world problems\n\n\n\n\n\n\nStatistics helps avoid misinterpreting data. Source: Anchorman (2004)"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#real-world-applications",
-    "href": "lectures/L01/Lecture-01a.html#real-world-applications",
-    "title": "Lecture 01a – Welcome",
-    "section": "Real-world Applications",
-    "text": "Real-world Applications\n\nSource: NASA’s Global Temperature Index"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#sports-analytics",
-    "href": "lectures/L01/Lecture-01a.html#sports-analytics",
-    "title": "Lecture 01a – Welcome",
-    "section": "Sports Analytics",
-    "text": "Sports Analytics\n\nThe 10 highest-seeded players averaged 3.48 rounds won in the Australian Open since 2011, compared to just 3.03 at Wimbledon. Source: fivethirtyeight"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#your-path-ahead",
-    "href": "lectures/L01/Lecture-01a.html#your-path-ahead",
-    "title": "Lecture 01a – Welcome",
-    "section": "Your Path Ahead",
-    "text": "Your Path Ahead\nThis course will develop your:\n\nTechnical Skills\n\nR programming proficiency\nData visualization expertise\nStatistical analysis methods\n\n\n\nProfessional Skills\n\nCritical thinking\nScientific communication\nProblem-solving abilities"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#lecture-attendance-options",
-    "href": "lectures/L01/Lecture-01a.html#lecture-attendance-options",
-    "title": "Lecture 01a – Welcome",
-    "section": "Lecture attendance options",
-    "text": "Lecture attendance options\nIn-person vs. online recordings\n\nIn-person benefits:\n\nReal-time interaction with peers and lecturers\nImmediate feedback and clarification of concepts\nActive participation in discussions and polls\nBuilding connections with classmates\n\nOnline recording benefits:\n\nFlexibility to manage other commitments\nAbility to pause and review complex concepts\nLearn at your own pace\nConvenient for those with long commutes"
-  },
-  {
-    "objectID": "lectures/L01/Lecture-01a.html#on-campus-or-online",
-    "href": "lectures/L01/Lecture-01a.html#on-campus-or-online",
-    "title": "Lecture 01a – Welcome",
-    "section": "On-campus or online?",
-    "text": "On-campus or online?\nChoose the option that best suits your learning style and circumstances. If watching online, try to:\n\nStay up to date with recordings to avoid falling behind\nUse Ed discussion board actively for questions\nAttend some lectures in person when possible for key topics\n\nThere is a strong positive correlation between lecture attendance and final grades – but it’s not the only factor. It may just be the case that students who attend lectures are more likely to keep up with the course material."
+    "text": "Assessments\nCheck Unit Outline\n\n\n\n\n\n\n\n\n\nWeek\nAssessment\nWeight\nType\n\n\n\n\n3\nEarly Feedback Task\n1%\nIndividual\n\n\n5\nProject 1: Describing data\n10%\nIndividual\n\n\n10\nProject 2: Analysing experimental data\n20%\nIndividual\n\n\n13\nProject 3: Presentation (multivariate)\n20%\nGroup\n\n\n-\nQuizzes (weekly, multiple due dates)\n4%\nIndividual\n\n\n-\nExam (2 hours, MCQs + Short Answers)\n45%\nIndividual"
   },
   {
     "objectID": "lectures/L01/Lecture-01a.html#put-in-the-hours",
@@ -1943,7 +1922,7 @@
     "href": "lectures/L01/Lecture-01a.html#ask-questions",
     "title": "Lecture 01a – Welcome",
     "section": "Ask questions",
-    "text": "Ask questions\n\nEd is the best place to ask questions. We are way more responsive on Ed than on email.\nWe are open to the use of AI tools (including LLMs like ChatGPT) to help you answer questions about code… but don’t use them to cheat yourself out of learning.\nWe have drop-in sessions, where you can jump in and have a chat on Zoom. We will announce the schedule on Ed."
+    "text": "Ask questions\nDon’t be afraid to seek help. We are happy when students show genuine interest to learn and will do our best to support you. Here are some ways to ask questions:\n\nEd Discussion is the best place to ask questions. We are way more responsive on Ed than on email.\nDrop-in sessions are available. Check Ed Discussion for times and links."
   },
   {
     "objectID": "lectures/L01/Lecture-01a.html#by-the-end-of-this-course-we-want-you-to-be-able-to",
@@ -1951,6 +1930,13 @@
     "title": "Lecture 01a – Welcome",
     "section": "By the end of this course, we want you to be able to:",
     "text": "By the end of this course, we want you to be able to:\n\nLO1 demonstrate proficiency in designing sample schemes and analysing data from them using R.\nLO2 describe and identify the basic features of an experimental design: replicate, treatment structure and blocking structure.\nLO3 demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data.\nLO4 demonstrate proficiency in the use or the statistical programming language R to use multivariate methods to find patterns in data.\nLO5 interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R.\nLO6 write statistical and modelling results as part of a scientific report.\nLO7 appraise the validity of statistical analyses used publications."
+  },
+  {
+    "objectID": "lectures/L01/Lecture-01a.html#take-a-break",
+    "href": "lectures/L01/Lecture-01a.html#take-a-break",
+    "title": "Lecture 01a – Welcome",
+    "section": "Take a break",
+    "text": "Take a break\nWe will resume the second half of the lecture in 10 minutes. Come on down if you have questions!"
   },
   {
     "objectID": "labs/Lab11/Lab11-clustering.html",

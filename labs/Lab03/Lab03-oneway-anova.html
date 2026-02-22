@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -267,7 +267,7 @@ window.Quarto = {
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>The following packages are used for this lab: <code>readxl</code>, <code>ggplot2</code>, <code>dplyr</code> and <code>tidyr</code>. To install these packages, run the following code <strong>in the console</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="exercise-1-diatoms" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="exercise-1-diatoms">Exercise 1 – diatoms</h2>
@@ -276,15 +276,15 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="practice-1-data-import">Practice 1 – Data import</h3>
 <p>Import the <code>Diatoms</code> worksheet from the <code>diatoms.xlsx</code> file into R.</p>
 <p>If you have difficulty with this step please refer to this week’s tutorial on importing MS Excel files.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You will need to look at the Excel file and work out </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the correct worksheet name and range:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="st">"diatoms.xlsx"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> ...,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> ...</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># You will need to look at the Excel file and work out </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># the correct worksheet name and range:</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="at">path =</span> <span class="st">"diatoms.xlsx"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">sheet =</span> ...,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">range =</span> ...</span>
+<span id="cb2-9"><a href="#cb2-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="workflow" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
@@ -295,7 +295,7 @@ window.Quarto = {
 <section id="data-structure" class="level4">
 <h4 class="anchored" data-anchor-id="data-structure">Data structure</h4>
 <p>Checking the structure of the data is the first step in any data analysis. This is done using the <code>str()</code> function in R.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Of particular interest are the variables <code>Stream</code> and <code>Zinc</code>, which have been classified as characters (<code>chr</code>).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -308,8 +308,8 @@ window.Quarto = {
 </div>
 <p>These variables are most likely factors and should be converted to such. This can be done using <code>as.factor()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>diatoms<span class="sc">$</span>Zinc <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>diatoms<span class="sc">$</span>Stream <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Stream)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>diatoms<span class="sc">$</span>Zinc <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>diatoms<span class="sc">$</span>Stream <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Stream)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -322,17 +322,17 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>The <code>tidyverse</code> approach</strong> – We can use the <code>mutate()</code> function to convert the <code>Zinc</code> and <code>Stream</code> variables to factors.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>diatoms <span class="ot">&lt;-</span> diatoms <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Zinc =</span> <span class="fu">as.factor</span>(Zinc),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Stream =</span> <span class="fu">as.factor</span>(Stream)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>diatoms <span class="ot">&lt;-</span> diatoms <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>        <span class="at">Zinc =</span> <span class="fu">as.factor</span>(Zinc),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        <span class="at">Stream =</span> <span class="fu">as.factor</span>(Stream)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>We can then check if the conversion was successful by using the <code>str()</code> function again.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
  $ Stream   : Factor w/ 6 levels "Arkan","Blue",..: 4 2 2 2 5 6 6 6 1 1 ...
@@ -346,7 +346,7 @@ Tip
 <h4 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h4>
 <p>Use <code>summary()</code> for a quick overview of common statistical measures for each variable in the data frame. However it is not informative when we are interested in differences between groups or factors as it only gives the summary statistics for the entire data set.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Stream    Zinc     Diversity         Group      
  Arkan:7   BACK:8   Min.   :0.630   Min.   :1.000  
@@ -366,20 +366,20 @@ Tip
 <li>the function we are using, <code>mean()</code>.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> mean</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">tapply</span>(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">FUN =</span> mean</span>
+<span id="cb11-5"><a href="#cb11-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    BACK     HIGH      LOW      MED 
 1.797500 1.277778 2.032500 1.717778 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> sd</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">tapply</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">FUN =</span> sd</span>
+<span id="cb13-5"><a href="#cb13-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     BACK      HIGH       LOW       MED 
 0.4852613 0.4268717 0.4449960 0.5030104 </code></pre>
@@ -396,12 +396,12 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>The <code>tidyverse</code> approach</strong> – Use the <code>group_by()</code> and <code>summarise()</code> functions to calculate the mean and standard deviation for each level of <code>Zinc</code>. The code is longer, but readable as you can see the sequence of operations.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diatoms <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Zinc) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean =</span> <span class="fu">mean</span>(Diversity),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd =</span> <span class="fu">sd</span>(Diversity)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>diatoms <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="fu">group_by</span>(Zinc) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb15-4"><a href="#cb15-4"></a>        <span class="at">mean =</span> <span class="fu">mean</span>(Diversity),</span>
+<span id="cb15-5"><a href="#cb15-5"></a>        <span class="at">sd =</span> <span class="fu">sd</span>(Diversity)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -454,11 +454,11 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>To calculate the number of observations per group:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> length</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">tapply</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="at">FUN =</span> length</span>
+<span id="cb16-5"><a href="#cb16-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -466,10 +466,10 @@ Tip
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Diversity)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Diversity)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -481,27 +481,27 @@ Tip
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"BACK"</span>],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Zinc: BACK"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"HIGH"</span>],</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Zinc: HIGH"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"LOW"</span>],</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Zinc: LOW"</span>,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"MED"</span>],</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Zinc: MED"</span>,</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">hist</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"BACK"</span>],</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="at">main =</span> <span class="st">"Zinc: BACK"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="fu">hist</span>(</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"HIGH"</span>],</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="at">main =</span> <span class="st">"Zinc: HIGH"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>)</span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="fu">hist</span>(</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"LOW"</span>],</span>
+<span id="cb18-14"><a href="#cb18-14"></a>    <span class="at">main =</span> <span class="st">"Zinc: LOW"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a>)</span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="fu">hist</span>(</span>
+<span id="cb18-18"><a href="#cb18-18"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"MED"</span>],</span>
+<span id="cb18-19"><a href="#cb18-19"></a>    <span class="at">main =</span> <span class="st">"Zinc: MED"</span>,</span>
+<span id="cb18-20"><a href="#cb18-20"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
+<span id="cb18-21"><a href="#cb18-21"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -513,14 +513,14 @@ Tip
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">levels</span>(diatoms<span class="sc">$</span>Zinc)) {</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hist</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> i],</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Zinc:"</span>, i),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">levels</span>(diatoms<span class="sc">$</span>Zinc)) {</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="fu">hist</span>(</span>
+<span id="cb19-4"><a href="#cb19-4"></a>        <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> i],</span>
+<span id="cb19-5"><a href="#cb19-5"></a>        <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Zinc:"</span>, i),</span>
+<span id="cb19-6"><a href="#cb19-6"></a>        <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>    )</span>
+<span id="cb19-8"><a href="#cb19-8"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -541,12 +541,12 @@ Tip
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell" data-cap-location="bottom">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    Diversity <span class="sc">~</span> Zinc,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> diatoms,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Diversity"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Zinc concentration"</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">boxplot</span>(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>    Diversity <span class="sc">~</span> Zinc,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="at">data =</span> diatoms,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="at">ylab =</span> <span class="st">"Diversity"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="at">xlab =</span> <span class="st">"Zinc concentration"</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diatom1" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
@@ -563,10 +563,10 @@ Figure&nbsp;1: Boxplot of diatom diversity by Zinc concentration.
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell" data-cap-location="bottom">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-cap-location="bottom"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Zinc, <span class="at">y =</span> Diversity)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">"Diversity"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Zinc, <span class="at">y =</span> Diversity)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="fu">ylab</span>(<span class="st">"Diversity"</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-diatom2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
 <figure class="quarto-float quarto-float-fig figure">
@@ -589,17 +589,17 @@ Figure&nbsp;2: Boxplot of diatom diversity by Zinc concentration.
 <section id="question-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>What can you say about the the different levels of Zinc from looking at the mean and standard deviation values when running the following?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> mean</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> sd</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">tapply</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
+<span id="cb22-3"><a href="#cb22-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="at">FUN =</span> mean</span>
+<span id="cb22-5"><a href="#cb22-5"></a>)</span>
+<span id="cb22-6"><a href="#cb22-6"></a></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="fu">tapply</span>(</span>
+<span id="cb22-8"><a href="#cb22-8"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
+<span id="cb22-9"><a href="#cb22-9"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
+<span id="cb22-10"><a href="#cb22-10"></a>    <span class="at">FUN =</span> sd</span>
+<span id="cb22-11"><a href="#cb22-11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="question-2" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
@@ -620,8 +620,8 @@ Figure&nbsp;2: Boxplot of diatom diversity by Zinc concentration.
 <p>where <span class="math inline">\mu_j</span> is the mean diatom diversity for each level of Zn concentration.</p>
 <p>The code below fits the ANOVA model using the <code>aov()</code> function and saves the it to an object called <code>anova.diatoms</code>. We can then extract the ANOVA table using the <code>summary</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
 Zinc         3  2.567  0.8555   3.939 0.0176 *
@@ -649,14 +649,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h3 style="color:navy;" class="anchored" data-anchor-id="post-hoc-testing">Post-hoc testing</h3>
 <p>The ANOVA test only tells us that there are differences between the groups, but it does not tell us which groups are different. We can use the <code>emmeans</code> package to perform post-hoc testing.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Welcome to emmeans.
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>posthoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2"></a>posthoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Zinc emmean    SE df lower.CL upper.CL
  BACK   1.80 0.165 30    1.461     2.13
@@ -673,7 +673,7 @@ Confidence level used: 0.95 </code></pre>
 </blockquote>
 <p>We can visualise the results of the post-hoc testing using the <code>plot</code> function, if you prefer a visual representation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">plot</span>(posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -690,7 +690,7 @@ Confidence level used: 0.95 </code></pre>
 <p>The data is found in the <em>Comb</em> worksheet of the <code>chick_marigold.xlsx</code> file. Download it below:</p>
 <p>Read the data and save it as <code>comb</code>. It should look like below:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>comb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>comb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 22 × 2
    CombWt Hormone
@@ -741,7 +741,7 @@ Confidence level used: 0.95 </code></pre>
 <p><strong>Read the data into R and save it as <code>lambs</code>.</strong> Use the <code>read_csv()</code> function which should be available when you load the <code>tidyverse</code> package.</p>
 <p>It should look like below:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>lambs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>lambs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 2
       Ig Breed
@@ -785,7 +785,7 @@ Confidence level used: 0.95 </code></pre>
 <div id="collapseOne" class="accordion-collapse collapse">
 <div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
 Platform: aarch64-apple-darwin20
@@ -1236,8 +1236,8 @@ loaded via a namespace (and not attached):
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

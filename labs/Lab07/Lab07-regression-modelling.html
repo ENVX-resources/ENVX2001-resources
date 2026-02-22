@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -253,8 +253,8 @@ Tip
 <li><label><input type="checkbox">Install or update the <code>performance</code> package</label></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("performance")</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#install.packages("performance")</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This package is really good for checking your models. For this lab, we will focus on the <code>check_model()</code> function, which gives us nice pretty diagnostic plots for models:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
@@ -262,8 +262,8 @@ Tip
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">plot</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -271,13 +271,13 @@ Tip
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">check_model</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -308,21 +308,21 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load library if needed</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># reset the data import just in case it has been modified</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span>, <span class="st">"Loyn"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make transformations</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>loyn <span class="ot">&lt;-</span> loyn <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">L10AREA =</span> <span class="fu">log10</span>(AREA),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">L10DIST =</span> <span class="fu">log10</span>(DIST),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">L10LDIST =</span> <span class="fu">log10</span>(LDIST)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load library if needed</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># reset the data import just in case it has been modified</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span>, <span class="st">"Loyn"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># make transformations</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>loyn <span class="ot">&lt;-</span> loyn <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="at">L10AREA =</span> <span class="fu">log10</span>(AREA),</span>
+<span id="cb5-10"><a href="#cb5-10"></a>        <span class="at">L10DIST =</span> <span class="fu">log10</span>(DIST),</span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="at">L10LDIST =</span> <span class="fu">log10</span>(LDIST)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    )</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># check</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">glimpse</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 56
 Columns: 10
@@ -346,7 +346,7 @@ $ L10LDIST &lt;dbl&gt; 1.591065, 2.369216, 2.492760, 1.819544, 2.390935, 2.45484
 <p>Obtain the correlation between ABUND and all of the predictor variables using <code>cor()</code>. Based on these, what would you expect to be the best single predictor of ABUND?</p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cor</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="assumptions-and-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="assumptions-and-interpretation">Assumptions and interpretation</h3>
@@ -356,21 +356,21 @@ $ L10LDIST &lt;dbl&gt; 1.591065, 2.369216, 2.492760, 1.819544, 2.390935, 2.45484
 <p>Use multiple linear regression to see whether ABUND can be predicted from L10AREA and GRAZE. Are the assumptions met? Is there a significant relationship? <em>Note: we are using these 2 predictors as they have the largest absolute correlations. Use <code>lm()</code> and specify the model as <code>ABUND ~ L10AREA + GRAZE</code>.</em></p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lm.mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> GRAZE <span class="sc">+</span> L10AREA, <span class="at">data =</span> loyn)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm.mod1)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>lm.mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> GRAZE <span class="sc">+</span> L10AREA, <span class="at">data =</span> loyn)</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">plot</span>(lm.mod1)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="fu">summary</span>(lm.mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="question-3" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
 <p>How good is the model based on the (i) <em>r</em><sup>2</sup> (ii) adjusted <em>r</em><sup>2</sup>? Use <code>summary()</code>.</p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>r.squared</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>adj.r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>r.squared</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>adj.r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="question-4" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
@@ -390,7 +390,7 @@ $ L10LDIST &lt;dbl&gt; 1.591065, 2.369216, 2.492760, 1.819544, 2.390935, 2.45484
 <p>Compare the <em>r</em><sup>2</sup> and adjusted <em>r</em><sup>2</sup> values with those you calculated for the 2 predictor model, Which is the better model? Why?</p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm.mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">summary</span>(lm.mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="exercise-2-california-streamflow" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2-california-streamflow">Exercise 2: California streamflow</h2>
@@ -398,17 +398,17 @@ $ L10LDIST &lt;dbl&gt; 1.591065, 2.369216, 2.492760, 1.819544, 2.390935, 2.45484
 <p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
 <p>Start with a full model and manually remove the variables one at a time, checking every time whether removal of a variable actually improves the model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the data</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># read in the data</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "lake_sabrina"  "pine_creek"    "rock_creek"    "runoff_volume"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -437,8 +437,8 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The above analysis tells us that both <code>pine_creek</code> &amp; <code>rock_creek</code> are significant, according to the t-test, in the model and <code>lake_sabrina</code> is not? This involves performing Partial F-Tests as discussed in the lecture.</p>
 <p>This can be done in <strong>R</strong> by using <code>anova()</code> on two model objects. To be able to compare the models and run the anova, you need to make objects of all the possible model combinations you want to compare.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The last row gives the results of the partial F-test.</p>
 </section>
@@ -456,8 +456,8 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <p>Perform a Partial F-Test to work out if the removal of <code>lake_sabrina</code> and <code>pine_creek</code> improves upon the full model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -479,8 +479,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.</p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="question-6-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-6-1">Question 6</h3>
@@ -927,8 +927,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

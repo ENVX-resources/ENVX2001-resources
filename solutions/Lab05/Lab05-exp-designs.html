@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -360,17 +360,17 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="question-2.2">Question 2.2</h3>
 <p><em>(ii)</em> When there are multiple sampling units per experimental unit, in simple situations (as is here), an appropriate method is simply to average the responses over all the sampling units belonging to an experimental unit, and analyse these. So in this case, we need to average the observed nitrate values over all the leaves in the plant. The code below shows how to do this using a function called <code>rowMeans</code> which finds the average in a row across multiple columns. Here we do this for <em>Experiment1</em>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-4" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-4">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>exp1<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment1"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>exp1<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp1<span class="sc">$</span>treatment)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>exp1<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp1[,<span class="dv">3</span><span class="sc">:</span><span class="dv">18</span>])</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(exp1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>exp1<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment1"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>exp1<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp1<span class="sc">$</span>treatment)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>exp1<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp1[,<span class="dv">3</span><span class="sc">:</span><span class="dv">18</span>])</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">str</span>(exp1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tibble [8 × 19] (S3: tbl_df/tbl/data.frame)
  $ treatment: Factor w/ 4 levels "N1","N2","N3",..: 1 1 2 2 3 3 4 4
@@ -399,21 +399,21 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="question-2.3">Question 2.3</h3>
 <p><em>(iii)</em> Perform a one-way ANOVA on these average data. (It will also be helpful to obtain the treatment means using the <code>emmeans</code> function, as done in previous topics. What are your conclusions about the effect of varying applied nitrogen levels? You don’t have to look at post-hoc tests, just examine the F-test.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-5" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-5">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mod1<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp1)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mod1<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp1)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">summary</span>(mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
 treatment    3 0.0208 0.00693   0.045  0.986
 Residuals    4 0.6186 0.15466               </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod1,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">emmeans</span>(mod1,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> treatment emmean    SE df lower.CL upper.CL
  N1          2.26 0.278  4     1.49     3.03
@@ -432,23 +432,23 @@ Confidence level used: 0.95 </code></pre>
 </section>
 <p>Experiment 2: 8 leaves per plant, 4 plants per treatment</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="solution-6" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-6">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>exp2<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment2"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>exp2<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp2<span class="sc">$</span>treatment)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>exp2<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp2[,<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>])</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mod2<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp2)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>exp2<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment2"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>exp2<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp2<span class="sc">$</span>treatment)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>exp2<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp2[,<span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb10-4"><a href="#cb10-4"></a>mod2<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp2)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">summary</span>(mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
 treatment    3 0.3042  0.1014   0.911  0.465
 Residuals   12 1.3360  0.1113               </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod2,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">emmeans</span>(mod2,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> treatment emmean    SE df lower.CL upper.CL
  N1          1.96 0.167 12     1.60     2.33
@@ -462,16 +462,16 @@ Confidence level used: 0.95 </code></pre>
 </section>
 <p>Experiment 3: 4 leaves per plant, 8 plants per treatment</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="solution-7" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-7">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>exp3<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment3"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>exp3<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp3<span class="sc">$</span>treatment)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>exp3<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp3[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>])</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>mod3<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp3)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>exp3<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment3"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>exp3<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp3<span class="sc">$</span>treatment)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>exp3<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp3[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb15-4"><a href="#cb15-4"></a>mod3<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp3)</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">summary</span>(mod3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 treatment    3  1.889  0.6296   5.825 0.00318 **
@@ -479,8 +479,8 @@ Residuals   28  3.026  0.1081
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod3,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">emmeans</span>(mod3,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> treatment emmean    SE df lower.CL upper.CL
  N1          1.92 0.116 28     1.68     2.16
@@ -494,16 +494,16 @@ Confidence level used: 0.95 </code></pre>
 </section>
 <p>Experiment 4: 2 leaves per plant, 16 plants per treatment</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="solution-8" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-8">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>exp4<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment4"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>exp4<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp4<span class="sc">$</span>treatment)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>exp4<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp4[,<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>mod4<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp4)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>exp4<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment4"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>exp4<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp4<span class="sc">$</span>treatment)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>exp4<span class="sc">$</span>response<span class="ot">&lt;-</span><span class="fu">rowMeans</span>(exp4[,<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb20-4"><a href="#cb20-4"></a>mod4<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp4)</span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">summary</span>(mod4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 treatment    3  4.136  1.3787   5.761 0.00157 **
@@ -511,8 +511,8 @@ Residuals   60 14.357  0.2393
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod4,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">emmeans</span>(mod4,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> treatment emmean    SE df lower.CL upper.CL
  N1          2.03 0.122 60     1.79     2.27
@@ -526,16 +526,16 @@ Confidence level used: 0.95 </code></pre>
 </section>
 <p>Experiment 5: 1 leaf per plant, 32 plants per treatment. Note, no averaging required as sampling unit = experimental unit.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="solution-9" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-9">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>exp5<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment5"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>exp5<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp5<span class="sc">$</span>treatment)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>exp5<span class="sc">$</span>response<span class="ot">&lt;-</span>exp5<span class="sc">$</span>leaf1</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>mod5<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp5)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod5)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>exp5<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Experiment5"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>exp5<span class="sc">$</span>treatment<span class="ot">&lt;-</span><span class="fu">as.factor</span>(exp5<span class="sc">$</span>treatment)</span>
+<span id="cb25-3"><a href="#cb25-3"></a>exp5<span class="sc">$</span>response<span class="ot">&lt;-</span>exp5<span class="sc">$</span>leaf1</span>
+<span id="cb25-4"><a href="#cb25-4"></a>mod5<span class="ot">&lt;-</span><span class="fu">aov</span>(response<span class="sc">~</span>treatment,<span class="at">data=</span>exp5)</span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="fu">summary</span>(mod5)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             Df Sum Sq Mean Sq F value Pr(&gt;F)  
 treatment     3   2.97  0.9915   3.219 0.0251 *
@@ -543,8 +543,8 @@ Residuals   124  38.19  0.3080
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(mod5,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">emmeans</span>(mod5,<span class="st">"treatment"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> treatment emmean     SE  df lower.CL upper.CL
  N1          2.00 0.0981 124     1.81     2.20
@@ -561,7 +561,7 @@ Confidence level used: 0.95 </code></pre>
 <h3 class="anchored" data-anchor-id="question-2.5">Question 2.5</h3>
 <p><em>(v)</em> Summarise the results in terms of the balance between sampling plants versus leaves, and what recommendations would you make for future studies?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-10" class="level3 ans">
@@ -664,15 +664,15 @@ Confidence level used: 0.95 </code></pre>
 <h3 class="anchored" data-anchor-id="question-3.1">Question 3.1</h3>
 <p><em>(i)</em> Firstly analyse the data using a paired t-test. Assuming you read the data is as a data frame called <code>copper</code> the code is <code>t.test(x=copper$RationA,y=copper$RationB,paired=T)</code>. Interpret the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-12" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-12">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>copper<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"copper"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(copper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb31-2"><a href="#cb31-2"></a>copper<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet =</span> <span class="st">"copper"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">head</span>(copper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
    Farm RationA RationB
@@ -684,7 +684,7 @@ Confidence level used: 0.95 </code></pre>
 5     5     422     472
 6     6     503     522</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x=</span>copper<span class="sc">$</span>RationA,<span class="at">y=</span>copper<span class="sc">$</span>RationB,<span class="at">paired=</span>T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">t.test</span>(<span class="at">x=</span>copper<span class="sc">$</span>RationA,<span class="at">y=</span>copper<span class="sc">$</span>RationB,<span class="at">paired=</span>T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -713,7 +713,7 @@ mean difference
 <p>The second line repeats (using the <code>rep</code> function) the values of farm numbers twice so for each of the weight gains we have an associated farm.</p>
 <p>The third line joins the two data frames together (using the <code>cbind</code> function) to create the new stacked dataset which can be used by the <code>aov</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(copper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">head</span>(copper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
    Farm RationA RationB
@@ -725,10 +725,10 @@ mean difference
 5     5     422     472
 6     6     503     522</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">stack</span>(copper[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>farms<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>),<span class="at">times=</span><span class="dv">2</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>coppern<span class="ot">&lt;-</span><span class="fu">cbind</span>(farms,dat)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(coppern)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>dat<span class="ot">&lt;-</span><span class="fu">stack</span>(copper[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb37-2"><a href="#cb37-2"></a>farms<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>),<span class="at">times=</span><span class="dv">2</span>)</span>
+<span id="cb37-3"><a href="#cb37-3"></a>coppern<span class="ot">&lt;-</span><span class="fu">cbind</span>(farms,dat)</span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="fu">str</span>(coppern)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   30 obs. of  3 variables:
  $ farms : int  1 2 3 4 5 6 7 8 9 10 ...
@@ -747,14 +747,14 @@ mean difference
 <li><p>the same test statistic (though expressed as an <em>F</em>-statistic instead of a <em>t</em>-statistic, with <em>F</em> = <span class="math inline">t^2</span> to that from the paired <em>t</em>-test.</p></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-13" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-13">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>block.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(values<span class="sc">~</span><span class="fu">as.factor</span>(farms)<span class="sc">+</span>ind,<span class="at">data=</span>coppern)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(block.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>block.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(values<span class="sc">~</span><span class="fu">as.factor</span>(farms)<span class="sc">+</span>ind,<span class="at">data=</span>coppern)</span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">anova</span>(block.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -782,15 +782,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h3 class="anchored" data-anchor-id="question-4.1">Question 4.1</h3>
 <p><em>(i)</em> Are the mean weight gains the same across diets? Are any diets more or less effective than other diets? You will need to use the <code>emmeans</code> package and its <code>emmeans()</code> function. Read in the data and perform post-hoc tests.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-14" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-14">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>hamster<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"hamster"</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hamster)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb43-2"><a href="#cb43-2"></a>hamster<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data5.xlsx"</span>,<span class="at">sheet=</span><span class="st">"hamster"</span>)</span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="fu">head</span>(hamster)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   Inbred_Line Wt_Gain  Diet
@@ -802,10 +802,10 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 5 E                12     1
 6 F                13     1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>hamster<span class="sc">$</span>Diet<span class="ot">&lt;-</span><span class="fu">as.factor</span>(hamster<span class="sc">$</span>Diet)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>hamster<span class="sc">$</span>Inbred_Line<span class="ot">&lt;-</span><span class="fu">as.factor</span>(hamster<span class="sc">$</span>Inbred_Line)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>block.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(Wt_Gain<span class="sc">~</span>Inbred_Line<span class="sc">+</span>Diet,<span class="at">data=</span>hamster)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(block.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>hamster<span class="sc">$</span>Diet<span class="ot">&lt;-</span><span class="fu">as.factor</span>(hamster<span class="sc">$</span>Diet)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>hamster<span class="sc">$</span>Inbred_Line<span class="ot">&lt;-</span><span class="fu">as.factor</span>(hamster<span class="sc">$</span>Inbred_Line)</span>
+<span id="cb45-3"><a href="#cb45-3"></a>block.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(Wt_Gain<span class="sc">~</span>Inbred_Line<span class="sc">+</span>Diet,<span class="at">data=</span>hamster)</span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="fu">anova</span>(block.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -820,8 +820,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>Perform post-hoc tests.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmeans</span>(block.anova, pairwise <span class="sc">~</span> Diet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">emmeans</span>(block.anova, pairwise <span class="sc">~</span> Diet)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$emmeans
  Diet emmean    SE df lower.CL upper.CL
@@ -848,14 +848,14 @@ P value adjustment: tukey method for comparing a family of 3 estimates </code></
 <h3 class="anchored" data-anchor-id="question-4.2">Question 4.2</h3>
 <p><em>(ii)</em> Re-run the analysis without blocking, i.e.&nbsp;as a CRD. Are the conclusions different? Would you use blocking in the future? What proportion of the variation was explained by blocking?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="solution-15" class="level3 ans">
 <h3 class="anchored" data-anchor-id="solution-15">Solution</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>crd.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(Wt_Gain<span class="sc">~</span>Diet,<span class="at">data=</span>hamster)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(crd.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>crd.anova<span class="ot">&lt;-</span><span class="fu">aov</span>(Wt_Gain<span class="sc">~</span>Diet,<span class="at">data=</span>hamster)</span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="fu">anova</span>(crd.anova)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -1281,8 +1281,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

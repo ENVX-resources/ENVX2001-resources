@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -411,16 +411,16 @@ Important
 <h3 style="color:navy;" class="anchored" data-anchor-id="doing-the-calculations-in-r">Doing the calculations in R</h3>
 <p>The data is provided below. The first is the <code>stratified</code> dataset, which contains the mean and variance of the soil carbon content for each land use type.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>stratified <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="fu">c</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Forest"</span>, <span class="st">"Dryland Cropping"</span>, <span class="st">"Pasture-Vertosol"</span>, <span class="st">"Pasture-Other"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Irrigated"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">0.65</span>, <span class="fl">0.96</span>, <span class="fl">1.06</span>, <span class="fl">1.31</span>, <span class="fl">0.78</span>),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance =</span> <span class="fu">c</span>(<span class="fl">1.4</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_area =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">6</span>, <span class="dv">4</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>stratified <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="at">use =</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="st">"Forest"</span>, <span class="st">"Dryland Cropping"</span>, <span class="st">"Pasture-Vertosol"</span>, <span class="st">"Pasture-Other"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="st">"Irrigated"</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    ),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">14</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="at">mean =</span> <span class="fu">c</span>(<span class="fl">0.65</span>, <span class="fl">0.96</span>, <span class="fl">1.06</span>, <span class="fl">1.31</span>, <span class="fl">0.78</span>),</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="at">variance =</span> <span class="fu">c</span>(<span class="fl">1.4</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>, <span class="fl">0.4</span>, <span class="fl">0.8</span>),</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="at">percent_area =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">35</span>, <span class="dv">6</span>, <span class="dv">4</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should copy and paste this data into your own document and run <code>stratified</code> to view the data.</p>
 <p>Look at the code and see if you can understand how a data frame is created in R. The <code>data.frame</code> function is used to create a data frame, and the <code>c</code> function is used to create vectors of data. Each vector forms a column in the data frame.</p>
@@ -428,8 +428,8 @@ Important
 <section id="question-1" class="level3 question page-columns page-full">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>Estimate the mean and associated 95% CI assuming <strong>stratified</strong> random sampling using the <code>carbon</code> dataset. We can use the <code>weighted.mean</code> function to calculate the weighted mean, and the <code>qt</code> function to calculate the t-critical value for a 95% CI. You should find out what these functions do by seeking their help documentation using the <code>?</code> operator.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?weighted.mean</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>?qt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>?weighted.mean</span>
+<span id="cb2-2"><a href="#cb2-2"></a>?qt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>Tip: you can manipulate the object and subset specific rows, columns or cells using <code>$</code> and <code>[]</code> respectively. For example, to access the <code>mean</code> column of the <code>carbon</code> dataset, you can use <code>carbon$mean</code>. To access the mean value for the <code>Forest</code> stratum, you can use <code>carbon$mean[1]</code>.</p>
@@ -438,13 +438,13 @@ Important
 <section id="exercise-2---soil-carbon-what-if" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2---soil-carbon-what-if">Exercise 2 - Soil carbon: what if…?</h2>
 <p><strong><em>What if the authors had used simple random sampling?</em></strong> Below is the data object <code>overall</code> which contains the overall mean and variance of the soil carbon content for the entire catchment. It is also the last row of the table above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>overall <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">"Overall"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="dv">44</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fl">0.92</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">variance =</span> <span class="dv">1</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_area =</span> <span class="dv">100</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>overall <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="at">use =</span> <span class="st">"Overall"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="at">n =</span> <span class="dv">44</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">mean =</span> <span class="fl">0.92</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">variance =</span> <span class="dv">1</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">percent_area =</span> <span class="dv">100</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Calculating the 95% CI for the mean using simple random sampling is similar to the stratified random sampling. The only difference is that the variance of the mean is calculated using the overall variance and sample size.</p>
 <p><span class="math display">Var(\bar y) = \frac{Var(y)}{n}</span></p>
 <p>where <span class="math inline">Var(y)</span> is the variance of the entire dataset and <span class="math inline">n</span> is the total number of samples.</p>
@@ -491,9 +491,9 @@ Important
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rerun <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">9</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>kangaroos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(baseline, rerun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>rerun <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">9</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>kangaroos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(baseline, rerun)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -516,20 +516,20 @@ Important
 <p>You will need to calculate <span class="math inline">{Var}\left(\Delta\left(\bar{y}_1\right)\right)</span>, <span class="math inline">Var\left(\Delta\left(\bar{y}_2\right)\right)</span>, and <span class="math inline">Cov\left(\bar{y}_1,\bar{y}_2\right)</span>.</p>
 <p>As a starting point R script for calculating the covariance and variance for the <strong>observations</strong> is below, as is the code to calculate the t critical value (<span class="math inline">t_{df}^{0.025}</span>). When we sample at different locations between surveys: <span class="math display">df = n_{1}+ n_{2} - 2 = 5 + 5 - 2 = 8</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to isolate data from the two sampling periods:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>baseline</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>rerun</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: functions below are not assigned to objects.</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># To calculate covariance:</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(t0, t2)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># To calculate variances:</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(t0)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(t2)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># t-critical value for a 95% CI with 8 degrees of freedom:</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># If you want to isolate data from the two sampling periods:</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>t0 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>baseline</span>
+<span id="cb6-3"><a href="#cb6-3"></a>t2 <span class="ot">&lt;-</span> kangaroos<span class="sc">$</span>rerun</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: functions below are not assigned to objects.</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co"># To calculate covariance:</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="fu">cov</span>(t0, t2)</span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># To calculate variances:</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="fu">var</span>(t0)</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="fu">var</span>(t2)</span>
+<span id="cb6-12"><a href="#cb6-12"></a></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co"># t-critical value for a 95% CI with 8 degrees of freedom:</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="same-locations" class="level3">
@@ -986,8 +986,8 @@ Important
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

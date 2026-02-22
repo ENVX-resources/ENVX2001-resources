@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -204,39 +204,39 @@ background: white;
 <h2 data-number="1.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.1</span> Setup</h2>
 <p>To do these in R, you need to use the vegan package, so first load it and the MASS package:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-the-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="load-the-data"><span class="header-section-number">1.2</span> Load the data</h2>
 <p>Next load the bird data:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Birds <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/macnally.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Birds <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/macnally.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="transform-the-data" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="transform-the-data"><span class="header-section-number">1.3</span> Transform the data</h2>
 <p>Let’s transform the data using a fourth-root transformation:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TransBirdsData <span class="ot">&lt;-</span> (Birds[, <span class="dv">3</span><span class="sc">:</span><span class="dv">104</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>TransBirdsData <span class="ot">&lt;-</span> (Birds[, <span class="dv">3</span><span class="sc">:</span><span class="dv">104</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="bray-curtis-dissimilarity-matrix" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="bray-curtis-dissimilarity-matrix"><span class="header-section-number">1.4</span> Bray-Curtis Dissimilarity Matrix</h2>
 <p>Now let’s generate a Bray-Curtis dissimilarity matrix on this data and perform a nMDS. Note this data has already been standardised.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Bird.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransBirdsData, <span class="at">method =</span> <span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>Bird.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransBirdsData, <span class="at">method =</span> <span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="nmds-ordination" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="nmds-ordination"><span class="header-section-number">1.5</span> nMDS Ordination</h2>
 <p>Let’s plot the nMDS and label with Habitat Type:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pchs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Bird_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birds<span class="sc">$</span>HABITAT)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nMDS_Bird <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransBirdsData, <span class="at">distance =</span> <span class="st">"bray"</span>, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>pchs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>Bird_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birds<span class="sc">$</span>HABITAT)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>nMDS_Bird <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransBirdsData, <span class="at">distance =</span> <span class="st">"bray"</span>, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.1112209 
 Run 1 stress 0.1112209 
@@ -285,9 +285,9 @@ Run 19 stress 0.1112209
 Run 20 stress 0.1389817 
 *** Best solution repeated 12 times</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plot_Bird <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_Bird, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"n"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(nMDS_Bird, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">pch =</span> pchs[Bird_Factor])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Bird_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>plot_Bird <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_Bird, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"n"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">points</span>(nMDS_Bird, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">pch =</span> pchs[Bird_Factor])</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Bird_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -297,7 +297,7 @@ Run 20 stress 0.1389817
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nMDS_Bird</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>nMDS_Bird</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -322,8 +322,8 @@ Species: expanded scores based on 'TransBirdsData' </code></pre>
 <h2 data-number="1.6" class="anchored" data-anchor-id="anosim"><span class="header-section-number">1.6</span> ANOSIM</h2>
 <p>Let’s do an ANOSIM, using Habitat as the Factor:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Bird.anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(TransBirdsData, <span class="fu">anosim</span>(Bird.dis, Birds<span class="sc">$</span>HABITAT))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Bird.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>Bird.anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(TransBirdsData, <span class="fu">anosim</span>(Bird.dis, Birds<span class="sc">$</span>HABITAT))</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">summary</span>(Bird.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -356,7 +356,7 @@ River Red Gu 12  33.75  96.5 179.50  227   6</code></pre>
 <h2 data-number="1.7" class="anchored" data-anchor-id="permanova"><span class="header-section-number">1.7</span> PERMANOVA</h2>
 <p>Let’s do a PERMANOVA, with HABITAT as a factor. PERMANOVA is called <code>adonis</code> in the vegan package. Note <code>adonis</code> is being replaced by <code>adonis2</code>, which is basically the same.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">adonis2</span>(TransBirdsData <span class="sc">~</span> HABITAT, <span class="at">data =</span> Birds, <span class="at">permutations =</span> <span class="dv">999</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">adonis2</span>(TransBirdsData <span class="sc">~</span> HABITAT, <span class="at">data =</span> Birds, <span class="at">permutations =</span> <span class="dv">999</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Permutation test for adonis under reduced model
 Permutation: free
@@ -377,20 +377,20 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>If we find an overall significant p-value, we need to see which level is significant from which other level. Here we can do pairwise tests (a bit like post-hoc tests in ANOVAs), with the p-value adjusted with a Bonferroni correction.</p>
 <p>To do the pairwise tests, there is a new R command on GitHub. Note the first time you do this, you need to first install Rtools from <a href="https://cran.r-project.org/bin/windows/Rtools/">here</a>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pairwiseAdonis)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.adonis</span>(TransBirdsData, Birds<span class="sc">$</span>HABITAT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">library</span>(pairwiseAdonis)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">pairwise.adonis</span>(TransBirdsData, Birds<span class="sc">$</span>HABITAT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="simper-analysis" class="level2" data-number="1.9">
 <h2 data-number="1.9" class="anchored" data-anchor-id="simper-analysis"><span class="header-section-number">1.9</span> SIMPER Analysis</h2>
 <p>To see what species are contributing to the differences between the vegetation communities, we can use a SIMPER analysis (Similarity Percentages):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Birdsim <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransBirdsData, Birds<span class="sc">$</span>HABITAT)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Birdsim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>Birdsim <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransBirdsData, Birds<span class="sc">$</span>HABITAT)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">summary</span>(Birdsim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Contrast: Mixed_Gippsland Ma 
@@ -2427,8 +2427,8 @@ Number of permutations: 999</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -255,19 +255,19 @@ background: white;
 <li>Negative interaction</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># No interaction</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>no_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">17</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(no_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"No Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># No interaction</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>no_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">17</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">ggplot</span>(no_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"No Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -275,17 +275,17 @@ background: white;
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Positive interaction</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>positive_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(positive_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Positive Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Positive interaction</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>positive_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="fu">ggplot</span>(positive_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Positive Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -293,17 +293,17 @@ background: white;
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Negative interaction</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>negative_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(negative_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Negative Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Negative interaction</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>negative_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="fu">ggplot</span>(negative_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Negative Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -349,27 +349,27 @@ background: white;
 </ul>
 <p>Let’s simulate some data and plot the main effects and interactions:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fire <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Burnt"</span>, <span class="st">"Unburnt"</span>), <span class="at">each =</span> <span class="dv">30</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>rainfall <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">times =</span> <span class="dv">20</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>captures <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fire <span class="sc">==</span> <span class="st">"Burnt"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">5</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">10</span>, <span class="dv">15</span>)),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">10</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">15</span>, <span class="dv">20</span>))), <span class="at">sd =</span> <span class="dv">3</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Fire =</span> fire, <span class="at">Rainfall =</span> rainfall, <span class="at">Captures =</span> captures)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add level order for plotting</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>Rainfall, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot main effect: Rainfall</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>fire <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Burnt"</span>, <span class="st">"Unburnt"</span>), <span class="at">each =</span> <span class="dv">30</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>rainfall <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">times =</span> <span class="dv">20</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>captures <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fire <span class="sc">==</span> <span class="st">"Burnt"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">5</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">10</span>, <span class="dv">15</span>)),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">10</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">15</span>, <span class="dv">20</span>))), <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Fire =</span> fire, <span class="at">Rainfall =</span> rainfall, <span class="at">Captures =</span> captures)</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co"># Add level order for plotting</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>Rainfall, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Plot main effect: Rainfall</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -377,11 +377,11 @@ background: white;
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot main effect: Fire</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Fire, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Fire on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Plot main effect: Fire</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Fire, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Fire on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -389,12 +389,12 @@ background: white;
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interaction</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures, <span class="at">color =</span> Fire, <span class="at">group =</span> Fire)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interaction between Fire and Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Plot interaction</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures, <span class="at">color =</span> Fire, <span class="at">group =</span> Fire)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interaction between Fire and Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -427,14 +427,14 @@ background: white;
 <h2 data-number="2.3" class="anchored" data-anchor-id="exercise-2-anova-using-a-factorial-treatment-design"><span class="header-section-number">2.3</span> Exercise 2: ANOVA using a Factorial Treatment Design</h2>
 <p>Now that we have visualised the main effects and interaction, we can fit an ANOVA model to test for the significance of these effects.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit ANOVA model</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Fire <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Fire)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Rainfall) </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Captures <span class="sc">~</span> Fire <span class="sc">*</span> Rainfall, <span class="at">data =</span> data)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of ANOVA model</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Fit ANOVA model</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>data<span class="sc">$</span>Fire <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Fire)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Rainfall) </span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Captures <span class="sc">~</span> Fire <span class="sc">*</span> Rainfall, <span class="at">data =</span> data)</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># Summary of ANOVA model</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="fu">summary</span>(anova_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 Fire           1  483.3   483.3  63.117 1.21e-10 ***
@@ -449,7 +449,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Which effects are significant? Are they main effects and/or interactions? Are they consistent with the plots above?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -470,30 +470,30 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h3 class="anchored" data-anchor-id="anova-with-blocking">3.1) ANOVA with Blocking</h3>
 <p>In this exercise, we will simulate data for a factorial design with blocking. We will investigate the effects of two factors: Fertilizer (Levels: A, B) and Irrigation (Levels: Low, High) on crop yield, while blocking by Field (Levels: 1, 2, 3).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>field <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Field1"</span>, <span class="st">"Field2"</span>, <span class="st">"Field3"</span>), <span class="at">each =</span> <span class="dv">20</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fertilizer <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">times =</span> <span class="dv">30</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>irrigation <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>), <span class="at">each =</span> <span class="dv">10</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>yield <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fertilizer <span class="sc">==</span> <span class="st">"A"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">35</span>, <span class="dv">45</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field1"</span>, <span class="dv">5</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field2"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>)), <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>data_blocked <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Field =</span> field, <span class="at">Fertilizer =</span> fertilizer,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                           <span class="at">Irrigation =</span> irrigation, <span class="at">Yield =</span> yield)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add level order for plotting</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_blocked<span class="sc">$</span>Irrigation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>data_blocked<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Field)</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>data_blocked<span class="sc">$</span>Fertilizer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Fertilizer)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Irrigation)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit ANOVA model with blocking</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>anova_blocked_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Yield <span class="sc">~</span> Field <span class="sc">+</span> Fertilizer <span class="sc">*</span> Irrigation, <span class="at">data =</span> data_blocked)</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of ANOVA model</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_blocked_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>field <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Field1"</span>, <span class="st">"Field2"</span>, <span class="st">"Field3"</span>), <span class="at">each =</span> <span class="dv">20</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>fertilizer <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">times =</span> <span class="dv">30</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>irrigation <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>), <span class="at">each =</span> <span class="dv">10</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>yield <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fertilizer <span class="sc">==</span> <span class="st">"A"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb10-7"><a href="#cb10-7"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">35</span>, <span class="dv">45</span>)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>                  <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field1"</span>, <span class="dv">5</span>,</span>
+<span id="cb10-9"><a href="#cb10-9"></a>                         <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field2"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>)), <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a></span>
+<span id="cb10-11"><a href="#cb10-11"></a>data_blocked <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Field =</span> field, <span class="at">Fertilizer =</span> fertilizer,</span>
+<span id="cb10-12"><a href="#cb10-12"></a>                           <span class="at">Irrigation =</span> irrigation, <span class="at">Yield =</span> yield)</span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="co"># Add level order for plotting</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_blocked<span class="sc">$</span>Irrigation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
+<span id="cb10-16"><a href="#cb10-16"></a>data_blocked<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Field)</span>
+<span id="cb10-17"><a href="#cb10-17"></a>data_blocked<span class="sc">$</span>Fertilizer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Fertilizer)</span>
+<span id="cb10-18"><a href="#cb10-18"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Irrigation)</span>
+<span id="cb10-19"><a href="#cb10-19"></a></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="co"># Fit ANOVA model with blocking</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a>anova_blocked_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Yield <span class="sc">~</span> Field <span class="sc">+</span> Fertilizer <span class="sc">*</span> Irrigation, <span class="at">data =</span> data_blocked)</span>
+<span id="cb10-22"><a href="#cb10-22"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="co"># Summary of ANOVA model</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="fu">summary</span>(anova_blocked_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 Field                  2 1208.9   604.4  43.669 5.22e-12 ***
@@ -509,25 +509,25 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Which effects are significant? Are they main effects, interactions, or blocking effects?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="visualising-factorial-design-with-blocking" class="level3">
 <h3 class="anchored" data-anchor-id="visualising-factorial-design-with-blocking">3.2) Visualising Factorial Design with Blocking</h3>
 <p>Now let’s visualise the effects in this blocked factorial design using the <code>emmeans</code> package and its plotting functions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Welcome to emmeans.
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate estimated marginal means</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer <span class="sc">*</span> Irrigation)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Main effect plots using emmeans</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer), </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Fertilizer on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Calculate estimated marginal means</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer <span class="sc">*</span> Irrigation)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Main effect plots using emmeans</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer), </span>
+<span id="cb15-6"><a href="#cb15-6"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Fertilizer on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
 </div>
@@ -538,8 +538,8 @@ See '? untidy'</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Irrigation), </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Irrigation on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Irrigation), </span>
+<span id="cb17-2"><a href="#cb17-2"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Irrigation on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
 </div>
@@ -550,9 +550,9 @@ See '? untidy'</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Blocking effect plot using emmeans</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Field), </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Blocking Effect of Field on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Blocking effect plot using emmeans</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Field), </span>
+<span id="cb19-3"><a href="#cb19-3"></a>     <span class="at">main =</span> <span class="st">"Blocking Effect of Field on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -560,9 +560,9 @@ See '? untidy'</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interaction plot using emmeans</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">emmip</span>(anova_blocked_model, Fertilizer <span class="sc">~</span> Irrigation,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Interaction between Fertilizer and Irrigation on Crop Yield"</span>, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Interaction plot using emmeans</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">emmip</span>(anova_blocked_model, Fertilizer <span class="sc">~</span> Irrigation,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>      <span class="at">main =</span> <span class="st">"Interaction between Fertilizer and Irrigation on Crop Yield"</span>, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -575,7 +575,7 @@ See '? untidy'</code></pre>
 <p>Describe the main effects and interaction effects observed in the plots above. How do these visualisations help in understanding the effects of Fertilizer and Irrigation on crop yield?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note: We usually don’t plot blocking effects as they are not of primary interest, but it can be useful to check for large differences between blocks.</p>
 <p>Depending on our hypotheses, we may be interested in post-hoc tests for the main effects or interaction effects. If there is a significant interaction, we should focus on that rather than the main effects. We may not need to use all the plots. Always let your hypotheses guide what plots to produce.</p>
@@ -583,14 +583,14 @@ See '? untidy'</code></pre>
 <section id="calculate-the-variance-explained-by-each-effect" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-the-variance-explained-by-each-effect">3.3) Calculate the variance explained by each effect</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate variance explained by each effect</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_blocked_model)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>])</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ss_effects <span class="ot">&lt;-</span> anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>]</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>variance_explained <span class="ot">&lt;-</span> (ss_effects <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>anova_summary <span class="co"># ANOVA table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Calculate variance explained by each effect</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_blocked_model)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>])</span>
+<span id="cb22-4"><a href="#cb22-4"></a>ss_effects <span class="ot">&lt;-</span> anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>]</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a>variance_explained <span class="ot">&lt;-</span> (ss_effects <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a>anova_summary <span class="co"># ANOVA table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 Field                  2 1208.9   604.4  43.669 5.22e-12 ***
@@ -601,7 +601,7 @@ Residuals             54  747.4    13.8
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>variance_explained <span class="co"># variation explained by each effect in order of the ANOVA table from top to bottom</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>variance_explained <span class="co"># variation explained by each effect in order of the ANOVA table from top to bottom</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 26.1042461 13.6367542 43.2524207  0.8665808 16.1399983</code></pre>
 </div>
@@ -610,7 +610,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Which effect explains the most variance in crop yield? How does this information help in understanding the factors influencing crop yield?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -1036,8 +1036,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

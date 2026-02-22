@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -275,27 +275,27 @@ background: white;
 <p>Put your hand up if you answer “Yes”, and keep it down if you answer “No”. The students with their hands up are counted as “Yes” and the students with their hands down are counted as “No”. This is our non-random sample.</p>
 <p><strong>Class answers</strong> — Replace these with your class numbers:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>total_nonrandom <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># total students in non-random sample/class size</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>count_yes_nonrandom <span class="ot">&lt;-</span> <span class="dv">38</span> <span class="co"># yes I know the person next to me</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># no I don't know the person next to me</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>total_nonrandom <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># total students in non-random sample/class size</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>count_yes_nonrandom <span class="ot">&lt;-</span> <span class="dv">38</span> <span class="co"># yes I know the person next to me</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># no I don't know the person next to me</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Class size (number of students present):</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>class_size <span class="ot">&lt;-</span> total_nonrandom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>class_size <span class="ot">&lt;-</span> total_nonrandom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="percentages-from-the-non-random-sample" class="level3">
 <h3 class="anchored" data-anchor-id="percentages-from-the-non-random-sample">1.2) Percentages from the non-random sample</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prop_yes_nonrandom <span class="ot">&lt;-</span> (count_yes_nonrandom <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>prop_no_nonrandom  <span class="ot">&lt;-</span> (count_no_nonrandom  <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>prop_yes_nonrandom <span class="ot">&lt;-</span> (count_yes_nonrandom <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>prop_no_nonrandom  <span class="ot">&lt;-</span> (count_no_nonrandom  <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_nonrandom, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_nonrandom, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Non-random sample % Yes: 63.3 %</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % No :"</span>, <span class="fu">round</span>(prop_no_nonrandom, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % No :"</span>, <span class="fu">round</span>(prop_no_nonrandom, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Non-random sample % No : 36.7 %</code></pre>
 </div>
@@ -305,21 +305,21 @@ background: white;
 <h3 class="anchored" data-anchor-id="random-sample">1.3) Random sample</h3>
 <p>We simulate student IDs and assign a random number to each ID.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>student_ids <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(class_size)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rand_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(class_size)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>class_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> student_ids, <span class="at">rand_num =</span> rand_num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>student_ids <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(class_size)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>rand_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(class_size)</span>
+<span id="cb8-4"><a href="#cb8-4"></a>class_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> student_ids, <span class="at">rand_num =</span> rand_num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Random sample size (how many students you will sample at random):</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>random_sample_size <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="co"># choose a sample size for the random sample</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>random_sample_size <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="co"># choose a sample size for the random sample</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Randomly select students:</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">202</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sampled_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(class_df<span class="sc">$</span>id, <span class="at">size =</span> random_sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sampled_ids <span class="co"># students with these numbers were randomly selected to be asked the question again.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">set.seed</span>(<span class="dv">202</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>sampled_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(class_df<span class="sc">$</span>id, <span class="at">size =</span> random_sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>sampled_ids <span class="co"># students with these numbers were randomly selected to be asked the question again.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 16 46 40  8  6 60 22 36 45 57 33 51 55 11 27 43 41 25 49 54 47 24 29 39 59
 [26] 17 13  1 50  4</code></pre>
@@ -331,20 +331,20 @@ background: white;
 <p><strong>Enter counts for the random sample:</strong></p>
 <p>After you randomly select those students and ask the question, enter the counts here.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>count_yes_random <span class="ot">&lt;-</span> <span class="dv">14</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>count_no_random  <span class="ot">&lt;-</span> <span class="dv">16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>count_yes_random <span class="ot">&lt;-</span> <span class="dv">14</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>count_no_random  <span class="ot">&lt;-</span> <span class="dv">16</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Percentages for the random sample:</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prop_yes_random <span class="ot">&lt;-</span> (count_yes_random <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>prop_no_random  <span class="ot">&lt;-</span> (count_no_random  <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>prop_yes_random <span class="ot">&lt;-</span> (count_yes_random <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>prop_no_random  <span class="ot">&lt;-</span> (count_no_random  <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_random, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cat</span>(<span class="st">"Random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_random, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Random sample % Yes: 46.7 %</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Random sample % No :"</span>, <span class="fu">round</span>(prop_no_random, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">cat</span>(<span class="st">"Random sample % No :"</span>, <span class="fu">round</span>(prop_no_random, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Random sample % No : 53.3 %</code></pre>
 </div>
@@ -352,15 +352,15 @@ background: white;
 <p><strong>Estimate the bias:</strong></p>
 <p>Bias here is the difference between the non-random sample proportion and the random sample proportion.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>bias_yes <span class="ot">&lt;-</span> prop_yes_nonrandom <span class="sc">-</span> prop_yes_random</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>bias_no  <span class="ot">&lt;-</span> prop_no_nonrandom  <span class="sc">-</span> prop_no_random</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>bias_yes <span class="ot">&lt;-</span> prop_yes_nonrandom <span class="sc">-</span> prop_yes_random</span>
+<span id="cb18-2"><a href="#cb18-2"></a>bias_no  <span class="ot">&lt;-</span> prop_no_nonrandom  <span class="sc">-</span> prop_no_random</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % Yes (non-random - random):"</span>, <span class="fu">round</span>(bias_yes, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % Yes (non-random - random):"</span>, <span class="fu">round</span>(bias_yes, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimated bias in % Yes (non-random - random): 16.7 %</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % No  (non-random - random):"</span>, <span class="fu">round</span>(bias_no, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % No  (non-random - random):"</span>, <span class="fu">round</span>(bias_no, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Estimated bias in % No  (non-random - random): -16.7 %</code></pre>
 </div>
@@ -368,22 +368,22 @@ background: white;
 <p><strong>Visualisation:</strong></p>
 <p>Bar plot of % Yes/No for non-random vs random samples using ggplot2.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>percent_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample_type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Non-random sample"</span>, <span class="st">"Random sample"</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">response     =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">percent      =</span> <span class="fu">c</span>(prop_yes_nonrandom, prop_no_nonrandom, prop_yes_random, prop_no_random)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(percent_df, <span class="fu">aes</span>(<span class="at">x =</span> response, <span class="at">y =</span> percent, <span class="at">fill =</span> sample_type)) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Non-random vs Random Sample: % Knowing the Neighbour"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Response"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">fill =</span> <span class="st">"Sample type"</span>) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Non-random sample"</span> <span class="ot">=</span> <span class="st">"#4C78A8"</span>, <span class="st">"Random sample"</span> <span class="ot">=</span> <span class="st">"#F58518"</span>)) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>percent_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">sample_type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Non-random sample"</span>, <span class="st">"Random sample"</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">response     =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="at">percent      =</span> <span class="fu">c</span>(prop_yes_nonrandom, prop_no_nonrandom, prop_yes_random, prop_no_random)</span>
+<span id="cb23-5"><a href="#cb23-5"></a>)</span>
+<span id="cb23-6"><a href="#cb23-6"></a></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-8"><a href="#cb23-8"></a></span>
+<span id="cb23-9"><a href="#cb23-9"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(percent_df, <span class="fu">aes</span>(<span class="at">x =</span> response, <span class="at">y =</span> percent, <span class="at">fill =</span> sample_type)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Non-random vs Random Sample: % Knowing the Neighbour"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12"></a>       <span class="at">x =</span> <span class="st">"Response"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">fill =</span> <span class="st">"Sample type"</span>) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Non-random sample"</span> <span class="ot">=</span> <span class="st">"#4C78A8"</span>, <span class="st">"Random sample"</span> <span class="ot">=</span> <span class="st">"#F58518"</span>)) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb23-15"><a href="#cb23-15"></a></span>
+<span id="cb23-16"><a href="#cb23-16"></a><span class="fu">print</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -427,8 +427,8 @@ background: white;
 <p>What is the experimental unit and what is the sampling unit in this experiment?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Experimental unit: pot</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Sampling unit: individual plant</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Experimental unit: pot</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># Sampling unit: individual plant</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The experimental unit is the pot, as the fertilizer treatment is applied to the entire pot.</li>
@@ -438,7 +438,7 @@ background: white;
 <p>Working in pairs, identify other examples of experimental units vs sampling units and check answers with staff.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Examples here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -513,14 +513,14 @@ background: white;
 <h2 data-number="4.1" class="anchored" data-anchor-id="exercise-3-completely-randomised-design-crd"><span class="header-section-number">4.1</span> Exercise 3: Completely Randomised Design (CRD)</h2>
 <p>Consider an experiment to test the effect of different fertilizers on plant growth using a CRD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly assign treatments to pots</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Randomly assign treatments to pots</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb26-4"><a href="#cb26-4"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-5"><a href="#cb26-5"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb26-7"><a href="#cb26-7"></a>)</span>
+<span id="cb26-8"><a href="#cb26-8"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id treatment
 1       1         A
@@ -542,15 +542,15 @@ background: white;
 <li>The height of each plant is measured after 4 weeks.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate plant height data</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb28-3"><a href="#cb28-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb28-6"><a href="#cb28-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb28-7"><a href="#cb28-7"></a>)</span>
+<span id="cb28-8"><a href="#cb28-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id plant_id    height treatment
 1       1        1  7.312957         A
@@ -622,12 +622,12 @@ background: white;
 <p>Is there a significant difference in plant height between the fertilizer treatments?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA analysis</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> treatment, <span class="at">data =</span> plant_heights)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># ANOVA analysis</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
 treatment    2  100.1   50.04   2.641   0.08 .
@@ -672,16 +672,16 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h2 data-number="5.1" class="anchored" data-anchor-id="exercise-4-randomised-complete-block-design-rcbd"><span class="header-section-number">5.1</span> Exercise 4: Randomised Complete Block Design (RCBD)</h2>
 <p>Consider an experiment to test the effect of different fertilizers on plant growth using an RCBD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). The pots are grouped into 4 blocks based on their location in the greenhouse (North, South, East, West). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create blocks and randomly assign treatments within blocks</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">block =</span> blocks,</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Create blocks and randomly assign treatments within blocks</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb33-3"><a href="#cb33-3"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb33-4"><a href="#cb33-4"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb33-5"><a href="#cb33-5"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb33-7"><a href="#cb33-7"></a>  <span class="at">block =</span> blocks,</span>
+<span id="cb33-8"><a href="#cb33-8"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb33-9"><a href="#cb33-9"></a>)</span>
+<span id="cb33-10"><a href="#cb33-10"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id block treatment
 1       1 North         C
@@ -703,15 +703,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>The height of each plant is measured after 4 weeks.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate plant height data</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">each =</span> <span class="dv">15</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb35-5"><a href="#cb35-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">each =</span> <span class="dv">15</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb35-7"><a href="#cb35-7"></a>)</span>
+<span id="cb35-8"><a href="#cb35-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb35-9"><a href="#cb35-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id plant_id    height block treatment
 1       1        1  9.312957 North         C
@@ -778,9 +778,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>The data can be analysed using ANOVA to test for differences in plant height between the fertilizer treatments while accounting for block effects.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA analysis with blocking</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> plant_heights)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># ANOVA analysis with blocking</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 block        3  664.5  221.50  41.589 4.59e-14 ***
@@ -831,17 +831,17 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>anova_table <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_result)[[<span class="dv">1</span>]]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>ss_treatment <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">2</span>]</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>ss_block <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>percent_treatment <span class="ot">&lt;-</span> (ss_treatment <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>percent_block <span class="ot">&lt;-</span> (ss_block <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by treatments:"</span>, <span class="fu">round</span>(percent_treatment, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>anova_table <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_result)[[<span class="dv">1</span>]]</span>
+<span id="cb39-2"><a href="#cb39-2"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
+<span id="cb39-3"><a href="#cb39-3"></a>ss_treatment <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb39-4"><a href="#cb39-4"></a>ss_block <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb39-5"><a href="#cb39-5"></a>percent_treatment <span class="ot">&lt;-</span> (ss_treatment <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>percent_block <span class="ot">&lt;-</span> (ss_block <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by treatments:"</span>, <span class="fu">round</span>(percent_treatment, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Percentage of variation explained by treatments: 3.4 %</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by blocks:"</span>, <span class="fu">round</span>(percent_block, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by blocks:"</span>, <span class="fu">round</span>(percent_block, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Percentage of variation explained by blocks: 67.4 %</code></pre>
 </div>
@@ -1272,8 +1272,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

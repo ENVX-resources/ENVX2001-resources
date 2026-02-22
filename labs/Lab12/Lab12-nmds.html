@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-d61f110efc67b49214fed019bbcb8369.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-77cf81032d8f5060839643c81ab37d1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
@@ -218,28 +218,28 @@ background: white;
 <p>We want to know if there is a pattern in species assemblages using nMDS, whether there is a statistically significant difference between treatments using ANOSIM and what species contribute to these differences via SIMPER.</p>
 <p>First you need to load the packages vegan and MASS and file CopepodData.csv</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(vegan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: permute</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>CopepodData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/CopepodData.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>CopepodData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/CopepodData.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now the data is entered, let’s apply a 4th root transformation. This will take the emphasis from the more common species. Other transformations include the square root transformation and the log transformation. Other transformations included square root, presence/absence and log. You can also standardise the data if there are differences in the amount of sampling (which there isn’t here).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>TransCopepodData <span class="ot">&lt;-</span> (CopepodData[,<span class="dv">2</span><span class="sc">:</span><span class="dv">20</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>TransCopepodData <span class="ot">&lt;-</span> (CopepodData[,<span class="dv">2</span><span class="sc">:</span><span class="dv">20</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s generate a Bray-Curtis dissimilarity matrix on this transformed data and perform a nMDS. Bray-Curtis similarities are useful for this kind of data, as they did not group sites by shared absences. For environmental data, a Euclidean distance would be more useful.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>copepod.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransCopepodData, <span class="at">method=</span><span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>copepod.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransCopepodData, <span class="at">method=</span><span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s look at the nMDS with labels for Community and take a note of the stress value (how well the ordination represents the data). A great stress value is &lt;0.1, an OK stress value is between 0.1 and 0.2, and &gt;0.2 is not so good. A stress greater than 0.3 is essentially arbitrary.</p>
 <p>Next we plot the nMDS, labelling the sites with treatment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pchs<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Copepod_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(CopepodData<span class="sc">$</span>Treatment)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nMDS_copepod <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransCopepodData, <span class="at">distance=</span><span class="st">"bray"</span>, <span class="at">k=</span><span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>pchs<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>Copepod_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(CopepodData<span class="sc">$</span>Treatment)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>nMDS_copepod <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransCopepodData, <span class="at">distance=</span><span class="st">"bray"</span>, <span class="at">k=</span><span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.1003895 
 Run 1 stress 0.09313703 
@@ -280,9 +280,9 @@ Run 19 stress 0.110277
 Run 20 stress 0.1003895 
 *** Best solution repeated 7 times</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_copepod <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_copepod, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"n"</span>) </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(nMDS_copepod, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">pch =</span> pchs[Copepod_Factor])</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Copepod_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>plot_copepod <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_copepod, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"n"</span>) </span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">points</span>(nMDS_copepod, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">pch =</span> pchs[Copepod_Factor])</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Copepod_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -290,7 +290,7 @@ Run 20 stress 0.1003895
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nMDS_copepod</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>nMDS_copepod</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -315,8 +315,8 @@ Species: expanded scores based on 'TransCopepodData' </code></pre>
 <p>Let’s test if the groups are significantly different using ANOSIM (Analysis of Similarities), a non-parametric permutation test. We will use 999 permutations to calculate the significance level.</p>
 <p>So, let’s test for Treatment</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>copepod.anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(CopepodData, <span class="fu">anosim</span>(copepod.dis, CopepodData<span class="sc">$</span>Treatment))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(copepod.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>copepod.anosim <span class="ot">&lt;-</span> <span class="fu">with</span>(CopepodData, <span class="fu">anosim</span>(copepod.dis, CopepodData<span class="sc">$</span>Treatment))</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">summary</span>(copepod.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -340,7 +340,7 @@ C        1  6.50  9.5 16.25   23  6
 H        7 18.25 25.0 29.50   32  6
 L        2  3.25  4.5  8.00   10  6</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(copepod.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(copepod.anosim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in (function (z, notch = FALSE, width = NULL, varwidth = FALSE, : some
 notches went outside hinges ('box'): maybe set notch=FALSE</code></pre>
@@ -355,12 +355,12 @@ notches went outside hinges ('box'): maybe set notch=FALSE</code></pre>
 </div>
 <p>Is there a significant difference between the different treatments? We can see that using a brand-new ANOSIM code.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract a grouping factor (e.g., Management type)</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> CopepodData<span class="sc">$</span>Treatment</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform ANOSIM for all groups combined</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>anosim_all <span class="ot">&lt;-</span> <span class="fu">anosim</span>(copepod.dis, group)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anosim_all)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Extract a grouping factor (e.g., Management type)</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>group <span class="ot">&lt;-</span> CopepodData<span class="sc">$</span>Treatment</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Perform ANOSIM for all groups combined</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>anosim_all <span class="ot">&lt;-</span> <span class="fu">anosim</span>(copepod.dis, group)</span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="fu">print</span>(anosim_all)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -373,57 +373,57 @@ ANOSIM statistic R: 0.8495
 Permutation: free
 Number of permutations: 999</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pairwise.anosim <span class="ot">&lt;-</span> <span class="cf">function</span>(copepod.dis, group, <span class="at">p.adjust.method =</span> <span class="st">"holm"</span>, ...) {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure grouping is a factor</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  group <span class="ot">&lt;-</span> <span class="fu">factor</span>(group)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  groups <span class="ot">&lt;-</span> <span class="fu">levels</span>(group)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Generate all unique pairs of group levels</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  pairs <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">combn</span>(groups, <span class="dv">2</span>))</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare storage for results</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">group1  =</span> <span class="fu">character</span>(),</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">group2  =</span> <span class="fu">character</span>(),</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">R       =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Loop through each pair</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(pairs))) {</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    g1 <span class="ot">&lt;-</span> pairs[i, <span class="dv">1</span>]</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    g2 <span class="ot">&lt;-</span> pairs[i, <span class="dv">2</span>]</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Subset the data to just these two groups</span></span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    keep <span class="ot">&lt;-</span> group <span class="sc">%in%</span> <span class="fu">c</span>(g1, g2)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    dist_sub <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(<span class="fu">as.matrix</span>(copepod.dis)[keep, keep])</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    group_sub <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(group[keep])</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run ANOSIM</span></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    anosim_res <span class="ot">&lt;-</span> <span class="fu">anosim</span>(dist_sub, group_sub, ...)</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Store results</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>      results,</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">data.frame</span>(</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">group1  =</span> g1,</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">group2  =</span> g2,</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">R       =</span> anosim_res<span class="sc">$</span>statistic,</span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">p.value =</span> anosim_res<span class="sc">$</span>signif,</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adjust p-values for multiple comparisons</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>p.adjusted <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>p.value, <span class="at">method =</span> p.adjust.method)</span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>pairwise_results <span class="ot">&lt;-</span> <span class="fu">pairwise.anosim</span>(copepod.dis, group, <span class="at">p.adjust.method =</span> <span class="st">"holm"</span>)</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>pairwise_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>pairwise.anosim <span class="ot">&lt;-</span> <span class="cf">function</span>(copepod.dis, group, <span class="at">p.adjust.method =</span> <span class="st">"holm"</span>, ...) {</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="co"># Ensure grouping is a factor</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  group <span class="ot">&lt;-</span> <span class="fu">factor</span>(group)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  groups <span class="ot">&lt;-</span> <span class="fu">levels</span>(group)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>  </span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="co"># Generate all unique pairs of group levels</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  pairs <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">combn</span>(groups, <span class="dv">2</span>))</span>
+<span id="cb17-8"><a href="#cb17-8"></a>  </span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="co"># Prepare storage for results</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-11"><a href="#cb17-11"></a>    <span class="at">group1  =</span> <span class="fu">character</span>(),</span>
+<span id="cb17-12"><a href="#cb17-12"></a>    <span class="at">group2  =</span> <span class="fu">character</span>(),</span>
+<span id="cb17-13"><a href="#cb17-13"></a>    <span class="at">R       =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb17-14"><a href="#cb17-14"></a>    <span class="at">p.value =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb17-15"><a href="#cb17-15"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>  )</span>
+<span id="cb17-17"><a href="#cb17-17"></a>  </span>
+<span id="cb17-18"><a href="#cb17-18"></a>  <span class="co"># Loop through each pair</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(pairs))) {</span>
+<span id="cb17-20"><a href="#cb17-20"></a>    g1 <span class="ot">&lt;-</span> pairs[i, <span class="dv">1</span>]</span>
+<span id="cb17-21"><a href="#cb17-21"></a>    g2 <span class="ot">&lt;-</span> pairs[i, <span class="dv">2</span>]</span>
+<span id="cb17-22"><a href="#cb17-22"></a>    </span>
+<span id="cb17-23"><a href="#cb17-23"></a>    <span class="co"># Subset the data to just these two groups</span></span>
+<span id="cb17-24"><a href="#cb17-24"></a>    keep <span class="ot">&lt;-</span> group <span class="sc">%in%</span> <span class="fu">c</span>(g1, g2)</span>
+<span id="cb17-25"><a href="#cb17-25"></a>    dist_sub <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(<span class="fu">as.matrix</span>(copepod.dis)[keep, keep])</span>
+<span id="cb17-26"><a href="#cb17-26"></a>    group_sub <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(group[keep])</span>
+<span id="cb17-27"><a href="#cb17-27"></a>    </span>
+<span id="cb17-28"><a href="#cb17-28"></a>    <span class="co"># Run ANOSIM</span></span>
+<span id="cb17-29"><a href="#cb17-29"></a>    anosim_res <span class="ot">&lt;-</span> <span class="fu">anosim</span>(dist_sub, group_sub, ...)</span>
+<span id="cb17-30"><a href="#cb17-30"></a>    </span>
+<span id="cb17-31"><a href="#cb17-31"></a>    <span class="co"># Store results</span></span>
+<span id="cb17-32"><a href="#cb17-32"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb17-33"><a href="#cb17-33"></a>      results,</span>
+<span id="cb17-34"><a href="#cb17-34"></a>      <span class="fu">data.frame</span>(</span>
+<span id="cb17-35"><a href="#cb17-35"></a>        <span class="at">group1  =</span> g1,</span>
+<span id="cb17-36"><a href="#cb17-36"></a>        <span class="at">group2  =</span> g2,</span>
+<span id="cb17-37"><a href="#cb17-37"></a>        <span class="at">R       =</span> anosim_res<span class="sc">$</span>statistic,</span>
+<span id="cb17-38"><a href="#cb17-38"></a>        <span class="at">p.value =</span> anosim_res<span class="sc">$</span>signif,</span>
+<span id="cb17-39"><a href="#cb17-39"></a>        <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-40"><a href="#cb17-40"></a>      )</span>
+<span id="cb17-41"><a href="#cb17-41"></a>    )</span>
+<span id="cb17-42"><a href="#cb17-42"></a>  }</span>
+<span id="cb17-43"><a href="#cb17-43"></a>  </span>
+<span id="cb17-44"><a href="#cb17-44"></a>  <span class="co"># Adjust p-values for multiple comparisons</span></span>
+<span id="cb17-45"><a href="#cb17-45"></a>  results<span class="sc">$</span>p.adjusted <span class="ot">&lt;-</span> <span class="fu">p.adjust</span>(results<span class="sc">$</span>p.value, <span class="at">method =</span> p.adjust.method)</span>
+<span id="cb17-46"><a href="#cb17-46"></a>  </span>
+<span id="cb17-47"><a href="#cb17-47"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb17-48"><a href="#cb17-48"></a>}</span>
+<span id="cb17-49"><a href="#cb17-49"></a></span>
+<span id="cb17-50"><a href="#cb17-50"></a>pairwise_results <span class="ot">&lt;-</span> <span class="fu">pairwise.anosim</span>(copepod.dis, group, <span class="at">p.adjust.method =</span> <span class="st">"holm"</span>)</span>
+<span id="cb17-51"><a href="#cb17-51"></a>pairwise_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group1 group2       R p.value p.adjusted
 1      C      H 0.96875   0.024      0.072
@@ -436,8 +436,8 @@ Number of permutations: 999</code></pre>
 <p>Note we use the ratio as the rank for the species that mostly separate the groups.</p>
 <p>If R approaches 1 the dissimilarity between groups is greater than the dissimilarity within groups, if R is close to 0 the dissimilarity within groups is about the same as the dissimilarity between groups, and if R approaches -1, the variation within groups is greater than the dissimilarity between groups.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>copepod.simper <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransCopepodData, CopepodData<span class="sc">$</span>Treatment)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(copepod.simper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>copepod.simper <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransCopepodData, CopepodData<span class="sc">$</span>Treatment)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">summary</span>(copepod.simper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Contrast: C_L 
@@ -531,25 +531,25 @@ Number of permutations: 999</code></pre>
 <p>We want to know if there is a pattern in species assemblages using nMDS, whether there is a statistically significant difference between communities and samples using PERMANOVA, and what species contribute to these differences via SIMPER.</p>
 <p>First you need to load the packages vegan and MASS and file AntData.csv,</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>AntData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AntDataTotal.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a>AntData <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/AntDataTotal.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now the data is entered, let’s apply a 4th root transformation, like in the example above,</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>TransAntData <span class="ot">&lt;-</span> (AntData[,<span class="dv">4</span><span class="sc">:</span><span class="dv">103</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>TransAntData <span class="ot">&lt;-</span> (AntData[,<span class="dv">4</span><span class="sc">:</span><span class="dv">103</span>])<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s generate a Bray-Curtis dissimilarity matrix on this transformed data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ant.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransAntData, <span class="at">method =</span> <span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>ant.dis <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(TransAntData, <span class="at">method =</span> <span class="st">"bray"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s look at the nMDS with labels for Community and take a note of the stress value (how well the ordination represents the data). A great stress value is &lt;0.1, an OK stress value is between 0.1 and 0.2, and &gt;0.2 is not so good. A stress greater than 0.3 is essentially arbitrary.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pchs<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>Ant_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(AntData<span class="sc">$</span>Community)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>nMDS_Ant <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransAntData, <span class="at">distance=</span><span class="st">"bray"</span>, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>pchs<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>Ant_Factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(AntData<span class="sc">$</span>Community)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>nMDS_Ant <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(TransAntData, <span class="at">distance=</span><span class="st">"bray"</span>, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Run 0 stress 0.2869097 
 Run 1 stress 0.2895111 
@@ -581,9 +581,9 @@ Run 20 stress 0.2943664
      3: no. of iterations &gt;= maxit
     17: stress ratio &gt; sratmax</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plot_Ant <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_Ant, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"n"</span>) </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(nMDS_Ant, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">pch =</span> pchs[Ant_Factor])</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Ant_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>plot_Ant <span class="ot">&lt;-</span> <span class="fu">ordiplot</span>(nMDS_Ant, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"n"</span>) </span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">points</span>(nMDS_Ant, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">pch =</span> pchs[Ant_Factor])</span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(Ant_Factor), <span class="at">pch =</span> pchs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -591,7 +591,7 @@ Run 20 stress 0.2943664
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>nMDS_Ant</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nMDS_Ant</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -615,11 +615,11 @@ Species: expanded scores based on 'TransAntData' </code></pre>
 <p><strong>Exercise</strong>: What is the stress and is it good?</p>
 <p>We can test for differences between Communities, Samples and their Interactions using PERMANOVA (called Adonis in the package vegan). This is better for analyses with at least 2 factors than ANOSIM, as it can test the interactions. We use 999 permutations to calculate the significance (p) value. You interpret the PERMANOVA table like an ANOVA Table, except permutations are used to generate the p value,</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PERMANOVA with interaction using adonis2</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">adonis2</span>(<span class="fu">vegdist</span>(TransAntData) <span class="sc">~</span> Community <span class="sc">*</span> Sample,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> AntData,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">permutations =</span> <span class="dv">999</span>,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">by =</span> <span class="st">"terms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># PERMANOVA with interaction using adonis2</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">adonis2</span>(<span class="fu">vegdist</span>(TransAntData) <span class="sc">~</span> Community <span class="sc">*</span> Sample,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>        <span class="at">data =</span> AntData,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>        <span class="at">permutations =</span> <span class="dv">999</span>,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>        <span class="at">by =</span> <span class="st">"terms"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Permutation test for adonis under reduced model
 Terms added sequentially (first to last)
@@ -642,7 +642,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>To do the pairwise tests, there is a new R command on github and you can copy this text below to do it. This is for the Community factor in the ant data.</p>
 <p>Note the first time you do this, you need to first install Rtools from here https://cran.r-project.org/bin/windows/Rtools/</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(devtools)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: usethis</code></pre>
 </div>
@@ -655,7 +655,7 @@ Attaching package: 'devtools'</code></pre>
 
     check</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">install_github</span>(<span class="st">"pmartinezarbizu/pairwiseAdonis/pairwiseAdonis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using GitHub PAT from the git credential store.</code></pre>
 </div>
@@ -663,11 +663,11 @@ Attaching package: 'devtools'</code></pre>
 <pre><code>Skipping install of 'pairwiseAdonis' from a github remote, the SHA1 (cb190f76) has not changed since last install.
   Use `force = TRUE` to force installation</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pairwiseAdonis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(pairwiseAdonis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: cluster</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.adonis</span>(TransAntData, AntData<span class="sc">$</span>Community)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">pairwise.adonis</span>(TransAntData, AntData<span class="sc">$</span>Community)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          pairs Df SumsOfSqs  F.Model         R2 p.value p.adjusted sig
 1  BGHF vs CCIF  1 1.1326581 4.532465 0.13516648   0.001       0.01   *
@@ -685,8 +685,8 @@ Attaching package: 'devtools'</code></pre>
 <p><strong>Exercise</strong>: Which communities are significantly different from each other?</p>
 <p>To see what species are contributing to the differences between the vegetation communities, we can again use a SIMPER analysis (Similarity Percentages)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>antsim <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransAntData, AntData<span class="sc">$</span>Community)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(antsim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>antsim <span class="ot">&lt;-</span> <span class="fu">simper</span>(TransAntData, AntData<span class="sc">$</span>Community)</span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">summary</span>(antsim)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Contrast: BGHF_CCIF 
@@ -3172,8 +3172,8 @@ Number of permutations: 999</code></pre>
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Built using the SOLES Quarto handbook template</p>
-</div>   
+      &nbsp;
+    </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

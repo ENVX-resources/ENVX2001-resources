@@ -326,161 +326,63 @@
     "href": "tutorials/tutorial01.html",
     "title": "Tutorial 01",
     "section": "",
-    "text": "Welcome to Tutorial 1. In this tutorial we will show you how to:\n\nCreate an RStudio Project.\nCreate a Quarto document and customise it.\nFormat text and explore some advanced Quarto options."
+    "text": "In this tutorial you will create a Quarto document from scratch. By the end you will have an HTML page with formatted text, a chart, and a table — all inside an RStudio Project.\nYou will learn how to:\n\nCreate an RStudio Project and organise your files.\nCreate a Quarto document and set up the YAML header.\nWrite formatted content with headings, lists, and emphasis.\nLoad data, plot a chart, and display a table.\n\nYou will work with one of these datasets throughout the tutorial. Pick whichever you like and download the CSV — you will need it shortly.\n\n\n\nDataset\nFile\nDownload\n\n\n\n\nStudio Ghibli films\nghibli_films.csv\nDownload\n\n\nSpotify top songs\nspotify_top50.csv\nDownload\n\n\nAFL teams\nafl_teams.csv\nDownload\n\n\nFast food chains\nfast_food.csv\nDownload"
   },
   {
     "objectID": "tutorials/tutorial01.html#welcome",
     "href": "tutorials/tutorial01.html#welcome",
     "title": "Tutorial 01",
     "section": "",
-    "text": "Welcome to Tutorial 1. In this tutorial we will show you how to:\n\nCreate an RStudio Project.\nCreate a Quarto document and customise it.\nFormat text and explore some advanced Quarto options."
+    "text": "In this tutorial you will create a Quarto document from scratch. By the end you will have an HTML page with formatted text, a chart, and a table — all inside an RStudio Project.\nYou will learn how to:\n\nCreate an RStudio Project and organise your files.\nCreate a Quarto document and set up the YAML header.\nWrite formatted content with headings, lists, and emphasis.\nLoad data, plot a chart, and display a table.\n\nYou will work with one of these datasets throughout the tutorial. Pick whichever you like and download the CSV — you will need it shortly.\n\n\n\nDataset\nFile\nDownload\n\n\n\n\nStudio Ghibli films\nghibli_films.csv\nDownload\n\n\nSpotify top songs\nspotify_top50.csv\nDownload\n\n\nAFL teams\nafl_teams.csv\nDownload\n\n\nFast food chains\nfast_food.csv\nDownload"
   },
   {
-    "objectID": "tutorials/tutorial01.html#getting-started",
-    "href": "tutorials/tutorial01.html#getting-started",
+    "objectID": "tutorials/tutorial01.html#exercise-1-set-up-your-project",
+    "href": "tutorials/tutorial01.html#exercise-1-set-up-your-project",
     "title": "Tutorial 01",
-    "section": "0.1 Getting started",
-    "text": "0.1 Getting started\n\n\nIn some instances you will see notes like this one in the margin, which often contain useful tips or reminders.\n\nThese tutorials are designed to be comprehensive yet accessible. I recommend following along and completing the exercises as you go.\nYou will need to create your own Quarto document to complete the exercises. In RStudio, go to\n\nFile -&gt; New File -&gt; Quarto Document... or\nFile -&gt; New File -&gt; R Markdown... and follow the intuitive prompts.\n\nIf you have any suggestions for improvement, please let me know! Send me an email (you can find my details on Canvas)."
+    "section": "Exercise 1: Set up your project",
+    "text": "Exercise 1: Set up your project\nFollow along as the tutor demonstrates each step.\n\nOpen RStudio.\nGo to File &gt; New Project… &gt; New Directory &gt; New Project.\nName the project something like tutorial01 and choose where to save it.\nInside the project, create a folder called data. You can do this in the Files pane (bottom-right) by clicking New Folder.\nMove your chosen CSV file into the data folder.\n\n\n\nIf you are not sure how to move files, open your system’s file manager (Finder on Mac, File Explorer on Windows) and drag the CSV into the data folder you just created.\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYou should have an RStudio Project open with a data/ folder containing your chosen CSV file. Check the Files pane to confirm."
   },
   {
-    "objectID": "tutorials/tutorial01.html#why-use-projects",
-    "href": "tutorials/tutorial01.html#why-use-projects",
+    "objectID": "tutorials/tutorial01.html#exercise-2-create-your-document",
+    "href": "tutorials/tutorial01.html#exercise-2-create-your-document",
     "title": "Tutorial 01",
-    "section": "1.1 Why Use Projects?",
-    "text": "1.1 Why Use Projects?\nRStudio Projects help with organisation by keeping all project files together in one directory. They also ensure reproducibility by making your code work consistently across different computers. Think of them as a way to “tell” RStudio that all your work for a particular project is in one place.\nAt its heart, an RStudio Project is simply a text file with the .Rproj extension. This file lives in your folder that you’re working in, and tells RStudio to treat that folder as a project. Once created, RStudio manages the project for you and you never have to edit the .Rproj file directly."
+    "section": "Exercise 2: Create your document",
+    "text": "Exercise 2: Create your document\n\nGo to File &gt; New File &gt; Quarto Document… and click Create Empty Document.\nCopy the following YAML header into the top of your file:\n\n---\ntitle: \"Exploring My Dataset\"\nauthor: \"Your Name\"\ndate: today\nformat:\n  html:\n    theme: cosmo\n    toc: true\n---\n\nSave the file as report.qmd in your project folder.\nRender the document with Cmd+Shift+K (Mac) or Ctrl+Shift+K (Windows/Linux).\n\n\n\nOther themes worth trying later: flatly, journal, darkly. The full list is at quarto.org/docs/output-formats/html-themes.html.\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYou should see a rendered HTML page with your title, your name, today’s date, and an empty body. If you get an error, check that the YAML is indented exactly as shown above."
   },
   {
-    "objectID": "tutorials/tutorial01.html#setting-up-a-project",
-    "href": "tutorials/tutorial01.html#setting-up-a-project",
+    "objectID": "tutorials/tutorial01.html#exercise-3-write-about-your-data",
+    "href": "tutorials/tutorial01.html#exercise-3-write-about-your-data",
     "title": "Tutorial 01",
-    "section": "1.2 Setting up a Project",
-    "text": "1.2 Setting up a Project\nLet’s set up a new project for ENVX2001 in RStudio.\n\nOpen RStudio\nClick File -&gt; New Project…\nSelect either New Directory or Existing Directory\n\nNew Directory creates a new folder for your project\nExisting Directory lets you choose a folder that already exists\n\nSelect New Project unless you have a specific project you want to work on (e.g. a Quarto Blog)\nName your project “ENVX2001” or similar, choose where to save it, and click Create Project. You will see other options, but you can ignore them for now.\n\n\n\nGive your project a meaningful name, ideally with “ENVX2001” in it so you can identify it later. For example “ENVX2001 Labs”."
+    "section": "Exercise 3: Write about your data",
+    "text": "Exercise 3: Write about your data\nAdd some text below the YAML header. Write a short commentary on your dataset — pick out some items that stand out to you and explain why. Use the markdown formatting shown below as a guide.\n## About the data\n\n### My top picks\n\n**[Item]** stands out because...\n\n### Also worth a look\n\nA few more that caught my eye:\n\n- [Item 1] --- reason\n- [Item 2] --- reason\n\n### Surprises\n\n*[Item]* was lower than I expected...\nThis section uses several markdown formatting features:\n\n## and ### create section headings at different levels.\n**text** makes text bold.\n*text* makes text italic.\nLines starting with - create bullet lists.\n\nRender the document to check that your headings, bold text, and lists appear correctly.\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYour rendered document should show formatted text with proper headings, bold and italic styling, and a bullet list. The table of contents on the right should list your new sections."
   },
   {
-    "objectID": "tutorials/tutorial01.html#recommended-folder-structure",
-    "href": "tutorials/tutorial01.html#recommended-folder-structure",
+    "objectID": "tutorials/tutorial01.html#exercise-4-load-and-display-your-data",
+    "href": "tutorials/tutorial01.html#exercise-4-load-and-display-your-data",
     "title": "Tutorial 01",
-    "section": "1.3 Recommended folder structure",
-    "text": "1.3 Recommended folder structure\nModern technology means that some of you may never have to touch the file system. However, it’s still good to know how to organise your files. Search the internet for using the Finder (macOS) or the File Explorer (Windows) if you need a refresher.\nHere’s a recommended folder structure for your project:\nENVX2001/\n├── labs/\n│   ├── data/\n│   ├── Lab01.qmd\n│   ├── Lab02.qmd\n│   ├── ...\n│   └── ENVX2001-labs.Rproj\n├── project_1/\n│   ├── data/\n│   ├── project1.qmd\n│   └── ENVX2001-labs.Rproj\n├── project_2/\n│   ├── data/\n│   └── ...\n└── ..."
+    "section": "Exercise 4: Load and display your data",
+    "text": "Exercise 4: Load and display your data\nNow let’s bring in the dataset. Add a setup chunk first, then a chunk to load and display the data. Replace the file name with whichever CSV you chose.\n```{r}\n#| label: setup\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\n```\n```{r}\n#| label: data\n\nmy_data &lt;- read_csv(\"data/ghibli_films.csv\")\nmy_data\n```\nA few things to note:\n\nThe #| lines are chunk options. They control how the chunk behaves when you render.\nmessage: false and warning: false stop package loading messages from cluttering your output.\nread_csv() reads your CSV file into R. The path is relative to your project folder.\n\n\n\nIf you see an error like “file does not exist”, double-check that your CSV is inside the data/ folder and that the file name matches exactly (including capitalisation).\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nAfter rendering, you should see the tidyverse loading code followed by your data printed as a table. Every row from your CSV should be visible."
   },
   {
-    "objectID": "tutorials/tutorial01.html#opening-projects",
-    "href": "tutorials/tutorial01.html#opening-projects",
+    "objectID": "tutorials/tutorial01.html#exercise-5-create-a-chart",
+    "href": "tutorials/tutorial01.html#exercise-5-create-a-chart",
     "title": "Tutorial 01",
-    "section": "1.4 Opening Projects",
-    "text": "1.4 Opening Projects\n\nFrom File Explorer (PC) or Finder (Mac)\n\nNavigate to your project folder\nDouble-click the .Rproj file\n\nOn Windows: Look for the RStudio cube icon\nOn Mac: Look for the .Rproj extension\n\n\n\n\nFrom Within RStudio\n\nManually:\n\nClick File -&gt; Open Project...\nNavigate to your project folder\nSelect the .Rproj file\nClick “Open”\n\n\n\nRecent projects:\nIf you’ve opened the project before, your project may already be open! Check the top-right corner of RStudio – if you see your project name, you’re good to go. Click on the dropdown to switch to recently opened projects."
+    "section": "Exercise 5: Create a chart",
+    "text": "Exercise 5: Create a chart\nAdd a code chunk that creates a horizontal bar chart of your data. The example below uses the Ghibli dataset — adjust the column names to match your chosen dataset.\n```{r}\n#| label: fig-chart\n#| fig-cap: \"A quick look at the data\"\n#| fig-width: 8\n#| fig-height: 5\n\nggplot(my_data, aes(x = reorder(title, rating), y = rating)) +\n  geom_col() +\n  coord_flip() +\n  labs(x = NULL, y = \"Rating\")\n```\nWhat’s happening here:\n\nreorder(title, rating) sorts the bars so the highest-rated item is at the top.\ncoord_flip() turns the chart on its side, making the labels easier to read.\nfig-cap adds a caption below the figure.\nfig-width and fig-height control the plot dimensions in inches.\n\nIf you are not using the Ghibli dataset, you will also need to update the labs() line to match your axis label (e.g. y = \"Streams (millions)\" for Spotify, y = \"Premierships\" for AFL).\n\n\nColumn names for each dataset:\n\nGhibli: title, rating\nSpotify: title, streams_millions\nAFL: team, premierships\nFast food: name, rating\n\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYou should see a horizontal bar chart with items sorted from lowest to highest, plus a caption underneath. If the bars are unsorted, check that you used reorder() correctly."
   },
   {
-    "objectID": "tutorials/tutorial01.html#benefits",
-    "href": "tutorials/tutorial01.html#benefits",
+    "objectID": "tutorials/tutorial01.html#exercise-6-add-a-formatted-table",
+    "href": "tutorials/tutorial01.html#exercise-6-add-a-formatted-table",
     "title": "Tutorial 01",
-    "section": "1.5 Benefits",
-    "text": "1.5 Benefits\nWhen in a project, RStudio will remember your working directory, history, and environment. This means you can close RStudio and come back to your project later, and everything will be as you left it. This is especially useful when working on a project over multiple days. Additionally, adding data files to your project folder will make them easier to access in your code as you can use relative paths. For example, instead of using:\nread.csv(\"C:/Users/username/Documents/ENVX2001/data.csv\")\nyou can use:\nread.csv(\"data/data.csv\")\nThe latter is more portable and will work on any computer, as long as the data file is in the data folder, while the former will only work on your computer as it would have your user name on it!"
+    "section": "Exercise 6: Add a formatted table",
+    "text": "Exercise 6: Add a formatted table\nFinally, add a clean summary table. This time we will hide the code so the reader only sees the output — just like you would in a real report.\n```{r}\n#| label: tbl-summary\n#| tbl-cap: \"Dataset overview\"\n#| echo: false\n\nknitr::kable(my_data)\n```\nThe new option here is echo: false, which hides the code chunk from the rendered output. The reader sees the table but not the R code that produced it. This is how you would typically present results in a report or assignment.\nTry going back to your chart chunk (Exercise 5) and adding echo: false there too, then re-render. Notice how the document looks cleaner without the code blocks.\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYour document should now include a formatted table with a caption and no visible code. If you also hid the chart code, the document should read like a finished report."
   },
   {
-    "objectID": "tutorials/tutorial01.html#whats-next",
-    "href": "tutorials/tutorial01.html#whats-next",
+    "objectID": "tutorials/tutorial01.html#other-output-formats",
+    "href": "tutorials/tutorial01.html#other-output-formats",
     "title": "Tutorial 01",
-    "section": "1.6 What’s next?",
-    "text": "1.6 What’s next?\nSet up an RStudio project separately for your labs and projects. This will make it easier to keep your work organised and reproducible. Otherwise, there isn’t much else to think about as RStudio will manage the project for you. Just remember to open your project when you start working on it!"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#getting-started-1",
-    "href": "tutorials/tutorial01.html#getting-started-1",
-    "title": "Tutorial 01",
-    "section": "2.1 Getting Started",
-    "text": "2.1 Getting Started\nLet’s create and modify a Quarto document about The Beatles. Follow these steps to learn about Quarto’s features:\n\nIn RStudio, go to File &gt; New File &gt; Quarto Document…\nIn the dialogue box that appears:\n\nEnter “The Beatles: A Musical Journey” as the title\nAdd your name as the author\nSelect “HTML” as the output format\n\nClick “Create”"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-1-setting-up-your-document",
-    "href": "tutorials/tutorial01.html#exercise-1-setting-up-your-document",
-    "title": "Tutorial 01",
-    "section": "2.2 Exercise 1: Setting Up Your Document",
-    "text": "2.2 Exercise 1: Setting Up Your Document\n\nDelete all the example content in your new document (but keep the YAML header)\nReplace your YAML header with this enhanced version:\n\n---\ntitle: \"The Beatles: A Musical Journey\"\nsubtitle: \"From Liverpool to Global Stardom\"\nauthor: \"Your Name\"\ndate: \"today\"\nformat: \n  html:\n    toc: true\n    number-sections: true\n    theme: cosmo\n---\n\nClick “Render” to see what an empty document looks like"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-2-adding-content",
-    "href": "tutorials/tutorial01.html#exercise-2-adding-content",
-    "title": "Tutorial 01",
-    "section": "2.3 Exercise 2: Adding Content",
-    "text": "2.3 Exercise 2: Adding Content\nCopy and paste this text after your YAML header:\n## The Early Years\n\nThe Beatles' story begins in Liverpool, England, where John Lennon formed a band called the Quarrymen in 1957. Paul McCartney joined soon after, followed by George Harrison in 1958. The band went through several name changes before settling on \"The Beatles\" in 1960.\n\n## Hamburg and The Cavern Club\n\n### The Hamburg Experience\n\nIn 1960, the Beatles began playing in Hamburg, Germany. These extended performances helped them develop their stage presence and musical style. During this period, they recruited Ringo Starr as their drummer, completing the lineup that would become legendary.\n\n### The Cavern Club Era\n\nBack in Liverpool, the Beatles became regular performers at The Cavern Club. Between 1961 and 1963, they performed there 292 times. The club became synonymous with their early success and the birth of the \"Merseybeat\" sound.\n\n## Global Phenomenon\n\nBy 1964, \"Beatlemania\" had taken hold worldwide. Their appearance on The Ed Sullivan Show in February 1964 was watched by an estimated 73 million viewers. This marked the beginning of the \"British Invasion\" and revolutionised popular music.\n\n## Musical Evolution\n\nThe Beatles continuously evolved their musical style throughout their career:\n\n1. Early rock and roll (1962-1964)\n2. Folk rock period (1965-1966)\n3. Psychedelic era (1966-1968)\n4. Return to roots (1969-1970)\n\nTheir willingness to experiment with different musical styles and recording techniques set new standards for popular music.\n\nClick “Render” again to see the formatted document"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-3-experimenting-with-yaml-options",
-    "href": "tutorials/tutorial01.html#exercise-3-experimenting-with-yaml-options",
-    "title": "Tutorial 01",
-    "section": "2.4 Exercise 3: Experimenting with YAML Options",
-    "text": "2.4 Exercise 3: Experimenting with YAML Options\nTry these modifications to your YAML header one at a time, rendering after each change:\n\nChange the theme:\n\ntheme: darkly  # Try: flatly, journal, darkly\n\nAdd a table of contents:\n\ntoc: true\n\nAdd section numbers:\n\nnumber-sections: true\n\nTry them all together:\n\nformat:\n  html:\n    toc: true\n    theme: cosmo\n    number-sections: true"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-4-try-different-output-formats",
-    "href": "tutorials/tutorial01.html#exercise-4-try-different-output-formats",
-    "title": "Tutorial 01",
-    "section": "2.5 Exercise 4: Try Different Output Formats",
-    "text": "2.5 Exercise 4: Try Different Output Formats\n\nMicrosoft Word\nTry creating a Word document by changing your YAML to:\nformat:\n  docx:\n    toc: true\n    number-sections: true\nYou can learn more about Word output options in the Quarto Word documentation.\n\n\nTypst (Advanced Option)\nTypst is a modern alternative to LaTeX/PDF, but it requires some learning to customise effectively. If you’re interested in exploring it:\nformat:\n  typst:\n    toc: true\nLearn more about Typst in: - Quarto’s Typst documentation - Official Typst documentation\n\n\nMultiple Output Formats\nYou can create multiple output formats simultaneously by specifying them in your YAML header:\nformat:\n  html:\n    toc: true\n    number-sections: true\n    theme: cosmo\n  docx:\n    toc: true\n    number-sections: true\nEach format can have its own specific options. For example, you could have different themes for HTML while maintaining consistent structure across all formats."
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#quick-tips",
-    "href": "tutorials/tutorial01.html#quick-tips",
-    "title": "Tutorial 01",
-    "section": "2.6 Quick Tips",
-    "text": "2.6 Quick Tips\n\nUse keyboard shortcut to render:\n\nWindows/Linux: Ctrl+Shift+K\nMac: Cmd+Shift+K\n\nPreview different themes from the complete list here\nKeep experimenting with different YAML options to see what works best for your documents"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-1-markdown",
-    "href": "tutorials/tutorial01.html#exercise-1-markdown",
-    "title": "Tutorial 01",
-    "section": "3.1 Exercise 1: Markdown",
-    "text": "3.1 Exercise 1: Markdown\nFirst, let’s practice some basic markdown formatting.\n\n\n\n\n\n\nNoteReplicate this\n\n\n\nHere’s a brief overview of Christopher Nolan’s filmmaking:\n\nHis film Inception (2010) took ten years to write\nHe wrote Memento based on two key concepts:\n\nAnterograde amnesia\nNon-linear storytelling\n\nHis highest-grossing film is The Dark Knigh Rises (2012), which earned over $1 billion worldwide.\n\nHis signature style: complex narratives with time manipulation as seen in Interstellar and Tenet.\nVisit IMDB’s Nolan Page for his complete filmography.\n\n\nTry to replicate the text and formatting above, including the link to IMDB, in your own document, using markdown syntax. For reference, check out the Quarto Markdown Basics."
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-2-working-with-code-chunks",
-    "href": "tutorials/tutorial01.html#exercise-2-working-with-code-chunks",
-    "title": "Tutorial 01",
-    "section": "3.2 Exercise 2: Working with code chunks",
-    "text": "3.2 Exercise 2: Working with code chunks\nNow let’s focus on code. We will work with data from the palmerpenguins package to visualise and summarise some data. Try running the following code chunks in your document:\n```{r}\n#| label: setup\n#| message: false\n#| warning: false\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n```\n\n\nNever run package installation code (install.packages()) in your Quarto document! Instead, install required packages in the R console:\ninstall.packages(c(\"tidyverse\", \"palmerpenguins\"))\nThis ensures your document remains reproducible and prevents installation errors during rendering.\nLet’s break down the chunk options:\n\nlabel: gives your chunk a unique name\nmessage: false suppresses package loading messages\nwarning: false suppresses warnings\nThe #| syntax makes options more readable"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-3-creating-visualizations",
-    "href": "tutorials/tutorial01.html#exercise-3-creating-visualizations",
-    "title": "Tutorial 01",
-    "section": "3.3 Exercise 3: Creating Visualizations",
-    "text": "3.3 Exercise 3: Creating Visualizations\nNow let’s create some plots with carefully controlled output:\n```{r}\n#| label: penguin-plot\n#| fig-cap: \"Penguin body mass by species\"\n#| fig-width: 8\n#| fig-height: 6\n#| fig-align: center\n#| echo: true\n\nggplot(penguins, aes(species, body_mass_g, fill = species)) +\n  geom_boxplot() +\n  theme_minimal() +\n  labs(y = \"Body Mass (g)\",\n       x = \"Species\") +\n  theme(legend.position = \"none\")\n```\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\n\n\n\nPenguin body mass by species\n\n\n\n\nNew options to notice:\n\nfig-width and fig-height control plot dimensions\nfig-align centers the plot\necho: true shows the code (try changing to false)"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-4-tables-and-data",
-    "href": "tutorials/tutorial01.html#exercise-4-tables-and-data",
-    "title": "Tutorial 01",
-    "section": "3.4 Exercise 4: Tables and data",
-    "text": "3.4 Exercise 4: Tables and data\nLet’s explore different ways to display data:\n```{r}\n#| label: penguin-summary\n#| tbl-cap: \"Summary Statistics by Species\"\n\npenguins %&gt;%\n  group_by(species) %&gt;%\n  summarise(\n    mean_mass = mean(body_mass_g, na.rm = TRUE),\n    sd_mass = sd(body_mass_g, na.rm = TRUE),\n    n = n()\n  ) %&gt;%\n  knitr::kable()\n```\n\n\n\nSummary Statistics by Species\n\n\nspecies\nmean_mass\nsd_mass\nn\n\n\n\n\nAdelie\n3700.662\n458.5661\n152\n\n\nChinstrap\n3733.088\n384.3351\n68\n\n\nGentoo\n5076.016\n504.1162\n124"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-5-interactive-features",
-    "href": "tutorials/tutorial01.html#exercise-5-interactive-features",
-    "title": "Tutorial 01",
-    "section": "3.5 Exercise 5: Interactive features",
-    "text": "3.5 Exercise 5: Interactive features\nQuarto excels at creating interactive content. Try this:\n```{r}\n#| label: interactive-plot\n#| warning: false\n\nlibrary(plotly)\np &lt;- ggplot(penguins, \n            aes(flipper_length_mm, \n                body_mass_g, \n                color = species)) +\n  geom_point() +\n  theme_minimal()\n\nggplotly(p)\n```\n\n\n\n\n\n\nAnd for interactive tables:\n```{r}\n#| label: interactive-table\n\nlibrary(DT)\ndatatable(penguins)\n```"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#exercise-6-useful-chunk-options",
-    "href": "tutorials/tutorial01.html#exercise-6-useful-chunk-options",
-    "title": "Tutorial 01",
-    "section": "3.6 Exercise 6: Useful chunk options",
-    "text": "3.6 Exercise 6: Useful chunk options\nHere are some useful chunk options, try them:\n\nCache computations (great for slow calculations):\n\n```{r}\n#| label: slow-calculation\n#| cache: true\n\n# Your time-consuming code here\nSys.sleep(2)  # Simulating slow computation\n```\n\nRun code but hide everything:\n\n```{r}\n#| label: hidden-setup\n#| include: false\n\n# This code runs but shows nothing\ntheme_set(theme_minimal())\n```\n\nShow code but don’t run it:\n\n```{r}\n#| label: example-code\n#| eval: false\n\n# This code is displayed but not executed\nggplot(data) +\n  geom_point()\n```\nTry changing the values for options like echo, include, and others from true to false (or vice versa). See what happens."
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#quick-tips-1",
-    "href": "tutorials/tutorial01.html#quick-tips-1",
-    "title": "Tutorial 01",
-    "section": "3.7 Quick tips",
-    "text": "3.7 Quick tips\n\nUse meaningful chunk labels - they help with debugging\nKeep chunks focused on single tasks\nCache slow computations with cache: true\nUse include: false for setup code you don’t want to show"
-  },
-  {
-    "objectID": "tutorials/tutorial01.html#next-steps",
-    "href": "tutorials/tutorial01.html#next-steps",
-    "title": "Tutorial 01",
-    "section": "3.8 Next Steps",
-    "text": "3.8 Next Steps\nThat’s it! Well done. The Quarto documentation is a great resource for more advanced features, but beware – it’s a rabbit hole…"
+    "section": "Other output formats",
+    "text": "Other output formats\nSo far you have been rendering to HTML. Quarto can also produce Word documents and PDFs from the same .qmd file — your tutor will demonstrate this now.\nTo render a Word document, change the format section of your YAML header:\nformat:\n  docx:\n    toc: true\nTo render a PDF (using Typst), change it to:\nformat:\n  typst:\n    toc: true\nRender after each change and compare the output. The same content works across all three formats — you only change the YAML.\n\n\nIf you want to go back to HTML afterwards, change format back to the original html block from Exercise 2.\n\n\n\n\n\n\nNoteCheckpoint\n\n\n\nYou should have seen your document rendered as both a Word file and a PDF. The content is the same — only the output format changed.\n\n\nThis tutorial page itself is a Quarto document. You can view its source code by clicking the Code dropdown (top-right of the page) and selecting View Source. Everything you see here — the text, the layout, the formatting — is written in a .qmd file, just like the one you created today.\nIf you want to keep exploring, the Quarto documentation has more on output formats, cross-references, and interactive features."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#workflow",

@@ -13,7 +13,7 @@ In this lab, we will learn how to:
 
 1.  Explain the differences between (i) samples and populations (ii) standard error and standard deviation;
 2.  Use R to perform basic data analysis tasks related to exploratory data analysis
-3.  Present their code and results using RMarkdown.
+3.  Present their code and results using Quarto.
 
 ## Specific goals
 
@@ -47,11 +47,7 @@ There are two crucial skills we want to help you develop this semester:
 
 In our experience, these skills are best learned without the help of AI. In weeks 7-12, when we introduce more complex statistical concepts, is where GenAI can really help.
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/aspens-sunset.jpg')
-```
-
-*Aspen grove in Yellowstone National Park, from Wikimedia Commons (2008), by John Fowler.*
+![Aspen grove in Yellowstone National Park, from Wikimedia Commons (2008), by John Fowler.](images/aspens-sunset.jpg)
 
 ### First Thoughts
 
@@ -59,11 +55,7 @@ To recap the story from our presentation (or article, for remote students), a st
 
 However, Ripple's study was criticized by another group of scientists; Daniel MacNulty and his team argued that Ripple's methods were flawed, and that while the wolves of Yellowstone National Park may have caused a weak trophic cascade in some areas of the park, this effect was not nearly as strong or as universal as Ripple had claimed [@macnulty2025].
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/wolves-yellowstone.jpg')
-```
-
-*Grey wolf in Yellowstone National Park, from Wikimedia Commons (2013), by Mike van Dalen.*
+![Grey wolf in Yellowstone National Park, from Wikimedia Commons (2013), by Mike van Dalen.](images/wolves-yellowstone.jpg)
 
 ::: callout-note
 #### For you to consider
@@ -85,11 +77,7 @@ Without any idea of what Ripple's study entails, it is difficult to judge the va
 
 *The following exercise involves a fabricated story and simulated data*
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/linckia-laevigata.jpg')
-```
-
-*Blue sea star* (Linckia laevigata)*, from Wikimedia Commons (2017), by João D'Andretta.*
+![Blue sea star (Linckia laevigata), from Wikimedia Commons (2017), by João D'Andretta.](images/linckia-laevigata.jpg)
 
 A marine scientist (we'll call her Stella) is studying benthic invertebrates on Lady Elliot Island, and notices that the blue sea stars (*Linckia laevigata*) from this island seem to be smaller than those in other parts of the Great Barrier Reef. She wonders if her eyes are deceiving her.
 
@@ -105,7 +93,7 @@ Find out where Lady Elliot Island is located on a map. Why might the sea stars t
 ::: {.ans}
 ##### Food for thought
 
-Lady Elliot Island marks the southern end of the Great Barrier Reef. According to a study by Thompson and Thompson (1982), blue sea stars shrink noticeably within a week of low food availability. The same study also notes that larger sea stars of this species tend to live in deeper waters.
+Lady Elliot Island marks the southern end of the Great Barrier Reef. According to a study by Thomson and Thompson (1982), blue sea stars shrink noticeably within a week of low food availability. The same study also notes that larger sea stars of this species tend to live in deeper waters.
 
 It may be the case that the reefs of Lady Elliot Island are especially shallow. It could also be that there is less food for sea stars on Lady Elliot Island because it is so isolated from the rest of the Great Barrier Reef. We will leave you to look further into this topic if you are interested.
 :::
@@ -141,7 +129,7 @@ The `#` symbol is used to make a *comment*. Comments are very useful, and you sh
 ::: callout-note
 #### Building Habits
 
-Make a code chunk. You can do this using the +C button on the top of your screen (ask a demonstrator for help if you are confused).
+Make a code chunk. You can do this using the **+C** button at the top of your RStudio screen (or with the shortcut `Ctrl+Alt+I` / `Cmd+Option+I` on Mac).
 
 Type in the following lines of code:
 
@@ -193,11 +181,7 @@ summary(stars) # Also gives you the 1st and 3rd quartiles, minimum value, and ma
 
 That's a lot of functions to remember! Don't worry, you can always ask R for help. Use the `?` symbol. For example, to find out more about the `mean()` function, you can type `?mean` into your console (your console is located at the bottom of your screen).
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/black-noddy.jpg')
-```
-
-*Black noddy* (Anous minutus)*, a seabird found on the palm trees of Lady Elliot Island. From Wikimedia Commons (2007), by Dalgo UK*
+![Black noddy (Anous minutus), a seabird found on the palm trees of Lady Elliot Island. From Wikimedia Commons (2007), by Dalgo UK.](images/black-noddy.jpg)
 
 ### Practice: Even More Sea Stars
 
@@ -346,11 +330,7 @@ Before we move onto the next section, now is a good time to take a 5-minute brea
 
 *The following exercise involves real data from @lovett2000*
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/diamond-notch-falls.jpg')
-```
-
-*Diamond Notch Falls in Westkill Mountain, one of the many mountains in New York's Catskill Park. From Wikimedia Commons (2021), by Daniel Case.*
+![Diamond Notch Falls in Westkill Mountain, one of the many mountains in New York's Catskill Park. From Wikimedia Commons (2021), by Daniel Case.](images/diamond-notch-falls.jpg)
 
 In the year 2000, Gary Lovett and his research team measured water chemistry in the streams of the Catskill Mountains. They were concerned that growing levels of industrial activity in the area may affect surrounding forests, and they needed a way to keep track of pollutant levels in the environment.
 
@@ -501,11 +481,7 @@ The median and mean are very similar, so the distribution is probably close to s
 :::
 ::::
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/evergreen-mountain.jpg')
-```
-
-*Catskill Mountains in the fall. From Wikimedia Commons (2016), by Daniel Case.*
+![Catskill Mountains in the fall. From Wikimedia Commons (2016), by Daniel Case.](images/evergreen-mountain.jpg)
 
 ### Practice: Now You See Me
 
@@ -655,7 +631,7 @@ library(moments) # Install this package if you haven't already by running: `inst
 skewness(water$SO4) # Calculates the skewness coefficient of the SO4 column
 ```
 
-A low skewness coefficient (anything \< 0.5 is usually considered low) means our distribution should be reasonably symmetrical.
+A skewness coefficient close to zero suggests the distribution is approximately symmetrical.
 
 However, skewness coefficients become hard to interpret in the case of multi-modal distributions. In general, we recommend sticking to histograms.
 :::
@@ -696,17 +672,13 @@ ggplot(data = water, aes(x = SO4)) +
 For theme, I stuck with `theme_classic()` - a personal favourite.
 :::
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/lymnaea-stagnalis.jpg')
-```
-
-*A freshwater snail* (Lymnaea stagnalis) *in algae. From Wikimedia Commons (2009), by Peter Pfeiffer.*
+![A freshwater snail (Lymnaea stagnalis) in algae. From Wikimedia Commons (2009), by Peter Pfeiffer.](images/lymnaea-stagnalis.jpg)
 
 ### Section Summary
 
 According to a study in Finland, it takes upwards of 500 micromoles/litre of sulphate to cause noticeable harm to aquatic crustaceans and molluscs [@karjalainen2023]. The values from Lovett's study were far below this (check our histograms from earlier). So, it might seem like the freshwater ecosystems of Catskill Park are safe... for now.
 
-However, we must take note of two important thing: Firstly, harmful pollutant levels can be very ecosystem-specific. It is entirely possible for one ecosystems to be more sensitive than another to the same level of sulphate pollution. Secondly, sulphate was not the only pollutant Lovett's team measured. In fact, their main concern was nitrate saturation (NO3).
+However, we must take note of two important things: Firstly, harmful pollutant levels can be very ecosystem-specific. It is entirely possible for one ecosystems to be more sensitive than another to the same level of sulphate pollution. Secondly, sulphate was not the only pollutant Lovett's team measured. In fact, their main concern was nitrate saturation (NO3).
 
 We will leave it to you to figure out whether nitrate concentrations in the creeks of Catskill Park were above or below environmentally accepted levels at the time of Lovett's study.
 
@@ -718,15 +690,11 @@ For now, let's take a 5-minute break, and then we will revisit the Yellowstone c
 
 *The following case study involves real data from @hobbs2024, which was used by Ripple et al. (2025) in their analysis*
 
-```{r, echo = FALSE}
-knitr::include_graphics('images/heart-spring-geyser.jpg')
-```
-
-*Lion geyser and Heart Spring in Yellowstone National Park. From Wikimedia Commons (2008), by Brocken Inaglory.*
+![Lion geyser and Heart Spring in Yellowstone National Park. From Wikimedia Commons (2008), by Brocken Inaglory.](images/heart-spring-geyser.jpg)
 
 #### Read in data
 
-The data from Hobbs et al. (2024) comes as a csv file - which means `read_xlsx` will not work this time, so we need to install the `readr` package instead. Remember to do this in your console, not your coding script.
+The data from Hobbs et al. (2024) comes as a csv file - which means `read_excel` will not work this time, so we need to install the `readr` package instead. Remember to do this in your console, not your coding script.
 
 Once you have installed `readr`, we can summon it from the R library.
 
@@ -738,10 +706,10 @@ library(readr) # activates the readr package
 Just like `ggplot2`,`readr` is also included in the `tidyverse` package.
 :::
 
-Now, we can read in our data using the function `read.csv()`:
+Now, we can read in our data using the function `read_csv()`:
 
 ```{r}
-Yellowstone <- read.csv('data/browsing_data_2003_2020_2.csv') # we will name this dataset 'Yellowstone'
+Yellowstone <- read_csv('data/browsing_data_2003_2020_2.csv') # we will name this dataset 'Yellowstone'
 ```
 
 ::: callout-note
@@ -853,7 +821,7 @@ Ripple claims that his study occurred across 25 sites from 2001 to 2020. Let's m
 
 ::: callout-note
 #### Sharpen your skills
-Use `geom_line()` to make a line graph with `year` on the x-axis, and `sites_full` on the y-axis.
+Use `geom_line()` to make a line graph with `year` on the x-axis, and `site_full` on the y-axis.
 
 What do you notice about the times each of these sites were surveyed?
 :::

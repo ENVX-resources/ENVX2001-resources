@@ -1,8 +1,16 @@
 ---
-title: Lab Solutions
+title: Solutions
 anchor-sections: false
 section-divs: false
 ---
+
+## Tutorial instructor notes
+
+| Week | Tutorial | HTML |
+|------|----------|------|
+| 1 | Introduction to Quarto | [Tutorial 01](tutorials/tutorial01-solutions.html) |
+
+## Lab solutions
 
 Lab worksheets with answers included. Each lab is available as HTML (for viewing online) or PDF (for download).
 

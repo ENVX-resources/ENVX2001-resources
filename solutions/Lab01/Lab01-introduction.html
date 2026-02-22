@@ -283,7 +283,7 @@ window.Quarto = {
 <ol type="1">
 <li>Explain the differences between (i) samples and populations (ii) standard error and standard deviation;</li>
 <li>Use R to perform basic data analysis tasks related to exploratory data analysis</li>
-<li>Present their code and results using RMarkdown.</li>
+<li>Present their code and results using Quarto.</li>
 </ol>
 </section>
 <section id="specific-goals" class="level2">
@@ -307,7 +307,7 @@ window.Quarto = {
 <li><p>Download these files: <a href="data/water.xlsx">water.xlsx</a>, <a href="data/browsing_data_2003_2020_2.csv">browsing_data_2003_2020_2.csv</a></p></li>
 <li><p>Read the abstract of this article: <a href="https://doi.org/10.1016/j.gecco.2025.e03899">MacNulty et al., 2025</a></p></li>
 </ul>
-<section id="a-note-on-generative-ai-genai" class="level3">
+<section id="a-note-on-generative-ai-genai" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="a-note-on-generative-ai-genai">A Note on Generative AI (GenAI)</h3>
 <p>GenAI is a powerful tool that can help you learn and understand the concepts we cover in ENVX2001. However, for the first six weeks of this course, we ask that you please refrain from asking GenAI for help.</p>
 <p>There are two crucial skills we want to help you develop this semester:</p>
@@ -316,16 +316,12 @@ window.Quarto = {
 <li>Statistical intuition</li>
 </ul>
 <p>In our experience, these skills are best learned without the help of AI. In weeks 7-12, when we introduce more complex statistical concepts, is where GenAI can really help.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/aspens-sunset.jpg" class="img-fluid figure-img" width="1936"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/aspens-sunset.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Aspen grove in Yellowstone National Park, from Wikimedia Commons (2008), by John Fowler.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Aspen grove in Yellowstone National Park, from Wikimedia Commons (2008), by John Fowler.</em></p>
 </section>
 <section id="first-thoughts" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="first-thoughts">First Thoughts</h3>
@@ -335,16 +331,12 @@ Ripple, William J., Robert L. Beschta, Christopher Wolf, Luke E. Painter, and Aa
 </div><div id="ref-macnulty2025" class="csl-entry" role="listitem">
 MacNulty, Daniel R., David Cooper, Mike Procko, and Timothy J. Clark-Wolf. 2025. <span>“Flawed Analysis Invalidates Claim of a Strong <span>Yellowstone</span> Trophic Cascade After Wolf Reintroduction: <span>A</span> Comment on <span>Ripple</span> Et Al. (2025).”</span> <em>Global Ecology and Conservation</em> 63. <a href="https://doi.org/10.1016/j.gecco.2025.e03899">https://doi.org/10.1016/j.gecco.2025.e03899</a>.
 </div></div><p>However, Ripple’s study was criticized by another group of scientists; Daniel MacNulty and his team argued that Ripple’s methods were flawed, and that while the wolves of Yellowstone National Park may have caused a weak trophic cascade in some areas of the park, this effect was not nearly as strong or as universal as Ripple had claimed <span class="citation" data-cites="macnulty2025">(<a href="#ref-macnulty2025" role="doc-biblioref">MacNulty et al. 2025</a>)</span>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/wolves-yellowstone.jpg" class="img-fluid figure-img" width="3008"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/wolves-yellowstone.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Grey wolf in Yellowstone National Park, from Wikimedia Commons (2013), by Mike van Dalen.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Grey wolf in Yellowstone National Park, from Wikimedia Commons (2013), by Mike van Dalen.</em></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -369,16 +361,12 @@ MacNulty, Daniel R., David Cooper, Mike Procko, and Timothy J. Clark-Wolf. 2025.
 <section id="exercise-blue-sea-stars" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="exercise-blue-sea-stars">Exercise: Blue Sea Stars</h3>
 <p><em>The following exercise involves a fabricated story and simulated data</em></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/linckia-laevigata.jpg" class="img-fluid figure-img" width="1024"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/linckia-laevigata.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Blue sea star (Linckia laevigata), from Wikimedia Commons (2017), by João D’Andretta.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Blue sea star</em> (Linckia laevigata)<em>, from Wikimedia Commons (2017), by João D’Andretta.</em></p>
 <p>A marine scientist (we’ll call her Stella) is studying benthic invertebrates on Lady Elliot Island, and notices that the blue sea stars (<em>Linckia laevigata</em>) from this island seem to be smaller than those in other parts of the Great Barrier Reef. She wonders if her eyes are deceiving her.</p>
 <p>To get to the bottom of this, she collects 16 sea stars from Lady Elliot Island and measures one random arm from each of them to the nearest 0.1 cm. She knows that the typical length of a blue sea star’s arm is around 11.5 cm <span class="citation" data-cites="thomson1982">(<a href="#ref-thomson1982" role="doc-biblioref">Thomson and Thompson 1982</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-thomson1982" class="csl-entry" role="listitem">
@@ -398,7 +386,7 @@ Thomson, G., and C. Thompson. 1982. <span>“Movement and Size Structure in a Po
 </div>
 <section id="food-for-thought" class="level5 ans">
 <h5 class="anchored" data-anchor-id="food-for-thought">Food for thought</h5>
-<p>Lady Elliot Island marks the southern end of the Great Barrier Reef. According to a study by Thompson and Thompson (1982), blue sea stars shrink noticeably within a week of low food availability. The same study also notes that larger sea stars of this species tend to live in deeper waters.</p>
+<p>Lady Elliot Island marks the southern end of the Great Barrier Reef. According to a study by Thomson and Thompson (1982), blue sea stars shrink noticeably within a week of low food availability. The same study also notes that larger sea stars of this species tend to live in deeper waters.</p>
 <p>It may be the case that the reefs of Lady Elliot Island are especially shallow. It could also be that there is less food for sea stars on Lady Elliot Island because it is so isolated from the rest of the Great Barrier Reef. We will leave you to look further into this topic if you are interested.</p>
 </section>
 <p>Here is the data Stella gathers:</p>
@@ -458,7 +446,7 @@ Thomson, G., and C. Thompson. 1982. <span>“Movement and Size Structure in a Po
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Make a code chunk. You can do this using the +C button on the top of your screen (ask a demonstrator for help if you are confused).</p>
+<p>Make a code chunk. You can do this using the <strong>+C</strong> button at the top of your RStudio screen (or with the shortcut <code>Ctrl+Alt+I</code> / <code>Cmd+Option+I</code> on Mac).</p>
 <p>Type in the following lines of code:</p>
 <p>mean(c(1,2,3,4,5))</p>
 <p>median(c(0,0,1,45,459,2,49,1))</p>
@@ -523,16 +511,12 @@ Tip
 </div>
 </div>
 <p>That’s a lot of functions to remember! Don’t worry, you can always ask R for help. Use the <code>?</code> symbol. For example, to find out more about the <code>mean()</code> function, you can type <code>?mean</code> into your console (your console is located at the bottom of your screen).</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/black-noddy.jpg" class="img-fluid figure-img" width="1536"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/black-noddy.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Black noddy (Anous minutus), a seabird found on the palm trees of Lady Elliot Island. From Wikimedia Commons (2007), by Dalgo UK.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Black noddy</em> (Anous minutus)<em>, a seabird found on the palm trees of Lady Elliot Island. From Wikimedia Commons (2007), by Dalgo UK</em></p>
 </section>
 <section id="practice-even-more-sea-stars" class="level3">
 <h3 class="anchored" data-anchor-id="practice-even-more-sea-stars">Practice: Even More Sea Stars</h3>
@@ -768,16 +752,12 @@ Tip
 <div class="page-columns page-full"><p><em>The following exercise involves real data from <span class="citation" data-cites="lovett2000">Lovett, Weathers, and Sobczak (<a href="#ref-lovett2000" role="doc-biblioref">2000</a>)</span></em></p><div class="no-row-height column-margin column-container"><div id="ref-lovett2000" class="csl-entry" role="listitem">
 Lovett, Gary M., Kathleen C. Weathers, and William V. Sobczak. 2000. <span>“Nitrogen Saturation and Retention in Forested Watersheds of the <span>Catskill Mountains</span>, <span>New York</span>.”</span> <em>Ecological Applications</em> 10: 73–84.
 </div></div></div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/diamond-notch-falls.jpg" class="img-fluid figure-img" width="3680"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/diamond-notch-falls.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Diamond Notch Falls in Westkill Mountain, one of the many mountains in New York’s Catskill Park. From Wikimedia Commons (2021), by Daniel Case.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Diamond Notch Falls in Westkill Mountain, one of the many mountains in New York’s Catskill Park. From Wikimedia Commons (2021), by Daniel Case.</em></p>
 <p>In the year 2000, Gary Lovett and his research team measured water chemistry in the streams of the Catskill Mountains. They were concerned that growing levels of industrial activity in the area may affect surrounding forests, and they needed a way to keep track of pollutant levels in the environment.</p>
 <p>For this exercise, we will focus on sulphates. It is worth noting that Lovett’s original study focused on nitrates instead.</p>
 <section id="reading-data" class="level4">
@@ -900,7 +880,7 @@ Tip
 <p>“[1:39]” means there are 39 entries in the SO4 column.</p>
 </section>
 </section>
-<section id="subsetting-data" class="level4">
+<section id="subsetting-data" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="subsetting-data">Subsetting data</h4>
 <p>Subsetting means keeping some parts of your data while excluding others. For example, we may want to keep a specific column, or remove a specific row.</p>
 <p>The easiest way to subset data is to use the <code>[,]</code> operator. You can use the space in front of the comma <code>[*,]</code> to select rows, and the space after the comma <code>[,*]</code> to select columns.</p>
@@ -1029,19 +1009,15 @@ Tip
 <p>The median and mean are very similar, so the distribution is probably close to symmetrical.</p>
 <p><em>Note that if the mean is greater than the median, the distribution would be right-skewed, and if the mean is less than the median, the distribution would be left-skewed.</em></p>
 </section>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/evergreen-mountain.jpg" class="img-fluid figure-img" width="2496"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/evergreen-mountain.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Catskill Mountains in the fall. From Wikimedia Commons (2016), by Daniel Case.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Catskill Mountains in the fall. From Wikimedia Commons (2016), by Daniel Case.</em></p>
 </section>
 </section>
-<section id="practice-now-you-see-me" class="level3">
+<section id="practice-now-you-see-me" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="practice-now-you-see-me">Practice: Now You See Me</h3>
 <p>Graphs are a great way to visualise data. The <code>ggplot2</code> package is a popular package made for this very purpose. It is based on the <a href="https://www.tandfonline.com/doi/abs/10.1198/jcgs.2009.07098">grammar of graphics</a> (as if the grammar of English was not enough), which you can look into in your own time.</p>
 <p>Let’s activate this package:</p>
@@ -1109,7 +1085,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1120,7 +1096,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-21-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1131,7 +1107,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-21-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1197,7 +1173,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1242,7 +1218,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1315,12 +1291,12 @@ Warning
 <pre><code>[1] 0.1571807</code></pre>
 </div>
 </div>
-<p>A low skewness coefficient (anything &lt; 0.5 is usually considered low) means our distribution should be reasonably symmetrical.</p>
+<p>A skewness coefficient close to zero suggests the distribution is approximately symmetrical.</p>
 <p>However, skewness coefficients become hard to interpret in the case of multi-modal distributions. In general, we recommend sticking to histograms.</p>
 </div>
 </div>
 </section>
-<section id="add-toppings" class="level4">
+<section id="add-toppings" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="add-toppings">Add toppings</h4>
 <p>We have our cup, we’ve chosen our flavours, now it’s time to add our toppings.</p>
 <p>You can add a theme to your graph using the <code>theme_()</code> argument, like this:</p>
@@ -1363,7 +1339,7 @@ Warning
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1372,16 +1348,12 @@ Warning
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/lymnaea-stagnalis.jpg" class="img-fluid figure-img" width="1944"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/lymnaea-stagnalis.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">A freshwater snail (Lymnaea stagnalis) in algae. From Wikimedia Commons (2009), by Peter Pfeiffer.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>A freshwater snail</em> (Lymnaea stagnalis) <em>in algae. From Wikimedia Commons (2009), by Peter Pfeiffer.</em></p>
 </section>
 </section>
 <section id="section-summary-1" class="level3 page-columns page-full">
@@ -1389,7 +1361,7 @@ Warning
 <p>According to a study in Finland, it takes upwards of 500 micromoles/litre of sulphate to cause noticeable harm to aquatic crustaceans and molluscs <span class="citation" data-cites="karjalainen2023">(<a href="#ref-karjalainen2023" role="doc-biblioref">Karjalainen et al. 2023</a>)</span>. The values from Lovett’s study were far below this (check our histograms from earlier). So, it might seem like the freshwater ecosystems of Catskill Park are safe… for now.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-karjalainen2023" class="csl-entry" role="listitem">
 Karjalainen, Juha, Xiaoyun Hu, Mikko Mäkinen, Anna K. Karjalainen, Johannes Järvistö, Kaisa Järvenpää, Mika Sepponen, and Matti T. Leppänen. 2023. <span>“Sulfate Sensitivity of Aquatic Organisms in Soft Freshwaters Explored by Toxicity Tests and Species Sensitivity Distribution.”</span> <em>Ecotoxicology and Environmental Safety</em> 258: 114984. <a href="https://doi.org/10.1016/j.ecoenv.2023.114984">https://doi.org/10.1016/j.ecoenv.2023.114984</a>.
-</div></div><p>However, we must take note of two important thing: Firstly, harmful pollutant levels can be very ecosystem-specific. It is entirely possible for one ecosystems to be more sensitive than another to the same level of sulphate pollution. Secondly, sulphate was not the only pollutant Lovett’s team measured. In fact, their main concern was nitrate saturation (NO3).</p>
+</div></div><p>However, we must take note of two important things: Firstly, harmful pollutant levels can be very ecosystem-specific. It is entirely possible for one ecosystems to be more sensitive than another to the same level of sulphate pollution. Secondly, sulphate was not the only pollutant Lovett’s team measured. In fact, their main concern was nitrate saturation (NO3).</p>
 <p>We will leave it to you to figure out whether nitrate concentrations in the creeks of Catskill Park were above or below environmentally accepted levels at the time of Lovett’s study.</p>
 <p>For now, let’s take a 5-minute break, and then we will revisit the Yellowstone controversy one last time.</p>
 </section>
@@ -1401,19 +1373,15 @@ Karjalainen, Juha, Xiaoyun Hu, Mikko Mäkinen, Anna K. Karjalainen, Johannes Jä
 <div class="page-columns page-full"><p><em>The following case study involves real data from <span class="citation" data-cites="hobbs2024">Hobbs et al. (<a href="#ref-hobbs2024" role="doc-biblioref">2024</a>)</span>, which was used by Ripple et al.&nbsp;(2025) in their analysis</em></p><div class="no-row-height column-margin column-container"><div id="ref-hobbs2024" class="csl-entry" role="listitem">
 Hobbs, N. Thompson, Daniel B. Johnston, Kristin N. Marshall, Erik C. Wolf, and David J. Cooper. 2024. <span>“Does Restoring Apex Predators to Food Webs Restore Ecosystems? <span>Large</span> Carnivores in <span>Yellowstone</span> as a Model System.”</span> <em>Ecological Monographs</em> 94 (2). <a href="https://doi.org/10.1002/ecm.1598">https://doi.org/10.1002/ecm.1598</a>.
 </div></div></div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/heart-spring-geyser.jpg" class="img-fluid figure-img" width="888"></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/heart-spring-geyser.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Lion geyser and Heart Spring in Yellowstone National Park. From Wikimedia Commons (2008), by Brocken Inaglory.</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p><em>Lion geyser and Heart Spring in Yellowstone National Park. From Wikimedia Commons (2008), by Brocken Inaglory.</em></p>
 <section id="read-in-data" class="level4">
 <h4 class="anchored" data-anchor-id="read-in-data">Read in data</h4>
-<p>The data from Hobbs et al.&nbsp;(2024) comes as a csv file - which means <code>read_xlsx</code> will not work this time, so we need to install the <code>readr</code> package instead. Remember to do this in your console, not your coding script.</p>
+<p>The data from Hobbs et al.&nbsp;(2024) comes as a csv file - which means <code>read_excel</code> will not work this time, so we need to install the <code>readr</code> package instead. Remember to do this in your console, not your coding script.</p>
 <p>Once you have installed <code>readr</code>, we can summon it from the R library.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># activates the readr package</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1434,9 +1402,19 @@ Tip
 </div>
 </div>
 </div>
-<p>Now, we can read in our data using the function <code>read.csv()</code>:</p>
+<p>Now, we can read in our data using the function <code>read_csv()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>Yellowstone <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/browsing_data_2003_2020_2.csv'</span>) <span class="co"># we will name this dataset 'Yellowstone'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>Yellowstone <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'data/browsing_data_2003_2020_2.csv'</span>) <span class="co"># we will name this dataset 'Yellowstone'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 3840 Columns: 21
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (4): site_full, willid_full, site_id, treat
+dbl (17): willid, year, exp, plantht, N_shoots, N_browsed, N_unbrowsed, N_de...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1455,30 +1433,55 @@ Tip
 <h5 class="anchored" data-anchor-id="food-for-thought-5">Food for thought</h5>
 <p>This is what we did:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Yellowstone)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Yellowstone)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   3840 obs. of  21 variables:
- $ site_full     : chr  "crescent-obs" "crescent-obs" "crescent-obs" "crescent-obs" ...
- $ willid        : int  86 86 86 86 86 86 86 86 86 89 ...
- $ year          : int  2010 2014 2013 2011 2009 2017 2012 2018 2015 2013 ...
- $ willid_full   : chr  "crescent-obs-86" "crescent-obs-86" "crescent-obs-86" "crescent-obs-86" ...
- $ site_id       : chr  "crescent" "crescent" "crescent" "crescent" ...
- $ treat         : chr  "obs" "obs" "obs" "obs" ...
- $ exp           : int  0 0 0 0 0 0 0 0 0 0 ...
- $ plantht       : int  49 65 66 45 42 56 81 57 66 77 ...
- $ N_shoots      : int  95 84 134 170 54 75 78 27 124 69 ...
- $ N_browsed     : int  60 3 74 43 29 14 22 8 13 31 ...
- $ N_unbrowsed   : int  33 76 55 120 25 54 56 19 107 32 ...
- $ N_deep_browsed: int  2 5 5 7 0 7 0 0 4 6 ...
- $ p_browsed     : num  0.6316 0.0357 0.5522 0.2529 0.537 ...
- $ p_deep_browsed: num  0.0211 0.0595 0.0373 0.0412 0 ...
- $ fence         : int  0 0 0 0 0 0 0 0 0 0 ...
- $ dam           : int  0 0 0 0 0 0 0 0 0 0 ...
- $ browse        : int  1 1 1 1 1 1 1 1 1 1 ...
- $ n.plants      : int  9 9 9 9 9 9 9 9 9 8 ...
- $ n.years       : int  10 10 10 10 10 10 10 10 10 9 ...
- $ min_yr        : int  2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...
- $ max_yr        : int  2018 2018 2018 2018 2018 2018 2018 2018 2018 2017 ...</code></pre>
+<pre><code>spc_tbl_ [3,840 × 21] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ site_full     : chr [1:3840] "crescent-obs" "crescent-obs" "crescent-obs" "crescent-obs" ...
+ $ willid        : num [1:3840] 86 86 86 86 86 86 86 86 86 89 ...
+ $ year          : num [1:3840] 2010 2014 2013 2011 2009 ...
+ $ willid_full   : chr [1:3840] "crescent-obs-86" "crescent-obs-86" "crescent-obs-86" "crescent-obs-86" ...
+ $ site_id       : chr [1:3840] "crescent" "crescent" "crescent" "crescent" ...
+ $ treat         : chr [1:3840] "obs" "obs" "obs" "obs" ...
+ $ exp           : num [1:3840] 0 0 0 0 0 0 0 0 0 0 ...
+ $ plantht       : num [1:3840] 49 65 66 45 42 56 81 57 66 77 ...
+ $ N_shoots      : num [1:3840] 95 84 134 170 54 75 78 27 124 69 ...
+ $ N_browsed     : num [1:3840] 60 3 74 43 29 14 22 8 13 31 ...
+ $ N_unbrowsed   : num [1:3840] 33 76 55 120 25 54 56 19 107 32 ...
+ $ N_deep_browsed: num [1:3840] 2 5 5 7 0 7 0 0 4 6 ...
+ $ p_browsed     : num [1:3840] 0.6316 0.0357 0.5522 0.2529 0.537 ...
+ $ p_deep_browsed: num [1:3840] 0.0211 0.0595 0.0373 0.0412 0 ...
+ $ fence         : num [1:3840] 0 0 0 0 0 0 0 0 0 0 ...
+ $ dam           : num [1:3840] 0 0 0 0 0 0 0 0 0 0 ...
+ $ browse        : num [1:3840] 1 1 1 1 1 1 1 1 1 1 ...
+ $ n.plants      : num [1:3840] 9 9 9 9 9 9 9 9 9 8 ...
+ $ n.years       : num [1:3840] 10 10 10 10 10 10 10 10 10 9 ...
+ $ min_yr        : num [1:3840] 2009 2009 2009 2009 2009 ...
+ $ max_yr        : num [1:3840] 2018 2018 2018 2018 2018 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   site_full = col_character(),
+  ..   willid = col_double(),
+  ..   year = col_double(),
+  ..   willid_full = col_character(),
+  ..   site_id = col_character(),
+  ..   treat = col_character(),
+  ..   exp = col_double(),
+  ..   plantht = col_double(),
+  ..   N_shoots = col_double(),
+  ..   N_browsed = col_double(),
+  ..   N_unbrowsed = col_double(),
+  ..   N_deep_browsed = col_double(),
+  ..   p_browsed = col_double(),
+  ..   p_deep_browsed = col_double(),
+  ..   fence = col_double(),
+  ..   dam = col_double(),
+  ..   browse = col_double(),
+  ..   n.plants = col_double(),
+  ..   n.years = col_double(),
+  ..   min_yr = col_double(),
+  ..   max_yr = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
 </div>
 </div>
 <p>Notice that words come up as <code>chr</code>, which stands for ‘character’. Characters cannot be analysed statistically - they must first be converted into either numbers or factors.</p>
@@ -1503,12 +1506,12 @@ Tip
 <div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>sites_excluded <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'wb-dx'</span>,<span class="st">'wb-dc'</span>,<span class="st">'wb-cx'</span>,</span>
-<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'elk-dx'</span>,<span class="st">'elk-dc'</span>,<span class="st">'elk-cx'</span>,</span>
-<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'eb2-dx'</span>,<span class="st">'eb2-dc'</span>,<span class="st">'eb2-cx'</span>,</span>
-<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'eb1-dx'</span>,<span class="st">'eb1-dc'</span>,<span class="st">'eb1-cx'</span></span>
-<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>) <span class="co"># Notice that this is a vector. We are used to seeing vectors with numbers by now, but we are also allowed to make vectors with characters.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>sites_excluded <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'wb-dx'</span>,<span class="st">'wb-dc'</span>,<span class="st">'wb-cx'</span>,</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'elk-dx'</span>,<span class="st">'elk-dc'</span>,<span class="st">'elk-cx'</span>,</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'eb2-dx'</span>,<span class="st">'eb2-dc'</span>,<span class="st">'eb2-cx'</span>,</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'eb1-dx'</span>,<span class="st">'eb1-dc'</span>,<span class="st">'eb1-cx'</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>) <span class="co"># Notice that this is a vector. We are used to seeing vectors with numbers by now, but we are also allowed to make vectors with characters.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1535,38 +1538,34 @@ Tip
 <h5 class="anchored" data-anchor-id="solution-7">Solution</h5>
 <p>For part i), apply the <code>[,]</code> function directly:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>Yellowstone[<span class="dv">1</span>,] <span class="co"># selects the first row in the dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>Yellowstone[<span class="dv">1</span>,] <span class="co"># selects the first row in the dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     site_full willid year     willid_full  site_id treat exp plantht N_shoots
-1 crescent-obs     86 2010 crescent-obs-86 crescent   obs   0      49       95
-  N_browsed N_unbrowsed N_deep_browsed p_browsed p_deep_browsed fence dam
-1        60          33              2 0.6315789     0.02105263     0   0
-  browse n.plants n.years min_yr max_yr
-1      1        9      10   2009   2018</code></pre>
+<pre><code># A tibble: 1 × 21
+  site_full    willid  year willid_full     site_id treat   exp plantht N_shoots
+  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 crescent-obs     86  2010 crescent-obs-86 cresce… obs       0      49       95
+# ℹ 12 more variables: N_browsed &lt;dbl&gt;, N_unbrowsed &lt;dbl&gt;,
+#   N_deep_browsed &lt;dbl&gt;, p_browsed &lt;dbl&gt;, p_deep_browsed &lt;dbl&gt;, fence &lt;dbl&gt;,
+#   dam &lt;dbl&gt;, browse &lt;dbl&gt;, n.plants &lt;dbl&gt;, n.years &lt;dbl&gt;, min_yr &lt;dbl&gt;,
+#   max_yr &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Part ii) is a bit more difficult. We need to use the <code>:</code> operator to select rows 1 to 5 before applying <code>[,]</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>Yellowstone[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] <span class="co"># selects rows 1 to 5 in the dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>Yellowstone[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] <span class="co"># selects rows 1 to 5 in the dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     site_full willid year     willid_full  site_id treat exp plantht N_shoots
-1 crescent-obs     86 2010 crescent-obs-86 crescent   obs   0      49       95
-2 crescent-obs     86 2014 crescent-obs-86 crescent   obs   0      65       84
-3 crescent-obs     86 2013 crescent-obs-86 crescent   obs   0      66      134
-4 crescent-obs     86 2011 crescent-obs-86 crescent   obs   0      45      170
-5 crescent-obs     86 2009 crescent-obs-86 crescent   obs   0      42       54
-  N_browsed N_unbrowsed N_deep_browsed  p_browsed p_deep_browsed fence dam
-1        60          33              2 0.63157895     0.02105263     0   0
-2         3          76              5 0.03571429     0.05952381     0   0
-3        74          55              5 0.55223881     0.03731343     0   0
-4        43         120              7 0.25294118     0.04117647     0   0
-5        29          25              0 0.53703704     0.00000000     0   0
-  browse n.plants n.years min_yr max_yr
-1      1        9      10   2009   2018
-2      1        9      10   2009   2018
-3      1        9      10   2009   2018
-4      1        9      10   2009   2018
-5      1        9      10   2009   2018</code></pre>
+<pre><code># A tibble: 5 × 21
+  site_full    willid  year willid_full     site_id treat   exp plantht N_shoots
+  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 crescent-obs     86  2010 crescent-obs-86 cresce… obs       0      49       95
+2 crescent-obs     86  2014 crescent-obs-86 cresce… obs       0      65       84
+3 crescent-obs     86  2013 crescent-obs-86 cresce… obs       0      66      134
+4 crescent-obs     86  2011 crescent-obs-86 cresce… obs       0      45      170
+5 crescent-obs     86  2009 crescent-obs-86 cresce… obs       0      42       54
+# ℹ 12 more variables: N_browsed &lt;dbl&gt;, N_unbrowsed &lt;dbl&gt;,
+#   N_deep_browsed &lt;dbl&gt;, p_browsed &lt;dbl&gt;, p_deep_browsed &lt;dbl&gt;, fence &lt;dbl&gt;,
+#   dam &lt;dbl&gt;, browse &lt;dbl&gt;, n.plants &lt;dbl&gt;, n.years &lt;dbl&gt;, min_yr &lt;dbl&gt;,
+#   max_yr &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1584,29 +1583,21 @@ Tip
 <div class="callout-body-container callout-body">
 <p>To select rows by name, first use <code>$</code> to specify the column that lists all the site names, then use <code>==</code> to match a specific name. For example, to select all the rows from the site “crescent-obs”:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Yellowstone[Yellowstone<span class="sc">$</span>site_full <span class="sc">==</span><span class="st">"crescent-obs"</span>,])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Yellowstone[Yellowstone<span class="sc">$</span>site_full <span class="sc">==</span><span class="st">"crescent-obs"</span>,])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     site_full willid year     willid_full  site_id treat exp plantht N_shoots
-1 crescent-obs     86 2010 crescent-obs-86 crescent   obs   0      49       95
-2 crescent-obs     86 2014 crescent-obs-86 crescent   obs   0      65       84
-3 crescent-obs     86 2013 crescent-obs-86 crescent   obs   0      66      134
-4 crescent-obs     86 2011 crescent-obs-86 crescent   obs   0      45      170
-5 crescent-obs     86 2009 crescent-obs-86 crescent   obs   0      42       54
-6 crescent-obs     86 2017 crescent-obs-86 crescent   obs   0      56       75
-  N_browsed N_unbrowsed N_deep_browsed  p_browsed p_deep_browsed fence dam
-1        60          33              2 0.63157895     0.02105263     0   0
-2         3          76              5 0.03571429     0.05952381     0   0
-3        74          55              5 0.55223881     0.03731343     0   0
-4        43         120              7 0.25294118     0.04117647     0   0
-5        29          25              0 0.53703704     0.00000000     0   0
-6        14          54              7 0.18666667     0.09333333     0   0
-  browse n.plants n.years min_yr max_yr
-1      1        9      10   2009   2018
-2      1        9      10   2009   2018
-3      1        9      10   2009   2018
-4      1        9      10   2009   2018
-5      1        9      10   2009   2018
-6      1        9      10   2009   2018</code></pre>
+<pre><code># A tibble: 6 × 21
+  site_full    willid  year willid_full     site_id treat   exp plantht N_shoots
+  &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 crescent-obs     86  2010 crescent-obs-86 cresce… obs       0      49       95
+2 crescent-obs     86  2014 crescent-obs-86 cresce… obs       0      65       84
+3 crescent-obs     86  2013 crescent-obs-86 cresce… obs       0      66      134
+4 crescent-obs     86  2011 crescent-obs-86 cresce… obs       0      45      170
+5 crescent-obs     86  2009 crescent-obs-86 cresce… obs       0      42       54
+6 crescent-obs     86  2017 crescent-obs-86 cresce… obs       0      56       75
+# ℹ 12 more variables: N_browsed &lt;dbl&gt;, N_unbrowsed &lt;dbl&gt;,
+#   N_deep_browsed &lt;dbl&gt;, p_browsed &lt;dbl&gt;, p_deep_browsed &lt;dbl&gt;, fence &lt;dbl&gt;,
+#   dam &lt;dbl&gt;, browse &lt;dbl&gt;, n.plants &lt;dbl&gt;, n.years &lt;dbl&gt;, min_yr &lt;dbl&gt;,
+#   max_yr &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>We first have to specify <code>Yellowstone$site_full</code>, because <code>site_full</code> is the column that lists all the site names. Then, we use <code>==</code> to match the name <code>crescent-obs</code>.</p>
@@ -1628,29 +1619,21 @@ Tip
 <div id="callout-41" class="callout-41-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Yellowstone[Yellowstone<span class="sc">$</span>site_full <span class="sc">%in%</span> sites_excluded,])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Yellowstone[Yellowstone<span class="sc">$</span>site_full <span class="sc">%in%</span> sites_excluded,])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    site_full willid year willid_full site_id treat exp plantht N_shoots
-191    eb1-cx    637 2011  eb1-cx-637     eb1    cx   1     146      139
-192    eb1-cx    637 2013  eb1-cx-637     eb1    cx   1     162      166
-193    eb1-cx    637 2017  eb1-cx-637     eb1    cx   1     167       63
-194    eb1-cx    637 2010  eb1-cx-637     eb1    cx   1     165       84
-195    eb1-cx    637 2012  eb1-cx-637     eb1    cx   1     120      238
-196    eb1-cx    637 2018  eb1-cx-637     eb1    cx   1     195       41
-    N_browsed N_unbrowsed N_deep_browsed p_browsed p_deep_browsed fence dam
-191         0         139              0         0              0     1   0
-192         0         166              0         0              0     1   0
-193         0          63              0         0              0     1   0
-194         0          84              0         0              0     1   0
-195         0         238              0         0              0     1   0
-196         0          41              0         0              0     1   0
-    browse n.plants n.years min_yr max_yr
-191      0       12      16   2003   2018
-192      0       12      16   2003   2018
-193      0       12      16   2003   2018
-194      0       12      16   2003   2018
-195      0       12      16   2003   2018
-196      0       12      16   2003   2018</code></pre>
+<pre><code># A tibble: 6 × 21
+  site_full willid  year willid_full site_id treat   exp plantht N_shoots
+  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 eb1-cx       637  2011 eb1-cx-637  eb1     cx        1     146      139
+2 eb1-cx       637  2013 eb1-cx-637  eb1     cx        1     162      166
+3 eb1-cx       637  2017 eb1-cx-637  eb1     cx        1     167       63
+4 eb1-cx       637  2010 eb1-cx-637  eb1     cx        1     165       84
+5 eb1-cx       637  2012 eb1-cx-637  eb1     cx        1     120      238
+6 eb1-cx       637  2018 eb1-cx-637  eb1     cx        1     195       41
+# ℹ 12 more variables: N_browsed &lt;dbl&gt;, N_unbrowsed &lt;dbl&gt;,
+#   N_deep_browsed &lt;dbl&gt;, p_browsed &lt;dbl&gt;, p_deep_browsed &lt;dbl&gt;, fence &lt;dbl&gt;,
+#   dam &lt;dbl&gt;, browse &lt;dbl&gt;, n.plants &lt;dbl&gt;, n.years &lt;dbl&gt;, min_yr &lt;dbl&gt;,
+#   max_yr &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>The <code>%in% sites_excluded</code> part picks out every site whose name matches the <code>sites_excluded</code> vector we made earlier.</p>
@@ -1660,7 +1643,7 @@ Tip
 </div>
 <p>Phew! That’s the hard part done. All that is left is to use the <code>!</code> operator to tell R that we want to <em>exclude</em> these sites, not include them, and then give our new dataset a name.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>Yellowstone_1 <span class="ot">&lt;-</span> Yellowstone[<span class="sc">!</span>Yellowstone<span class="sc">$</span>site_full <span class="sc">%in%</span> sites_excluded,] <span class="co"># remove rows and rename as 'Yellowstone_1'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>Yellowstone_1 <span class="ot">&lt;-</span> Yellowstone[<span class="sc">!</span>Yellowstone<span class="sc">$</span>site_full <span class="sc">%in%</span> sites_excluded,] <span class="co"># remove rows and rename as 'Yellowstone_1'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Ripple claims that his study occurred across 25 sites from 2001 to 2020. Let’s make a line graph to see how often each of these 25 sites were actually surveyed:</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1673,7 +1656,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use <code>geom_line()</code> to make a line graph with <code>year</code> on the x-axis, and <code>sites_full</code> on the y-axis.</p>
+<p>Use <code>geom_line()</code> to make a line graph with <code>year</code> on the x-axis, and <code>site_full</code> on the y-axis.</p>
 <p>What do you notice about the times each of these sites were surveyed?</p>
 </div>
 </div>
@@ -1681,14 +1664,14 @@ Tip
 <h5 class="anchored" data-anchor-id="solution-8">Solution</h5>
 <p>Here’s what we did:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Yellowstone_1, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> site_full))<span class="sc">+</span></span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># Note that we added a scatter plot using geom_point() to see the timing of the surveys even more clearly. Each point is one survey.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Yellowstone_1, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> site_full))<span class="sc">+</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="co"># Note that we added a scatter plot using geom_point() to see the timing of the surveys even more clearly. Each point is one survey.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab01-introduction_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

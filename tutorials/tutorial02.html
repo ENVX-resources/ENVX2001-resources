@@ -133,6 +133,49 @@ background: white;
 </noscript>
 <script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
@@ -144,7 +187,7 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tutorial 02</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tutorial 02</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
             <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
                       </div>
   </div>
@@ -171,29 +214,24 @@ background: white;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome 👋</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="header-section-number">0.1</span> Getting started</a></li>
-  <li><a href="#sampling-finite-populations" id="toc-sampling-finite-populations" class="nav-link" data-scroll-target="#sampling-finite-populations"><span class="header-section-number">1</span> Sampling finite populations</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">1</span> Confidence intervals</a>
   <ul class="collapse">
-  <li><a href="#finite-populations" id="toc-finite-populations" class="nav-link" data-scroll-target="#finite-populations"><span class="header-section-number">1.1</span> Finite populations</a>
+  <li><a href="#exercise-1-what-confidence-intervals-tell-us" id="toc-exercise-1-what-confidence-intervals-tell-us" class="nav-link" data-scroll-target="#exercise-1-what-confidence-intervals-tell-us">Exercise 1: What confidence intervals tell us</a>
   <ul class="collapse">
-  <li><a href="#random-but-reproducible" id="toc-random-but-reproducible" class="nav-link" data-scroll-target="#random-but-reproducible">Random, but reproducible</a></li>
-  <li><a href="#identifying-the-population" id="toc-identifying-the-population" class="nav-link" data-scroll-target="#identifying-the-population">Identifying the population</a></li>
-  <li><a href="#simple-random-sampling" id="toc-simple-random-sampling" class="nav-link" data-scroll-target="#simple-random-sampling">Simple random sampling</a></li>
+  <li><a href="#part-a-compute-and-interpret" id="toc-part-a-compute-and-interpret" class="nav-link" data-scroll-target="#part-a-compute-and-interpret">Part A — Compute and interpret</a></li>
+  <li><a href="#part-b-what-affects-the-width" id="toc-part-b-what-affects-the-width" class="nav-link" data-scroll-target="#part-b-what-affects-the-width">Part B — What affects the width?</a></li>
   </ul></li>
-  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus"><span class="header-section-number">1.2</span> Bonus</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">1.3</span> Practice</a></li>
   </ul></li>
-  <li><a href="#sampling-infinite-populations" id="toc-sampling-infinite-populations" class="nav-link" data-scroll-target="#sampling-infinite-populations"><span class="header-section-number">2</span> Sampling infinite populations</a>
+  <li><a href="#sampling-and-group-structure" id="toc-sampling-and-group-structure" class="nav-link" data-scroll-target="#sampling-and-group-structure"><span class="header-section-number">2</span> Sampling and group structure</a>
   <ul class="collapse">
-  <li><a href="#uniform-distribution" id="toc-uniform-distribution" class="nav-link" data-scroll-target="#uniform-distribution">Uniform distribution</a></li>
-  <li><a href="#exploring-the-data-frame" id="toc-exploring-the-data-frame" class="nav-link" data-scroll-target="#exploring-the-data-frame">Exploring the data frame</a></li>
-  <li><a href="#visualising-the-data" id="toc-visualising-the-data" class="nav-link" data-scroll-target="#visualising-the-data">Visualising the data</a></li>
-  <li><a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1"><span class="header-section-number">2.1</span> Practice</a></li>
+  <li><a href="#exercise-2-when-groups-matter" id="toc-exercise-2-when-groups-matter" class="nav-link" data-scroll-target="#exercise-2-when-groups-matter">Exercise 2: When groups matter</a>
+  <ul class="collapse">
+  <li><a href="#part-a-the-pooled-estimate" id="toc-part-a-the-pooled-estimate" class="nav-link" data-scroll-target="#part-a-the-pooled-estimate">Part A — The pooled estimate</a></li>
+  <li><a href="#part-b-split-by-population" id="toc-part-b-split-by-population" class="nav-link" data-scroll-target="#part-b-split-by-population">Part B — Split by population</a></li>
+  <li><a href="#part-c-connection-to-the-lab" id="toc-part-c-connection-to-the-lab" class="nav-link" data-scroll-target="#part-c-connection-to-the-lab">Part C — Connection to the lab</a></li>
   </ul></li>
-  <li><a href="#done" id="toc-done" class="nav-link" data-scroll-target="#done"><span class="header-section-number">3</span> Done!</a>
-  <ul class="collapse">
-  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks!</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial02.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -209,412 +247,252 @@ background: white;
 
 
 
-<section id="welcome" class="level2 unnumbered" style="color:blue;">
-<h2 class="unnumbered anchored" style="color:blue;" data-anchor-id="welcome">Welcome 👋</h2>
-<p><strong>Welcome to Tutorial 2</strong>. In this tutorial we will show you how to:</p>
+<section id="welcome" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
+<p>In this tutorial you will use a real dataset to compute confidence intervals and see why group structure matters when estimating a population parameter.</p>
+<p>You will learn how to:</p>
 <ol type="1">
-<li>Take a random sample from a <em>finite</em> population; and</li>
-<li>take a random sample from an <em>infinite</em> population.</li>
+<li>Load a real dataset and compute a confidence interval using <code>t.test()</code>.</li>
+<li>Understand what a confidence interval tells you (and what it does not).</li>
+<li>See why accounting for group structure matters when estimating a population parameter.</li>
 </ol>
-</section>
-<section id="getting-started" class="level2 page-columns page-full" data-number="0.1">
-<h2 data-number="0.1" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">0.1</span> Getting started</h2>
+<p>The dataset for today comes from the <code>DAAG</code> package. The <code>possum</code> dataset contains measurements on 104 mountain brushtail possums (<em>Trichosurus caninus</em>) captured at seven sites across south-eastern Australia, from a study by Lindenmayer et al.&nbsp;(1995). Researchers captured possums at field sites in Victoria and in parts of Queensland and New South Wales, recording morphological measurements such as head length, skull width, tail length, and ear conch length.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(DAAG)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">data</span>(possum)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>In some instances you will see notes like this one in the margin, which often contain useful tips or reminders.</p>
-</div></div><ul>
-<li>These tutorials are designed to be comprehensive yet accessible. I recommend following along and grasping the statistical concepts as much as you can.</li>
-<li>You will need to <strong>create your own Quarto (recommended) or R Markdown document</strong> to complete the exercises. In RStudio, go to
-<ul>
-<li><code>File -&gt; New File -&gt; Quarto Document...</code> or</li>
-<li><code>File -&gt; New File -&gt; R Markdown...</code> and follow the intuitive prompts.</li>
-</ul></li>
-<li><strong>For those of you who are interested in furthering your data science skills and are keen to learn more</strong>, I have included <em>optional</em> sections. These techniques are <em>not</em> necessary for you to get through ENVX2001 – <strong>we do <em>not</em> cover code in the exams</strong>. Nevertheless these skills come handy in report writing and data analysis and can be a great addition to your projects.</li>
-<li>If you have any suggestions for improvement, please let me know! Send me an email (you can find my details on Canvas).</li>
-</ul>
-</section>
-<section id="sampling-finite-populations" class="level1 page-columns page-full" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Sampling finite populations</h1>
-<p>There are 2 types of populations from which we may wish to take a random sample; finite and infinite populations.</p>
-<ul>
-<li><strong>Finite populations</strong> are made of discrete objects like households, people, farms etc.</li>
-<li><strong>Infinite populations</strong> are continuous, such as soil, water in a stream.</li>
-</ul>
-<section id="finite-populations" class="level2 page-columns page-full" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="finite-populations"><span class="header-section-number">1.1</span> Finite populations</h2>
-<p>Imagine a hypothetical situation where we know there are 100 farms in a catchment, and we wish to survey 10 of them about their management practices. To ensure <em>unbiased</em> results, the 10 farms should be randomly selected.</p>
-<p><strong>R can do this for us quite easily.</strong></p>
-<p>Below is the full code to randomly select 10 farms from the 100 in the catchment. We will break it down step by step.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(<span class="dv">1038</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>farms <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">sample</span>(<span class="at">x =</span> farms, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="random-but-reproducible" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="random-but-reproducible">Random, but reproducible</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">set.seed</span>(<span class="dv">1038</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The <code>set.seed()</code> function is used to “fix the <a href="https://en.wikipedia.org/wiki/Random_seed">seed</a>” of the random number generator. This is useful when you want to ensure that the random numbers generated are the same each time you run the code, which is useful for reproducibility. We don’t want to randomly select 10 farms, and then run the code again and get a different set of 10 farms!</p>
-<p>The number in the brackets can be any number you choose<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;It is good practice to be as unbiased as possible when picking a number for <code>set.seed()</code>. A good choice is the 4 digits for the current time of the day.</p></div></div></section>
-<section id="identifying-the-population" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="identifying-the-population">Identifying the population</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>farms <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>If there are 100 farms, then we need to be able to select <em>from</em> them. This ensures that each farm is unique so that we can perform random sampling without replacement (i.e.&nbsp;we should not be sampling the same farm twice).</p>
-<p>The colon operator (<code>:</code>) creates a sequence of numbers from the first number to the second number. For 100 farms we can create a sequence of numbers from 1 to 100 easily using this operator, and assign it to the object <code>farms</code>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Using <code>:</code> is arguably much easier than typing out all the numbers from 1 to 100.</p>
+<p>If you have not installed DAAG before, run <code>install.packages("DAAG")</code> in the console first. You only need to do this once.</p>
 </div></div></section>
-<section id="simple-random-sampling" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="simple-random-sampling">Simple random sampling</h3>
+<section id="confidence-intervals" class="level1 page-columns page-full" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Confidence intervals</h1>
+<p>A confidence interval is a range of plausible values for a population parameter, such as a mean, based on sample data. Instead of a single number, it tells you how much uncertainty there is in the estimate.</p>
+<section id="exercise-1-what-confidence-intervals-tell-us" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-1-what-confidence-intervals-tell-us">Exercise 1: What confidence intervals tell us</h2>
+<section id="part-a-compute-and-interpret" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-a-compute-and-interpret">Part A — Compute and interpret</h3>
+<p>Start by inspecting the dataset:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>sites <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> farms, <span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The <code>sample()</code> function is a <code>base</code> R function – part of the core R language – and is used to take a random sample of a specified size from a set of values.</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Notice that no result is printed to the console when you assign (<code>&lt;-</code>) something to and object like <code>sites</code>. This is because R is not being asked to print anything, and so unless the function itself prints something, nothing will be presented to you. You can print the result by typing <code>sites</code> again in a new line, which instructs R to print the value of <code>sites</code>.</p>
-</div></div><p>To use the <code>sample()</code> function, you need to specify the following arguments:</p>
-<ul>
-<li><code>x</code>: the set of values from which to sample. In this case, the set of farms.</li>
-<li><code>size</code>: the number of values to sample. In this case, 10 farms.</li>
-</ul>
-<p>The <code>sample()</code> function returns a vector of the randomly selected farms, which we have assigned to the object <code>sites</code>.</p>
-<p>We now have our random sample of 10 farms from the 100 in the catchment.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sites</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">str</span>(possum)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 92 27 78 54 48 44 61 66  4 83</code></pre>
+<pre><code>'data.frame':   104 obs. of  14 variables:
+ $ case    : num  1 2 3 4 5 6 7 8 9 10 ...
+ $ site    : num  1 1 1 1 1 1 1 1 1 1 ...
+ $ Pop     : Factor w/ 2 levels "Vic","other": 1 1 1 1 1 1 1 1 1 1 ...
+ $ sex     : Factor w/ 2 levels "f","m": 2 1 1 1 1 1 2 1 1 1 ...
+ $ age     : num  8 6 6 6 2 1 2 6 9 6 ...
+ $ hdlngth : num  94.1 92.5 94 93.2 91.5 93.1 95.3 94.8 93.4 91.8 ...
+ $ skullw  : num  60.4 57.6 60 57.1 56.3 54.8 58.2 57.6 56.3 58 ...
+ $ totlngth: num  89 91.5 95.5 92 85.5 90.5 89.5 91 91.5 89.5 ...
+ $ taill   : num  36 36.5 39 38 36 35.5 36 37 37 37.5 ...
+ $ footlgth: num  74.5 72.5 75.4 76.1 71 73.2 71.5 72.7 72.4 70.9 ...
+ $ earconch: num  54.5 51.2 51.9 52.2 53.2 53.6 52 53.9 52.9 53.4 ...
+ $ eye     : num  15.2 16 15.5 15.2 15.1 14.2 14.2 14.5 15.5 14.4 ...
+ $ chest   : num  28 28.5 30 28 28.5 30 30 29 28 27.5 ...
+ $ belly   : num  36 33 34 34 33 32 34.5 34 33 32 ...</code></pre>
 </div>
 </div>
+<p>There are 104 observations and 14 variables, including morphological measurements like head length, skull width, and tail length. We will focus on head length first.</p>
+<p>Compute a 95% confidence interval for the mean head length:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>hdlngth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  possum$hdlngth
+t = 264.28, df = 103, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 91.90796 93.29781
+sample estimates:
+mean of x 
+ 92.60288 </code></pre>
+</div>
+</div>
+<p>The sample mean head length is 92.6 mm. The 95% confidence interval is approximately [91.9, 93.3].</p>
+<p>What does this interval actually mean? If we repeated this study many times — catching a fresh group of 104 possums each time — about 95% of the intervals we compute would contain the true population mean.</p>
+<p>A common misconception is that there is a 95% probability the true mean lies inside this particular interval. That is not correct. The true mean is a fixed value — it is either inside the interval or it is not. We just do not know which.</p>
+<p>Put simply: we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>If you have set the same seed as we have, you should get the same results, which makes your experimental design reproducible.</p>
+<p>The 95% refers to the long-run success rate of the method, not the probability for any single interval.</p>
 </div></div></section>
-</section>
-<section id="bonus" class="level2 page-columns page-full" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="bonus"><span class="header-section-number">1.2</span> Bonus</h2>
-<p>A tidyverse approach to the same problem would be to use the <code>dplyr</code> package to create a sequence of numbers from 1 to 100, and then use the <code>sample_n()</code> function from the <code>dplyr</code> package to take a random sample of 10 farms from the 100 in the catchment.</p>
-<p>The action can be performed using pipes (<code>|&gt;</code>) to pass the result of one function to the next function, which makes the code easier to read and understand (this is an opinion shared by many).</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">pipe approach</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Nested approach</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Stepped approach</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<section id="part-b-what-affects-the-width" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-b-what-affects-the-width">Part B — What affects the width?</h3>
+<p>What if we had measured fewer possums? Would our confidence interval change?</p>
+<p>Draw a random sample of 10 possums and compute the confidence interval:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>sites <span class="ot">&lt;-</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="fu">tibble</span>(<span class="at">farm =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="co"># create a tibble of 100 farms, and...</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="co"># ...pass it to the next function:</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="fu">sample_n</span>(<span class="dv">10</span>) <span class="co"># take a random sample of 10 farms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>samp10 <span class="ot">&lt;-</span> <span class="fu">sample</span>(possum<span class="sc">$</span>hdlngth, <span class="dv">10</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">t.test</span>(samp10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  samp10
+t = 74.625, df = 9, p-value = 7.048e-14
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 89.44386 95.03614
+sample estimates:
+mean of x 
+    92.24 </code></pre>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Now draw a sample of 50:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>sites <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(<span class="fu">tibble</span>(<span class="at">farm =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>), <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>samp50 <span class="ot">&lt;-</span> <span class="fu">sample</span>(possum<span class="sc">$</span>hdlngth, <span class="dv">50</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">t.test</span>(samp50)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  samp50
+t = 181.77, df = 49, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 91.13518 93.17282
+sample estimates:
+mean of x 
+   92.154 </code></pre>
 </div>
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>farms <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">farm =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a>sites <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(farms, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</div>
+<p>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide, with 50 it narrows to about 2.0 mm, and with all 104 it is only 1.4 mm. More data gives a more precise estimate.</p>
+<p>This happens because the standard error is SD / <span class="math inline">\sqrt{n}</span>. As <span class="math inline">n</span> increases, the standard error shrinks, and so does the confidence interval. This is what <code>t.test()</code> computes internally.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Piping is a powerful feature of the tidyverse in R and is common in other programming languages. Here, the <code>|&gt;</code> operator is used to pass the result of the <code>tibble()</code> function to the <code>sample_n()</code> function.</p>
-<p>Without piping, we would either have to nest the functions, or assign the result of the first function to an object and then pass that object in a stepped approach, which generates redundant “intermediate” objects before the final result is obtained.</p>
-</div></div><p>The <code>tibble()</code> function is used to create a tibble, which is a modern version of a data frame. The <code>sample_n()</code> function is used to take a random sample of a specified size from a tibble.</p>
+<p>Try changing the seed or the sample size and re-running to see how your interval changes.</p>
+</div></div><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should be able to explain what a 95% confidence interval means in plain language and why a larger sample gives a narrower interval.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="sampling-and-group-structure" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Sampling and group structure</h1>
+<p>So far we have treated all 104 possums as one group. But what happens when a population contains distinct subgroups?</p>
+<section id="exercise-2-when-groups-matter" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-2-when-groups-matter">Exercise 2: When groups matter</h2>
+<section id="part-a-the-pooled-estimate" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-the-pooled-estimate">Part A — The pooled estimate</h3>
+<p>Compute a confidence interval for ear conch length across all possums:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sites</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 1
-    farm
-   &lt;int&gt;
- 1    14
- 2    41
- 3    96
- 4    73
- 5    25
- 6    88
- 7    40
- 8    32
- 9    39
-10    21</code></pre>
-</div>
-</div>
-<p>Unlike <code>sample()</code>, <code>sample_n()</code> returns a tibble object which shows data in a column rather than row. It may look clutered with a single variable but it is useful for working with data in the tidyverse, especially when you have multiple variables.</p>
-</section>
-<section id="practice" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="practice"><span class="header-section-number">1.3</span> Practice</h2>
-<p>Use this section to practice taking random samples from finite populations. Code is provided, but hidden by default for you to make comparisons with your own. Click on the “Show the code” button to reveal the code.</p>
-<ol type="1">
-<li><strong>Create a random sample of 15 cats from a population of 300 cats.</strong></li>
-</ol>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><code>base</code> R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><code>dplyr</code> approach</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">set.seed</span>(<span class="dv">1202</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>cats <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">300</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>subjects <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> cats, <span class="at">size =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">set.seed</span>(<span class="dv">1202</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>subjects <span class="ot">&lt;-</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="fu">tibble</span>(<span class="at">cat =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="fu">sample_n</span>(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li><strong>Create a random sample of 20 trees from a population of 500 trees.</strong></li>
-</ol>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href=""><code>base</code> R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href=""><code>dplyr</code> approach</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">set.seed</span>(<span class="dv">1204</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>trees <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>subjects <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> trees, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">set.seed</span>(<span class="dv">1204</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a>subjects <span class="ot">&lt;-</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>    <span class="fu">tibble</span>(<span class="at">tree =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">sample_n</span>(<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</section>
-</section>
-<section id="sampling-infinite-populations" class="level1 page-columns page-full" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Sampling infinite populations</h1>
-<p>With infinite populations, we deal with continuous variables which the function <code>sample()</code> cannot handle as it is designed to work with discrete variables only (whole numbers).</p>
-<section id="uniform-distribution" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="uniform-distribution">Uniform distribution</h3>
-<p>Imagine we are interested in estimating the mean of a measurement, spatially, across a study area. In this case we need to randomly choose a spatial location which is defined by a spatial coordinate, x and y, and the chance of choosing any location is equal. This is a <strong>uniform distribution</strong>.</p>
-<p>Assuming a <em>hypothetical</em> study site 100m wide and 100m long where we wish to choose 10 random locations, then we may use the technique below to randomly select 10 locations based on x and y coordinates:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">set.seed</span>(<span class="dv">1209</span>)</span>
-<span id="cb16-2"><a href="#cb16-2"></a>xcoord <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>ycoord <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a>sites_xy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(xcoord, ycoord)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The <code>runif</code> function generates random numbers from a uniform distribution, which means that <strong>each number is equally likely to be chosen</strong>.</p>
-<p>The 3 main arguments (inputs) are:</p>
-<ol type="1">
-<li><code>n</code>: the number of samples</li>
-<li><code>min</code>: the minimum value we want in our random numbers</li>
-<li><code>max</code>: the maximum value we want in our random numbers</li>
-</ol>
+<pre><code>
+    One Sample t-test
 
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Use <code>?runif</code> to learn more about the <code>runif()</code> function.</p>
-</div></div><p>As we can see, with two variables (x and y) we now use a data frame to store the information.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>sites_xy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     xcoord    ycoord
-1  29.14598  5.810736
-2  48.35873 86.962687
-3  99.50902 60.200064
-4  17.75811 83.790473
-5  24.95613 81.485062
-6  20.90561 48.077787
-7  91.04788  6.096274
-8  30.24953  9.560046
-9  83.37310 36.851027
-10 85.06082 80.864236</code></pre>
+data:  possum$earconch
+t = 119.44, df = 103, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 47.33160 48.92994
+sample estimates:
+mean of x 
+ 48.13077 </code></pre>
 </div>
 </div>
+<p>This interval estimates the average ear conch length — the length of the outer ear opening — across all 104 possums. The mean is about 48.1 mm, with a 95% CI of roughly [47.3, 48.9].</p>
+<p>But these possums come from two distinct populations: Victorian possums from sites in central and eastern Victoria, and possums from sites further north in New South Wales and Queensland.</p>
 </section>
-<section id="exploring-the-data-frame" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="exploring-the-data-frame">Exploring the data frame</h3>
-<p>Viewing the data frame can eventually become clunky, and this is even more so when we have more than 2 variables. Use the <code>head()</code> or <code>str()</code> functions to view the first few rows or the structure of the data frame, respectively.</p>
+<section id="part-b-split-by-population" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-b-split-by-population">Part B — Split by population</h3>
+<p>Compute separate confidence intervals for each population:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">head</span>(sites_xy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch[possum<span class="sc">$</span>Pop <span class="sc">==</span> <span class="st">"Vic"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    xcoord    ycoord
-1 29.14598  5.810736
-2 48.35873 86.962687
-3 99.50902 60.200064
-4 17.75811 83.790473
-5 24.95613 81.485062
-6 20.90561 48.077787</code></pre>
-</div>
-</div>
-<p>Using <code>head()</code> shortens the output to the first few rows, which helps a lot when the data frame is large (you don’t want to see all the rows at once since the maximum number of rows that can be displayed is 1000).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">str</span>(sites_xy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   10 obs. of  2 variables:
- $ xcoord: num  29.1 48.4 99.5 17.8 25 ...
- $ ycoord: num  5.81 86.96 60.2 83.79 81.49 ...</code></pre>
-</div>
-</div>
-<p>The <code>str()</code> function provides a concise summary of the structure of the data frame. It tells us the number of observations and variables, and the type of each variable. This function is probably the most used exploratory function in R.</p>
-<p><strong>Bonus</strong>: The <code>glimpse()</code> function from the <code>dplyr</code> package is a more modern and user-friendly version of <code>str()</code>, and works with both data frames and tibbles. It is especially useful when working with large data frames.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(sites_xy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 10
-Columns: 2
-$ xcoord &lt;dbl&gt; 29.14598, 48.35873, 99.50902, 17.75811, 24.95613, 20.90561, 91.…
-$ ycoord &lt;dbl&gt; 5.810736, 86.962687, 60.200064, 83.790473, 81.485062, 48.077787…</code></pre>
-</div>
-</div>
+<pre><code>
+    One Sample t-test
 
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Notice the <code>::</code> operator in the <code>glimpse()</code> function. This is used to access functions from a package without loading the entire package. We basically interpret this as: “use the <code>glimpse()</code> function from the <code>dplyr</code> package.” Note that the package must be installed for this to work and you also need to know in advance that the function <code>glimpse()</code> is available in the package <code>dplyr</code>.</p>
-</div></div></section>
-<section id="visualising-the-data" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="visualising-the-data">Visualising the data</h3>
-<p>After generating the random points, it is always a good idea to visualise them to see if there are issues with the random points. This is especially important when working with spatial data – in rare cases, the random points may cluster in one area, which is not ideal for a random sample.</p>
-<p>We can use the <code>plot()</code> function to visualise the points, or we can use the <code>ggplot2</code> package. With enough effort, both methods can produce the same plot, but <code>ggplot2</code> is more flexible as it follows the grammar of graphics<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. My recommendation is that you learn <code>ggplot2</code> as it is more powerful and flexible. <strong>A good idea in this case is to plot in base R first, and then asking GenAI to plot the same plot using <code>ggplot2</code>.</strong></p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;The <a href="https://vita.had.co.nz/papers/layered-grammar.html">grammar of graphics</a> is a system for understanding and building graphs by combining components, such as data, scales, and layers, in a consistent and structured way.</p></div></div><div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Base R plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href=""><code>ggplot2</code></a></li></ul>
-<div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+data:  possum$earconch[possum$Pop == "Vic"]
+t = 153.2, df = 45, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 51.50087 52.87304
+sample estimates:
+mean of x 
+ 52.18696 </code></pre>
+</div>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">plot</span>(sites_xy,</span>
-<span id="cb25-2"><a href="#cb25-2"></a>    <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb25-3"><a href="#cb25-3"></a>    <span class="at">col =</span> <span class="st">"blue"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4"></a>    <span class="at">main =</span> <span class="st">"Random points"</span>,</span>
-<span id="cb25-5"><a href="#cb25-5"></a>    <span class="at">xlab =</span> <span class="st">"X coordinate"</span>,</span>
-<span id="cb25-6"><a href="#cb25-6"></a>    <span class="at">ylab =</span> <span class="st">"Y coordinate"</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch[possum<span class="sc">$</span>Pop <span class="sc">==</span> <span class="st">"other"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One Sample t-test
+
+data:  possum$earconch[possum$Pop == "other"]
+t = 216.63, df = 57, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 44.49862 45.32896
+sample estimates:
+mean of x 
+ 44.91379 </code></pre>
+</div>
+</div>
+<p>The Victorian possums have a mean ear conch length of about 52.2 mm, while the other population averages about 44.9 mm — a difference of over 7 mm. The pooled confidence interval of [47.3, 48.9] sits between the two groups and does not accurately describe either population.</p>
+<p>A boxplot makes the separation clear:</p>
+<div class="cell page-columns page-full">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">ggplot</span>(possum, <span class="fu">aes</span>(<span class="at">x =</span> Pop, <span class="at">y =</span> earconch, <span class="at">fill =</span> Pop)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Population"</span>, <span class="at">y =</span> <span class="st">"Ear conch length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-earconch" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-earconch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tutorial02_files/figure-html/fig-earconch-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-earconch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Ear conch length by population
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb26-2"><a href="#cb26-2"></a></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="fu">ggplot</span>(</span>
-<span id="cb26-4"><a href="#cb26-4"></a>    <span class="at">data =</span> sites_xy,</span>
-<span id="cb26-5"><a href="#cb26-5"></a>    <span class="fu">aes</span>(<span class="at">x =</span> xcoord, <span class="at">y =</span> ycoord)</span>
-<span id="cb26-6"><a href="#cb26-6"></a>) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>    <span class="fu">labs</span>(</span>
-<span id="cb26-9"><a href="#cb26-9"></a>        <span class="at">title =</span> <span class="st">"Random points"</span>,</span>
-<span id="cb26-10"><a href="#cb26-10"></a>        <span class="at">x =</span> <span class="st">"X coordinate"</span>,</span>
-<span id="cb26-11"><a href="#cb26-11"></a>        <span class="at">y =</span> <span class="st">"Y coordinate"</span></span>
-<span id="cb26-12"><a href="#cb26-12"></a>    ) <span class="sc">+</span></span>
-<span id="cb26-13"><a href="#cb26-13"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<p>Clearly, one issue is that <strong>not all study areas are rectangles</strong>! Rather, they are quite often irregular. This artificial dataset is just to illustrate the <strong>concept</strong> of sampling infinitely, rather than be practically useful. The analysis of spatial data is not in the scope of this unit.</p>
 </section>
-<section id="practice-1" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="practice-1"><span class="header-section-number">2.1</span> Practice</h2>
-<p>Use this section to practice taking random samples from infinite populations. Code is provided, but hidden by default for you to make comparisons with your own. Click on the “Show the code” button to reveal the code.</p>
-<ol type="1">
-<li>Generate 20 random points within a 100m x 100m study area.</li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">set.seed</span>(<span class="dv">1242</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>xcoord <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
-<span id="cb27-3"><a href="#cb27-3"></a>ycoord <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
-<span id="cb27-4"><a href="#cb27-4"></a>sites <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(xcoord, ycoord)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<section id="part-c-connection-to-the-lab" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-connection-to-the-lab">Part C — Connection to the lab</h3>
+<p>When a population has distinct subgroups, a single estimate can hide real differences. In the lab, you will learn <strong>stratified random sampling</strong> — a method that estimates each subgroup separately and then combines them into a single, more accurate overall estimate.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol start="2" type="1">
-<li>Now this combines <code>sample()</code> and <code>runif()</code> functions. Use <code>runif()</code> to generate 100 data points between 10 and 20, and then use <code>sample()</code> to sample 20 of these points.</li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">set.seed</span>(<span class="dv">1242</span>)</span>
-<span id="cb28-2"><a href="#cb28-2"></a>data <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">min =</span> <span class="dv">10</span>, <span class="at">max =</span> <span class="dv">20</span>)</span>
-<span id="cb28-3"><a href="#cb28-3"></a>sampled_data <span class="ot">&lt;-</span> <span class="fu">sample</span>(data, <span class="at">size =</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
 </div>
-<ol start="3" type="1">
-<li>Use <code>ggplot2</code> to plot a histogram of the sampled data generated in the previous step.</li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">ggplot</span>(</span>
-<span id="cb29-3"><a href="#cb29-3"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">data =</span> sampled_data),</span>
-<span id="cb29-4"><a href="#cb29-4"></a>    <span class="fu">aes</span>(<span class="at">x =</span> data)</span>
-<span id="cb29-5"><a href="#cb29-5"></a>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6"></a>    <span class="fu">geom_histogram</span>(</span>
-<span id="cb29-7"><a href="#cb29-7"></a>        <span class="at">binwidth =</span> <span class="fl">0.5</span>,</span>
-<span id="cb29-8"><a href="#cb29-8"></a>        <span class="at">color =</span> <span class="st">"black"</span></span>
-<span id="cb29-9"><a href="#cb29-9"></a>    ) <span class="sc">+</span></span>
-<span id="cb29-10"><a href="#cb29-10"></a>    <span class="fu">labs</span>(</span>
-<span id="cb29-11"><a href="#cb29-11"></a>        <span class="at">title =</span> <span class="st">"Histogram of sampled data"</span>,</span>
-<span id="cb29-12"><a href="#cb29-12"></a>        <span class="at">x =</span> <span class="st">"Value"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13"></a>        <span class="at">y =</span> <span class="st">"Frequency"</span></span>
-<span id="cb29-14"><a href="#cb29-14"></a>    ) <span class="sc">+</span></span>
-<span id="cb29-15"><a href="#cb29-15"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should be able to explain why computing a single confidence interval for a population with distinct subgroups can be misleading.</p>
+</div>
 </div>
 </section>
 </section>
-<section id="done" class="level1 page-columns page-full" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Done!</h1>
-<section id="thanks" class="level3 unnumbered page-columns page-full">
-<h3 class="unnumbered anchored" data-anchor-id="thanks">Thanks!</h3>
-<p>This is the end of the tutorial.</p>
+<section id="wrap-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
+<p>In this tutorial you computed confidence intervals, saw how sample size affects precision, and discovered why group structure matters. You will use all of these ideas in the lab.</p>
 
 
+<!-- -->
 
-<div class="no-row-height column-margin column-container"><div class="">
-<p>If you have any questions or suggestions, let me know during the lectures or via email. You know where to find me!</p>
-</div></div></section>
 </section>
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -687,6 +565,57 @@ $ ycoord &lt;dbl&gt; 5.810736, 86.962687, 60.200064, 83.790473, 81.485062, 48.07
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1016,7 +945,170 @@ $ ycoord &lt;dbl&gt; 5.810736, 86.962687, 60.200064, 83.790473, 81.485062, 48.07
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="an">title:</span><span class="co"> "Tutorial 02"</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># reviewed-by:</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="an">format:</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="co">---</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="fu">## Welcome {.unnumbered}</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a>In this tutorial you will use a real dataset to compute confidence intervals and see why group structure matters when estimating a population parameter.</span>
+<span id="cb17-12"><a href="#cb17-12"></a></span>
+<span id="cb17-13"><a href="#cb17-13"></a>You will learn how to:</span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="ss">1. </span>Load a real dataset and compute a confidence interval using <span class="in">`t.test()`</span>.</span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="ss">2. </span>Understand what a confidence interval tells you (and what it does not).</span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="ss">3. </span>See why accounting for group structure matters when estimating a population parameter.</span>
+<span id="cb17-18"><a href="#cb17-18"></a></span>
+<span id="cb17-19"><a href="#cb17-19"></a>The dataset for today comes from the <span class="in">`DAAG`</span> package. The <span class="in">`possum`</span> dataset contains measurements on 104 mountain brushtail possums (*Trichosurus caninus*) captured at seven sites across south-eastern Australia, from a study by Lindenmayer et al. (1995). Researchers captured possums at field sites in Victoria and in parts of Queensland and New South Wales, recording morphological measurements such as head length, skull width, tail length, and ear conch length.</span>
+<span id="cb17-20"><a href="#cb17-20"></a></span>
+<span id="cb17-23"><a href="#cb17-23"></a><span class="in">```{r}</span></span>
+<span id="cb17-24"><a href="#cb17-24"></a><span class="co">#| label: setup</span></span>
+<span id="cb17-25"><a href="#cb17-25"></a><span class="co">#| message: false</span></span>
+<span id="cb17-26"><a href="#cb17-26"></a><span class="co">#| warning: false</span></span>
+<span id="cb17-27"><a href="#cb17-27"></a></span>
+<span id="cb17-28"><a href="#cb17-28"></a><span class="fu">library</span>(DAAG)</span>
+<span id="cb17-29"><a href="#cb17-29"></a><span class="fu">data</span>(possum)</span>
+<span id="cb17-30"><a href="#cb17-30"></a><span class="in">```</span></span>
+<span id="cb17-31"><a href="#cb17-31"></a></span>
+<span id="cb17-32"><a href="#cb17-32"></a>::: {.column-margin}</span>
+<span id="cb17-33"><a href="#cb17-33"></a>If you have not installed DAAG before, run <span class="in">`install.packages("DAAG")`</span> in the console first. You only need to do this once.</span>
+<span id="cb17-34"><a href="#cb17-34"></a>:::</span>
+<span id="cb17-35"><a href="#cb17-35"></a></span>
+<span id="cb17-36"><a href="#cb17-36"></a></span>
+<span id="cb17-37"><a href="#cb17-37"></a><span class="fu"># Confidence intervals</span></span>
+<span id="cb17-38"><a href="#cb17-38"></a></span>
+<span id="cb17-39"><a href="#cb17-39"></a>A confidence interval is a range of plausible values for a population parameter, such as a mean, based on sample data. Instead of a single number, it tells you how much uncertainty there is in the estimate.</span>
+<span id="cb17-40"><a href="#cb17-40"></a></span>
+<span id="cb17-41"><a href="#cb17-41"></a><span class="fu">## Exercise 1: What confidence intervals tell us {.unnumbered}</span></span>
+<span id="cb17-42"><a href="#cb17-42"></a></span>
+<span id="cb17-43"><a href="#cb17-43"></a><span class="fu">### Part A --- Compute and interpret</span></span>
+<span id="cb17-44"><a href="#cb17-44"></a></span>
+<span id="cb17-45"><a href="#cb17-45"></a>Start by inspecting the dataset:</span>
+<span id="cb17-46"><a href="#cb17-46"></a></span>
+<span id="cb17-49"><a href="#cb17-49"></a><span class="in">```{r}</span></span>
+<span id="cb17-50"><a href="#cb17-50"></a><span class="fu">str</span>(possum)</span>
+<span id="cb17-51"><a href="#cb17-51"></a><span class="in">```</span></span>
+<span id="cb17-52"><a href="#cb17-52"></a></span>
+<span id="cb17-53"><a href="#cb17-53"></a>There are 104 observations and 14 variables, including morphological measurements like head length, skull width, and tail length. We will focus on head length first.</span>
+<span id="cb17-54"><a href="#cb17-54"></a></span>
+<span id="cb17-55"><a href="#cb17-55"></a>Compute a 95% confidence interval for the mean head length:</span>
+<span id="cb17-56"><a href="#cb17-56"></a></span>
+<span id="cb17-59"><a href="#cb17-59"></a><span class="in">```{r}</span></span>
+<span id="cb17-60"><a href="#cb17-60"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>hdlngth)</span>
+<span id="cb17-61"><a href="#cb17-61"></a><span class="in">```</span></span>
+<span id="cb17-62"><a href="#cb17-62"></a></span>
+<span id="cb17-63"><a href="#cb17-63"></a>The sample mean head length is 92.6 mm. The 95% confidence interval is approximately <span class="co">[</span><span class="ot">91.9, 93.3</span><span class="co">]</span>.</span>
+<span id="cb17-64"><a href="#cb17-64"></a></span>
+<span id="cb17-65"><a href="#cb17-65"></a>What does this interval actually mean? If we repeated this study many times --- catching a fresh group of 104 possums each time --- about 95% of the intervals we compute would contain the true population mean.</span>
+<span id="cb17-66"><a href="#cb17-66"></a></span>
+<span id="cb17-67"><a href="#cb17-67"></a>A common misconception is that there is a 95% probability the true mean lies inside this particular interval. That is not correct. The true mean is a fixed value --- it is either inside the interval or it is not. We just do not know which.</span>
+<span id="cb17-68"><a href="#cb17-68"></a></span>
+<span id="cb17-69"><a href="#cb17-69"></a>Put simply: we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</span>
+<span id="cb17-70"><a href="#cb17-70"></a></span>
+<span id="cb17-71"><a href="#cb17-71"></a>::: {.column-margin}</span>
+<span id="cb17-72"><a href="#cb17-72"></a>The 95% refers to the long-run success rate of the method, not the probability for any single interval.</span>
+<span id="cb17-73"><a href="#cb17-73"></a>:::</span>
+<span id="cb17-74"><a href="#cb17-74"></a></span>
+<span id="cb17-75"><a href="#cb17-75"></a><span class="fu">### Part B --- What affects the width?</span></span>
+<span id="cb17-76"><a href="#cb17-76"></a></span>
+<span id="cb17-77"><a href="#cb17-77"></a>What if we had measured fewer possums? Would our confidence interval change?</span>
+<span id="cb17-78"><a href="#cb17-78"></a></span>
+<span id="cb17-79"><a href="#cb17-79"></a>Draw a random sample of 10 possums and compute the confidence interval:</span>
+<span id="cb17-80"><a href="#cb17-80"></a></span>
+<span id="cb17-83"><a href="#cb17-83"></a><span class="in">```{r}</span></span>
+<span id="cb17-84"><a href="#cb17-84"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb17-85"><a href="#cb17-85"></a>samp10 <span class="ot">&lt;-</span> <span class="fu">sample</span>(possum<span class="sc">$</span>hdlngth, <span class="dv">10</span>)</span>
+<span id="cb17-86"><a href="#cb17-86"></a><span class="fu">t.test</span>(samp10)</span>
+<span id="cb17-87"><a href="#cb17-87"></a><span class="in">```</span></span>
+<span id="cb17-88"><a href="#cb17-88"></a></span>
+<span id="cb17-89"><a href="#cb17-89"></a>Now draw a sample of 50:</span>
+<span id="cb17-90"><a href="#cb17-90"></a></span>
+<span id="cb17-93"><a href="#cb17-93"></a><span class="in">```{r}</span></span>
+<span id="cb17-94"><a href="#cb17-94"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb17-95"><a href="#cb17-95"></a>samp50 <span class="ot">&lt;-</span> <span class="fu">sample</span>(possum<span class="sc">$</span>hdlngth, <span class="dv">50</span>)</span>
+<span id="cb17-96"><a href="#cb17-96"></a><span class="fu">t.test</span>(samp50)</span>
+<span id="cb17-97"><a href="#cb17-97"></a><span class="in">```</span></span>
+<span id="cb17-98"><a href="#cb17-98"></a></span>
+<span id="cb17-99"><a href="#cb17-99"></a>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide, with 50 it narrows to about 2.0 mm, and with all 104 it is only 1.4 mm. More data gives a more precise estimate.</span>
+<span id="cb17-100"><a href="#cb17-100"></a></span>
+<span id="cb17-101"><a href="#cb17-101"></a>This happens because the standard error is SD / $\sqrt{n}$. As $n$ increases, the standard error shrinks, and so does the confidence interval. This is what <span class="in">`t.test()`</span> computes internally.</span>
+<span id="cb17-102"><a href="#cb17-102"></a></span>
+<span id="cb17-103"><a href="#cb17-103"></a>::: {.column-margin}</span>
+<span id="cb17-104"><a href="#cb17-104"></a>Try changing the seed or the sample size and re-running to see how your interval changes.</span>
+<span id="cb17-105"><a href="#cb17-105"></a>:::</span>
+<span id="cb17-106"><a href="#cb17-106"></a></span>
+<span id="cb17-107"><a href="#cb17-107"></a>::: {.callout-note}</span>
+<span id="cb17-108"><a href="#cb17-108"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb17-109"><a href="#cb17-109"></a>You should be able to explain what a 95% confidence interval means in plain language and why a larger sample gives a narrower interval.</span>
+<span id="cb17-110"><a href="#cb17-110"></a>:::</span>
+<span id="cb17-111"><a href="#cb17-111"></a></span>
+<span id="cb17-112"><a href="#cb17-112"></a></span>
+<span id="cb17-113"><a href="#cb17-113"></a><span class="fu"># Sampling and group structure</span></span>
+<span id="cb17-114"><a href="#cb17-114"></a></span>
+<span id="cb17-115"><a href="#cb17-115"></a>So far we have treated all 104 possums as one group. But what happens when a population contains distinct subgroups?</span>
+<span id="cb17-116"><a href="#cb17-116"></a></span>
+<span id="cb17-117"><a href="#cb17-117"></a><span class="fu">## Exercise 2: When groups matter {.unnumbered}</span></span>
+<span id="cb17-118"><a href="#cb17-118"></a></span>
+<span id="cb17-119"><a href="#cb17-119"></a><span class="fu">### Part A --- The pooled estimate</span></span>
+<span id="cb17-120"><a href="#cb17-120"></a></span>
+<span id="cb17-121"><a href="#cb17-121"></a>Compute a confidence interval for ear conch length across all possums:</span>
+<span id="cb17-122"><a href="#cb17-122"></a></span>
+<span id="cb17-125"><a href="#cb17-125"></a><span class="in">```{r}</span></span>
+<span id="cb17-126"><a href="#cb17-126"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch)</span>
+<span id="cb17-127"><a href="#cb17-127"></a><span class="in">```</span></span>
+<span id="cb17-128"><a href="#cb17-128"></a></span>
+<span id="cb17-129"><a href="#cb17-129"></a>This interval estimates the average ear conch length --- the length of the outer ear opening --- across all 104 possums. The mean is about 48.1 mm, with a 95% CI of roughly <span class="co">[</span><span class="ot">47.3, 48.9</span><span class="co">]</span>.</span>
+<span id="cb17-130"><a href="#cb17-130"></a></span>
+<span id="cb17-131"><a href="#cb17-131"></a>But these possums come from two distinct populations: Victorian possums from sites in central and eastern Victoria, and possums from sites further north in New South Wales and Queensland.</span>
+<span id="cb17-132"><a href="#cb17-132"></a></span>
+<span id="cb17-133"><a href="#cb17-133"></a><span class="fu">### Part B --- Split by population</span></span>
+<span id="cb17-134"><a href="#cb17-134"></a></span>
+<span id="cb17-135"><a href="#cb17-135"></a>Compute separate confidence intervals for each population:</span>
+<span id="cb17-136"><a href="#cb17-136"></a></span>
+<span id="cb17-139"><a href="#cb17-139"></a><span class="in">```{r}</span></span>
+<span id="cb17-140"><a href="#cb17-140"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch[possum<span class="sc">$</span>Pop <span class="sc">==</span> <span class="st">"Vic"</span>])</span>
+<span id="cb17-141"><a href="#cb17-141"></a><span class="in">```</span></span>
+<span id="cb17-142"><a href="#cb17-142"></a></span>
+<span id="cb17-145"><a href="#cb17-145"></a><span class="in">```{r}</span></span>
+<span id="cb17-146"><a href="#cb17-146"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch[possum<span class="sc">$</span>Pop <span class="sc">==</span> <span class="st">"other"</span>])</span>
+<span id="cb17-147"><a href="#cb17-147"></a><span class="in">```</span></span>
+<span id="cb17-148"><a href="#cb17-148"></a></span>
+<span id="cb17-149"><a href="#cb17-149"></a>The Victorian possums have a mean ear conch length of about 52.2 mm, while the other population averages about 44.9 mm --- a difference of over 7 mm. The pooled confidence interval of <span class="co">[</span><span class="ot">47.3, 48.9</span><span class="co">]</span> sits between the two groups and does not accurately describe either population.</span>
+<span id="cb17-150"><a href="#cb17-150"></a></span>
+<span id="cb17-151"><a href="#cb17-151"></a>A boxplot makes the separation clear:</span>
+<span id="cb17-152"><a href="#cb17-152"></a></span>
+<span id="cb17-155"><a href="#cb17-155"></a><span class="in">```{r}</span></span>
+<span id="cb17-156"><a href="#cb17-156"></a><span class="co">#| label: fig-earconch</span></span>
+<span id="cb17-157"><a href="#cb17-157"></a><span class="co">#| fig-cap: "Ear conch length by population"</span></span>
+<span id="cb17-158"><a href="#cb17-158"></a></span>
+<span id="cb17-159"><a href="#cb17-159"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-160"><a href="#cb17-160"></a></span>
+<span id="cb17-161"><a href="#cb17-161"></a><span class="fu">ggplot</span>(possum, <span class="fu">aes</span>(<span class="at">x =</span> Pop, <span class="at">y =</span> earconch, <span class="at">fill =</span> Pop)) <span class="sc">+</span></span>
+<span id="cb17-162"><a href="#cb17-162"></a>  <span class="fu">geom_boxplot</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-163"><a href="#cb17-163"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Population"</span>, <span class="at">y =</span> <span class="st">"Ear conch length (mm)"</span>) <span class="sc">+</span></span>
+<span id="cb17-164"><a href="#cb17-164"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb17-165"><a href="#cb17-165"></a><span class="in">```</span></span>
+<span id="cb17-166"><a href="#cb17-166"></a></span>
+<span id="cb17-167"><a href="#cb17-167"></a><span class="fu">### Part C --- Connection to the lab</span></span>
+<span id="cb17-168"><a href="#cb17-168"></a></span>
+<span id="cb17-169"><a href="#cb17-169"></a>When a population has distinct subgroups, a single estimate can hide real differences. In the lab, you will learn **stratified random sampling** --- a method that estimates each subgroup separately and then combines them into a single, more accurate overall estimate.</span>
+<span id="cb17-170"><a href="#cb17-170"></a></span>
+<span id="cb17-171"><a href="#cb17-171"></a>::: {.callout-note}</span>
+<span id="cb17-172"><a href="#cb17-172"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb17-173"><a href="#cb17-173"></a>You should be able to explain why computing a single confidence interval for a population with distinct subgroups can be misleading.</span>
+<span id="cb17-174"><a href="#cb17-174"></a>:::</span>
+<span id="cb17-175"><a href="#cb17-175"></a></span>
+<span id="cb17-176"><a href="#cb17-176"></a></span>
+<span id="cb17-177"><a href="#cb17-177"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb17-178"><a href="#cb17-178"></a></span>
+<span id="cb17-179"><a href="#cb17-179"></a>In this tutorial you computed confidence intervals, saw how sample size affects precision, and discovered why group structure matters. You will use all of these ideas in the lab.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

@@ -753,7 +753,7 @@
     "href": "lectures/L01/Lecture-01b.html#statistics-vs-parameters",
     "title": "Lecture 01b – The fundamentals",
     "section": "Statistics vs parameters",
-    "text": "Statistics vs parameters\n\nCharacteristics of the population are called parameters (e.g. the true average height of all trees in a forest)\nCharacteristics of the sample are called statistics (e.g. the average height of 30 trees that we measured)\nIn practice, we usually don’t know the true population parameters, so we use sample statistics as our best estimates\nDrawing conclusions about a population from sample data is called statistical inference\n\n\nNot all statistical techniques are inferential – some are purely descriptive (e.g. summarising data with graphs or tables) – but inference is the main focus in second year."
+    "text": "Statistics vs parameters\n\nCharacteristics of the population are called parameters (e.g. the true average height of all trees in a forest)\nCharacteristics of the sample are called statistics (e.g. the average height of 30 trees that we measured)\nIn practice, we usually don’t know the true population parameters, so we use sample statistics as our best estimates\nDrawing conclusions about a population from sample data is called statistical inference\n\n\nNot all statistical techniques are inferential – some are purely descriptive (e.g. summarising data with graphs or tables) – but inference is the main focus of this course."
   },
   {
     "objectID": "lectures/L01/Lecture-01b.html#sample-data",
@@ -774,7 +774,7 @@
     "href": "lectures/L01/Lecture-01b.html#be-careful-when-converting-variables",
     "title": "Lecture 01b – The fundamentals",
     "section": "Be careful when converting variables",
-    "text": "Be careful when converting variables\nConverting a numerical variable to a categorical one means losing information – once you group heights into “short”, “medium” and “tall”, the exact measurements are gone.\n\nA tree that is 5.1 m and a tree that is 9.9 m might both be called “tall”, but they are very different\nOnly categorise when there is good reason to do so, as this reduces your analysis power\nGoing the other way (categorical → numerical) doesn’t lose data, but it does add assumptions – e.g. that your categories have a meaningful order\n\n\nLet’s have a look in R."
+    "text": "Be careful when converting variables\nConverting a numerical variable to a categorical one means losing information – once you group heights into “short”, “medium” and “tall”, the exact measurements are gone.\n\nA tree that is 5.1 m and a tree that is 9.9 m might both be called “tall”, but they are very different\nOnly categorise when there is good reason to do so, as this reduces your analysis power\nGoing the other way (categorical → numerical) doesn’t lose data, but it does add assumptions – e.g. that your categories have a meaningful order"
   },
   {
     "objectID": "lectures/L01/Lecture-01b.html#types-of-probability-distributions",
@@ -851,7 +851,7 @@
     "href": "lectures/L01/Lecture-01b.html#why-n-1",
     "title": "Lecture 01b – The fundamentals",
     "section": "Why n-1?",
-    "text": "Why n-1?\n\n\n\n\n\nPortrait of Friedrich Wilhelm Bessel (1784–1846)\n\n\n\n\nSample variance uses \\(n-1\\) instead of \\(n\\) in the denominator\nThis correction (Bessel’s correction) accounts for bias when estimating the mean from the sample itself\n\n\n\nHere’s the logic: once you know the mean and all but one value, the last value is determined – it must satisfy the mean. Only \\(n-1\\) values are truly free to vary\nThese independent values are your degrees of freedom"
+    "text": "Why n-1?\n\nSample variance uses \\(n-1\\) instead of \\(n\\) in the denominator\nThis correction (Bessel’s correction) accounts for bias when estimating the mean from the sample itself\n\n\n\nHere’s the logic: once you know the mean and all but one value, the last value is determined – it must satisfy the mean. Only \\(n-1\\) values are truly free to vary\nThese independent values are your degrees of freedom"
   },
   {
     "objectID": "lectures/L01/Lecture-01b.html#what-is-a-sampling-distribution",
@@ -928,7 +928,7 @@
     "href": "lectures/L01/Lecture-01b.html#is-n-50-normal-enough",
     "title": "Lecture 01b – The fundamentals",
     "section": "Is n = 50 “normal” enough?",
-    "text": "Is n = 50 “normal” enough?\n\n\nCode\nsampling_dist &lt;- skewed |&gt;\n  infer::rep_sample_n(\n    size = 50,\n    reps = 1000\n  ) |&gt;\n  group_by(replicate) |&gt;\n  summarise(xbar = mean(x))\n\nsample_mean &lt;- mean(sampling_dist$xbar)\ntheoretical_mean &lt;- 2 # population mean for gamma(2,1)\n\nggplot(sampling_dist, aes(x = xbar)) +\n  geom_density(\n    fill = \"orangered\",\n    alpha = 0.5, bins = 50\n  ) +\n  stat_function(\n    fun = dnorm,\n    args = list(\n      mean = theoretical_mean,\n      sd = sqrt(2) / sqrt(50) # theoretical SE for gamma(2,1)\n    ),\n    linewidth = 1,\n    color = \"blue\",\n    linetype = \"dashed\"\n  ) +\n  geom_vline(xintercept = theoretical_mean, color = \"blue\", linetype = \"dashed\") +\n  geom_vline(xintercept = sample_mean, color = \"red\", linetype = \"solid\") +\n  annotate(\"text\",\n    x = theoretical_mean, y = Inf,\n    label = sprintf(\"Normal: %.2f\", theoretical_mean),\n    vjust = 2, hjust = -0.1, color = \"blue\"\n  ) +\n  annotate(\"text\",\n    x = sample_mean, y = Inf,\n    label = sprintf(\"Sample: %.2f\", sample_mean),\n    vjust = 3.5, hjust = -0.1, color = \"red\"\n  ) +\n  xlab(\"Mean height (m)\")\n\n\n\n\nEach sample mean is based on 50 observations, repeated 1000 times.\nHow many samples is enough?"
+    "text": "Is n = 50 “normal” enough?\n\n\nCode\nskewed |&gt;\n  infer::rep_sample_n(\n    size = 50,\n    reps = 1000\n  ) |&gt;\n  group_by(replicate) |&gt;\n  summarise(xbar = mean(x)) |&gt;\n  ggplot(aes(x = xbar)) +\n  geom_density(\n    fill = \"orangered\",\n    alpha = 0.5, bins = 50\n  ) +\n  stat_function(\n    fun = dnorm,\n    args = list(\n      mean = 2, # population mean for gamma(2,1)\n      sd = sqrt(2) / sqrt(50) # theoretical SE for gamma(2,1)\n    ),\n    linewidth = 1,\n    color = \"blue\",\n    linetype = \"dashed\"\n  ) +\n  xlab(\"Mean height (m)\")\n\n\n\n\nEach sample mean is based on 50 observations, repeated 1000 times.\nHow many samples is enough?"
   },
   {
     "objectID": "lectures/L01/Lecture-01b.html#effect-of-sample-size",

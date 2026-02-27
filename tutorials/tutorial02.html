@@ -249,7 +249,7 @@ window.Quarto = {
 
 <section id="welcome" class="level2 unnumbered page-columns page-full">
 <h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
-<p>In this tutorial you will use a real dataset to compute confidence intervals and see why group structure matters when estimating a population parameter.</p>
+<p>In this tutorial you will compute confidence intervals from a real dataset and see what happens when you ignore group structure in your sample.</p>
 <p>You will learn how to:</p>
 <ol type="1">
 <li>Load a real dataset and compute a confidence interval using <code>t.test()</code>.</li>
@@ -267,7 +267,7 @@ window.Quarto = {
 </div></div></section>
 <section id="confidence-intervals" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Confidence intervals</h1>
-<p>A confidence interval is a range of plausible values for a population parameter, such as a mean, based on sample data. Instead of a single number, it tells you how much uncertainty there is in the estimate.</p>
+<p>A confidence interval gives you a range of plausible values for something you cannot measure directly — like the true mean of a population. It tells you how precise your estimate is, based on the data you have.</p>
 <section id="exercise-1-what-confidence-intervals-tell-us" class="level2 unnumbered page-columns page-full">
 <h2 class="unnumbered anchored" data-anchor-id="exercise-1-what-confidence-intervals-tell-us">Exercise 1: What confidence intervals tell us</h2>
 <section id="part-a-compute-and-interpret" class="level3 page-columns page-full">
@@ -293,7 +293,7 @@ window.Quarto = {
  $ belly   : num  36 33 34 34 33 32 34.5 34 33 32 ...</code></pre>
 </div>
 </div>
-<p>There are 104 observations and 14 variables, including morphological measurements like head length, skull width, and tail length. We will focus on head length first.</p>
+<p>There are 104 observations and 14 variables, including measurements of head length, skull width, and tail length. We will focus on head length.</p>
 <p>Compute a 95% confidence interval for the mean head length:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>hdlngth)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -313,8 +313,8 @@ mean of x
 </div>
 <p>The sample mean head length is 92.6 mm. The 95% confidence interval is approximately [91.9, 93.3].</p>
 <p>What does this interval actually mean? If we repeated this study many times — catching a fresh group of 104 possums each time — about 95% of the intervals we compute would contain the true population mean.</p>
-<p>A common misconception is that there is a 95% probability the true mean lies inside this particular interval. That is not correct. The true mean is a fixed value — it is either inside the interval or it is not. We just do not know which.</p>
-<p>Put simply: we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</p>
+<p>You might think this means there is a 95% probability the true mean lies inside this particular interval. Not quite. The true mean is a fixed value — it is either inside the interval or it is not. We just do not know which.</p>
+<p>So we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>The 95% refers to the long-run success rate of the method, not the probability for any single interval.</p>
@@ -360,7 +360,7 @@ mean of x
    92.154 </code></pre>
 </div>
 </div>
-<p>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide, with 50 it narrows to about 2.0 mm, and with all 104 it is only 1.4 mm. More data gives a more precise estimate.</p>
+<p>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide. With 50 it narrows to about 2.0 mm. With all 104 it is only 1.4 mm. More data, narrower interval.</p>
 <p>This happens because the standard error is SD / <span class="math inline">\sqrt{n}</span>. As <span class="math inline">n</span> increases, the standard error shrinks, and so does the confidence interval. This is what <code>t.test()</code> computes internally.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
@@ -443,7 +443,7 @@ mean of x
  44.91379 </code></pre>
 </div>
 </div>
-<p>The Victorian possums have a mean ear conch length of about 52.2 mm, while the other population averages about 44.9 mm — a difference of over 7 mm. The pooled confidence interval of [47.3, 48.9] sits between the two groups and does not accurately describe either population.</p>
+<p>The Victorian possums have a mean ear conch length of about 52.2 mm. The other population averages about 44.9 mm — over 7 mm shorter. The pooled confidence interval of [47.3, 48.9] sits between the two groups. It does not describe either population well.</p>
 <p>A boxplot makes the separation clear:</p>
 <div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -486,7 +486,7 @@ Figure&nbsp;1: Ear conch length by population
 </section>
 <section id="wrap-up" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
-<p>In this tutorial you computed confidence intervals, saw how sample size affects precision, and discovered why group structure matters. You will use all of these ideas in the lab.</p>
+<p>In this tutorial you computed confidence intervals and saw why sample size and group structure both matter. You will use these ideas in the lab.</p>
 
 
 <!-- -->
@@ -956,7 +956,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-8"><a href="#cb17-8"></a></span>
 <span id="cb17-9"><a href="#cb17-9"></a><span class="fu">## Welcome {.unnumbered}</span></span>
 <span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a>In this tutorial you will use a real dataset to compute confidence intervals and see why group structure matters when estimating a population parameter.</span>
+<span id="cb17-11"><a href="#cb17-11"></a>In this tutorial you will compute confidence intervals from a real dataset and see what happens when you ignore group structure in your sample.</span>
 <span id="cb17-12"><a href="#cb17-12"></a></span>
 <span id="cb17-13"><a href="#cb17-13"></a>You will learn how to:</span>
 <span id="cb17-14"><a href="#cb17-14"></a></span>
@@ -982,7 +982,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-36"><a href="#cb17-36"></a></span>
 <span id="cb17-37"><a href="#cb17-37"></a><span class="fu"># Confidence intervals</span></span>
 <span id="cb17-38"><a href="#cb17-38"></a></span>
-<span id="cb17-39"><a href="#cb17-39"></a>A confidence interval is a range of plausible values for a population parameter, such as a mean, based on sample data. Instead of a single number, it tells you how much uncertainty there is in the estimate.</span>
+<span id="cb17-39"><a href="#cb17-39"></a>A confidence interval gives you a range of plausible values for something you cannot measure directly — like the true mean of a population. It tells you how precise your estimate is, based on the data you have.</span>
 <span id="cb17-40"><a href="#cb17-40"></a></span>
 <span id="cb17-41"><a href="#cb17-41"></a><span class="fu">## Exercise 1: What confidence intervals tell us {.unnumbered}</span></span>
 <span id="cb17-42"><a href="#cb17-42"></a></span>
@@ -994,7 +994,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-50"><a href="#cb17-50"></a><span class="fu">str</span>(possum)</span>
 <span id="cb17-51"><a href="#cb17-51"></a><span class="in">```</span></span>
 <span id="cb17-52"><a href="#cb17-52"></a></span>
-<span id="cb17-53"><a href="#cb17-53"></a>There are 104 observations and 14 variables, including morphological measurements like head length, skull width, and tail length. We will focus on head length first.</span>
+<span id="cb17-53"><a href="#cb17-53"></a>There are 104 observations and 14 variables, including measurements of head length, skull width, and tail length. We will focus on head length.</span>
 <span id="cb17-54"><a href="#cb17-54"></a></span>
 <span id="cb17-55"><a href="#cb17-55"></a>Compute a 95% confidence interval for the mean head length:</span>
 <span id="cb17-56"><a href="#cb17-56"></a></span>
@@ -1006,9 +1006,9 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-64"><a href="#cb17-64"></a></span>
 <span id="cb17-65"><a href="#cb17-65"></a>What does this interval actually mean? If we repeated this study many times --- catching a fresh group of 104 possums each time --- about 95% of the intervals we compute would contain the true population mean.</span>
 <span id="cb17-66"><a href="#cb17-66"></a></span>
-<span id="cb17-67"><a href="#cb17-67"></a>A common misconception is that there is a 95% probability the true mean lies inside this particular interval. That is not correct. The true mean is a fixed value --- it is either inside the interval or it is not. We just do not know which.</span>
+<span id="cb17-67"><a href="#cb17-67"></a>You might think this means there is a 95% probability the true mean lies inside this particular interval. Not quite. The true mean is a fixed value --- it is either inside the interval or it is not. We just do not know which.</span>
 <span id="cb17-68"><a href="#cb17-68"></a></span>
-<span id="cb17-69"><a href="#cb17-69"></a>Put simply: we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</span>
+<span id="cb17-69"><a href="#cb17-69"></a>So we are reasonably confident that the average head length of mountain brushtail possums in this region is somewhere between 91.9 and 93.3 mm.</span>
 <span id="cb17-70"><a href="#cb17-70"></a></span>
 <span id="cb17-71"><a href="#cb17-71"></a>::: {.column-margin}</span>
 <span id="cb17-72"><a href="#cb17-72"></a>The 95% refers to the long-run success rate of the method, not the probability for any single interval.</span>
@@ -1034,7 +1034,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-96"><a href="#cb17-96"></a><span class="fu">t.test</span>(samp50)</span>
 <span id="cb17-97"><a href="#cb17-97"></a><span class="in">```</span></span>
 <span id="cb17-98"><a href="#cb17-98"></a></span>
-<span id="cb17-99"><a href="#cb17-99"></a>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide, with 50 it narrows to about 2.0 mm, and with all 104 it is only 1.4 mm. More data gives a more precise estimate.</span>
+<span id="cb17-99"><a href="#cb17-99"></a>Compare the widths. With 10 possums the interval is roughly 5.6 mm wide. With 50 it narrows to about 2.0 mm. With all 104 it is only 1.4 mm. More data, narrower interval.</span>
 <span id="cb17-100"><a href="#cb17-100"></a></span>
 <span id="cb17-101"><a href="#cb17-101"></a>This happens because the standard error is SD / $\sqrt{n}$. As $n$ increases, the standard error shrinks, and so does the confidence interval. This is what <span class="in">`t.test()`</span> computes internally.</span>
 <span id="cb17-102"><a href="#cb17-102"></a></span>
@@ -1078,7 +1078,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-146"><a href="#cb17-146"></a><span class="fu">t.test</span>(possum<span class="sc">$</span>earconch[possum<span class="sc">$</span>Pop <span class="sc">==</span> <span class="st">"other"</span>])</span>
 <span id="cb17-147"><a href="#cb17-147"></a><span class="in">```</span></span>
 <span id="cb17-148"><a href="#cb17-148"></a></span>
-<span id="cb17-149"><a href="#cb17-149"></a>The Victorian possums have a mean ear conch length of about 52.2 mm, while the other population averages about 44.9 mm --- a difference of over 7 mm. The pooled confidence interval of <span class="co">[</span><span class="ot">47.3, 48.9</span><span class="co">]</span> sits between the two groups and does not accurately describe either population.</span>
+<span id="cb17-149"><a href="#cb17-149"></a>The Victorian possums have a mean ear conch length of about 52.2 mm. The other population averages about 44.9 mm --- over 7 mm shorter. The pooled confidence interval of <span class="co">[</span><span class="ot">47.3, 48.9</span><span class="co">]</span> sits between the two groups. It does not describe either population well.</span>
 <span id="cb17-150"><a href="#cb17-150"></a></span>
 <span id="cb17-151"><a href="#cb17-151"></a>A boxplot makes the separation clear:</span>
 <span id="cb17-152"><a href="#cb17-152"></a></span>
@@ -1106,7 +1106,7 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-176"><a href="#cb17-176"></a></span>
 <span id="cb17-177"><a href="#cb17-177"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
 <span id="cb17-178"><a href="#cb17-178"></a></span>
-<span id="cb17-179"><a href="#cb17-179"></a>In this tutorial you computed confidence intervals, saw how sample size affects precision, and discovered why group structure matters. You will use all of these ideas in the lab.</span>
+<span id="cb17-179"><a href="#cb17-179"></a>In this tutorial you computed confidence intervals and saw why sample size and group structure both matter. You will use these ideas in the lab.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

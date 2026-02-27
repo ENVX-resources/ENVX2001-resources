@@ -236,7 +236,7 @@ Januar Harianto
 <section id="samples-populations" class="title-slide slide level1 center">
 <h1>Samples, populations</h1>
 
-</section>
+<img data-src="images/snowgeese.jpg" class="r-stretch quarto-figure-center"><p class="caption">Photo by <a href="https://unsplash.com/@brock222?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Richard Lee</a> on <a href="https://unsplash.com/photos/a-flock-of-birds-flying-over-a-dry-grass-field-XHxIXsIYEsQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p></section>
 <section id="populations" class="slide level2">
 <h2>Populations</h2>
 <ul>
@@ -259,7 +259,7 @@ Januar Harianto
 <li>Drawing conclusions about a population from sample data is called <strong>statistical inference</strong></li>
 </ul>
 <div class="fragment">
-<p><em>Not all statistical techniques are inferential – some are purely descriptive (e.g.&nbsp;summarising data with graphs or tables) – but inference is the main focus of this course.</em></p>
+<p><em>Not all statistical techniques are inferential – some are purely descriptive (e.g.&nbsp;summarising data with graphs or tables) – but inference is the main focus in second year.</em></p>
 </div>
 </section>
 <section id="sample-data" class="slide level2">
@@ -297,12 +297,16 @@ Januar Harianto
 <li class="fragment">Only categorise when there is good reason to do so, as this reduces your analysis power</li>
 <li class="fragment">Going the other way (categorical → numerical) doesn’t lose data, but it does <strong>add assumptions</strong> – e.g.&nbsp;that your categories have a meaningful order</li>
 </ul>
+<div class="fragment">
+<p>Let’s have a look in R.</p>
+</div>
 </section></section>
 <section>
 <section id="distribution-of-data" class="title-slide slide level1 center">
 <h1>Distribution of data</h1>
+<p>The study of how data are distributed – pioneered by mathematicians such as Gauss – underpins much of modern statistics.</p>
 
-</section>
+<img data-src="images/gauss.jpg" class="r-stretch quarto-figure-center"><p class="caption">Photo from Wikipedia.</p></section>
 <section id="types-of-probability-distributions" class="slide level2">
 <h2>Types of probability distributions</h2>
 <p>Populations can be described by probability distributions. You may have encountered these common ones in first-year statistics:</p>
@@ -550,6 +554,15 @@ Januar Harianto
 </section>
 <section id="why-n-1" class="slide level2">
 <h2>Why n-1?</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bessel.jpg"></p>
+<figcaption>Portrait of Friedrich Wilhelm Bessel (1784–1846)</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:60%;">
 <ul>
 <li>Sample variance uses <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span> in the denominator</li>
 <li>This correction (<a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>) accounts for bias when estimating the mean from the sample itself</li>
@@ -560,6 +573,7 @@ Januar Harianto
 <li>These independent values are your <strong>degrees of freedom</strong></li>
 </ul>
 </div>
+</div></div>
 </section></section>
 <section>
 <section id="sampling-distributions-and-clt" class="title-slide slide level1 center">
@@ -803,29 +817,45 @@ Januar Harianto
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>skewed <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>sampling_dist <span class="ot">&lt;-</span> skewed <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a></a>  infer<span class="sc">::</span><span class="fu">rep_sample_n</span>(</span>
 <span id="cb9-3"><a></a>    <span class="at">size =</span> <span class="dv">50</span>,</span>
 <span id="cb9-4"><a></a>    <span class="at">reps =</span> <span class="dv">1000</span></span>
 <span id="cb9-5"><a></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb9-6"><a></a>  <span class="fu">group_by</span>(replicate) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a></a>  <span class="fu">summarise</span>(<span class="at">xbar =</span> <span class="fu">mean</span>(x)) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> xbar)) <span class="sc">+</span></span>
-<span id="cb9-9"><a></a>  <span class="fu">geom_density</span>(</span>
-<span id="cb9-10"><a></a>    <span class="at">fill =</span> <span class="st">"orangered"</span>,</span>
-<span id="cb9-11"><a></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">bins =</span> <span class="dv">50</span></span>
-<span id="cb9-12"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb9-13"><a></a>  <span class="fu">stat_function</span>(</span>
-<span id="cb9-14"><a></a>    <span class="at">fun =</span> dnorm,</span>
-<span id="cb9-15"><a></a>    <span class="at">args =</span> <span class="fu">list</span>(</span>
-<span id="cb9-16"><a></a>      <span class="at">mean =</span> <span class="dv">2</span>, <span class="co"># population mean for gamma(2,1)</span></span>
-<span id="cb9-17"><a></a>      <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">50</span>) <span class="co"># theoretical SE for gamma(2,1)</span></span>
-<span id="cb9-18"><a></a>    ),</span>
-<span id="cb9-19"><a></a>    <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
-<span id="cb9-20"><a></a>    <span class="at">color =</span> <span class="st">"blue"</span>,</span>
-<span id="cb9-21"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
-<span id="cb9-22"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb9-23"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-7"><a></a>  <span class="fu">summarise</span>(<span class="at">xbar =</span> <span class="fu">mean</span>(x))</span>
+<span id="cb9-8"><a></a></span>
+<span id="cb9-9"><a></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampling_dist<span class="sc">$</span>xbar)</span>
+<span id="cb9-10"><a></a>theoretical_mean <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># population mean for gamma(2,1)</span></span>
+<span id="cb9-11"><a></a></span>
+<span id="cb9-12"><a></a><span class="fu">ggplot</span>(sampling_dist, <span class="fu">aes</span>(<span class="at">x =</span> xbar)) <span class="sc">+</span></span>
+<span id="cb9-13"><a></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb9-14"><a></a>    <span class="at">fill =</span> <span class="st">"orangered"</span>,</span>
+<span id="cb9-15"><a></a>    <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">bins =</span> <span class="dv">50</span></span>
+<span id="cb9-16"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a></a>  <span class="fu">stat_function</span>(</span>
+<span id="cb9-18"><a></a>    <span class="at">fun =</span> dnorm,</span>
+<span id="cb9-19"><a></a>    <span class="at">args =</span> <span class="fu">list</span>(</span>
+<span id="cb9-20"><a></a>      <span class="at">mean =</span> theoretical_mean,</span>
+<span id="cb9-21"><a></a>      <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">50</span>) <span class="co"># theoretical SE for gamma(2,1)</span></span>
+<span id="cb9-22"><a></a>    ),</span>
+<span id="cb9-23"><a></a>    <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb9-24"><a></a>    <span class="at">color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb9-25"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb9-26"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-27"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> theoretical_mean, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb9-28"><a></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> sample_mean, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb9-29"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>,</span>
+<span id="cb9-30"><a></a>    <span class="at">x =</span> theoretical_mean, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb9-31"><a></a>    <span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"Normal: %.2f"</span>, theoretical_mean),</span>
+<span id="cb9-32"><a></a>    <span class="at">vjust =</span> <span class="dv">2</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb9-33"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-34"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>,</span>
+<span id="cb9-35"><a></a>    <span class="at">x =</span> sample_mean, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb9-36"><a></a>    <span class="at">label =</span> <span class="fu">sprintf</span>(<span class="st">"Sample: %.2f"</span>, sample_mean),</span>
+<span id="cb9-37"><a></a>    <span class="at">vjust =</span> <span class="fl">3.5</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"red"</span></span>
+<span id="cb9-38"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-39"><a></a>  <span class="fu">xlab</span>(<span class="st">"Mean height (m)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
@@ -1027,7 +1057,7 @@ Januar Harianto
 </section></section>
 <section id="thanks-for-listening-questions" class="title-slide slide level1 center">
 <h1>Thanks for listening! Questions?</h1>
-<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a [Creative Commons Attribution 4.0 International License][cc-by]</p>
+<p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a></p>
 
 
 </section>

@@ -187,6 +187,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -206,92 +208,71 @@ Januar Harianto
 
   <p class="date">Mar 2026</p>
 </section>
-<section id="welcome-back" class="title-slide slide level1 center">
-<h1>Welcome back!</h1>
-
-</section>
-
 <section>
-<section id="in-the-last-lecture" class="title-slide slide level1 center">
-<h1>In the last lecture…</h1>
-<ul>
-<li class="fragment">We learned about <strong>simple random sampling</strong></li>
-<li class="fragment">Each unit had an equal chance of being selected</li>
-<li class="fragment">We calculated confidence intervals for population estimates</li>
-<li class="fragment">We saw some limitations of this approach (not always representative)</li>
-</ul>
-</section>
-<section id="simple-random-sampling" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Simple random sampling</h2>
+<section id="welcome-back" class="title-slide slide level1 center">
+<h1>Welcome back</h1>
 
-<img data-src="images/simple_random.png" class="r-stretch"><div class="fragment">
-<p><strong>Each unit has an equal chance of being selected.</strong></p>
-</div>
-<div class="fragment">
-<h3 id="not-always-the-best-approach-but-still-a-good-starting-point.">Not always the best approach, but still a good starting point.</h3>
-</div>
 </section>
-<section id="simple-random-sampling-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Simple random sampling</h2>
-<p><strong>Each unit has an equal chance of being selected.</strong></p>
-<h3 id="not-always-the-best-approach-but-still-a-good-starting-point.-1">Not always the best approach, but still a good starting point.</h3>
+<section id="before-the-break" class="slide level2">
+<h2>Before the break</h2>
+<p>We used simple random sampling on the soil carbon data and found:</p>
+<ul>
+<li>SRS mean: <strong>67.3 t/ha</strong>, 95% CI: <strong>(49.87, 84.73)</strong></li>
+<li>That interval is wide — about ±26% of the mean</li>
+</ul>
+<p>We ended with a question: <strong>can we do better with a smarter sampling design?</strong></p>
 </section>
-<section id="simple-random-sampling-potential-problems" class="slide level2">
-<h2>Simple random sampling: potential problems</h2>
-<div class="fragment">
-<p>Imagine tossing 10 random points onto a landscape.</p>
-</div>
-<div class="fragment">
-<h3 id="by-pure-chance">By pure chance…</h3>
-<ul>
-<li>We might miss some important areas entirely</li>
-<li>Or sample some areas too much</li>
-</ul>
-</div>
-<div class="fragment">
-<h3 id="this-is-more-likely-when">This is more likely when:</h3>
-<ul>
-<li>Sample size is small</li>
-<li>The landscape has distinct zones</li>
-</ul>
-</div>
+<section id="what-is-next" class="slide level2">
+<h2>What is next</h2>
+<ol type="1">
+<li>Why simple random sampling does not always work well</li>
+<li>Stratified random sampling — using known groups to sample more efficiently</li>
+<li>Monitoring — estimating change over time</li>
+</ol>
+</section></section>
+<section>
+<section id="simple-random-sampling-works.." class="title-slide slide level1 center">
+<h1>Simple random sampling works..</h1>
+<p>Until it doesn’t.</p>
 </section>
-<section id="simple-random-sampling-theoretical-example" class="slide level2">
-<h2>Simple random sampling: theoretical example</h2>
-<div class="fragment">
-<p>If an area has:</p>
-<ul>
-<li>80% grassland</li>
-<li>20% wetland</li>
-</ul>
+<section id="random-sampling-on-a-landscape" class="slide level2">
+<h2>Random sampling on a landscape</h2>
+<style>
+#random-sampling-on-a-landscape .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="55" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 54;"><span id="cb1-55"><a></a><span class="im">import</span> { samplingWidget } <span class="im">from</span> <span class="st">"../../assets/js/sampling-widget.js"</span></span>
+<span id="cb1-56"><a></a><span class="fu">samplingWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
-<div class="fragment">
-<p>With simple random sampling:</p>
-<ul>
-<li>We expect ~8 samples in grassland, ~2 in wetland</li>
-<li>But by chance, we might get:
-<ul>
-<li>10 grassland, 0 wetland!</li>
-<li>Or 6 grassland, 4 wetland</li>
-</ul></li>
-</ul>
 </div>
-<div class="fragment">
-<h3 id="but-what-if-we-have-more-information-about-the-population">But what if we have more information about the population?</h3>
 </div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>How do we guarantee that with few samples, we get a good representation of the landscape?</p>
 </section>
-<section id="soil-carbon-example" class="slide level2">
-<h2>Soil carbon example</h2>
-<div class="fragment">
-<h3 id="soil-carbon">Soil carbon</h3>
-<p><img data-src="images/datastory.png" style="width:50.0%"></p>
-</div>
-<div class="fragment">
-<h3 id="different-land-types">Different land types</h3>
+<section id="the-farmer-has-extra-information" class="slide level2">
+<h2>The farmer has extra information</h2>
+
+<img data-src="images/datastory.png" style="width:50.0%" class="r-stretch"><div class="fragment">
+<p>The farmer knows there are two land types on the property:</p>
 <ul>
 <li>Land type A covers 62% of the area, land type B covers 38%</li>
-<li>With simple random sampling, we would expect more samples from Type A simply because it covers a larger area — but this is not guaranteed</li>
-<li><strong>Can we use this information to our advantage?</strong></li>
+<li>With simple random sampling, we would expect more samples from type A — but this is not guaranteed</li>
+<li><strong>Can we use this information to sample more efficiently?</strong></li>
 </ul>
 </div>
 </section></section>
@@ -306,15 +287,15 @@ Januar Harianto
 <ol type="1">
 <li class="fragment"><strong>Divide</strong> the population into <strong>homogeneous</strong> subgroups (strata).</li>
 <li class="fragment"><strong>Sample</strong> from each stratum using simple random sampling.</li>
-<li class="fragment"><strong>Pool</strong> (or <strong>combine</strong>) the estimates from each stratum to get an overall population estimate.</li>
+<li class="fragment"><strong>Pool</strong> (combine) the estimates from each stratum to get an overall population estimate.</li>
 </ol>
 <div class="fragment">
-<h3 id="real-world-example">Real-world example</h3>
+<h3 id="example">Example</h3>
 <p>If studying plant biodiversity in a national park:</p>
 <ul>
-<li>Step 1: Divide park into strata (e.g., forest, grassland, wetland)</li>
-<li>Step 2: Take random samples within each habitat type</li>
-<li>Step 3: Combine data to estimate overall biodiversity, giving proper weight to each habitat’s area</li>
+<li>Divide the park into strata (e.g.&nbsp;forest, grassland, wetland)</li>
+<li>Take random samples within each habitat type</li>
+<li>Combine data to estimate overall biodiversity, weighting by each habitat’s area</li>
 </ul>
 </div>
 </section>
@@ -322,9 +303,9 @@ Januar Harianto
 <h2>Strata rules</h2>
 <h3 id="strata-are">Strata are…</h3>
 <ul>
-<li class="fragment"><strong>Mutually exclusive and collectively exhaustive</strong> (simple explanation: every sample belongs to exactly one stratum – no overlaps, no leftovers)</li>
-<li class="fragment"><strong>Homogeneous</strong> - Samples within a stratum should be similar to each other (less variable than the overall population)</li>
-<li class="fragment"><strong>Each stratum must be sampled</strong> - The goal is to ensure every important group is represented</li>
+<li class="fragment"><strong>Mutually exclusive and collectively exhaustive</strong> — every unit belongs to exactly one stratum, with no overlaps and nothing left out</li>
+<li class="fragment"><strong>Homogeneous</strong> — units within a stratum should be more similar to each other than to the population as a whole</li>
+<li class="fragment"><strong>All sampled</strong> — every stratum must be represented</li>
 </ul>
 <div class="fragment">
 <p><img data-src="images/stratified.png"></p>
@@ -332,59 +313,55 @@ Januar Harianto
 </section>
 <section id="good-vs.-poor-stratification-choices" class="slide level2">
 <h2>Good vs.&nbsp;poor stratification choices</h2>
+</section>
 <div class="fragment">
-<h3 id="everyday-examples">Everyday examples</h3>
+<section id="everyday-examples" class="slide level2">
+<h2>Everyday examples</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h4 id="good-strata">Good strata</h4>
+<h3 id="good-strata">Good strata</h3>
 <ul>
 <li><strong>University students</strong>: Undergrad, Masters, PhD</li>
 <li><strong>Forest types</strong>: Deciduous, Coniferous, Mixed</li>
 <li><strong>Income levels</strong>: Low, Medium, High</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<h4 id="poor-strata-choices">Poor strata choices</h4>
+<h3 id="poor-strata-choices">Poor strata choices</h3>
 <ul>
 <li><strong>Interests</strong>: Sports fans, Music lovers, Foodies (a person can be in multiple groups)</li>
 <li><strong>Water quality</strong>: Clean, Somewhat polluted (too subjective, not clearly defined)</li>
 </ul>
 </div></div>
-</div>
 </section>
+</div>
 <section id="advantages" class="slide level2">
 <h2>Advantages</h2>
-<h3 id="we-address">We address:</h3>
+<p>Stratified random sampling addresses three problems at once:</p>
 <ul>
-<li><strong>Bias</strong>. Each stratum is sampled, so the sample is representative of the population.</li>
-<li><strong>Accuracy</strong>. Each stratum is represented by a minimum number of sampling units.</li>
-<li><strong>Insight</strong>. We can compare strata and make inferences about the population.</li>
+<li><strong>Bias</strong> — every stratum is sampled, so the sample is representative of the population</li>
+<li><strong>Accuracy</strong> — each stratum is represented by a minimum number of units</li>
+<li><strong>Insight</strong> — we can compare strata and make inferences about subgroups</li>
 </ul>
 <div class="fragment">
 <h3 id="does-this-make-simple-random-sampling-obsolete">Does this make simple random sampling obsolete?</h3>
-<ul>
-<li><strong>No</strong>. <em>Still</em> a good technique.</li>
-<li>With large enough samples, the two methods will converge.</li>
-<li>Chance of <em>not</em> selecting a unit from a stratum is always there, but reduces as the sample size increases.</li>
-</ul>
+<p>No.&nbsp;With large enough samples, the two methods converge. Simple random sampling is still a good default when strata are unknown or the population is fairly homogeneous.</p>
 </div>
 </section></section>
 <section>
-<section id="stratified-random-sampling-estimates" class="title-slide slide level1 center">
-<h1>Stratified random sampling: estimates</h1>
+<section id="calculating-stratified-estimates" class="title-slide slide level1 center">
+<h1>Calculating stratified estimates</h1>
 
 </section>
-<section id="what-are-we-trying-to-achieve-with-our-calculations" class="slide level2">
-<h2>What are we trying to achieve with our calculations?</h2>
-<h3 id="the-statistical-journey">The statistical journey</h3>
+<section id="the-workflow" class="slide level2">
+<h2>The workflow</h2>
+<p>Once we have our stratified sample, the calculations follow the same logic as simple random sampling — but each step must account for the stratified design.</p>
 <div class="fragment">
-<p>Once we have our stratified sample, we need to:</p>
 <ol type="1">
-<li><strong>Estimate the population central tendency</strong>: Calculate the pooled mean</li>
-<li><strong>Quantify our uncertainty</strong>: Calculate the pooled standard error</li>
-<li><strong>Create an inference tool</strong>: Build a confidence interval</li>
-<li><strong>Make decisions</strong>: Compare estimates, test hypotheses</li>
+<li><strong>Pooled mean</strong> (<span class="math inline">\(\bar{y}_{s}\)</span>) — weight each stratum mean by the stratum’s share of the population</li>
+<li><strong>Pooled standard error</strong> — <span class="math inline">\(SE(\bar{y}_{s}) = \sqrt{\sum w_i^2 \times \frac{s_i^2}{n_i}}\)</span></li>
+<li><strong><em>t</em>-critical value</strong> — based on <span class="math inline">\(df = n - L\)</span> and <span class="math inline">\(\alpha = 0.05\)</span></li>
+<li><strong>Confidence interval</strong> — <span class="math inline">\(\bar{y}_{s} \pm t_{n-L} \times SE(\bar{y}_{s})\)</span></li>
 </ol>
-<p>All of these steps must account for our stratified design.</p>
 </div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -400,62 +377,32 @@ Januar Harianto
 </div>
 </div>
 </section>
-<section id="the-statistical-workflow-for-stratified-sampling" class="slide level2">
-<h2>The statistical workflow for stratified sampling</h2>
-<h3 id="four-key-steps">Four key steps:</h3>
-<ol type="1">
-<li><strong>Pooled Mean (<span class="math inline">\(\bar{y}_{s}\)</span>)</strong>: Sum of (stratum weight × stratum mean)
-<ul>
-<li>Best estimate of the population parameter</li>
-</ul></li>
-<li><strong>Pooled Standard Error</strong>: <span class="math display">\[SE(\bar{y}_{s}) = \sqrt{\sum w_i^2 \times \frac{s_i^2}{n_i}}\]</span>
-<ul>
-<li>Accounts for stratum weights and within-stratum variability</li>
-</ul></li>
-<li><strong>t-Critical Value</strong>: Based on <span class="math inline">\(df = n - L\)</span> and α = 0.05
-<ul>
-<li>Accounts for sample size in uncertainty estimates</li>
-</ul></li>
-<li><strong>Confidence Interval</strong>: <span class="math display">\[\text{Pooled mean} \pm (t-\text{critical} \times SE(\bar{y}_{s}))\]</span>
-<ul>
-<li>Range likely containing true population mean</li>
-</ul></li>
-</ol>
-</section>
 <section id="accounting-for-strata-using-weight" class="slide level2">
 <h2>Accounting for strata using “weight”</h2>
-<h3 id="weighted-estimates">Weighted estimates</h3>
 <ul>
-<li>We need to “weigh” the estimates from each stratum to account for the different stratum sizes and inclusion probabilities.</li>
-<li>Most of the time, we use the stratum size as the weight to calculate <strong>weighted estimates</strong>.</li>
-<li>The <em>overall</em> population estimate is the sum of the weighted estimates from each stratum, that is, we <em>pool the individual strata information into a single, overall population estimate</em>.</li>
+<li>Each stratum contributes to the overall estimate in proportion to its size in the population.</li>
+<li>Most of the time, we use the stratum’s share of the total area (or population) as the weight.</li>
+<li>The overall population estimate is the sum of the weighted estimates from each stratum.</li>
 </ul>
 <div class="fragment">
-<h3 id="example">Example</h3>
+<h3 id="example-1">Example</h3>
 <ul>
-<li class="fragment">A forest contains two types of trees: A and B, with 60% and 40% of the population, respectively.</li>
+<li class="fragment">A forest has two tree types: A (60% of the population) and B (40%).</li>
 <li class="fragment">We want to estimate the <strong>mean height</strong> of the trees.</li>
-<li class="fragment">Take <strong>10</strong> height measurements, of which 7 are randomly selected from type A and 3 are randomly selected from type B.</li>
-<li class="fragment">The <strong>pooled estimate</strong> for the <em>mean height</em> of the trees is: <span class="math display">\[0.6 \times \text{average height of A} + 0.4 \times \text{average height of B}\]</span></li>
+<li class="fragment">We take 10 height measurements: 7 from type A and 3 from type B.</li>
+<li class="fragment">The <strong>pooled estimate</strong> for mean height is: <span class="math display">\[0.6 \times \text{mean height of A} + 0.4 \times \text{mean height of B}\]</span></li>
 </ul>
 </div>
-</section></section>
-<section>
-<section id="data-story-soil-carbon" class="title-slide slide level1 center">
-<h1>Data story: soil carbon</h1>
-
 </section>
-<section id="soil-carbon-data" class="slide level2">
-<h2>Soil carbon data</h2>
-<h3 id="our-case-study">Our case study</h3>
-<p>Soil carbon content was measured at 7 locations across the area. The amounts were: 48, 56, 90, 78, 86, 71, 42 tonnes per hectare (t/ha).</p>
+<section id="soil-carbon-setting-up-the-data" class="slide level2">
+<h2>Soil carbon: setting up the data</h2>
+<p>Soil carbon content was measured at 7 locations. The amounts were: 48, 56, 90, 78, 86, 71, 42 tonnes per hectare (t/ha).</p>
 
-<img data-src="images/datastory.png" style="width:60.0%" class="r-stretch"><div class="fragment">
-<h3 id="setting-up-the-data-in-r">Setting up the data in R</h3>
+<img data-src="images/datastory.png" style="width:50.0%" class="r-stretch"><div class="fragment">
 <p>We know which land type each sample came from:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>landA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>)  <span class="co"># stratum A samples (62% of the area)</span></span>
-<span id="cb1-2"><a></a>landB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">42</span>)      <span class="co"># stratum B samples (38% of the area) </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>landA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>)  <span class="co"># stratum A samples (62% of the area)</span></span>
+<span id="cb2-2"><a></a>landB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">42</span>)      <span class="co"># stratum B samples (38% of the area)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -466,12 +413,7 @@ Januar Harianto
 </blockquote>
 <div class="fragment">
 <p><span class="math display">\[\bar{y}_{s} = \sum_{i=1}^L \bar{y}_i \times w_i\]</span></p>
-<p><strong>In simple terms:</strong></p>
-<ul>
-<li>We calculate the mean for each stratum separately (<span class="math inline">\(\bar{y}_i\)</span>)</li>
-<li>We multiply each stratum’s mean by its weight (<span class="math inline">\(w_i\)</span>)</li>
-<li>We add these weighted means together to get the overall pooled mean</li>
-</ul>
+<p>We calculate the mean for each stratum (<span class="math inline">\(\bar{y}_i\)</span>), multiply by its weight (<span class="math inline">\(w_i\)</span>), and add them together.</p>
 </div>
 </section>
 <section id="calculating-pooled-mean-soil-carbon-example" class="slide level2">
@@ -479,24 +421,23 @@ Januar Harianto
 <div class="fragment">
 <p>We first define the weights <span class="math inline">\(w_i\)</span> for each stratum based on their area:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="fragment">
 <p>Then we calculate the weighted mean:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(landA) <span class="sc">*</span> weight[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mean</span>(landB) <span class="sc">*</span> weight[<span class="dv">2</span>]</span>
-<span id="cb3-2"><a></a>weighted_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(landA) <span class="sc">*</span> weight[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mean</span>(landB) <span class="sc">*</span> weight[<span class="dv">2</span>]</span>
+<span id="cb4-2"><a></a>weighted_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 68.86833</code></pre>
 </div>
 </div>
-<p>This is like saying: “62% of our land has soil carbon like land type A, and 38% has soil carbon like land type B, so our overall estimate takes both into account in these proportions.”</p>
+<p>62% of the land has soil carbon like type A, and 38% like type B — the overall estimate reflects both in those proportions.</p>
 </div>
 </section>
 <section id="pooled-standard-error-of-the-mean-sebar-y_s" class="slide level2">
 <h2>Pooled standard error of the mean <span class="math inline">\(SE(\bar y_{s})\)</span></h2>
-<h3 id="the-formula-looks-similar-to-a-standard-error">The formula looks similar to a standard error…</h3>
 <p><span class="math display">\[SE(\bar y_{s}) = \sqrt{\color{blue}{{\sum_{i=1}^L w_i^2}} \times \frac{s_i^2}{n_i}}\]</span></p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -504,12 +445,12 @@ Januar Harianto
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>What is different?</strong></p>
+<p><strong>What is different from simple random sampling?</strong></p>
 </div>
 <div class="callout-content">
 <ul>
-<li>Instead of a single variance term, we use the sum of weighted variances from each stratum</li>
-<li>The <span class="math inline">\(\color{blue}{w_i^2}\)</span> term ensures we account for the relative size of each stratum</li>
+<li>Instead of a single variance term, we sum the weighted variances from each stratum</li>
+<li>The <span class="math inline">\(\color{blue}{w_i^2}\)</span> term accounts for the relative size of each stratum</li>
 <li>Each stratum contributes its own variance (<span class="math inline">\(s_i^2\)</span>) and sample size (<span class="math inline">\(n_i\)</span>)</li>
 </ul>
 </div>
@@ -523,21 +464,16 @@ Januar Harianto
 <p>where <span class="math inline">\(n\)</span> is the total number of samples and <span class="math inline">\(L\)</span> is the number of strata.</p>
 <div class="fragment">
 <ul>
-<li>The degrees of freedom tells us how much independent information we have for estimating uncertainty</li>
 <li>For stratified sampling, we lose one degree of freedom for each stratum mean we estimate</li>
-<li><strong>Example:</strong> If we have 12 samples across 3 strata:
-<ul>
-<li><span class="math inline">\(df = 12 - 3 = 9\)</span></li>
-<li>We lose 3 degrees of freedom because we estimate one mean per stratum</li>
-</ul></li>
+<li><strong>Example:</strong> 12 samples across 3 strata gives <span class="math inline">\(df = 12 - 3 = 9\)</span></li>
 </ul>
 </div>
 <div class="fragment">
 <h3 id="in-r">In R</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(landA) <span class="sc">+</span> <span class="fu">length</span>(landB) <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="cb5-2"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
-<span id="cb5-3"><a></a>t_crit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(landA) <span class="sc">+</span> <span class="fu">length</span>(landB) <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb6-2"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
+<span id="cb6-3"><a></a>t_crit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.570582</code></pre>
 </div>
@@ -548,16 +484,12 @@ Januar Harianto
 <h2>95 % Confidence interval for stratified random sampling</h2>
 <h3 id="the-formula">The formula</h3>
 <p><span class="math display">\[95\%\ CI = \bar y_{s} \pm t^{0.025}_{n-L} \times SE(\bar y_{s})\]</span></p>
-<p>where <span class="math inline">\(L\)</span> is the number of strata, <span class="math inline">\(n\)</span> is the total number of samples, and <span class="math inline">\(\bar y_{s}\)</span> is the weighted mean of the strata.</p>
-<p><strong>In simple terms:</strong></p>
+<p>where <span class="math inline">\(L\)</span> is the number of strata, <span class="math inline">\(n\)</span> is the total number of samples, and <span class="math inline">\(\bar y_{s}\)</span> is the pooled mean.</p>
 <ul>
-<li class="fragment">We are creating a range where we are 95% confident the true population mean lies</li>
-<li class="fragment">We start with our best estimate (the pooled mean <span class="math inline">\(\bar y_{s}\)</span>)</li>
-<li class="fragment">We add and subtract a “margin of error” (which depends on our sample size and variability)</li>
-<li class="fragment">The margin of error = <span class="math inline">\(t\)</span>-critical value × standard error</li>
+<li class="fragment">Start with the pooled mean (<span class="math inline">\(\bar y_{s}\)</span>)</li>
+<li class="fragment">Add and subtract the margin of error (<span class="math inline">\(t\)</span>-critical <span class="math inline">\(\times\)</span> pooled SE)</li>
+<li class="fragment">The result is the range where we are 95% confident the true population mean lies</li>
 </ul>
-<h3 id="visualising-this">Visualising this:</h3>
-<pre><code>Lower bound ← [Pooled mean - Margin of error] ... [Pooled mean + Margin of error] → Upper bound</code></pre>
 </section>
 <section id="confidence-interval-for-stratified-random-sampling-1" class="slide level2">
 <h2>95 % Confidence interval for stratified random sampling</h2>
@@ -579,14 +511,13 @@ Januar Harianto
 </div>
 </section></section>
 <section>
-<section id="comparison" class="title-slide slide level1 center">
-<h1>Comparison</h1>
+<section id="the-payoff" class="title-slide slide level1 center">
+<h1>The payoff</h1>
 
 </section>
 <section id="simple-random-vs.-stratified-random-sampling" class="slide level2">
 <h2>Simple random vs.&nbsp;stratified random sampling</h2>
-<p>What if we had used stratified random sampling instead of simple random sampling (and collected the same amount of data)?</p>
-<h3 id="what-differences-can-you-see">What differences can you see?</h3>
+<p>We applied stratified random sampling to the same soil carbon data from the first half. How do the results compare?</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -594,10 +525,10 @@ Januar Harianto
 <span id="cb10-2"><a></a><span class="co"># Manually printing the results below as SRS data is in previous lecture</span></span>
 <span id="cb10-3"><a></a>compare <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb10-4"><a></a>  <span class="at">Design =</span> <span class="fu">c</span>(<span class="st">"Simple Random"</span>, <span class="st">"Stratified Random"</span>),</span>
-<span id="cb10-5"><a></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="fl">67.29</span>, <span class="fl">68.9</span>), </span>
+<span id="cb10-5"><a></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="fl">67.29</span>, <span class="fl">68.9</span>),</span>
 <span id="cb10-6"><a></a>  <span class="st">`</span><span class="at">Var (mean)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">50.83</span>, <span class="fl">9.30</span>),</span>
-<span id="cb10-7"><a></a>  <span class="at">L95 =</span> <span class="fu">c</span>(<span class="fl">49.85</span>, <span class="dv">61</span>), </span>
-<span id="cb10-8"><a></a>  <span class="at">U95 =</span> <span class="fu">c</span>(<span class="fl">84.73</span>, <span class="fl">76.7</span>), </span>
+<span id="cb10-7"><a></a>  <span class="at">L95 =</span> <span class="fu">c</span>(<span class="fl">49.85</span>, <span class="dv">61</span>),</span>
+<span id="cb10-8"><a></a>  <span class="at">U95 =</span> <span class="fu">c</span>(<span class="fl">84.73</span>, <span class="fl">76.7</span>),</span>
 <span id="cb10-9"><a></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb10-10"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(compare)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
@@ -640,42 +571,33 @@ Januar Harianto
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Creating a visual comparison of confidence intervals</span></span>
-<span id="cb11-2"><a></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
-<span id="cb11-6"><a></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
-<span id="cb11-7"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb11-9"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">55</span>, </span>
-<span id="cb11-10"><a></a>           <span class="at">label =</span> <span class="st">"Stratified sampling gives a</span><span class="sc">\n</span><span class="st">narrower confidence interval</span><span class="sc">\n</span><span class="st">(more precise estimate)"</span>, </span>
-<span id="cb11-11"><a></a>           <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
+<span id="cb11-5"><a></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
+<span id="cb11-6"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-02b_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
-<h3 id="key-insights">Key insights:</h3>
+<img data-src="Lecture-02b_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<h3 id="key-differences">Key differences</h3>
 <ul>
-<li>Both methods give similar estimates of the mean</li>
+<li>Both methods give similar estimates of the mean (~67–69 t/ha)</li>
 <li>Stratified sampling produces a much narrower confidence interval</li>
 <li>The variance of the mean is about 5 times smaller with stratified sampling</li>
-<li>This means stratified sampling is much more precise with the same number of samples</li>
 </ul>
 </div>
 </section>
 <section id="efficiency" class="slide level2">
 <h2>Efficiency</h2>
-<h3 id="what-is-sampling-efficiency">What is sampling efficiency?</h3>
-<ul>
-<li>A measure of how much “bang for your buck” you get with different sampling methods</li>
-<li>Calculated as a ratio: <span class="math display">\[\text{Efficiency} = \frac{\text{Variance of SRS}}{\text{Variance of Stratified}}\]</span></li>
-</ul>
+<h3 id="how-much-more-precise-is-stratified-sampling">How much more precise is stratified sampling?</h3>
+<p><span class="math display">\[\text{Efficiency} = \frac{\text{Variance of SRS}}{\text{Variance of Stratified}}\]</span></p>
 <div class="fragment">
-<h3 id="in-simple-terms">In simple terms:</h3>
 <ul>
-<li>Efficiency &gt; 1: Stratified sampling is better (more precise with same sample size)</li>
-<li>Efficiency = 5 means: You’d need 5 times as many samples with simple random sampling to get the same precision as stratified sampling</li>
+<li>Efficiency &gt; 1 means stratified sampling is more precise for the same sample size</li>
+<li>An efficiency of 5 means you would need 5 times as many SRS samples to match the stratified precision</li>
 </ul>
 </div>
 <div class="fragment">
@@ -687,140 +609,116 @@ Januar Harianto
 <pre><code>[1] 5.465591</code></pre>
 </div>
 </div>
-<p>How many samples would we have had to collect using simple random sampling to achieve the same precision as our stratified sample?</p>
+<p>How many SRS samples would we need for the same precision?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">*</span> efficiency, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38</code></pre>
 </div>
 </div>
-<p>So we would need about 38 samples with simple random sampling to get the same precision that we achieved with just 7 samples using stratified sampling!</p>
+<p>About 38 samples with SRS to match what 7 stratified samples achieved.</p>
 </div>
 </section>
 <section id="tips-on-implementation" class="slide level2">
 <h2>Tips on implementation</h2>
 <ul>
-<li>The most difficult part is to <strong>identify</strong> the strata and <strong>assign</strong> the sampling units to the strata</li>
+<li>The hardest part is identifying good strata and assigning units to them</li>
 <li>Common stratification variables in environmental science:
 <ul>
 <li><strong>Spatial</strong>: elevation bands, soil types, vegetation zones</li>
 <li><strong>Temporal</strong>: seasons, time of day, growth stages</li>
 <li><strong>Management</strong>: treatment types, land-use history</li>
 </ul></li>
-<li><strong>Strata sampling size</strong>: allocate samples to strata based on the size of the strata, either proportional to:
+<li><strong>Sample allocation</strong>: distribute samples across strata in proportion to:
 <ul>
 <li>the size of the strata (e.g.&nbsp;60% of area = 60% of samples)</li>
-<li>the variance of the strata (more samples where variation is higher)</li>
+<li>the variance within strata (more samples where variation is higher)</li>
 </ul></li>
 </ul>
 </section></section>
 <section>
-<section id="monitoring" class="title-slide slide level1 center">
-<h1>Monitoring</h1>
-<p>What if we come back and do another set of soil carbon measurements?</p>
+<section id="the-farmer-comes-back" class="title-slide slide level1 center">
+<h1>The farmer comes back</h1>
+
 </section>
-<section id="the-change-in-mean-delta-bar-y" class="slide level2">
-<h2>The change in mean <span class="math inline">\(\Delta \bar y\)</span></h2>
-<h3 id="important-considerations">Important considerations</h3>
+<section id="a-year-later" class="slide level2">
+<h2>A year later…</h2>
+<p>The farmer now has a good estimate of soil carbon on the property. But a year has passed, and new management practices have been introduced.</p>
+<div class="fragment">
+<p><strong>New question:</strong> has soil carbon changed?</p>
+</div>
+<div class="fragment">
+<p>To answer this, the farmer measures the same property again. This is a <strong>monitoring study</strong> — we are estimating <em>change</em> rather than a single value.</p>
+</div>
+</section>
+<section id="same-sites-or-new-sites" class="slide level2">
+<h2>Same sites or new sites?</h2>
 <ul>
-<li class="fragment">We want to measure change in soil carbon over time</li>
-<li class="fragment">Key question: <strong>How do we select sites for the second measurement?</strong>
+<li class="fragment">Key decision: <strong>how do we select sites for the second measurement?</strong>
 <ol type="1">
 <li class="fragment">Return to the <strong>same sites</strong>?</li>
 <li class="fragment">Select completely <strong>new sites</strong>?</li>
 </ol></li>
-<li class="fragment">This choice affects our statistical analysis (covariance)</li>
+<li class="fragment">This choice affects how we analyse the data</li>
 </ul>
 </section>
-<section id="monitoring-estimates" class="slide level2">
-<h2>Monitoring estimates</h2>
-<h3 id="change-in-mean-delta-bar-y">Change in mean <span class="math inline">\(\Delta \bar y\)</span></h3>
+<section id="change-in-mean-delta-bar-y" class="slide level2">
+<h2>Change in mean <span class="math inline">\(\Delta \bar y\)</span></h2>
 <blockquote>
 <p>The difference between the means of the two sets of measurements.</p>
 </blockquote>
 <p><span class="math display">\[\Delta \bar y = \bar y_2 - \bar y_1\]</span></p>
 <p>where <span class="math inline">\(\bar y_2\)</span> and <span class="math inline">\(\bar y_1\)</span> are the means of the second and first set of measurements, respectively.</p>
 </section>
-<section id="uncertainty-in-change-estimates" class="slide level2">
-<h2>Uncertainty in change estimates</h2>
-<div class="fragment">
-<h3 id="variance-of-the-change-in-mean-vardeltabar-y">Variance <em>of the change in mean</em> <span class="math inline">\(Var(\Delta{\bar y})\)</span></h3>
-<p>This tells us how precise our estimate of the change is. It depends on:</p>
+<section id="how-precise-is-our-estimate-of-change" class="slide level2">
+<h2>How precise is our estimate of change?</h2>
+<h3 id="variance-of-the-change-in-mean-vardeltabar-y">Variance of the change in mean <span class="math inline">\(Var(\Delta{\bar y})\)</span></h3>
 <p><span class="math display">\[Var(\Delta{\bar y}) = Var(\bar y_2) + Var(\bar y_1) - 2 \times Cov(\bar y_2, \bar y_1)\]</span></p>
-<p><strong>In simple terms:</strong></p>
-<ul>
-<li>The uncertainty in our change estimate comes from the uncertainties in both measurements</li>
-<li>However, if we sample the same sites twice, they are related to each other (covariance — we will define this shortly)</li>
-<li>This relationship usually reduces the overall uncertainty in our change estimate</li>
-</ul>
+<div class="fragment">
+<p>The uncertainty comes from both measurements. But if we sample the same sites twice, the <strong>covariance</strong> term usually <em>reduces</em> the overall uncertainty.</p>
 </div>
 <div class="fragment">
-<p><strong>Important:</strong> Visiting the same sites twice (paired sampling) usually gives more precise estimates of change than visiting different sites each time!</p>
-</div>
-</section>
-<section id="covariance-and-site-selection" class="slide level2">
-<h2>Covariance and site selection</h2>
-<h3 id="quick-decision-guide">Quick decision guide</h3>
-<ol type="1">
-<li><strong>Same sites?</strong> Use paired approach:
-<ul>
-<li>Sites are the same in both visits</li>
-<li>Use paired t-test</li>
-<li>Account for covariance between visits</li>
-</ul></li>
-<li><strong>Different sites?</strong> Use independent approach:
-<ul>
-<li>New random sites in second visit</li>
-<li>Use two-sample t-test</li>
-<li>No covariance between visits</li>
-</ul></li>
-</ol>
-</section>
-<section id="what-is-covariance" class="slide level2">
-<h2>What is covariance?</h2>
-<div class="fragment">
-<p>Covariance measures how two measurements relate to each other:</p>
-<p><strong>Example with soil carbon:</strong></p>
+<p>What is covariance? Consider three of the farmer’s sites:</p>
 <ul>
 <li>Site 1: First visit = 90 t/ha, Second visit = 95 t/ha</li>
 <li>Site 2: First visit = 48 t/ha, Second visit = 52 t/ha</li>
 <li>Site 3: First visit = 71 t/ha, Second visit = 75 t/ha</li>
 </ul>
-</div>
-<div class="fragment">
-<p><strong>What do you notice?</strong> Sites with high carbon in the first measurement still have high carbon in the second measurement (positive covariance).</p>
-<p><strong>Why this matters:</strong> Knowing the first measurement helps us predict the second one, reducing uncertainty in our estimate of change.</p>
-</div>
-<div class="fragment">
-<p><strong>Practical takeaway:</strong> When measuring change over time, returning to the same sites usually gives more precise results because it removes site-to-site variation.</p>
+<p>Sites with high carbon in the first measurement still have high carbon in the second. This positive relationship is covariance — and it reduces uncertainty in the estimate of change.</p>
 </div>
 </section>
-<section id="calculating-the-95-ci-for-the-change-in-mean" class="slide level2">
-<h2>Calculating the 95% CI for the change in mean</h2>
-<h3 id="the-formula-looks-similar-to-before">The formula looks similar to before:</h3>
+<section id="paired-vs-independent-sampling" class="slide level2">
+<h2>Paired vs independent sampling</h2>
+<h3 id="quick-decision-guide">Quick decision guide</h3>
+<ol type="1">
+<li><strong>Same sites?</strong> Use paired approach:
+<ul>
+<li>Sites are the same in both visits</li>
+<li>Use paired <em>t</em>-test</li>
+<li>Account for covariance between visits</li>
+</ul></li>
+<li><strong>Different sites?</strong> Use independent approach:
+<ul>
+<li>New random sites in second visit</li>
+<li>Use two-sample <em>t</em>-test</li>
+<li>No covariance between visits</li>
+</ul></li>
+</ol>
+<div class="fragment">
+<p>Returning to the same sites (paired sampling) usually gives more precise estimates because it removes site-to-site variation.</p>
+</div>
+</section>
+<section id="confidence-interval-for-change" class="slide level2">
+<h2>Confidence interval for change</h2>
 <p><span class="math display">\[95\%\ CI = \Delta \bar y \pm t^{0.025}_{n-1} \times SE(\Delta \bar y)\]</span></p>
 <div class="fragment">
-<h3 id="in-plain-language">In plain language:</h3>
-<ul>
-<li>We have our best estimate of the change (the difference between the two means)</li>
-<li>We add and subtract a margin of error to create a range</li>
-<li>We are 95% confident that the true change falls within this range</li>
-</ul>
+<p>The standard error of the change, <span class="math inline">\(SE(\Delta \bar y)\)</span>, accounts for the relationship between the two measurements when the same sites are visited. This is not straightforward to calculate by hand.</p>
 </div>
 <div class="fragment">
-<h3 id="the-standard-error-of-the-change-sedelta-bar-y">The standard error of the change <span class="math inline">\(SE(\Delta \bar y)\)</span></h3>
+<p>In practice, R handles these calculations using <code>t.test()</code>:</p>
 <ul>
-<li>This tells us how precise our estimate of the change is</li>
-<li>It is complicated to calculate by hand, especially when we visit the same sites twice</li>
-<li>If we visit the same sites twice, we need to account for their relationship (covariance)</li>
-</ul>
-</div>
-<div class="fragment">
-<p><strong>Good news!</strong> You do not need to calculate this by hand.</p>
-<ul>
-<li>R handles these calculations using the <code>t.test()</code> function</li>
-<li>For same sites: use <code>paired = TRUE</code></li>
-<li>For different sites: use <code>paired = FALSE</code></li>
+<li>For same sites: <code>paired = TRUE</code></li>
+<li>For different sites: <code>paired = FALSE</code></li>
 </ul>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -1058,6 +956,17 @@ Januar Harianto
           RevealZoom
         ]
       });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IHNhbXBsaW5nV2lkZ2V0IH0gZnJvbSBcIi4uLy4uL2Fzc2V0cy9qcy9zYW1wbGluZy13aWRnZXQuanNcIlxuc2FtcGxpbmdXaWRnZXQoKVxuIn1dfQ==
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../lectures/L02";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
     </script>
     
     <script>

@@ -1589,6 +1589,13 @@
     "text": "Stratified random sampling\n3 steps\n\nDivide the population into homogeneous subgroups (strata).\nSample from each stratum using simple random sampling.\nPool (combine) the estimates from each stratum to get an overall population estimate.\n\n\nExample\nIf studying plant biodiversity in a national park:\n\nDivide the park into strata (e.g. forest, grassland, wetland)\nTake random samples within each habitat type\nCombine data to estimate overall biodiversity, weighting by each habitat’s area"
   },
   {
+    "objectID": "lectures/L02/Lecture-02b.html#its-not-as-complicated-as-it-sounds",
+    "href": "lectures/L02/Lecture-02b.html#its-not-as-complicated-as-it-sounds",
+    "title": "Lecture 02b – Sampling designs II",
+    "section": "It’s not as complicated as it sounds…",
+    "text": "It’s not as complicated as it sounds…\n\n\nimport { stratifiedStepsWidget } from \"../../assets/js/sampling-widget.js\"\nstratifiedStepsWidget()"
+  },
+  {
     "objectID": "lectures/L02/Lecture-02b.html#strata-rules",
     "href": "lectures/L02/Lecture-02b.html#strata-rules",
     "title": "Lecture 02b – Sampling designs II",
@@ -1596,18 +1603,11 @@
     "text": "Strata rules\nStrata are…\n\nMutually exclusive and collectively exhaustive — every unit belongs to exactly one stratum, with no overlaps and nothing left out\nHomogeneous — units within a stratum should be more similar to each other than to the population as a whole\nAll sampled — every stratum must be represented"
   },
   {
-    "objectID": "lectures/L02/Lecture-02b.html#good-vs.-poor-stratification-choices",
-    "href": "lectures/L02/Lecture-02b.html#good-vs.-poor-stratification-choices",
+    "objectID": "lectures/L02/Lecture-02b.html#which-of-these-are-good-strata",
+    "href": "lectures/L02/Lecture-02b.html#which-of-these-are-good-strata",
     "title": "Lecture 02b – Sampling designs II",
-    "section": "Good vs. poor stratification choices",
-    "text": "Good vs. poor stratification choices"
-  },
-  {
-    "objectID": "lectures/L02/Lecture-02b.html#everyday-examples",
-    "href": "lectures/L02/Lecture-02b.html#everyday-examples",
-    "title": "Lecture 02b – Sampling designs II",
-    "section": "Everyday examples",
-    "text": "Everyday examples\n\n\nGood strata\n\nUniversity students: Undergrad, Masters, PhD\nForest types: Deciduous, Coniferous, Mixed\nIncome levels: Low, Medium, High\n\n\nPoor strata choices\n\nInterests: Sports fans, Music lovers, Foodies (a person can be in multiple groups)\nWater quality: Clean, Somewhat polluted (too subjective, not clearly defined)"
+    "section": "Which of these are good strata?",
+    "text": "Which of these are good strata?\nThe farmer wants to refine their soil carbon estimate. Which stratification would work?\n\nA. Soil type — clay soils vs. sandy soils\nB. Soil condition — wet patches, compacted areas, eroded areas\n\n\nA works. Every sample belongs to exactly one soil type. Carbon storage differs between clay and sandy soils, so the strata are distinct.\n\n\nB fails. A patch of soil can be wet and compacted and eroded at the same time. The categories overlap — strata must be mutually exclusive."
   },
   {
     "objectID": "lectures/L02/Lecture-02b.html#advantages",

@@ -299,6 +299,34 @@ Januar Harianto
 </ul>
 </div>
 </section>
+<section id="its-not-as-complicated-as-it-sounds" class="slide level2">
+<h2>It’s not as complicated as it sounds…</h2>
+<style>
+#its-not-as-complicated-as-it-sounds .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="109" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 108;"><span id="cb2-109"><a></a><span class="im">import</span> { stratifiedStepsWidget } <span class="im">from</span> <span class="st">"../../assets/js/sampling-widget.js"</span></span>
+<span id="cb2-110"><a></a><span class="fu">stratifiedStepsWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="strata-rules" class="slide level2">
 <h2>Strata rules</h2>
 <h3 id="strata-are">Strata are…</h3>
@@ -307,33 +335,21 @@ Januar Harianto
 <li class="fragment"><strong>Homogeneous</strong> — units within a stratum should be more similar to each other than to the population as a whole</li>
 <li class="fragment"><strong>All sampled</strong> — every stratum must be represented</li>
 </ul>
+</section>
+<section id="which-of-these-are-good-strata" class="slide level2">
+<h2>Which of these are good strata?</h2>
+<p>The farmer wants to refine their soil carbon estimate. Which stratification would work?</p>
 <div class="fragment">
-<p><img data-src="images/stratified.png"></p>
+<p><strong>A.</strong> Soil type — clay soils vs.&nbsp;sandy soils</p>
+<p><strong>B.</strong> Soil condition — wet patches, compacted areas, eroded areas</p>
+</div>
+<div class="fragment">
+<p><strong>A works.</strong> Every sample belongs to exactly one soil type. Carbon storage differs between clay and sandy soils, so the strata are distinct.</p>
+</div>
+<div class="fragment">
+<p><strong>B fails.</strong> A patch of soil can be wet <em>and</em> compacted <em>and</em> eroded at the same time. The categories overlap — strata must be mutually exclusive.</p>
 </div>
 </section>
-<section id="good-vs.-poor-stratification-choices" class="slide level2">
-<h2>Good vs.&nbsp;poor stratification choices</h2>
-</section>
-<div class="fragment">
-<section id="everyday-examples" class="slide level2">
-<h2>Everyday examples</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="good-strata">Good strata</h3>
-<ul>
-<li><strong>University students</strong>: Undergrad, Masters, PhD</li>
-<li><strong>Forest types</strong>: Deciduous, Coniferous, Mixed</li>
-<li><strong>Income levels</strong>: Low, Medium, High</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<h3 id="poor-strata-choices">Poor strata choices</h3>
-<ul>
-<li><strong>Interests</strong>: Sports fans, Music lovers, Foodies (a person can be in multiple groups)</li>
-<li><strong>Water quality</strong>: Clean, Somewhat polluted (too subjective, not clearly defined)</li>
-</ul>
-</div></div>
-</section>
-</div>
 <section id="advantages" class="slide level2">
 <h2>Advantages</h2>
 <p>Stratified random sampling addresses three problems at once:</p>
@@ -401,8 +417,8 @@ Januar Harianto
 <img data-src="images/datastory.png" style="width:50.0%" class="r-stretch"><div class="fragment">
 <p>We know which land type each sample came from:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>landA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>)  <span class="co"># stratum A samples (62% of the area)</span></span>
-<span id="cb2-2"><a></a>landB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">42</span>)      <span class="co"># stratum B samples (38% of the area)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>landA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>)  <span class="co"># stratum A samples (62% of the area)</span></span>
+<span id="cb3-2"><a></a>landB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">42</span>)      <span class="co"># stratum B samples (38% of the area)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -421,14 +437,14 @@ Januar Harianto
 <div class="fragment">
 <p>We first define the weights <span class="math inline">\(w_i\)</span> for each stratum based on their area:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="fragment">
 <p>Then we calculate the weighted mean:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(landA) <span class="sc">*</span> weight[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mean</span>(landB) <span class="sc">*</span> weight[<span class="dv">2</span>]</span>
-<span id="cb4-2"><a></a>weighted_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>weighted_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(landA) <span class="sc">*</span> weight[<span class="dv">1</span>] <span class="sc">+</span> <span class="fu">mean</span>(landB) <span class="sc">*</span> weight[<span class="dv">2</span>]</span>
+<span id="cb5-2"><a></a>weighted_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 68.86833</code></pre>
 </div>
@@ -471,9 +487,9 @@ Januar Harianto
 <div class="fragment">
 <h3 id="in-r">In R</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(landA) <span class="sc">+</span> <span class="fu">length</span>(landB) <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="cb6-2"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
-<span id="cb6-3"><a></a>t_crit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(landA) <span class="sc">+</span> <span class="fu">length</span>(landB) <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb7-2"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, df)</span>
+<span id="cb7-3"><a></a>t_crit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.570582</code></pre>
 </div>
@@ -495,15 +511,15 @@ Januar Harianto
 <h2>95 % Confidence interval for stratified random sampling</h2>
 <h3 id="putting-it-all-together">Putting it all together</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>varA <span class="ot">&lt;-</span> <span class="fu">var</span>(landA) <span class="sc">/</span> <span class="fu">length</span>(landA)  <span class="co"># variance of the mean for A</span></span>
-<span id="cb8-2"><a></a>varB <span class="ot">&lt;-</span> <span class="fu">var</span>(landB) <span class="sc">/</span> <span class="fu">length</span>(landB)  <span class="co"># variance of the mean for B</span></span>
-<span id="cb8-3"><a></a>weighted_var <span class="ot">&lt;-</span> weight[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varA <span class="sc">+</span> weight[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varB</span>
-<span id="cb8-4"><a></a>weighted_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(weighted_var)</span>
-<span id="cb8-5"><a></a>ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-6"><a></a>  <span class="at">L95 =</span> weighted_mean <span class="sc">-</span> t_crit <span class="sc">*</span> weighted_se,</span>
-<span id="cb8-7"><a></a>  <span class="at">u95 =</span> weighted_mean <span class="sc">+</span> t_crit <span class="sc">*</span> weighted_se</span>
-<span id="cb8-8"><a></a>)</span>
-<span id="cb8-9"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>varA <span class="ot">&lt;-</span> <span class="fu">var</span>(landA) <span class="sc">/</span> <span class="fu">length</span>(landA)  <span class="co"># variance of the mean for A</span></span>
+<span id="cb9-2"><a></a>varB <span class="ot">&lt;-</span> <span class="fu">var</span>(landB) <span class="sc">/</span> <span class="fu">length</span>(landB)  <span class="co"># variance of the mean for B</span></span>
+<span id="cb9-3"><a></a>weighted_var <span class="ot">&lt;-</span> weight[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varA <span class="sc">+</span> weight[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> varB</span>
+<span id="cb9-4"><a></a>weighted_se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(weighted_var)</span>
+<span id="cb9-5"><a></a>ci <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-6"><a></a>  <span class="at">L95 =</span> weighted_mean <span class="sc">-</span> t_crit <span class="sc">*</span> weighted_se,</span>
+<span id="cb9-7"><a></a>  <span class="at">u95 =</span> weighted_mean <span class="sc">+</span> t_crit <span class="sc">*</span> weighted_se</span>
+<span id="cb9-8"><a></a>)</span>
+<span id="cb9-9"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     L95      u95 
 61.04864 76.68803 </code></pre>
@@ -521,16 +537,16 @@ Januar Harianto
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-2"><a></a><span class="co"># Manually printing the results below as SRS data is in previous lecture</span></span>
-<span id="cb10-3"><a></a>compare <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb10-4"><a></a>  <span class="at">Design =</span> <span class="fu">c</span>(<span class="st">"Simple Random"</span>, <span class="st">"Stratified Random"</span>),</span>
-<span id="cb10-5"><a></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="fl">67.29</span>, <span class="fl">68.9</span>),</span>
-<span id="cb10-6"><a></a>  <span class="st">`</span><span class="at">Var (mean)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">50.83</span>, <span class="fl">9.30</span>),</span>
-<span id="cb10-7"><a></a>  <span class="at">L95 =</span> <span class="fu">c</span>(<span class="fl">49.85</span>, <span class="dv">61</span>),</span>
-<span id="cb10-8"><a></a>  <span class="at">U95 =</span> <span class="fu">c</span>(<span class="fl">84.73</span>, <span class="fl">76.7</span>),</span>
-<span id="cb10-9"><a></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
-<span id="cb10-10"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(compare)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-2"><a></a><span class="co"># Manually printing the results below as SRS data is in previous lecture</span></span>
+<span id="cb11-3"><a></a>compare <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-4"><a></a>  <span class="at">Design =</span> <span class="fu">c</span>(<span class="st">"Simple Random"</span>, <span class="st">"Stratified Random"</span>),</span>
+<span id="cb11-5"><a></a>  <span class="at">Mean =</span> <span class="fu">c</span>(<span class="fl">67.29</span>, <span class="fl">68.9</span>),</span>
+<span id="cb11-6"><a></a>  <span class="st">`</span><span class="at">Var (mean)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">50.83</span>, <span class="fl">9.30</span>),</span>
+<span id="cb11-7"><a></a>  <span class="at">L95 =</span> <span class="fu">c</span>(<span class="fl">49.85</span>, <span class="dv">61</span>),</span>
+<span id="cb11-8"><a></a>  <span class="at">U95 =</span> <span class="fu">c</span>(<span class="fl">84.73</span>, <span class="fl">76.7</span>),</span>
+<span id="cb11-9"><a></a>  <span class="at">df =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb11-10"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(compare)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -571,17 +587,17 @@ Januar Harianto
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
-<span id="cb11-5"><a></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
-<span id="cb11-6"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
+<span id="cb12-5"><a></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
+<span id="cb12-6"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-02b_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<img data-src="Lecture-02b_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
 <h3 id="key-differences">Key differences</h3>
 <ul>
 <li>Both methods give similar estimates of the mean (~67–69 t/ha)</li>
@@ -603,15 +619,15 @@ Januar Harianto
 <div class="fragment">
 <h3 id="in-r-1">In R</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>efficiency <span class="ot">&lt;-</span> <span class="fl">50.83</span> <span class="sc">/</span> <span class="fl">9.30</span></span>
-<span id="cb12-2"><a></a>efficiency</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>efficiency <span class="ot">&lt;-</span> <span class="fl">50.83</span> <span class="sc">/</span> <span class="fl">9.30</span></span>
+<span id="cb13-2"><a></a>efficiency</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.465591</code></pre>
 </div>
 </div>
 <p>How many SRS samples would we need for the same precision?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">*</span> efficiency, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">round</span>(<span class="dv">7</span> <span class="sc">*</span> efficiency, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38</code></pre>
 </div>
@@ -958,7 +974,7 @@ Januar Harianto
       });
     </script>
     <script type="ojs-module-contents">
-    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IHNhbXBsaW5nV2lkZ2V0IH0gZnJvbSBcIi4uLy4uL2Fzc2V0cy9qcy9zYW1wbGluZy13aWRnZXQuanNcIlxuc2FtcGxpbmdXaWRnZXQoKVxuIn1dfQ==
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IHNhbXBsaW5nV2lkZ2V0IH0gZnJvbSBcIi4uLy4uL2Fzc2V0cy9qcy9zYW1wbGluZy13aWRnZXQuanNcIlxuc2FtcGxpbmdXaWRnZXQoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaW1wb3J0IHsgc3RyYXRpZmllZFN0ZXBzV2lkZ2V0IH0gZnJvbSBcIi4uLy4uL2Fzc2V0cy9qcy9zYW1wbGluZy13aWRnZXQuanNcIlxuc3RyYXRpZmllZFN0ZXBzV2lkZ2V0KClcbiJ9XX0=
     </script>
     <script type="module">
     if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }

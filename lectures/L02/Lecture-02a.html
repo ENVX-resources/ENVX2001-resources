@@ -204,7 +204,7 @@ Januar Harianto
 </div>
 </div>
 
-  <p class="date">Feb 2026</p>
+  <p class="date">Mar 2026</p>
 </section>
 <section>
 <section id="last-week" class="title-slide slide level1 center">
@@ -213,25 +213,26 @@ Januar Harianto
 </section>
 <section id="key-concepts-we-covered" class="slide level2">
 <h2>Key concepts we covered</h2>
-<ul>
-<li><strong>Population vs.&nbsp;sample</strong>
-<ul>
-<li>Population: The complete set of all items we’re studying</li>
-<li>Sample: A subset of the population we actually measure</li>
-</ul></li>
-<li><strong>Parameters (population) and statistics (sample)</strong>
-<ul>
-<li>Central tendency: how data clusters around a middle value
-<ul>
-<li>mean (average), median (middle value), mode (most common)</li>
-</ul></li>
-<li>Spread/dispersion: how data points vary from each other
-<ul>
-<li>variance (average squared deviation), standard deviation (square root of variance)</li>
-</ul></li>
-</ul></li>
-<li><strong>Confidence intervals</strong> – we’ll explore this further today!</li>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Population vs.&nbsp;sample</strong>: the complete set vs.&nbsp;the subset we measure</label></li>
+<li><label><input type="checkbox"><strong>Parameters</strong> (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) vs.&nbsp;<strong>statistics</strong> (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>)</label></li>
+<li><label><input type="checkbox"><strong>Central tendency and spread</strong>: mean, variance, standard deviation</label></li>
+<li><label><input type="checkbox"><strong>Standard error</strong>: how precisely we estimate the mean — decreases with larger samples</label></li>
+<li><label><input type="checkbox"><strong>Confidence intervals</strong> – we will build on last week’s introduction today</label></li>
 </ul>
+</section></section>
+<section>
+<section id="today" class="title-slide slide level1 center">
+<h1>Today</h1>
+
+</section>
+<section id="by-the-end-of-today" class="slide level2">
+<h2>By the end of today</h2>
+<ol type="1">
+<li>Calculate and interpret confidence intervals for a population mean</li>
+<li>Compare simple random and stratified random sampling designs</li>
+<li>Determine how to estimate change over time using monitoring data</li>
+</ol>
 </section></section>
 <section>
 <section id="observational-studies" class="title-slide slide level1 center">
@@ -240,539 +241,50 @@ Januar Harianto
 </section>
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="nejctjmzba" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nejctjmzba table {
-  font-family: Lato;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#nejctjmzba thead, #nejctjmzba tbody, #nejctjmzba tfoot, #nejctjmzba tr, #nejctjmzba td, #nejctjmzba th {
-  border-style: none;
-}
-
-#nejctjmzba p {
-  margin: 0;
-  padding: 0;
-}
-
-#nejctjmzba .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: 100%;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#nejctjmzba .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#nejctjmzba .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#nejctjmzba .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#nejctjmzba .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#nejctjmzba .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#nejctjmzba .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#nejctjmzba .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#nejctjmzba .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#nejctjmzba .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#nejctjmzba .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#nejctjmzba .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#nejctjmzba .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#nejctjmzba .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#nejctjmzba .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#nejctjmzba .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#nejctjmzba .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#nejctjmzba .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#nejctjmzba .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#nejctjmzba .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#nejctjmzba .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#nejctjmzba .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#nejctjmzba .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#nejctjmzba .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#nejctjmzba .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#nejctjmzba .gt_left {
-  text-align: left;
-}
-
-#nejctjmzba .gt_center {
-  text-align: center;
-}
-
-#nejctjmzba .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#nejctjmzba .gt_font_normal {
-  font-weight: normal;
-}
-
-#nejctjmzba .gt_font_bold {
-  font-weight: bold;
-}
-
-#nejctjmzba .gt_font_italic {
-  font-style: italic;
-}
-
-#nejctjmzba .gt_super {
-  font-size: 65%;
-}
-
-#nejctjmzba .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#nejctjmzba .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#nejctjmzba .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#nejctjmzba .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#nejctjmzba .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#nejctjmzba .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#nejctjmzba .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#nejctjmzba .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#nejctjmzba div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="Aspect" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Aspect</th>
-<th id="Observational-study" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Observational study</th>
-<th id="Controlled-experiment" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-weight: bold" scope="col">Controlled experiment</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Aspect" style="font-weight: bold"><strong>Control</strong></td>
-<td class="gt_row gt_left" headers="Observational study">No control over the variables of interest: <strong>mensurative</strong> and <strong>absolute</strong></td>
-<td class="gt_row gt_left" headers="Controlled experiment">Control over the variables of interest: <strong>comparative</strong> and <strong>manipulative</strong></td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Aspect" style="font-weight: bold"><strong>Causation</strong></td>
-<td class="gt_row gt_left" headers="Observational study">Cannot establish causation, but perhaps <strong>association</strong></td>
-<td class="gt_row gt_left" headers="Controlled experiment">Can establish <strong>causation</strong></td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Aspect" style="font-weight: bold"><strong>Feasibility</strong></td>
-<td class="gt_row gt_left" headers="Observational study">Can be done in many cases</td>
-<td class="gt_row gt_left" headers="Controlled experiment">May be destructive and thus cannot always be done</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Aspect" style="font-weight: bold"><strong>Examples</strong></td>
-<td class="gt_row gt_left" headers="Observational study">Surveys, monitoring studies, correlational studies, case-control studies, cohort studies</td>
-<td class="gt_row gt_left" headers="Controlled experiment">Clinical trials, A/B testing, laboratory experiments, field experiments</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Aspect" style="font-weight: bold"><strong>Statistical Tests</strong></td>
-<td class="gt_row gt_left" headers="Observational study">Correlation, regression, chi-squared tests, <strong>t-tests</strong>, <strong>one-way ANOVA</strong>, time series analysis</td>
-<td class="gt_row gt_left" headers="Controlled experiment"><strong>T-tests</strong>, <strong>one-way ANOVA</strong>, factorial ANOVA, regression</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>We will focus on the fundamentals behind <strong>observational studies</strong> this week.</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Mensurative</strong> studies involve measuring without manipulating variables.<br>
-<strong>Absolute</strong> studies measure actual values rather than comparing between treatments.</p>
-</div>
-</div>
-</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="observational-study">Observational study</h3>
+<ul>
+<li>We <strong>measure</strong> the world as it is</li>
+<li>Can show <strong>association</strong>, not causation</li>
+<li>E.g. surveys, monitoring studies</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="controlled-experiment">Controlled experiment</h3>
+<ul>
+<li>We <strong>manipulate</strong> conditions</li>
+<li>Can establish <strong>causation</strong></li>
+<li>E.g. clinical trials, field experiments</li>
+</ul>
+</div></div>
+<p>We focus on observational studies this week to understand how sampling studies work in practice.</p>
 </section>
 <section id="observational-studies-two-common-types" class="slide level2">
 <h2>Observational studies: two common types</h2>
+<p>We do not manipulate anything — we measure what is already there.</p>
 <div class="fragment">
-<h4 id="surveys">Surveys</h4>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="surveys">Surveys</h3>
 <ul>
-<li>Estimate a statistic (e.g.&nbsp;mean, variance), but</li>
-<li><strong>no temporal change</strong> during estimate.</li>
-<li><em>E.g. measuring species richness in a forest</em>.</li>
-<li><em>Think of it as a snapshot at one point in time.</em></li>
+<li>A snapshot at one point in time</li>
+<li>Estimate a statistic (e.g.&nbsp;mean)</li>
+<li><em>Measuring species richness in a forest</em></li>
 </ul>
-</div>
-<div class="fragment">
-<h4 id="monitoring-studies">Monitoring studies</h4>
+</div><div class="column" style="width:50%;">
+<h3 id="monitoring-studies">Monitoring studies</h3>
 <ul>
-<li>Estimate a <strong><em>change</em></strong> in statistic (same as above), and</li>
-<li><strong>temporal change</strong> across observations, i.e.&nbsp;before and after.</li>
-<li><em>E.g. measuring species richness in a forest <strong>before and after a fire</strong></em>.</li>
-<li><em>Think of it as taking multiple snapshots over time to see changes.</em></li>
+<li>Multiple snapshots over time</li>
+<li>Estimate a <strong>change</strong> in a statistic</li>
+<li><em>Measuring species richness <strong>before and after a fire</strong></em></li>
 </ul>
+</div></div>
 </div>
 </section>
 <section id="sampling-designs" class="slide level2">
 <h2>Sampling designs</h2>
-<div class="fragment">
-<h3 id="simple-random-sampling">Simple random sampling:</h3>
+<p>A sampling design specifies the rules for how we select units from a population. There are several approaches — here are two common ones.</p>
+<h3 id="simple-random-sampling">1. Simple random sampling</h3>
 <ul>
 <li>Each unit has an equal chance of being selected.</li>
 <li><strong>Randomly sample units from the entire population.</strong></li>
@@ -780,50 +292,52 @@ Januar Harianto
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/simple_random.png" class="quarto-figure quarto-figure-center" height="140"></p>
+<p><img data-src="images/simple_random.png" class="quarto-figure quarto-figure-center" height="180"></p>
 </figure>
 </div>
-</div>
-<div class="fragment">
-<h3 id="stratified-random-sampling">Stratified random sampling</h3>
+</section>
+<section id="sampling-designs-1" class="slide level2">
+<h2>Sampling designs</h2>
+<p>A sampling design specifies the rules for how we select units from a population. There are several approaches — here are two common ones.</p>
+<h3 id="stratified-random-sampling">2. Stratified random sampling</h3>
 <ul>
 <li>The population is first divided into <em>strata</em> (groups with similar characteristics).</li>
-<li><strong>Randomly sample units within each strata by simple random sampling.</strong></li>
+<li><strong>Randomly sample units within each stratum using simple random sampling.</strong></li>
 <li><em>Like separating students by year level, then randomly selecting some from each year.</em></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/stratified.png" class="quarto-figure quarto-figure-center" height="140"></p>
+<p><img data-src="images/stratified.png" class="quarto-figure quarto-figure-center" height="180"></p>
 </figure>
-</div>
 </div>
 </section>
 <section id="what-is-random-sampling" class="slide level2">
 <h2>What is “random” sampling?</h2>
 <div class="fragment">
-<p><strong><em>Random</em></strong> selection of <strong>finite</strong> or <strong>infinite</strong> population units.</p>
+<p>Random does <strong>not</strong> mean haphazard or arbitrary. In statistics, random sampling means every unit in the population has a known, non-zero chance of being selected.</p>
 </div>
 <div class="fragment fade-up">
-<blockquote>
-<p>What does <em>random</em> mean?</p>
-</blockquote>
+<h3 id="so-what-makes-a-sample-truly-random">So what makes a sample truly “random”?</h3>
 </div>
 <div class="fragment">
-<p>Within a population, <strong>all</strong> units have a &gt; 0 probability of being selected <em>i.e.&nbsp;everything has a chance to be selected</em>.</p>
+<p>Within a population, <strong>all</strong> units must have a probability greater than zero of being selected — that is, nothing can be excluded by design.</p>
 <ul>
-<li class="fragment">This <em>chance</em> is called the <strong>inclusion probability (<span class="math inline">\(\pi_i\)</span>)</strong>:
-<ul>
-<li class="fragment"><span class="math inline">\(\pi_i\)</span> is <strong>equal</strong> <em>within</em> a population unit – <em>i.e.&nbsp;all units have the same chance of being selected</em>.</li>
-<li class="fragment"><span class="math inline">\(\pi_i\)</span> <strong>not</strong> necessarily equal <em>between different</em> population units – <em>i.e.&nbsp;units from different groups may have different chances of being selected</em> - more on this later.</li>
-</ul></li>
+<li>For <strong>simple random sampling</strong>, this probability is <strong>equal</strong> for every unit.</li>
+<li>We call this probability the <strong>inclusion probability</strong>.</li>
 </ul>
 </div>
+</section>
+<section id="how-do-we-achieve-random-sampling" class="slide level2">
+<h2>How do we achieve random sampling?</h2>
 <div class="fragment">
-<h3 id="how-do-we-perform-random-sampling-in-real-life">How do we perform random sampling in real life?</h3>
+<p>Random sampling requires a formal procedure — not just picking samples that “feel” representative.</p>
+</div>
+<div class="fragment">
+<h3 id="tools-for-random-selection">Tools for random selection</h3>
 <ul>
-<li><strong>Random number generator</strong> (RNG) – e.g.&nbsp;R’s <code>sample()</code> function.</li>
-<li><strong>Random number table</strong> – e.g.&nbsp;<a href="https://www.nist.gov/system/files/documents/2017/04/28/AppenB-HB133-05-Z.pdf">Random number table</a> by the National Institute of Standards and Technology (NIST).</li>
-<li><em>Think of it like rolling dice or drawing names from a hat, but using mathematics to ensure true randomness.</em></li>
+<li><strong>Random number generator</strong> – for example, R’s <code>sample()</code> function</li>
+<li><strong>Random number table</strong> – a pre-generated list of random digits</li>
+<li>The selection method must be <strong>reproducible</strong> and <strong>unbiased</strong></li>
 </ul>
 </div>
 </section></section>
@@ -832,230 +346,145 @@ Januar Harianto
 <h1>Interpreting sampled data</h1>
 
 </section>
-<section id="we-know-that" class="slide level2">
-<h2>We know that…</h2>
-<h3 id="from-the-previous-lecture">From the previous lecture</h3>
-<ul>
-<li><strong>Sample mean</strong> is a good measure of central tendency (the “middle” of our data).</li>
-<li><strong>Sample variance</strong> is a good measure of dispersion (how spread out our data is).</li>
-<li><strong>Sample size</strong> affects the precision of the sample mean (more samples = more precise).</li>
-</ul>
+<section id="how-much-should-we-trust-an-estimate" class="slide level2">
+<h2>How much should we trust an estimate?</h2>
+<p>Two studies both report a mean soil carbon of 67 t/ha. One measured 5 sites, the other 500.</p>
 <div class="fragment">
-<h3 id="can-we-combine-all-of-the-above-in-a-single-statistic">Can we combine all of the above in a single statistic?</h3>
-<p>Yes! That’s where confidence intervals come in.</p>
+<p>Should we trust them equally?</p>
+</div>
+<div class="fragment">
+<h3 id="the-problem-of-a-single-estimate">The problem of a <em>single</em> estimate</h3>
+<p>A single number on its own does not tell us anything about uncertainty. We need a way to combine our estimate with how precise it is — and that is what confidence intervals do.</p>
 </div>
 </section></section>
 <section>
 <section id="confidence-intervals" class="title-slide slide level1 center">
 <h1>Confidence intervals</h1>
 
-<img data-src="images/ci-garfield.png" class="r-stretch"></section>
+<img data-src="images/ci-garfield.png" class="r-stretch quarto-figure-center"><p class="caption"><em>Garfield</em> by Jim Davis. © PAWS Inc.</p></section>
 <section id="combining-an-estimate-with-its-precision" class="slide level2">
 <h2>Combining an estimate with its precision</h2>
-<p>A <strong>confidence interval (CI)</strong> is:</p>
-<ul>
-<li>A range of values that likely contains the true population value</li>
-<li>Like saying “We’re 95% confident that out of 100 samples, 95 of them will be within this range”</li>
-<li>Crucial for <strong>hypothesis testing</strong> and <strong>estimation</strong>, the basis of statistical inference</li>
-</ul>
-<p>You will often see CIs in scientific papers, reports, and news articles.</p>
+<p>A <strong>confidence interval (CI)</strong> gives us a range of plausible values for the population parameter — not just a single best guess.</p>
+<p>It combines three things:</p>
+<ol type="1">
+<li>Our estimate (the sample mean)</li>
+<li>How precise that estimate is (the standard error)</li>
+<li>How confident we want to be (the critical value)</li>
+</ol>
 </section>
 <section id="calculating-confidence-intervals" class="slide level2">
 <h2>Calculating confidence intervals</h2>
-<h3 id="what-we-need">What we need</h3>
+<h3 id="the-three-ingredients-formally">The three ingredients, formally</h3>
 <ol type="1">
-<li><p><strong>Estimate</strong> of the population parameter, i.e.&nbsp;the <span style="color: #e64626;"><strong>sample mean</strong> (<span class="math inline">\(\bar{x}\)</span>)</span> - our best guess of the true value</p></li>
-<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">\(t_{n-1}\)</span>)</span> - a number that represents our chosen confidence level (like 95%)</p></li>
-<li><p><strong>Standard error</strong> of the estimate, <span style="color: #e64626;"><strong>SE of the mean</strong> (<span class="math inline">\(SE_{\bar{x}}\)</span>)</span> - tells us how precise our mean is</p></li>
+<li><p><span style="color: #e64626;"><strong>Sample mean</strong> (<span class="math inline">\(\bar{x}\)</span>)</span> — our estimate of the population parameter</p></li>
+<li><p><span style="color: #e64626;"><strong>Standard error of the mean</strong> (<span class="math inline">\(SE_{\bar{x}} = s / \sqrt{n}\)</span>)</span> — how precise that estimate is</p></li>
+<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">\(t_{n-1}\)</span>)</span> — from the <em>t</em>-distribution at our chosen confidence level (e.g.&nbsp;95%). We use <em>t</em> rather than the normal distribution because we estimate <span class="math inline">\(\sigma\)</span> from the sample.</p></li>
 </ol>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Think of standard error as “how much our sample means would vary if we took many different samples and calculated the mean each time”</p>
-</div>
-</div>
-</div>
-<p>All these (mean, standard error and critical value) are <em>combined</em> to form the confidence interval.</p>
 </section>
-<section id="breakdown" class="slide level2">
-<h2>Breakdown</h2>
-<p>In general, a CI has the form: <span class="math display">\[\text{estimate} \pm \text{margin of error}\]</span></p>
-<p>where the margin of error is a <strong>function of the standard error</strong> of the estimate:</p>
-<p><span class="math display">\[\text{estimate} \pm (\text{critical value} \times \text{standard error (estimate)})\]</span></p>
-<p>where the critical value is based on the <strong>sampling distribution</strong> of the estimate i.e.&nbsp;the <strong><span class="math inline">\(t\)</span>-distribution</strong>.</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>Think of margin of error like the “plus or minus” value you often see in survey results (±3%)</p>
-</div>
-</div>
-</div>
-</section>
-<section id="formula-for-95-confidence-interval-ci" class="slide level2">
-<h2>Formula for 95% Confidence Interval (CI)</h2>
+<section id="ci-formula" class="slide level2">
+<h2>CI formula</h2>
+<p>These three ingredients combine into:</p>
 <p><span class="math display">\[
 \bar{x} \pm \left(t_{n-1} \times \frac{s}{\sqrt{n}}\right)
 \]</span></p>
-<h3 id="step-by-step-calculation-by-hand">Step-by-step calculation by hand</h3>
-<ol type="1">
-<li><p>Calculate the sample mean, <span class="math inline">\(\bar{x}\)</span> (add all values and divide by number of samples)</p></li>
-<li><p>Calculate the sample standard deviation, <span class="math inline">\(s\)</span> (measure of spread in your data)</p></li>
-<li><p>Determine the standard error of the mean, <span class="math inline">\(SE_{\bar{x}} = \frac{s}{\sqrt{n}}\)</span> (how precise your mean estimate is)</p></li>
-<li><p>Look up the t-value, <span class="math inline">\(t_{n-1}\)</span>, from the t-distribution table for the 95% confidence level and <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
-<ul>
-<li>This is a specific number based on how many samples you have</li>
-</ul></li>
-<li><p>Compute the margin of error: <span class="math display">\[\text{Margin of Error} = t_{n-1} \times SE_{\bar{x}}\]</span></p></li>
-<li><p>Finally, the 95% CI is: <span class="math display">\[\bar{x} \pm (t_{n-1} \times SE_{\bar{x}})\]</span></p></li>
-</ol>
-<p><strong>You need to be able to calculate this by hand/calculator.</strong></p>
+<p>The <span class="math inline">\(t_{n-1} \times SE_{\bar{x}}\)</span> part is the <strong>margin of error</strong> — the “plus or minus” value you often see in survey results (±3%).</p>
+<div class="fragment">
+<p>To use this formula, we need to understand two things: <strong>degrees of freedom</strong> and the <strong><em>t</em>-distribution</strong>.</p>
+</div>
 </section>
-<section id="more-definitions" class="slide level2">
-<h2>More definitions</h2>
-<h3 id="degrees-of-freedom-df">Degrees of freedom (df)</h3>
+<section id="degrees-of-freedom" class="slide level2">
+<h2>Degrees of freedom</h2>
 <p>The number of values in a sample that are free to vary while still maintaining the same statistic.</p>
 <p><span class="math display">\[
 \text{df} = n - 1
 \]</span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of samples.</p>
+<p>where <span class="math inline">\(n\)</span> is the sample size.</p>
 <div class="fragment">
 <h3 id="example">Example</h3>
 <p>Imagine you have 4 numbers with a mean of 5:</p>
 <ul>
-<li>You can choose the first three numbers freely: 3, 10, and 7</li>
-<li>But the fourth number MUST be 0 to make the mean = 5
+<li>You can freely choose the first three numbers: 3, 10, and 7</li>
+<li>But the fourth number MUST be 0 to make the mean equal 5
 <ul>
 <li>(3 + 10 + 7 + 0) ÷ 4 = 5</li>
 </ul></li>
-<li>So only 3 numbers (n-1) can be freely chosen = 3 degrees of freedom</li>
+<li>So only 3 numbers (<span class="math inline">\(n - 1\)</span>) can be freely chosen = 3 degrees of freedom</li>
 </ul>
 </div>
 </section>
-<section id="more-definitions-1" class="slide level2">
-<h2>More definitions</h2>
-<h3 id="t-critical-value"><em>t</em>-critical value</h3>
-<p>A number that helps determine how wide to make your confidence interval.</p>
+<section id="the-t-distribution-and-critical-value" class="slide level2">
+<h2>The <em>t</em>-distribution and critical value</h2>
+<p>The <em>t</em>-distribution accounts for uncertainty when estimating from small samples. It looks like the normal “bell curve” but with <strong>heavier tails</strong> — more probability in the extremes.</p>
 <ul>
-<li>Based on your <strong>confidence level</strong> (e.g.&nbsp;95%) and <strong>sample size</strong></li>
-<li>Larger t-values = wider intervals = more confidence but less precision</li>
-<li>Smaller sample sizes = larger t-values (because we’re less certain)</li>
+<li>With few samples (small <span class="math inline">\(n\)</span>), the <em>t</em>-distribution is wider (more uncertainty)</li>
+<li>As sample size increases, it approaches the normal distribution</li>
+<li>The <strong>critical value</strong> <span class="math inline">\(t_{n-1}\)</span> comes from this distribution and determines how wide the CI is</li>
 </ul>
 </section>
-<section id="more-definitions-2" class="slide level2">
-<h2>More definitions</h2>
-<h3 id="t-distribution"><em>t</em>-distribution</h3>
-<p>A probability distribution that accounts for the uncertainty when estimating from small samples.</p>
-<ul>
-<li>Similar to the normal “bell curve” distribution, but with <strong>heavier tails</strong>.</li>
-<li>With few samples (small n), the t-distribution is wider, reflecting greater uncertainty.</li>
-<li>As sample size increases, the t-distribution gets closer to the normal distribution.</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="co"># Variable to control animation speed (higher values = slower transitions)</span></span>
-<span id="cb1-5"><a></a>anim_speed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-6"><a></a></span>
-<span id="cb1-7"><a></a><span class="co"># Create a sequence of x values for the plot</span></span>
-<span id="cb1-8"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a><span class="co"># Degrees of freedom: 1 through 5 then even numbers from 6 to 30</span></span>
-<span id="cb1-11"><a></a>dfs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">6</span>, <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
-<span id="cb1-12"><a></a></span>
-<span id="cb1-13"><a></a><span class="co"># Prepare data for t-distribution curves with a new "df" column</span></span>
-<span id="cb1-14"><a></a>t_curves <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(dfs, <span class="cf">function</span>(df) {</span>
-<span id="cb1-15"><a></a>    <span class="fu">data.frame</span>(</span>
-<span id="cb1-16"><a></a>        <span class="at">x =</span> x,</span>
-<span id="cb1-17"><a></a>        <span class="at">density =</span> <span class="fu">dt</span>(x, df),</span>
-<span id="cb1-18"><a></a>        <span class="at">df =</span> df</span>
-<span id="cb1-19"><a></a>    )</span>
-<span id="cb1-20"><a></a>}))</span>
-<span id="cb1-21"><a></a></span>
-<span id="cb1-22"><a></a><span class="co"># Create data for the standard normal distribution (static)</span></span>
-<span id="cb1-23"><a></a>normal_curve <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-24"><a></a>    <span class="at">x =</span> x,</span>
-<span id="cb1-25"><a></a>    <span class="at">density =</span> <span class="fu">dnorm</span>(x)</span>
-<span id="cb1-26"><a></a>)</span>
-<span id="cb1-27"><a></a></span>
-<span id="cb1-28"><a></a><span class="co"># Plot with gganimate: animate t-distribution curves (each frame shows one df)</span></span>
-<span id="cb1-29"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-30"><a></a>    <span class="co"># Static normal distribution curve</span></span>
-<span id="cb1-31"><a></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb1-32"><a></a>        <span class="at">data =</span> normal_curve, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density),</span>
-<span id="cb1-33"><a></a>        <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span></span>
-<span id="cb1-34"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-35"><a></a>    <span class="co"># t-distribution curve that will animate</span></span>
-<span id="cb1-36"><a></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb1-37"><a></a>        <span class="at">data =</span> t_curves, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density, <span class="at">color =</span> <span class="fu">factor</span>(df)),</span>
-<span id="cb1-38"><a></a>        <span class="at">size =</span> <span class="dv">1</span></span>
-<span id="cb1-39"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-40"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb1-41"><a></a>        <span class="at">title =</span> <span class="st">"Degrees of Freedom: {closest_state}"</span>,</span>
-<span id="cb1-42"><a></a>        <span class="at">x =</span> <span class="st">"x"</span>,</span>
-<span id="cb1-43"><a></a>        <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb1-44"><a></a>        <span class="at">subtitle =</span> <span class="st">"Dashed line = Normal distribution; Solid line = t-distribution"</span></span>
-<span id="cb1-45"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-46"><a></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-47"><a></a>    <span class="fu">transition_states</span>(<span class="at">states =</span> df, <span class="at">transition_length =</span> anim_speed, <span class="at">state_length =</span> anim_speed)</span>
-<span id="cb1-48"><a></a></span>
-<span id="cb1-49"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-t-distribution-in-action" class="slide level2">
+<h2>The <em>t</em>-distribution in action</h2>
 
+<img data-src="images/t-distribution.gif" class="quarto-figure quarto-figure-center r-stretch"><div class="cell">
+<details class="code-fold">
+<summary>Code used to generate the animation above</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>anim_speed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
+<span id="cb1-3"><a></a>dfs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">6</span>, <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>t_curves <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(dfs, <span class="cf">function</span>(df) {</span>
+<span id="cb1-6"><a></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dt</span>(x, df), <span class="at">df =</span> df)</span>
+<span id="cb1-7"><a></a>}))</span>
+<span id="cb1-8"><a></a></span>
+<span id="cb1-9"><a></a>normal_curve <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dnorm</span>(x))</span>
+<span id="cb1-10"><a></a></span>
+<span id="cb1-11"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-12"><a></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb1-13"><a></a>        <span class="at">data =</span> normal_curve, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density),</span>
+<span id="cb1-14"><a></a>        <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb1-15"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb1-16"><a></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb1-17"><a></a>        <span class="at">data =</span> t_curves, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density, <span class="at">color =</span> <span class="fu">factor</span>(df)),</span>
+<span id="cb1-18"><a></a>        <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb1-19"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb1-20"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb1-21"><a></a>        <span class="at">title =</span> <span class="st">"Degrees of Freedom: {closest_state}"</span>,</span>
+<span id="cb1-22"><a></a>        <span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb1-23"><a></a>        <span class="at">subtitle =</span> <span class="st">"Dashed = Normal distribution; Solid = t-distribution"</span></span>
+<span id="cb1-24"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb1-25"><a></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb1-26"><a></a>    <span class="fu">transition_states</span>(<span class="at">states =</span> df, <span class="at">transition_length =</span> anim_speed, <span class="at">state_length =</span> anim_speed)</span>
+<span id="cb1-27"><a></a></span>
+<span id="cb1-28"><a></a><span class="fu">anim_save</span>(<span class="st">"images/t-distribution.gif"</span>, p, <span class="at">width =</span> <span class="dv">800</span>, <span class="at">height =</span> <span class="dv">400</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-<img data-src="Lecture-02a_files/figure-revealjs/unnamed-chunk-2-1.gif" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Notice how the t-distribution (solid line) gets closer to the normal distribution (dashed line) as the degrees of freedom increase!</p>
-</div>
-</div>
+</section>
+<section id="step-by-step-calculation" class="slide level2">
+<h2>Step-by-step calculation</h2>
+<p><span class="math display">\[
+\bar{x} \pm \left(t_{n-1} \times \frac{s}{\sqrt{n}}\right)
+\]</span></p>
+<ol type="1">
+<li class="fragment">Calculate the sample mean, <span class="math inline">\(\bar{x}\)</span></li>
+<li class="fragment">Calculate the sample standard deviation, <span class="math inline">\(s\)</span></li>
+<li class="fragment">Determine the standard error of the mean, <span class="math inline">\(SE_{\bar{x}} = \frac{s}{\sqrt{n}}\)</span></li>
+<li class="fragment">Look up the <em>t</em>-critical value, <span class="math inline">\(t_{n-1}\)</span>, for 95% confidence and <span class="math inline">\(n - 1\)</span> degrees of freedom</li>
+<li class="fragment">Compute the margin of error: <span class="math inline">\(\text{ME} = t_{n-1} \times SE_{\bar{x}}\)</span></li>
+<li class="fragment">The 95% CI is: <span class="math inline">\(\bar{x} \pm \text{ME}\)</span></li>
+</ol>
+<div class="fragment">
+<p><strong>You need to be able to calculate this by hand or with a calculator.</strong></p>
 </div>
 </section>
 <section id="interpreting-confidence-intervals" class="slide level2">
 <h2>Interpreting confidence intervals</h2>
-<ul>
-<li>Confidence intervals depend on a specified <strong>confidence level</strong> (e.g.&nbsp;95%, 99%) with higher confidence levels producing wider intervals (i.e.&nbsp;more conservative).</li>
-<li>Another way to think of it: a <strong>range of values</strong> that we are fairly sure contains the true value of the population parameter.</li>
-</ul>
-<div class="fragment">
-<h3 id="fishing-analogy">Fishing analogy</h3>
 <p>A confidence interval is like a fishing net:</p>
 <ul>
 <li>A wider net (interval) is more likely to catch the fish (true value)</li>
 <li>A spear (single point estimate) is <em>less</em> likely to catch the fish</li>
 <li>The net width represents our uncertainty about the true value</li>
 </ul>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Important</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Common misunderstanding</strong>: A 95% CI does NOT mean there’s a 95% chance the true value is inside the interval. It means if you took 100 different samples and made 100 different CIs, about 95 of them would contain the true value.</p>
-</div>
-</div>
-</div>
-</div>
+<p>Of course, the true value does not move — it is our interval that shifts from sample to sample.</p>
+<p><strong>Common misunderstanding</strong>: A 95% CI does NOT mean there is a 95% chance the true value is inside the interval. It means that if you took 100 different samples and built 100 different CIs, about 95 of them would contain the true value.</p>
 </section></section>
 <section>
 <section id="data-story-soil-carbon" class="title-slide slide level1 center">
@@ -1065,7 +494,8 @@ Januar Harianto
 <section id="soil-carbon" class="slide level2">
 <h2>Soil carbon</h2>
 
-<img data-src="images/datastory.png" class="r-stretch"><p>Soil carbon content was measured at 7 locations across the area. The amount at each location was 48, 56, 90, 78, 86, 71, 42 tonnes per hectare (t/ha).</p>
+<img data-src="images/datastory.png" class="r-stretch"><p>A farmer wants to estimate the average soil carbon across their property. Budget allows for only 7 sites, so we use simple random sampling.</p>
+<p>The measurements: 48, 56, 90, 78, 86, 71, 42 t/ha.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>soil <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>, <span class="dv">42</span>)</span>
 <span id="cb2-2"><a></a>soil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1073,83 +503,44 @@ Januar Harianto
 <pre><code>[1] 48 56 90 78 86 71 42</code></pre>
 </div>
 </div>
-<p><strong>What is the mean soil carbon content and how confident are we in this estimate?</strong> How this is calculated depends on whether we used simple random sampling or stratified random sampling.</p>
-</section></section>
-<section>
-<section id="simple-random-sampling-1" class="title-slide slide level1 center">
-<h1>Simple random sampling</h1>
-<p>Assuming that the soil carbon content is a simple random sample from the population, let’s calculate the 95% confidence interval.</p>
+<p><strong>What is the mean soil carbon content and how confident are we in this estimate?</strong></p>
 </section>
 <section id="mean-and-95-ci" class="slide level2">
 <h2>Mean and 95% CI</h2>
-<h3 id="step-by-step-calculation">Step-by-step calculation</h3>
 <ol type="1">
-<li class="fragment">Mean: <span class="math inline">\(\bar{x} = \frac{48+56+90+78+86+71+42}{7} \approx 67.3\)</span> t/ha</li>
-<li class="fragment">Standard deviation: <span class="math inline">\(s \approx 18.84\)</span> t/ha
-<ul>
-<li class="fragment">This tells us how much individual measurements vary from the mean</li>
-</ul></li>
-<li class="fragment">Standard error: <span class="math inline">\(SE = \frac{s}{\sqrt{7}} \approx 7.12\)</span> t/ha
-<ul>
-<li class="fragment">This tells us how precise our estimate of the mean is</li>
-</ul></li>
-<li class="fragment">t-value (95% CI, df = 6): <span class="math inline">\(t_{0.975,6} \approx 2.447\)</span>
-<ul>
-<li class="fragment">This is the critical value for 95% confidence with 6 degrees of freedom</li>
-</ul></li>
-<li class="fragment">Margin of error: <span class="math inline">\(t_{0.975,6} \times SE \approx 17.43\)</span> t/ha
-<ul>
-<li class="fragment">This is the “plus or minus” value for our interval</li>
-</ul></li>
-<li class="fragment">Which gives: <span class="math inline">\((67.3 - 17.43, 67.3 + 17.43) = (49.87, 84.73)\)</span> t/ha</li>
+<li class="fragment">Mean: <span class="math inline">\(\bar{x} \approx 67.3\)</span> t/ha</li>
+<li class="fragment">Standard error: <span class="math inline">\(SE = s / \sqrt{n} \approx 7.12\)</span> t/ha</li>
+<li class="fragment"><em>t</em>-critical value (df = 6): <span class="math inline">\(t_{0.975,6} \approx 2.447\)</span></li>
+<li class="fragment">95% CI: <span class="math inline">\(67.3 \pm (2.447 \times 7.12) = (49.87,\ 84.73)\)</span> t/ha</li>
 </ol>
 <div class="fragment">
-<p>And so we report the mean soil carbon content as 67.3 t/ha with a 95% CI of (49.87, 84.73) t/ha or 67.3 ± 17.43 t/ha.</p>
-<p><em>Note: Our confidence interval is quite wide relative to our mean (about ±26% of the mean value), suggesting moderate uncertainty in our estimate.</em></p>
+<p>We report: <strong>67.3 t/ha with a 95% CI of (49.87, 84.73).</strong></p>
+<p>The interval is wide — about ±26% of the mean — so there is quite a bit of uncertainty in our estimate.</p>
 </div>
 </section>
-<section id="implementation-in-r" class="slide level2">
-<h2>Implementation in R</h2>
-<h3 id="manual-calculation">Manual calculation</h3>
+<section id="in-r" class="slide level2">
+<h2>In R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Step 1: Calculate the sample mean of soil carbon content</span></span>
-<span id="cb4-2"><a></a>mean_soil <span class="ot">&lt;-</span> <span class="fu">mean</span>(soil)</span>
-<span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a><span class="co"># Step 2: Calculate the sample standard deviation of soil carbon content</span></span>
-<span id="cb4-5"><a></a>sd_soil <span class="ot">&lt;-</span> <span class="fu">sd</span>(soil)</span>
-<span id="cb4-6"><a></a></span>
-<span id="cb4-7"><a></a><span class="co"># Step 3: Calculate the standard error of the mean (SE)</span></span>
-<span id="cb4-8"><a></a>se_soil <span class="ot">&lt;-</span> sd_soil <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(soil))</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a><span class="co"># Step 4: Calculate the t-critical value for a 95% confidence interval</span></span>
-<span id="cb4-11"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="fu">length</span>(soil) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="co"># Step 5: Calculate the margin of error (t_crit * SE)</span></span>
-<span id="cb4-14"><a></a><span class="co"># and then determine the lower and upper bounds of the confidence interval</span></span>
-<span id="cb4-15"><a></a>ci <span class="ot">&lt;-</span> mean_soil <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> (t_crit <span class="sc">*</span> se_soil)</span>
-<span id="cb4-16"><a></a></span>
-<span id="cb4-17"><a></a><span class="co"># Step 6: View the calculated 95% confidence interval</span></span>
-<span id="cb4-18"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mean_soil <span class="ot">&lt;-</span> <span class="fu">mean</span>(soil)</span>
+<span id="cb4-2"><a></a>se_soil <span class="ot">&lt;-</span> <span class="fu">sd</span>(soil) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(soil))</span>
+<span id="cb4-3"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="fu">length</span>(soil) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb4-4"><a></a>ci <span class="ot">&lt;-</span> mean_soil <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> (t_crit <span class="sc">*</span> se_soil)</span>
+<span id="cb4-5"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 49.84627 84.72516</code></pre>
 </div>
 </div>
-<p>There are ways to calculate this in R quickly, but it is important to understand the manual calculation.</p>
-<div class="callout callout-note callout-titled callout-style-default">
+<p>Most statistical functions in R already compute confidence intervals because of how central they are to inference. Understanding the manual calculation is still important — it is what these functions do behind the scenes.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Understanding the R code</strong></p>
+<p><strong>R connection</strong></p>
 </div>
 <div class="callout-content">
-<ul>
-<li><code>mean()</code> calculates the average value</li>
-<li><code>sd()</code> calculates the standard deviation</li>
-<li><code>qt(0.975, df=6)</code> gives the t-critical value (we use 0.975 because we want 95% in the middle, with 2.5% in each tail)</li>
-<li><code>c(-1, 1)</code> creates a vector to subtract and add the margin of error</li>
-</ul>
+<p><code>mean()</code>, <code>sd()</code>, and <code>qt()</code> are the key functions for CI calculations — you will use them in Lab 02.</p>
 </div>
 </div>
 </div>
@@ -1157,29 +548,23 @@ Januar Harianto
 <section id="questions" class="slide level2">
 <h2>Questions</h2>
 <ul>
-<li>How precise is our estimate?
-<ul>
-<li><em>Our margin of error is about 17.43 t/ha, which is roughly 26% of our mean value.</em></li>
-</ul></li>
-<li>How big a change must there be to estimate a statistically significant change?
-<ul>
-<li><em>Changes larger than about 17.43 t/ha would likely be statistically significant.</em></li>
-</ul></li>
-<li><strong>Can we sample more efficiently?</strong>
-<ul>
-<li><em>Yes! This is where stratified sampling becomes valuable.</em></li>
-</ul></li>
+<li>Our margin of error is about 17.43 t/ha. Is that precise enough?</li>
+<li>What drives CI width — sample size, variability, or both?</li>
+<li><strong>Can we do better with a smarter sampling design?</strong></li>
 </ul>
-<p>To answer these questions, we need to compare simple random sampling with a hypothetical stratified random sampling design (i.e.&nbsp;what if we had considered stratification before sampling?)</p>
 </section></section>
+<section>
 <section id="break-10-15-minutes" class="title-slide slide level1 center">
 <h1>Break (10-15 minutes)</h1>
-<p><em>When we return, we’ll explore how dividing our sampling area into meaningful groups can improve our precision.</em></p>
+<p><em>When we return, we will explore stratified random sampling, and how dividing our sampling area into meaningful groups can improve our precision.</em></p>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks</h2>
 <p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a></p>
 <!-- Links -->
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

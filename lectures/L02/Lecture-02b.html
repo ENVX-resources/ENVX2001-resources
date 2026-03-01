@@ -204,7 +204,7 @@ Januar Harianto
 </div>
 </div>
 
-  <p class="date">Feb 2026</p>
+  <p class="date">Mar 2026</p>
 </section>
 <section id="welcome-back" class="title-slide slide level1 center">
 <h1>Welcome back!</h1>
@@ -228,13 +228,13 @@ Januar Harianto
 <p><strong>Each unit has an equal chance of being selected.</strong></p>
 </div>
 <div class="fragment">
-<h3 id="not-always-the-case-but-still-a-good-technique.">Not <em>always</em> the case, but still a good technique.</h3>
+<h3 id="not-always-the-best-approach-but-still-a-good-starting-point.">Not always the best approach, but still a good starting point.</h3>
 </div>
 </section>
 <section id="simple-random-sampling-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Simple random sampling</h2>
 <p><strong>Each unit has an equal chance of being selected.</strong></p>
-<h3 id="not-always-the-case-but-still-a-good-technique.-1">Not <em>always</em> the case, but still a good technique.</h3>
+<h3 id="not-always-the-best-approach-but-still-a-good-starting-point.-1">Not always the best approach, but still a good starting point.</h3>
 </section>
 <section id="simple-random-sampling-potential-problems" class="slide level2">
 <h2>Simple random sampling: potential problems</h2>
@@ -290,7 +290,7 @@ Januar Harianto
 <h3 id="different-land-types">Different land types</h3>
 <ul>
 <li>Land type A covers 62% of the area, land type B covers 38%</li>
-<li>Type A has a <strong>higher</strong> chance of being selected with simple random sampling</li>
+<li>With simple random sampling, we would expect more samples from Type A simply because it covers a larger area — but this is not guaranteed</li>
 <li><strong>Can we use this information to our advantage?</strong></li>
 </ul>
 </div>
@@ -386,6 +386,19 @@ Januar Harianto
 </ol>
 <p>All of these steps must account for our stratified design.</p>
 </div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>From here we use <span class="math inline">\(\bar{y}\)</span> rather than <span class="math inline">\(\bar{x}\)</span> for the sample mean — this is conventional in sampling design literature and helps distinguish stratified estimates from simple estimates.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="the-statistical-workflow-for-stratified-sampling" class="slide level2">
 <h2>The statistical workflow for stratified sampling</h2>
@@ -415,7 +428,7 @@ Januar Harianto
 <ul>
 <li>We need to “weigh” the estimates from each stratum to account for the different stratum sizes and inclusion probabilities.</li>
 <li>Most of the time, we use the stratum size as the weight to calculate <strong>weighted estimates</strong>.</li>
-<li>The <em>overall</em> population estimate is the sum of the weighted estimates from each stratum, i.e.&nbsp;we <em>pool the individual strata information into a single, overall population estimate</em>.</li>
+<li>The <em>overall</em> population estimate is the sum of the weighted estimates from each stratum, that is, we <em>pool the individual strata information into a single, overall population estimate</em>.</li>
 </ul>
 <div class="fragment">
 <h3 id="example">Example</h3>
@@ -491,7 +504,7 @@ Januar Harianto
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>What’s different?</strong></p>
+<p><strong>What is different?</strong></p>
 </div>
 <div class="callout-content">
 <ul>
@@ -510,12 +523,12 @@ Januar Harianto
 <p>where <span class="math inline">\(n\)</span> is the total number of samples and <span class="math inline">\(L\)</span> is the number of strata.</p>
 <div class="fragment">
 <ul>
-<li>The degrees of freedom tells us how much “free information” we have for making estimates</li>
-<li>For stratified sampling, we lose one degree of freedom for each stratum</li>
-<li><strong>Example:</strong> If we have 12 samples in 3 strata:
+<li>The degrees of freedom tells us how much independent information we have for estimating uncertainty</li>
+<li>For stratified sampling, we lose one degree of freedom for each stratum mean we estimate</li>
+<li><strong>Example:</strong> If we have 12 samples across 3 strata:
 <ul>
-<li>The degrees of freedom is <span class="math inline">\(12 - 3 = 9\)</span></li>
-<li>Think of it this way: 9 samples can be placed anywhere, but we must have at least 1 sample in each of the 3 strata</li>
+<li><span class="math inline">\(df = 12 - 3 = 9\)</span></li>
+<li>We lose 3 degrees of freedom because we estimate one mean per stratum</li>
 </ul></li>
 </ul>
 </div>
@@ -538,7 +551,7 @@ Januar Harianto
 <p>where <span class="math inline">\(L\)</span> is the number of strata, <span class="math inline">\(n\)</span> is the total number of samples, and <span class="math inline">\(\bar y_{s}\)</span> is the weighted mean of the strata.</p>
 <p><strong>In simple terms:</strong></p>
 <ul>
-<li class="fragment">We’re creating a range where we’re 95% confident the true population mean lies</li>
+<li class="fragment">We are creating a range where we are 95% confident the true population mean lies</li>
 <li class="fragment">We start with our best estimate (the pooled mean <span class="math inline">\(\bar y_{s}\)</span>)</li>
 <li class="fragment">We add and subtract a “margin of error” (which depends on our sample size and variability)</li>
 <li class="fragment">The margin of error = <span class="math inline">\(t\)</span>-critical value × standard error</li>
@@ -625,10 +638,12 @@ Januar Harianto
 <section id="visual-comparison-of-95-confidence-intervals" class="slide level2">
 <h2>Visual comparison of 95% confidence intervals</h2>
 <div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Creating a visual comparison of confidence intervals</span></span>
 <span id="cb11-2"><a></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> Design, <span class="at">y =</span> Mean)) <span class="sc">+</span></span>
 <span id="cb11-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> L95, <span class="at">ymax =</span> U95), <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb11-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"95% Confidence Intervals by Sampling Design"</span>,</span>
 <span id="cb11-6"><a></a>       <span class="at">y =</span> <span class="st">"Soil Carbon (tonnes/ha)"</span>,</span>
 <span id="cb11-7"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
@@ -636,6 +651,7 @@ Januar Harianto
 <span id="cb11-9"><a></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">55</span>, </span>
 <span id="cb11-10"><a></a>           <span class="at">label =</span> <span class="st">"Stratified sampling gives a</span><span class="sc">\n</span><span class="st">narrower confidence interval</span><span class="sc">\n</span><span class="st">(more precise estimate)"</span>, </span>
 <span id="cb11-11"><a></a>           <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 </div>
 <img data-src="Lecture-02b_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
@@ -734,7 +750,7 @@ Januar Harianto
 <p><strong>In simple terms:</strong></p>
 <ul>
 <li>The uncertainty in our change estimate comes from the uncertainties in both measurements</li>
-<li>However, if we sample the same sites twice, they are related to each other (covariance)</li>
+<li>However, if we sample the same sites twice, they are related to each other (covariance — we will define this shortly)</li>
 <li>This relationship usually reduces the overall uncertainty in our change estimate</li>
 </ul>
 </div>
@@ -788,25 +804,37 @@ Januar Harianto
 <ul>
 <li>We have our best estimate of the change (the difference between the two means)</li>
 <li>We add and subtract a margin of error to create a range</li>
-<li>We’re 95% confident that the true change falls within this range</li>
+<li>We are 95% confident that the true change falls within this range</li>
 </ul>
 </div>
 <div class="fragment">
 <h3 id="the-standard-error-of-the-change-sedelta-bar-y">The standard error of the change <span class="math inline">\(SE(\Delta \bar y)\)</span></h3>
 <ul>
 <li>This tells us how precise our estimate of the change is</li>
-<li>It’s complicated to calculate by hand, especially when we visit the same sites twice</li>
+<li>It is complicated to calculate by hand, especially when we visit the same sites twice</li>
 <li>If we visit the same sites twice, we need to account for their relationship (covariance)</li>
 </ul>
 </div>
 <div class="fragment">
-<p><strong>Good news!</strong> You don’t need to calculate this by hand!</p>
+<p><strong>Good news!</strong> You do not need to calculate this by hand.</p>
 <ul>
-<li>R can do these calculations for you using the <code>t.test()</code> function</li>
-<li>For same sites: use <code>paired = TRUE</code> option</li>
-<li>For different sites: use <code>paired = FALSE</code> option</li>
-<li>We’ll practice this in the lab!</li>
+<li>R handles these calculations using the <code>t.test()</code> function</li>
+<li>For same sites: use <code>paired = TRUE</code></li>
+<li>For different sites: use <code>paired = FALSE</code></li>
 </ul>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>R connection</strong></p>
+</div>
+<div class="callout-content">
+<p><code>t.test()</code> with <code>paired = TRUE</code> performs a paired <em>t</em>-test — you will use this in Lab 02 to analyse monitoring data.</p>
+</div>
+</div>
 </div>
 </section>
 <section id="thanks" class="slide level2">

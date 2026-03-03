@@ -187,6 +187,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -217,17 +219,18 @@ Januar Harianto
 <li><label><input type="checkbox"><strong>Population vs.&nbsp;sample</strong>: the complete set vs.&nbsp;the subset we measure</label></li>
 <li><label><input type="checkbox"><strong>Parameters</strong> (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) vs.&nbsp;<strong>statistics</strong> (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>)</label></li>
 <li><label><input type="checkbox"><strong>Central tendency and spread</strong>: mean, variance, standard deviation</label></li>
-<li><label><input type="checkbox"><strong>Standard error</strong>: how precisely we estimate the mean — decreases with larger samples</label></li>
-<li><label><input type="checkbox"><strong>Confidence intervals</strong> – we will build on last week’s introduction today</label></li>
+<li><label><input type="checkbox"><strong>Standard error</strong>: how precisely we estimate the mean (decreases with larger samples)</label></li>
+<li><label><input type="checkbox"><strong>Confidence intervals</strong>: we will build on last week’s introduction today</label></li>
 </ul>
 </section></section>
 <section>
 <section id="today" class="title-slide slide level1 center">
 <h1>Today</h1>
-
+<p>Sampling designs… or why confidence intervals are important in stats</p>
 </section>
 <section id="by-the-end-of-today" class="slide level2">
 <h2>By the end of today</h2>
+<p>We will:</p>
 <ol type="1">
 <li>Calculate and interpret confidence intervals for a population mean</li>
 <li>Compare simple random and stratified random sampling designs</li>
@@ -235,12 +238,20 @@ Januar Harianto
 </ol>
 </section></section>
 <section>
-<section id="observational-studies" class="title-slide slide level1 center">
-<h1>Observational studies</h1>
+<section id="soil-carbon" class="title-slide slide level1 center">
+<h1>Soil carbon</h1>
 
 </section>
-<section id="overview" class="slide level2">
-<h2>Overview</h2>
+<section id="estimating-soil-carbon" class="slide level2">
+<h2>Estimating soil carbon</h2>
+
+<img data-src="images/datastory.png" class="r-stretch"><p>A farmer wants to estimate the average soil carbon on their property to apply for a carbon credit scheme. Their budget allows for 7 measurement sites.</p>
+<p><strong>Where should they sample, and how confident can they be in the result?</strong></p>
+</section>
+<section id="observational-studies" class="slide level2">
+<h2>Observational studies</h2>
+<p>The farmer cannot change their land, so they measure it as it is. This makes their study an <strong>observational study</strong>.</p>
+<div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
 <h3 id="observational-study">Observational study</h3>
@@ -257,11 +268,15 @@ Januar Harianto
 <li>E.g. clinical trials, field experiments</li>
 </ul>
 </div></div>
-<p>We focus on observational studies this week to understand how sampling studies work in practice.</p>
+</div>
 </section>
-<section id="observational-studies-two-common-types" class="slide level2">
-<h2>Observational studies: two common types</h2>
-<p>We do not manipulate anything — we measure what is already there.</p>
+<section id="two-types-of-observational-study" class="slide level2">
+<h2>Two types of observational study</h2>
+<ul>
+<li>Right now, the farmer is taking a single snapshot of their property, a <strong>survey</strong>.</li>
+<li>Later, they might return to measure again over several years, a <strong>monitoring study</strong>.</li>
+<li>We will come back to monitoring in the second half.</li>
+</ul>
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -280,37 +295,29 @@ Januar Harianto
 </ul>
 </div></div>
 </div>
+</section></section>
+<section>
+<section id="choosing-where-to-sample" class="title-slide slide level1 center">
+<h1>Choosing where to sample</h1>
+
 </section>
-<section id="sampling-designs" class="slide level2">
-<h2>Sampling designs</h2>
-<p>A sampling design specifies the rules for how we select units from a population. There are several approaches — here are two common ones.</p>
-<h3 id="simple-random-sampling">1. Simple random sampling</h3>
+<section id="simple-random-sampling" class="slide level2">
+<h2>Simple random sampling</h2>
+<p>The farmer needs a plan for choosing their 7 sites. The simplest approach: <strong>simple random sampling</strong>.</p>
 <ul>
 <li>Each unit has an equal chance of being selected.</li>
 <li><strong>Randomly sample units from the entire population.</strong></li>
 <li><em>Like putting all names in a hat and drawing some out randomly.</em></li>
 </ul>
 </section>
-<section id="sampling-designs-1" class="slide level2">
-<h2>Sampling designs</h2>
-<p>A sampling design specifies the rules for how we select units from a population. There are several approaches — here are two common ones.</p>
-<h3 id="stratified-random-sampling">2. Stratified random sampling</h3>
-<ul>
-<li>The population is first divided into <em>strata</em> (groups with similar characteristics).</li>
-<li><strong>Randomly sample units within each stratum using simple random sampling.</strong></li>
-<li><em>Like separating students by year level, then randomly selecting some from each year.</em></li>
-</ul>
-</section>
 <section id="what-is-random-sampling" class="slide level2">
 <h2>What is “random” sampling?</h2>
-<div class="fragment">
-<p>Random does <strong>not</strong> mean haphazard or arbitrary. In statistics, random sampling means every unit in the population has a known, non-zero chance of being selected.</p>
-</div>
+<p>The farmer might be tempted to just walk to convenient spots, but that would bias the sample. Convenient locations are often atypical: near paths, buildings, or water sources.</p>
 <div class="fragment fade-up">
 <h3 id="so-what-makes-a-sample-truly-random">So what makes a sample truly “random”?</h3>
 </div>
 <div class="fragment">
-<p>Within a population, <strong>all</strong> units must have a probability greater than zero of being selected — that is, nothing can be excluded by design.</p>
+<p>Within a population, <strong>all</strong> units must have a probability greater than zero of being selected. Nothing can be excluded by design.</p>
 <ul>
 <li>For <strong>simple random sampling</strong>, this probability is <strong>equal</strong> for every unit.</li>
 <li>We call this probability the <strong>inclusion probability</strong>.</li>
@@ -320,21 +327,47 @@ Januar Harianto
 <section id="how-do-we-achieve-random-sampling" class="slide level2">
 <h2>How do we achieve random sampling?</h2>
 <div class="fragment">
-<p>Random sampling requires a formal procedure — not just picking samples that “feel” representative.</p>
+<p>Random sampling requires a formal procedure, not just picking samples that “feel” representative.</p>
 </div>
 <div class="fragment">
 <h3 id="tools-for-random-selection">Tools for random selection</h3>
 <ul>
-<li><strong>Random number generator</strong> – for example, R’s <code>sample()</code> function</li>
-<li><strong>Random number table</strong> – a pre-generated list of random digits</li>
+<li><strong>Random number generator</strong>: for example, R’s <code>sample()</code> function</li>
+<li><strong>Random number table</strong>: a pre-generated list of random digits</li>
 <li>The selection method must be <strong>reproducible</strong> and <strong>unbiased</strong></li>
 </ul>
 </div>
+<div class="fragment">
+<p>Using R’s <code>sample()</code> function, the farmer randomly selects 7 grid cells from a map of their property.</p>
+</div>
+</section>
+<section id="the-farmer-collects-data" class="slide level2">
+<h2>The farmer collects data</h2>
+<p>The farmer uses simple random sampling to select 7 grid cells, then measures soil carbon at each site.</p>
+<p>The measurements: 48, 56, 90, 78, 86, 71, 42 t/ha.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>soil <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>, <span class="dv">42</span>)</span>
+<span id="cb1-2"><a></a>soil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48 56 90 78 86 71 42</code></pre>
+</div>
+</div>
 </section></section>
 <section>
-<section id="interpreting-sampled-data" class="title-slide slide level1 center">
-<h1>Interpreting sampled data</h1>
+<section id="how-confident-is-the-estimate" class="title-slide slide level1 center">
+<h1>How confident is the estimate?</h1>
 
+</section>
+<section id="the-farmers-mean" class="slide level2">
+<h2>The farmer’s mean</h2>
+<p>The farmer calculates the mean:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">mean</span>(soil)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 67.28571</code></pre>
+</div>
+</div>
+<p>The result is 67.3 t/ha. But is this number the <em>true</em> average for the whole property?</p>
 </section>
 <section id="how-much-should-we-trust-an-estimate" class="slide level2">
 <h2>How much should we trust an estimate?</h2>
@@ -344,7 +377,7 @@ Januar Harianto
 </div>
 <div class="fragment">
 <h3 id="the-problem-of-a-single-estimate">The problem of a <em>single</em> estimate</h3>
-<p>A single number on its own does not tell us anything about uncertainty. We need a way to combine our estimate with how precise it is — and that is what confidence intervals do.</p>
+<p>A single number on its own does not tell us anything about uncertainty. We need a way to combine our estimate with how precise it is. That is what confidence intervals do.</p>
 </div>
 </section></section>
 <section>
@@ -354,7 +387,7 @@ Januar Harianto
 <img data-src="images/ci-garfield.png" class="r-stretch quarto-figure-center"><p class="caption"><em>Garfield</em> by Jim Davis. © PAWS Inc.</p></section>
 <section id="combining-an-estimate-with-its-precision" class="slide level2">
 <h2>Combining an estimate with its precision</h2>
-<p>A <strong>confidence interval (CI)</strong> gives us a range of plausible values for the population parameter — not just a single best guess.</p>
+<p>A <strong>confidence interval (CI)</strong> gives us a range of plausible values for the population parameter, rather than a single best guess.</p>
 <p>It combines three things:</p>
 <ol type="1">
 <li>Our estimate (the sample mean)</li>
@@ -366,9 +399,9 @@ Januar Harianto
 <h2>Calculating confidence intervals</h2>
 <h3 id="the-three-ingredients-formally">The three ingredients, formally</h3>
 <ol type="1">
-<li><p><span style="color: #e64626;"><strong>Sample mean</strong> (<span class="math inline">\(\bar{x}\)</span>)</span> — our estimate of the population parameter</p></li>
-<li><p><span style="color: #e64626;"><strong>Standard error of the mean</strong> (<span class="math inline">\(SE_{\bar{x}} = s / \sqrt{n}\)</span>)</span> — how precise that estimate is</p></li>
-<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">\(t_{n-1}\)</span>)</span> — from the <em>t</em>-distribution at our chosen confidence level (e.g.&nbsp;95%). We use <em>t</em> rather than the normal distribution because we estimate <span class="math inline">\(\sigma\)</span> from the sample.</p></li>
+<li><p><span style="color: #e64626;"><strong>Sample mean</strong> (<span class="math inline">\(\bar{x}\)</span>)</span>: our estimate of the population parameter</p></li>
+<li><p><span style="color: #e64626;"><strong>Standard error of the mean</strong> (<span class="math inline">\(SE_{\bar{x}} = s / \sqrt{n}\)</span>)</span>: how precise that estimate is</p></li>
+<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">\(t_{n-1}\)</span>)</span>: from the <em>t</em>-distribution at our chosen confidence level (e.g.&nbsp;95%). We use <em>t</em> rather than the normal distribution because we estimate <span class="math inline">\(\sigma\)</span> from the sample.</p></li>
 </ol>
 </section>
 <section id="ci-formula" class="slide level2">
@@ -377,74 +410,73 @@ Januar Harianto
 <p><span class="math display">\[
 \bar{x} \pm \left(t_{n-1} \times \frac{s}{\sqrt{n}}\right)
 \]</span></p>
-<p>The <span class="math inline">\(t_{n-1} \times SE_{\bar{x}}\)</span> part is the <strong>margin of error</strong> — the “plus or minus” value you often see in survey results (±3%).</p>
+<p>The <span class="math inline">\(t_{n-1} \times SE_{\bar{x}}\)</span> part is the <strong>margin of error</strong>, the “plus or minus” value you often see in survey results (±3%).</p>
 <div class="fragment">
 <p>To use this formula, we need to understand two things: <strong>degrees of freedom</strong> and the <strong><em>t</em>-distribution</strong>.</p>
 </div>
 </section>
 <section id="degrees-of-freedom" class="slide level2">
 <h2>Degrees of freedom</h2>
-<p>The number of values in a sample that are free to vary while still maintaining the same statistic.</p>
+<p>The farmer estimated one thing from their sample: the mean. That uses up one <strong>degree of freedom</strong>:</p>
 <p><span class="math display">\[
 \text{df} = n - 1
 \]</span></p>
-<p>where <span class="math inline">\(n\)</span> is the sample size.</p>
+<p>For the farmer: <span class="math inline">\(df = 7 - 1 = 6\)</span>. This number determines which <em>t</em>-distribution we use, and therefore how wide the CI is.</p>
 <div class="fragment">
-<h3 id="example">Example</h3>
+<h3 id="why-n---1">Why <span class="math inline">\(n - 1\)</span>?</h3>
 <p>Imagine you have 4 numbers with a mean of 5:</p>
 <ul>
 <li>You can freely choose the first three numbers: 3, 10, and 7</li>
-<li>But the fourth number MUST be 0 to make the mean equal 5
-<ul>
-<li>(3 + 10 + 7 + 0) ÷ 4 = 5</li>
-</ul></li>
+<li>But the fourth number MUST be 0 to make the mean equal 5: <span class="math inline">\((3 + 10 + 7 + 0) \div 4 = 5\)</span></li>
 <li>So only 3 numbers (<span class="math inline">\(n - 1\)</span>) can be freely chosen = 3 degrees of freedom</li>
 </ul>
 </div>
 </section>
-<section id="the-t-distribution-and-critical-value" class="slide level2">
-<h2>The <em>t</em>-distribution and critical value</h2>
-<p>The <em>t</em>-distribution accounts for uncertainty when estimating from small samples. It looks like the normal “bell curve” but with <strong>heavier tails</strong> — more probability in the extremes.</p>
+<section id="why-not-use-the-normal-distribution" class="slide level2">
+<h2>Why not use the normal distribution?</h2>
+<p>The farmer only has 7 samples, so they do not know the true population standard deviation. They have to estimate it from the sample, and that adds uncertainty.</p>
+<p>The <em>t</em>-distribution accounts for this extra uncertainty. It has <strong>heavier tails</strong> than the normal, meaning more probability in the extremes.</p>
 <ul>
-<li>With few samples (small <span class="math inline">\(n\)</span>), the <em>t</em>-distribution is wider (more uncertainty)</li>
-<li>As sample size increases, it approaches the normal distribution</li>
-<li>The <strong>critical value</strong> <span class="math inline">\(t_{n-1}\)</span> comes from this distribution and determines how wide the CI is</li>
+<li class="fragment">The farmer’s <span class="math inline">\(df = 6\)</span> gives a critical value of <strong>2.447</strong> (compared to 1.96 from the normal)</li>
+<li class="fragment">This makes the CI wider, which is more honest about how uncertain a small sample really is</li>
+<li class="fragment">With larger samples, the <em>t</em> and normal distributions converge, and the difference stops mattering around <span class="math inline">\(n = 30\)</span></li>
 </ul>
 </section>
 <section id="the-t-distribution-in-action" class="slide level2">
 <h2>The <em>t</em>-distribution in action</h2>
+<p>The solid curve is the <em>t</em>-distribution; the dashed curve is the normal. At <span class="math inline">\(df = 6\)</span> (the farmer’s case), the tails are noticeably heavier. As <span class="math inline">\(df\)</span> increases, the two curves converge.</p>
 
 <img data-src="images/t-distribution.gif" class="quarto-figure quarto-figure-center r-stretch"><div class="cell">
 <details class="code-fold">
 <summary>Code used to generate the animation above</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>anim_speed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
-<span id="cb1-3"><a></a>dfs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">6</span>, <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
-<span id="cb1-4"><a></a></span>
-<span id="cb1-5"><a></a>t_curves <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(dfs, <span class="cf">function</span>(df) {</span>
-<span id="cb1-6"><a></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dt</span>(x, df), <span class="at">df =</span> df)</span>
-<span id="cb1-7"><a></a>}))</span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a>normal_curve <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dnorm</span>(x))</span>
-<span id="cb1-10"><a></a></span>
-<span id="cb1-11"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-12"><a></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb1-13"><a></a>        <span class="at">data =</span> normal_curve, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density),</span>
-<span id="cb1-14"><a></a>        <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb1-15"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-16"><a></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb1-17"><a></a>        <span class="at">data =</span> t_curves, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density, <span class="at">color =</span> <span class="fu">factor</span>(df)),</span>
-<span id="cb1-18"><a></a>        <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb1-19"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-20"><a></a>    <span class="fu">labs</span>(</span>
-<span id="cb1-21"><a></a>        <span class="at">title =</span> <span class="st">"Degrees of Freedom: {closest_state}"</span>,</span>
-<span id="cb1-22"><a></a>        <span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb1-23"><a></a>        <span class="at">subtitle =</span> <span class="st">"Dashed = Normal distribution; Solid = t-distribution"</span></span>
-<span id="cb1-24"><a></a>    ) <span class="sc">+</span></span>
-<span id="cb1-25"><a></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-26"><a></a>    <span class="fu">transition_states</span>(<span class="at">states =</span> df, <span class="at">transition_length =</span> anim_speed, <span class="at">state_length =</span> anim_speed)</span>
-<span id="cb1-27"><a></a></span>
-<span id="cb1-28"><a></a><span class="fu">anim_save</span>(<span class="st">"images/t-distribution.gif"</span>, p, <span class="at">width =</span> <span class="dv">800</span>, <span class="at">height =</span> <span class="dv">400</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>anim_speed <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
+<span id="cb5-3"><a></a>dfs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">seq</span>(<span class="dv">6</span>, <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">2</span>))</span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a>t_curves <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(dfs, <span class="cf">function</span>(df) {</span>
+<span id="cb5-6"><a></a>    <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dt</span>(x, df), <span class="at">df =</span> df)</span>
+<span id="cb5-7"><a></a>}))</span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a>normal_curve <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dnorm</span>(x))</span>
+<span id="cb5-10"><a></a></span>
+<span id="cb5-11"><a></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-12"><a></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb5-13"><a></a>        <span class="at">data =</span> normal_curve, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density),</span>
+<span id="cb5-14"><a></a>        <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb5-15"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb5-16"><a></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb5-17"><a></a>        <span class="at">data =</span> t_curves, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> density, <span class="at">color =</span> <span class="fu">factor</span>(df)),</span>
+<span id="cb5-18"><a></a>        <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb5-19"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb5-20"><a></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-21"><a></a>        <span class="at">title =</span> <span class="st">"Degrees of Freedom: {closest_state}"</span>,</span>
+<span id="cb5-22"><a></a>        <span class="at">x =</span> <span class="st">"x"</span>, <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb5-23"><a></a>        <span class="at">subtitle =</span> <span class="st">"Dashed = Normal distribution; Solid = t-distribution"</span></span>
+<span id="cb5-24"><a></a>    ) <span class="sc">+</span></span>
+<span id="cb5-25"><a></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb5-26"><a></a>    <span class="fu">transition_states</span>(<span class="at">states =</span> df, <span class="at">transition_length =</span> anim_speed, <span class="at">state_length =</span> anim_speed)</span>
+<span id="cb5-27"><a></a></span>
+<span id="cb5-28"><a></a><span class="fu">anim_save</span>(<span class="st">"images/t-distribution.gif"</span>, p, <span class="at">width =</span> <span class="dv">800</span>, <span class="at">height =</span> <span class="dv">400</span>, <span class="at">res =</span> <span class="dv">150</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -473,30 +505,41 @@ Januar Harianto
 <li>A spear (single point estimate) is <em>less</em> likely to catch the fish</li>
 <li>The net width represents our uncertainty about the true value</li>
 </ul>
-<p>Of course, the true value does not move — it is our interval that shifts from sample to sample.</p>
+<p>Of course, the true value does not move. It is our interval that shifts from sample to sample.</p>
 <p><strong>Common misunderstanding</strong>: A 95% CI does NOT mean there is a 95% chance the true value is inside the interval. It means that if you took 100 different samples and built 100 different CIs, about 95 of them would contain the true value.</p>
-</section></section>
-<section>
-<section id="data-story-soil-carbon" class="title-slide slide level1 center">
-<h1>Data story: soil carbon</h1>
-
 </section>
-<section id="soil-carbon" class="slide level2">
-<h2>Soil carbon</h2>
-
-<img data-src="images/datastory.png" class="r-stretch"><p>A farmer wants to estimate the average soil carbon across their property. Budget allows for only 7 sites, so we use simple random sampling.</p>
-<p>The measurements: 48, 56, 90, 78, 86, 71, 42 t/ha.</p>
+<section id="what-does-95-confidence-look-like" class="slide level2">
+<h2>What does 95% confidence look like?</h2>
+<style>
+#what-does-95-confidence-look-like .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>soil <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">56</span>, <span class="dv">90</span>, <span class="dv">78</span>, <span class="dv">86</span>, <span class="dv">71</span>, <span class="dv">42</span>)</span>
-<span id="cb2-2"><a></a>soil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 48 56 90 78 86 71 42</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="338" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 337;"><span id="cb6-338"><a></a><span class="im">import</span> { ciCoverageWidget } <span class="im">from</span> <span class="st">"../../assets/js/ci-widget.js"</span></span>
+<span id="cb6-339"><a></a><span class="fu">ciCoverageWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
 </div>
-<p><strong>What is the mean soil carbon content and how confident are we in this estimate?</strong></p>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>Each click draws a new random sample from the population, computes a 95% CI, and checks whether it captures the true mean.</p>
 </section>
-<section id="mean-and-95-ci" class="slide level2">
-<h2>Mean and 95% CI</h2>
+<section id="the-farmers-95-confidence-interval" class="slide level2">
+<h2>The farmer’s 95% confidence interval</h2>
+<p>Applying the CI formula to the farmer’s data:</p>
 <ol type="1">
 <li class="fragment">Mean: <span class="math inline">\(\bar{x} \approx 67.3\)</span> t/ha</li>
 <li class="fragment">Standard error: <span class="math inline">\(SE = s / \sqrt{n} \approx 7.12\)</span> t/ha</li>
@@ -505,48 +548,61 @@ Januar Harianto
 </ol>
 <div class="fragment">
 <p>We report: <strong>67.3 t/ha with a 95% CI of (49.87, 84.73).</strong></p>
-<p>The interval is wide — about ±26% of the mean — so there is quite a bit of uncertainty in our estimate.</p>
+<p>The interval is wide (about ±26% of the mean), so there is quite a bit of uncertainty in our estimate.</p>
 </div>
 </section>
 <section id="in-r" class="slide level2">
 <h2>In R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>mean_soil <span class="ot">&lt;-</span> <span class="fu">mean</span>(soil)</span>
-<span id="cb4-2"><a></a>se_soil <span class="ot">&lt;-</span> <span class="fu">sd</span>(soil) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(soil))</span>
-<span id="cb4-3"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="fu">length</span>(soil) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb4-4"><a></a>ci <span class="ot">&lt;-</span> mean_soil <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> (t_crit <span class="sc">*</span> se_soil)</span>
-<span id="cb4-5"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mean_soil <span class="ot">&lt;-</span> <span class="fu">mean</span>(soil)</span>
+<span id="cb7-2"><a></a>se_soil <span class="ot">&lt;-</span> <span class="fu">sd</span>(soil) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(soil))</span>
+<span id="cb7-3"><a></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="fu">length</span>(soil) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb7-4"><a></a>ci <span class="ot">&lt;-</span> mean_soil <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> (t_crit <span class="sc">*</span> se_soil)</span>
+<span id="cb7-5"><a></a>ci</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 49.84627 84.72516</code></pre>
 </div>
 </div>
-<p>Most statistical functions in R already compute confidence intervals because of how central they are to inference. Understanding the manual calculation is still important — it is what these functions do behind the scenes.</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>R connection</strong></p>
-</div>
-<div class="callout-content">
-<p><code>mean()</code>, <code>sd()</code>, and <code>qt()</code> are the key functions for CI calculations — you will use them in Lab 02.</p>
-</div>
-</div>
-</div>
+<p>Most statistical functions in R already compute confidence intervals. Understanding the manual calculation is still important because it is what these functions do behind the scenes.</p>
 </section>
-<section id="questions" class="slide level2">
-<h2>Questions</h2>
-<ul>
-<li>Our margin of error is about 17.43 t/ha. Is that precise enough?</li>
-<li>What drives CI width — sample size, variability, or both?</li>
-<li><strong>Can we do better with a smarter sampling design?</strong></li>
-</ul>
+<section id="where-does-this-leave-us" class="slide level2">
+<h2>Where does this leave us?</h2>
+<p>The CI is too wide for the farmer to qualify for carbon credits (perhaps). What drives CI width: sample size, variability, or both?</p>
+<p><strong>Can we do better with a different sampling design?</strong></p>
+</section>
+<section id="what-drives-ci-width" class="slide level2">
+<h2>What drives CI width?</h2>
+<style>
+#what-drives-ci-width .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="397" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 396;"><span id="cb9-397"><a></a><span class="im">import</span> { ciWidthWidget } <span class="im">from</span> <span class="st">"../../assets/js/ci-widget.js"</span></span>
+<span id="cb9-398"><a></a><span class="fu">ciWidthWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>Increasing sample size (if possible) would be the most straightforward way to reduce the CI width. However, the farmer only has budget for 7 sites. Can we reduce the variability instead?</p>
 </section></section>
 <section>
-<section id="break-10-15-minutes" class="title-slide slide level1 center">
-<h1>Break (10-15 minutes)</h1>
-<p><em>When we return, we will explore stratified random sampling, and how dividing our sampling area into meaningful groups can improve our precision.</em></p>
+<section id="break-1015-minutes" class="title-slide slide level1 center">
+<h1>Break (10–15 minutes)</h1>
+
 </section>
 <section id="thanks" class="slide level2">
 <h2>Thanks</h2>
@@ -611,7 +667,7 @@ Januar Harianto
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -769,6 +825,17 @@ Januar Harianto
           RevealZoom
         ]
       });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGNpQ292ZXJhZ2VXaWRnZXQgfSBmcm9tIFwiLi4vLi4vYXNzZXRzL2pzL2NpLXdpZGdldC5qc1wiXG5jaUNvdmVyYWdlV2lkZ2V0KClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGNpV2lkdGhXaWRnZXQgfSBmcm9tIFwiLi4vLi4vYXNzZXRzL2pzL2NpLXdpZGdldC5qc1wiXG5jaVdpZHRoV2lkZ2V0KClcbiJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../lectures/L02";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
     </script>
     
     <script>

@@ -214,22 +214,22 @@ window.Quarto = {
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#exercise-1-diatoms" id="toc-exercise-1-diatoms" class="nav-link" data-scroll-target="#exercise-1-diatoms">Exercise 1 – diatoms</a>
   <ul class="collapse">
-  <li><a href="#practice-1-data-import" id="toc-practice-1-data-import" class="nav-link" data-scroll-target="#practice-1-data-import">Practice 1 – Data import</a></li>
+  <li><a href="#worked-example-1-data-import" id="toc-worked-example-1-data-import" class="nav-link" data-scroll-target="#worked-example-1-data-import">Worked Example 1 – Data import</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data exploration</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model fitting</a></li>
   <li><a href="#assumptions-and-interpretation-of-results" id="toc-assumptions-and-interpretation-of-results" class="nav-link" data-scroll-target="#assumptions-and-interpretation-of-results">Assumptions and interpretation of results</a></li>
   <li><a href="#post-hoc-testing" id="toc-post-hoc-testing" class="nav-link" data-scroll-target="#post-hoc-testing">Post-hoc testing</a></li>
   </ul></li>
   <li><a href="#exercise-2-chicks" id="toc-exercise-2-chicks" class="nav-link" data-scroll-target="#exercise-2-chicks">Exercise 2 – chicks</a>
   <ul class="collapse">
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
   </ul></li>
   <li><a href="#exercise-3-lambs" id="toc-exercise-3-lambs" class="nav-link" data-scroll-target="#exercise-3-lambs">Exercise 3 – lambs</a></li>
   <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks!</a>
@@ -259,7 +259,7 @@ window.Quarto = {
 <p>At the end of the lab, students should be able to:</p>
 <ul>
 <li>Understand the workflow involved in conducting a one-way Analysis of Variance (ANOVA), including data exploration, model fitting, and interpretation of results.</li>
-<li>Analyse an experiment with a 1-way ANVOVA and interpret the results.</li>
+<li>Analyse an experiment with a 1-way ANOVA and interpret the results.</li>
 <li>Explain situations when a 2-sample t-test gives the same results as a 1-way ANOVA.</li>
 </ul>
 </section>
@@ -268,14 +268,15 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>The following packages are used for this lab: <code>readxl</code>, <code>ggplot2</code>, <code>dplyr</code> and <code>tidyr</code>. To install these packages, run the following code <strong>in the console</strong>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You will come across two types of tasks in this lab. <strong>Worked Examples</strong> have solutions you can expand and check straight away. <strong>Exercises</strong> do not — solutions for these will be posted on Friday evening.</p>
 </section>
 <section id="exercise-1-diatoms" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="exercise-1-diatoms">Exercise 1 – diatoms</h2>
 <p>Medley &amp; Clements (1998) sampled 34 locations along streams for diversity of diatoms. Each site was classified according to the Zn concentration in the water. There were 4 classes; background, low, medium and high. Were there <em>differences</em> between each of the groupings in term of diatom diversity? Let’s find out.</p>
-<section id="practice-1-data-import" class="level3 question">
-<h3 class="anchored" data-anchor-id="practice-1-data-import">Practice 1 – Data import</h3>
+<section id="worked-example-1-data-import" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-1-data-import">Worked Example 1 – Data import</h3>
 <p>Import the <code>Diatoms</code> worksheet from the <code>diatoms.xlsx</code> file into R.</p>
-<p>If you have difficulty with this step please refer to this week’s tutorial on importing MS Excel files.</p>
+<p>If you have difficulty with this step, see the <a href="../tutorials/data-import.html">data import guide</a>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># You will need to look at the Excel file and work out </span></span>
@@ -405,8 +406,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="graphical-summaries" class="level4" style="color:navy;">
-<h4 style="color:navy;" class="anchored" data-anchor-id="graphical-summaries">Graphical summaries</h4>
+<section id="graphical-summaries" class="level4">
+<h4 class="anchored" data-anchor-id="graphical-summaries">Graphical summaries</h4>
 <p>Numerical summaries are nice, but visual summaries are often more informative and are the <strong>summary of choice</strong> for publication. They can also help us to check the assumptions of the statistical test (although sometimes this is not possible until we have fitted the model).</p>
 <p>In the case of ANOVA model we are interested in the distribution of the response variable for each level of the factor. The table below gives heuristic rules about which graphical summary to use based on the number of observations.</p>
 <div class="cell">
@@ -440,9 +441,8 @@ Tip
 </div>
 </div>
 <p>We will show examples of both the histogram and boxplot for the diatom data. We recommend that you use <code>ggplot2</code> for your graphical summaries as it is more flexible and has a more consistent syntax than base R graphics. However, we will show both approaches here.</p>
-<section id="histogram" class="level5" style="color:navy;">
-<h5 style="color:navy;" class="anchored" data-anchor-id="histogram">Histogram</h5>
-<p>As there are less than 10 observations per group the histogram may not be very informative. However, it may still be useful for checking the normality of the data. You may be able to see the limitations of the histogram for small sample sizes.</p>
+<section id="histogram-as-there-are-less-than-10-observations-per-group-the-histogram-may-not-be-very-informative.-however-it-may-still-be-useful-for-checking-the-normality-of-the-data.-you-may-be-able-to-see-the-limitations-of-the-histogram-for-small-sample-sizes." class="level5">
+<h5 class="anchored" data-anchor-id="histogram-as-there-are-less-than-10-observations-per-group-the-histogram-may-not-be-very-informative.-however-it-may-still-be-useful-for-checking-the-normality-of-the-data.-you-may-be-able-to-see-the-limitations-of-the-histogram-for-small-sample-sizes.">Histogram As there are less than 10 observations per group the histogram may not be very informative. However, it may still be useful for checking the normality of the data. You may be able to see the limitations of the histogram for small sample sizes.</h5>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -533,9 +533,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="boxplot" class="level5" style="color:navy;">
-<h5 style="color:navy;" class="anchored" data-anchor-id="boxplot">Boxplot</h5>
-<p>A more appropriate plot for this data is the boxplot. If we want to format the plot for publication we should make the plot clear by adding axis labels and a figure caption.</p>
+<section id="boxplot-a-more-appropriate-plot-for-this-data-is-the-boxplot.-if-we-want-to-format-the-plot-for-publication-we-should-make-the-plot-clear-by-adding-axis-labels-and-a-figure-caption." class="level5">
+<h5 class="anchored" data-anchor-id="boxplot-a-more-appropriate-plot-for-this-data-is-the-boxplot.-if-we-want-to-format-the-plot-for-publication-we-should-make-the-plot-clear-by-adding-axis-labels-and-a-figure-caption.">Boxplot A more appropriate plot for this data is the boxplot. If we want to format the plot for publication we should make the plot clear by adding axis labels and a figure caption.</h5>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">base R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">ggplot2</a></li></ul>
 <div class="tab-content">
@@ -586,8 +585,8 @@ Figure&nbsp;2: Boxplot of diatom diversity by Zinc concentration.
 </section>
 </section>
 </section>
-<section id="question-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p>What can you say about the the different levels of Zinc from looking at the mean and standard deviation values when running the following?</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">tapply</span>(</span>
 <span id="cb22-2"><a href="#cb22-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
@@ -601,12 +600,12 @@ Figure&nbsp;2: Boxplot of diatom diversity by Zinc concentration.
 <span id="cb22-10"><a href="#cb22-10"></a>    <span class="at">FUN =</span> sd</span>
 <span id="cb22-11"><a href="#cb22-11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="question-2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <p>Can you interpret and describe the boxplot above?</p>
 </section>
-<section id="model-fitting" class="level3" style="color:navy;">
-<h3 style="color:navy;" class="anchored" data-anchor-id="model-fitting">Model fitting</h3>
+<section id="model-fitting" class="level3">
+<h3 class="anchored" data-anchor-id="model-fitting">Model fitting</h3>
 <p>A 1-way ANOVA involves one treatment (or grouping) factor. The model we are fitting is:</p>
 <p><span class="math display">y_{i,j} =\mu_i+\epsilon_{i,j}</span></p>
 <p>where:</p>
@@ -631,8 +630,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="assumptions-and-interpretation-of-results" class="level3" style="color:navy;">
-<h3 style="color:navy;" class="anchored" data-anchor-id="assumptions-and-interpretation-of-results">Assumptions and interpretation of results</h3>
+<section id="assumptions-and-interpretation-of-results" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-and-interpretation-of-results">Assumptions and interpretation of results</h3>
 <p>The assumptions of the ANOVA model are:</p>
 <ul>
 <li>The residuals are independent,</li>
@@ -645,8 +644,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p><strong>Reporting</strong>: The results indicate that there are significant differences between the levels of Zn concentration in terms of diatom diversity (<em>F</em> = 3.9, <em>df</em> = 3, 30, <em>P</em> = 0.02).</p>
 </blockquote>
 </section>
-<section id="post-hoc-testing" class="level3" style="color:navy;">
-<h3 style="color:navy;" class="anchored" data-anchor-id="post-hoc-testing">Post-hoc testing</h3>
+<section id="post-hoc-testing" class="level3">
+<h3 class="anchored" data-anchor-id="post-hoc-testing">Post-hoc testing</h3>
 <p>The ANOVA test only tells us that there are differences between the groups, but it does not tell us which groups are different. We can use the <code>emmeans</code> package to perform post-hoc testing.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -708,28 +707,28 @@ Confidence level used: 0.95 </code></pre>
 # ℹ 12 more rows</code></pre>
 </div>
 </div>
-<section id="question-3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<section id="exercise-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
 <p>Perform some checks to verify the two-sample t-test (or one-way ANOVA) is appropriate, i.e.&nbsp;investigate the shape of the distributions, and the standard deviations.</p>
 </section>
-<section id="question-4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<section id="exercise-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
 <p>In R, perform a 2-sample t-test using the <code>t.test()</code> function, and use the <code>var.equal = TRUE</code> argument to ensure a standard 2-sample t-test is performed. Interpret the output.</p>
 </section>
-<section id="question-5" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<section id="exercise-5" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
 <p>Next, perform a one-way ANOVA using the <code>aov</code> function, followed by <code>summary</code>, and interpret the results.</p>
 </section>
-<section id="question-6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<section id="exercise-6" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
 <p>Compare the t-test and ANOVA outputs. What do you notice about:</p>
 <ol type="i">
 <li>the degrees of freedom;</li>
 <li>the P-value?</li>
 </ol>
 </section>
-<section id="question-7" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
+<section id="exercise-7" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
 <p>When there are only two treatment groups, the observed <em>F</em> and <em>t</em> values are related by <em>F</em> = <span class="math inline">t^2</span>. Demonstrate this for the observed values in this exercise.</p>
 </section>
 </section>
@@ -789,14 +788,14 @@ Confidence level used: 0.95 </code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
 Platform: aarch64-apple-darwin20
-Running under: macOS Tahoe 26.2
+Running under: macOS Tahoe 26.3
 
 Matrix products: default
 BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
 LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
 
 locale:
-[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
 
 time zone: Australia/Sydney
 tzcode source: internal
@@ -811,13 +810,13 @@ loaded via a namespace (and not attached):
  [1] bit_4.6.0          rematch_2.0.0      gtable_0.3.6       jsonlite_2.0.0    
  [5] crayon_1.5.3       dplyr_1.2.0        compiler_4.5.2     tidyselect_1.2.1  
  [9] parallel_4.5.2     scales_1.4.0       yaml_2.3.12        fastmap_1.2.0     
-[13] lattice_0.22-7     coda_0.19-4.1      readr_2.1.6        R6_2.6.1          
+[13] lattice_0.22-7     coda_0.19-4.1      readr_2.2.0        R6_2.6.1          
 [17] labeling_0.4.3     generics_0.1.4     knitr_1.51         htmlwidgets_1.6.4 
 [21] tibble_3.3.1       tzdb_0.5.0         pillar_1.11.1      RColorBrewer_1.1-3
 [25] rlang_1.1.7        utf8_1.2.6         xfun_0.56          S7_0.2.1          
 [29] bit64_4.6.0-1      otel_0.2.0         estimability_1.5.1 cli_3.6.5         
 [33] withr_3.0.2        magrittr_2.0.4     digest_0.6.39      grid_4.5.2        
-[37] vroom_1.6.7        xtable_1.8-4       mvtnorm_1.3-3      hms_1.1.4         
+[37] vroom_1.7.0        xtable_1.8-4       mvtnorm_1.3-3      hms_1.1.4         
 [41] lifecycle_1.0.5    vctrs_0.7.1        evaluate_1.0.5     glue_1.8.0        
 [45] farver_2.1.2       cellranger_1.1.0   rmarkdown_2.30     tools_4.5.2       
 [49] pkgconfig_2.0.3    htmltools_0.5.9   </code></pre>

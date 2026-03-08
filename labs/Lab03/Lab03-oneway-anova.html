@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="The University of Sydney">
 
 <title>Lab 03</title>
 <style>
@@ -188,7 +189,13 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Lab 03</h1>
-                      </div>
+            <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
+                  <div>
+        <div class="description">
+          The University of Sydney
+        </div>
+      </div>
+                </div>
   </div>
     
   
@@ -207,34 +214,76 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning outcomes</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
   <ul class="collapse">
-  <li><a href="#lab-objectives" id="toc-lab-objectives" class="nav-link" data-scroll-target="#lab-objectives">Lab objectives</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#exercise-1-diatoms" id="toc-exercise-1-diatoms" class="nav-link" data-scroll-target="#exercise-1-diatoms">Exercise 1 – diatoms</a>
+  </ul></li>
+  <li><a href="#exploring-diatom-diversity-15-min" id="toc-exploring-diatom-diversity-15-min" class="nav-link" data-scroll-target="#exploring-diatom-diversity-15-min">1. Exploring diatom diversity (~15 min)</a>
   <ul class="collapse">
-  <li><a href="#worked-example-1-data-import" id="toc-worked-example-1-data-import" class="nav-link" data-scroll-target="#worked-example-1-data-import">Worked Example 1 – Data import</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data exploration</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-1" id="toc-worked-example-1" class="nav-link" data-scroll-target="#worked-example-1">Worked Example 1</a></li>
+  </ul></li>
+  <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data">Exploring the data</a>
+  <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model fitting</a></li>
-  <li><a href="#assumptions-and-interpretation-of-results" id="toc-assumptions-and-interpretation-of-results" class="nav-link" data-scroll-target="#assumptions-and-interpretation-of-results">Assumptions and interpretation of results</a></li>
-  <li><a href="#post-hoc-testing" id="toc-post-hoc-testing" class="nav-link" data-scroll-target="#post-hoc-testing">Post-hoc testing</a></li>
   </ul></li>
-  <li><a href="#exercise-2-chicks" id="toc-exercise-2-chicks" class="nav-link" data-scroll-target="#exercise-2-chicks">Exercise 2 – chicks</a>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#testing-for-differences-25-min" id="toc-testing-for-differences-25-min" class="nav-link" data-scroll-target="#testing-for-differences-25-min">2. Testing for differences (~25 min)</a>
+  <ul class="collapse">
+  <li><a href="#the-anova-model" id="toc-the-anova-model" class="nav-link" data-scroll-target="#the-anova-model">The ANOVA model</a></li>
+  <li><a href="#fitting-the-model" id="toc-fitting-the-model" class="nav-link" data-scroll-target="#fitting-the-model">Fitting the model</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-2" id="toc-worked-example-2" class="nav-link" data-scroll-target="#worked-example-2">Worked Example 2</a></li>
+  </ul></li>
+  <li><a href="#interpreting-the-results" id="toc-interpreting-the-results" class="nav-link" data-scroll-target="#interpreting-the-results">Interpreting the results</a>
   <ul class="collapse">
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#post-hoc-comparisons" id="toc-post-hoc-comparisons" class="nav-link" data-scroll-target="#post-hoc-comparisons">Post-hoc comparisons</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-3" id="toc-worked-example-3" class="nav-link" data-scroll-target="#worked-example-3">Worked Example 3</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
+  <ul class="collapse">
   <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#comparing-t-tests-and-anova-20-min" id="toc-comparing-t-tests-and-anova-20-min" class="nav-link" data-scroll-target="#comparing-t-tests-and-anova-20-min">3. Comparing <em>t</em>-tests and ANOVA (~20 min)</a>
+  <ul class="collapse">
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The data</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
+  <ul class="collapse">
   <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
+  <ul class="collapse">
   <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#lambs-25-min" id="toc-lambs-25-min" class="nav-link" data-scroll-target="#lambs-25-min">4. Lambs (~25 min)</a>
+  <ul class="collapse">
+  <li><a href="#the-data-1" id="toc-the-data-1" class="nav-link" data-scroll-target="#the-data-1">The data</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a>
+  <ul class="collapse">
   <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
   </ul></li>
-  <li><a href="#exercise-3-lambs" id="toc-exercise-3-lambs" class="nav-link" data-scroll-target="#exercise-3-lambs">Exercise 3 – lambs</a></li>
-  <li><a href="#thanks" id="toc-thanks" class="nav-link" data-scroll-target="#thanks">Thanks!</a>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab03-oneway-anova.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -250,377 +299,194 @@ window.Quarto = {
 
 
 
-<p>In this week’s lab we will work through the experimental design workflow for a one-way ANOVA.</p>
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
+<p>This week we will analyse diatom diversity in streams, compare comb weights in chicks, and test immunoglobulin levels across lamb breeds using one-way ANOVA.</p>
+<p>You will come across two types of tasks in this lab. <strong>Worked Examples</strong> have solutions you can expand and check straight away. <strong>Exercises</strong> do not — solutions for these will be posted on Friday evening.</p>
+<p>As always, don’t forget to take regular breaks in between sections. A good rule of thumb is to work for 20-25 minutes, then take a 5-minute break. This will help you stay focused and avoid burnout.</p>
 <section id="learning-outcomes" class="level2">
 <h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
-<p>In this lab, you will work towards achieving learning outcomes…</p>
-<section id="lab-objectives" class="level3">
-<h3 class="anchored" data-anchor-id="lab-objectives">Lab objectives</h3>
-<p>At the end of the lab, students should be able to:</p>
-<ul>
-<li>Understand the workflow involved in conducting a one-way Analysis of Variance (ANOVA), including data exploration, model fitting, and interpretation of results.</li>
-<li>Analyse an experiment with a 1-way ANOVA and interpret the results.</li>
-<li>Explain situations when a 2-sample t-test gives the same results as a 1-way ANOVA.</li>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Explore grouped data using summary statistics and graphical summaries.</li>
+<li>Fit a one-way ANOVA using <code>aov()</code> and interpret the ANOVA table.</li>
+<li>Perform post-hoc comparisons using <code>emmeans</code>.</li>
+<li>Explain when a two-sample <em>t</em>-test gives the same results as a one-way ANOVA.</li>
+</ol>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Convert character variables to factors using <code>as.factor()</code></label></li>
+<li><label><input type="checkbox">Calculate group means and standard deviations</label></li>
+<li><label><input type="checkbox">Produce boxplots for grouped data</label></li>
+<li><label><input type="checkbox">Fit a one-way ANOVA and read the output table</label></li>
+<li><label><input type="checkbox">Use <code>emmeans</code> for post-hoc testing</label></li>
+<li><label><input type="checkbox">Compare <em>t</em>-test and ANOVA results for a two-group design</label></li>
 </ul>
 </section>
-</section>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>The following packages are used for this lab: <code>readxl</code>, <code>ggplot2</code>, <code>dplyr</code> and <code>tidyr</code>. To install these packages, run the following code <strong>in the console</strong>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You will come across two types of tasks in this lab. <strong>Worked Examples</strong> have solutions you can expand and check straight away. <strong>Exercises</strong> do not — solutions for these will be posted on Friday evening.</p>
-</section>
-<section id="exercise-1-diatoms" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="exercise-1-diatoms">Exercise 1 – diatoms</h2>
-<p>Medley &amp; Clements (1998) sampled 34 locations along streams for diversity of diatoms. Each site was classified according to the Zn concentration in the water. There were 4 classes; background, low, medium and high. Were there <em>differences</em> between each of the groupings in term of diatom diversity? Let’s find out.</p>
-<section id="worked-example-1-data-import" class="level3 question">
-<h3 class="anchored" data-anchor-id="worked-example-1-data-import">Worked Example 1 – Data import</h3>
-<p>Import the <code>Diatoms</code> worksheet from the <code>diatoms.xlsx</code> file into R.</p>
-<p>If you have difficulty with this step, see the <a href="../tutorials/data-import.html">data import guide</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># You will need to look at the Excel file and work out </span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># the correct worksheet name and range:</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="at">path =</span> <span class="st">"diatoms.xlsx"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">sheet =</span> ...,</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">range =</span> ...</span>
-<span id="cb2-9"><a href="#cb2-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="workflow" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<p>We will briefly go through a typical analytical workflow which involves data exploration, model fitting, checking of model assumptions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and interpretation of the results.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Assumptions will be covered formally next week when we look at model residuals.</p></div></div></section>
-<section id="data-exploration" class="level3">
-<h3 class="anchored" data-anchor-id="data-exploration">Data exploration</h3>
-<section id="data-structure" class="level4">
-<h4 class="anchored" data-anchor-id="data-structure">Data structure</h4>
-<p>Checking the structure of the data is the first step in any data analysis. This is done using the <code>str()</code> function in R.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Of particular interest are the variables <code>Stream</code> and <code>Zinc</code>, which have been classified as characters (<code>chr</code>).</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
- $ Stream   : chr [1:34] "Eagle" "Blue" "Blue" "Blue" ...
- $ Zinc     : chr [1:34] "BACK" "BACK" "BACK" "BACK" ...
- $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...
- $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
-</div>
-</div>
-<p>These variables are most likely factors and should be converted to such. This can be done using <code>as.factor()</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>diatoms<span class="sc">$</span>Zinc <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>diatoms<span class="sc">$</span>Stream <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Stream)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>The <code>tidyverse</code> approach</strong> – We can use the <code>mutate()</code> function to convert the <code>Zinc</code> and <code>Stream</code> variables to factors.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>diatoms <span class="ot">&lt;-</span> diatoms <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb6-4"><a href="#cb6-4"></a>        <span class="at">Zinc =</span> <span class="fu">as.factor</span>(Zinc),</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        <span class="at">Stream =</span> <span class="fu">as.factor</span>(Stream)</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<p>We can then check if the conversion was successful by using the <code>str()</code> function again.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
- $ Stream   : Factor w/ 6 levels "Arkan","Blue",..: 4 2 2 2 5 6 6 6 1 1 ...
- $ Zinc     : Factor w/ 4 levels "BACK","HIGH",..: 1 1 1 1 1 1 1 1 3 3 ...
- $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...
- $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
-</div>
-</div>
-</section>
-<section id="summary-statistics" class="level4">
-<h4 class="anchored" data-anchor-id="summary-statistics">Summary statistics</h4>
-<p>Use <code>summary()</code> for a quick overview of common statistical measures for each variable in the data frame. However it is not informative when we are interested in differences between groups or factors as it only gives the summary statistics for the entire data set.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Stream    Zinc     Diversity         Group      
- Arkan:7   BACK:8   Min.   :0.630   Min.   :1.000  
- Blue :7   HIGH:9   1st Qu.:1.377   1st Qu.:2.000  
- Chalk:5   LOW :8   Median :1.855   Median :3.000  
- Eagle:4   MED :9   Mean   :1.694   Mean   :2.559  
- Snake:5            3rd Qu.:2.058   3rd Qu.:3.750  
- Splat:6            Max.   :2.830   Max.   :4.000  </code></pre>
-</div>
-</div>
-<p>It is more useful to calculate summary statistics for each level of Zn contamination, as we are interested in differences between the mean of each group.</p>
-<p>We can use the <code>tapply()</code> function to calculate the mean and standard deviation for each level of <code>Zinc</code>. This has to be done separately for each summary statistic (mean and standard deviation).</p>
-<p>The general structure of the <code>tapply()</code> function is 3 arguments which are described below based on the code above:</p>
-<ul>
-<li>the response variable on which we wish to apply the function, <code>diatoms$Diversity</code>;</li>
-<li>the categorical variable which indicates the groups we wish to separately apply the function to, <code>diatoms$Zinc</code>;</li>
-<li>the function we are using, <code>mean()</code>.</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">FUN =</span> mean</span>
-<span id="cb11-5"><a href="#cb11-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    BACK     HIGH      LOW      MED 
-1.797500 1.277778 2.032500 1.717778 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">FUN =</span> sd</span>
-<span id="cb13-5"><a href="#cb13-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     BACK      HIGH       LOW       MED 
-0.4852613 0.4268717 0.4449960 0.5030104 </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>The <code>tidyverse</code> approach</strong> – Use the <code>group_by()</code> and <code>summarise()</code> functions to calculate the mean and standard deviation for each level of <code>Zinc</code>. The code is longer, but readable as you can see the sequence of operations.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>diatoms <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>    <span class="fu">group_by</span>(Zinc) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb15-4"><a href="#cb15-4"></a>        <span class="at">mean =</span> <span class="fu">mean</span>(Diversity),</span>
-<span id="cb15-5"><a href="#cb15-5"></a>        <span class="at">sd =</span> <span class="fu">sd</span>(Diversity)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</section>
-<section id="graphical-summaries" class="level4">
-<h4 class="anchored" data-anchor-id="graphical-summaries">Graphical summaries</h4>
-<p>Numerical summaries are nice, but visual summaries are often more informative and are the <strong>summary of choice</strong> for publication. They can also help us to check the assumptions of the statistical test (although sometimes this is not possible until we have fitted the model).</p>
-<p>In the case of ANOVA model we are interested in the distribution of the response variable for each level of the factor. The table below gives heuristic rules about which graphical summary to use based on the number of observations.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, and <code>emmeans</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"emmeans"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">observations</th>
-<th style="text-align: left;">graphics</th>
-<th style="text-align: left;">command</th>
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1-5</td>
-<td style="text-align: left;">plot raw data</td>
-<td style="text-align: left;"><code>stripchart()</code> or <code>geom_jitter()</code></td>
+<td><code>diatoms.xlsx</code></td>
+<td>Sections 1–2</td>
+<td><a href="data/diatoms.xlsx">Download</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">6-20</td>
-<td style="text-align: left;">boxplot</td>
-<td style="text-align: left;"><code>boxplot()</code> or <code>geom_boxplot()</code></td>
+<td><code>chick_marigold.xlsx</code></td>
+<td>Section 3</td>
+<td><a href="data/chick_marigold.xlsx">Download</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">20 or more</td>
-<td style="text-align: left;">histogram</td>
-<td style="text-align: left;"><code>hist()</code> or <code>geom_histogram()</code></td>
+<td><code>lambs.csv</code></td>
+<td>Section 4</td>
+<td><a href="data/lambs.csv">Download</a></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<p>We will show examples of both the histogram and boxplot for the diatom data. We recommend that you use <code>ggplot2</code> for your graphical summaries as it is more flexible and has a more consistent syntax than base R graphics. However, we will show both approaches here.</p>
-<section id="histogram-as-there-are-less-than-10-observations-per-group-the-histogram-may-not-be-very-informative.-however-it-may-still-be-useful-for-checking-the-normality-of-the-data.-you-may-be-able-to-see-the-limitations-of-the-histogram-for-small-sample-sizes." class="level5">
-<h5 class="anchored" data-anchor-id="histogram-as-there-are-less-than-10-observations-per-group-the-histogram-may-not-be-very-informative.-however-it-may-still-be-useful-for-checking-the-normality-of-the-data.-you-may-be-able-to-see-the-limitations-of-the-histogram-for-small-sample-sizes.">Histogram As there are less than 10 observations per group the histogram may not be very informative. However, it may still be useful for checking the normality of the data. You may be able to see the limitations of the histogram for small sample sizes.</h5>
+<p>Save all files into a folder called <code>data</code> inside your project folder.</p>
+</section>
+</section>
+</section>
+<section id="exploring-diatom-diversity-15-min" class="level1 page-columns page-full">
+<h1>1. Exploring diatom diversity (~15 min)</h1>
+<p>Coal miners once carried canaries underground as indicators of air toxicity. Diatoms are the freshwater equivalent, acting as bioindicators whose diversity changes with water quality. Medley and Clements (1998) surveyed 34 streams in the Rocky Mountains of Colorado, where decades of mining had left zinc leaching into the water, and counted diatom species at each site. Does zinc contamination reduce diatom diversity?</p>
+<section id="getting-started" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>Let us warm up. This section is a quick refresher on data import, summary statistics, and plotting and should be straightforward if you have been following the labs in the past couple of weeks. If you have any questions, ask your tutor or post on Ed Discussion.</p>
+<section id="worked-example-1" class="level3 question page-columns page-full">
+<h3 class="anchored" data-anchor-id="worked-example-1">Worked Example 1</h3>
+<p>Import the <code>Diatoms</code> worksheet from <code>diatoms.xlsx</code>, check the data structure with <code>str()</code>, and convert the character variables <code>Zinc</code> and <code>Stream</code> to factors. Use the code chunk below as a template for your own report.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>If you have difficulty importing, see the <a href="../tutorials/data-import.html">data import guide</a>.</p>
+</div></div><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Look at the Excel file to work out the worksheet name and range:</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="at">path =</span> <span class="st">"data/diatoms.xlsx"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">sheet =</span> ...,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">range =</span> ...</span>
+<span id="cb2-9"><a href="#cb2-9"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">str</span>(diatoms)</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co"># Convert character variables to factors:</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>diatoms <span class="ot">&lt;-</span> diatoms <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-16"><a href="#cb2-16"></a>        <span class="at">Zinc =</span> <span class="fu">as.factor</span>(Zinc),</span>
+<span id="cb2-17"><a href="#cb2-17"></a>        <span class="at">Stream =</span> <span class="fu">as.factor</span>(Stream)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>To calculate the number of observations per group:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="at">FUN =</span> length</span>
-<span id="cb16-5"><a href="#cb16-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">ggplot2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">base R (no loops)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">base R (loops)</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Diversity)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab03-oneway-anova_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">hist</span>(</span>
-<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"BACK"</span>],</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    <span class="at">main =</span> <span class="st">"Zinc: BACK"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>)</span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="fu">hist</span>(</span>
-<span id="cb18-8"><a href="#cb18-8"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"HIGH"</span>],</span>
-<span id="cb18-9"><a href="#cb18-9"></a>    <span class="at">main =</span> <span class="st">"Zinc: HIGH"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-11"><a href="#cb18-11"></a>)</span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="fu">hist</span>(</span>
-<span id="cb18-13"><a href="#cb18-13"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"LOW"</span>],</span>
-<span id="cb18-14"><a href="#cb18-14"></a>    <span class="at">main =</span> <span class="st">"Zinc: LOW"</span>,</span>
-<span id="cb18-15"><a href="#cb18-15"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a>)</span>
-<span id="cb18-17"><a href="#cb18-17"></a><span class="fu">hist</span>(</span>
-<span id="cb18-18"><a href="#cb18-18"></a>    <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> <span class="st">"MED"</span>],</span>
-<span id="cb18-19"><a href="#cb18-19"></a>    <span class="at">main =</span> <span class="st">"Zinc: MED"</span>,</span>
-<span id="cb18-20"><a href="#cb18-20"></a>    <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb18-21"><a href="#cb18-21"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab03-oneway-anova_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">levels</span>(diatoms<span class="sc">$</span>Zinc)) {</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    <span class="fu">hist</span>(</span>
-<span id="cb19-4"><a href="#cb19-4"></a>        <span class="at">x =</span> diatoms<span class="sc">$</span>Diversity[diatoms<span class="sc">$</span>Zinc <span class="sc">==</span> i],</span>
-<span id="cb19-5"><a href="#cb19-5"></a>        <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Zinc:"</span>, i),</span>
-<span id="cb19-6"><a href="#cb19-6"></a>        <span class="at">xlab =</span> <span class="st">"Diversity"</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>    )</span>
-<span id="cb19-8"><a href="#cb19-8"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab03-oneway-anova_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="at">path =</span> <span class="st">"data/diatoms.xlsx"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="at">sheet =</span> <span class="st">"Diatoms"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">range =</span> <span class="st">"A1:D35"</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="fu">str</span>(diatoms)</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>diatoms <span class="ot">&lt;-</span> diatoms <span class="sc">|&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="at">Zinc =</span> <span class="fu">as.factor</span>(Zinc),</span>
+<span id="cb3-15"><a href="#cb3-15"></a>        <span class="at">Stream =</span> <span class="fu">as.factor</span>(Stream)</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </section>
-<section id="boxplot-a-more-appropriate-plot-for-this-data-is-the-boxplot.-if-we-want-to-format-the-plot-for-publication-we-should-make-the-plot-clear-by-adding-axis-labels-and-a-figure-caption." class="level5">
-<h5 class="anchored" data-anchor-id="boxplot-a-more-appropriate-plot-for-this-data-is-the-boxplot.-if-we-want-to-format-the-plot-for-publication-we-should-make-the-plot-clear-by-adding-axis-labels-and-a-figure-caption.">Boxplot A more appropriate plot for this data is the boxplot. If we want to format the plot for publication we should make the plot clear by adding axis labels and a figure caption.</h5>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">base R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">ggplot2</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-cap-location="bottom">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">boxplot</span>(</span>
-<span id="cb20-2"><a href="#cb20-2"></a>    Diversity <span class="sc">~</span> Zinc,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="at">data =</span> diatoms,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>    <span class="at">ylab =</span> <span class="st">"Diversity"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="at">xlab =</span> <span class="st">"Zinc concentration"</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-diatom1" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diatom1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Lab03-oneway-anova_files/figure-html/fig-diatom1-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diatom1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Boxplot of diatom diversity by Zinc concentration.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell" data-cap-location="bottom">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-cap-location="bottom"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(diatoms, <span class="fu">aes</span>(<span class="at">x =</span> Zinc, <span class="at">y =</span> Diversity)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="fu">ylab</span>(<span class="st">"Diversity"</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div id="fig-diatom2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="bottom">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diatom2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Lab03-oneway-anova_files/figure-html/fig-diatom2-1.png" class="img-fluid figure-img" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diatom2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Boxplot of diatom diversity by Zinc concentration.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</section>
-</section>
+<section id="exploring-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the data</h2>
+<p>Before running any formal test, it helps to look at summary statistics and plots to see what patterns emerge.</p>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
-<p>What can you say about the the different levels of Zinc from looking at the mean and standard deviation values when running the following?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">tapply</span>(</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb22-3"><a href="#cb22-3"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb22-4"><a href="#cb22-4"></a>    <span class="at">FUN =</span> mean</span>
-<span id="cb22-5"><a href="#cb22-5"></a>)</span>
-<span id="cb22-6"><a href="#cb22-6"></a></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="fu">tapply</span>(</span>
-<span id="cb22-8"><a href="#cb22-8"></a>    <span class="at">X =</span> diatoms<span class="sc">$</span>Diversity,</span>
-<span id="cb22-9"><a href="#cb22-9"></a>    <span class="at">INDEX =</span> diatoms<span class="sc">$</span>Zinc,</span>
-<span id="cb22-10"><a href="#cb22-10"></a>    <span class="at">FUN =</span> sd</span>
-<span id="cb22-11"><a href="#cb22-11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Calculate the mean and standard deviation of <code>Diversity</code> for each level of <code>Zinc</code>. What do the values suggest about differences between groups?</p>
 </section>
+<p>Even before doing any formal statistics, summary statistics are useful decision tools. If the means are very different and the standard deviations are small, we might already have a good idea that there are differences between groups, and knowing the distribution of the data can help us decide which test to use and how to check assumptions.</p>
+<p>However, numbers alone can be hard to interpret. This is where plotting comes in to present the data in a more intuitive way. A boxplot is a good choice for grouped data, as it shows the median, interquartile range, and potential outliers.</p>
+</section>
+<section id="section" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <section id="exercise-2" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
-<p>Can you interpret and describe the boxplot above?</p>
+<p>Produce a boxplot of <code>Diversity</code> grouped by <code>Zinc</code>. Add appropriate axis labels. What does the plot tell you about differences between groups?</p>
 </section>
-<section id="model-fitting" class="level3">
-<h3 class="anchored" data-anchor-id="model-fitting">Model fitting</h3>
-<p>A 1-way ANOVA involves one treatment (or grouping) factor. The model we are fitting is:</p>
-<p><span class="math display">y_{i,j} =\mu_i+\epsilon_{i,j}</span></p>
-<p>where:</p>
-<ol type="1">
-<li><span class="math inline">y_{i,j}</span> is the response for observation <em>j</em> in treatment (or group) <em>i</em>,</li>
-<li><span class="math inline">\mu_j</span> is the mean of treatment (or group) <em>i</em>,</li>
-<li><span class="math inline">\epsilon_{i,j}</span> is the residual term which is an independent random variable that has a mean of 0, constant variance and is normally distributed. This can be expressed shorthand as <span class="math inline">\sim N(0,\sigma_2)</span>. The residual MS estimates <span class="math inline">\sigma_2</span>.</li>
-</ol>
-<p>The statistical hypotheses we are testing are:</p>
-<p><span class="math display">H_{0}: \mu_1 = \mu_2 = ... \mu_t</span> <span class="math display">H_{1}: \text{not all } \mu_j \text{ are equal}</span></p>
-<p>where <span class="math inline">\mu_j</span> is the mean diatom diversity for each level of Zn concentration.</p>
-<p>The code below fits the ANOVA model using the <code>aov()</code> function and saves the it to an object called <code>anova.diatoms</code>. We can then extract the ANOVA table using the <code>summary</code> function.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>With fewer than 10 observations per group, boxplots are often more informative than histograms.</p>
+</div></div><p>Take this opportunity to explore the data further if you like. You could make a histogram of the <code>Diversity</code> values within each <code>Zinc</code> group, or calculate other summary statistics such as the range or interquartile range. The more you understand the data before fitting a model, the better you will be able to interpret the results and check assumptions.</p>
+<p>Once you are done, take a quick break. It is important to step away from the screen regularly.</p>
+</section>
+</section>
+<section id="testing-for-differences-25-min" class="level1 page-columns page-full">
+<h1>2. Testing for differences (~25 min)</h1>
+<p>We noticed (hopefully) in Section 1 that the <code>HIGH</code> zinc group has lower diatom diversity than the others. But is that difference real, or could it be random variation? A one-way ANOVA will test this formally.</p>
+<section id="the-anova-model" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-anova-model">The ANOVA model</h2>
+<p>A one-way ANOVA tests whether the means of several groups are all equal. The model is:</p>
+<p><span class="math display">y_{i,j} = \mu_i + \varepsilon_{i,j}</span></p>
+<p>where <span class="math inline">y_{i,j}</span> is the diversity for observation <span class="math inline">j</span> in zinc group <span class="math inline">i</span>, <span class="math inline">\mu_i</span> is the mean of group <span class="math inline">i</span>, and <span class="math inline">\varepsilon_{i,j}</span> is the residual.</p>
+<p>The hypotheses are:</p>
+<p><span class="math display">H_0: \mu_1 = \mu_2 = \ldots = \mu_t</span> <span class="math display">H_1: \text{not all } \mu_i \text{ are equal}</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>We will cover model assumptions formally next week when we look at residual diagnostics.</p>
+</div></div></section>
+<section id="fitting-the-model" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="fitting-the-model">Fitting the model</h2>
+<p>In general, we “fit a model” when we test hypotheses, because models explain the relationships between data in a manner that is more flexible than fitting mathematical equations.</p>
+<section id="worked-example-2" class="level3 question page-columns page-full">
+<h3 class="anchored" data-anchor-id="worked-example-2">Worked Example 2</h3>
+<p>Fit a one-way ANOVA to test whether diatom diversity differs across zinc levels. Use <code>aov()</code> to fit the model and <code>summary()</code> to view the ANOVA table. Try to interpret the ANOVA table before looking at the solution below.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The general formula is <code>aov(response ~ group, data = ...)</code>.</p>
+</div></div></section>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
 Zinc         3  2.567  0.8555   3.939 0.0176 *
@@ -629,33 +495,97 @@ Residuals   30  6.516  0.2172
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-</section>
-<section id="assumptions-and-interpretation-of-results" class="level3">
-<h3 class="anchored" data-anchor-id="assumptions-and-interpretation-of-results">Assumptions and interpretation of results</h3>
-<p>The assumptions of the ANOVA model are:</p>
+<p>The ANOVA table shows:</p>
 <ul>
-<li>The residuals are independent,</li>
-<li>The residuals are normally distributed,</li>
-<li>The residuals have constant variance.</li>
+<li><strong>Df</strong>: degrees of freedom. Treatment df = number of groups minus 1 (4 − 1 = 3). Residual df = total observations minus number of groups (34 − 4 = 30).</li>
+<li><strong>Sum Sq</strong>: how much variation is explained by the grouping (Zinc) versus left unexplained (Residuals).</li>
+<li><strong>Mean Sq</strong>: Sum Sq divided by Df. This gives the average variation per degree of freedom.</li>
+<li><strong>F value</strong>: the ratio of treatment Mean Sq to residual Mean Sq. A large F suggests that group differences are bigger than random noise.</li>
+<li><strong>Pr(&gt;F)</strong>: the P-value. If this is below 0.05, we reject <span class="math inline">H_0</span>.</li>
 </ul>
-<p>Based on the boxplots and histograms during data exploration, the assumptions of normality and equal variances are met. We will discuss assumptions again in greater detail next week when we start to look at residuals.</p>
-<p><strong>We can only interpret the results of the ANOVA model if the assumptions are met.</strong> We can report the results the following way:</p>
-<blockquote class="blockquote">
-<p><strong>Reporting</strong>: The results indicate that there are significant differences between the levels of Zn concentration in terms of diatom diversity (<em>F</em> = 3.9, <em>df</em> = 3, 30, <em>P</em> = 0.02).</p>
-</blockquote>
+</div>
+</div>
+</div>
 </section>
-<section id="post-hoc-testing" class="level3">
-<h3 class="anchored" data-anchor-id="post-hoc-testing">Post-hoc testing</h3>
-<p>The ANOVA test only tells us that there are differences between the groups, but it does not tell us which groups are different. We can use the <code>emmeans</code> package to perform post-hoc testing.</p>
+<section id="interpreting-the-results" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="interpreting-the-results">Interpreting the results</h2>
+<p>The assumptions of the ANOVA (normality, equal variances, independence) appear reasonable based on our exploration in Section 1. The standard deviations were similar across groups, and nothing in the boxplot suggested serious departures from normality.</p>
+<p><strong>However</strong>, we should always formally check the assumptions by looking at model residuals. We will cover this in more detail next week, but here is a quick look at normality and equal variance using the approach from Tutorial 3.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset page-columns page-full">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">QQ plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Shapiro-Wilk test</a></li></ul>
+<div class="tab-content page-columns page-full">
+<div id="tabset-1-1" class="tab-pane active page-columns page-full" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell page-columns page-full">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(anova.diatoms), <span class="at">main =</span> <span class="st">""</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">qqline</span>(<span class="fu">residuals</span>(anova.diatoms), <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display page-columns page-full">
+<div id="fig-diatom-qq" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-diatom-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Lab03-oneway-anova_files/figure-html/fig-diatom-qq-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-margin quarto-float-caption quarto-float-fig margin-caption" id="fig-diatom-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Normal QQ plot of residuals from the diatom ANOVA model.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuals(anova.diatoms)
+W = 0.96883, p-value = 0.43</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The QQ plot shows points falling roughly along the line, and the Shapiro-Wilk test is not significant (<em>P</em> &gt; 0.05), so normality is reasonable. We already checked the SD ratio in Section 1 and found it was below 2, supporting equal variances.</p>
+<section id="exercise-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<p>Based on the ANOVA output from Worked Example 2, is there a significant difference in diatom diversity across zinc levels? Write a one-sentence reporting statement that includes the F statistic, degrees of freedom, and P-value.</p>
+</section>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A reporting statement typically follows this pattern: “There was a significant difference in [response] across [groups] (<em>F</em> = …, <em>df</em> = …, <em>P</em> = …).”</p>
+</div></div></section>
+<section id="post-hoc-comparisons" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="post-hoc-comparisons">Post-hoc comparisons</h2>
+<p>The ANOVA tells us that at least one group mean differs from the others, but not which ones. We use post-hoc testing to find out.</p>
+<section id="worked-example-3" class="level3 question page-columns page-full">
+<h3 class="anchored" data-anchor-id="worked-example-3">Worked Example 3</h3>
+<p>Use the <code>emmeans</code> package to compute estimated marginal means and their confidence intervals for each zinc level. Then visualise the results with <code>plot()</code>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><code>emmeans(model, "factor_name")</code> takes a fitted model and the name of the grouping variable.</p>
+</div></div></section>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Welcome to emmeans.
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2"></a>posthoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>posthoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Zinc emmean    SE df lower.CL upper.CL
  BACK   1.80 0.165 30    1.461     2.13
@@ -666,34 +596,45 @@ See '? untidy'</code></pre>
 Confidence level used: 0.95 </code></pre>
 </div>
 </div>
-<p>The output of the <code>emmeans</code> function gives us the estimated marginal means for each level of <code>Zinc</code> and the 95% confidence intervals. The confidence intervals for the <code>HIGH</code> level of Zn concentration do not overlap with the other levels of Zn concentration, indicating that the <code>HIGH</code> level of Zn concentration is significantly different from the other levels.</p>
-<blockquote class="blockquote">
-<p><strong>Reporting</strong>: The post-hoc test indicates that the <code>HIGH</code> level of Zn concentration is significantly different from the other levels of Zn concentration. There are no other significant differences.</p>
-</blockquote>
-<p>We can visualise the results of the post-hoc testing using the <code>plot</code> function, if you prefer a visual representation.</p>
+<p>The output shows the estimated mean diversity for each zinc level, along with the standard error and 95% confidence interval. Groups whose confidence intervals do not overlap are likely to be significantly different.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">plot</span>(posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab03-oneway-anova_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab03-oneway-anova_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<section id="exercise-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<p>Based on the <code>emmeans</code> output from Worked Example 3, which zinc levels differ from each other? How can you tell from the confidence intervals?</p>
+</section>
+<p><strong>Now is a good time to take a 5-minute break.</strong></p>
 </section>
 </section>
-<section id="exercise-2-chicks" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-chicks">Exercise 2 – chicks</h2>
-<p>An experiment was designed to compare 15-day mean comb weights (g) of two lots of male chicks, one receiving sex hormone A (testosterone), the other C (dehydroandrosterone). While we usually analyse these data by using a (pooled) two-sample t-test, a single factor analysis of variance approach could be used (with two levels of the treatment factor). We will compare the results from both analyses.</p>
-<p>The data is found in the <em>Comb</em> worksheet of the <code>chick_marigold.xlsx</code> file. Download it below:</p>
-<p>Read the data and save it as <code>comb</code>. It should look like below:</p>
+<section id="comparing-t-tests-and-anova-20-min" class="level1 page-columns page-full">
+<h1>3. Comparing <em>t</em>-tests and ANOVA (~20 min)</h1>
+<p>So far we have used ANOVA on data with four groups. But what happens when there are only two? In Lecture 03a we learned the two-sample <em>t</em>-test, and in Lecture 03b we learned ANOVA. This section shows they give the same answer when there are two groups.</p>
+<p>An experiment compared 15-day mean comb weights (g) of male chicks receiving one of two hormones: A (testosterone) or C (dehydroandrosterone). With only two groups, we could use either a pooled two-sample <em>t</em>-test or a one-way ANOVA.</p>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>Read the <em>Comb</em> worksheet from <code>chick_marigold.xlsx</code> and convert <code>Hormone</code> to a factor:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>comb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>comb <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/chick_marigold.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Comb"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="fu">mutate</span>(<span class="at">Hormone =</span> <span class="fu">as.factor</span>(Hormone))</span>
+<span id="cb14-3"><a href="#cb14-3"></a>comb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 22 × 2
    CombWt Hormone
-    &lt;dbl&gt; &lt;chr&gt;  
+    &lt;dbl&gt; &lt;fct&gt;  
  1     57 A      
  2    120 A      
  3    101 A      
@@ -707,128 +648,91 @@ Confidence level used: 0.95 </code></pre>
 # ℹ 12 more rows</code></pre>
 </div>
 </div>
-<section id="exercise-3" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
-<p>Perform some checks to verify the two-sample t-test (or one-way ANOVA) is appropriate, i.e.&nbsp;investigate the shape of the distributions, and the standard deviations.</p>
 </section>
-<section id="exercise-4" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
-<p>In R, perform a 2-sample t-test using the <code>t.test()</code> function, and use the <code>var.equal = TRUE</code> argument to ensure a standard 2-sample t-test is performed. Interpret the output.</p>
-</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
 <section id="exercise-5" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
-<p>Next, perform a one-way ANOVA using the <code>aov</code> function, followed by <code>summary</code>, and interpret the results.</p>
+<p>Before running any test, check whether the assumptions of normality and equal variance are reasonable. Produce a boxplot and calculate the standard deviations for each hormone group.</p>
 </section>
+</section>
+<section id="section-3" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
 <section id="exercise-6" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
-<p>Compare the t-test and ANOVA outputs. What do you notice about:</p>
+<p>Run a pooled two-sample <em>t</em>-test using <code>t.test(..., var.equal = TRUE)</code> and a one-way ANOVA using <code>aov()</code> on the same data. Compare:</p>
 <ol type="i">
-<li>the degrees of freedom;</li>
-<li>the P-value?</li>
+<li>the degrees of freedom,</li>
+<li>the P-values, and</li>
+<li>the relationship between the <em>t</em> statistic and the <em>F</em> statistic.</li>
 </ol>
+<p>When there are two groups, <span class="math inline">F = t^2</span>. Verify this for your results.</p>
 </section>
-<section id="exercise-7" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
-<p>When there are only two treatment groups, the observed <em>F</em> and <em>t</em> values are related by <em>F</em> = <span class="math inline">t^2</span>. Demonstrate this for the observed values in this exercise.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Use <code>var.equal = TRUE</code> in <code>t.test()</code> to get the pooled (Student’s) <em>t</em>-test, which matches the ANOVA assumption of equal variances.</p>
+</div></div><p>Take a break!</p>
 </section>
 </section>
-<section id="exercise-3-lambs" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3-lambs">Exercise 3 – lambs</h2>
-<p><strong>Work on this exercise in your own time.</strong></p>
-<p>The levels of immunoglobulin (Ig) in blood serum (g/100 ml) in 3 breeds of newborn lambs have been investigated. A total of 44 lambs were sampled, with approximately equal numbers per breed. The researcher wants to know whether or not there are significant differences in immunoglobulin levels between the breeds.</p>
-<p>The data is found in <code>lambs.csv</code>. Download the data if you have not done so:</p>
-<p><strong>Read the data into R and save it as <code>lambs</code>.</strong> Use the <code>read_csv()</code> function which should be available when you load the <code>tidyverse</code> package.</p>
-<p>It should look like below:</p>
+<section id="lambs-25-min" class="level1">
+<h1>4. Lambs (~25 min)</h1>
+<p>This final section is a capstone exercise. You will work through the entire ANOVA workflow on a new dataset with minimal guidance, bringing together everything from Sections 1 to 3.</p>
+<p>The levels of immunoglobulin (Ig) in blood serum (g/100 ml) in three breeds of newborn lambs have been investigated. A total of 44 lambs were sampled, with approximately equal numbers per breed. Does immunoglobulin level differ between breeds?</p>
+<section id="the-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-data-1">The data</h2>
+<p>Here is a preview of the dataset. You will import it yourself as part of the exercise.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>lambs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 2
       Ig Breed
-   &lt;dbl&gt; &lt;dbl&gt;
- 1   1.1     1
- 2   2.2     1
- 3   1.7     1
- 4   1.4     1
- 5   1.6     1
- 6   2.3     1
- 7   1.4     1
- 8   1.9     1
- 9   0.8     1
-10   1.6     1
+   &lt;dbl&gt; &lt;fct&gt;
+ 1   1.1 1    
+ 2   2.2 1    
+ 3   1.7 1    
+ 4   1.4 1    
+ 5   1.6 1    
+ 6   2.3 1    
+ 7   1.4 1    
+ 8   1.9 1    
+ 9   0.8 1    
+10   1.6 1    
 # ℹ 34 more rows</code></pre>
 </div>
 </div>
-<p>Based on the demonstrator walkthrough, analyse the <code>lambs</code> dataset and test the hypothesis that:</p>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<section id="exercise-7" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
+<p>Analyse the <code>lambs</code> dataset using the full ANOVA workflow. Test the hypothesis that:</p>
 <p><span class="math display">H_{0}: \mu_1 = \mu_2 = \mu_3</span> <span class="math display">H_{1}: \text{not all } \mu_j \text{ are equal}</span></p>
 <p>where <span class="math inline">\mu_j</span> is the mean Ig level for breed <span class="math inline">j</span>.</p>
-<p>Remember to:</p>
+<p>Work through each step:</p>
 <ul class="task-list">
-<li><label><input type="checkbox">State your null and alternate hypotheses.</label></li>
-<li><label><input type="checkbox">Plot an appropriate summary graph for the data.</label></li>
-<li><label><input type="checkbox">Demonstrate the model fit using the <code>aov()</code> function.</label></li>
-<li><label><input type="checkbox">Test assumptions, by checking sd values, or by looking at your exploratory plots (checking residuals is not necessary at this point).</label></li>
-<li><label><input type="checkbox">Report your test statistic, degrees of freedom and p-value.</label></li>
-<li><label><input type="checkbox">Report the statistical conclusion by addressing the null hypothesis.</label></li>
-<li><label><input type="checkbox">Explain the results within a biological context to the data.</label></li>
+<li><label><input type="checkbox">Read the data and convert <code>Breed</code> to a factor.</label></li>
+<li><label><input type="checkbox">Produce a boxplot and calculate group means and standard deviations.</label></li>
+<li><label><input type="checkbox">Check the equal variance assumption using the SD ratio.</label></li>
+<li><label><input type="checkbox">Fit the model using <code>aov()</code> and report <em>F</em>, <em>df</em>, and <em>P</em>.</label></li>
+<li><label><input type="checkbox">Run post-hoc comparisons using <code>emmeans()</code>.</label></li>
+<li><label><input type="checkbox">Write a conclusion that addresses the null hypothesis and explains the results in a biological context.</label></li>
 </ul>
 </section>
-<section id="thanks" class="level2">
-<h2 class="anchored" data-anchor-id="thanks">Thanks!</h2>
-<p>Did you know you can also knit to PDF? Check the documentation for <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">R Markdown</a> or <a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto</a> for more information.</p>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>In this lab we worked through the full one-way ANOVA workflow: exploring grouped data, fitting a model with <code>aov()</code>, checking assumptions, running post-hoc comparisons with <code>emmeans</code>, and reporting results. We also saw that a two-sample <em>t</em>-test and a one-way ANOVA with two groups are mathematically equivalent (<span class="math inline">F = t^2</span>, same P-value and residual degrees of freedom).</p>
+<p>Next week we will look at model residuals in more detail and learn formal diagnostic checks for the ANOVA assumptions.</p>
 <section id="attribution" class="level3">
 <h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
 <p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
-<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-<strong>Click here for session information</strong>
-</button>
-<div id="collapseOne" class="accordion-collapse collapse">
-<div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>R version 4.5.2 (2025-10-31)
-Platform: aarch64-apple-darwin20
-Running under: macOS Tahoe 26.3
-
-Matrix products: default
-BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
-
-locale:
-[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
-
-time zone: Australia/Sydney
-tzcode source: internal
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] emmeans_2.0.0 ggplot2_4.0.2 readxl_1.4.5 
-
-loaded via a namespace (and not attached):
- [1] bit_4.6.0          rematch_2.0.0      gtable_0.3.6       jsonlite_2.0.0    
- [5] crayon_1.5.3       dplyr_1.2.0        compiler_4.5.2     tidyselect_1.2.1  
- [9] parallel_4.5.2     scales_1.4.0       yaml_2.3.12        fastmap_1.2.0     
-[13] lattice_0.22-7     coda_0.19-4.1      readr_2.2.0        R6_2.6.1          
-[17] labeling_0.4.3     generics_0.1.4     knitr_1.51         htmlwidgets_1.6.4 
-[21] tibble_3.3.1       tzdb_0.5.0         pillar_1.11.1      RColorBrewer_1.1-3
-[25] rlang_1.1.7        utf8_1.2.6         xfun_0.56          S7_0.2.1          
-[29] bit64_4.6.0-1      otel_0.2.0         estimability_1.5.1 cli_3.6.5         
-[33] withr_3.0.2        magrittr_2.0.4     digest_0.6.39      grid_4.5.2        
-[37] vroom_1.7.0        xtable_1.8-4       mvtnorm_1.3-3      hms_1.1.4         
-[41] lifecycle_1.0.5    vctrs_0.7.1        evaluate_1.0.5     glue_1.8.0        
-[45] farver_2.1.2       cellranger_1.1.0   rmarkdown_2.30     tools_4.5.2       
-[49] pkgconfig_2.0.3    htmltools_0.5.9   </code></pre>
-</div>
-</div>
-</div>
-</div>
 
 
 </section>
 </section>
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

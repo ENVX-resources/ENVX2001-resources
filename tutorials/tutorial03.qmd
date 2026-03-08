@@ -8,800 +8,243 @@ format:
 
 ## Welcome {.unnumbered}
 
-In this tutorial you will build a diagnostic toolkit for checking the assumptions behind t-tests and ANOVA, then take apart an ANOVA table step by step to understand what every number means.
+In this tutorial we will learn the diagnostic tools for checking assumptions behind *t*-tests and ANOVA, then take apart an ANOVA table to understand what every number means.
 
 You will learn how to:
 
-1. Check the assumptions of t-tests and ANOVA using visual and formal diagnostic tools.
-2. Recognise what "good" and "bad" diagnostics look like in practice.
-3. Construct an ANOVA table by hand from summary statistics.
-4. Interpret the F statistic and degrees of freedom in the context of an experiment.
+1. Identify the three assumptions of *t*-tests and ANOVA.
+2. Use R to produce diagnostic plots and numerical checks.
+3. Read diagnostics and decide whether assumptions are met.
+4. Read an ANOVA table and interpret the F ratio and degrees of freedom.
 
 ```{r}
 #| label: setup
 #| include: false
-# No packages needed — this tutorial uses base R and built-in datasets
+# No packages needed for this tutorial
 ```
 
 
-# Part 1: Checking assumptions
+# Checking assumptions
 
-Before you trust the output of a t-test or ANOVA, you need to check whether the test was appropriate for the data. Both tests share the same assumptions because a two-sample t-test is a special case of one-way ANOVA with two groups. The underlying model is the same: comparing group means against a common error term.
+What assumptions do *t*-tests and ANOVA make? There are three:
 
-The three assumptions are:
+1. **Normality**: the residuals follow a normal distribution.
+2. **Equal variance**: the spread of observations is roughly the same across groups.
+3. **Independence**: the observations do not influence each other.
 
-1. **Normality** --- the residuals follow a normal distribution.
-2. **Equal variance** --- the spread of observations is roughly the same across groups.
-3. **Independence** --- the observations do not influence each other.
+We can check the first two from the data. Independence comes from the study design (random assignment, no repeated measures on the same subject), so we cannot diagnose it from a plot.
 
-The first two are checked using diagnostic tools built around the **residuals** of a fitted model. Independence is different: it is a property of the study design, not something you can see in a plot. If samples were collected properly (random assignment, no repeated measures on the same subject), independence is satisfied.
+
+## Exercise 1: Checking assumptions in R {.unnumbered}
+
+The diagnostics are the same whether we fit a *t*-test or an ANOVA. Run each block and the tutor will walk through the output.
 
 ::: {.column-margin}
-Think of these checks as a toolkit, not a rigid checklist. ANOVA is robust to moderate departures from normality, especially with balanced designs and reasonable sample sizes. Judgement is involved.
+The `sleep` dataset records the change in hours of sleep for 20 patients across two drug groups. It is built into R, so no file download is needed.
 :::
 
+::: {.panel-tabset}
 
-## 1a. What do good and bad diagnostics look like?
+### t-test
 
-The tutor will walk through two datasets. The first meets the assumptions well. The second does not. For each dataset you will see the same five diagnostic checks. Focus on learning to read the patterns rather than on the R code behind them.
-
-### A well-behaved dataset {.unnumbered}
-
-This dataset records the weight (in kg) of cattle from two breeds. Breed 1 has 12 observations and Breed 2 has 15. The data come from a lecture example.
+The `t.test()` object does not store residuals, so we check normality on the raw data in each group. This is equivalent to checking the residuals, since within each group the residuals are just the values minus the group mean (same shape, shifted to zero). With only two groups this is straightforward:
 
 ```{r}
-#| label: load-cattle
-#| echo: false
-
-cattle_wide <- read.csv("../lectures/L03/data/cattle.csv")
-cattle_long <- data.frame(
-  Breed = c(
-    rep("Breed1", sum(!is.na(cattle_wide$Breed1))),
-    rep("Breed2", sum(!is.na(cattle_wide$Breed2)))
-  ),
-  Weight = c(
-    cattle_wide$Breed1[!is.na(cattle_wide$Breed1)],
-    cattle_wide$Breed2[!is.na(cattle_wide$Breed2)]
-  )
-)
-model_good <- aov(Weight ~ Breed, data = cattle_long)
+#| label: check-data
+#| eval: false
+str(sleep)
 ```
 
-**Boxplots** show the distribution of raw data within each group. Look for similar spread and no extreme skew.
-
 ```{r}
-#| label: fig-good-boxplot
-#| echo: false
-#| fig-cap: "Boxplots of cattle weight by breed"
+#| label: ttest-normality
+#| eval: false
+# Subset the data into two groups
+group1 <- subset(sleep, group == "1")
+group2 <- subset(sleep, group == "2")
 
-boxplot(Weight ~ Breed, data = cattle_long,
-        ylab = "Weight (kg)", xlab = "Breed",
-        col = c("lightblue", "lightgreen"))
+# QQ plot for Group 1
+qqnorm(group1$extra, main = "Group 1")
+qqline(group1$extra, col = "red")
+
+# QQ plot for Group 2
+qqnorm(group2$extra, main = "Group 2")
+qqline(group2$extra, col = "red")
+
+# Shapiro-Wilk test for normality in Group 1
+shapiro.test(group1$extra)
+
+# Shapiro-Wilk test for normality in Group 2
+shapiro.test(group2$extra)
 ```
 
-**QQ plot of residuals** checks normality. Points should fall close to the red line.
+### ANOVA
+
+ANOVA and the *t*-test are mathematically equivalent when there are only two groups, so we can fit an ANOVA to the same data:
 
 ```{r}
-#| label: fig-good-qq
-#| echo: false
-#| fig-cap: "Normal QQ plot of residuals (cattle data)"
+#| label: fit-aov
+#| eval: false
 
-qqnorm(residuals(model_good), main = "")
-qqline(residuals(model_good), col = "red")
+model <- aov(extra ~ group, data = sleep)
 ```
 
-**Shapiro-Wilk test** is a formal test of normality. A large p-value (above 0.05) means there is no strong evidence against normality. Keep in mind that this test rejects normality too readily with large samples and has low power with small samples. Treat it as one piece of evidence alongside the QQ plot, not a definitive gate.
+With `aov()`, residuals are built in:
 
 ```{r}
-#| label: good-shapiro
-#| echo: false
+#| label: aov-residuals
+#| eval: false
 
-shapiro.test(residuals(model_good))
+qqnorm(residuals(model), main = "")
+qqline(residuals(model), col = "red")
+shapiro.test(residuals(model))
+```
+
+:::
+
+**Equal variance** (this check is the same whether you used the *t*-test or ANOVA approach above):
+
+```{r}
+#| label: equal-var-checks
+#| eval: false
+
+boxplot(extra ~ group, data = sleep)
+
+# Using group1 and group2 from the t-test tab (or re-create them here)
+group1 <- subset(sleep, group == "1")
+group2 <- subset(sleep, group == "2")
+max(sd(group1$extra), sd(group2$extra)) /
+  min(sd(group1$extra), sd(group2$extra))
 ```
 
 ::: {.column-margin}
-The plot below comes from a fitted model. You will learn to produce this yourself shortly. For now, focus on what the pattern tells you.
+The SD ratio rule of thumb: below 2 is generally acceptable.
 :::
 
-**Residuals vs fitted plot** checks for equal variance and patterns. What to look for:
+**Independence** cannot be checked from data. It comes from the study design: random assignment, no repeated measures on the same subject.
 
-- Random scatter around zero = good
-- Fan shape (wider spread on one side) = unequal variance
-- Curve = a non-linear relationship the model missed
+R can also produce four diagnostic plots at once with `plot(aov(...))`, including the QQ plot and two others we have not covered yet. We will explore these in the lab next week.
 
-```{r}
-#| label: fig-good-rvf
-#| echo: false
-#| fig-cap: "Residuals vs fitted values (cattle data)"
+### Reading diagnostics {.unnumbered}
 
-plot(fitted(model_good), residuals(model_good),
-     xlab = "Fitted values", ylab = "Residuals",
-     pch = 16, col = "steelblue")
-abline(h = 0, lty = 2, col = "grey")
+Now that we know the code, can we read the output? The widget below generates random data with 2 to 4 groups, shows one diagnostic, and asks whether the assumption holds.
+
+```{ojs}
+//| echo: false
+import { assumptionCheckerWidget } from "../assets/js/assumption-checker.js"
+assumptionCheckerWidget()
 ```
 
-**SD ratio** is a quick numeric check for equal variance. Compute the ratio of the largest group SD to the smallest. A ratio below 2 is generally acceptable.
-
-```{r}
-#| label: good-sd-ratio
-#| echo: false
-
-sds_good <- tapply(cattle_long$Weight, cattle_long$Breed, sd)
-cat("Group SDs:", round(sds_good, 2), "\n")
-cat("SD ratio:", round(max(sds_good) / min(sds_good), 2))
-```
-
-::: {.callout-tip collapse="true"}
-### Source code
-
-```r
-# Load and reshape cattle data
-cattle_wide <- read.csv("../lectures/L03/data/cattle.csv")
-cattle_long <- data.frame(
-  Breed = c(
-    rep("Breed1", sum(!is.na(cattle_wide$Breed1))),
-    rep("Breed2", sum(!is.na(cattle_wide$Breed2)))
-  ),
-  Weight = c(
-    cattle_wide$Breed1[!is.na(cattle_wide$Breed1)],
-    cattle_wide$Breed2[!is.na(cattle_wide$Breed2)]
-  )
-)
-model_good <- aov(Weight ~ Breed, data = cattle_long)
-
-# Boxplot
-boxplot(Weight ~ Breed, data = cattle_long,
-        ylab = "Weight (kg)", xlab = "Breed",
-        col = c("lightblue", "lightgreen"))
-
-# QQ plot
-qqnorm(residuals(model_good), main = "")
-qqline(residuals(model_good), col = "red")
-
-# Shapiro-Wilk test
-shapiro.test(residuals(model_good))
-
-# Residuals vs fitted
-plot(fitted(model_good), residuals(model_good),
-     xlab = "Fitted values", ylab = "Residuals",
-     pch = 16, col = "steelblue")
-abline(h = 0, lty = 2, col = "grey")
-
-# SD ratio
-sds_good <- tapply(cattle_long$Weight, cattle_long$Breed, sd)
-max(sds_good) / min(sds_good)
-```
+::: {.callout-note}
+## Checkpoint
+We should be able to run the diagnostic checks in R, read the output, and decide whether the assumption is met.
 :::
 
 
-### A problematic dataset {.unnumbered}
+# The ANOVA table
 
-This simulated dataset has two groups of 15 observations each. Group A is drawn from a normal distribution. Group B is drawn from a right-skewed distribution with much larger variance. The violations are deliberately exaggerated to make them easy to spot.
-
-```{r}
-#| label: load-bad
-#| echo: false
-
-set.seed(2001)
-bad <- data.frame(
-  group = rep(c("A", "B"), each = 15),
-  value = c(rnorm(15, 10, 2), rexp(15, rate = 0.1))
-)
-model_bad <- aov(value ~ group, data = bad)
-```
-
-```{r}
-#| label: fig-bad-boxplot
-#| echo: false
-#| fig-cap: "Boxplots by group (simulated data)"
-
-boxplot(value ~ group, data = bad,
-        ylab = "Value", xlab = "Group",
-        col = c("lightblue", "lightyellow"))
-```
-
-```{r}
-#| label: fig-bad-qq
-#| echo: false
-#| fig-cap: "Normal QQ plot of residuals (simulated data)"
-
-qqnorm(residuals(model_bad), main = "")
-qqline(residuals(model_bad), col = "red")
-```
-
-```{r}
-#| label: bad-shapiro
-#| echo: false
-
-shapiro.test(residuals(model_bad))
-```
-
-```{r}
-#| label: fig-bad-rvf
-#| echo: false
-#| fig-cap: "Residuals vs fitted values (simulated data)"
-
-plot(fitted(model_bad), residuals(model_bad),
-     xlab = "Fitted values", ylab = "Residuals",
-     pch = 16, col = "tomato")
-abline(h = 0, lty = 2, col = "grey")
-```
-
-```{r}
-#| label: bad-sd-ratio
-#| echo: false
-
-sds_bad <- tapply(bad$value, bad$group, sd)
-cat("Group SDs:", round(sds_bad, 2), "\n")
-cat("SD ratio:", round(max(sds_bad) / min(sds_bad), 2))
-```
-
-Compare these to the cattle diagnostics. The boxplots show very different spread between the two groups. The QQ plot curves away from the reference line, indicating right skew in the residuals. The Shapiro-Wilk p-value is low, providing formal evidence against normality. The residuals-vs-fitted plot shows a fan shape --- variance is much larger for one group. The SD ratio is well above 2. These data clearly violate the assumptions of equal variance and normality.
-
-::: {.callout-tip collapse="true"}
-### Source code
-
-```r
-# Simulated data with clear violations
-set.seed(2001)
-bad <- data.frame(
-  group = rep(c("A", "B"), each = 15),
-  value = c(rnorm(15, 10, 2), rexp(15, rate = 0.1))
-)
-model_bad <- aov(value ~ group, data = bad)
-
-# Boxplot
-boxplot(value ~ group, data = bad,
-        ylab = "Value", xlab = "Group",
-        col = c("lightblue", "lightyellow"))
-
-# QQ plot
-qqnorm(residuals(model_bad), main = "")
-qqline(residuals(model_bad), col = "red")
-
-# Shapiro-Wilk test
-shapiro.test(residuals(model_bad))
-
-# Residuals vs fitted
-plot(fitted(model_bad), residuals(model_bad),
-     xlab = "Fitted values", ylab = "Residuals",
-     pch = 16, col = "tomato")
-abline(h = 0, lty = 2, col = "grey")
-
-# SD ratio
-sds_bad <- tapply(bad$value, bad$group, sd)
-max(sds_bad) / min(sds_bad)
-```
-:::
-
-
-### Discussion {.unnumbered}
-
-1. Would you be comfortable running a t-test on the cattle data? What gave you confidence?
-2. Which assumption is most clearly violated in the second dataset? How can you tell?
-3. ANOVA is robust to moderate departures from normality, especially with balanced designs. At what point would you decide the violations are too severe?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answers
-
-1. Yes. The QQ plot shows points close to the line, the Shapiro-Wilk test has a large p-value (no evidence against normality), the boxplots show similar spread, and the SD ratio is about 1.16 (well below 2). The residuals-vs-fitted plot shows no obvious pattern.
-
-2. The equal variance assumption is the most dramatically violated. The SD ratio is close to 8, far above the rule-of-thumb threshold of 2. The boxplots show Group B is much more spread out than Group A, and the residuals-vs-fitted plot shows a clear fan shape. Normality is also violated (the QQ plot shows strong departure in the tails and the Shapiro-Wilk p-value is very small).
-
-3. There is no single threshold. In practice, consider the severity of the violation (moderate skew vs extreme skew), the balance and size of the design (balanced designs with reasonable n are more robust), and whether multiple diagnostics point in the same direction. If the QQ plot, Shapiro-Wilk, and residuals-vs-fitted all suggest problems, you should be concerned. If only one diagnostic is borderline, the test is likely still reliable.
-:::
-::::
-
-
-## 1b. Your turn: checking assumptions with PlantGrowth
-
-The `PlantGrowth` dataset is built into R. It records the dried weight of plants under a control and two treatment conditions (30 observations, 10 per group, balanced design).
-
-```{r}
-#| label: plantgrowth-str
-
-str(PlantGrowth)
-```
-
-::: {.question}
-### Worked Example 1
-
-Fit a one-way ANOVA model to the PlantGrowth data and run all five diagnostic checks:
-
-1. Boxplot of the raw data
-2. QQ plot of the residuals
-3. Shapiro-Wilk test on the residuals
-4. Residuals vs fitted plot
-5. SD ratio
-
-Then interpret the results. Would you be comfortable running ANOVA on this dataset?
-:::
-
-::: {.callout-tip collapse="true"}
-### Solution
-
-Fit the model:
-
-```{r}
-#| label: pg-model
-
-model_pg <- aov(weight ~ group, data = PlantGrowth)
-```
-
-**Boxplot:**
-
-```{r}
-#| label: fig-pg-boxplot
-#| fig-cap: "Plant weight by treatment group"
-
-boxplot(weight ~ group, data = PlantGrowth,
-        ylab = "Dried weight", xlab = "Group",
-        col = c("lightgreen", "lightyellow", "lightblue"))
-```
-
-**QQ plot:**
-
-```{r}
-#| label: fig-pg-qq
-#| fig-cap: "Normal QQ plot of residuals (PlantGrowth)"
-
-qqnorm(residuals(model_pg), main = "")
-qqline(residuals(model_pg), col = "red")
-```
-
-**Shapiro-Wilk:**
-
-```{r}
-#| label: pg-shapiro
-
-shapiro.test(residuals(model_pg))
-```
-
-**Residuals vs fitted:**
-
-```{r}
-#| label: fig-pg-rvf
-#| fig-cap: "Residuals vs fitted values (PlantGrowth)"
-
-plot(fitted(model_pg), residuals(model_pg),
-     xlab = "Fitted values", ylab = "Residuals",
-     pch = 16, col = "darkgreen")
-abline(h = 0, lty = 2, col = "grey")
-```
-
-**SD ratio:**
-
-```{r}
-#| label: pg-sd-ratio
-
-sds_pg <- tapply(PlantGrowth$weight, PlantGrowth$group, sd)
-sds_pg
-max(sds_pg) / min(sds_pg)
-```
-
-**Interpretation:** The QQ plot shows points reasonably close to the line, the Shapiro-Wilk test does not reject normality (p = 0.44), and the residuals-vs-fitted plot shows no obvious fan shape or curvature. The SD ratio is about 1.8, which is below the rule-of-thumb threshold of 2. The design is balanced (10 per group), which adds robustness. Overall, the assumptions are reasonably well met and ANOVA is appropriate here.
-:::
-
-### Discussion {.unnumbered}
-
-1. How do the diagnostics for PlantGrowth compare to the cattle data? Are there any differences worth noting?
-2. If one of the three groups had noticeably more spread than the others, which diagnostic would show it most clearly?
+When we run `summary(aov(...))` in R, we get an ANOVA table. Most people skip straight to the p-value, but every number in the table tells us something about the data and the experiment. The two most important things to understand are the **F ratio** (is there a real effect, or just noise?) and the **degrees of freedom** (how big was the experiment?).
 
 ::: {.column-margin}
-If assumptions are violated, there are remedies --- transformations, non-parametric alternatives, or robust methods --- which you will encounter in later weeks.
+ANOVA table interpretation and basic calculations (the F ratio and degrees of freedom) are examinable.
 :::
 
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answers
 
-1. Both datasets meet the assumptions reasonably well. The PlantGrowth SD ratio (about 1.8) is slightly higher than the cattle data (about 1.2), but still acceptable. The QQ plots and Shapiro-Wilk results are similar in both cases. The main difference is that PlantGrowth has three groups, so the residuals-vs-fitted plot shows three columns of points instead of two.
+## Exercise 2: The F ratio and degrees of freedom {.unnumbered}
 
-2. The boxplot and the residuals-vs-fitted plot would both show it. The boxplot would show a wider box for that group. The residuals-vs-fitted plot would show a wider spread of points at the fitted value corresponding to that group (a fan shape). The SD ratio would confirm it numerically.
-:::
-::::
-
-
-# Part 2: The ANOVA table
-
-## Introduction
-
-The ANOVA table is not just a container for a p-value. Every number in it tells you something about the data and the experiment. In this section you will build an ANOVA table from summary statistics, one step at a time.
-
-::: {.column-margin}
-ANOVA table calculations and interpretation are both examinable.
-:::
-
-The point of this exercise is to appreciate how the table is constructed, not to practise arithmetic. By the end you should be able to answer questions like:
-
-- What does the F statistic tell us?
-- What is the difference between the treatment and residual sum of squares?
-- What is total mean squares ($MS_{tot}$) and how does it relate to the variance of the data?
-- Can the degrees of freedom tell us whether an experiment is balanced or unbalanced?
-
-In practice, R can produce an ANOVA table in a fraction of a second. Many people skip straight to the p-value and ignore everything else. That throws away useful information. By working through the table by hand, you will learn to read every row.
-
-
-## The experiment
-
-A researcher tested three planting densities of a maize fodder crop (20, 30, and 40 plants per unit area) across 15 similar plots, resulting in 5 plots per planting density. The sample means and standard deviations (kg of dry matter per plot) for each planting density are shown below:
+A researcher tested three planting densities of a maize fodder crop (low, medium, and high) across 15 plots, with 5 plots per density. The sample means and standard deviations (kg of dry matter per plot) are:
 
 ```{r}
 #| label: tbl-maize-summary
+#| tbl-cap: "Sample means and standard deviations of dry matter yield (kg per plot) for three planting densities of maize."
 #| echo: false
 
-library(knitr)
 maize <-
   data.frame(
-    Treatment = c(
-      "20 plants per unit area",
-      "30 plants per unit area",
-      "40 plants per unit area",
-      "Overall"
-    ),
-    Mean = c(17.58, 27.18, 27.14, 23.97),
-    Std.Dev = c(2.70, 1.89, 2.02, 5.11),
-    Variance = c(7.290, 3.577, 4.093, "-")
+    Density = c("Low", "Medium", "High"),
+    Mean = c(17.58, 27.18, 27.14),
+    Std.Dev = c(2.70, 1.89, 2.02)
   )
 knitr::kable(maize)
 ```
 
-We wish to perform an analysis of variance (ANOVA) to determine whether planting density influenced the total dry weight of maize per plot. The ANOVA table is mostly empty. The labels $a$ through $i$ mark the values we need to calculate.
-
-::: {.column-margin}
-Missing values in the ANOVA table have been labelled $a$ to $i$ for reference.
-:::
+The low-density group produced noticeably less dry matter than the other two. But is that difference real, or could it be noise? Here is the ANOVA table R produces:
 
 ```{r}
-#| label: tbl-anova-empty
-#| echo: false
-
-source <- c("Treatment", "Residual", "Total")
-df_col <- c("$a$", "$b$", "$c$")
-ss_col <- c("$d$", "$e$", "$f$")
-ms_col <- c("$152.96$", "$g$", "$h$")
-f_col <- c("$i$", "-", "-")
-anova_tbl <- cbind(
-  Source = source, df = df_col, "Sum Sq" = ss_col,
-  "Mean Sq" = ms_col, "F value" = f_col
-)
-knitr::kable(anova_tbl)
-```
-
-What we know:
-
-- There are $t = 3$ treatments and $N = 15$ total observations.
-- The treatment mean square $MS_{trt} = 152.96$.
-- The overall standard deviation is $s = 5.11$ (pooling all 15 observations).
-- Hint: the total mean square $MS_{tot}$ is approximately the overall variance of the data.
-
-The formulas for each row of the ANOVA table are:
-
-```{r}
-#| label: tbl-anova-formulas
-#| echo: false
-
-source <- c("Treatment", "Residual", "Total")
-df_form <- c("$t - 1$", "$N - t$", "$N - 1$")
-ss_form <- c("$SS_{trt}$", "$SS_{res}$", "$SS_{tot}$")
-ms_form <- c(
-  "$MS_{trt} = SS_{trt} / df_{trt}$",
-  "$MS_{res} = SS_{res} / df_{res}$",
-  "$MS_{tot} = SS_{tot} / df_{tot}$"
-)
-f_form <- c("$MS_{trt}/MS_{res}$", "", "")
-formulas <- data.frame(
-  Source = source, Df = df_form, `Sum Sq` = ss_form,
-  `Mean Sq` = ms_form, `F value` = f_form,
-  check.names = FALSE
-)
-knitr::kable(formulas)
-```
-
-
-## Step 1: Degrees of freedom
-
-The degrees of freedom are straightforward to fill in. With $t = 3$ treatments and $N = 15$ total observations:
-
-- **Treatment df** $= t - 1 = 3 - 1 = 2$
-- **Residual df** $= N - t = 15 - 3 = 12$
-- **Total df** $= N - 1 = 15 - 1 = 14$
-
-```{r}
-#| label: tbl-anova-step1
-#| echo: false
-
-source <- c("Treatment", "Residual", "Total")
-df_s1 <- c("$\\mathbf{2}$", "$\\mathbf{12}$", "$\\mathbf{14}$")
-ss_s1 <- c("$d$", "$e$", "$f$")
-ms_s1 <- c("$152.96$", "$g$", "$h$")
-f_s1 <- c("$i$", "", "")
-step1 <- data.frame(
-  Source = source, df = df_s1, `Sum Sq` = ss_s1,
-  `Mean Sq` = ms_s1, `F value` = f_s1,
-  check.names = FALSE
-)
-knitr::kable(step1)
-```
-
-### Discussion {.unnumbered}
-
-Can you tell from the degrees of freedom whether this experiment is balanced?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answer
-
-Yes. If $df_{trt} + df_{res} = df_{tot}$ (i.e. $2 + 12 = 14$), the experiment is balanced. Each treatment has the same number of replicates: $n = N / t = 15 / 3 = 5$. If the experiment were unbalanced (different numbers of replicates per treatment), the total df would still be $N - 1$, but the split between treatment and residual df would reflect the unequal group sizes.
-:::
-::::
-
-
-## Step 2: Total variance ($MS_{tot}$)
-
-To calculate the total mean square $MS_{tot}$, we use the overall standard deviation $s = 5.11$. The variance is the square of the standard deviation:
-
-$$MS_{tot} = s^2_{tot} = 5.11^2 = 26.1121$$
-
-```{r}
-#| label: tbl-anova-step2
-#| echo: false
-
-df_s2 <- c("$2$", "$12$", "$14$")
-ss_s2 <- c("$d$", "$e$", "$f$")
-ms_s2 <- c("$152.96$", "$g$", "$\\mathbf{26.11}$")
-f_s2 <- c("$i$", "", "")
-step2 <- data.frame(
-  Source = source, df = df_s2, `Sum Sq` = ss_s2,
-  `Mean Sq` = ms_s2, `F value` = f_s2,
-  check.names = FALSE
-)
-knitr::kable(step2)
-```
-
-### Discussion {.unnumbered}
-
-When you look at the total mean square value, what does it tell you about the spread of the data?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answer
-
-The total mean square is the variance of the data as a whole (not treatment-specific). It tells us how much the data varies from the overall mean. A value of 26.11 means the data are moderately spread out. However, a large $MS_{tot}$ on its own does not tell us whether that spread is due to the treatment effect or to random variation within groups. The F statistic will help answer that question.
-:::
-::::
-
-
-## Step 3: Sum of squares ($SS_{tot}$ and $SS_{trt}$)
-
-Since a mean square is calculated by dividing the sum of squares by the degrees of freedom:
-
-$$MS = \frac{SS}{df}$$
-
-we can rearrange to get:
-
-$$SS = MS \times df$$
-
-The total sum of squares:
-
-$$SS_{tot} = MS_{tot} \times df_{tot} = 26.1121 \times 14 = 365.5694$$
-
-The treatment sum of squares:
-
-$$SS_{trt} = MS_{trt} \times df_{trt} = 152.96 \times 2 = 305.92$$
-
-```{r}
-#| label: tbl-anova-step3
-#| echo: false
-
-ss_s3 <- c("$\\mathbf{305.92}$", "$e$", "$\\mathbf{365.57}$")
-ms_s3 <- c("$152.96$", "$g$", "$26.11$")
-f_s3 <- c("$i$", "", "")
-step3 <- data.frame(
-  Source = source, df = df_s2, `Sum Sq` = ss_s3,
-  `Mean Sq` = ms_s3, `F value` = f_s3,
-  check.names = FALSE
-)
-knitr::kable(step3)
-```
-
-### Discussion {.unnumbered}
-
-What is the difference between the treatment and residual sum of squares?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answer
-
-The treatment sum of squares $SS_{trt}$ measures how much the treatment means differ from the overall mean. It captures the variation *between* groups. The residual sum of squares $SS_{res}$ measures how much the individual observations differ from their own treatment means. It captures the variation *within* groups. Together they partition the total variation in the data: $SS_{tot} = SS_{trt} + SS_{res}$.
-:::
-::::
-
-
-## Step 4: Residual SS and MS
-
-Since $SS_{tot} = SS_{trt} + SS_{res}$, we can find the residual sum of squares by subtraction:
-
-$$SS_{res} = SS_{tot} - SS_{trt} = 365.5694 - 305.92 = 59.6494$$
-
-Then the residual mean square:
-
-$$MS_{res} = \frac{SS_{res}}{df_{res}} = \frac{59.6494}{12} = 4.9708$$
-
-```{r}
-#| label: tbl-anova-step4
-#| echo: false
-
-ss_s4 <- c("$305.92$", "$\\mathbf{59.65}$", "$365.57$")
-ms_s4 <- c("$152.96$", "$\\mathbf{4.97}$", "$26.11$")
-f_s4 <- c("$i$", "", "")
-step4 <- data.frame(
-  Source = source, df = df_s2, `Sum Sq` = ss_s4,
-  `Mean Sq` = ms_s4, `F value` = f_s4,
-  check.names = FALSE
-)
-knitr::kable(step4)
-```
-
-### Discussion {.unnumbered}
-
-Why do we need mean squares if we already have the sum of squares?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answer
-
-Sum of squares grow with the number of observations, so they are not directly comparable across rows with different degrees of freedom. The mean square divides by the degrees of freedom to standardise the variation, making it fair to compare treatment variation with residual variation. The F statistic is the ratio of these standardised quantities.
-:::
-::::
-
-
-## Step 5: The F statistic
-
-Finally, we calculate the F statistic by dividing the treatment mean square by the residual mean square:
-
-$$F = \frac{MS_{trt}}{MS_{res}} = \frac{152.96}{4.9708} = 30.77$$
-
-```{r}
-#| label: tbl-anova-step5
-#| echo: false
-
-ss_s5 <- c("$305.92$", "$59.65$", "$365.57$")
-ms_s5 <- c("$152.96$", "$4.97$", "$26.11$")
-f_s5 <- c("$\\mathbf{30.77}$", "", "")
-step5 <- data.frame(
-  Source = source, df = df_s2, `Sum Sq` = ss_s5,
-  `Mean Sq` = ms_s5, `F value` = f_s5,
-  check.names = FALSE
-)
-knitr::kable(step5)
-```
-
-### Discussion {.unnumbered}
-
-1. What does an F value of 1 mean? What about an F value of 30?
-2. What if we had 10 replicates per treatment instead of 5? Which numbers in the table would change, and in which direction?
-
-:::: {.content-visible when-profile="solution"}
-::: {.ans}
-### Suggested answers
-
-1. An F value of 1 means the variation between treatment means is about the same as the variation within groups. There is no evidence that the treatments differ. An F value of 30 means the between-group variation is 30 times larger than the within-group variation. This is strong evidence that at least one treatment mean differs from the others.
-
-2. With 10 replicates per treatment, $N$ would increase from 15 to 30. The residual df would increase from 12 to 27, and the total df from 14 to 29. More replicates generally reduce $MS_{res}$ (better estimate of within-group variation), which would increase the F statistic if the treatment effect remains the same. The treatment df would stay at 2 (still 3 treatments).
-:::
-::::
-
-
-## Reading an ANOVA table in practice
-
-The F statistic is a signal-to-noise ratio. The numerator ($MS_{trt}$) measures how much the group means differ from each other. The denominator ($MS_{res}$) measures how much variability exists within groups. A large F means the signal is much larger than the noise.
-
-Combined with the degrees of freedom, the F statistic tells you:
-
-- Whether there is evidence of a treatment effect (large F relative to what you would expect by chance)
-- How much replication underpins that conclusion (the residual df)
-
-::: {.column-margin}
-F and df are necessary but not sufficient. They do not tell you about effect size, whether assumptions are met, or which groups differ.
-:::
-
-But the F statistic does **not** tell you:
-
-- **How big the effect is** in practical terms (effect size is a separate question)
-- **Whether the assumptions are met** (that is what Part 1 was about)
-- **Which groups differ** (that requires post-hoc tests, covered in the lab)
-
-
-## Bonus: doing it in R
-
-Here is the complete calculation in R code, matching the hand calculations above:
-
-```{r}
-#| label: anova-r-code
-
-# Define known values
-N <- 15           # total number of observations
-t <- 3            # number of treatments
-ms_trt <- 152.96  # treatment mean square
-sd_overall <- 5.11
-
-# Degrees of freedom
-df_trt <- t - 1         # treatment df
-df_residual <- N - t    # residual df
-df_total <- N - 1       # total df
-
-# Mean squares and sums of squares
-ms_total <- sd_overall^2              # total mean square
-ss_total <- ms_total * df_total       # total sum of squares
-ss_trt <- ms_trt * df_trt            # treatment sum of squares
-ss_residual <- ss_total - ss_trt     # residual sum of squares
-ms_residual <- ss_residual / df_residual  # residual mean square
-
-# F statistic
-f_statistic <- ms_trt / ms_residual
-```
-
-```{r}
-#| label: tbl-anova-r
+#| label: tbl-anova-maize
+#| tbl-cap: "One-way ANOVA for the effect of planting density on dry matter yield of maize."
 #| echo: false
 
 knitr::kable(data.frame(
-  Source = c("Treatment", "Residual", "Total"),
-  Df = c(df_trt, df_residual, df_total),
-  Sum.Sq = round(c(ss_trt, ss_residual, ss_total), 1),
-  Mean.Sq = round(c(ms_trt, ms_residual, ms_total), 1),
-  F.value = c(round(f_statistic, 1), "", "")
+  Source = c("Treatment", "Residual"),
+  Df = c(2, 12),
+  `Sum Sq` = c(305.92, 59.65),
+  `Mean Sq` = c(152.96, 4.97),
+  `F value` = c("30.77", ""),
+  `Pr(>F)` = c("< 0.001", ""),
+  check.names = FALSE
 ))
 ```
 
-
-## Do you reject the null hypothesis?
-
-To determine whether we reject the null hypothesis, we compare the F statistic to the F critical value. The F critical value is the value of F that marks the boundary of the rejection region under the null hypothesis. If the F statistic exceeds the F critical value, we reject the null.
-
-::: {.column-margin}
-When you run `summary(aov(...))` in R, the Total row is not shown. R only displays the treatment and residual rows.
-:::
-
-We need the degrees of freedom for the treatment and residual, and the significance level (usually 0.05). The `qf()` function in R gives us the critical value:
+A second researcher tested three fertiliser blends on wheat yield using the same design (3 treatments, 5 plots each). Their table:
 
 ```{r}
-#| label: f-critical
-
-qf(p = 0.05,
-   df1 = 2,   # treatment degrees of freedom
-   df2 = 12,  # residual degrees of freedom
-   lower.tail = FALSE)
-```
-
-Since the F statistic is 30.77, which is much larger than the F critical value of 3.89, we conclude that $P < 0.05$ and reject the null hypothesis that the treatment means are equal. There is strong evidence that planting density affects the dry weight of maize.
-
-
-## Which treatment means are different?
-
-Rejecting the null hypothesis tells us that at least one treatment mean differs from the others. But which ones? To answer that, we would normally perform a post-hoc test such as Tukey's HSD. For now, the original summary table gives us a hint:
-
-```{r}
-#| label: tbl-maize-hint
+#| label: tbl-anova-wheat
+#| tbl-cap: "One-way ANOVA for the effect of fertiliser blend on wheat yield."
 #| echo: false
 
-knitr::kable(maize)
+knitr::kable(data.frame(
+  Source = c("Treatment", "Residual"),
+  Df = c(2, 12),
+  `Sum Sq` = c(11.40, 60.00),
+  `Mean Sq` = c(5.70, 5.00),
+  `F value` = c("1.14", ""),
+  `Pr(>F)` = c("0.35", ""),
+  check.names = FALSE
+))
 ```
 
-The mean dry weight for the 30 and 40 plants per unit area treatments are very similar (27.18 and 27.14). This suggests those two treatments are probably not significantly different from each other. The 20 plants per unit area treatment, with a mean of 17.58, is likely the one driving the significant F statistic.
+### The F ratio {.unnumbered}
 
-But this is only a hint, not a definitive answer. The ANOVA table tells you whether group means differ overall. In the lab, you will learn how to identify which specific groups differ using post-hoc tests.
+The F value is a signal-to-noise ratio:
+
+$$F = \frac{MS_{trt}}{MS_{res}}$$
+
+$MS_{trt}$ (treatment mean square) measures how much the group means differ from the overall mean. $MS_{res}$ (residual mean square) measures the scatter within each group. When F is close to 1, the groups look no more different than random noise would produce. When F is large, the data suggest a real effect.
+
+In the maize table, $F = 152.96 \div 4.97 = 30.77$. The between-group signal is about 30 times larger than the within-group noise, and the p-value is tiny. Planting density clearly affects dry matter yield.
+
+In the wheat table, $F = 5.70 \div 5.00 = 1.14$. The treatment variation is about the same size as the residual noise. The fertiliser blends made no detectable difference.
+
+::: {.column-margin}
+The sum of squares (Sum Sq) in the treatment and residual rows add up to the total variation in the data. The ANOVA table partitions all variation into two sources: differences between groups and scatter within groups.
+:::
+
+### Degrees of freedom {.unnumbered}
+
+The degrees of freedom tell us about the size and shape of the experiment:
+
+- **Treatment df** $= t - 1$, where $t$ is the number of groups. Both tables show df = 2, so both experiments compared 3 groups.
+- **Residual df** $= N - t$, where $N$ is the total number of observations. Both tables show df = 12, so $N = 12 + 3 = 15$ observations in each experiment.
+- Each group therefore had $15 \div 3 = 5$ replicates.
+
+### Try it yourself {.unnumbered}
+
+A colleague compared 4 watering regimes on tomato plants, with 6 plants per regime. Their ANOVA table shows $MS_{trt} = 45.2$ and $MS_{res} = 8.1$, but they forgot to include the F value and degrees of freedom.
+
+1. What are the treatment and residual degrees of freedom?
+2. Calculate the F ratio.
+3. The critical value at $\alpha = 0.05$ for these degrees of freedom is 3.10. Is the result significant?
+
+::: {.column-margin}
+If the observed F exceeds the critical value, we reject the null hypothesis at that significance level. You can find critical values in R with `qf(0.05, df1, df2, lower.tail = FALSE)`.
+:::
+
+::: {.callout-note}
+## Checkpoint
+We should be able to read an ANOVA table, explain what F measures (between-group variation divided by within-group variation), compute F from the mean squares, and work out the number of groups and observations from the degrees of freedom.
+:::
 
 
-# Summary {.unnumbered}
+## Wrap-up {.unnumbered}
 
-In this tutorial you:
-
-- Built a diagnostic toolkit for checking t-test and ANOVA assumptions
-- Learned that most diagnostics are different views on the **residuals**, and that independence is checked through study design
-- Took apart the ANOVA table step by step and understood what every number means
-- Saw why the F value and degrees of freedom are the first things to check when reading an ANOVA table
-
-Next week you will go deeper into residual-based diagnostics using standardised residuals.
+We covered the diagnostic tools for checking assumptions and learned to read an ANOVA table. In the lab, we will fit ANOVA models in R and use post-hoc tests to identify which groups differ.

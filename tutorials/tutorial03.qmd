@@ -40,7 +40,7 @@ We can check the first two from the data. Independence comes from the study desi
 The diagnostics are the same whether we fit a *t*-test or an ANOVA. Run each block and the tutor will walk through the output.
 
 ::: {.column-margin}
-The `sleep` dataset records the change in hours of sleep for 20 patients across two drug groups. It is built into R, so no file download is needed.
+The `sleep` dataset records the change in hours of sleep for 10 patients under two drug treatments (20 observations total). It is built into R, so no file download is needed.
 :::
 
 ::: {.panel-tabset}
@@ -121,6 +121,10 @@ The SD ratio rule of thumb: below 2 is generally acceptable.
 :::
 
 **Independence** cannot be checked from data. It comes from the study design: random assignment, no repeated measures on the same subject.
+
+::: {.callout-note}
+Note that `sleep` is actually a paired design — each patient was measured under both drugs. We are treating the two groups as independent here to illustrate the diagnostic workflow; the pairing structure is ignored for this exercise.
+:::
 
 R can also produce four diagnostic plots at once with `plot(aov(...))`, including the QQ plot and two others we have not covered yet. We will explore these in the lab next week.
 

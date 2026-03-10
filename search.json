@@ -1393,137 +1393,137 @@
     "text": "Lecture 03a – t-tests Full Screen | PDF\n\nLecture 03b – One-way ANOVA Full Screen | PDF"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#william-gosset-1908",
-    "href": "lectures/L03/Lecture-03a.html#william-gosset-1908",
+    "objectID": "lectures/L03/Lecture-03a.html#introduction",
+    "href": "lectures/L03/Lecture-03a.html#introduction",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "William Gosset (1908)",
-    "text": "William Gosset (1908)\n\n\n\n\n\nWilliam Gosset\n\n\n\n\nWorked as a statistician at Guinness Brewery in Dublin\nPublished under the pseudonym “Student” (company policy prevented use of real name)\nDeveloped the \\(t\\)-distribution and \\(t\\)-tests for small sample sizes\nNeeded to compare barley varieties with limited data"
+    "section": "Introduction",
+    "text": "Introduction\n\nOne-sample \\(t\\)-test: compare a sample mean against a known value\nTwo-sample \\(t\\)-test: compare the means of two independent groups\nPaired \\(t\\)-test: compare measurements taken on the same subjects (e.g. before and after)\n\nLast week we learned about confidence intervals, which estimate the uncertainty of a parameter (e.g. a mean).\n\nThe \\(t\\)-test and the confidence interval are closely related. Both are derived from the same quantities, and this week we look at that connection more carefully."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#ronald-fisher-1925",
-    "href": "lectures/L03/Lecture-03a.html#ronald-fisher-1925",
+    "objectID": "lectures/L03/Lecture-03a.html#cattle",
+    "href": "lectures/L03/Lecture-03a.html#cattle",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Ronald Fisher (1925)",
-    "text": "Ronald Fisher (1925)\n\n\n\n\n\nRonald Fisher\n\n\n\n\nExtended and formalised Gosset’s work\nIntroduced the concept of degrees of freedom\nDeveloped Analysis of Variance (ANOVA) – next lecture!\nEstablished many foundations of modern statistical inference"
+    "section": "Cattle",
+    "text": "Cattle\nTwo breeds of cattle, 12 and 15 samples. Are the breeds different in mean weight?\n\n\nCode\ncattle &lt;- read.csv(\"data/cattle.csv\") |&gt;\n  pivot_longer(cols = everything(), names_to = \"breed\", values_to = \"weight\") |&gt;\n  mutate(breed = as.factor(breed)) |&gt;\n  drop_na()\n\nggplot(cattle, aes(breed, weight)) +\n  geom_boxplot() +\n  labs(x = \"Breed\", y = \"Weight (kg)\") + \n  cowplot::theme_cowplot()\n\n\n\n\nThe boxplot suggests a difference. To test, you would run t.test() and check the p-value. What is the test actually computing?"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#the-problem",
-    "href": "lectures/L03/Lecture-03a.html#the-problem",
+    "objectID": "lectures/L03/Lecture-03a.html#the-difference-between-two-means",
+    "href": "lectures/L03/Lecture-03a.html#the-difference-between-two-means",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "The problem",
-    "text": "The problem\n\nWeights of two breeds of cattle are to be compared\n12 samples were randomly taken from Breed 1, and 15 from Breed 2\nAre there differences in the mean weight between the two breeds?\n\n\n\ncattle &lt;- read.csv(\"data/cattle.csv\")\ncattle\n\n   Breed1 Breed2\n1   187.6  148.1\n2   180.3  146.2\n3   198.6  152.8\n4   190.7  135.3\n5   196.3  151.2\n6   203.8  146.3\n7   190.2  163.5\n8   201.0  146.6\n9   194.7  162.4\n10  221.1  140.2\n11  186.7  159.4\n12  203.1  181.8\n13     NA  165.1\n14     NA  165.0\n15     NA  141.6"
+    "section": "The difference between two means",
+    "text": "The difference between two means\nIn the last lecture, we constructed confidence intervals for a single mean. The same principle extends to the difference between two means.\n\nEstimate the difference: \\(\\bar{y}_1 - \\bar{y}_2\\)\nConstruct a 95% confidence interval around that estimate\nEvaluate whether the interval includes zero\n\n\n\nIf the interval excludes zero: the means are significantly different at the 5% level\nIf the interval includes zero: the data are consistent with no difference"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#reshaping-the-data",
-    "href": "lectures/L03/Lecture-03a.html#reshaping-the-data",
+    "objectID": "lectures/L03/Lecture-03a.html#t.test-gives-you-both",
+    "href": "lectures/L03/Lecture-03a.html#t.test-gives-you-both",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Reshaping the data",
-    "text": "Reshaping the data\nThe data is in wide format – we need to convert it to long format for analysis.\n\ncattle &lt;- read.csv(\"data/cattle.csv\") |&gt;\n  pivot_longer(\n    cols = everything(),\n    names_to = \"breed\",\n    values_to = \"weight\"\n  ) |&gt;\n  mutate(breed = as.factor(breed)) |&gt;\n  drop_na()\n\ncattle\n\n# A tibble: 27 × 2\n   breed  weight\n   &lt;fct&gt;   &lt;dbl&gt;\n 1 Breed1   188.\n 2 Breed2   148.\n 3 Breed1   180.\n 4 Breed2   146.\n 5 Breed1   199.\n 6 Breed2   153.\n 7 Breed1   191.\n 8 Breed2   135.\n 9 Breed1   196.\n10 Breed2   151.\n# ℹ 17 more rows"
+    "section": "t.test() gives you both",
+    "text": "t.test() gives you both\n\n\nCode\nt.test(weight ~ breed, data = cattle, var.equal = TRUE)\n\n\n\n    Two Sample t-test\n\ndata:  weight by breed\nt = 9.4624, df = 25, p-value = 9.663e-10\nalternative hypothesis: true difference in means between group Breed1 and group Breed2 is not equal to 0\n95 percent confidence interval:\n 33.23011 51.71989\nsample estimates:\nmean in group Breed1 mean in group Breed2 \n             196.175              153.700 \n\n\nThe output reports two quantities:\n\nA p-value (probability of observing a result this extreme if the null hypothesis were true)\nA 95% confidence interval for the difference between the two means\n\n\nThese always agree. If the CI excludes zero, the p-value is below 0.05, and vice versa. The \\(t\\)-statistic measures how far the observed difference is from zero, relative to its standard error."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#visualising-the-data",
-    "href": "lectures/L03/Lecture-03a.html#visualising-the-data",
+    "objectID": "lectures/L03/Lecture-03a.html#exploring-the-confidence-interval",
+    "href": "lectures/L03/Lecture-03a.html#exploring-the-confidence-interval",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Visualising the data",
-    "text": "Visualising the data\n\nggplot(cattle, aes(breed, weight)) +\n  geom_boxplot() +\n  labs(x = \"Breed\", y = \"Weight (kg)\")"
+    "section": "Exploring the confidence interval",
+    "text": "Exploring the confidence interval\n\n\nimport { ciDifferenceWidget } from \"../../assets/js/ttest-widget.js\"\nciDifferenceWidget()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncreasing the difference between means moves the CI away from zero\nDecreasing variability narrows the CI\nWhen the interval excludes zero, the means are significantly different"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#two-sample-t-test-model",
-    "href": "lectures/L03/Lecture-03a.html#two-sample-t-test-model",
+    "objectID": "lectures/L03/Lecture-03a.html#the-ci-for-a-difference",
+    "href": "lectures/L03/Lecture-03a.html#the-ci-for-a-difference",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Two-sample \\(t\\)-test model",
-    "text": "Two-sample \\(t\\)-test model\nObserved data = Group Mean + Random Error (residuals)\n\\[y_{ij} = \\mu_i + \\varepsilon_{ij}\\]\n\n\\(i = 1, 2\\) (group); \\(j = 1, 2, \\ldots, n_i\\) (replicate)\n\nIn the cattle example:\n\n\\(\\mu_1\\) = mean body weight (kg) for Breed 1\n\\(\\mu_2\\) = mean body weight (kg) for Breed 2"
+    "section": "The CI for a difference",
+    "text": "The CI for a difference\nIn the last lecture, we built a 95% CI for a single mean:\n\\[\\bar{y} \\pm t^* \\times SE\\]\n\nFor the difference between two means, the same structure applies:\n\\[(\\bar{y}_1 - \\bar{y}_2) \\pm t^* \\times SE(\\bar{y}_1 - \\bar{y}_2)\\]\nIf this interval excludes zero, the groups differ significantly."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#hypotheses",
-    "href": "lectures/L03/Lecture-03a.html#hypotheses",
+    "objectID": "lectures/L03/Lecture-03a.html#the-t-statistic",
+    "href": "lectures/L03/Lecture-03a.html#the-t-statistic",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Hypotheses",
-    "text": "Hypotheses\n\nNull hypothesis: \\(H_0: \\mu_1 = \\mu_2\\)\nAlternative hypothesis: \\(H_1: \\mu_1 \\neq \\mu_2\\)\n\n\nTest statistic:\n\\[t = \\frac{\\bar{y}_1 - \\bar{y}_2}{\\sqrt{s^2\\left(\\frac{1}{n_1} + \\frac{1}{n_2}\\right)}} = \\frac{\\bar{y}_1 - \\bar{y}_2}{SE(\\bar{y}_1 - \\bar{y}_2)} = \\frac{\\Delta \\text{ in mean}}{SE \\text{ of the } \\Delta \\text{ in mean}}\\]\nDegrees of freedom: \\(n_1 + n_2 - 2\\)"
+    "section": "The \\(t\\)-statistic",
+    "text": "The \\(t\\)-statistic\nWe can rearrange the CI formula to isolate a single number that captures both the difference and the variability:\n\\[t = \\frac{\\bar{y}_1 - \\bar{y}_2}{SE(\\bar{y}_1 - \\bar{y}_2)}\\]\nThe \\(t\\)-statistic counts how many standard errors the observed difference is from zero.\n\nFor the cattle data: \\(t = 42.5 / 4.5 = 9.46\\). The observed difference is over nine standard errors from zero."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#shape-changes-with-degrees-of-freedom",
-    "href": "lectures/L03/Lecture-03a.html#shape-changes-with-degrees-of-freedom",
+    "objectID": "lectures/L03/Lecture-03a.html#from-the-t-statistic-to-the-p-value",
+    "href": "lectures/L03/Lecture-03a.html#from-the-t-statistic-to-the-p-value",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Shape changes with degrees of freedom",
-    "text": "Shape changes with degrees of freedom\n\n\nCode\nx &lt;- seq(-4, 4, length.out = 300)\n\nt_data &lt;- map_dfr(c(1, 2, 5, 10, 30), function(df) {\n  tibble(x = x, density = dt(x, df), df = paste(\"df =\", df))\n})\n\nnormal_data &lt;- tibble(x = x, density = dnorm(x), df = \"Normal\")\n\nbind_rows(t_data, normal_data) |&gt;\n  mutate(df = fct_relevel(df, \"df = 1\", \"df = 2\", \"df = 5\", \"df = 10\", \"df = 30\", \"Normal\")) |&gt;\n  ggplot(aes(x, density, colour = df, linetype = df)) +\n  geom_line(linewidth = 1) +\n  scale_linetype_manual(values = c(rep(\"solid\", 5), \"dashed\")) +\n  labs(x = \"t\", y = \"Density\", colour = NULL, linetype = NULL) +\n  theme(legend.position = \"right\")\n\n\n\n\n\n\n\n\n\nNote\n\n\nAs degrees of freedom increase, the \\(t\\)-distribution approaches the standard normal distribution."
+    "section": "From the \\(t\\)-statistic to the p-value",
+    "text": "From the \\(t\\)-statistic to the p-value\nWe have a \\(t\\)-statistic. The p-value answers: if there were truly no difference between the breeds, how often would we see a value of \\(|t|\\) this large or larger?\n\nA small p-value means the observed difference is hard to explain by chance alone\nA large p-value means the observed difference is consistent with random variation\n\n\nThe 95% CI and the p-value always agree. If the 95% CI excludes zero, the p-value is below 0.05, and vice versa."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#one-tailed-vs-two-tailed-tests",
-    "href": "lectures/L03/Lecture-03a.html#one-tailed-vs-two-tailed-tests",
+    "objectID": "lectures/L03/Lecture-03a.html#exploring-the-p-value",
+    "href": "lectures/L03/Lecture-03a.html#exploring-the-p-value",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "One-tailed vs two-tailed tests",
-    "text": "One-tailed vs two-tailed tests\n\n\nTwo-tailed: tests for a difference in either direction (\\(\\mu_1 \\neq \\mu_2\\))\nOne-tailed: tests for a difference in a specific direction (\\(\\mu_1 &gt; \\mu_2\\) or \\(\\mu_1 &lt; \\mu_2\\))\nIn most cases, we use two-tailed tests unless we have a strong a priori reason for one direction."
+    "section": "Exploring the p-value",
+    "text": "Exploring the p-value\n\n\nimport { pvalueExplorerWidget } from \"../../assets/js/ttest-widget.js\"\npvalueExplorerWidget()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe shaded area under both tails is the p-value\nAs the \\(t\\)-statistic moves further from zero, the p-value decreases\nAt low degrees of freedom the tails are heavier, but the shape approaches the normal as df increases"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#group-means-and-standard-deviations",
-    "href": "lectures/L03/Lecture-03a.html#group-means-and-standard-deviations",
+    "objectID": "lectures/L03/Lecture-03a.html#step-1-state-what-we-are-testing",
+    "href": "lectures/L03/Lecture-03a.html#step-1-state-what-we-are-testing",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Group means and standard deviations",
-    "text": "Group means and standard deviations\n\ncattle_summary &lt;- cattle |&gt;\n  group_by(breed) |&gt;\n  summarise(\n    n = n(),\n    mean_wt = mean(weight, na.rm = TRUE),\n    sd_wt = sd(weight, na.rm = TRUE)\n  )\n\ncattle_summary\n\n# A tibble: 2 × 4\n  breed      n mean_wt sd_wt\n  &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 Breed1    12    196.  10.6\n2 Breed2    15    154.  12.3"
+    "section": "Step 1: State what we are testing",
+    "text": "Step 1: State what we are testing\n\nNull hypothesis: \\(H_0: \\mu_1 = \\mu_2\\) (no difference in mean weight between breeds)\nAlternative hypothesis: \\(H_1: \\mu_1 \\neq \\mu_2\\) (means differ)\nThis is a two-tailed test: we are looking for a difference in either direction (Breed 1 heavier or lighter than Breed 2), not just one\n\n\nModel equation: \\(y_{ij} = \\mu_i + \\varepsilon_{ij}\\)\nEach observation is the group mean plus random error. The hypothesis asks whether \\(\\mu_1\\) and \\(\\mu_2\\) are equal."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#computing-the-t-statistic",
-    "href": "lectures/L03/Lecture-03a.html#computing-the-t-statistic",
+    "objectID": "lectures/L03/Lecture-03a.html#step-2a-equal-variances",
+    "href": "lectures/L03/Lecture-03a.html#step-2a-equal-variances",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Computing the \\(t\\)-statistic",
-    "text": "Computing the \\(t\\)-statistic\n\n# Extract values\nn1 &lt;- cattle_summary$n[1]\nn2 &lt;- cattle_summary$n[2]\nm1 &lt;- cattle_summary$mean_wt[1]\nm2 &lt;- cattle_summary$mean_wt[2]\ns1 &lt;- cattle_summary$sd_wt[1]\ns2 &lt;- cattle_summary$sd_wt[2]\n\n# Pooled variance\nsp2 &lt;- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)\n\n# t-statistic\nt_stat &lt;- (m1 - m2) / sqrt(sp2 * (1/n1 + 1/n2))\nt_stat\n\n[1] 9.462409\n\n\n\n\n# Degrees of freedom\ndf &lt;- n1 + n2 - 2\n\n# p-value (two-tailed)\np_val &lt;- 2 * pt(-abs(t_stat), df)\np_val\n\n[1] 9.663383e-10"
+    "section": "Step 2a: Equal variances",
+    "text": "Step 2a: Equal variances\nThe \\(t\\)-test assumes both groups have similar variability. If they do not, then the test is unreliable because the pooled estimate of variance will not represent either group well.\n\nRule of thumb: the ratio of the larger SD to the smaller SD should be below 2.0\n\n\n\nCode\ncattle_summary &lt;- cattle |&gt;\n  group_by(breed) |&gt;\n  summarise(n = n(), mean_wt = mean(weight), sd_wt = sd(weight))\n\ncattle_summary\n\n\n# A tibble: 2 × 4\n  breed      n mean_wt sd_wt\n  &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 Breed1    12    196.  10.6\n2 Breed2    15    154.  12.3\n\n\nCode\nmax(cattle_summary$sd_wt) / min(cattle_summary$sd_wt)\n\n\n[1] 1.158756"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#the-easy-way",
-    "href": "lectures/L03/Lecture-03a.html#the-easy-way",
+    "objectID": "lectures/L03/Lecture-03a.html#step-2b-normality",
+    "href": "lectures/L03/Lecture-03a.html#step-2b-normality",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "The easy way",
-    "text": "The easy way\n\nt.test(weight ~ breed, data = cattle, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by breed\nt = 9.4624, df = 25, p-value = 9.663e-10\nalternative hypothesis: true difference in means between group Breed1 and group Breed2 is not equal to 0\n95 percent confidence interval:\n 33.23011 51.71989\nsample estimates:\nmean in group Breed1 mean in group Breed2 \n             196.175              153.700 \n\n\n\n\n\n\n\n\nTip\n\n\nvar.equal = TRUE performs the pooled (Student’s) \\(t\\)-test, which assumes equal variances. This matches our manual calculation."
+    "section": "Step 2b: Normality",
+    "text": "Step 2b: Normality\nThe \\(t\\)-test assumes the data in each group follow a normal distribution. With small samples, departures from normality (strong skew, heavy tails, outliers) can distort the p-value and confidence interval. Check each group separately.\n\n\nCode\nshapiro.test(cattle$weight[cattle$breed == \"Breed1\"])\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  cattle$weight[cattle$breed == \"Breed1\"]\nW = 0.94084, p-value = 0.5091\n\n\nCode\nshapiro.test(cattle$weight[cattle$breed == \"Breed2\"])\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  cattle$weight[cattle$breed == \"Breed2\"]\nW = 0.94636, p-value = 0.4691"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#three-key-assumptions",
-    "href": "lectures/L03/Lecture-03a.html#three-key-assumptions",
+    "objectID": "lectures/L03/Lecture-03a.html#step-2b-normality-qq-plots",
+    "href": "lectures/L03/Lecture-03a.html#step-2b-normality-qq-plots",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Three key assumptions",
-    "text": "Three key assumptions\n\nEqual variances: \\(\\sigma_1^2 \\approx \\sigma_2^2\\)\nNormality: \\(\\varepsilon_{ij} \\sim N(0, \\sigma^2)\\)\nIndependence of observations"
+    "section": "Step 2b: Normality (QQ plots)",
+    "text": "Step 2b: Normality (QQ plots)\n\nCode\nqqnorm(cattle$weight[cattle$breed == \"Breed1\"], main = \"Breed 1\")\nqqline(cattle$weight[cattle$breed == \"Breed1\"])\nqqnorm(cattle$weight[cattle$breed == \"Breed2\"], main = \"Breed 2\")\nqqline(cattle$weight[cattle$breed == \"Breed2\"])\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIf points fall close to the line, the data are approximately normal. Both groups pass the Shapiro-Wilk test (\\(p &gt; 0.05\\)) and the QQ plots show no strong departures."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#checking-equal-variances",
-    "href": "lectures/L03/Lecture-03a.html#checking-equal-variances",
+    "objectID": "lectures/L03/Lecture-03a.html#step-2c-independence",
+    "href": "lectures/L03/Lecture-03a.html#step-2c-independence",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Checking equal variances",
-    "text": "Checking equal variances\nThe only difference between the two groups should be the location of the mean – all else should remain the same.\nGeneral guide: \\(\\frac{\\text{larger SD}}{\\text{smaller SD}} &lt; 2.0\\)\n\nmax(cattle_summary$sd_wt) / min(cattle_summary$sd_wt)\n\n[1] 1.158756\n\n\n\nThe ratio is well under 2, so we can assume equal variances."
+    "section": "Step 2c: Independence",
+    "text": "Step 2c: Independence\nObservations should not influence each other. This is a property of the study design, not something we test statistically.\n\nEach animal is measured once\nThe weight of one animal does not affect the weight of another\nIf the same animals were measured before and after a treatment, observations would not be independent (use a paired \\(t\\)-test instead)"
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#checking-normality-visual",
-    "href": "lectures/L03/Lecture-03a.html#checking-normality-visual",
+    "objectID": "lectures/L03/Lecture-03a.html#step-3-run-the-test-and-interpret",
+    "href": "lectures/L03/Lecture-03a.html#step-3-run-the-test-and-interpret",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Checking normality: visual",
-    "text": "Checking normality: visual\nggplot(cattle, aes(breed, weight)) +\n  geom_boxplot() +\n  labs(title = \"Boxplot\", x = \"Breed\", y = \"Weight (kg)\")\nggplot(cattle, aes(weight)) +\n  geom_histogram(bins = 8) +\n  labs(title = \"Histogram\", x = \"Weight (kg)\", y = \"Count\")"
+    "section": "Step 3: Run the test and interpret",
+    "text": "Step 3: Run the test and interpret\n\nt.test(weight ~ breed, data = cattle, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by breed\nt = 9.4624, df = 25, p-value = 9.663e-10\nalternative hypothesis: true difference in means between group Breed1 and group Breed2 is not equal to 0\n95 percent confidence interval:\n 33.23011 51.71989\nsample estimates:\nmean in group Breed1 mean in group Breed2 \n             196.175              153.700 \n\n\n\nThe \\(t\\)-statistic, degrees of freedom (\\(n_1 + n_2 - 2\\)), and p-value are reported together\nvar.equal = TRUE performs the pooled (Student’s) \\(t\\)-test, which assumes equal variances\n\n\nA p-value of 0.03 does not mean there is a 3% chance the null hypothesis is true. It means: if there were truly no difference, we would observe a result this extreme about 3% of the time."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#checking-normality-shapiro-wilk-test",
-    "href": "lectures/L03/Lecture-03a.html#checking-normality-shapiro-wilk-test",
+    "objectID": "lectures/L03/Lecture-03a.html#hatpc",
+    "href": "lectures/L03/Lecture-03a.html#hatpc",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Checking normality: Shapiro-Wilk test",
-    "text": "Checking normality: Shapiro-Wilk test\n\nshapiro.test(cattle$weight)\n\n\n    Shapiro-Wilk normality test\n\ndata:  cattle$weight\nW = 0.93704, p-value = 0.103\n\n\n\nIf \\(p &gt; 0.05\\), the data is not significantly different from a normal distribution, i.e. we can assume normality."
+    "section": "HATPC",
+    "text": "HATPC\nNotice the five steps we just followed:\n\nHypotheses: state the null and alternative\nAssumptions: check equal variances, normality, independence\nTest: run the appropriate test\nP-value: interpret the result\nConclusion: state the finding in context\n\n\nWe will use this framework throughout the semester, starting with ANOVA in the next lecture."
   },
   {
     "objectID": "lectures/L03/Lecture-03a.html#what-if-assumptions-are-not-met",
     "href": "lectures/L03/Lecture-03a.html#what-if-assumptions-are-not-met",
     "title": "Lecture 03a – \\(t\\)-Tests",
     "section": "What if assumptions are not met?",
-    "text": "What if assumptions are not met?\n\nEqual variances not met – use Welch’s \\(t\\)-test (the default in R’s t.test() when var.equal = FALSE)\nNormality not met – if \\(N &gt; 30\\), we can often assume normality anyway (Central Limit Theorem)\nIndependence not met – consider a paired \\(t\\)-test (e.g. before/after measurements on the same subjects)"
+    "text": "What if assumptions are not met?\n\nUnequal variances: use Welch’s \\(t\\)-test (the default in R when var.equal = FALSE)\nNon-normality: if \\(N &gt; 30\\), the Central Limit Theorem provides reasonable coverage\nNon-independence: consider a paired \\(t\\)-test (e.g. before and after measurements on the same subjects)"
   },
   {
     "objectID": "lectures/L03/Lecture-03a.html#key-points",
     "href": "lectures/L03/Lecture-03a.html#key-points",
     "title": "Lecture 03a – \\(t\\)-Tests",
     "section": "Key points",
-    "text": "Key points\n\nThe two-sample \\(t\\)-test compares means of two independent groups\nThe test statistic follows a \\(t\\)-distribution with \\(n_1 + n_2 - 2\\) degrees of freedom\nAlways check assumptions: equal variances, normality, independence\nUse t.test() in R for quick analysis\n\n\nNext up\n\nWhat if we have more than two groups? We need ANOVA!"
+    "text": "Key points\n\nThe two-sample \\(t\\)-test compares means of two independent groups\nThe \\(t\\)-test and the CI for the difference are two views of the same calculation\nCheck the three assumptions (equal variances, normality, independence) before running any test\nFollow HATPC as a structured process for hypothesis testing\n\n\nIn Lab 03, you will practise this workflow with t.test() and diagnostic plots.\n\n\nNext: what if we have more than two groups? We need ANOVA."
   },
   {
-    "objectID": "lectures/L03/Lecture-03a.html#thanks",
-    "href": "lectures/L03/Lecture-03a.html#thanks",
+    "objectID": "lectures/L03/Lecture-03a.html#minute-break",
+    "href": "lectures/L03/Lecture-03a.html#minute-break",
     "title": "Lecture 03a – \\(t\\)-Tests",
-    "section": "Thanks!",
-    "text": "Thanks!\nQuestions?\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
+    "section": "15 minute break",
+    "text": "15 minute break\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
   },
   {
     "objectID": "lectures/L02/Lecture-02b.html#land-types",
@@ -3122,165 +3122,158 @@
     "text": "Lecture 02a – Sampling designs Full Screen | PDF\n\nLecture 02a – Sampling designs II Full Screen | PDF"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#the-problem-with-multiple-t-tests",
-    "href": "lectures/L03/Lecture-03b.html#the-problem-with-multiple-t-tests",
+    "objectID": "lectures/L03/Lecture-03b.html#from-two-groups-to-four",
+    "href": "lectures/L03/Lecture-03b.html#from-two-groups-to-four",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "The problem with multiple \\(t\\)-tests",
-    "text": "The problem with multiple \\(t\\)-tests\nSuppose we want to compare weight gain of chicks fed on 4 different diets.\n\nWith \\(t\\)-tests, we’d need \\(\\binom{4}{2} = 6\\) pairwise comparisons:\n1-2, 1-3, 1-4, 2-3, 2-4, 3-4\n\n\nEven if there are no true differences, each test has a 5% chance of incorrectly finding significance. How does that add up?\n\nprob_all_correct &lt;- 0.95^6\nprob_all_correct\n\n[1] 0.7350919\n\n\nWe have a 26.5% chance that at least one test result will be incorrect!"
+    "section": "From two groups to four",
+    "text": "From two groups to four\nBefore the break we compared two cattle breeds. But what if there were four breeds instead of two?\n\nCan we still use \\(t\\)-tests? Yes, but we would need to test every pair\nWith 4 groups that is \\(\\binom{4}{2} = 6\\) comparisons: 1 vs 2, 1 vs 3, 1 vs 4, 2 vs 3, 2 vs 4, 3 vs 4\n\n\nThe problem: every test carries a risk of a Type I error (a false positive).\n\nWe set \\(\\alpha = 0.05\\), so each comparison has a 5% chance of rejecting \\(H_0\\) when it is actually true\nSix tests means six chances to get it wrong"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#we-need-a-better-method",
-    "href": "lectures/L03/Lecture-03b.html#we-need-a-better-method",
+    "objectID": "lectures/L03/Lecture-03b.html#the-multiple-comparisons-problem",
+    "href": "lectures/L03/Lecture-03b.html#the-multiple-comparisons-problem",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "We need a better method",
-    "text": "We need a better method\nThe problem of multiple comparisons requires a technique that considers all treatments at once.\n\nANOVA – Analysis of Variance\nBefore deciding which treatments differ, we first consider:\n\nDifferences between the treatment groups – between-treatment effects\nDifferences within each treatment group – within-treatment effects\n\ndue to random environmental fluctuations, genetics, experimental error"
+    "section": "The multiple comparisons problem",
+    "text": "The multiple comparisons problem\nWith 6 groups there are \\(\\binom{6}{2} = 15\\) pairwise comparisons. The probability that none produce a false positive is \\(0.95^{15}\\), so:\n\\[P(\\text{at least one false positive}) = 1 - 0.95^{15} = 53.7\\%\\]\n\n\n\n\nGroups\nPairwise tests\nP(at least one false positive)\n\n\n\n\n2\n1\n5.0%\n\n\n4\n6\n26.5%\n\n\n6\n15\n53.7%\n\n\n8\n28\n76.2%\n\n\n10\n45\n90.1%\n\n\n\n\nWith 10 groups, a false positive is almost guaranteed\nWe need a method that tests all groups at once"
   },
   {
     "objectID": "lectures/L03/Lecture-03b.html#the-experiment",
     "href": "lectures/L03/Lecture-03b.html#the-experiment",
     "title": "Lecture 03b – One-way ANOVA",
     "section": "The experiment",
-    "text": "The experiment\n\n\n\n\n20 chicks\n4 diets\n5 replicates per diet\nResponse: weight gain (g)\n\n\n\n\nchicks_wide &lt;- read.csv(\"data/chicks.csv\")\nchicks_wide\n\n  Diet.1 Diet.2 Diet.3 Diet.4\n1     99     61     42    169\n2     88    112     97    137\n3     76     30     81    169\n4     38     89     95     85\n5     94     63     92    154"
+    "text": "The experiment\n\nWe need a method that handles more than two groups. Consider a new experiment:\n\n20 chicks are randomly assigned to one of 4 diets\n5 replicates per diet\nResponse: weight gain (g)\n\n\nchicks &lt;- read.csv(\"data/chicks.csv\") |&gt;\n  pivot_longer(\n    starts_with(\"Diet\"), names_to = \"diet\", values_to = \"weight\"\n  ) |&gt;\n  mutate(diet = as.factor(diet))"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#reshaping-the-data",
-    "href": "lectures/L03/Lecture-03b.html#reshaping-the-data",
+    "objectID": "lectures/L03/Lecture-03b.html#are-there-differences",
+    "href": "lectures/L03/Lecture-03b.html#are-there-differences",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Reshaping the data",
-    "text": "Reshaping the data\n\nchicks &lt;- read.csv(\"data/chicks.csv\") |&gt;\n  pivot_longer(\n    cols = starts_with(\"Diet\"),\n    names_to = \"diet\",\n    values_to = \"weight\"\n  ) |&gt;\n  mutate(diet = as.factor(diet))\n\nchicks\n\n# A tibble: 20 × 2\n   diet   weight\n   &lt;fct&gt;   &lt;int&gt;\n 1 Diet.1     99\n 2 Diet.2     61\n 3 Diet.3     42\n 4 Diet.4    169\n 5 Diet.1     88\n 6 Diet.2    112\n 7 Diet.3     97\n 8 Diet.4    137\n 9 Diet.1     76\n10 Diet.2     30\n11 Diet.3     81\n12 Diet.4    169\n13 Diet.1     38\n14 Diet.2     89\n15 Diet.3     95\n16 Diet.4     85\n17 Diet.1     94\n18 Diet.2     63\n19 Diet.3     92\n20 Diet.4    154"
+    "section": "Are there differences?",
+    "text": "Are there differences?\n\n\nCode\nggplot(chicks, aes(diet, weight)) +\n  geom_boxplot() +\n  labs(x = \"Diet\", y = \"Weight gain (g)\") +\n  cowplot::theme_cowplot()\n\n\n\nWhat do the boxplots suggest?"
   },
   {
     "objectID": "lectures/L03/Lecture-03b.html#terminology",
     "href": "lectures/L03/Lecture-03b.html#terminology",
     "title": "Lecture 03b – One-way ANOVA",
     "section": "Terminology",
-    "text": "Terminology\n\nFactor (or treatment): the categorical variable of interest (here: diet)\nLevels: the categories within a factor (here: Diet 1, Diet 2, Diet 3, Diet 4)\nReplicates: the number of observations per level (here: \\(r = 5\\))\n\\(t\\) = number of treatments; \\(N\\) = total observations = \\(r \\times t = 20\\)\n\n\nThis is a one-way (or one-factor) ANOVA because there is only one factor (diet)."
+    "text": "Terminology\n\n\n\n\n\n\n\n\nTerm\nMeaning\nIn this experiment\n\n\n\n\nFactor\nCategorical variable being tested\nDiet\n\n\nLevels\nCategories within a factor\nDiet 1, Diet 2, Diet 3, Diet 4\n\n\nReplicates\nObservations per level\n\\(r = 5\\)\n\n\n\nThis is a one-way ANOVA because there is only one factor. What is ANOVA?"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#which-model-best-describes-the-data",
-    "href": "lectures/L03/Lecture-03b.html#which-model-best-describes-the-data",
+    "objectID": "lectures/L03/Lecture-03b.html#h-hypotheses",
+    "href": "lectures/L03/Lecture-03b.html#h-hypotheses",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Which model best describes the data?",
-    "text": "Which model best describes the data?\n\n\nCode\noverall_mean &lt;- mean(chicks$weight)\ngroup_means &lt;- chicks |&gt;\n  group_by(diet) |&gt;\n  summarise(mean_wt = mean(weight))\n\np1 &lt;- ggplot(chicks, aes(diet, weight)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_point(data = group_means, aes(diet, mean_wt),\n    shape = 18, size = 5, colour = \"red\") +\n  labs(title = \"Group means (red)\", x = \"Diet\", y = \"Weight (g)\")\n\np2 &lt;- ggplot(chicks, aes(diet, weight)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_hline(yintercept = overall_mean, colour = \"blue\",\n    linewidth = 1, linetype = \"dashed\") +\n  labs(title = \"Overall mean (blue)\", x = \"Diet\", y = \"Weight (g)\")\n\nlibrary(patchwork)\np1 + p2\n\n\n\nDoes the group means model (left) explain the data better than the overall mean model (right)?"
+    "section": "H: Hypotheses",
+    "text": "H: Hypotheses\nIn the \\(t\\)-test we asked whether two means were equal. ANOVA extends this to any number of groups.\n\nNull hypothesis: \\(H_0: \\mu_1 = \\mu_2 = \\mu_3 = \\mu_4\\)\nAlternative hypothesis: \\(H_1:\\) not all \\(\\mu_i\\) are equal\n\nThe alternative does not say all means differ. It says at least two do.\n\nModel equation:\n\\[y_{ij} = \\mu_i + \\varepsilon_{ij}\\]\nwhere \\(i = 1, \\ldots, t\\) treatments and \\(j = 1, \\ldots, n_i\\) replicates. The same structure as the \\(t\\)-test model, but \\(i\\) now ranges over more than two groups."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#same-form-as-the-t-test",
-    "href": "lectures/L03/Lecture-03b.html#same-form-as-the-t-test",
+    "objectID": "lectures/L03/Lecture-03b.html#a-assumptions",
+    "href": "lectures/L03/Lecture-03b.html#a-assumptions",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Same form as the \\(t\\)-test",
-    "text": "Same form as the \\(t\\)-test\n\\[y_{ij} = \\mu_i + \\varepsilon_{ij}\\]\n\n\\(i = 1, 2, \\ldots, t\\) (treatment); \\(j = 1, 2, \\ldots, n_i\\) (replicate)\n\nIn the chick example:\n\n\\(y_{ij}\\) = observed weight gain for the \\(j\\)th chick on Diet \\(i\\)\n\\(\\mu_i\\) = mean weight gain for chicks on Diet \\(i\\)\n\\(\\varepsilon_{ij}\\) = random error (residual)"
+    "section": "A: Assumptions",
+    "text": "A: Assumptions\nThe same three assumptions from the \\(t\\)-test apply here. We fit the model first, then check.\n\nmodel &lt;- aov(weight ~ diet, data = chicks)\n\n\n\nNormality (Shapiro-Wilk on residuals):\n\n\nCode\nshapiro.test(residuals(model))\n\n\n\n    Shapiro-Wilk normality test\n\ndata:  residuals(model)\nW = 0.90961, p-value = 0.06265\n\n\n\\(p &gt; 0.05\\): no evidence against normality.\n\nEqual variances (Bartlett’s test):\n\n\nCode\nbartlett.test(weight ~ diet, data = chicks)\n\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  weight by diet\nBartlett's K-squared = 0.85164, df = 3, p-value = 0.8371\n\n\n\\(p &gt; 0.05\\): variances are similar across groups."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#checking-normality",
-    "href": "lectures/L03/Lecture-03b.html#checking-normality",
+    "objectID": "lectures/L03/Lecture-03b.html#a-residual-diagnostics",
+    "href": "lectures/L03/Lecture-03b.html#a-residual-diagnostics",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Checking normality",
-    "text": "Checking normality\n\n\n\nggplot(chicks, aes(diet, weight)) +\n  geom_boxplot() +\n  labs(x = \"Diet\", y = \"Weight (g)\")\n\n\n\n\n\n\n\n\n\n\nshapiro.test(chicks$weight)\n\n\n    Shapiro-Wilk normality test\n\ndata:  chicks$weight\nW = 0.93272, p-value = 0.1742\n\n\n\\(p &gt; 0.05\\): we can assume normality."
+    "section": "A: Residual diagnostics",
+    "text": "A: Residual diagnostics\n\nCode\nqqnorm(residuals(model), main = \"Normal QQ plot\")\nqqline(residuals(model))\nplot(fitted(model), residuals(model),\n     xlab = \"Fitted values\", ylab = \"Residuals\",\n     main = \"Residuals vs Fitted\")\nabline(h = 0, lty = 2)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQQ plot: points follow the line, supporting normality\nResiduals vs fitted: no fan shape, supporting equal variances\nIndependence holds by design: each chick is measured once"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#checking-equal-variances",
-    "href": "lectures/L03/Lecture-03b.html#checking-equal-variances",
+    "objectID": "lectures/L03/Lecture-03b.html#a-a-shortcut-for-next-time",
+    "href": "lectures/L03/Lecture-03b.html#a-a-shortcut-for-next-time",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Checking equal variances",
-    "text": "Checking equal variances\n\n\\(\\sigma_1^2 = \\sigma_2^2 = \\ldots = \\sigma_t^2\\)\nGeneral guide: \\(\\frac{\\text{largest SD}}{\\text{smallest SD}} &lt; 2.0\\)\nAlternatively, use Bartlett’s test of homogeneity of variance:\n\n\nbartlett.test(weight ~ diet, data = chicks)\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  weight by diet\nBartlett's K-squared = 0.85164, df = 3, p-value = 0.8371\n\n\n\n\n\n\n\n\nWarning\n\n\nBartlett’s test is sensitive to non-normality. Only use it when normality is reasonable."
+    "section": "A: A shortcut for next time",
+    "text": "A: A shortcut for next time\nR can produce all standard diagnostic plots at once:\n\nplot(model)\n\nWe will explore these plots in detail next week. For now, the Shapiro-Wilk and Bartlett’s tests are sufficient."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#hypotheses",
-    "href": "lectures/L03/Lecture-03b.html#hypotheses",
+    "objectID": "lectures/L03/Lecture-03b.html#t-the-anova-idea",
+    "href": "lectures/L03/Lecture-03b.html#t-the-anova-idea",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Hypotheses",
-    "text": "Hypotheses\n\nNull hypothesis: \\(H_0: \\mu_1 = \\mu_2 = \\ldots = \\mu_t\\)\nAlternative hypothesis: \\(H_1\\): not all \\(\\mu_i\\) are equal\n\n\n\n\n\n\n\nImportant\n\n\nANOVA only tells us that at least two group means are different – not which ones."
+    "section": "T: The ANOVA idea",
+    "text": "T: The ANOVA idea\n\nHow does ANOVA decide whether these four diets differ?\nIf diets matter, differences between groups should be large relative to variation within groups\n\n\n\nCode\noverall_mean &lt;- mean(chicks$weight)\ngroup_means &lt;- chicks |&gt;\n  group_by(diet) |&gt;\n  summarise(mean_wt = mean(weight))\n\np1 &lt;- ggplot(chicks, aes(diet, weight)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_hline(data = group_means, aes(yintercept = mean_wt),\n    linetype = \"dashed\", colour = \"#e64626\", linewidth = 0.8) +\n  labs(title = \"Four group means\", x = \"Diet\", y = \"Weight gain (g)\") +\n  cowplot::theme_cowplot()\n\np2 &lt;- ggplot(chicks, aes(diet, weight)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_hline(yintercept = overall_mean, colour = \"#e64626\",\n    linewidth = 0.8, linetype = \"dashed\") +\n  labs(title = \"One overall mean\", x = \"Diet\", y = \"Weight gain (g)\") +\n  cowplot::theme_cowplot()\n\nlibrary(patchwork)\np1 + p2\n\n\n\nDo four separate means (left) explain the data better than a single overall mean (right)?"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#the-concept-partition-variability",
-    "href": "lectures/L03/Lecture-03b.html#the-concept-partition-variability",
+    "objectID": "lectures/L03/Lecture-03b.html#two-sources-of-variation",
+    "href": "lectures/L03/Lecture-03b.html#two-sources-of-variation",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "The concept: partition variability",
-    "text": "The concept: partition variability\nPartition the total variability into components:\n\\[SS_{\\text{total}} = SS_{\\text{treatment}} + SS_{\\text{residual}}\\]\n\n\\(SS_{\\text{treatment}}\\): variation between groups (due to diet)\n\\(SS_{\\text{residual}}\\): variation within groups (random error)\n\n\nIf the treatment has a real effect, \\(SS_{\\text{treatment}}\\) should be large relative to \\(SS_{\\text{residual}}\\)."
+    "section": "Two sources of variation",
+    "text": "Two sources of variation\nANOVA splits the total variation in the data into two parts:\n\nBetween-group variation (orange): how far each group mean is from the overall mean. If diets matter, this should be large.\nWithin-group variation (black): how much individual observations scatter around their own group mean. This is random noise.\n\nANOVA compares these two quantities. If between-group variation is large relative to within-group variation, we have evidence that the groups genuinely differ."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#total-sum-of-squares-ss_texttotal",
-    "href": "lectures/L03/Lecture-03b.html#total-sum-of-squares-ss_texttotal",
+    "objectID": "lectures/L03/Lecture-03b.html#variance-partitioning",
+    "href": "lectures/L03/Lecture-03b.html#variance-partitioning",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Total sum of squares: \\(SS_{\\text{total}}\\)",
-    "text": "Total sum of squares: \\(SS_{\\text{total}}\\)\n\\[SS_{\\text{total}} = \\sum(y_{ij} - \\bar{y})^2\\]\n\noverall_mean &lt;- mean(chicks$weight)\nss_total &lt;- sum((chicks$weight - overall_mean)^2)\nss_total\n\n[1] 29678.95"
+    "section": "Variance partitioning",
+    "text": "Variance partitioning\n\n\nimport { variancePartitionWidget } from \"../../assets/js/anova-widget.js\"\nvariancePartitionWidget()"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#treatment-sum-of-squares-ss_texttreatment",
-    "href": "lectures/L03/Lecture-03b.html#treatment-sum-of-squares-ss_texttreatment",
+    "objectID": "lectures/L03/Lecture-03b.html#the-f-ratio",
+    "href": "lectures/L03/Lecture-03b.html#the-f-ratio",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Treatment sum of squares: \\(SS_{\\text{treatment}}\\)",
-    "text": "Treatment sum of squares: \\(SS_{\\text{treatment}}\\)\n\\[SS_{\\text{treatment}} = \\sum n_i \\times (\\bar{y}_i - \\bar{y})^2\\]\n\ngroup_means &lt;- chicks |&gt;\n  group_by(diet) |&gt;\n  summarise(grp_mean = mean(weight))\n\nss_trt &lt;- sum(5 * (group_means$grp_mean - overall_mean)^2)\nss_trt\n\n[1] 16466.95"
+    "section": "The F ratio",
+    "text": "The F ratio\n\\[F = \\frac{MS_{\\text{trt}}}{MS_{\\text{res}}}\\]\n\n\\(F\\) compares variation due to group differences against random noise\nMS (mean square) is based on squared deviations: squaring prevents positive and negative differences from cancelling out\nWhen \\(H_0\\) is true (all groups equal), \\(F \\approx 1\\)\nWhen groups genuinely differ, \\(F \\gg 1\\)\n\n\nFor two groups, ANOVA gives the same answer as the \\(t\\)-test:\n\\[F = t^2\\]\nANOVA extends the \\(t\\)-test to any number of groups."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#residual-sum-of-squares-ss_textresidual",
-    "href": "lectures/L03/Lecture-03b.html#residual-sum-of-squares-ss_textresidual",
+    "objectID": "lectures/L03/Lecture-03b.html#t-the-anova-table",
+    "href": "lectures/L03/Lecture-03b.html#t-the-anova-table",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Residual sum of squares: \\(SS_{\\text{residual}}\\)",
-    "text": "Residual sum of squares: \\(SS_{\\text{residual}}\\)\n\\[SS_{\\text{residual}} = \\sum(y_{ij} - \\bar{y}_i)^2\\]\n\nchicks_with_means &lt;- chicks |&gt;\n  left_join(group_means, by = \"diet\")\n\nss_res &lt;- sum((chicks_with_means$weight - chicks_with_means$grp_mean)^2)\nss_res\n\n[1] 13212\n\n\n\nCheck: \\(SS_{\\text{total}} = SS_{\\text{treatment}} + SS_{\\text{residual}}\\)\n\nc(ss_total, ss_trt + ss_res)\n\n[1] 29678.95 29678.95"
+    "section": "T: The ANOVA table",
+    "text": "T: The ANOVA table\n\n\n\n\n\n\n\n\n\n\nSource\ndf\nSS\nMS\nF\n\n\n\n\nTreatment\n\\(t - 1\\)\n\\(SS_{\\text{trt}}\\)\n\\(SS_{\\text{trt}} / (t-1)\\)\n\\(MS_{\\text{trt}} / MS_{\\text{res}}\\)\n\n\nResidual\n\\(N - t\\)\n\\(SS_{\\text{res}}\\)\n\\(SS_{\\text{res}} / (N-t)\\)\n\n\n\nTotal\n\\(N - 1\\)\n\\(SS_{\\text{total}}\\)\n\n\n\n\n\n\nmodel &lt;- aov(weight ~ diet, data = chicks)\nsummary(model)\n\n\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)   \ndiet         3  16467    5489   6.647  0.004 **\nResiduals   16  13212     826                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#structure",
-    "href": "lectures/L03/Lecture-03b.html#structure",
+    "objectID": "lectures/L03/Lecture-03b.html#p-interpret",
+    "href": "lectures/L03/Lecture-03b.html#p-interpret",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Structure",
-    "text": "Structure\n\n\n\n\n\n\n\n\n\n\nSource\ndf\nSS\nMS\nF\n\n\n\n\nTreatment\n\\(t - 1\\)\n\\(SS_{\\text{trt}}\\)\n\\(SS_{\\text{trt}} / (t-1)\\)\n\\(MS_{\\text{trt}} / MS_{\\text{res}}\\)\n\n\nResidual\n\\(N - t\\)\n\\(SS_{\\text{res}}\\)\n\\(SS_{\\text{res}} / (N-t)\\)\n\n\n\nTotal\n\\(N - 1\\)\n\\(SS_{\\text{total}}\\)\n\n\n\n\n\n\n\\(N\\) = total observations, \\(t\\) = number of treatment levels\nMean Squares (MS) standardise SS so they are comparable\nThe larger the ratio \\(MS_{\\text{trt}} / MS_{\\text{res}}\\), the stronger the treatment effect"
+    "section": "P: Interpret",
+    "text": "P: Interpret\n\ndiet row: variation explained by the four diets (\\(df = 3\\), since 4 groups minus 1)\nResiduals row: leftover variation (\\(df = 16\\), since 20 observations minus 4 groups)\n\\(F = 6.65\\): the treatment variance is 6.65 times larger than the residual variance\n\\(p = 0.004\\): below 0.05, so we reject \\(H_0\\)\n\n\nHow much variability is explained?\n\\[\\frac{SS_{\\text{treatment}}}{SS_{\\text{total}}} = \\frac{1.6467\\times 10^{4}}{2.9679\\times 10^{4}} = 55.5\\%\\]\nThe diets explain about 55% of the total variability in chick weight gain."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#using-aov-in-r",
-    "href": "lectures/L03/Lecture-03b.html#using-aov-in-r",
+    "objectID": "lectures/L03/Lecture-03b.html#c-conclusion",
+    "href": "lectures/L03/Lecture-03b.html#c-conclusion",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Using aov() in R",
-    "text": "Using aov() in R\n\nmodel &lt;- aov(weight ~ diet, data = chicks)\nsummary(model)\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)   \ndiet         3  16467    5489   6.647  0.004 **\nResiduals   16  13212     826                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+    "section": "C: Conclusion",
+    "text": "C: Conclusion\n\n\n\nSource\ndf\nSS\nMS\nF\np\n\n\n\n\nDiet\n3\n1.6467^{4}\n5489\n6.65\n0.004\n\n\nResidual\n16\n1.3212^{4}\n825.8\n\n\n\n\n\nThere are significant differences in mean weight gain among the four diets (\\(F_{3,16} = 6.65\\), \\(p = 0.004\\)).\n\nBut ANOVA only tells us that groups differ, not which ones. To identify specific differences, we need post-hoc analysis."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#interpreting-the-results",
-    "href": "lectures/L03/Lecture-03b.html#interpreting-the-results",
+    "objectID": "lectures/L03/Lecture-03b.html#why-post-hoc",
+    "href": "lectures/L03/Lecture-03b.html#why-post-hoc",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Interpreting the results",
-    "text": "Interpreting the results\n\n\\(F = 6.65\\) with \\(df = 3, 16\\)\n\\(p = 0.004\\) which is \\(&lt; 0.05\\), so we reject \\(H_0\\)\nThere are significant differences in mean weight gain amongst the 4 diets\n\n\nHow much variability is explained?\n\\[\\frac{SS_{\\text{treatment}}}{SS_{\\text{total}}} = \\frac{1.6467\\times 10^{4}}{2.9679\\times 10^{4}} = 55.5\\%\\]\nThe diets explain about 55% of the total variability in chick weight gain."
+    "section": "Why post-hoc?",
+    "text": "Why post-hoc?\n\\(H_1\\) says “not all means are equal,” but not which ones differ.\n\nANOVA tells us the four diet means are not all the same\nIt does not tell us whether Diet 1 differs from Diet 2, or Diet 3 from Diet 4\nWe cannot run separate \\(t\\)-tests (the multiple comparisons problem from the first slide)\nWe need a method that compares pairs while controlling the overall error rate"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#confidence-intervals-for-group-means",
-    "href": "lectures/L03/Lecture-03b.html#confidence-intervals-for-group-means",
+    "objectID": "lectures/L03/Lecture-03b.html#post-hoc-and-confidence-intervals",
+    "href": "lectures/L03/Lecture-03b.html#post-hoc-and-confidence-intervals",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Confidence intervals for group means",
-    "text": "Confidence intervals for group means\nWe can examine 95% CIs for each treatment mean:\n\\[95\\% \\text{ CI} = \\bar{y}_i \\pm t^{0.025}_{N-t} \\times SE(\\bar{y}_i)\\]\nwhere \\(SE(\\bar{y}_i) = \\sqrt{MS_{\\text{res}} / n_i}\\)"
+    "section": "Post-hoc and confidence intervals",
+    "text": "Post-hoc and confidence intervals\nBefore the break we used a confidence interval for the difference between two cattle breeds. Post-hoc methods apply the same logic to every pair of groups.\n\nFor each pair, construct a CI for the difference in means\nIf the CI excludes zero, those two groups differ significantly\nIf the CI includes zero, we cannot conclude they differ\n\n\nThe key difference from running separate \\(t\\)-tests: post-hoc methods widen the CIs to account for multiple comparisons, keeping the overall false positive rate at 5%.\nWe will cover specific post-hoc methods (Tukey, Bonferroni) in detail next week."
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#using-emmeans",
-    "href": "lectures/L03/Lecture-03b.html#using-emmeans",
+    "objectID": "lectures/L03/Lecture-03b.html#estimated-marginal-means",
+    "href": "lectures/L03/Lecture-03b.html#estimated-marginal-means",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Using emmeans",
-    "text": "Using emmeans\n\nlibrary(emmeans)\nemm &lt;- emmeans(model, \"diet\")\nemm\n\n diet   emmean   SE df lower.CL upper.CL\n Diet.1   79.0 12.9 16     51.8    106.2\n Diet.2   71.0 12.9 16     43.8     98.2\n Diet.3   81.4 12.9 16     54.2    108.6\n Diet.4  142.8 12.9 16    115.6    170.0\n\nConfidence level used: 0.95"
+    "section": "Estimated marginal means",
+    "text": "Estimated marginal means\nBefore the break we used CIs to compare two cattle breeds. The same idea extends to multiple groups. emmeans estimates the mean and standard error for each group from the model.\n\nlibrary(emmeans)\nemm &lt;- emmeans(model, \"diet\")\nemm\n\n diet   emmean   SE df lower.CL upper.CL\n Diet.1   79.0 12.9 16     51.8    106.2\n Diet.2   71.0 12.9 16     43.8     98.2\n Diet.3   81.4 12.9 16     54.2    108.6\n Diet.4  142.8 12.9 16    115.6    170.0\n\nConfidence level used: 0.95"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#visualising-group-comparisons",
-    "href": "lectures/L03/Lecture-03b.html#visualising-group-comparisons",
+    "objectID": "lectures/L03/Lecture-03b.html#pairwise-comparisons",
+    "href": "lectures/L03/Lecture-03b.html#pairwise-comparisons",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Visualising group comparisons",
-    "text": "Visualising group comparisons\n\nplot(emm, comparisons = TRUE) +\n  labs(x = \"Weight (g)\", y = \"Diet\")\n\n\nGroups with overlapping arrows are not significantly different from each other."
+    "section": "Pairwise comparisons",
+    "text": "Pairwise comparisons\nTo find which pairs differ, we construct a CI for the difference between every pair of means.\n\nconfint(pairs(emm))\n\n contrast        estimate   SE df lower.CL upper.CL\n Diet.1 - Diet.2      8.0 18.2 16    -44.0     60.0\n Diet.1 - Diet.3     -2.4 18.2 16    -54.4     49.6\n Diet.1 - Diet.4    -63.8 18.2 16   -115.8    -11.8\n Diet.2 - Diet.3    -10.4 18.2 16    -62.4     41.6\n Diet.2 - Diet.4    -71.8 18.2 16   -123.8    -19.8\n Diet.3 - Diet.4    -61.4 18.2 16   -113.4     -9.4\n\nConfidence level used: 0.95 \nConf-level adjustment: tukey method for comparing a family of 4 estimates \n\n\n\nEach row is one pairwise comparison (e.g. Diet1 - Diet2)\nThe lower.CL and upper.CL columns are the 95% CI for the difference\nIf the CI excludes zero, those two diets differ significantly"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#t-test-vs-anova",
-    "href": "lectures/L03/Lecture-03b.html#t-test-vs-anova",
+    "objectID": "lectures/L03/Lecture-03b.html#visualising-the-comparisons",
+    "href": "lectures/L03/Lecture-03b.html#visualising-the-comparisons",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "\\(t\\)-test vs ANOVA",
-    "text": "\\(t\\)-test vs ANOVA\n\n\\(t\\)-test: compares means of 2 groups\nANOVA: compares means of 2 or more groups simultaneously\nANOVA avoids the inflated Type I error rate from multiple \\(t\\)-tests\nThe ANOVA \\(F\\)-test tells us if differences exist, but not where\nPost-hoc methods (e.g. emmeans) identify which pairs differ"
+    "section": "Visualising the comparisons",
+    "text": "Visualising the comparisons\n\nplot(emm, comparisons = TRUE) +\n  labs(x = \"Weight gain (g)\", y = \"Diet\")\n\n\n\nEach point is the estimated mean for that diet\nThe arrows represent comparison intervals (adjusted CIs)\nGroups with overlapping arrows are not significantly different\nWe will cover post-hoc methods in more detail next week"
   },
   {
-    "objectID": "lectures/L03/Lecture-03b.html#next-week",
-    "href": "lectures/L03/Lecture-03b.html#next-week",
+    "objectID": "lectures/L03/Lecture-03b.html#key-points",
+    "href": "lectures/L03/Lecture-03b.html#key-points",
     "title": "Lecture 03b – One-way ANOVA",
-    "section": "Next week",
-    "text": "Next week\n\nHow to better identify which pairs are significantly different\nHow to test and interpret model assumptions using residual diagnostics"
-  },
-  {
-    "objectID": "lectures/L03/Lecture-03b.html#references",
-    "href": "lectures/L03/Lecture-03b.html#references",
-    "title": "Lecture 03b – One-way ANOVA",
-    "section": "References",
-    "text": "References\n\nQuinn & Keough (2002), Chapter 7: Section 7.1\nMead et al. (2002), Chapter 18: Sections 18.1–18.3"
+    "section": "Key points",
+    "text": "Key points\n\nANOVA extends the \\(t\\)-test to more than two groups (\\(F = t^2\\) for two groups)\nMultiple pairwise \\(t\\)-tests inflate the false positive rate. ANOVA tests all groups at once\nThe F ratio compares between-group variation to within-group variation\nPost-hoc methods construct CIs for pairwise differences to identify which groups differ\n\n\nIn Lab 03, you will fit your own ANOVA with aov() and explore group comparisons with emmeans. Next week: residual diagnostics and post-hoc methods."
   },
   {
     "objectID": "lectures/L03/Lecture-03b.html#thanks",

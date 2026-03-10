@@ -187,6 +187,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -207,224 +209,192 @@ Januar Harianto
   <p class="date">Mar 2026</p>
 </section>
 <section>
-<section id="why-anova" class="title-slide slide level1 center">
-<h1>Why ANOVA?</h1>
+<section id="from-t-tests-to-anova" class="title-slide slide level1 center">
+<h1>From <span class="math inline">\(t\)</span>-tests to ANOVA</h1>
 
 </section>
-<section id="the-problem-with-multiple-t-tests" class="slide level2">
-<h2>The problem with multiple <span class="math inline">\(t\)</span>-tests</h2>
-<p>Suppose we want to compare weight gain of chicks fed on <strong>4 different diets</strong>.</p>
+<section id="from-two-groups-to-four" class="slide level2">
+<h2>From two groups to four</h2>
+<p>Before the break we compared two cattle breeds. But what if there were four breeds instead of two?</p>
+<ul>
+<li>Can we still use <span class="math inline">\(t\)</span>-tests? <strong>Yes</strong>, but we would need to test every pair</li>
+<li>With 4 groups that is <span class="math inline">\(\binom{4}{2} = 6\)</span> comparisons: 1 vs 2, 1 vs 3, 1 vs 4, 2 vs 3, 2 vs 4, 3 vs 4</li>
+</ul>
 <div class="fragment">
-<p>With <span class="math inline">\(t\)</span>-tests, we’d need <span class="math inline">\(\binom{4}{2} = 6\)</span> pairwise comparisons:</p>
-<p>1-2, 1-3, 1-4, 2-3, 2-4, 3-4</p>
-</div>
-<div class="fragment">
-<p>Even if there are no true differences, each test has a 5% chance of incorrectly finding significance. How does that add up?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>prob_all_correct <span class="ot">&lt;-</span> <span class="fl">0.95</span><span class="sc">^</span><span class="dv">6</span></span>
-<span id="cb1-2"><a></a>prob_all_correct</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7350919</code></pre>
-</div>
-</div>
-<p>We have a <strong>26.5%</strong> chance that at least one test result will be incorrect!</p>
+<p>The problem: every test carries a risk of a <strong>Type I error</strong> (a false positive).</p>
+<ul>
+<li>We set <span class="math inline">\(\alpha = 0.05\)</span>, so each comparison has a 5% chance of rejecting <span class="math inline">\(H_0\)</span> when it is actually true</li>
+<li>Six tests means six chances to get it wrong</li>
+</ul>
 </div>
 </section>
-<section id="we-need-a-better-method" class="slide level2">
-<h2>We need a better method</h2>
-<p>The <a href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">problem of multiple comparisons</a> requires a technique that considers <strong>all</strong> treatments at once.</p>
+<section id="the-multiple-comparisons-problem" class="slide level2">
+<h2>The multiple comparisons problem</h2>
+<p>With 6 groups there are <span class="math inline">\(\binom{6}{2} = 15\)</span> pairwise comparisons. The probability that <strong>none</strong> produce a false positive is <span class="math inline">\(0.95^{15}\)</span>, so:</p>
+<p><span class="math display">\[P(\text{at least one false positive}) = 1 - 0.95^{15} = 53.7\%\]</span></p>
 <div class="fragment">
-<h3 id="anova-analysis-of-variance">ANOVA – Analysis of Variance</h3>
-<p>Before deciding <em>which</em> treatments differ, we first consider:</p>
-<ol type="1">
-<li class="fragment">Differences <strong>between</strong> the treatment groups – <strong>between-treatment effects</strong></li>
-<li class="fragment">Differences <strong>within</strong> each treatment group – <strong>within-treatment effects</strong>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Groups</th>
+<th style="text-align: center;">Pairwise tests</th>
+<th style="text-align: center;">P(at least one false positive)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">5.0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">26.5%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">53.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">76.2%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">90.1%</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li class="fragment">due to random environmental fluctuations, genetics, experimental error</li>
-</ul></li>
-</ol>
+<li>With 10 groups, a false positive is almost guaranteed</li>
+<li>We need a method that tests all groups at once</li>
+</ul>
 </div>
 </section></section>
 <section>
-<section id="chick-weight-data" class="title-slide slide level1 center">
-<h1>Chick weight data</h1>
+<section id="chick-feeding" class="title-slide slide level1 center">
+<h1>Chick feeding</h1>
 
 </section>
 <section id="the-experiment" class="slide level2">
 <h2>The experiment</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><img data-src="images/chicks.jpg"></p>
+
+<img data-src="images/chicks.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><p>We need a method that handles more than two groups. Consider a new experiment:</p>
 <ul>
-<li>20 chicks</li>
-<li>4 diets</li>
+<li>20 chicks are randomly assigned to one of 4 diets</li>
 <li>5 replicates per diet</li>
 <li>Response: weight gain (g)</li>
 </ul>
-</div><div class="column" style="width:60%;">
-<div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>chicks_wide <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/chicks.csv"</span>)</span>
-<span id="cb3-2"><a></a>chicks_wide</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Diet.1 Diet.2 Diet.3 Diet.4
-1     99     61     42    169
-2     88    112     97    137
-3     76     30     81    169
-4     38     89     95     85
-5     94     63     92    154</code></pre>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="reshaping-the-data" class="slide level2">
-<h2>Reshaping the data</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>chicks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/chicks.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb5-3"><a></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"Diet"</span>),</span>
-<span id="cb5-4"><a></a>    <span class="at">names_to =</span> <span class="st">"diet"</span>,</span>
-<span id="cb5-5"><a></a>    <span class="at">values_to =</span> <span class="st">"weight"</span></span>
-<span id="cb5-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a></a>  <span class="fu">mutate</span>(<span class="at">diet =</span> <span class="fu">as.factor</span>(diet))</span>
-<span id="cb5-8"><a></a></span>
-<span id="cb5-9"><a></a>chicks</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 2
-   diet   weight
-   &lt;fct&gt;   &lt;int&gt;
- 1 Diet.1     99
- 2 Diet.2     61
- 3 Diet.3     42
- 4 Diet.4    169
- 5 Diet.1     88
- 6 Diet.2    112
- 7 Diet.3     97
- 8 Diet.4    137
- 9 Diet.1     76
-10 Diet.2     30
-11 Diet.3     81
-12 Diet.4    169
-13 Diet.1     38
-14 Diet.2     89
-15 Diet.3     95
-16 Diet.4     85
-17 Diet.1     94
-18 Diet.2     63
-19 Diet.3     92
-20 Diet.4    154</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="anova-concepts" class="title-slide slide level1 center">
-<h1>ANOVA concepts</h1>
-
-</section>
-<section id="terminology" class="slide level2">
-<h2>Terminology</h2>
-<ul>
-<li><strong>Factor</strong> (or treatment): the categorical variable of interest (here: diet)</li>
-<li><strong>Levels</strong>: the categories within a factor (here: Diet 1, Diet 2, Diet 3, Diet 4)</li>
-<li><strong>Replicates</strong>: the number of observations per level (here: <span class="math inline">\(r = 5\)</span>)</li>
-<li><span class="math inline">\(t\)</span> = number of treatments; <span class="math inline">\(N\)</span> = total observations = <span class="math inline">\(r \times t = 20\)</span></li>
-</ul>
-<div class="fragment">
-<p>This is a <strong>one-way</strong> (or one-factor) ANOVA because there is only one factor (diet).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>chicks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/chicks.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb1-3"><a></a>    <span class="fu">starts_with</span>(<span class="st">"Diet"</span>), <span class="at">names_to =</span> <span class="st">"diet"</span>, <span class="at">values_to =</span> <span class="st">"weight"</span></span>
+<span id="cb1-4"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">mutate</span>(<span class="at">diet =</span> <span class="fu">as.factor</span>(diet))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="which-model-best-describes-the-data" class="slide level2">
-<h2>Which model best describes the data?</h2>
+<section id="are-there-differences" class="slide level2">
+<h2>Are there differences?</h2>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(chicks<span class="sc">$</span>weight)</span>
-<span id="cb7-2"><a></a>group_means <span class="ot">&lt;-</span> chicks <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">group_by</span>(diet) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_wt =</span> <span class="fu">mean</span>(weight))</span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
-<span id="cb7-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> group_means, <span class="fu">aes</span>(diet, mean_wt),</span>
-<span id="cb7-9"><a></a>    <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb7-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Group means (red)"</span>, <span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight (g)"</span>)</span>
-<span id="cb7-11"><a></a></span>
-<span id="cb7-12"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
-<span id="cb7-13"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb7-14"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> overall_mean, <span class="at">colour =</span> <span class="st">"blue"</span>,</span>
-<span id="cb7-15"><a></a>    <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb7-16"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Overall mean (blue)"</span>, <span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight (g)"</span>)</span>
-<span id="cb7-17"><a></a></span>
-<span id="cb7-18"><a></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb7-19"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
+<span id="cb2-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb2-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight gain (g)"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-03b_files/figure-revealjs/group_means_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Does the <strong>group means model</strong> (left) explain the data better than the <strong>overall mean model</strong> (right)?</p>
+<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>What do the boxplots suggest?</p>
+</section>
+<section id="terminology" class="slide level2">
+<h2>Terminology</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning</th>
+<th>In this experiment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Factor</strong></td>
+<td>Categorical variable being tested</td>
+<td>Diet</td>
+</tr>
+<tr class="even">
+<td><strong>Levels</strong></td>
+<td>Categories within a factor</td>
+<td>Diet 1, Diet 2, Diet 3, Diet 4</td>
+</tr>
+<tr class="odd">
+<td><strong>Replicates</strong></td>
+<td>Observations per level</td>
+<td><span class="math inline">\(r = 5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>This is a <strong>one-way</strong> ANOVA because there is only one factor. <strong>What is ANOVA</strong>?</p>
 </section></section>
 <section>
-<section id="model-equation" class="title-slide slide level1 center">
-<h1>Model equation</h1>
+<section id="hatpc-for-analysis-of-variance" class="title-slide slide level1 center">
+<h1>HATPC for Analysis of Variance</h1>
 
 </section>
-<section id="same-form-as-the-t-test" class="slide level2">
-<h2>Same form as the <span class="math inline">\(t\)</span>-test</h2>
+<section id="h-hypotheses" class="slide level2">
+<h2>H: Hypotheses</h2>
+<p>In the <span class="math inline">\(t\)</span>-test we asked whether <strong>two</strong> means were equal. ANOVA extends this to <strong>any number</strong> of groups.</p>
+<ul>
+<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4\)</span></li>
+<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1:\)</span> not all <span class="math inline">\(\mu_i\)</span> are equal</li>
+</ul>
+<p>The alternative does not say all means differ. It says at least two do.</p>
+<div class="fragment">
+<p><strong>Model equation</strong>:</p>
 <p><span class="math display">\[y_{ij} = \mu_i + \varepsilon_{ij}\]</span></p>
-<ul>
-<li><span class="math inline">\(i = 1, 2, \ldots, t\)</span> (treatment); <span class="math inline">\(j = 1, 2, \ldots, n_i\)</span> (replicate)</li>
-</ul>
-<p>In the chick example:</p>
-<ul>
-<li><span class="math inline">\(y_{ij}\)</span> = observed weight gain for the <span class="math inline">\(j\)</span>th chick on Diet <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(\mu_i\)</span> = mean weight gain for chicks on Diet <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(\varepsilon_{ij}\)</span> = random error (residual)</li>
-</ul>
-</section></section>
-<section>
-<section id="assumptions" class="title-slide slide level1 center">
-<h1>Assumptions</h1>
-
+<p>where <span class="math inline">\(i = 1, \ldots, t\)</span> treatments and <span class="math inline">\(j = 1, \ldots, n_i\)</span> replicates. The same structure as the <span class="math inline">\(t\)</span>-test model, but <span class="math inline">\(i\)</span> now ranges over more than two groups.</p>
+</div>
 </section>
-<section id="checking-normality" class="slide level2">
-<h2>Checking normality</h2>
+<section id="a-assumptions" class="slide level2">
+<h2>A: Assumptions</h2>
+<p>The same three assumptions from the <span class="math inline">\(t\)</span>-test apply here. We fit the model first, then check.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight (g)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
+<p><strong>Normality</strong> (Shapiro-Wilk on residuals):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">shapiro.test</span>(chicks<span class="sc">$</span>weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">shapiro.test</span>(<span class="fu">residuals</span>(model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
 
-data:  chicks$weight
-W = 0.93272, p-value = 0.1742</code></pre>
+data:  residuals(model)
+W = 0.90961, p-value = 0.06265</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(p &gt; 0.05\)</span>: we can assume normality.</p>
-</div></div>
-</section>
-<section id="checking-equal-variances" class="slide level2">
-<h2>Checking equal variances</h2>
-<ul>
-<li><span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \ldots = \sigma_t^2\)</span></li>
-<li>General guide: <span class="math inline">\(\frac{\text{largest SD}}{\text{smallest SD}} &lt; 2.0\)</span></li>
-<li>Alternatively, use <strong>Bartlett’s test</strong> of homogeneity of variance:</li>
-</ul>
+<p><span class="math inline">\(p &gt; 0.05\)</span>: no evidence against normality.</p>
+</div><div class="column" style="width:50%;">
+<p><strong>Equal variances</strong> (Bartlett’s test):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">bartlett.test</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">bartlett.test</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Bartlett test of homogeneity of variances
@@ -433,119 +403,141 @@ data:  weight by diet
 Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 </div>
 </div>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>Bartlett’s test is <strong>sensitive to non-normality</strong>. Only use it when normality is reasonable.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="hypothesis-test" class="title-slide slide level1 center">
-<h1>Hypothesis test</h1>
-
+<p><span class="math inline">\(p &gt; 0.05\)</span>: variances are similar across groups.</p>
+</div></div>
 </section>
-<section id="hypotheses" class="slide level2">
-<h2>Hypotheses</h2>
+<section id="a-residual-diagnostics" class="slide level2">
+<h2>A: Residual diagnostics</h2>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(model), <span class="at">main =</span> <span class="st">"Normal QQ plot"</span>)</span>
+<span id="cb8-2"><a></a><span class="fu">qqline</span>(<span class="fu">residuals</span>(model))</span>
+<span id="cb8-3"><a></a><span class="fu">plot</span>(<span class="fu">fitted</span>(model), <span class="fu">residuals</span>(model),</span>
+<span id="cb8-4"><a></a>     <span class="at">xlab =</span> <span class="st">"Fitted values"</span>, <span class="at">ylab =</span> <span class="st">"Residuals"</span>,</span>
+<span id="cb8-5"><a></a>     <span class="at">main =</span> <span class="st">"Residuals vs Fitted"</span>)</span>
+<span id="cb8-6"><a></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-6-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ul>
-<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2 = \ldots = \mu_t\)</span></li>
-<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1\)</span>: not all <span class="math inline">\(\mu_i\)</span> are equal</li>
+<li>QQ plot: points follow the line, supporting normality</li>
+<li>Residuals vs fitted: no fan shape, supporting equal variances</li>
+<li>Independence holds by design: each chick is measured once</li>
 </ul>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section>
+<section id="a-a-shortcut-for-next-time" class="slide level2">
+<h2>A: A shortcut for next time</h2>
+<p>R can produce all standard diagnostic plots at once:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">plot</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Important</strong></p>
+<p>We will explore these plots in detail next week. For now, the Shapiro-Wilk and Bartlett’s tests are sufficient.</p>
+</section>
+<section id="t-the-anova-idea" class="slide level2">
+<h2>T: The ANOVA idea</h2>
+<ul>
+<li>How does ANOVA decide whether these four diets differ?</li>
+<li>If diets matter, differences <strong>between</strong> groups should be large relative to variation <strong>within</strong> groups</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(chicks<span class="sc">$</span>weight)</span>
+<span id="cb10-2"><a></a>group_means <span class="ot">&lt;-</span> chicks <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">group_by</span>(diet) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_wt =</span> <span class="fu">mean</span>(weight))</span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
+<span id="cb10-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb10-8"><a></a>  <span class="fu">geom_hline</span>(<span class="at">data =</span> group_means, <span class="fu">aes</span>(<span class="at">yintercept =</span> mean_wt),</span>
+<span id="cb10-9"><a></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">colour =</span> <span class="st">"#e64626"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Four group means"</span>, <span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight gain (g)"</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>()</span>
+<span id="cb10-12"><a></a></span>
+<span id="cb10-13"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chicks, <span class="fu">aes</span>(diet, weight)) <span class="sc">+</span></span>
+<span id="cb10-14"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb10-15"><a></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> overall_mean, <span class="at">colour =</span> <span class="st">"#e64626"</span>,</span>
+<span id="cb10-16"><a></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb10-17"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"One overall mean"</span>, <span class="at">x =</span> <span class="st">"Diet"</span>, <span class="at">y =</span> <span class="st">"Weight gain (g)"</span>) <span class="sc">+</span></span>
+<span id="cb10-18"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>()</span>
+<span id="cb10-19"><a></a></span>
+<span id="cb10-20"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb10-21"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
 </div>
-<div class="callout-content">
-<p>ANOVA only tells us that <strong>at least two</strong> group means are different – not <em>which</em> ones.</p>
+<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Do four separate means (left) explain the data better than a single overall mean (right)?</p>
+</section>
+<section id="two-sources-of-variation" class="slide level2">
+<h2>Two sources of variation</h2>
+<p>ANOVA splits the total variation in the data into two parts:</p>
+<ul>
+<li><strong>Between-group variation</strong> (<span style="color:#e64626; font-weight:bold">orange</span>): how far each group mean is from the overall mean. If diets matter, this should be large.</li>
+<li><strong>Within-group variation</strong> (<span style="color:#404040; font-weight:bold">black</span>): how much individual observations scatter around their own group mean. This is random noise.</li>
+</ul>
+<p>ANOVA compares these two quantities. If between-group variation is large relative to within-group variation, we have evidence that the groups genuinely differ.</p>
+</section>
+<section id="variance-partitioning" class="slide level2">
+<h2>Variance partitioning</h2>
+<style>
+#variance-partitioning .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb11" data-startfrom="251" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 250;"><span id="cb11-251"><a></a><span class="im">import</span> { variancePartitionWidget } <span class="im">from</span> <span class="st">"../../assets/js/anova-widget.js"</span></span>
+<span id="cb11-252"><a></a><span class="fu">variancePartitionWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="the-concept-partition-variability" class="slide level2">
-<h2>The concept: partition variability</h2>
-<p>Partition the total variability into components:</p>
-<p><span class="math display">\[SS_{\text{total}} = SS_{\text{treatment}} + SS_{\text{residual}}\]</span></p>
+<section id="the-f-ratio" class="slide level2">
+<h2>The F ratio</h2>
+<p><span class="math display">\[F = \frac{MS_{\text{trt}}}{MS_{\text{res}}}\]</span></p>
 <ul>
-<li><span class="math inline">\(SS_{\text{treatment}}\)</span>: variation <strong>between</strong> groups (due to diet)</li>
-<li><span class="math inline">\(SS_{\text{residual}}\)</span>: variation <strong>within</strong> groups (random error)</li>
+<li><span class="math inline">\(F\)</span> compares variation due to group differences against random noise</li>
+<li>MS (mean square) is based on <strong>squared</strong> deviations: squaring prevents positive and negative differences from cancelling out</li>
+<li>When <span class="math inline">\(H_0\)</span> is true (all groups equal), <span class="math inline">\(F \approx 1\)</span></li>
+<li>When groups genuinely differ, <span class="math inline">\(F \gg 1\)</span></li>
 </ul>
 <div class="fragment">
-<p>If the treatment has a real effect, <span class="math inline">\(SS_{\text{treatment}}\)</span> should be <strong>large</strong> relative to <span class="math inline">\(SS_{\text{residual}}\)</span>.</p>
-</div>
-</section></section>
-<section>
-<section id="variance-partitioning" class="title-slide slide level1 center">
-<h1>Variance partitioning</h1>
-
-</section>
-<section id="total-sum-of-squares-ss_texttotal" class="slide level2">
-<h2>Total sum of squares: <span class="math inline">\(SS_{\text{total}}\)</span></h2>
-<p><span class="math display">\[SS_{\text{total}} = \sum(y_{ij} - \bar{y})^2\]</span></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(chicks<span class="sc">$</span>weight)</span>
-<span id="cb13-2"><a></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>((chicks<span class="sc">$</span>weight <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb13-3"><a></a>ss_total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 29678.95</code></pre>
-</div>
+<p>For two groups, ANOVA gives the same answer as the <span class="math inline">\(t\)</span>-test:</p>
+<p><span class="math display">\[F = t^2\]</span></p>
+<p>ANOVA extends the <span class="math inline">\(t\)</span>-test to any number of groups.</p>
 </div>
 </section>
-<section id="treatment-sum-of-squares-ss_texttreatment" class="slide level2">
-<h2>Treatment sum of squares: <span class="math inline">\(SS_{\text{treatment}}\)</span></h2>
-<p><span class="math display">\[SS_{\text{treatment}} = \sum n_i \times (\bar{y}_i - \bar{y})^2\]</span></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>group_means <span class="ot">&lt;-</span> chicks <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a></a>  <span class="fu">group_by</span>(diet) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a></a>  <span class="fu">summarise</span>(<span class="at">grp_mean =</span> <span class="fu">mean</span>(weight))</span>
-<span id="cb15-4"><a></a></span>
-<span id="cb15-5"><a></a>ss_trt <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">5</span> <span class="sc">*</span> (group_means<span class="sc">$</span>grp_mean <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb15-6"><a></a>ss_trt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 16466.95</code></pre>
-</div>
-</div>
-</section>
-<section id="residual-sum-of-squares-ss_textresidual" class="slide level2">
-<h2>Residual sum of squares: <span class="math inline">\(SS_{\text{residual}}\)</span></h2>
-<p><span class="math display">\[SS_{\text{residual}} = \sum(y_{ij} - \bar{y}_i)^2\]</span></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>chicks_with_means <span class="ot">&lt;-</span> chicks <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">left_join</span>(group_means, <span class="at">by =</span> <span class="st">"diet"</span>)</span>
-<span id="cb17-3"><a></a></span>
-<span id="cb17-4"><a></a>ss_res <span class="ot">&lt;-</span> <span class="fu">sum</span>((chicks_with_means<span class="sc">$</span>weight <span class="sc">-</span> chicks_with_means<span class="sc">$</span>grp_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb17-5"><a></a>ss_res</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13212</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><strong>Check</strong>: <span class="math inline">\(SS_{\text{total}} = SS_{\text{treatment}} + SS_{\text{residual}}\)</span></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">c</span>(ss_total, ss_trt <span class="sc">+</span> ss_res)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 29678.95 29678.95</code></pre>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="anova-table" class="title-slide slide level1 center">
-<h1>ANOVA table</h1>
-
-</section>
-<section id="structure" class="slide level2">
-<h2>Structure</h2>
+<section id="t-the-anova-table" class="slide level2">
+<h2>T: The ANOVA table</h2>
 <table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 33%">
@@ -587,17 +579,11 @@ Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 </tr>
 </tbody>
 </table>
-<ul>
-<li><span class="math inline">\(N\)</span> = total observations, <span class="math inline">\(t\)</span> = number of treatment levels</li>
-<li><strong>Mean Squares</strong> (MS) standardise SS so they are comparable</li>
-<li>The larger the ratio <span class="math inline">\(MS_{\text{trt}} / MS_{\text{res}}\)</span>, the stronger the treatment effect</li>
-</ul>
-</section>
-<section id="using-aov-in-r" class="slide level2">
-<h2>Using <code>aov()</code> in R</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span>
-<span id="cb21-2"><a></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span>
+<span id="cb12-2"><a></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)   
 diet         3  16467    5489   6.647  0.004 **
@@ -607,36 +593,92 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </section>
-<section id="interpreting-the-results" class="slide level2">
-<h2>Interpreting the results</h2>
+<section id="p-interpret" class="slide level2">
+<h2>P: Interpret</h2>
 <ul>
-<li><span class="math inline">\(F = 6.65\)</span> with <span class="math inline">\(df = 3, 16\)</span></li>
-<li><span class="math inline">\(p = 0.004\)</span> which is <span class="math inline">\(&lt; 0.05\)</span>, so we <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
-<li>There are <strong>significant differences</strong> in mean weight gain amongst the 4 diets</li>
+<li><strong>diet</strong> row: variation explained by the four diets (<span class="math inline">\(df = 3\)</span>, since 4 groups minus 1)</li>
+<li><strong>Residuals</strong> row: leftover variation (<span class="math inline">\(df = 16\)</span>, since 20 observations minus 4 groups)</li>
+<li><span class="math inline">\(F = 6.65\)</span>: the treatment variance is 6.65 times larger than the residual variance</li>
+<li><span class="math inline">\(p = 0.004\)</span>: below 0.05, so we <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
 </ul>
 <div class="fragment">
 <h3 id="how-much-variability-is-explained">How much variability is explained?</h3>
 <p><span class="math display">\[\frac{SS_{\text{treatment}}}{SS_{\text{total}}} = \frac{1.6467\times 10^{4}}{2.9679\times 10^{4}} = 55.5\%\]</span></p>
 <p>The diets explain about 55% of the total variability in chick weight gain.</p>
 </div>
+</section>
+<section id="c-conclusion" class="slide level2">
+<h2>C: Conclusion</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">SS</th>
+<th style="text-align: right;">MS</th>
+<th style="text-align: right;">F</th>
+<th style="text-align: right;">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Diet</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.6467^{4}</td>
+<td style="text-align: right;">5489</td>
+<td style="text-align: right;">6.65</td>
+<td style="text-align: right;">0.004</td>
+</tr>
+<tr class="even">
+<td>Residual</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1.3212^{4}</td>
+<td style="text-align: right;">825.8</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>There are significant differences in mean weight gain among the four diets (<span class="math inline">\(F_{3,16} = 6.65\)</span>, <span class="math inline">\(p = 0.004\)</span>).</p>
+<div class="fragment">
+<p>But ANOVA only tells us <strong>that</strong> groups differ, not <strong>which</strong> ones. To identify specific differences, we need post-hoc analysis.</p>
+</div>
 </section></section>
 <section>
-<section id="post-hoc-which-groups-differ" class="title-slide slide level1 center">
-<h1>Post-hoc: which groups differ?</h1>
+<section id="post-hoc" class="title-slide slide level1 center">
+<h1>Post-hoc</h1>
 
 </section>
-<section id="confidence-intervals-for-group-means" class="slide level2">
-<h2>Confidence intervals for group means</h2>
-<p>We can examine 95% CIs for each treatment mean:</p>
-<p><span class="math display">\[95\% \text{ CI} = \bar{y}_i \pm t^{0.025}_{N-t} \times SE(\bar{y}_i)\]</span></p>
-<p>where <span class="math inline">\(SE(\bar{y}_i) = \sqrt{MS_{\text{res}} / n_i}\)</span></p>
+<section id="why-post-hoc" class="slide level2">
+<h2>Why post-hoc?</h2>
+<p><span class="math inline">\(H_1\)</span> says “not all means are equal,” but not <strong>which</strong> ones differ.</p>
+<ul>
+<li>ANOVA tells us the four diet means are not all the same</li>
+<li>It does not tell us whether Diet 1 differs from Diet 2, or Diet 3 from Diet 4</li>
+<li>We cannot run separate <span class="math inline">\(t\)</span>-tests (the multiple comparisons problem from the first slide)</li>
+<li>We need a method that compares pairs <strong>while controlling the overall error rate</strong></li>
+</ul>
 </section>
-<section id="using-emmeans" class="slide level2">
-<h2>Using <code>emmeans</code></h2>
+<section id="post-hoc-and-confidence-intervals" class="slide level2">
+<h2>Post-hoc and confidence intervals</h2>
+<p>Before the break we used a <strong>confidence interval for the difference</strong> between two cattle breeds. Post-hoc methods apply the same logic to every pair of groups.</p>
+<ul>
+<li>For each pair, construct a CI for the difference in means</li>
+<li>If the CI <strong>excludes zero</strong>, those two groups differ significantly</li>
+<li>If the CI <strong>includes zero</strong>, we cannot conclude they differ</li>
+</ul>
+<div class="fragment">
+<p>The key difference from running separate <span class="math inline">\(t\)</span>-tests: post-hoc methods <strong>widen</strong> the CIs to account for multiple comparisons, keeping the overall false positive rate at 5%.</p>
+<p>We will cover specific post-hoc methods (Tukey, Bonferroni) in detail next week.</p>
+</div>
+</section>
+<section id="estimated-marginal-means" class="slide level2">
+<h2>Estimated marginal means</h2>
+<p>Before the break we used CIs to compare two cattle breeds. The same idea extends to multiple groups. <code>emmeans</code> estimates the mean and standard error for each group from the model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">library</span>(emmeans)</span>
-<span id="cb23-2"><a></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(model, <span class="st">"diet"</span>)</span>
-<span id="cb23-3"><a></a>emm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb14-2"><a></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(model, <span class="st">"diet"</span>)</span>
+<span id="cb14-3"><a></a>emm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> diet   emmean   SE df lower.CL upper.CL
  Diet.1   79.0 12.9 16     51.8    106.2
@@ -648,43 +690,60 @@ Confidence level used: 0.95 </code></pre>
 </div>
 </div>
 </section>
-<section id="visualising-group-comparisons" class="slide level2">
-<h2>Visualising group comparisons</h2>
+<section id="pairwise-comparisons" class="slide level2">
+<h2>Pairwise comparisons</h2>
+<p>To find which pairs differ, we construct a CI for the difference between every pair of means.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">confint</span>(<span class="fu">pairs</span>(emm))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast        estimate   SE df lower.CL upper.CL
+ Diet.1 - Diet.2      8.0 18.2 16    -44.0     60.0
+ Diet.1 - Diet.3     -2.4 18.2 16    -54.4     49.6
+ Diet.1 - Diet.4    -63.8 18.2 16   -115.8    -11.8
+ Diet.2 - Diet.3    -10.4 18.2 16    -62.4     41.6
+ Diet.2 - Diet.4    -71.8 18.2 16   -123.8    -19.8
+ Diet.3 - Diet.4    -61.4 18.2 16   -113.4     -9.4
+
+Confidence level used: 0.95 
+Conf-level adjustment: tukey method for comparing a family of 4 estimates </code></pre>
+</div>
+</div>
+<ul>
+<li>Each row is one pairwise comparison (e.g.&nbsp;Diet1 - Diet2)</li>
+<li>The <code>lower.CL</code> and <code>upper.CL</code> columns are the 95% CI for the difference</li>
+<li>If the CI <strong>excludes zero</strong>, those two diets differ significantly</li>
+</ul>
+</section>
+<section id="visualising-the-comparisons" class="slide level2">
+<h2>Visualising the comparisons</h2>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">plot</span>(emm, <span class="at">comparisons =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb25-2"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight (g)"</span>, <span class="at">y =</span> <span class="st">"Diet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">plot</span>(emm, <span class="at">comparisons =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight gain (g)"</span>, <span class="at">y =</span> <span class="st">"Diet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-03b_files/figure-revealjs/plot_ci-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Groups with <strong>overlapping</strong> arrows are <strong>not</strong> significantly different from each other.</p>
+<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Each point is the estimated mean for that diet</li>
+<li>The arrows represent comparison intervals (adjusted CIs)</li>
+<li>Groups with <strong>overlapping</strong> arrows are <strong>not</strong> significantly different</li>
+<li>We will cover post-hoc methods in more detail next week</li>
+</ul>
 </section></section>
 <section>
 <section id="summary" class="title-slide slide level1 center">
 <h1>Summary</h1>
 
 </section>
-<section id="t-test-vs-anova" class="slide level2">
-<h2><span class="math inline">\(t\)</span>-test vs ANOVA</h2>
+<section id="key-points" class="slide level2">
+<h2>Key points</h2>
 <ul>
-<li class="fragment"><strong><span class="math inline">\(t\)</span>-test</strong>: compares means of <strong>2</strong> groups</li>
-<li class="fragment"><strong>ANOVA</strong>: compares means of <strong>2 or more</strong> groups simultaneously</li>
-<li class="fragment">ANOVA avoids the inflated Type I error rate from multiple <span class="math inline">\(t\)</span>-tests</li>
-<li class="fragment">The ANOVA <span class="math inline">\(F\)</span>-test tells us <em>if</em> differences exist, but not <em>where</em></li>
-<li class="fragment">Post-hoc methods (e.g.&nbsp;<code>emmeans</code>) identify <em>which</em> pairs differ</li>
+<li>ANOVA extends the <span class="math inline">\(t\)</span>-test to more than two groups (<span class="math inline">\(F = t^2\)</span> for two groups)</li>
+<li>Multiple pairwise <span class="math inline">\(t\)</span>-tests inflate the false positive rate. ANOVA tests all groups at once</li>
+<li>The F ratio compares between-group variation to within-group variation</li>
+<li>Post-hoc methods construct CIs for pairwise differences to identify which groups differ</li>
 </ul>
-</section>
-<section id="next-week" class="slide level2">
-<h2>Next week</h2>
-<ul>
-<li>How to better identify which pairs are significantly different</li>
-<li>How to test and interpret model assumptions using <strong>residual diagnostics</strong></li>
-</ul>
-</section>
-<section id="references" class="slide level2">
-<h2>References</h2>
-<ul>
-<li>Quinn &amp; Keough (2002), Chapter 7: Section 7.1</li>
-<li>Mead et al.&nbsp;(2002), Chapter 18: Sections 18.1–18.3</li>
-</ul>
+<div class="fragment">
+<p>In Lab 03, you will fit your own ANOVA with <code>aov()</code> and explore group comparisons with <code>emmeans</code>. Next week: residual diagnostics and post-hoc methods.</p>
+</div>
 </section>
 <section id="thanks" class="slide level2 center-h">
 <h2>Thanks!</h2>
@@ -907,6 +966,17 @@ Confidence level used: 0.95 </code></pre>
           RevealZoom
         ]
       });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IHZhcmlhbmNlUGFydGl0aW9uV2lkZ2V0IH0gZnJvbSBcIi4uLy4uL2Fzc2V0cy9qcy9hbm92YS13aWRnZXQuanNcIlxudmFyaWFuY2VQYXJ0aXRpb25XaWRnZXQoKVxuIn1dfQ==
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../lectures/L03";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
     </script>
     
     <script>

@@ -187,6 +187,8 @@
       margin-right: 0; 
     }
   </style>
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -207,277 +209,71 @@ Januar Harianto
   <p class="date">Mar 2026</p>
 </section>
 <section>
-<section id="history" class="title-slide slide level1 center">
-<h1>History</h1>
+<section id="the-t-test-revision" class="title-slide slide level1 center">
+<h1>The <span class="math inline">\(t\)</span>-test (revision)</h1>
 
 </section>
-<section id="william-gosset-1908" class="slide level2">
-<h2>William Gosset (1908)</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/will.png"></p>
-<figcaption>William Gosset</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:60%;">
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
 <ul>
-<li>Worked as a statistician at Guinness Brewery in Dublin</li>
-<li>Published under the pseudonym <strong>“Student”</strong> (company policy prevented use of real name)</li>
-<li>Developed the <span class="math inline">\(t\)</span>-distribution and <span class="math inline">\(t\)</span>-tests for <strong>small sample sizes</strong></li>
-<li>Needed to compare barley varieties with limited data</li>
+<li><strong>One-sample</strong> <span class="math inline">\(t\)</span>-test: compare a sample mean against a known value</li>
+<li><strong>Two-sample</strong> <span class="math inline">\(t\)</span>-test: compare the means of two independent groups</li>
+<li><strong>Paired</strong> <span class="math inline">\(t\)</span>-test: compare measurements taken on the same subjects (e.g.&nbsp;before and after)</li>
 </ul>
-</div></div>
-</section>
-<section id="ronald-fisher-1925" class="slide level2">
-<h2>Ronald Fisher (1925)</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/ronald.png"></p>
-<figcaption>Ronald Fisher</figcaption>
-</figure>
-</div>
-</div><div class="column" style="width:60%;">
-<ul>
-<li>Extended and formalised Gosset’s work</li>
-<li>Introduced the concept of <strong>degrees of freedom</strong></li>
-<li>Developed <strong>Analysis of Variance (ANOVA)</strong> – next lecture!</li>
-<li>Established many foundations of modern statistical inference</li>
-</ul>
-</div></div>
-</section></section>
-<section>
-<section id="cattle-data" class="title-slide slide level1 center">
-<h1>Cattle data</h1>
-
-</section>
-<section id="the-problem" class="slide level2">
-<h2>The problem</h2>
-<ul>
-<li>Weights of two breeds of cattle are to be compared</li>
-<li>12 samples were randomly taken from Breed 1, and 15 from Breed 2</li>
-<li><strong>Are there differences in the mean weight between the two breeds?</strong></li>
-</ul>
+<p>Last week we learned about <strong>confidence intervals</strong>, which estimate the uncertainty of a parameter (e.g.&nbsp;a mean).</p>
 <div class="fragment">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>cattle <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/cattle.csv"</span>)</span>
-<span id="cb1-2"><a></a>cattle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Breed1 Breed2
-1   187.6  148.1
-2   180.3  146.2
-3   198.6  152.8
-4   190.7  135.3
-5   196.3  151.2
-6   203.8  146.3
-7   190.2  163.5
-8   201.0  146.6
-9   194.7  162.4
-10  221.1  140.2
-11  186.7  159.4
-12  203.1  181.8
-13     NA  165.1
-14     NA  165.0
-15     NA  141.6</code></pre>
-</div>
-</div>
+<p>The <span class="math inline">\(t\)</span>-test and the confidence interval are closely related. Both are derived from the same quantities, and this week we look at that connection more carefully.</p>
 </div>
 </section>
-<section id="reshaping-the-data" class="slide level2">
-<h2>Reshaping the data</h2>
-<p>The data is in <strong>wide</strong> format – we need to convert it to <strong>long</strong> format for analysis.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>cattle <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/cattle.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-3"><a></a>    <span class="at">cols =</span> <span class="fu">everything</span>(),</span>
-<span id="cb3-4"><a></a>    <span class="at">names_to =</span> <span class="st">"breed"</span>,</span>
-<span id="cb3-5"><a></a>    <span class="at">values_to =</span> <span class="st">"weight"</span></span>
-<span id="cb3-6"><a></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">mutate</span>(<span class="at">breed =</span> <span class="fu">as.factor</span>(breed)) <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb3-9"><a></a></span>
-<span id="cb3-10"><a></a>cattle</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 27 × 2
-   breed  weight
-   &lt;fct&gt;   &lt;dbl&gt;
- 1 Breed1   188.
- 2 Breed2   148.
- 3 Breed1   180.
- 4 Breed2   146.
- 5 Breed1   199.
- 6 Breed2   153.
- 7 Breed1   191.
- 8 Breed2   135.
- 9 Breed1   196.
-10 Breed2   151.
-# ℹ 17 more rows</code></pre>
-</div>
-</div>
-</section>
-<section id="visualising-the-data" class="slide level2">
-<h2>Visualising the data</h2>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(cattle, <span class="fu">aes</span>(breed, weight)) <span class="sc">+</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Breed"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-
-</div>
-<img data-src="Lecture-03a_files/figure-revealjs/group_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
-<section>
-<section id="model-and-hypotheses" class="title-slide slide level1 center">
-<h1>Model and hypotheses</h1>
-
-</section>
-<section id="two-sample-t-test-model" class="slide level2">
-<h2>Two-sample <span class="math inline">\(t\)</span>-test model</h2>
-<p>Observed data = Group Mean + Random Error (residuals)</p>
-<p><span class="math display">\[y_{ij} = \mu_i + \varepsilon_{ij}\]</span></p>
-<ul>
-<li><span class="math inline">\(i = 1, 2\)</span> (group); <span class="math inline">\(j = 1, 2, \ldots, n_i\)</span> (replicate)</li>
-</ul>
-<p>In the cattle example:</p>
-<ul>
-<li><span class="math inline">\(\mu_1\)</span> = mean body weight (kg) for Breed 1</li>
-<li><span class="math inline">\(\mu_2\)</span> = mean body weight (kg) for Breed 2</li>
-</ul>
-</section>
-<section id="hypotheses" class="slide level2">
-<h2>Hypotheses</h2>
-<ul>
-<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span></li>
-<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1: \mu_1 \neq \mu_2\)</span></li>
-</ul>
-<div class="fragment">
-<p><strong>Test statistic:</strong></p>
-<p><span class="math display">\[t = \frac{\bar{y}_1 - \bar{y}_2}{\sqrt{s^2\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{\bar{y}_1 - \bar{y}_2}{SE(\bar{y}_1 - \bar{y}_2)} = \frac{\Delta \text{ in mean}}{SE \text{ of the } \Delta \text{ in mean}}\]</span></p>
-<p><strong>Degrees of freedom</strong>: <span class="math inline">\(n_1 + n_2 - 2\)</span></p>
-</div>
-</section></section>
-<section>
-<section id="t-distribution" class="title-slide slide level1 center">
-<h1><span class="math inline">\(t\)</span>-distribution</h1>
-
-</section>
-<section id="shape-changes-with-degrees-of-freedom" class="slide level2">
-<h2>Shape changes with degrees of freedom</h2>
+<section id="cattle" class="slide level2">
+<h2>Cattle</h2>
+<p>Two breeds of cattle, 12 and 15 samples. Are the breeds different in mean weight?</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">300</span>)</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>t_data <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>), <span class="cf">function</span>(df) {</span>
-<span id="cb6-4"><a></a>  <span class="fu">tibble</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dt</span>(x, df), <span class="at">df =</span> <span class="fu">paste</span>(<span class="st">"df ="</span>, df))</span>
-<span id="cb6-5"><a></a>})</span>
-<span id="cb6-6"><a></a></span>
-<span id="cb6-7"><a></a>normal_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> x, <span class="at">density =</span> <span class="fu">dnorm</span>(x), <span class="at">df =</span> <span class="st">"Normal"</span>)</span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a><span class="fu">bind_rows</span>(t_data, normal_data) <span class="sc">|&gt;</span></span>
-<span id="cb6-10"><a></a>  <span class="fu">mutate</span>(<span class="at">df =</span> <span class="fu">fct_relevel</span>(df, <span class="st">"df = 1"</span>, <span class="st">"df = 2"</span>, <span class="st">"df = 5"</span>, <span class="st">"df = 10"</span>, <span class="st">"df = 30"</span>, <span class="st">"Normal"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb6-11"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, density, <span class="at">colour =</span> df, <span class="at">linetype =</span> df)) <span class="sc">+</span></span>
-<span id="cb6-12"><a></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb6-13"><a></a>  <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"solid"</span>, <span class="dv">5</span>), <span class="st">"dashed"</span>)) <span class="sc">+</span></span>
-<span id="cb6-14"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"t"</span>, <span class="at">y =</span> <span class="st">"Density"</span>, <span class="at">colour =</span> <span class="cn">NULL</span>, <span class="at">linetype =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb6-15"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>cattle <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/cattle.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"breed"</span>, <span class="at">values_to =</span> <span class="st">"weight"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a></a>  <span class="fu">mutate</span>(<span class="at">breed =</span> <span class="fu">as.factor</span>(breed)) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a><span class="fu">ggplot</span>(cattle, <span class="fu">aes</span>(breed, weight)) <span class="sc">+</span></span>
+<span id="cb1-7"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Breed"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>) <span class="sc">+</span> </span>
+<span id="cb1-9"><a></a>  cowplot<span class="sc">::</span><span class="fu">theme_cowplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-03a_files/figure-revealjs/t_dist_plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<p>The boxplot suggests a difference. To test, you would run <code>t.test()</code> and check the p-value. <strong>What is the test actually computing?</strong></p>
 </div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>As degrees of freedom increase, the <span class="math inline">\(t\)</span>-distribution approaches the standard normal distribution.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="one-tailed-vs-two-tailed-tests" class="slide level2">
-<h2>One-tailed vs two-tailed tests</h2>
+</section></section>
+<section>
+<section id="from-cis-to-the-t-test" class="title-slide slide level1 center">
+<h1>From CIs to the <span class="math inline">\(t\)</span>-test</h1>
 
-<img data-src="images/onetwotail.png" class="quarto-figure quarto-figure-center r-stretch"><ul>
-<li><strong>Two-tailed</strong>: tests for a difference in <em>either</em> direction (<span class="math inline">\(\mu_1 \neq \mu_2\)</span>)</li>
-<li><strong>One-tailed</strong>: tests for a difference in a <em>specific</em> direction (<span class="math inline">\(\mu_1 &gt; \mu_2\)</span> or <span class="math inline">\(\mu_1 &lt; \mu_2\)</span>)</li>
-<li>In most cases, we use <strong>two-tailed</strong> tests unless we have a strong <em>a priori</em> reason for one direction.</li>
+</section>
+<section id="the-difference-between-two-means" class="slide level2">
+<h2>The difference between two means</h2>
+<p>In the last lecture, we constructed confidence intervals for a single mean. The same principle extends to the <strong>difference</strong> between two means.</p>
+<ul>
+<li>Estimate the difference: <span class="math inline">\(\bar{y}_1 - \bar{y}_2\)</span></li>
+<li>Construct a 95% confidence interval around that estimate</li>
+<li>Evaluate whether the interval includes zero</li>
 </ul>
-</section></section>
-<section>
-<section id="manual-calculations" class="title-slide slide level1 center">
-<h1>Manual calculations</h1>
-
-</section>
-<section id="group-means-and-standard-deviations" class="slide level2">
-<h2>Group means and standard deviations</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>cattle_summary <span class="ot">&lt;-</span> cattle <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">group_by</span>(breed) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-4"><a></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-5"><a></a>    <span class="at">mean_wt =</span> <span class="fu">mean</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-6"><a></a>    <span class="at">sd_wt =</span> <span class="fu">sd</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-7"><a></a>  )</span>
-<span id="cb7-8"><a></a></span>
-<span id="cb7-9"><a></a>cattle_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  breed      n mean_wt sd_wt
-  &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
-1 Breed1    12    196.  10.6
-2 Breed2    15    154.  12.3</code></pre>
-</div>
-</div>
-</section>
-<section id="computing-the-t-statistic" class="slide level2">
-<h2>Computing the <span class="math inline">\(t\)</span>-statistic</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Extract values</span></span>
-<span id="cb9-2"><a></a>n1 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>n[<span class="dv">1</span>]</span>
-<span id="cb9-3"><a></a>n2 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>n[<span class="dv">2</span>]</span>
-<span id="cb9-4"><a></a>m1 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>mean_wt[<span class="dv">1</span>]</span>
-<span id="cb9-5"><a></a>m2 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>mean_wt[<span class="dv">2</span>]</span>
-<span id="cb9-6"><a></a>s1 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>sd_wt[<span class="dv">1</span>]</span>
-<span id="cb9-7"><a></a>s2 <span class="ot">&lt;-</span> cattle_summary<span class="sc">$</span>sd_wt[<span class="dv">2</span>]</span>
-<span id="cb9-8"><a></a></span>
-<span id="cb9-9"><a></a><span class="co"># Pooled variance</span></span>
-<span id="cb9-10"><a></a>sp2 <span class="ot">&lt;-</span> ((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb9-11"><a></a></span>
-<span id="cb9-12"><a></a><span class="co"># t-statistic</span></span>
-<span id="cb9-13"><a></a>t_stat <span class="ot">&lt;-</span> (m1 <span class="sc">-</span> m2) <span class="sc">/</span> <span class="fu">sqrt</span>(sp2 <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
-<span id="cb9-14"><a></a>t_stat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.462409</code></pre>
-</div>
-</div>
 <div class="fragment">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Degrees of freedom</span></span>
-<span id="cb11-2"><a></a>df <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a><span class="co"># p-value (two-tailed)</span></span>
-<span id="cb11-5"><a></a>p_val <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t_stat), df)</span>
-<span id="cb11-6"><a></a>p_val</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9.663383e-10</code></pre>
+<ul>
+<li>If the interval <strong>excludes zero</strong>: the means are significantly different at the 5% level</li>
+<li>If the interval <strong>includes zero</strong>: the data are consistent with no difference</li>
+</ul>
 </div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="running-t.test-in-r" class="title-slide slide level1 center">
-<h1>Running <code>t.test()</code> in R</h1>
-
 </section>
-<section id="the-easy-way" class="slide level2">
-<h2>The easy way</h2>
+<section id="t.test-gives-you-both" class="slide level2">
+<h2><code>t.test()</code> gives you both</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">t.test</span>(weight <span class="sc">~</span> breed, <span class="at">data =</span> cattle, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">t.test</span>(weight <span class="sc">~</span> breed, <span class="at">data =</span> cattle, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -492,96 +288,271 @@ mean in group Breed1 mean in group Breed2
              196.175              153.700 </code></pre>
 </div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>The output reports two quantities:</p>
+<ul>
+<li>A <strong>p-value</strong> (probability of observing a result this extreme if the null hypothesis were true)</li>
+<li>A <strong>95% confidence interval</strong> for the difference between the two means</li>
+</ul>
+<div class="fragment">
+<p>These always agree. If the CI excludes zero, the p-value is below 0.05, and vice versa. The <span class="math inline">\(t\)</span>-statistic measures how far the observed difference is from zero, relative to its standard error.</p>
 </div>
-<p><strong>Tip</strong></p>
+</section>
+<section id="exploring-the-confidence-interval" class="slide level2">
+<h2>Exploring the confidence interval</h2>
+<style>
+#exploring-the-confidence-interval .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="109" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 108;"><span id="cb4-109"><a></a><span class="im">import</span> { ciDifferenceWidget } <span class="im">from</span> <span class="st">"../../assets/js/ttest-widget.js"</span></span>
+<span id="cb4-110"><a></a><span class="fu">ciDifferenceWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
 </div>
-<div class="callout-content">
-<p><code>var.equal = TRUE</code> performs the <strong>pooled</strong> (Student’s) <span class="math inline">\(t\)</span>-test, which assumes equal variances. This matches our manual calculation.</p>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
 </div>
 </div>
 </div>
+</div>
+<ul>
+<li>Increasing the difference between means moves the CI away from zero</li>
+<li>Decreasing variability narrows the CI</li>
+<li>When the interval excludes zero, the means are significantly different</li>
+</ul>
+</section>
+<section id="the-ci-for-a-difference" class="slide level2">
+<h2>The CI for a difference</h2>
+<p>In the last lecture, we built a 95% CI for a single mean:</p>
+<p><span class="math display">\[\bar{y} \pm t^* \times SE\]</span></p>
+<div class="fragment">
+<p>For the <strong>difference</strong> between two means, the same structure applies:</p>
+<p><span class="math display">\[(\bar{y}_1 - \bar{y}_2) \pm t^* \times SE(\bar{y}_1 - \bar{y}_2)\]</span></p>
+<p>If this interval excludes zero, the groups differ significantly.</p>
+</div>
+</section>
+<section id="the-t-statistic" class="slide level2">
+<h2>The <span class="math inline">\(t\)</span>-statistic</h2>
+<p>We can rearrange the CI formula to isolate a single number that captures both the difference and the variability:</p>
+<p><span class="math display">\[t = \frac{\bar{y}_1 - \bar{y}_2}{SE(\bar{y}_1 - \bar{y}_2)}\]</span></p>
+<p>The <span class="math inline">\(t\)</span>-statistic counts how many standard errors the observed difference is from zero.</p>
+<div class="fragment">
+<p>For the cattle data: <span class="math inline">\(t = 42.5 / 4.5 = 9.46\)</span>. The observed difference is over nine standard errors from zero.</p>
+</div>
+</section>
+<section id="from-the-t-statistic-to-the-p-value" class="slide level2">
+<h2>From the <span class="math inline">\(t\)</span>-statistic to the p-value</h2>
+<p>We have a <span class="math inline">\(t\)</span>-statistic. The p-value answers: if there were truly no difference between the breeds, how often would we see a value of <span class="math inline">\(|t|\)</span> this large or larger?</p>
+<ul>
+<li>A small p-value means the observed difference is hard to explain by chance alone</li>
+<li>A large p-value means the observed difference is consistent with random variation</li>
+</ul>
+<div class="fragment">
+<p>The 95% CI and the p-value always agree. If the 95% CI excludes zero, the p-value is below 0.05, and vice versa.</p>
+</div>
+</section>
+<section id="exploring-the-p-value" class="slide level2">
+<h2>Exploring the p-value</h2>
+<style>
+#exploring-the-p-value .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="172" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 171;"><span id="cb5-172"><a></a><span class="im">import</span> { pvalueExplorerWidget } <span class="im">from</span> <span class="st">"../../assets/js/ttest-widget.js"</span></span>
+<span id="cb5-173"><a></a><span class="fu">pvalueExplorerWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>The shaded area under both tails is the p-value</li>
+<li>As the <span class="math inline">\(t\)</span>-statistic moves further from zero, the p-value decreases</li>
+<li>At low degrees of freedom the tails are heavier, but the shape approaches the normal as df increases</li>
+</ul>
 </section></section>
 <section>
-<section id="assumptions" class="title-slide slide level1 center">
-<h1>Assumptions</h1>
+<section id="the-hypothesis-testing-workflow" class="title-slide slide level1 center">
+<h1>The hypothesis testing workflow</h1>
 
 </section>
-<section id="three-key-assumptions" class="slide level2">
-<h2>Three key assumptions</h2>
-<ol type="1">
-<li><strong>Equal variances</strong>: <span class="math inline">\(\sigma_1^2 \approx \sigma_2^2\)</span></li>
-<li><strong>Normality</strong>: <span class="math inline">\(\varepsilon_{ij} \sim N(0, \sigma^2)\)</span></li>
-<li><strong>Independence</strong> of observations</li>
-</ol>
+<section id="step-1-state-what-we-are-testing" class="slide level2">
+<h2>Step 1: State what we are testing</h2>
+<ul>
+<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span> (no difference in mean weight between breeds)</li>
+<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1: \mu_1 \neq \mu_2\)</span> (means differ)</li>
+<li>This is a <strong>two-tailed</strong> test: we are looking for a difference in either direction (Breed 1 heavier <em>or</em> lighter than Breed 2), not just one</li>
+</ul>
+<div class="fragment">
+<p><strong>Model equation</strong>: <span class="math inline">\(y_{ij} = \mu_i + \varepsilon_{ij}\)</span></p>
+<p>Each observation is the group mean plus random error. The hypothesis asks whether <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are equal.</p>
+</div>
 </section>
-<section id="checking-equal-variances" class="slide level2">
-<h2>Checking equal variances</h2>
-<p>The only difference between the two groups should be the <strong>location of the mean</strong> – all else should remain the same.</p>
-<p>General guide: <span class="math inline">\(\frac{\text{larger SD}}{\text{smaller SD}} &lt; 2.0\)</span></p>
+<section id="step-2a-equal-variances" class="slide level2">
+<h2>Step 2a: Equal variances</h2>
+<p>The <span class="math inline">\(t\)</span>-test assumes both groups have similar variability. If they do not, then the test is unreliable because the pooled estimate of variance will not represent either group well.</p>
+<ul>
+<li>Rule of thumb: the ratio of the larger SD to the smaller SD should be below 2.0</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">max</span>(cattle_summary<span class="sc">$</span>sd_wt) <span class="sc">/</span> <span class="fu">min</span>(cattle_summary<span class="sc">$</span>sd_wt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>cattle_summary <span class="ot">&lt;-</span> cattle <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">group_by</span>(breed) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_wt =</span> <span class="fu">mean</span>(weight), <span class="at">sd_wt =</span> <span class="fu">sd</span>(weight))</span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a>cattle_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  breed      n mean_wt sd_wt
+  &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 Breed1    12    196.  10.6
+2 Breed2    15    154.  12.3</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">max</span>(cattle_summary<span class="sc">$</span>sd_wt) <span class="sc">/</span> <span class="fu">min</span>(cattle_summary<span class="sc">$</span>sd_wt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.158756</code></pre>
 </div>
 </div>
-<div class="fragment">
-<p>The ratio is well under 2, so we can assume equal variances.</p>
-</div>
 </section>
-<section id="checking-normality-visual" class="slide level2">
-<h2>Checking normality: visual</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">ggplot</span>(cattle, <span class="fu">aes</span>(breed, weight)) <span class="sc">+</span></span>
-<span id="cb17-2"><a></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb17-3"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot"</span>, <span class="at">x =</span> <span class="st">"Breed"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>)</span>
-<span id="cb17-4"><a></a><span class="fu">ggplot</span>(cattle, <span class="fu">aes</span>(weight)) <span class="sc">+</span></span>
-<span id="cb17-5"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram"</span>, <span class="at">x =</span> <span class="st">"Weight (kg)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Lecture-03a_files/figure-revealjs/outlier_check-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Lecture-03a_files/figure-revealjs/outlier_check-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checking-normality-shapiro-wilk-test" class="slide level2">
-<h2>Checking normality: Shapiro-Wilk test</h2>
+<section id="step-2b-normality" class="slide level2">
+<h2>Step 2b: Normality</h2>
+<p>The <span class="math inline">\(t\)</span>-test assumes the data in each group follow a normal distribution. With small samples, departures from normality (strong skew, heavy tails, outliers) can distort the p-value and confidence interval. Check each group separately.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">shapiro.test</span>(cattle<span class="sc">$</span>weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">shapiro.test</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed1"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
 
-data:  cattle$weight
-W = 0.93704, p-value = 0.103</code></pre>
+data:  cattle$weight[cattle$breed == "Breed1"]
+W = 0.94084, p-value = 0.5091</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">shapiro.test</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed2"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  cattle$weight[cattle$breed == "Breed2"]
+W = 0.94636, p-value = 0.4691</code></pre>
+</div>
+</div>
+</section>
+<section id="step-2b-normality-qq-plots" class="slide level2">
+<h2>Step 2b: Normality (QQ plots)</h2>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">qqnorm</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed1"</span>], <span class="at">main =</span> <span class="st">"Breed 1"</span>)</span>
+<span id="cb14-2"><a></a><span class="fu">qqline</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed1"</span>])</span>
+<span id="cb14-3"><a></a><span class="fu">qqnorm</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed2"</span>], <span class="at">main =</span> <span class="st">"Breed 2"</span>)</span>
+<span id="cb14-4"><a></a><span class="fu">qqline</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed2"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-7-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>If points fall close to the line, the data are approximately normal. Both groups pass the Shapiro-Wilk test (<span class="math inline">\(p &gt; 0.05\)</span>) and the QQ plots show no strong departures.</p>
+</section>
+<section id="step-2c-independence" class="slide level2">
+<h2>Step 2c: Independence</h2>
+<p>Observations should not influence each other. This is a property of the study design, not something we test statistically.</p>
+<ul>
+<li>Each animal is measured once</li>
+<li>The weight of one animal does not affect the weight of another</li>
+<li>If the same animals were measured before and after a treatment, observations would not be independent (use a paired <span class="math inline">\(t\)</span>-test instead)</li>
+</ul>
+</section>
+<section id="step-3-run-the-test-and-interpret" class="slide level2">
+<h2>Step 3: Run the test and interpret</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">t.test</span>(weight <span class="sc">~</span> breed, <span class="at">data =</span> cattle, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  weight by breed
+t = 9.4624, df = 25, p-value = 9.663e-10
+alternative hypothesis: true difference in means between group Breed1 and group Breed2 is not equal to 0
+95 percent confidence interval:
+ 33.23011 51.71989
+sample estimates:
+mean in group Breed1 mean in group Breed2 
+             196.175              153.700 </code></pre>
 </div>
 </div>
 <ul>
-<li>If <span class="math inline">\(p &gt; 0.05\)</span>, the data is <strong>not</strong> significantly different from a normal distribution, <em>i.e.</em> we can assume normality.</li>
+<li>The <span class="math inline">\(t\)</span>-statistic, degrees of freedom (<span class="math inline">\(n_1 + n_2 - 2\)</span>), and p-value are reported together</li>
+<li><code>var.equal = TRUE</code> performs the pooled (Student’s) <span class="math inline">\(t\)</span>-test, which assumes equal variances</li>
 </ul>
+<div class="fragment">
+<p>A p-value of 0.03 does not mean there is a 3% chance the null hypothesis is true. It means: if there were truly no difference, we would observe a result this extreme about 3% of the time.</p>
+</div>
+</section>
+<section id="hatpc" class="slide level2">
+<h2>HATPC</h2>
+<p>Notice the five steps we just followed:</p>
+<ol type="1">
+<li><strong>H</strong>ypotheses: state the null and alternative</li>
+<li><strong>A</strong>ssumptions: check equal variances, normality, independence</li>
+<li><strong>T</strong>est: run the appropriate test</li>
+<li><strong>P</strong>-value: interpret the result</li>
+<li><strong>C</strong>onclusion: state the finding in context</li>
+</ol>
+<div class="fragment">
+<p>We will use this framework throughout the semester, starting with ANOVA in the next lecture.</p>
+</div>
 </section>
 <section id="what-if-assumptions-are-not-met" class="slide level2">
 <h2>What if assumptions are not met?</h2>
 <ul>
-<li class="fragment"><strong>Equal variances</strong> not met – use Welch’s <span class="math inline">\(t\)</span>-test (the default in R’s <code>t.test()</code> when <code>var.equal = FALSE</code>)</li>
-<li class="fragment"><strong>Normality</strong> not met – if <span class="math inline">\(N &gt; 30\)</span>, we can often assume normality anyway (<a href="https://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit Theorem</a>)</li>
-<li class="fragment"><strong>Independence</strong> not met – consider a <strong>paired <span class="math inline">\(t\)</span>-test</strong> (e.g.&nbsp;before/after measurements on the same subjects)</li>
+<li class="fragment"><strong>Unequal variances</strong>: use Welch’s <span class="math inline">\(t\)</span>-test (the default in R when <code>var.equal = FALSE</code>)</li>
+<li class="fragment"><strong>Non-normality</strong>: if <span class="math inline">\(N &gt; 30\)</span>, the Central Limit Theorem provides reasonable coverage</li>
+<li class="fragment"><strong>Non-independence</strong>: consider a <strong>paired <span class="math inline">\(t\)</span>-test</strong> (e.g.&nbsp;before and after measurements on the same subjects)</li>
 </ul>
 </section></section>
 <section>
@@ -592,21 +563,20 @@ W = 0.93704, p-value = 0.103</code></pre>
 <section id="key-points" class="slide level2">
 <h2>Key points</h2>
 <ul>
-<li class="fragment">The <strong>two-sample <span class="math inline">\(t\)</span>-test</strong> compares means of two independent groups</li>
-<li class="fragment">The test statistic follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom</li>
-<li class="fragment">Always check assumptions: <strong>equal variances</strong>, <strong>normality</strong>, <strong>independence</strong></li>
-<li class="fragment">Use <code>t.test()</code> in R for quick analysis</li>
+<li>The <strong>two-sample <span class="math inline">\(t\)</span>-test</strong> compares means of two independent groups</li>
+<li>The <span class="math inline">\(t\)</span>-test and the CI for the difference are two views of the same calculation</li>
+<li>Check the three assumptions (equal variances, normality, independence) before running any test</li>
+<li>Follow <strong>HATPC</strong> as a structured process for hypothesis testing</li>
 </ul>
 <div class="fragment">
-<h3 id="next-up">Next up</h3>
-<ul>
-<li>What if we have <strong>more than two groups</strong>? We need <strong>ANOVA</strong>!</li>
-</ul>
+<p>In Lab 03, you will practise this workflow with <code>t.test()</code> and diagnostic plots.</p>
+</div>
+<div class="fragment">
+<p><strong>Next</strong>: what if we have more than two groups? We need <strong>ANOVA</strong>.</p>
 </div>
 </section>
-<section id="thanks" class="slide level2 center-h">
-<h2>Thanks!</h2>
-<h3 id="questions">Questions?</h3>
+<section id="minute-break" class="slide level2 center-h">
+<h2>15 minute break</h2>
 <p>This presentation is based on the <a href="https://github.com/usyd-soles-edu/soles-revealjs">SOLES Quarto reveal.js template</a> and is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 
@@ -667,7 +637,7 @@ W = 0.93704, p-value = 0.103</code></pre>
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -825,6 +795,17 @@ W = 0.93704, p-value = 0.103</code></pre>
           RevealZoom
         ]
       });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGNpRGlmZmVyZW5jZVdpZGdldCB9IGZyb20gXCIuLi8uLi9hc3NldHMvanMvdHRlc3Qtd2lkZ2V0LmpzXCJcbmNpRGlmZmVyZW5jZVdpZGdldCgpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJpbXBvcnQgeyBwdmFsdWVFeHBsb3JlcldpZGdldCB9IGZyb20gXCIuLi8uLi9hc3NldHMvanMvdHRlc3Qtd2lkZ2V0LmpzXCJcbnB2YWx1ZUV4cGxvcmVyV2lkZ2V0KClcbiJ9XX0=
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../lectures/L03";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
     </script>
     
     <script>

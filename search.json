@@ -2501,30 +2501,163 @@
   {
     "objectID": "labs/Lab04/Lab04-residuals-posthoc.html",
     "href": "labs/Lab04/Lab04-residuals-posthoc.html",
-    "title": "Lab 4 - Assumptions & Multiple Comparisons",
+    "title": "Lab 04",
     "section": "",
-    "text": "TipLearning outcomes\n\n\n\nAt the end of this Lab students should be able to:\n\ntest the assumptions of ANOVA using residual diagnostics;\nuse plotting and Tukey’s tests to determine which pairs of groups are significantly different;\nuse R to perform the analyses.\n\nAll of the data for this practical is in the Data4.xlsx file."
+    "text": "This week we will test ANOVA assumptions using residual diagnostics, perform post-hoc comparisons with Tukey’s test, and practise back-transforming log-scale results using three datasets: diatoms, fish prolactin, and broiler chickens.\nYou will come across two types of tasks in this lab. Worked Examples have solutions you can expand and check straight away. Exercises do not — solutions for these will be posted on Friday evening.\n\n\nIn this lab, we will learn how to:\n\nTest the assumptions of ANOVA using residual diagnostics.\nUse plotting and Tukey’s tests to determine which pairs of groups are significantly different.\nUse R to perform the analyses.\n\n\n\n\nBy the end of this lab, you should be able to:\n\nFit a one-way ANOVA and extract standardised residuals\nAssess normality using Q-Q plots, histograms, and the Shapiro-Wilk test\nAssess equal variance using residual plots and Bartlett’s test\nApply a log transformation when assumptions are violated\nPerform post-hoc tests using emmeans and TukeyHSD\nBack-transform log-scale estimates and interpret them as ratios\n\n\n\n\nThis lab uses readxl, emmeans, and performance. Install any you are missing by running the following in the console:\ninstall.packages(c(\"readxl\", \"emmeans\", \"performance\"))\n\n\n\n\n\nFile\nUsed in\nDownload\n\n\n\n\nData4.xlsx\nAll sections\nDownload\n\n\n\nSave the file into a folder called data inside your project folder."
   },
   {
-    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-1---diatoms-in-streams-walk-through",
-    "href": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-1---diatoms-in-streams-walk-through",
-    "title": "Lab 4 - Assumptions & Multiple Comparisons",
-    "section": "Exercise 1 - Diatoms in streams (Walk-through)",
-    "text": "Exercise 1 - Diatoms in streams (Walk-through)\nHere we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the Diatoms worksheet.\n\nQuestion 1.1\n(i) Importing and processing data, then fitting an ANOVA model\n\n# write your code here\n\n\n\nQuestion 1.2\n(ii) Statistical test of the assumption of constant variance\nStatistics is made up of different tribes and some tribes use hypothesis testing to see if a dataset meets the assumptions of normality and constant variance. One option is the Bartlett’s test for constant variances. The mechanics are not important but the function and syntax are shown below. The hypotheses are:\n\nH_0:\\ \\sigma_{BACK}^2=\\sigma_{LOW}^2=\\sigma_{MED}^2=\\sigma_{HIGH}^2\nH_1:\\ not\\ all\\ \\sigma_i^2\\ are\\ equal\\ \\left(i\\ =\\ BACK,\\ LOW,\\ MED,\\ HIGH\\right)\n\nWe prefer to use numerical and graphical diagnostics, e.g. residuals plots, but this is more to show you other possibilities. You can use this as a different line of evidence for testing assumptions if you wish.\n\n\n\n\n\n\nWarning\n\n\n\nIt won’t work if the data is non-normal and only use it if the data has one treatment factor with a completely randomised design!\n\n\n\n#\n\n\n\nQuestion 1.3\n(iii) Identify significant differences\nIn Topic 3 we used the emmeans package to extract means for each group and their associated 95% CI. The emmeans is useful to produce a plot showing the mean and 95% CI which is a nice way to present the results.\n\n#\n\n\n\nQuestion 1.4\n(iv)The another approach is to use a Tukey’s test which we can extract using the emmeans(model-goes-here, pairwise ~ your-treatment) function from the emmeans package. Note there are many other post-hoc tests that have come and gone, but we will just focus on one of them.\n\n\nQuestion 1.5\n(v) Another way to present the results is to use the plot() function to show the confidence intervals and the comparisons among them.\n\n\nQuestion 1.6\nAn alternative base R function for Tukey tests is TukeyHSD(). It creates a set of confidence intervals on the differences between the means of the levels of a factor. Also plot the results from this function.\n\n\n\n\n\n\nTip\n\n\n\nIf the confidence interval does not cross over 0, then that pair significantly differs from each other.\n\n\n\n#"
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#learning-outcomes",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#learning-outcomes",
+    "title": "Lab 04",
+    "section": "",
+    "text": "In this lab, we will learn how to:\n\nTest the assumptions of ANOVA using residual diagnostics.\nUse plotting and Tukey’s tests to determine which pairs of groups are significantly different.\nUse R to perform the analyses."
   },
   {
-    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations",
-    "href": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations",
-    "title": "Lab 4 - Assumptions & Multiple Comparisons",
-    "section": "Exercise 2 - Mean comparisons, residual diagnostics and back-transformations",
-    "text": "Exercise 2 - Mean comparisons, residual diagnostics and back-transformations\nIn this exercise will add a layer of complexity by considering a transformation. If our data does not meet the assumptions we need to transform the data, possible transformations are the square root (weak) and log (high). When we transform the data we need to be careful about how we interpret the results.\nConcentration of prolactin (units g/L) in the pituitary glands of nine-spined stickleback fish was assessed. The fish were kept in either saltwater or freshwater prior to assay and were different batches were examined on three successive occasions. Cysts tend to develop in fish when kept in saltwater and sometimes develop in freshwater populations. The four different groups of fish were used in a preliminary experiment to examine the effects of cysts, whether induced by saltwater or normally present, on the prolactin production of the pituitary gland.\nThe four groups of fish were codes as follows, with 10 fish per group:\n\nA = saltwater cysts, day 1;\nB = freshwater, no cysts, day 2;\nC = freshwater, no cysts, day 2;\nD = freshwater, cysts, day 3.\n\nThe data is found in the Prolactin worksheet.\n\nQuestion 2.1\n(i) Import the data into R, perform some exploratory data analysis to make tentative suggestions about differences between means and the likelihood of the data meeting the assumptions.\n\n#\n\n\n\nQuestion 2.2\n(ii) Fit an ANOVA model and test the assumption of normality using a QQ plot and a histogram - both based on standardised residuals.\n\n#\n\n\n\nQuestion 2.3\n(iii) Assess the assumption of constant variance by:\n\nexamine the plot of the standardised residuals against fitted values;\n\n\n#\n\n\nFrom the performance package, use check_model() to assess the assumptions of the model. This function will check the assumptions of normality and constant variance;\n\n\n#\n\n\nusing the Bartlett’s test;\n\n\n#\n\n\nusing check_homogeneity() from the performance package;\n\n\n\n\n\n\n\nTip\n\n\n\nNote there are many tests: method = c(\"bartlett\", \"fligner\", \"levene\", \"auto\")\n\n\n\n#\n\n\ncalculating the ratio of the larges SD:smallest SD to see if it is below 2:1;\n\n\n#\n\n\n\nQuestion 2.4\n(iv) The data does not meet the assumptions so log transform (‘log’ function) the response and repeat (ii) and (iii) to test the assumptions;\n\n#\n\n\n\nIn R you can transform data in the model formula see below or you could create a new column in your data frame, for example fish$logProlactin&lt;-log(fish$Prolactin).\n\n\nQuestion 2.5\n(v) If the assumptions are met and there is significant F-test perform Tukey tests and identify which pairs are significantly different.\n\n#\n\n\n\nQuestion 2.6\n(vi) One issue is that we have performed our hypothesis testing on the log scale. This means there are some steps to be made if we wish to interpret the data on the original scale; e.g. provide a 95% CI on the original scale. We will step through these.\nSuppose the biologist was primarily interested in comparing the prolactin concentrations for A (saltwater cysts, day 1) vs B (freshwater, no cysts, day 1).\n\nFind the means and CI from the output of the TukeyHSD() or emmeans() function.\nThe CI and mean are on the log scale, so back-transform the difference in the means (exp() function), the lower and upper end-point 95% CI. Note that the upper and lower tail are not of equal length on the original scale.\n\n\n#\n\n\n\nQuestion 2.7\n(vii) Now have an estimate of the difference in the means on the original scale. It actually corresponds to a ratio on the original scale. The reason is based on log laws, we can write the difference between 2 logged numbers (A and B) as a log of their ratio (A/B);\n\\log\\left(A\\right)-\\log\\left(B\\right)=\\log\\left(\\frac{A}{B}\\right).\nIf we back-transform the log of their ratio we get the ratio on the original scale;\ne^{\\log\\left(\\frac{A}{B}\\right)}=\\frac{A}{B}.\nSo the back-transformed difference between the pairs of the means is a ratio.\nNote: if we were to back-transform the group means on the log scale we would get the geometric mean on the original scale.\nProvide a biological interpretation for this estimate and confidence interval. Use the CI to decided if there is a significant difference between Treatment A and Treatment B."
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#specific-goals",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#specific-goals",
+    "title": "Lab 04",
+    "section": "",
+    "text": "By the end of this lab, you should be able to:\n\nFit a one-way ANOVA and extract standardised residuals\nAssess normality using Q-Q plots, histograms, and the Shapiro-Wilk test\nAssess equal variance using residual plots and Bartlett’s test\nApply a log transformation when assumptions are violated\nPerform post-hoc tests using emmeans and TukeyHSD\nBack-transform log-scale estimates and interpret them as ratios"
   },
   {
-    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-3---broiler-chickens",
-    "href": "labs/Lab04/Lab04-residuals-posthoc.html#exercise-3---broiler-chickens",
-    "title": "Lab 4 - Assumptions & Multiple Comparisons",
-    "section": "Exercise 3 - Broiler Chickens",
-    "text": "Exercise 3 - Broiler Chickens\nThis exercise is an analysis of a set of growth data. It is an open question for you to gain more practice.\nThe effect of weight gain in dressed broiler chickens was determined after five generations of selection. Group A was bred by using only the heaviest 10% in each generation; groups B and C were bred using respectively the heaviest 30% and 50%; group D was obtained by crossing groups A and C of the previous generation. The dressed weights (kg) of 25 birds from each group have been recorded.\nThe data is found in the Broilers worksheet.\n\nQuestion 3.1\n(i) Write down the null and alternate hypothesis. What is the treatment factor, and how many levels does it have? What are the sample sizes for each group (n_i)?\n\n\nQuestion 3.2\n(ii) Import the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met? What about normality? Try a formal Bartlett’s test using the bartlett.test or check_homogeneity() function. Use residual diagnostics to assess the assumptions.\n\n#\n\n\n\nQuestion 3.3\n(iii) Note that the results of the analysis can only be used when the assumptions of the analysis have been met. If you believe that the assumptions are met, then what would your conclusions of the analysis of variance be? You should use the summary() function applied to your aov() object to obtain the ANOVA table.\n\n#\n\n\n\nQuestion 3.4\n(iv) Without any formal analysis, consider the result of the group means in relation to the group treatment - i.e. type of selection. Would this pattern be expected? If appropriate perform a Tukey test.\n\n#"
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#preparation",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#preparation",
+    "title": "Lab 04",
+    "section": "",
+    "text": "This lab uses readxl, emmeans, and performance. Install any you are missing by running the following in the console:\ninstall.packages(c(\"readxl\", \"emmeans\", \"performance\"))\n\n\n\n\n\nFile\nUsed in\nDownload\n\n\n\n\nData4.xlsx\nAll sections\nDownload\n\n\n\nSave the file into a folder called data inside your project folder."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#testing-assumptions-and-finding-differences",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#testing-assumptions-and-finding-differences",
+    "title": "Lab 04",
+    "section": "Testing assumptions and finding differences",
+    "text": "Testing assumptions and finding differences"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Worked Example 1\nImport the Diatoms worksheet from Data4.xlsx, convert Zinc to a factor, and fit a one-way ANOVA model.\n\n# write your code here\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nlibrary(readxl)\ndiatoms&lt;-read_excel(\"data/Data4.xlsx\",sheet=\"Diatoms\")\ndiatoms$Zinc&lt;-as.factor(diatoms$Zinc)\nstr(diatoms)\n\ntibble [34 × 4] (S3: tbl_df/tbl/data.frame)\n $ Stream   : chr [1:34] \"Eagle\" \"Blue\" \"Blue\" \"Blue\" ...\n $ Zinc     : Factor w/ 4 levels \"BACK\",\"HIGH\",..: 1 1 1 1 1 1 1 1 3 3 ...\n $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...\n $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...\n\nanova.diatoms&lt;-aov(Diversity~Zinc,data=diatoms)\nsummary(anova.diatoms)\n\n            Df Sum Sq Mean Sq F value Pr(&gt;F)  \nZinc         3  2.567  0.8555   3.939 0.0176 *\nResiduals   30  6.516  0.2172                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-1",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-1",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Worked Example 2\nStatistical test of the assumption of constant variance.\nStatistics is made up of different tribes and some tribes use hypothesis testing to see if a dataset meets the assumptions of normality and constant variance. One option is the Bartlett’s test for constant variances. The mechanics are not important but the function and syntax are shown below. The hypotheses are:\n\nH_0:\\ \\sigma_{BACK}^2=\\sigma_{LOW}^2=\\sigma_{MED}^2=\\sigma_{HIGH}^2\nH_1:\\ not\\ all\\ \\sigma_i^2\\ are\\ equal\\ \\left(i\\ =\\ BACK,\\ LOW,\\ MED,\\ HIGH\\right)\n\nWe prefer to use numerical and graphical diagnostics, e.g. residuals plots, but this is more to show you other possibilities. You can use this as a different line of evidence for testing assumptions if you wish.\n\n#\n\n\n\n\nBartlett’s test will not work if the data is non-normal and only use it if the data has one treatment factor with a completely randomised design.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nbartlett.test(rstandard(anova.diatoms)~diatoms$Zinc)\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  rstandard(anova.diatoms) by diatoms$Zinc\nBartlett's K-squared = 0.25337, df = 3, p-value = 0.9685\n\n\nBased on the P-value being &gt; 0.05 we could state that we retain the null hypothesis and that the variances are equal."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-2",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-2",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Worked Example 3\nIn Topic 3 we used the emmeans package to extract means for each group and their associated 95% CI. The emmeans is useful to produce a plot showing the mean and 95% CI which is a nice way to present the results.\n\n#\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nlibrary(emmeans)\nemmeans(anova.diatoms, \"Zinc\")\n\n Zinc emmean    SE df lower.CL upper.CL\n BACK   1.80 0.165 30    1.461     2.13\n HIGH   1.28 0.155 30    0.961     1.60\n LOW    2.03 0.165 30    1.696     2.37\n MED    1.72 0.155 30    1.401     2.04\n\nConfidence level used: 0.95 \n\nplot(emmeans(anova.diatoms, \"Zinc\"))\n\n\n\n\n\n\n\n\nBased on the non-overlapping confidence intervals the only pairs of groups that are significantly different are HIGH and LOW. However more correctly we are looking at whether the difference in means = 0 which is a slightly different question to seeing if the 95% CI around the mean overlaps."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-3",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-3",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Worked Example 4\nAnother approach is to use a Tukey’s test which we can extract using the emmeans(model-goes-here, pairwise ~ your-treatment) function from the emmeans package. Note there are many other post-hoc tests that have come and gone, but we will just focus on one of them.\nAnother way to present the results is to use the plot() function to show the confidence intervals and the comparisons among them.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nemmeans(anova.diatoms,pairwise ~ Zinc)\n\n$emmeans\n Zinc emmean    SE df lower.CL upper.CL\n BACK   1.80 0.165 30    1.461     2.13\n HIGH   1.28 0.155 30    0.961     1.60\n LOW    2.03 0.165 30    1.696     2.37\n MED    1.72 0.155 30    1.401     2.04\n\nConfidence level used: 0.95 \n\n$contrasts\n contrast    estimate    SE df t.ratio p.value\n BACK - HIGH   0.5197 0.226 30   2.295  0.1219\n BACK - LOW   -0.2350 0.233 30  -1.008  0.7457\n BACK - MED    0.0797 0.226 30   0.352  0.9847\n HIGH - LOW   -0.7547 0.226 30  -3.333  0.0117\n HIGH - MED   -0.4400 0.220 30  -2.003  0.2096\n LOW - MED     0.3147 0.226 30   1.390  0.5153\n\nP value adjustment: tukey method for comparing a family of 4 estimates \n\n\nYou will note the following pairs are different:\n\n‘LOW’ and ‘HIGH’;\n\n\nplot(emmeans(anova.diatoms, \"Zinc\"), comparisons = TRUE)\n\n\n\n\n\n\n\n\nIn the plot function above, we have specified comparisons = TRUE. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-4",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-4",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Worked Example 5\nAn alternative base R function for Tukey tests is TukeyHSD(). It creates a set of confidence intervals on the differences between the means of the levels of a factor. Also plot the results from this function.\n\n#\n\n\n\n\nIf the confidence interval does not cross over 0, then that pair significantly differs from each other.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\nTukeyHSD(anova.diatoms, conf.level = 0.95)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = Diversity ~ Zinc, data = diatoms)\n\n$Zinc\n                 diff        lwr        upr     p adj\nHIGH-BACK -0.51972222 -1.1355064 0.09606192 0.1218677\nLOW-BACK   0.23500000 -0.3986367 0.86863665 0.7457444\nMED-BACK  -0.07972222 -0.6955064 0.53606192 0.9847376\nLOW-HIGH   0.75472222  0.1389381 1.37050636 0.0116543\nMED-HIGH   0.44000000 -0.1573984 1.03739837 0.2095597\nMED-LOW   -0.31472222 -0.9305064 0.30106192 0.5153456\n\n\nWe can also plot the results from TukeyHSD() to easily see where, if any, the differences are.\n\nplot(TukeyHSD(anova.diatoms))\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote a type I error rate is defined by your significance level (alpha). In other words, there is a chance that you will reject a null hypothesis that is actually true — it is a false positive. When you perform only one test, the type I error rate equals your significance level, which is often 5%. However, as you conduct more and more tests, your chance of a false positive increases. If you perform enough tests, you are virtually guaranteed to get a false positive! The error rate for a family of tests is always higher than an individual test. Here in the TukeyHSD function you set the family-wise level of significance and the p-values for the individual tests are adjusted accordingly.\nBefore we move on, now is a good time to take a 5-minute break."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#exploratory-analysis-and-assumptions",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#exploratory-analysis-and-assumptions",
+    "title": "Lab 04",
+    "section": "Exploratory analysis and assumptions",
+    "text": "Exploratory analysis and assumptions"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-5",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-5",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 1\nImport the data into R, perform some exploratory data analysis to make tentative suggestions about differences between means and the likelihood of the data meeting the assumptions.\n\n#"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-6",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-6",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 2\nFit an ANOVA model and test the assumption of normality using a QQ plot and a histogram - both based on standardised residuals.\n\n#"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-7",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-7",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 3\nAssess the assumption of constant variance by:\n\nexamine the plot of the standardised residuals against fitted values;\n\n\n#\n\n\nFrom the performance package, use check_model() to assess the assumptions of the model. This function will check the assumptions of normality and constant variance;\n\n\n#\n\n\nusing the Bartlett’s test;\n\n\n#\n\n\nusing check_homogeneity() from the performance package;\n\n\n#\n\n\ncalculating the ratio of the largest SD:smallest SD to see if it is below 2:1;\n\n\n#\n\n\n\n\nNote there are many tests: method = c(\"bartlett\", \"fligner\", \"levene\", \"auto\")"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-8",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-8",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 4\nThe data does not meet the assumptions so log transform (log function) the response and repeat the normality and constant variance checks to test the assumptions.\n\n#\n\n\n\n\nIn R you can transform data in the model formula or you could create a new column in your data frame, for example fish$logProlactin &lt;- log(fish$Prolactin)."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#post-hoc-tests-and-back-transformation",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#post-hoc-tests-and-back-transformation",
+    "title": "Lab 04",
+    "section": "Post-hoc tests and back-transformation",
+    "text": "Post-hoc tests and back-transformation"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-9",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-9",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 5\nIf the assumptions are met and there is significant F-test perform Tukey tests and identify which pairs are significantly different.\n\n#"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-10",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-10",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 6\nOne issue is that we have performed our hypothesis testing on the log scale. This means there are some steps to be made if we wish to interpret the data on the original scale; e.g. provide a 95% CI on the original scale. We will step through these.\nSuppose the biologist was primarily interested in comparing the prolactin concentrations for A (saltwater cysts, day 1) vs B (freshwater, no cysts, day 1).\n\nFind the means and CI from the output of the TukeyHSD() or emmeans() function.\nThe CI and mean are on the log scale, so back-transform the difference in the means (exp() function), the lower and upper end-point 95% CI. Note that the upper and lower tail are not of equal length on the original scale.\n\n\n#\n\nNow we have an estimate of the difference in the means on the original scale. It actually corresponds to a ratio on the original scale. The reason is based on log laws, we can write the difference between 2 logged numbers (A and B) as a log of their ratio (A/B);\n\\log\\left(A\\right)-\\log\\left(B\\right)=\\log\\left(\\frac{A}{B}\\right).\nIf we back-transform the log of their ratio we get the ratio on the original scale;\ne^{\\log\\left(\\frac{A}{B}\\right)}=\\frac{A}{B}.\nSo the back-transformed difference between the pairs of the means is a ratio.\nNote: if we were to back-transform the group means on the log scale we would get the geometric mean on the original scale.\nProvide a biological interpretation for this estimate and confidence interval. Use the CI to decided if there is a significant difference between Treatment A and Treatment B.\n\nBefore we move on, now is a good time to take a 5-minute break."
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#analysis",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#analysis",
+    "title": "Lab 04",
+    "section": "Analysis",
+    "text": "Analysis"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-11",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-11",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 7\nWrite down the null and alternate hypothesis. What is the treatment factor, and how many levels does it have? What are the sample sizes for each group (n_i)?"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-12",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-12",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 8\nImport the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met? What about normality? Try a formal Bartlett’s test using the bartlett.test or check_homogeneity() function. Use residual diagnostics to assess the assumptions.\n\n#"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#section-13",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#section-13",
+    "title": "Lab 04",
+    "section": "",
+    "text": "Exercise 9\nNote that the results of the analysis can only be used when the assumptions of the analysis have been met. If you believe that the assumptions are met, then what would your conclusions of the analysis of variance be? You should use the summary() function applied to your aov() object to obtain the ANOVA table.\n\n#\n\nWithout any formal analysis, consider the result of the group means in relation to the group treatment - i.e. type of selection. Would this pattern be expected? If appropriate perform a Tukey test.\n\n#"
+  },
+  {
+    "objectID": "labs/Lab04/Lab04-residuals-posthoc.html#closing-thoughts",
+    "href": "labs/Lab04/Lab04-residuals-posthoc.html#closing-thoughts",
+    "title": "Lab 04",
+    "section": "Closing thoughts",
+    "text": "Closing thoughts\nWe tested ANOVA assumptions using residual diagnostics, applied transformations when assumptions were violated, and used post-hoc tests to identify which groups differ. These tools will be used throughout the rest of the course as we fit more complex models.\n\nAttribution\nThis lab was developed using resources that are available under a Creative Commons Attribution 4.0 International license, made available on the SOLES Open Educational Resources repository."
   },
   {
     "objectID": "labs/Lab06/Lab06-factorial-anova.html",

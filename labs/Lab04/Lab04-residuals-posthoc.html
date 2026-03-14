@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>Lab 4 - Assumptions &amp; Multiple Comparisons</title>
+<title>Lab 04</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,14 +181,14 @@ window.Quarto = {
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Lab 4 - Assumptions &amp; Multiple Comparisons</h1>
+      <h1 class="title">Lab 04</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -202,12 +202,6 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -220,33 +214,89 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1---diatoms-in-streams-walk-through" id="toc-exercise-1---diatoms-in-streams-walk-through" class="nav-link active" data-scroll-target="#exercise-1---diatoms-in-streams-walk-through">Exercise 1 - Diatoms in streams (Walk-through)</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
   <ul class="collapse">
-  <li><a href="#question-1.1" id="toc-question-1.1" class="nav-link" data-scroll-target="#question-1.1">Question 1.1</a></li>
-  <li><a href="#question-1.2" id="toc-question-1.2" class="nav-link" data-scroll-target="#question-1.2">Question 1.2</a></li>
-  <li><a href="#question-1.3" id="toc-question-1.3" class="nav-link" data-scroll-target="#question-1.3">Question 1.3</a></li>
-  <li><a href="#question-1.4" id="toc-question-1.4" class="nav-link" data-scroll-target="#question-1.4">Question 1.4</a></li>
-  <li><a href="#question-1.5" id="toc-question-1.5" class="nav-link" data-scroll-target="#question-1.5">Question 1.5</a></li>
-  <li><a href="#question-1.6" id="toc-question-1.6" class="nav-link" data-scroll-target="#question-1.6">Question 1.6</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
+  </ul></li>
+  <li><a href="#diatom-diversity-in-streams-20-min" id="toc-diatom-diversity-in-streams-20-min" class="nav-link" data-scroll-target="#diatom-diversity-in-streams-20-min">1. Diatom diversity in streams (~20 min)</a>
+  <ul class="collapse">
+  <li><a href="#testing-assumptions-and-finding-differences" id="toc-testing-assumptions-and-finding-differences" class="nav-link" data-scroll-target="#testing-assumptions-and-finding-differences">Testing assumptions and finding differences</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
   <ul class="collapse">
-  <li><a href="#exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations" id="toc-exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations" class="nav-link" data-scroll-target="#exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations">Exercise 2 - Mean comparisons, residual diagnostics and back-transformations</a>
-  <ul class="collapse">
-  <li><a href="#question-2.1" id="toc-question-2.1" class="nav-link" data-scroll-target="#question-2.1">Question 2.1</a></li>
-  <li><a href="#question-2.2" id="toc-question-2.2" class="nav-link" data-scroll-target="#question-2.2">Question 2.2</a></li>
-  <li><a href="#question-2.3" id="toc-question-2.3" class="nav-link" data-scroll-target="#question-2.3">Question 2.3</a></li>
-  <li><a href="#question-2.4" id="toc-question-2.4" class="nav-link" data-scroll-target="#question-2.4">Question 2.4</a></li>
-  <li><a href="#question-2.5" id="toc-question-2.5" class="nav-link" data-scroll-target="#question-2.5">Question 2.5</a></li>
-  <li><a href="#question-2.6" id="toc-question-2.6" class="nav-link" data-scroll-target="#question-2.6">Question 2.6</a></li>
-  <li><a href="#question-2.7" id="toc-question-2.7" class="nav-link" data-scroll-target="#question-2.7">Question 2.7</a></li>
+  <li><a href="#worked-example-1" id="toc-worked-example-1" class="nav-link" data-scroll-target="#worked-example-1">Worked Example 1</a></li>
   </ul></li>
-  <li><a href="#exercise-3---broiler-chickens" id="toc-exercise-3---broiler-chickens" class="nav-link" data-scroll-target="#exercise-3---broiler-chickens">Exercise 3 - Broiler Chickens</a>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
   <ul class="collapse">
-  <li><a href="#question-3.1" id="toc-question-3.1" class="nav-link" data-scroll-target="#question-3.1">Question 3.1</a></li>
-  <li><a href="#question-3.2" id="toc-question-3.2" class="nav-link" data-scroll-target="#question-3.2">Question 3.2</a></li>
-  <li><a href="#question-3.3" id="toc-question-3.3" class="nav-link" data-scroll-target="#question-3.3">Question 3.3</a></li>
-  <li><a href="#question-3.4" id="toc-question-3.4" class="nav-link" data-scroll-target="#question-3.4">Question 3.4</a></li>
+  <li><a href="#worked-example-2" id="toc-worked-example-2" class="nav-link" data-scroll-target="#worked-example-2">Worked Example 2</a></li>
+  </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
+  <ul class="collapse">
+  <li><a href="#worked-example-3" id="toc-worked-example-3" class="nav-link" data-scroll-target="#worked-example-3">Worked Example 3</a></li>
+  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
+  <ul class="collapse">
+  <li><a href="#worked-example-4" id="toc-worked-example-4" class="nav-link" data-scroll-target="#worked-example-4">Worked Example 4</a></li>
+  </ul></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a>
+  <ul class="collapse">
+  <li><a href="#worked-example-5" id="toc-worked-example-5" class="nav-link" data-scroll-target="#worked-example-5">Worked Example 5</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#prolactin-in-stickleback-fish-30-min" id="toc-prolactin-in-stickleback-fish-30-min" class="nav-link" data-scroll-target="#prolactin-in-stickleback-fish-30-min">2. Prolactin in stickleback fish (~30 min)</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-analysis-and-assumptions" id="toc-exploratory-analysis-and-assumptions" class="nav-link" data-scroll-target="#exploratory-analysis-and-assumptions">Exploratory analysis and assumptions</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  </ul></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul></li>
+  <li><a href="#post-hoc-tests-and-back-transformation" id="toc-post-hoc-tests-and-back-transformation" class="nav-link" data-scroll-target="#post-hoc-tests-and-back-transformation">Post-hoc tests and back-transformation</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  </ul></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-6" id="toc-exercise-6" class="nav-link" data-scroll-target="#exercise-6">Exercise 6</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#broiler-chickens-25-min" id="toc-broiler-chickens-25-min" class="nav-link" data-scroll-target="#broiler-chickens-25-min">3. Broiler chickens (~25 min)</a>
+  <ul class="collapse">
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-7" id="toc-exercise-7" class="nav-link" data-scroll-target="#exercise-7">Exercise 7</a></li>
+  </ul></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-8" id="toc-exercise-8" class="nav-link" data-scroll-target="#exercise-8">Exercise 8</a></li>
+  </ul></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-9" id="toc-exercise-9" class="nav-link" data-scroll-target="#exercise-9">Exercise 9</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -257,121 +307,334 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
+<p>This week we will test ANOVA assumptions using residual diagnostics, perform post-hoc comparisons with Tukey’s test, and practise back-transforming log-scale results using three datasets: diatoms, fish prolactin, and broiler chickens.</p>
+<p>You will come across two types of tasks in this lab. <strong>Worked Examples</strong> have solutions you can expand and check straight away. <strong>Exercises</strong> do not — solutions for these will be posted on Friday evening.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Test the assumptions of ANOVA using residual diagnostics.</li>
+<li>Use plotting and Tukey’s tests to determine which pairs of groups are significantly different.</li>
+<li>Use R to perform the analyses.</li>
+</ol>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fit a one-way ANOVA and extract standardised residuals</label></li>
+<li><label><input type="checkbox">Assess normality using Q-Q plots, histograms, and the Shapiro-Wilk test</label></li>
+<li><label><input type="checkbox">Assess equal variance using residual plots and Bartlett’s test</label></li>
+<li><label><input type="checkbox">Apply a log transformation when assumptions are violated</label></li>
+<li><label><input type="checkbox">Perform post-hoc tests using <code>emmeans</code> and <code>TukeyHSD</code></label></li>
+<li><label><input type="checkbox">Back-transform log-scale estimates and interpret them as ratios</label></li>
+</ul>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>This lab uses <code>readxl</code>, <code>emmeans</code>, and <code>performance</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"emmeans"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Data4.xlsx</code></td>
+<td>All sections</td>
+<td><a href="data/Data4.xlsx">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Save the file into a folder called <code>data</code> inside your project folder.</p>
+</section>
+</section>
+</section>
+<section id="diatom-diversity-in-streams-20-min" class="level1 page-columns page-full">
+<h1>1. Diatom diversity in streams (~20 min)</h1>
+<p>Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the <strong>Diatoms</strong> worksheet.</p>
+<section id="testing-assumptions-and-finding-differences" class="level2">
+<h2 class="anchored" data-anchor-id="testing-assumptions-and-finding-differences">Testing assumptions and finding differences</h2>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="worked-example-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-1">Worked Example 1</h3>
+<p>Import the Diatoms worksheet from <code>Data4.xlsx</code>, convert <code>Zinc</code> to a factor, and fit a one-way ANOVA model.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># write your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning outcomes
+<span class="screen-reader-only">Tip</span>Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>At the end of this Lab students should be able to:</p>
-<ul>
-<li><p>test the assumptions of ANOVA using residual diagnostics;</p></li>
-<li><p>use plotting and Tukey’s tests to determine which pairs of groups are significantly different;</p></li>
-<li><p>use R to perform the analyses.</p></li>
-</ul>
-<p>All of the data for this practical is in the <strong>Data4.xlsx</strong> file.</p>
-</div>
-</div>
-<section id="exercise-1---diatoms-in-streams-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1---diatoms-in-streams-walk-through">Exercise 1 - Diatoms in streams (Walk-through)</h2>
-<p>Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the <strong>Diatoms</strong> worksheet.</p>
-<section id="question-1.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.1">Question 1.1</h3>
-<p><em>(i)</em> Importing and processing data, then fitting an ANOVA model</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># write your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>diatoms<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data4.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Diatoms"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>diatoms<span class="sc">$</span>Zinc<span class="ot">&lt;-</span><span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
+ $ Stream   : chr [1:34] "Eagle" "Blue" "Blue" "Blue" ...
+ $ Zinc     : Factor w/ 4 levels "BACK","HIGH",..: 1 1 1 1 1 1 1 1 3 3 ...
+ $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...
+ $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>anova.diatoms<span class="ot">&lt;-</span><span class="fu">aov</span>(Diversity<span class="sc">~</span>Zinc,<span class="at">data=</span>diatoms)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+Zinc         3  2.567  0.8555   3.939 0.0176 *
+Residuals   30  6.516  0.2172                 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="question-1.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.2">Question 1.2</h3>
-<p><em>(ii)</em> Statistical test of the assumption of constant variance</p>
+<section id="section-1" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<section id="worked-example-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-2">Worked Example 2</h3>
+<p>Statistical test of the assumption of constant variance.</p>
 <p>Statistics is made up of different tribes and some tribes use hypothesis testing to see if a dataset meets the assumptions of normality and constant variance. One option is the Bartlett’s test for constant variances. The mechanics are not important but the function and syntax are shown below. The hypotheses are:</p>
 <ul>
 <li><p><span class="math inline">H_0:\ \sigma_{BACK}^2=\sigma_{LOW}^2=\sigma_{MED}^2=\sigma_{HIGH}^2</span></p></li>
 <li><p><span class="math inline">H_1:\ not\ all\ \sigma_i^2\ are\ equal\ \left(i\ =\ BACK,\ LOW,\ MED,\ HIGH\right)</span></p></li>
 </ul>
 <p>We prefer to use numerical and graphical diagnostics, e.g.&nbsp;residuals plots, but this is more to show you other possibilities. You can use this as a different line of evidence for testing assumptions if you wish.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Bartlett’s test will not work if the data is non-normal and only use it if the data has one treatment factor with a completely randomised design.</p>
+</div></div><div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Tip</span>Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>It won’t work if the data is non-normal and only use it if the data has one treatment factor with a completely randomised design!</p>
-</div>
-</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.diatoms)<span class="sc">~</span>diatoms<span class="sc">$</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  rstandard(anova.diatoms) by diatoms$Zinc
+Bartlett's K-squared = 0.25337, df = 3, p-value = 0.9685</code></pre>
+</div>
+</div>
+<p>Based on the P-value being &gt; 0.05 we could state that we retain the null hypothesis and that the variances are equal.</p>
+</div>
+</div>
 </div>
 </section>
-<section id="question-1.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.3">Question 1.3</h3>
-<p><em>(iii)</em> Identify significant differences</p>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<section id="worked-example-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-3">Worked Example 3</h3>
 <p>In Topic 3 we used the <code>emmeans</code> package to extract means for each group and their associated 95% CI. The <code>emmeans</code> is useful to produce a plot showing the mean and 95% CI which is a nice way to present the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-1.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.4">Question 1.4</h3>
-<p><em>(iv)</em>The another approach is to use a <strong>Tukey’s test</strong> which we can extract using the <code>emmeans(model-goes-here, pairwise ~ your-treatment)</code> function from the <code>emmeans</code> package. Note there are many other post-hoc tests that have come and gone, but we will just focus on one of them.</p>
-</section>
-<section id="question-1.5" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.5">Question 1.5</h3>
-<p><em>(v)</em> Another way to present the results is to use the <code>plot()</code> function to show the confidence intervals and the comparisons among them.</p>
-</section>
-<section id="question-1.6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.6">Question 1.6</h3>
-<p>An alternative base R function for Tukey tests is <code>TukeyHSD()</code>. It creates a set of confidence intervals on the differences between the means of the levels of a factor. Also plot the results from this function.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If the confidence interval does not cross over 0, then that pair significantly differs from each other.</p>
-</div>
-</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Zinc emmean    SE df lower.CL upper.CL
+ BACK   1.80 0.165 30    1.461     2.13
+ HIGH   1.28 0.155 30    0.961     1.60
+ LOW    2.03 0.165 30    1.696     2.37
+ MED    1.72 0.155 30    1.401     2.04
+
+Confidence level used: 0.95 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab04-residuals-posthoc_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Based on the non-overlapping confidence intervals the only pairs of groups that are significantly different are <code>HIGH</code> and <code>LOW</code>. However more correctly we are looking at whether the difference in means = 0 which is a slightly different question to seeing if the 95% CI around the mean overlaps.</p>
+</div>
+</div>
 </div>
 </section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<section id="worked-example-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-4">Worked Example 4</h3>
+<p>Another approach is to use a <strong>Tukey’s test</strong> which we can extract using the <code>emmeans(model-goes-here, pairwise ~ your-treatment)</code> function from the <code>emmeans</code> package. Note there are many other post-hoc tests that have come and gone, but we will just focus on one of them.</p>
+<p>Another way to present the results is to use the <code>plot()</code> function to show the confidence intervals and the comparisons among them.</p>
 </section>
-<section id="section" class="level1">
-<h1></h1>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Note a type I error rate is defined by your significance level (alpha). In other words, there’s a chance that you will reject a null hypothesis that is actually true—it’s a false positive. When you perform only one test, the type I error rate equals your significance level, which is often 5%. However, as you conduct more and more tests, your chance of a false positive increases. If you perform enough tests, you’re virtually guaranteed to get a false positive! The error rate for a family of tests is always higher than an individual test. Here in the <code>TukeyHSD</code> function you set the family-wise level of significance and the p-values for the individual tests are adjusted accordingly.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">emmeans</span>(anova.diatoms,pairwise <span class="sc">~</span> Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$emmeans
+ Zinc emmean    SE df lower.CL upper.CL
+ BACK   1.80 0.165 30    1.461     2.13
+ HIGH   1.28 0.155 30    0.961     1.60
+ LOW    2.03 0.165 30    1.696     2.37
+ MED    1.72 0.155 30    1.401     2.04
+
+Confidence level used: 0.95 
+
+$contrasts
+ contrast    estimate    SE df t.ratio p.value
+ BACK - HIGH   0.5197 0.226 30   2.295  0.1219
+ BACK - LOW   -0.2350 0.233 30  -1.008  0.7457
+ BACK - MED    0.0797 0.226 30   0.352  0.9847
+ HIGH - LOW   -0.7547 0.226 30  -3.333  0.0117
+ HIGH - MED   -0.4400 0.220 30  -2.003  0.2096
+ LOW - MED     0.3147 0.226 30   1.390  0.5153
+
+P value adjustment: tukey method for comparing a family of 4 estimates </code></pre>
 </div>
 </div>
-<section id="exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2---mean-comparisons-residual-diagnostics-and-back-transformations">Exercise 2 - Mean comparisons, residual diagnostics and back-transformations</h2>
+<p>You will note the following pairs are different:</p>
+<ul>
+<li>‘LOW’ and ‘HIGH’;</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova.diatoms, <span class="st">"Zinc"</span>), <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab04-residuals-posthoc_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the plot function above, we have specified <code>comparisons = TRUE</code>. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<section id="worked-example-5" class="level3 question">
+<h3 class="anchored" data-anchor-id="worked-example-5">Worked Example 5</h3>
+<p>An alternative base R function for Tukey tests is <code>TukeyHSD()</code>. It creates a set of confidence intervals on the differences between the means of the levels of a factor. Also plot the results from this function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>If the confidence interval does not cross over 0, then that pair significantly differs from each other.</p>
+</div></div><div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">TukeyHSD</span>(anova.diatoms, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Diversity ~ Zinc, data = diatoms)
+
+$Zinc
+                 diff        lwr        upr     p adj
+HIGH-BACK -0.51972222 -1.1355064 0.09606192 0.1218677
+LOW-BACK   0.23500000 -0.3986367 0.86863665 0.7457444
+MED-BACK  -0.07972222 -0.6955064 0.53606192 0.9847376
+LOW-HIGH   0.75472222  0.1389381 1.37050636 0.0116543
+MED-HIGH   0.44000000 -0.1573984 1.03739837 0.2095597
+MED-LOW   -0.31472222 -0.9305064 0.30106192 0.5153456</code></pre>
+</div>
+</div>
+<p>We can also plot the results from <code>TukeyHSD()</code> to easily see where, if any, the differences are.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">plot</span>(<span class="fu">TukeyHSD</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab04-residuals-posthoc_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note a type I error rate is defined by your significance level (alpha). In other words, there is a chance that you will reject a null hypothesis that is actually true — it is a false positive. When you perform only one test, the type I error rate equals your significance level, which is often 5%. However, as you conduct more and more tests, your chance of a false positive increases. If you perform enough tests, you are virtually guaranteed to get a false positive! The error rate for a family of tests is always higher than an individual test. Here in the <code>TukeyHSD</code> function you set the family-wise level of significance and the p-values for the individual tests are adjusted accordingly.</p>
+</div></div><p>Before we move on, now is a good time to take a 5-minute break.</p>
+</section>
+</section>
+<section id="prolactin-in-stickleback-fish-30-min" class="level1 page-columns page-full">
+<h1>2. Prolactin in stickleback fish (~30 min)</h1>
 <p>In this exercise will add a layer of complexity by considering a transformation. If our data does not meet the assumptions we need to transform the data, possible transformations are the square root (weak) and log (high). When we transform the data we need to be careful about how we interpret the results.</p>
 <p>Concentration of prolactin (units g/L) in the pituitary glands of nine-spined stickleback fish was assessed. The fish were kept in either saltwater or freshwater prior to assay and were different batches were examined on three successive occasions. Cysts tend to develop in fish when kept in saltwater and sometimes develop in freshwater populations. The four different groups of fish were used in a preliminary experiment to examine the effects of cysts, whether induced by saltwater or normally present, on the prolactin production of the pituitary gland.</p>
 <p>The four groups of fish were codes as follows, with 10 fish per group:</p>
@@ -382,99 +645,109 @@ Tip
 <li><p>D = freshwater, cysts, day 3.</p></li>
 </ul>
 <p>The data is found in the <strong>Prolactin</strong> worksheet.</p>
-<section id="question-2.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.1">Question 2.1</h3>
-<p><em>(i)</em> Import the data into R, perform some exploratory data analysis to make <strong>tentative</strong> suggestions about differences between means and the likelihood of the data meeting the assumptions.</p>
+<section id="exploratory-analysis-and-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-analysis-and-assumptions">Exploratory analysis and assumptions</h2>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p>Import the data into R, perform some exploratory data analysis to make <strong>tentative</strong> suggestions about differences between means and the likelihood of the data meeting the assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-2.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.2">Question 2.2</h3>
-<p><em>(ii)</em> Fit an ANOVA model and test the assumption of normality using a QQ plot and a histogram - both based on standardised residuals.</p>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>Fit an ANOVA model and test the assumption of normality using a QQ plot and a histogram - both based on standardised residuals.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-2.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.3">Question 2.3</h3>
-<p><em>(iii)</em> Assess the assumption of constant variance by:</p>
+</section>
+<section id="section-7" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-7"></h2>
+<section id="exercise-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<p>Assess the assumption of constant variance by:</p>
 <ul>
 <li>examine the plot of the standardised residuals against fitted values;</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>From the performance package, use <code>check_model()</code> to assess the assumptions of the model. This function will check the assumptions of normality and constant variance;</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>using the Bartlett’s test;</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>using <code>check_homogeneity()</code> from the <code>performance</code> package;</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note there are many tests: <code>method = c("bartlett", "fligner", "levene", "auto")</code></p>
-</div>
-</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
-<li>calculating the ratio of the larges SD:smallest SD to see if it is below 2:1;</li>
+<li>calculating the ratio of the largest SD:smallest SD to see if it is below 2:1;</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-2.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.4">Question 2.4</h3>
-<p><em>(iv)</em> The data does not meet the assumptions so log transform (‘log’ function) the response and repeat <em>(ii)</em> and <em>(iii)</em> to test the assumptions;</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note there are many tests: <code>method = c("bartlett", "fligner", "levene", "auto")</code></p>
+</div></div></section>
+<section id="section-8" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-8"></h2>
+<section id="exercise-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<p>The data does not meet the assumptions so log transform (<code>log</code> function) the response and repeat the normality and constant variance checks to test the assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<div class="{callout-tip}">
-<p>In R you can transform data in the model formula see below or you could create a new column in your data frame, for example <code>fish$logProlactin&lt;-log(fish$Prolactin)</code>.</p>
-</div>
-<section id="question-2.5" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.5">Question 2.5</h3>
-<p><em>(v)</em> If the assumptions are met and there is significant F-test perform Tukey tests and identify which pairs are significantly different.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>In R you can transform data in the model formula or you could create a new column in your data frame, for example <code>fish$logProlactin &lt;- log(fish$Prolactin)</code>.</p>
+</div></div></section>
+<section id="post-hoc-tests-and-back-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="post-hoc-tests-and-back-transformation">Post-hoc tests and back-transformation</h2>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9"></h2>
+<section id="exercise-5" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
+<p>If the assumptions are met and there is significant F-test perform Tukey tests and identify which pairs are significantly different.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-2.6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.6">Question 2.6</h3>
-<p><em>(vi)</em> One issue is that we have performed our hypothesis testing on the log scale. This means there are some steps to be made if we wish to interpret the data on the original scale; e.g.&nbsp;provide a 95% CI on the original scale. We will step through these.</p>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10"></h2>
+<section id="exercise-6" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
+<p>One issue is that we have performed our hypothesis testing on the log scale. This means there are some steps to be made if we wish to interpret the data on the original scale; e.g.&nbsp;provide a 95% CI on the original scale. We will step through these.</p>
 <p>Suppose the biologist was primarily interested in comparing the prolactin concentrations for A (saltwater cysts, day 1) vs B (freshwater, no cysts, day 1).</p>
 <ul>
 <li>Find the means and CI from the output of the <code>TukeyHSD()</code> or <code>emmeans()</code> function.</li>
 <li>The CI and mean are on the log scale, so back-transform the difference in the means (<code>exp()</code> function), the lower and upper end-point 95% CI. Note that the upper and lower tail are not of equal length on the original scale.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="question-2.7" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.7">Question 2.7</h3>
-<p><em>(vii)</em> Now have an estimate of the difference in the means on the original scale. It actually corresponds to a ratio on the original scale. The reason is based on log laws, we can write the difference between 2 logged numbers (A and B) as a log of their ratio (A/B);</p>
+<p>Now we have an estimate of the difference in the means on the original scale. It actually corresponds to a ratio on the original scale. The reason is based on log laws, we can write the difference between 2 logged numbers (A and B) as a log of their ratio (A/B);</p>
 <p><span class="math inline">\log\left(A\right)-\log\left(B\right)=\log\left(\frac{A}{B}\right)</span>.</p>
 <p>If we back-transform the log of their ratio we get the ratio on the original scale;</p>
 <p><span class="math inline">e^{\log\left(\frac{A}{B}\right)}=\frac{A}{B}</span>.</p>
@@ -482,39 +755,60 @@ Tip
 <p>Note: if we were to back-transform the group means on the log scale we would get the geometric mean on the original scale.</p>
 <p>Provide a biological interpretation for this estimate and confidence interval. Use the CI to decided if there is a significant difference between Treatment A and Treatment B.</p>
 </section>
+<p>Before we move on, now is a good time to take a 5-minute break.</p>
 </section>
-<section id="exercise-3---broiler-chickens" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3---broiler-chickens">Exercise 3 - Broiler Chickens</h2>
+</section>
+<section id="broiler-chickens-25-min" class="level1">
+<h1>3. Broiler chickens (~25 min)</h1>
 <p>This exercise is an analysis of a set of growth data. It is an open question for you to gain more practice.</p>
 <p>The effect of weight gain in dressed broiler chickens was determined after five generations of selection. Group A was bred by using only the heaviest 10% in each generation; groups B and C were bred using respectively the heaviest 30% and 50%; group D was obtained by crossing groups A and C of the previous generation. The dressed weights (kg) of 25 birds from each group have been recorded.</p>
 <p>The data is found in the <strong>Broilers</strong> worksheet.</p>
-<section id="question-3.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.1">Question 3.1</h3>
-<p><em>(i)</em> Write down the null and alternate hypothesis. What is the treatment factor, and how many levels does it have? What are the sample sizes for each group (<span class="math inline">n_i</span>)?</p>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 </section>
-<section id="question-3.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.2">Question 3.2</h3>
-<p><em>(ii)</em> Import the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met? What about normality? Try a formal Bartlett’s test using the <code>bartlett.test</code> or <code>check_homogeneity()</code> function. Use residual diagnostics to assess the assumptions.</p>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11"></h2>
+<section id="exercise-7" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-7">Exercise 7</h3>
+<p>Write down the null and alternate hypothesis. What is the treatment factor, and how many levels does it have? What are the sample sizes for each group (<span class="math inline">n_i</span>)?</p>
+</section>
+</section>
+<section id="section-12" class="level2">
+<h2 class="anchored" data-anchor-id="section-12"></h2>
+<section id="exercise-8" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-8">Exercise 8</h3>
+<p>Import the data into R, and then obtain some numerical and graphical summaries of the data, by each group. How would you interpret these data? From these summaries, is the assumption of homogeneity of variances met? What about normality? Try a formal Bartlett’s test using the <code>bartlett.test</code> or <code>check_homogeneity()</code> function. Use residual diagnostics to assess the assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-3.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.3">Question 3.3</h3>
-<p><em>(iii)</em> Note that the results of the analysis can only be used when the assumptions of the analysis have been met. If you believe that the assumptions are met, then what would your conclusions of the analysis of variance be? You should use the <code>summary()</code> function applied to your <code>aov()</code> object to obtain the ANOVA table.</p>
+</section>
+<section id="section-13" class="level2">
+<h2 class="anchored" data-anchor-id="section-13"></h2>
+<section id="exercise-9" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-9">Exercise 9</h3>
+<p>Note that the results of the analysis can only be used when the assumptions of the analysis have been met. If you believe that the assumptions are met, then what would your conclusions of the analysis of variance be? You should use the <code>summary()</code> function applied to your <code>aov()</code> object to obtain the ANOVA table.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Without any formal analysis, consider the result of the group means in relation to the group treatment - i.e.&nbsp;type of selection. Would this pattern be expected? If appropriate perform a Tukey test.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="question-3.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.4">Question 3.4</h3>
-<p><em>(iv)</em> Without any formal analysis, consider the result of the group means in relation to the group treatment - i.e.&nbsp;type of selection. Would this pattern be expected? If appropriate perform a Tukey test.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>We tested ANOVA assumptions using residual diagnostics, applied transformations when assumptions were violated, and used post-hoc tests to identify which groups differ. These tools will be used throughout the rest of the course as we fit more complex models.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
 </section>
 </section>
 

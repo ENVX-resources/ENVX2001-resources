@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 04: ANOVA Assumptions and Post-hoc Tests</title>
+<title>Tutorial 04</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -126,7 +126,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         color: #000;
 background: white;
       }
-</style><noscript>
+</style><script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet"><noscript>
   <style>
     section.level2 { display: block !important; }
   </style>
@@ -187,7 +188,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tutorial 04: ANOVA Assumptions and Post-hoc Tests</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tutorial 04</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
             <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
                       </div>
   </div>
@@ -214,31 +215,37 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#experimental-design-workflow" id="toc-experimental-design-workflow" class="nav-link active" data-scroll-target="#experimental-design-workflow"><span class="header-section-number">1</span> Experimental Design Workflow</a></li>
-  <li><a href="#assessing-anova-assumptions-using-residuals" id="toc-assessing-anova-assumptions-using-residuals" class="nav-link" data-scroll-target="#assessing-anova-assumptions-using-residuals"><span class="header-section-number">2</span> Assessing ANOVA Assumptions Using Residuals</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#assessing-anova-assumptions-using-residuals" id="toc-assessing-anova-assumptions-using-residuals" class="nav-link" data-scroll-target="#assessing-anova-assumptions-using-residuals"><span class="header-section-number">1</span> Assessing ANOVA assumptions using residuals</a>
   <ul class="collapse">
-  <li><a href="#what-are-residuals" id="toc-what-are-residuals" class="nav-link" data-scroll-target="#what-are-residuals"><span class="header-section-number">2.1</span> What are residuals?</a></li>
-  <li><a href="#exercise-1-why-use-residuals" id="toc-exercise-1-why-use-residuals" class="nav-link" data-scroll-target="#exercise-1-why-use-residuals"><span class="header-section-number">2.2</span> Exercise 1: Why use residuals?</a>
+  <li><a href="#exercise-1-why-use-residuals" id="toc-exercise-1-why-use-residuals" class="nav-link" data-scroll-target="#exercise-1-why-use-residuals">Exercise 1: Why use residuals</a>
   <ul class="collapse">
-  <li><a href="#testing-assumptions-using-residuals" id="toc-testing-assumptions-using-residuals" class="nav-link" data-scroll-target="#testing-assumptions-using-residuals">1.1) Testing assumptions using residuals</a></li>
-  </ul></li>
-  <li><a href="#statistical-tests-and-graphical-approaches" id="toc-statistical-tests-and-graphical-approaches" class="nav-link" data-scroll-target="#statistical-tests-and-graphical-approaches"><span class="header-section-number">2.3</span> Statistical tests and graphical approaches</a></li>
-  <li><a href="#exercise-2-diatoms-in-streams" id="toc-exercise-2-diatoms-in-streams" class="nav-link" data-scroll-target="#exercise-2-diatoms-in-streams"><span class="header-section-number">2.4</span> Exercise 2: Diatoms in streams</a>
-  <ul class="collapse">
-  <li><a href="#importing-and-processing-data-then-fitting-an-anova-model" id="toc-importing-and-processing-data-then-fitting-an-anova-model" class="nav-link" data-scroll-target="#importing-and-processing-data-then-fitting-an-anova-model">2.1) Importing and processing data, then fitting an ANOVA model</a></li>
-  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions">2.2) Testing assumptions</a></li>
-  <li><a href="#testing-the-assumption-of-constant-variance-homoscedasticity" id="toc-testing-the-assumption-of-constant-variance-homoscedasticity" class="nav-link" data-scroll-target="#testing-the-assumption-of-constant-variance-homoscedasticity">Testing the assumption of constant variance (homoscedasticity)</a></li>
+  <li><a href="#part-a-synthetic-data-demonstration" id="toc-part-a-synthetic-data-demonstration" class="nav-link" data-scroll-target="#part-a-synthetic-data-demonstration">Part A — Synthetic data demonstration</a></li>
+  <li><a href="#part-b-fitting-anova-and-extracting-residuals" id="toc-part-b-fitting-anova-and-extracting-residuals" class="nav-link" data-scroll-target="#part-b-fitting-anova-and-extracting-residuals">Part B — Fitting ANOVA and extracting residuals</a></li>
+  <li><a href="#part-c-q-q-plot" id="toc-part-c-q-q-plot" class="nav-link" data-scroll-target="#part-c-q-q-plot">Part C — Q-Q plot</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#identifying-significant-differences-post-hoc-tests" id="toc-identifying-significant-differences-post-hoc-tests" class="nav-link" data-scroll-target="#identifying-significant-differences-post-hoc-tests"><span class="header-section-number">3</span> Identifying Significant Differences: Post-hoc Tests</a></li>
-  <li><a href="#family-wise-error-rate-and-power-trade-off" id="toc-family-wise-error-rate-and-power-trade-off" class="nav-link" data-scroll-target="#family-wise-error-rate-and-power-trade-off"><span class="header-section-number">4</span> Family-wise Error Rate and Power Trade-off</a>
+  <li><a href="#assumption-testing-with-real-data" id="toc-assumption-testing-with-real-data" class="nav-link" data-scroll-target="#assumption-testing-with-real-data"><span class="header-section-number">2</span> Assumption testing with real data</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-family-wise-error-rate" id="toc-exercise-3-family-wise-error-rate" class="nav-link" data-scroll-target="#exercise-3-family-wise-error-rate"><span class="header-section-number">4.1</span> Exercise 3: Family-wise error rate</a></li>
-  <li><a href="#power-trade-off" id="toc-power-trade-off" class="nav-link" data-scroll-target="#power-trade-off"><span class="header-section-number">4.2</span> Power trade-off</a></li>
+  <li><a href="#exercise-2-frog-diversity-in-streams" id="toc-exercise-2-frog-diversity-in-streams" class="nav-link" data-scroll-target="#exercise-2-frog-diversity-in-streams">Exercise 2: Frog diversity in streams</a>
+  <ul class="collapse">
+  <li><a href="#part-a-import-data-and-fit-anova" id="toc-part-a-import-data-and-fit-anova" class="nav-link" data-scroll-target="#part-a-import-data-and-fit-anova">Part A — Import data and fit ANOVA</a></li>
+  <li><a href="#part-b-testing-normality" id="toc-part-b-testing-normality" class="nav-link" data-scroll-target="#part-b-testing-normality">Part B — Testing normality</a></li>
+  <li><a href="#part-c-testing-equal-variance-homoscedasticity" id="toc-part-c-testing-equal-variance-homoscedasticity" class="nav-link" data-scroll-target="#part-c-testing-equal-variance-homoscedasticity">Part C — Testing equal variance (homoscedasticity)</a></li>
+  <li><a href="#part-d-transforming-the-data" id="toc-part-d-transforming-the-data" class="nav-link" data-scroll-target="#part-d-transforming-the-data">Part D — Transforming the data</a></li>
+  <li><a href="#part-e-post-hoc-tests" id="toc-part-e-post-hoc-tests" class="nav-link" data-scroll-target="#part-e-post-hoc-tests">Part E — Post-hoc tests</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5</span> Summary</a>
+  </ul></li>
+  <li><a href="#multiple-comparisons-and-the-error-power-trade-off" id="toc-multiple-comparisons-and-the-error-power-trade-off" class="nav-link" data-scroll-target="#multiple-comparisons-and-the-error-power-trade-off"><span class="header-section-number">3</span> Multiple comparisons and the error-power trade-off</a>
   <ul class="collapse">
-  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions"><span class="header-section-number">5.1</span> Example exam questions</a></li>
+  <li><a href="#exercise-3-family-wise-error-rate-and-power" id="toc-exercise-3-family-wise-error-rate-and-power" class="nav-link" data-scroll-target="#exercise-3-family-wise-error-rate-and-power">Exercise 3: Family-wise error rate and power</a>
+  <ul class="collapse">
+  <li><a href="#part-a-tukey-adjusted-comparisons" id="toc-part-a-tukey-adjusted-comparisons" class="nav-link" data-scroll-target="#part-a-tukey-adjusted-comparisons">Part A — Tukey-adjusted comparisons</a></li>
+  <li><a href="#part-b-unadjusted-t-tests" id="toc-part-b-unadjusted-t-tests" class="nav-link" data-scroll-target="#part-b-unadjusted-t-tests">Part B — Unadjusted t-tests</a></li>
+  <li><a href="#part-c-power-trade-off" id="toc-part-c-power-trade-off" class="nav-link" data-scroll-target="#part-c-power-trade-off">Part C — Power trade-off</a></li>
+  <li><a href="#part-d-explore-the-trade-off" id="toc-part-d-explore-the-trade-off" class="nav-link" data-scroll-target="#part-d-explore-the-trade-off">Part D — Explore the trade-off</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial04.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -254,91 +261,35 @@ window.Quarto = {
 
 
 
+<section id="welcome" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
 <p>In this week’s lectures we covered how to check the assumptions of ANOVA using residual diagnostics, and how to determine which pairs of treatment means are significantly different using post-hoc tests. A solid understanding of these concepts is essential for conducting robust statistical analyses in R and before we move to more complex models in future weeks.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Key learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>Understand and apply components of the experimental design workflow.</p></li>
-<li><p>Assess whether a fitted ANOVA model meets its statistical assumptions using residuals.</p>
-<ul>
-<li>What are residuals?</li>
-<li>What are the assumptions of an ANOVA?</li>
-<li>What tests and graphical approaches to use to test assumptions?</li>
-</ul></li>
-<li><p>Identify which pair(s) of treatment means are significantly different.</p>
-<ul>
-<li>When to do a post-hoc test</li>
-<li>Statistical tests and graphical methods for post-hoc tests</li>
-<li>Family-wise error rate and power trade-off.</li>
-</ul></li>
-</ul>
-<p>Data for this tutorial is in the <strong>Data4.xlsx</strong> file.</p>
-</div>
-</div>
-<section id="experimental-design-workflow" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Experimental Design Workflow</h1>
-<p>In this tutorial we will work through the experimental design workflow for a one-way ANOVA.</p>
-<p>We introduced the workflow outlined by Fox, G. A., S. Negrete-Yankelevich, and V. J. Sosa. (2015). <a href="https://global.oup.com/academic/product/ecological-statistics-9780199672547">Ecological statistics: contemporary theory and application</a>. Oxford University Press, USA.</p>
-<p><img src="images/Lecture_Topic4.png" class="img-fluid"></p>
+<p>You will learn how to:</p>
+<ol type="1">
+<li>Assess whether a fitted ANOVA model meets its statistical assumptions using residuals.</li>
+<li>Test the assumptions of normality and homogeneity of variances using graphical methods and statistical tests.</li>
+<li>Identify which pair(s) of treatment means are significantly different using post-hoc tests.</li>
+<li>Understand the trade-off between controlling the family-wise error rate and maintaining statistical power.</li>
+</ol>
 <p>We will assume we have formed a hypothesis, designed an experiment, collected data and entered it into R. In our case we have chosen an ANOVA for our model and now need to do an assessment of model assumptions.</p>
 </section>
-<section id="assessing-anova-assumptions-using-residuals" class="level1 page-columns page-full" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Assessing ANOVA Assumptions Using Residuals</h1>
-<p>First we need to understand a few key concepts.</p>
-<section id="what-are-residuals" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-are-residuals"><span class="header-section-number">2.1</span> What are residuals?</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Residuals
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="assessing-anova-assumptions-using-residuals" class="level1 page-columns page-full" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Assessing ANOVA assumptions using residuals</h1>
+<section id="exercise-1-why-use-residuals" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-1-why-use-residuals">Exercise 1: Why use residuals</h2>
 <p>Residuals are the differences between the observed values and the values predicted by our statistical model. In the context of ANOVA, residuals help us assess how well our model fits the data.</p>
-</div>
-</div>
 <p>Mathematically, the residual for each observation can be calculated as:</p>
 <p><span class="math display">
 \text{Residual} = \text{Observed Value} - \text{Predicted Value}
 </span></p>
 <p>Residuals have key advantages over raw data for testing assumptions and you will be required to use the residuals of your model to test the assumptions of ANOVA and regression from now on.</p>
-<p>Key advantages of using residuals:</p>
-<ul>
-<li>They isolate the unexplained variation in the data after accounting for the effects of the independent variables.</li>
-<li>They allow us to assess the assumptions of the model more directly, as they should ideally be randomly distributed if the model is appropriate.</li>
-<li>They are the best way to test for assumptions of more complex models where there are multiple factors, which we will introduce in following weeks.</li>
-</ul>
-</section>
-<section id="exercise-1-why-use-residuals" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="exercise-1-why-use-residuals"><span class="header-section-number">2.2</span> Exercise 1: Why use residuals?</h2>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="part-a-synthetic-data-demonstration" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-a-synthetic-data-demonstration">Part A — Synthetic data demonstration</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>This exercise illustrates why it is not ideal to test the normality assumption using all of the observations irrespective of the treatments or the size of dataset.</p>
-</div>
-</div>
-<p>First we will create 2 synthetic datasets which we sample 50 times (<code>n=50</code>) from a normally distributed population. Both underlying populations have the same variation (<code>sd=3</code>) but have a different mean (<code>mean=10</code>, <code>mean=40</code>). We then plot the histograms for each individually, both groups combined and the combined residuals (observation minus group mean).</p>
+</div></div><p>First we will create 2 synthetic datasets which we sample 50 times (<code>n=50</code>) from a normally distributed population. Both underlying populations have the same variation (<code>sd=3</code>) but have a different mean (<code>mean=10</code>, <code>mean=40</code>). We then plot the histograms for each individually, both groups combined and the combined residuals (observation minus group mean).</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">40</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
@@ -348,7 +299,6 @@ Important
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">hist</span>(group2, <span class="at">main =</span> <span class="st">"B: Group2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1, group2), <span class="at">main =</span> <span class="st">"C: Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1 <span class="sc">-</span> <span class="fu">mean</span>(group1), group2 <span class="sc">-</span> <span class="fu">mean</span>(group2)), <span class="at">main =</span> <span class="st">"D: Residuals Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -356,18 +306,14 @@ Important
 </figure>
 </div>
 </div>
-<details class="code-fold">
-<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>We can see that histogram of each group is normally distributed (A, B), however when we combine the data we have 2 distinct groupings centred on the mean of each group (C). Therefore, if we look at the raw data irrespective of the groups we <strong>would not see a normally distributed dataset</strong>. This is because the effect of individual treatments (or groups) is different so each observation is perturbed according to the treatment it receives or group it is in. If we examine the residuals (D), the treatment (or group) effects have been removed and we can then test if the data is normal or has constant variance. It requires fitting of a model to the data, in this case a 1-way ANOVA model. This is why we test the assumptions on the residuals. You could look at the distribution of each group separately but then for some experiments the replication is small so it is hard to assess normality, using residuals allows all of the observations to be pooled together.</p>
-<section id="testing-assumptions-using-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="testing-assumptions-using-residuals">1.1) Testing assumptions using residuals</h3>
+</section>
+<section id="part-b-fitting-anova-and-extracting-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-fitting-anova-and-extracting-residuals">Part B — Fitting ANOVA and extracting residuals</h3>
 <p>Now we will fit a one-way ANOVA model to the data and extract the residuals to test the assumptions of normality and homogeneity of variance.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Create a data frame</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">value =</span> <span class="fu">c</span>(group1, group2),</span>
@@ -379,7 +325,6 @@ Important
 <span id="cb3-9"><a href="#cb3-9"></a>residuals_anova <span class="ot">&lt;-</span> <span class="fu">residuals</span>(anova_model)</span>
 <span id="cb3-10"><a href="#cb3-10"></a><span class="co"># Plot histogram of residuals</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a><span class="fu">hist</span>(residuals_anova, <span class="at">main =</span> <span class="st">"Histogram of Residuals"</span>, <span class="at">xlab =</span> <span class="st">"Residuals"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -389,13 +334,10 @@ Important
 </div>
 </div>
 <p>We can see that the histogram of the residuals appears to be normally distributed.</p>
-<p>Let’s compare this to the histogram of the raw data (also plot C above).</p>
+<p>We can compare this to the histogram of the raw data (also plot C above).</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Plot histogram of raw data</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">hist</span>(data<span class="sc">$</span>value, <span class="at">main =</span> <span class="st">"Histogram of Raw Data"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -405,14 +347,14 @@ Important
 </div>
 </div>
 <p>The histogram of the raw data shows two distinct peaks corresponding to the two groups, indicating that the data is not normally distributed when considering all observations together. This highlights the importance of using residuals to assess normality in the context of ANOVA.</p>
+</section>
+<section id="part-c-q-q-plot" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-c-q-q-plot">Part C — Q-Q plot</h3>
 <p>We can also create a Q-Q plot to further assess normality.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Q-Q plot of residuals</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">qqnorm</span>(residuals_anova)</span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">qqline</span>(residuals_anova, <span class="at">col =</span> <span class="st">"red"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -422,71 +364,63 @@ Important
 </div>
 </div>
 <p>The Q-Q plot shows that the residuals closely follow the reference line, indicating that they are approximately normally distributed.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>ANOVA has several key assumptions: (1) <strong>Independence</strong> — the observations are independent of each other; (2) <strong>Normality</strong> — the residuals of the model are normally distributed; (3) <strong>Homogeneity of variances</strong> — the variances across the different groups are equal.</p>
+</div></div><div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>ANOVA has several key assumptions:
+<span class="screen-reader-only">Note</span>Checkpoint
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><strong>Independence</strong>: The observations are independent of each other.</li>
-<li><strong>Normality</strong>: The residuals of the model are normally distributed.</li>
-<li><strong>Homogeneity of variances</strong>: The variances across the different groups are equal.</li>
-</ol>
+<p>We should be able to explain why residuals are used to assess ANOVA assumptions instead of raw data, and produce a histogram and Q-Q plot of residuals in R.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="statistical-tests-and-graphical-approaches" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="statistical-tests-and-graphical-approaches"><span class="header-section-number">2.3</span> Statistical tests and graphical approaches</h2>
 </section>
-<section id="exercise-2-diatoms-in-streams" class="level2 page-columns page-full" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="exercise-2-diatoms-in-streams"><span class="header-section-number">2.4</span> Exercise 2: Diatoms in streams</h2>
-<p>Here we will test the assumptions using residual diagnostics and finding significant differences using plots and Tukey’s test. The data is found in the <strong>Diatoms</strong> worksheet.</p>
+<section id="assumption-testing-with-real-data" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Assumption testing with real data</h1>
+<section id="exercise-2-frog-diversity-in-streams" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-2-frog-diversity-in-streams">Exercise 2: Frog diversity in streams</h2>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="images/Sea_ice_diatoms.jpeg" class="img-fluid figure-img" width="486"></p>
-<figcaption class="margin-caption">Image credit: B. Caissie, https://diatoms.org/</figcaption>
+<p><img src="images/Mixophyes_fleayi.JPG" class="img-fluid figure-img" width="486"></p>
+<figcaption class="margin-caption">Fleay’s Barred Frog (<em>Mixophyes fleayi</em>). Image credit: Froggydarb at English Wikipedia</figcaption>
 </figure>
 </div>
-<p>A researcher is interested in the effect of zinc pollution on the diversity of diatom communities in streams. They set up an experiment with four levels of zinc concentration: background (back), low, medium, and high. After a certain period, they measure the diversity of diatom species in each stream.</p>
-<section id="importing-and-processing-data-then-fitting-an-anova-model" class="level3">
-<h3 class="anchored" data-anchor-id="importing-and-processing-data-then-fitting-an-anova-model">2.1) Importing and processing data, then fitting an ANOVA model</h3>
+<p>A researcher is interested in the effect of zinc pollution on the diversity of frog communities in streams. They set up an experiment with four levels of zinc concentration: background (back), low, medium, and high. After a certain period, they measure the diversity of frog species in each stream.</p>
+<p>Design: Four zinc levels — back (background), low, medium, high; n = 12 streams per level.</p>
+<p>Variables:</p>
+<ul>
+<li>stream_id — unique stream replicate ID</li>
+<li>treatment — zinc treatment level</li>
+<li>zinc_mg_L — nominal zinc concentration (mg/L; illustrative, not measured)</li>
+<li>shannon_diversity — synthetic Shannon diversity (H′) for frog communities</li>
+</ul>
+<section id="part-a-import-data-and-fit-anova" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-import-data-and-fit-anova">Part A — Import data and fit ANOVA</h3>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>diatoms <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/Data4.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Diatoms"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>diatoms<span class="sc">$</span>Zinc <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(diatoms<span class="sc">$</span>Zinc)</span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">str</span>(diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>frogs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/frog_zinc_diversity.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">str</span>(frogs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tibble [34 × 4] (S3: tbl_df/tbl/data.frame)
- $ Stream   : chr [1:34] "Eagle" "Blue" "Blue" "Blue" ...
- $ Zinc     : Factor w/ 4 levels "BACK","HIGH",..: 1 1 1 1 1 1 1 1 3 3 ...
- $ Diversity: num [1:34] 2.27 1.7 2.05 1.98 2.2 1.53 0.76 1.89 1.4 2.18 ...
- $ Group    : num [1:34] 1 1 1 1 1 1 1 1 2 2 ...</code></pre>
+<pre><code>'data.frame':   48 obs. of  4 variables:
+ $ stream_id        : chr  "back_01" "back_02" "back_03" "back_04" ...
+ $ treatment        : chr  "back" "back" "back" "back" ...
+ $ zinc_mg_L        : num  0.005 0.005 0.005 0.005 0.005 0.005 0.005 0.005 0.005 0.005 ...
+ $ shannon_diversity: num  1.777 2.167 0.69 3.8 0.833 ...</code></pre>
 </div>
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>anova.diatoms <span class="ot">&lt;-</span> <span class="fu">aov</span>(Diversity <span class="sc">~</span> Zinc, <span class="at">data =</span> diatoms)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">summary</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-Zinc         3  2.567  0.8555   3.939 0.0176 *
-Residuals   30  6.516  0.2172                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>anova.frogs <span class="ot">&lt;-</span> <span class="fu">aov</span>(shannon_diversity <span class="sc">~</span> treatment, <span class="at">data =</span> frogs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="testing-assumptions" class="level3">
-<h3 class="anchored" data-anchor-id="testing-assumptions">2.2) Testing assumptions</h3>
+<section id="part-b-testing-normality" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-testing-normality">Part B — Testing normality</h3>
 <p>To test the model assumptions we encourage you to produce 3 figures:</p>
 <ul>
 <li>histogram of the residuals;</li>
@@ -495,28 +429,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 <p>It is good practice to base this on the standardised residuals which can be extracted from a model object using the <code>rstandard</code> function. Standardised residuals are <span class="math inline">\sim N(0,1)</span>, and make it easier to interpret the plots for outliers. Based on the normal distribution 95% of observations fall within ±2 SD’s of the mean or in the case of standardised residuals ±2.</p>
 <p><strong>Histogram of standardised residuals:</strong></p>
-<p>The figure below presents the histogram of the standardised residuals. The majority of the observations plot as a bell-shaped (normal) distribution. The exception are 2 observations less than -2. Given there are 34 observations this is about 6% of the dataset so acceptable given we expect 95% observations to be in the interval of ~[-2, 2].</p>
+<p>The figure below presents the histogram of the standardised residuals. The majority of the observations show a skew in the distribution.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial04_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Q-Q plot:</strong></p>
-<p>The QQ plot below shows that the observed quantiles match the theoretical quantiles (assuming normality) based on the observations reasonably following the 1:1 line. We can assume the data is normally distributed.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(anova.diatoms))</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(anova.frogs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -525,80 +440,60 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>
-<p>An alternative method for testing normality is to use the Shapiro-Wilk test. This test has the null hypothesis that the data is normally distributed. A p-value &gt; 0.05 indicates we fail to reject the null hypothesis and therefore the data is normally distributed.</p>
+<p><strong>Q-Q plot:</strong></p>
+<p>The QQ plot below shows that the observed quantiles deviate from the theoretical quantiles (assuming normality). The observations do not follow the line. We can assume the data is not normally distributed.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(anova.frogs))</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An alternative method for testing normality is to use the Shapiro-Wilk test. This test has the null hypothesis that the data is normally distributed. A p-value &lt; 0.05 indicates we reject the null hypothesis and therefore the data is not normally distributed.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.frogs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
 
-data:  rstandard(anova.diatoms)
-W = 0.96923, p-value = 0.4405</code></pre>
+data:  rstandard(anova.frogs)
+W = 0.91194, p-value = 0.001564</code></pre>
 </div>
 </div>
-<p>The p-value is &gt; 0.05 so we can assume the data is normally distributed.</p>
 </section>
-<section id="testing-the-assumption-of-constant-variance-homoscedasticity" class="level3">
-<h3 class="anchored" data-anchor-id="testing-the-assumption-of-constant-variance-homoscedasticity">Testing the assumption of constant variance (homoscedasticity)</h3>
-<p>The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. This is the case here. We don’t want to see <em>fanning</em> where the spread of residuals increases or decreases while the fitted values increase.</p>
+<section id="part-c-testing-equal-variance-homoscedasticity" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-testing-equal-variance-homoscedasticity">Part C — Testing equal variance (homoscedasticity)</h3>
+<p>The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. We do not want to see <em>fanning</em> where the spread of residuals increases or decreases while the fitted values increase. In this case it is hard to see any fanning in this plot - mostly at the beginning, so your conclusion may be that the assumption of equal variance is fine.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(anova.diatoms), <span class="fu">rstandard</span>(anova.diatoms))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(anova.frogs), <span class="fu">rstandard</span>(anova.frogs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial04_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Alternatively we can use the Bartlett test to test for homogeneity of variance using the residuals. The null hypothesis is that the variances are equal across groups. A p-value &gt; 0.05 indicates we fail to reject the null hypothesis and therefore the variances are equal.</p>
+<p>Alternatively we can use the Bartlett test to test for homogeneity of variance using the residuals. The null hypothesis is that the variances are equal across groups. A p-value &lt; 0.05 indicates we reject the null hypothesis and therefore the variances are not equal.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.diatoms) <span class="sc">~</span> diatoms<span class="sc">$</span>Zinc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.frogs) <span class="sc">~</span> frogs<span class="sc">$</span>treatment)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Bartlett test of homogeneity of variances
 
-data:  rstandard(anova.diatoms) by diatoms$Zinc
-Bartlett's K-squared = 0.25337, df = 3, p-value = 0.9685</code></pre>
+data:  rstandard(anova.frogs) by frogs$treatment
+Bartlett's K-squared = 9.4218, df = 3, p-value = 0.02418</code></pre>
 </div>
 </div>
-<p>The p-value is &gt; 0.05 so we can assume the variances are equal.</p>
+<p>Note that sometimes the two approaches may lead to different conclusions…but why?</p>
 <p>We can also use the built-in <code>plot()</code> function to produce the diagnostics plots.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">plot</span>(anova.diatoms)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial04_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>or:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">plot</span>(anova.diatoms, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">plot</span>(anova.diatoms, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">plot</span>(anova.frogs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -606,81 +501,32 @@ Bartlett's K-squared = 0.25337, df = 3, p-value = 0.9685</code></pre>
 </figure>
 </div>
 </div>
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<hr>
-</section>
-</section>
-</section>
-<section id="identifying-significant-differences-post-hoc-tests" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Identifying Significant Differences: Post-hoc Tests</h1>
-<p>Now that we have tested the assumptions of the ANOVA and found them to be acceptable we can determine which pairs of treatment means are significantly different. We can do this using Tukey’s Honest Significant Difference using the <code>emmeans</code> package.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>When to do a post-hoc test?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Post-hoc tests are performed after an ANOVA when there are significant differences among group means. The purpose of post-hoc tests is to identify which specific pairs of group means are significantly different from each other.</p>
-<p><strong>Don’t do a post-hoc test if the ANOVA is not significant!</strong></p>
-</div>
-</div>
+<p>or:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Welcome to emmeans.
-Caution: You lose important information if you filter this package's results.
-See '? untidy'</code></pre>
-</div>
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>tukey.diatoms <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.diatoms, pairwise <span class="sc">~</span> <span class="st">"Zinc"</span>)</span>
-<span id="cb23-2"><a href="#cb23-2"></a>tukey.diatoms</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>$emmeans
- Zinc emmean    SE df lower.CL upper.CL
- BACK   1.80 0.165 30    1.461     2.13
- HIGH   1.28 0.155 30    0.961     1.60
- LOW    2.03 0.165 30    1.696     2.37
- MED    1.72 0.155 30    1.401     2.04
-
-Confidence level used: 0.95 
-
-$contrasts
- contrast    estimate    SE df t.ratio p.value
- BACK - HIGH   0.5197 0.226 30   2.295  0.1219
- BACK - LOW   -0.2350 0.233 30  -1.008  0.7457
- BACK - MED    0.0797 0.226 30   0.352  0.9847
- HIGH - LOW   -0.7547 0.226 30  -3.333  0.0117
- HIGH - MED   -0.4400 0.220 30  -2.003  0.2096
- LOW - MED     0.3147 0.226 30   1.390  0.5153
-
-P value adjustment: tukey method for comparing a family of 4 estimates </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">plot</span>(anova.frogs, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">plot</span>(anova.frogs, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>The output shows the pairwise comparisons between the different Zinc treatments. The <code>p.value</code> column indicates whether the differences between the means are statistically significant. A p-value less than 0.05 indicates a significant difference between the treatment means.</p>
-<p>From the results, we can see that:</p>
-<ul>
-<li>The comparison between Zinc High and Zinc low has a p-value of 0.0117, indicating a significant difference in means.</li>
-<li>The other comparisons were not significant as their p-values are greater than 0.05.</li>
-</ul>
-<p>We can also visualise the results using a plot.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="part-d-transforming-the-data" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-d-transforming-the-data">Part D — Transforming the data</h3>
+<p>If the assumptions of normality and/or homogeneity of variances are not met, we can try transforming the response variable to meet these assumptions. Common transformations include log and square root transformations.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">plot</span>(tukey.diatoms, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>anova.log.frogs <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(shannon_diversity) <span class="sc">~</span> treatment, <span class="at">data =</span> frogs)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">plot</span>(anova.log.frogs, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">plot</span>(anova.log.frogs, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -688,99 +534,198 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>We can also check the statistical tests for normality and homogeneity of variances on the log-transformed data.</p>
+<p>For normality:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.log.frogs))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  rstandard(anova.log.frogs)
+W = 0.9892, p-value = 0.9344</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Interpreting the plot
+</div>
+<p>P&gt;0.05 so we can assume the residuals are normally distributed.</p>
+<p>For homogeneity of variances:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.log.frogs) <span class="sc">~</span> frogs<span class="sc">$</span>treatment)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  rstandard(anova.log.frogs) by frogs$treatment
+Bartlett's K-squared = 3.2243, df = 3, p-value = 0.3583</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>If the confidence intervals do not cross over each other, then that pair significantly differs from each other.</p>
+<p>P &gt; 0.05 so we can assume the variances are equal across groups.</p>
+<p>We can proceed with the log-transformed data for our ANOVA analysis and post-hoc tests.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>As our models become more complicated, it becomes harder to use the Shapiro-Wilk normality test and Bartlett test of homogeneity of variances. Use graphical methods instead.</p>
+</div></div><p>ANOVA summary:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">summary</span>(anova.log.frogs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+treatment    3  4.991  1.6638   5.544 0.00257 **
+Residuals   44 13.206  0.3001                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>This plot shows the estimated marginal means (EMM) for each Zinc treatment. In the plot function above, we’ve specified <code>comparisons = TRUE</code>. The blue bars are confidence intervals for the EMMs, and the red arrows are for the comparisons among them. If an arrow from one mean overlaps an arrow from another group, the difference is not significant.</p>
-<p>Overall, this analysis allows us to identify which Zinc treatments have significantly different effects on diatom diversity in streams.</p>
-<p>We will explore this experiment further in the practical.</p>
+<p>We can conclude there is a significant effect of treatment on the Shannon diversity of frog communities in streams (p-value = 0.003). This indicates that at least one of the treatment groups has a significantly different mean Shannon diversity compared to the others.</p>
 <hr>
 </section>
-<section id="family-wise-error-rate-and-power-trade-off" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Family-wise Error Rate and Power Trade-off</h1>
-<section id="exercise-3-family-wise-error-rate" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="exercise-3-family-wise-error-rate"><span class="header-section-number">4.1</span> Exercise 3: Family-wise error rate</h2>
-<p>When conducting multiple pairwise comparisons, the family-wise error rate increases. To control the family-wise error rate, post-hoc tests like Tukey’s HSD are used, which adjust the significance levels to account for the number of comparisons being made.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="part-e-post-hoc-tests" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-e-post-hoc-tests">Part E — Post-hoc tests</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Post-hoc tests are performed after an ANOVA when there are significant differences among group means. The purpose of post-hoc tests is to identify which specific pairs of group means are significantly different from each other. <strong>Do not do a post-hoc test if the ANOVA is not significant!</strong></p>
+</div></div><p>We can determine which pairs of treatment means are significantly different. We can do this using Tukey’s Honest Significant Difference using the <code>emmeans</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>tukey.frogs <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.log.frogs, pairwise <span class="sc">~</span> treatment)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>tukey.frogs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$emmeans
+ treatment  emmean    SE df lower.CL upper.CL
+ back       0.5534 0.158 44    0.235   0.8722
+ high      -0.2684 0.158 44   -0.587   0.0503
+ low        0.4281 0.158 44    0.109   0.7468
+ medium     0.0594 0.158 44   -0.259   0.3781
+
+Results are given on the log (not the response) scale. 
+Confidence level used: 0.95 
+
+$contrasts
+ contrast      estimate    SE df t.ratio p.value
+ back - high      0.822 0.224 44   3.675  0.0035
+ back - low       0.125 0.224 44   0.561  0.9432
+ back - medium    0.494 0.224 44   2.209  0.1367
+ high - low      -0.697 0.224 44  -3.114  0.0165
+ high - medium   -0.328 0.224 44  -1.466  0.4664
+ low - medium     0.369 0.224 44   1.648  0.3628
+
+Results are given on the log (not the response) scale. 
+P value adjustment: tukey method for comparing a family of 4 estimates </code></pre>
+</div>
+</div>
+<p>The output shows the pairwise comparisons between the different Zinc treatments. The <code>p.value</code> column indicates whether the differences between the means are statistically significant. A p-value less than 0.05 indicates a significant difference between the treatment means.</p>
+<p>From the results, we can see that:</p>
+<ul>
+<li>The comparison between high and low has a p-value of 0.0165, indicating a significant difference in means. The back - high comparison has a p-value of 0.0035, also indicating a significant difference.</li>
+<li>The other comparisons were not significant as their p-values are greater than 0.05.</li>
+</ul>
+<p>You can also see the P values have been adjusted for multiple comparisons by the last line in the output.</p>
+<p>We can also visualise the results using a plot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">plot</span>(tukey.frogs, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial04_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This plot shows the estimated marginal means (EMM) for each Zinc treatment. In the plot function above, we have specified <code>comparisons = TRUE</code>. The blue bars are 95% confidence intervals for the EMMs, and the red arrows are for the comparisons among them (they are adjusted for the multiple comparisons to reduce type 1 errors). If an arrow from one mean overlaps an arrow from another group, the difference is not significant.</p>
+<p>Overall, this analysis allows us to identify which Zinc treatments have significantly different effects on frog diversity in streams.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Statistical tests for multiple comparisons can sometimes be difficult to interpret, especially when there are many groups involved. Hence many propose graphical methods as a more powerful way to determine which groups are different.</p>
+</div></div><div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Family-wise error rate
+<span class="screen-reader-only">Note</span>Checkpoint
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>We should be able to test ANOVA assumptions using diagnostic plots and formal tests, apply a log transformation when assumptions are violated, and use Tukey’s test to identify which groups differ.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="multiple-comparisons-and-the-error-power-trade-off" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Multiple comparisons and the error-power trade-off</h1>
+<section id="exercise-3-family-wise-error-rate-and-power" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-3-family-wise-error-rate-and-power">Exercise 3: Family-wise error rate and power</h2>
+<p>When conducting multiple pairwise comparisons, the family-wise error rate increases. To control the family-wise error rate, post-hoc tests like Tukey’s HSD are used, which adjust the significance levels to account for the number of comparisons being made.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>The family-wise error rate is the probability of making at least one Type I error (false positive) among all the comparisons.</p>
-</div>
-</div>
-<p>Tukey’s HSD test is designed to maintain the overall family-wise error rate at a specified level (commonly 0.05) while still providing sufficient power to detect true differences between group means.</p>
+</div></div><p>Tukey’s HSD test is designed to maintain the overall family-wise error rate at a specified level (commonly 0.05) while still providing sufficient power to detect true differences between group means.</p>
 <p>However, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</p>
 <p>Therefore, it is important to carefully consider the number of comparisons being made and choose appropriate post-hoc tests that balance the need for controlling Type I errors with the desire to maintain adequate statistical power.</p>
-<p>Let’s look at an example of the trade-off between family-wise error rate and power using simulation.</p>
+<section id="part-a-tukey-adjusted-comparisons" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-tukey-adjusted-comparisons">Part A — Tukey-adjusted comparisons</h3>
+<p>We can look at an example of the trade-off between family-wise error rate and power using simulation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb26-6"><a href="#cb26-6"></a>family_wise_errors <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a></span>
-<span id="cb26-8"><a href="#cb26-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
-<span id="cb26-9"><a href="#cb26-9"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb26-10"><a href="#cb26-10"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb26-11"><a href="#cb26-11"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
-<span id="cb26-12"><a href="#cb26-12"></a>  )</span>
-<span id="cb26-13"><a href="#cb26-13"></a>  </span>
-<span id="cb26-14"><a href="#cb26-14"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
-<span id="cb26-15"><a href="#cb26-15"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
-<span id="cb26-16"><a href="#cb26-16"></a>  </span>
-<span id="cb26-17"><a href="#cb26-17"></a>  <span class="cf">if</span> (<span class="fu">any</span>(tukey_result<span class="sc">$</span>group[, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha)) {</span>
-<span id="cb26-18"><a href="#cb26-18"></a>    family_wise_errors <span class="ot">&lt;-</span> family_wise_errors <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb26-19"><a href="#cb26-19"></a>  }</span>
-<span id="cb26-20"><a href="#cb26-20"></a>}</span>
-<span id="cb26-21"><a href="#cb26-21"></a>family_wise_error_rate <span class="ot">&lt;-</span> family_wise_errors <span class="sc">/</span> n_simulations</span>
-<span id="cb26-22"><a href="#cb26-22"></a>family_wise_error_rate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>family_wise_errors <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a></span>
+<span id="cb33-8"><a href="#cb33-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb33-9"><a href="#cb33-9"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb33-12"><a href="#cb33-12"></a>  )</span>
+<span id="cb33-13"><a href="#cb33-13"></a></span>
+<span id="cb33-14"><a href="#cb33-14"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb33-15"><a href="#cb33-15"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb33-16"><a href="#cb33-16"></a></span>
+<span id="cb33-17"><a href="#cb33-17"></a>  <span class="cf">if</span> (<span class="fu">any</span>(tukey_result<span class="sc">$</span>group[, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb33-18"><a href="#cb33-18"></a>    family_wise_errors <span class="ot">&lt;-</span> family_wise_errors <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb33-19"><a href="#cb33-19"></a>  }</span>
+<span id="cb33-20"><a href="#cb33-20"></a>}</span>
+<span id="cb33-21"><a href="#cb33-21"></a>family_wise_error_rate <span class="ot">&lt;-</span> family_wise_errors <span class="sc">/</span> n_simulations</span>
+<span id="cb33-22"><a href="#cb33-22"></a>family_wise_error_rate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.044</code></pre>
 </div>
 </div>
 <p>In this simulation, we create 5 groups with 10 observations each, and we run 1000 simulations. We fit a one-way ANOVA model to the data and perform Tukey’s HSD test for pairwise comparisons. We count how many times at <em>least one comparison is significant (p-value &lt; 0.05)</em> across all simulations to estimate the family-wise error rate (~0.04 or 4% error rate).</p>
 <p>The resulting family-wise error rate should be close to the nominal level of 0.05, demonstrating that Tukey’s HSD test effectively controls the family-wise error rate while maintaining reasonable power to detect true differences between group means.</p>
-<p>If we don’t use a post-hoc test and just do multiple t-tests we can see how the family-wise error rate increases. For example let’s not adjust the p-values for multiple comparisons:</p>
+</section>
+<section id="part-b-unadjusted-t-tests" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-unadjusted-t-tests">Part B — Unadjusted t-tests</h3>
+<p>If we do not use a post-hoc test and just do multiple t-tests we can see how the family-wise error rate increases. For example, we will not adjust the p-values for multiple comparisons:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>family_wise_errors_no_adjust <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
-<span id="cb28-3"><a href="#cb28-3"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb28-4"><a href="#cb28-4"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb28-5"><a href="#cb28-5"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
-<span id="cb28-6"><a href="#cb28-6"></a>  )</span>
-<span id="cb28-7"><a href="#cb28-7"></a>  </span>
-<span id="cb28-8"><a href="#cb28-8"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb28-9"><a href="#cb28-9"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_groups <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb28-10"><a href="#cb28-10"></a>    <span class="cf">for</span> (k <span class="cf">in</span> (j <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n_groups) {</span>
-<span id="cb28-11"><a href="#cb28-11"></a>      t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(j, k)))</span>
-<span id="cb28-12"><a href="#cb28-12"></a>      p_values <span class="ot">&lt;-</span> <span class="fu">c</span>(p_values, t_test_result<span class="sc">$</span>p.value)</span>
-<span id="cb28-13"><a href="#cb28-13"></a>    }</span>
-<span id="cb28-14"><a href="#cb28-14"></a>  }</span>
-<span id="cb28-15"><a href="#cb28-15"></a>  </span>
-<span id="cb28-16"><a href="#cb28-16"></a>  <span class="cf">if</span> (<span class="fu">any</span>(p_values <span class="sc">&lt;</span> alpha)) {</span>
-<span id="cb28-17"><a href="#cb28-17"></a>    family_wise_errors_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb28-18"><a href="#cb28-18"></a>  }</span>
-<span id="cb28-19"><a href="#cb28-19"></a>}</span>
-<span id="cb28-20"><a href="#cb28-20"></a>family_wise_error_rate_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">/</span> n_simulations</span>
-<span id="cb28-21"><a href="#cb28-21"></a>family_wise_error_rate_no_adjust</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>family_wise_errors_no_adjust <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb35-3"><a href="#cb35-3"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb35-6"><a href="#cb35-6"></a>  )</span>
+<span id="cb35-7"><a href="#cb35-7"></a></span>
+<span id="cb35-8"><a href="#cb35-8"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb35-9"><a href="#cb35-9"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_groups <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb35-10"><a href="#cb35-10"></a>    <span class="cf">for</span> (k <span class="cf">in</span> (j <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n_groups) {</span>
+<span id="cb35-11"><a href="#cb35-11"></a>      t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(j, k)))</span>
+<span id="cb35-12"><a href="#cb35-12"></a>      p_values <span class="ot">&lt;-</span> <span class="fu">c</span>(p_values, t_test_result<span class="sc">$</span>p.value)</span>
+<span id="cb35-13"><a href="#cb35-13"></a>    }</span>
+<span id="cb35-14"><a href="#cb35-14"></a>  }</span>
+<span id="cb35-15"><a href="#cb35-15"></a></span>
+<span id="cb35-16"><a href="#cb35-16"></a>  <span class="cf">if</span> (<span class="fu">any</span>(p_values <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb35-17"><a href="#cb35-17"></a>    family_wise_errors_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb35-18"><a href="#cb35-18"></a>  }</span>
+<span id="cb35-19"><a href="#cb35-19"></a>}</span>
+<span id="cb35-20"><a href="#cb35-20"></a>family_wise_error_rate_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">/</span> n_simulations</span>
+<span id="cb35-21"><a href="#cb35-21"></a>family_wise_error_rate_no_adjust</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.286</code></pre>
 </div>
@@ -788,111 +733,127 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
 <p>In this simulation, we perform multiple t-tests without adjusting the p-values for multiple comparisons. We count how many times at <em>least one comparison is significant (p-value &lt; 0.05)</em> across all simulations to estimate the family-wise error rate.</p>
 <p>The resulting family-wise error rate should be significantly higher than the nominal level of 0.05 (i.e.&nbsp;~0.286 or 29% error rate!), demonstrating that not adjusting for multiple comparisons leads to an increased risk of Type I errors.</p>
 <p>This example highlights the importance of using post-hoc tests like Tukey’s HSD to control the family-wise error rate when conducting multiple pairwise comparisons in ANOVA.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Visual methods for multiple comparisons
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Statistical tests for multiple comparisons can sometimes be difficult to interpret, especially when there are many groups involved. Hence many propose graphical methods as a more powerful way to determine which groups are different, as we saw in the plot above.</p>
-</div>
-</div>
 </section>
-<section id="power-trade-off" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="power-trade-off"><span class="header-section-number">4.2</span> Power trade-off</h2>
-<p>When conducting multiple comparisons, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Statistical power
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="part-c-power-trade-off" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="part-c-power-trade-off">Part C — Power trade-off</h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>Statistical power is the probability of correctly rejecting the null hypothesis when it is false (i.e., detecting a true effect).</p>
-</div>
-</div>
+</div></div><p>When conducting multiple comparisons, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</p>
 <p>To illustrate this trade-off, we can simulate data with a known effect size and compare the power of Tukey’s HSD test to that of unadjusted t-tests.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb30-2"><a href="#cb30-2"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb30-6"><a href="#cb30-6"></a>true_effect_size <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a>power_tukey <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb30-8"><a href="#cb30-8"></a>power_t_test <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
-<span id="cb30-10"><a href="#cb30-10"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb30-11"><a href="#cb30-11"></a>    <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb30-12"><a href="#cb30-12"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> true_effect_size, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb30-13"><a href="#cb30-13"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb30-14"><a href="#cb30-14"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
-<span id="cb30-15"><a href="#cb30-15"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)),</span>
-<span id="cb30-16"><a href="#cb30-16"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
-<span id="cb30-17"><a href="#cb30-17"></a>  )</span>
-<span id="cb30-18"><a href="#cb30-18"></a>  </span>
-<span id="cb30-19"><a href="#cb30-19"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
-<span id="cb30-20"><a href="#cb30-20"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
-<span id="cb30-21"><a href="#cb30-21"></a>  </span>
-<span id="cb30-22"><a href="#cb30-22"></a>  <span class="cf">if</span> (tukey_result<span class="sc">$</span>group[<span class="st">"2-1"</span>, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha) {</span>
-<span id="cb30-23"><a href="#cb30-23"></a>    power_tukey <span class="ot">&lt;-</span> power_tukey <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb30-24"><a href="#cb30-24"></a>  }</span>
-<span id="cb30-25"><a href="#cb30-25"></a>  </span>
-<span id="cb30-26"><a href="#cb30-26"></a>  t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
-<span id="cb30-27"><a href="#cb30-27"></a>  <span class="cf">if</span> (t_test_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
-<span id="cb30-28"><a href="#cb30-28"></a>    power_t_test <span class="ot">&lt;-</span> power_t_test <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb30-29"><a href="#cb30-29"></a>  }</span>
-<span id="cb30-30"><a href="#cb30-30"></a>}</span>
-<span id="cb30-31"><a href="#cb30-31"></a>power_tukey_rate <span class="ot">&lt;-</span> power_tukey <span class="sc">/</span> n_simulations</span>
-<span id="cb30-32"><a href="#cb30-32"></a>power_t_test_rate <span class="ot">&lt;-</span> power_t_test <span class="sc">/</span> n_simulations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>true_effect_size <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>power_tukey <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a>power_t_test <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb37-9"><a href="#cb37-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb37-10"><a href="#cb37-10"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb37-11"><a href="#cb37-11"></a>    <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb37-12"><a href="#cb37-12"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> true_effect_size, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb37-13"><a href="#cb37-13"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb37-14"><a href="#cb37-14"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb37-15"><a href="#cb37-15"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)),</span>
+<span id="cb37-16"><a href="#cb37-16"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb37-17"><a href="#cb37-17"></a>  )</span>
+<span id="cb37-18"><a href="#cb37-18"></a></span>
+<span id="cb37-19"><a href="#cb37-19"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb37-20"><a href="#cb37-20"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb37-21"><a href="#cb37-21"></a></span>
+<span id="cb37-22"><a href="#cb37-22"></a>  <span class="cf">if</span> (tukey_result<span class="sc">$</span>group[<span class="st">"2-1"</span>, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb37-23"><a href="#cb37-23"></a>    power_tukey <span class="ot">&lt;-</span> power_tukey <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb37-24"><a href="#cb37-24"></a>  }</span>
+<span id="cb37-25"><a href="#cb37-25"></a></span>
+<span id="cb37-26"><a href="#cb37-26"></a>  t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
+<span id="cb37-27"><a href="#cb37-27"></a>  <span class="cf">if</span> (t_test_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb37-28"><a href="#cb37-28"></a>    power_t_test <span class="ot">&lt;-</span> power_t_test <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb37-29"><a href="#cb37-29"></a>  }</span>
+<span id="cb37-30"><a href="#cb37-30"></a>}</span>
+<span id="cb37-31"><a href="#cb37-31"></a>power_tukey_rate <span class="ot">&lt;-</span> power_tukey <span class="sc">/</span> n_simulations</span>
+<span id="cb37-32"><a href="#cb37-32"></a>power_t_test_rate <span class="ot">&lt;-</span> power_t_test <span class="sc">/</span> n_simulations</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># print results:</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">cat</span>(<span class="st">"Adjusted for family-rate errors using Tukey's test. Proportion correctly detected:"</span>, power_tukey_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># print results:</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">cat</span>(<span class="st">"Adjusted for family-rate errors using Tukey's test. Proportion correctly detected:"</span>, power_tukey_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Adjusted for family-rate errors using Tukey's test. Proportion correctly detected: 0.299 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">cat</span>(<span class="st">"Unadjusted t-tests. Proportion correctly detected:"</span>, power_t_test_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">cat</span>(<span class="st">"Unadjusted t-tests. Proportion correctly detected:"</span>, power_t_test_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unadjusted t-tests. Proportion correctly detected: 0.568 </code></pre>
 </div>
 </div>
 <p>In this simulation, we create 5 groups with 10 observations each, where one group has a true effect size of 1. We run 1000 simulations and fit a one-way ANOVA model to the data. We then perform Tukey’s HSD test and unadjusted t-tests to compare the power of each method in detecting the true effect.</p>
 <p>The resulting power rates indicate the proportion of simulations in which each method correctly detected the true effect. We expect the power of the unadjusted t-tests to be <em>higher (~57%)</em> than that of Tukey’s HSD test <em>(~30%)</em>, demonstrating the trade-off between controlling the family-wise error rate and maintaining statistical power.</p>
-<hr>
 </section>
-</section>
-<section id="summary" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Summary</h1>
-<p>In this tutorial, we covered the following key concepts:</p>
-<ul>
-<li>The importance of using residuals to assess the assumptions of ANOVA.</li>
-<li>How to test the assumptions of normality and homogeneity of variances using graphical methods and statistical tests.</li>
-<li>When to perform post-hoc tests and how to interpret the results of Tukey’s test.</li>
-<li>The trade-off between controlling the family-wise error rate and maintaining statistical power when conducting multiple comparisons.</li>
-</ul>
-<p>By understanding and applying these concepts, you will be better equipped to conduct robust experimental design and statistical analyses in R and interpret the results accurately.</p>
-<section id="example-exam-questions" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="example-exam-questions"><span class="header-section-number">5.1</span> Example exam questions</h2>
-<ol type="1">
-<li><p>Explain why residuals are used to assess the assumptions of ANOVA instead of the raw data. Provide an example to illustrate your explanation.</p></li>
-<li><p>Describe the assumptions of ANOVA and outline the graphical and statistical methods used to test these assumptions using residuals.</p></li>
-<li><p>A researcher conducts a one-way ANOVA and finds a significant effect of treatment on a response variable. Explain when and why post-hoc tests are necessary, and describe how to interpret the results of Tukey’s Honest Significant Difference (HSD) test.</p></li>
-<li><p>Discuss the trade-off between controlling the family-wise error rate and maintaining statistical power when conducting multiple comparisons. Provide an example to illustrate this trade-off.</p></li>
-</ol>
+<section id="part-d-explore-the-trade-off" class="level3">
+<h3 class="anchored" data-anchor-id="part-d-explore-the-trade-off">Part D — Explore the trade-off</h3>
+<p>The simulations above used 5 groups. Use the widget below to see how the trade-off changes as the number of groups increases.</p>
+<style>
+#part-d-explore-the-trade-off .cell-output-display {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb42" data-startfrom="453" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 452;"><span id="cb42-453"><a href="#cb42-453"></a><span class="im">import</span> { fwePowerWidget } <span class="im">from</span> <span class="st">"../assets/js/fwe-power-widget.js"</span></span>
+<span id="cb42-454"><a href="#cb42-454"></a><span class="fu">fwePowerWidget</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We should be able to explain the trade-off between controlling the family-wise error rate and maintaining statistical power, and why Tukey’s test is preferred over unadjusted t-tests for multiple comparisons.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="wrap-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
+<p>We covered the use of residuals for checking ANOVA assumptions, applied diagnostic tools to a real dataset, and explored how post-hoc tests balance error control with statistical power. In the lab, we will apply these techniques to new datasets and practise interpreting back-transformed results.</p>
+
+
+<!-- -->
 
 </section>
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IGZ3ZVBvd2VyV2lkZ2V0IH0gZnJvbSBcIi4uL2Fzc2V0cy9qcy9md2UtcG93ZXItd2lkZ2V0LmpzXCJcbmZ3ZVBvd2VyV2lkZ2V0KClcbiJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../tutorials";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -963,6 +924,57 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1292,7 +1304,474 @@ P value adjustment: tukey method for comparing a family of 4 estimates </code></
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">---</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="an">title:</span><span class="co"> "Tutorial 04"</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="co"># reviewed-by: Aaron Greenville</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="an">format:</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="co">---</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a></span>
+<span id="cb43-9"><a href="#cb43-9"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-11"><a href="#cb43-11"></a><span class="in">```</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a></span>
+<span id="cb43-13"><a href="#cb43-13"></a><span class="fu">## Welcome {.unnumbered}</span></span>
+<span id="cb43-14"><a href="#cb43-14"></a></span>
+<span id="cb43-15"><a href="#cb43-15"></a>In this week's lectures we covered how to check the assumptions of ANOVA using residual diagnostics, and how to determine which pairs of treatment means are significantly different using post-hoc tests. A solid understanding of these concepts is essential for conducting robust statistical analyses in R and before we move to more complex models in future weeks.</span>
+<span id="cb43-16"><a href="#cb43-16"></a></span>
+<span id="cb43-17"><a href="#cb43-17"></a>You will learn how to:</span>
+<span id="cb43-18"><a href="#cb43-18"></a></span>
+<span id="cb43-19"><a href="#cb43-19"></a><span class="ss">1. </span>Assess whether a fitted ANOVA model meets its statistical assumptions using residuals.</span>
+<span id="cb43-20"><a href="#cb43-20"></a><span class="ss">2. </span>Test the assumptions of normality and homogeneity of variances using graphical methods and statistical tests.</span>
+<span id="cb43-21"><a href="#cb43-21"></a><span class="ss">3. </span>Identify which pair(s) of treatment means are significantly different using post-hoc tests.</span>
+<span id="cb43-22"><a href="#cb43-22"></a><span class="ss">4. </span>Understand the trade-off between controlling the family-wise error rate and maintaining statistical power.</span>
+<span id="cb43-23"><a href="#cb43-23"></a></span>
+<span id="cb43-24"><a href="#cb43-24"></a>We will assume we have formed a hypothesis, designed an experiment, collected data and entered it into R. In our case we have chosen an ANOVA for our model and now need to do an assessment of model assumptions.</span>
+<span id="cb43-25"><a href="#cb43-25"></a></span>
+<span id="cb43-26"><a href="#cb43-26"></a></span>
+<span id="cb43-27"><a href="#cb43-27"></a><span class="fu"># Assessing ANOVA assumptions using residuals</span></span>
+<span id="cb43-28"><a href="#cb43-28"></a></span>
+<span id="cb43-29"><a href="#cb43-29"></a><span class="fu">## Exercise 1: Why use residuals {.unnumbered}</span></span>
+<span id="cb43-30"><a href="#cb43-30"></a></span>
+<span id="cb43-31"><a href="#cb43-31"></a>Residuals are the differences between the observed values and the values predicted by our statistical model. In the context of ANOVA, residuals help us assess how well our model fits the data.</span>
+<span id="cb43-32"><a href="#cb43-32"></a></span>
+<span id="cb43-33"><a href="#cb43-33"></a>Mathematically, the residual for each observation can be calculated as:</span>
+<span id="cb43-34"><a href="#cb43-34"></a></span>
+<span id="cb43-35"><a href="#cb43-35"></a>$$</span>
+<span id="cb43-36"><a href="#cb43-36"></a>\text{Residual} = \text{Observed Value} - \text{Predicted Value}</span>
+<span id="cb43-37"><a href="#cb43-37"></a>$$</span>
+<span id="cb43-38"><a href="#cb43-38"></a></span>
+<span id="cb43-39"><a href="#cb43-39"></a>Residuals have key advantages over raw data for testing assumptions and you will be required to use the residuals of your model to test the assumptions of ANOVA and regression from now on.</span>
+<span id="cb43-40"><a href="#cb43-40"></a></span>
+<span id="cb43-41"><a href="#cb43-41"></a><span class="fu">### Part A --- Synthetic data demonstration</span></span>
+<span id="cb43-42"><a href="#cb43-42"></a></span>
+<span id="cb43-43"><a href="#cb43-43"></a>::: {.column-margin}</span>
+<span id="cb43-44"><a href="#cb43-44"></a>This exercise illustrates why it is not ideal to test the normality assumption using all of the observations irrespective of the treatments or the size of dataset.</span>
+<span id="cb43-45"><a href="#cb43-45"></a>:::</span>
+<span id="cb43-46"><a href="#cb43-46"></a></span>
+<span id="cb43-47"><a href="#cb43-47"></a>First we will create 2 synthetic datasets which we sample 50 times (<span class="in">`n=50`</span>) from a normally distributed population. Both underlying populations have the same variation (<span class="in">`sd=3`</span>) but have a different mean (<span class="in">`mean=10`</span>, <span class="in">`mean=40`</span>). We then plot the histograms for each individually, both groups combined and the combined residuals (observation minus group mean).</span>
+<span id="cb43-48"><a href="#cb43-48"></a></span>
+<span id="cb43-51"><a href="#cb43-51"></a><span class="in">```{r}</span></span>
+<span id="cb43-52"><a href="#cb43-52"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb43-53"><a href="#cb43-53"></a>group1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb43-54"><a href="#cb43-54"></a>group2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="at">mean =</span> <span class="dv">40</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb43-55"><a href="#cb43-55"></a></span>
+<span id="cb43-56"><a href="#cb43-56"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb43-57"><a href="#cb43-57"></a><span class="fu">hist</span>(group1, <span class="at">main =</span> <span class="st">"A: Group1"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb43-58"><a href="#cb43-58"></a><span class="fu">hist</span>(group2, <span class="at">main =</span> <span class="st">"B: Group2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb43-59"><a href="#cb43-59"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1, group2), <span class="at">main =</span> <span class="st">"C: Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb43-60"><a href="#cb43-60"></a><span class="fu">hist</span>(<span class="fu">c</span>(group1 <span class="sc">-</span> <span class="fu">mean</span>(group1), group2 <span class="sc">-</span> <span class="fu">mean</span>(group2)), <span class="at">main =</span> <span class="st">"D: Residuals Group1&amp;2"</span>, <span class="at">xlab =</span> <span class="st">""</span>)</span>
+<span id="cb43-61"><a href="#cb43-61"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb43-62"><a href="#cb43-62"></a><span class="in">```</span></span>
+<span id="cb43-63"><a href="#cb43-63"></a></span>
+<span id="cb43-64"><a href="#cb43-64"></a>We can see that histogram of each group is normally distributed (A, B), however when we combine the data we have 2 distinct groupings centred on the mean of each group (C). Therefore, if we look at the raw data irrespective of the groups we **would not see a normally distributed dataset**. This is because the effect of individual treatments (or groups) is different so each observation is perturbed according to the treatment it receives or group it is in. If we examine the residuals (D), the treatment (or group) effects have been removed and we can then test if the data is normal or has constant variance. It requires fitting of a model to the data, in this case a 1-way ANOVA model. This is why we test the assumptions on the residuals. You could look at the distribution of each group separately but then for some experiments the replication is small so it is hard to assess normality, using residuals allows all of the observations to be pooled together.</span>
+<span id="cb43-65"><a href="#cb43-65"></a></span>
+<span id="cb43-66"><a href="#cb43-66"></a><span class="fu">### Part B --- Fitting ANOVA and extracting residuals</span></span>
+<span id="cb43-67"><a href="#cb43-67"></a></span>
+<span id="cb43-68"><a href="#cb43-68"></a>Now we will fit a one-way ANOVA model to the data and extract the residuals to test the assumptions of normality and homogeneity of variance.</span>
+<span id="cb43-69"><a href="#cb43-69"></a></span>
+<span id="cb43-72"><a href="#cb43-72"></a><span class="in">```{r}</span></span>
+<span id="cb43-73"><a href="#cb43-73"></a><span class="co"># Create a data frame</span></span>
+<span id="cb43-74"><a href="#cb43-74"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb43-75"><a href="#cb43-75"></a>  <span class="at">value =</span> <span class="fu">c</span>(group1, group2),</span>
+<span id="cb43-76"><a href="#cb43-76"></a>  <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Group1"</span>, <span class="st">"Group2"</span>), <span class="at">each =</span> <span class="dv">50</span>))</span>
+<span id="cb43-77"><a href="#cb43-77"></a>)</span>
+<span id="cb43-78"><a href="#cb43-78"></a><span class="co"># Fit a one-way ANOVA model</span></span>
+<span id="cb43-79"><a href="#cb43-79"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb43-80"><a href="#cb43-80"></a><span class="co"># Extract residuals</span></span>
+<span id="cb43-81"><a href="#cb43-81"></a>residuals_anova <span class="ot">&lt;-</span> <span class="fu">residuals</span>(anova_model)</span>
+<span id="cb43-82"><a href="#cb43-82"></a><span class="co"># Plot histogram of residuals</span></span>
+<span id="cb43-83"><a href="#cb43-83"></a><span class="fu">hist</span>(residuals_anova, <span class="at">main =</span> <span class="st">"Histogram of Residuals"</span>, <span class="at">xlab =</span> <span class="st">"Residuals"</span>)</span>
+<span id="cb43-84"><a href="#cb43-84"></a><span class="in">```</span></span>
+<span id="cb43-85"><a href="#cb43-85"></a></span>
+<span id="cb43-86"><a href="#cb43-86"></a>We can see that the histogram of the residuals appears to be normally distributed.</span>
+<span id="cb43-87"><a href="#cb43-87"></a></span>
+<span id="cb43-88"><a href="#cb43-88"></a>We can compare this to the histogram of the raw data (also plot C above).</span>
+<span id="cb43-89"><a href="#cb43-89"></a></span>
+<span id="cb43-92"><a href="#cb43-92"></a><span class="in">```{r}</span></span>
+<span id="cb43-93"><a href="#cb43-93"></a><span class="co"># Plot histogram of raw data</span></span>
+<span id="cb43-94"><a href="#cb43-94"></a><span class="fu">hist</span>(data<span class="sc">$</span>value, <span class="at">main =</span> <span class="st">"Histogram of Raw Data"</span>, <span class="at">xlab =</span> <span class="st">"Value"</span>)</span>
+<span id="cb43-95"><a href="#cb43-95"></a><span class="in">```</span></span>
+<span id="cb43-96"><a href="#cb43-96"></a></span>
+<span id="cb43-97"><a href="#cb43-97"></a>The histogram of the raw data shows two distinct peaks corresponding to the two groups, indicating that the data is not normally distributed when considering all observations together. This highlights the importance of using residuals to assess normality in the context of ANOVA.</span>
+<span id="cb43-98"><a href="#cb43-98"></a></span>
+<span id="cb43-99"><a href="#cb43-99"></a><span class="fu">### Part C --- Q-Q plot</span></span>
+<span id="cb43-100"><a href="#cb43-100"></a></span>
+<span id="cb43-101"><a href="#cb43-101"></a>We can also create a Q-Q plot to further assess normality.</span>
+<span id="cb43-102"><a href="#cb43-102"></a></span>
+<span id="cb43-105"><a href="#cb43-105"></a><span class="in">```{r}</span></span>
+<span id="cb43-106"><a href="#cb43-106"></a><span class="co"># Q-Q plot of residuals</span></span>
+<span id="cb43-107"><a href="#cb43-107"></a><span class="fu">qqnorm</span>(residuals_anova)</span>
+<span id="cb43-108"><a href="#cb43-108"></a><span class="fu">qqline</span>(residuals_anova, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb43-109"><a href="#cb43-109"></a><span class="in">```</span></span>
+<span id="cb43-110"><a href="#cb43-110"></a></span>
+<span id="cb43-111"><a href="#cb43-111"></a>The Q-Q plot shows that the residuals closely follow the reference line, indicating that they are approximately normally distributed.</span>
+<span id="cb43-112"><a href="#cb43-112"></a></span>
+<span id="cb43-113"><a href="#cb43-113"></a>::: {.column-margin}</span>
+<span id="cb43-114"><a href="#cb43-114"></a>ANOVA has several key assumptions: (1) **Independence** --- the observations are independent of each other; (2) **Normality** --- the residuals of the model are normally distributed; (3) **Homogeneity of variances** --- the variances across the different groups are equal.</span>
+<span id="cb43-115"><a href="#cb43-115"></a>:::</span>
+<span id="cb43-116"><a href="#cb43-116"></a></span>
+<span id="cb43-117"><a href="#cb43-117"></a>::: {.callout-note}</span>
+<span id="cb43-118"><a href="#cb43-118"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb43-119"><a href="#cb43-119"></a>We should be able to explain why residuals are used to assess ANOVA assumptions instead of raw data, and produce a histogram and Q-Q plot of residuals in R.</span>
+<span id="cb43-120"><a href="#cb43-120"></a>:::</span>
+<span id="cb43-121"><a href="#cb43-121"></a></span>
+<span id="cb43-122"><a href="#cb43-122"></a></span>
+<span id="cb43-123"><a href="#cb43-123"></a><span class="fu"># Assumption testing with real data</span></span>
+<span id="cb43-124"><a href="#cb43-124"></a></span>
+<span id="cb43-125"><a href="#cb43-125"></a><span class="fu">## Exercise 2: Frog diversity in streams {.unnumbered}</span></span>
+<span id="cb43-126"><a href="#cb43-126"></a></span>
+<span id="cb43-127"><a href="#cb43-127"></a><span class="al">![Fleay's Barred Frog (*Mixophyes fleayi*). Image credit: Froggydarb at English Wikipedia](images/Mixophyes_fleayi.JPG)</span>{fig-align="center" width="486"}</span>
+<span id="cb43-128"><a href="#cb43-128"></a></span>
+<span id="cb43-129"><a href="#cb43-129"></a>A researcher is interested in the effect of zinc pollution on the diversity of frog communities in streams. They set up an experiment with four levels of zinc concentration: background (back), low, medium, and high. After a certain period, they measure the diversity of frog species in each stream.</span>
+<span id="cb43-130"><a href="#cb43-130"></a></span>
+<span id="cb43-131"><a href="#cb43-131"></a>Design: Four zinc levels --- back (background), low, medium, high; n = 12 streams per level.</span>
+<span id="cb43-132"><a href="#cb43-132"></a></span>
+<span id="cb43-133"><a href="#cb43-133"></a>Variables:</span>
+<span id="cb43-134"><a href="#cb43-134"></a></span>
+<span id="cb43-135"><a href="#cb43-135"></a><span class="ss">- </span>stream_id --- unique stream replicate ID</span>
+<span id="cb43-136"><a href="#cb43-136"></a><span class="ss">- </span>treatment --- zinc treatment level</span>
+<span id="cb43-137"><a href="#cb43-137"></a><span class="ss">- </span>zinc_mg_L --- nominal zinc concentration (mg/L; illustrative, not measured)</span>
+<span id="cb43-138"><a href="#cb43-138"></a><span class="ss">- </span>shannon_diversity --- synthetic Shannon diversity (H′) for frog communities</span>
+<span id="cb43-139"><a href="#cb43-139"></a></span>
+<span id="cb43-140"><a href="#cb43-140"></a><span class="fu">### Part A --- Import data and fit ANOVA</span></span>
+<span id="cb43-141"><a href="#cb43-141"></a></span>
+<span id="cb43-144"><a href="#cb43-144"></a><span class="in">```{r}</span></span>
+<span id="cb43-145"><a href="#cb43-145"></a>frogs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/frog_zinc_diversity.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-146"><a href="#cb43-146"></a><span class="fu">str</span>(frogs)</span>
+<span id="cb43-147"><a href="#cb43-147"></a><span class="in">```</span></span>
+<span id="cb43-148"><a href="#cb43-148"></a></span>
+<span id="cb43-151"><a href="#cb43-151"></a><span class="in">```{r}</span></span>
+<span id="cb43-152"><a href="#cb43-152"></a>anova.frogs <span class="ot">&lt;-</span> <span class="fu">aov</span>(shannon_diversity <span class="sc">~</span> treatment, <span class="at">data =</span> frogs)</span>
+<span id="cb43-153"><a href="#cb43-153"></a><span class="in">```</span></span>
+<span id="cb43-154"><a href="#cb43-154"></a></span>
+<span id="cb43-155"><a href="#cb43-155"></a><span class="fu">### Part B --- Testing normality</span></span>
+<span id="cb43-156"><a href="#cb43-156"></a></span>
+<span id="cb43-157"><a href="#cb43-157"></a>To test the model assumptions we encourage you to produce 3 figures:</span>
+<span id="cb43-158"><a href="#cb43-158"></a></span>
+<span id="cb43-159"><a href="#cb43-159"></a><span class="ss">-   </span>histogram of the residuals;</span>
+<span id="cb43-160"><a href="#cb43-160"></a><span class="ss">-   </span>a QQ plot of the residuals;</span>
+<span id="cb43-161"><a href="#cb43-161"></a><span class="ss">-   </span>plot residuals against fitted values.</span>
+<span id="cb43-162"><a href="#cb43-162"></a></span>
+<span id="cb43-163"><a href="#cb43-163"></a>It is good practice to base this on the standardised residuals which can be extracted from a model object using the <span class="in">`rstandard`</span> function. Standardised residuals are $\sim N(0,1)$, and make it easier to interpret the plots for outliers. Based on the normal distribution 95% of observations fall within ±2 SD's of the mean or in the case of standardised residuals ±2.</span>
+<span id="cb43-164"><a href="#cb43-164"></a></span>
+<span id="cb43-165"><a href="#cb43-165"></a>**Histogram of standardised residuals:**</span>
+<span id="cb43-166"><a href="#cb43-166"></a></span>
+<span id="cb43-167"><a href="#cb43-167"></a>The figure below presents the histogram of the standardised residuals. The majority of the observations show a skew in the distribution.</span>
+<span id="cb43-168"><a href="#cb43-168"></a></span>
+<span id="cb43-171"><a href="#cb43-171"></a><span class="in">```{r}</span></span>
+<span id="cb43-172"><a href="#cb43-172"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(anova.frogs))</span>
+<span id="cb43-173"><a href="#cb43-173"></a><span class="in">```</span></span>
+<span id="cb43-174"><a href="#cb43-174"></a></span>
+<span id="cb43-175"><a href="#cb43-175"></a>**Q-Q plot:**</span>
+<span id="cb43-176"><a href="#cb43-176"></a></span>
+<span id="cb43-177"><a href="#cb43-177"></a>The QQ plot below shows that the observed quantiles deviate from the theoretical quantiles (assuming normality). The observations do not follow the line. We can assume the data is not normally distributed.</span>
+<span id="cb43-178"><a href="#cb43-178"></a></span>
+<span id="cb43-181"><a href="#cb43-181"></a><span class="in">```{r}</span></span>
+<span id="cb43-182"><a href="#cb43-182"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(anova.frogs))</span>
+<span id="cb43-183"><a href="#cb43-183"></a><span class="fu">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb43-184"><a href="#cb43-184"></a><span class="in">```</span></span>
+<span id="cb43-185"><a href="#cb43-185"></a></span>
+<span id="cb43-186"><a href="#cb43-186"></a>An alternative method for testing normality is to use the Shapiro-Wilk test. This test has the null hypothesis that the data is normally distributed. A p-value &lt; 0.05 indicates we reject the null hypothesis and therefore the data is not normally distributed.</span>
+<span id="cb43-187"><a href="#cb43-187"></a></span>
+<span id="cb43-190"><a href="#cb43-190"></a><span class="in">```{r}</span></span>
+<span id="cb43-191"><a href="#cb43-191"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.frogs))</span>
+<span id="cb43-192"><a href="#cb43-192"></a><span class="in">```</span></span>
+<span id="cb43-193"><a href="#cb43-193"></a></span>
+<span id="cb43-194"><a href="#cb43-194"></a><span class="fu">### Part C --- Testing equal variance (homoscedasticity)</span></span>
+<span id="cb43-195"><a href="#cb43-195"></a></span>
+<span id="cb43-196"><a href="#cb43-196"></a>The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. We do not want to see *fanning* where the spread of residuals increases or decreases while the fitted values increase. In this case it is hard to see any fanning in this plot - mostly at the beginning, so your conclusion may be that the assumption of equal variance is fine.</span>
+<span id="cb43-197"><a href="#cb43-197"></a></span>
+<span id="cb43-200"><a href="#cb43-200"></a><span class="in">```{r}</span></span>
+<span id="cb43-201"><a href="#cb43-201"></a><span class="fu">plot</span>(<span class="fu">fitted</span>(anova.frogs), <span class="fu">rstandard</span>(anova.frogs))</span>
+<span id="cb43-202"><a href="#cb43-202"></a><span class="in">```</span></span>
+<span id="cb43-203"><a href="#cb43-203"></a></span>
+<span id="cb43-204"><a href="#cb43-204"></a>Alternatively we can use the Bartlett test to test for homogeneity of variance using the residuals. The null hypothesis is that the variances are equal across groups. A p-value &lt; 0.05 indicates we reject the null hypothesis and therefore the variances are not equal.</span>
+<span id="cb43-205"><a href="#cb43-205"></a></span>
+<span id="cb43-208"><a href="#cb43-208"></a><span class="in">```{r}</span></span>
+<span id="cb43-209"><a href="#cb43-209"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.frogs) <span class="sc">~</span> frogs<span class="sc">$</span>treatment)</span>
+<span id="cb43-210"><a href="#cb43-210"></a><span class="in">```</span></span>
+<span id="cb43-211"><a href="#cb43-211"></a></span>
+<span id="cb43-212"><a href="#cb43-212"></a>Note that sometimes the two approaches may lead to different conclusions...but why?</span>
+<span id="cb43-213"><a href="#cb43-213"></a></span>
+<span id="cb43-214"><a href="#cb43-214"></a>We can also use the built-in <span class="in">`plot()`</span> function to produce the diagnostics plots.</span>
+<span id="cb43-215"><a href="#cb43-215"></a></span>
+<span id="cb43-218"><a href="#cb43-218"></a><span class="in">```{r}</span></span>
+<span id="cb43-219"><a href="#cb43-219"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb43-220"><a href="#cb43-220"></a><span class="fu">plot</span>(anova.frogs)</span>
+<span id="cb43-221"><a href="#cb43-221"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb43-222"><a href="#cb43-222"></a><span class="in">```</span></span>
+<span id="cb43-223"><a href="#cb43-223"></a></span>
+<span id="cb43-224"><a href="#cb43-224"></a>or:</span>
+<span id="cb43-225"><a href="#cb43-225"></a></span>
+<span id="cb43-228"><a href="#cb43-228"></a><span class="in">```{r}</span></span>
+<span id="cb43-229"><a href="#cb43-229"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb43-230"><a href="#cb43-230"></a><span class="fu">plot</span>(anova.frogs, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
+<span id="cb43-231"><a href="#cb43-231"></a><span class="fu">plot</span>(anova.frogs, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q plot</span></span>
+<span id="cb43-232"><a href="#cb43-232"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb43-233"><a href="#cb43-233"></a><span class="in">```</span></span>
+<span id="cb43-234"><a href="#cb43-234"></a></span>
+<span id="cb43-235"><a href="#cb43-235"></a><span class="fu">### Part D --- Transforming the data</span></span>
+<span id="cb43-236"><a href="#cb43-236"></a></span>
+<span id="cb43-237"><a href="#cb43-237"></a>If the assumptions of normality and/or homogeneity of variances are not met, we can try transforming the response variable to meet these assumptions. Common transformations include log and square root transformations.</span>
+<span id="cb43-238"><a href="#cb43-238"></a></span>
+<span id="cb43-241"><a href="#cb43-241"></a><span class="in">```{r}</span></span>
+<span id="cb43-242"><a href="#cb43-242"></a>anova.log.frogs <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(shannon_diversity) <span class="sc">~</span> treatment, <span class="at">data =</span> frogs)</span>
+<span id="cb43-243"><a href="#cb43-243"></a></span>
+<span id="cb43-244"><a href="#cb43-244"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb43-245"><a href="#cb43-245"></a><span class="fu">plot</span>(anova.log.frogs, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted values</span></span>
+<span id="cb43-246"><a href="#cb43-246"></a><span class="fu">plot</span>(anova.log.frogs, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Normal Q-Q</span></span>
+<span id="cb43-247"><a href="#cb43-247"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb43-248"><a href="#cb43-248"></a><span class="in">```</span></span>
+<span id="cb43-249"><a href="#cb43-249"></a></span>
+<span id="cb43-250"><a href="#cb43-250"></a>We can also check the statistical tests for normality and homogeneity of variances on the log-transformed data.</span>
+<span id="cb43-251"><a href="#cb43-251"></a></span>
+<span id="cb43-252"><a href="#cb43-252"></a>For normality:</span>
+<span id="cb43-253"><a href="#cb43-253"></a></span>
+<span id="cb43-256"><a href="#cb43-256"></a><span class="in">```{r}</span></span>
+<span id="cb43-257"><a href="#cb43-257"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(anova.log.frogs))</span>
+<span id="cb43-258"><a href="#cb43-258"></a><span class="in">```</span></span>
+<span id="cb43-259"><a href="#cb43-259"></a></span>
+<span id="cb43-260"><a href="#cb43-260"></a>P&gt;0.05 so we can assume the residuals are normally distributed.</span>
+<span id="cb43-261"><a href="#cb43-261"></a></span>
+<span id="cb43-262"><a href="#cb43-262"></a>For homogeneity of variances:</span>
+<span id="cb43-263"><a href="#cb43-263"></a></span>
+<span id="cb43-266"><a href="#cb43-266"></a><span class="in">```{r}</span></span>
+<span id="cb43-267"><a href="#cb43-267"></a><span class="fu">bartlett.test</span>(<span class="fu">rstandard</span>(anova.log.frogs) <span class="sc">~</span> frogs<span class="sc">$</span>treatment)</span>
+<span id="cb43-268"><a href="#cb43-268"></a><span class="in">```</span></span>
+<span id="cb43-269"><a href="#cb43-269"></a></span>
+<span id="cb43-270"><a href="#cb43-270"></a>P &gt; 0.05 so we can assume the variances are equal across groups.</span>
+<span id="cb43-271"><a href="#cb43-271"></a></span>
+<span id="cb43-272"><a href="#cb43-272"></a>We can proceed with the log-transformed data for our ANOVA analysis and post-hoc tests.</span>
+<span id="cb43-273"><a href="#cb43-273"></a></span>
+<span id="cb43-274"><a href="#cb43-274"></a>::: {.column-margin}</span>
+<span id="cb43-275"><a href="#cb43-275"></a>As our models become more complicated, it becomes harder to use the Shapiro-Wilk normality test and Bartlett test of homogeneity of variances. Use graphical methods instead.</span>
+<span id="cb43-276"><a href="#cb43-276"></a>:::</span>
+<span id="cb43-277"><a href="#cb43-277"></a></span>
+<span id="cb43-278"><a href="#cb43-278"></a>ANOVA summary:</span>
+<span id="cb43-279"><a href="#cb43-279"></a></span>
+<span id="cb43-282"><a href="#cb43-282"></a><span class="in">```{r}</span></span>
+<span id="cb43-283"><a href="#cb43-283"></a><span class="fu">summary</span>(anova.log.frogs)</span>
+<span id="cb43-284"><a href="#cb43-284"></a><span class="in">```</span></span>
+<span id="cb43-285"><a href="#cb43-285"></a></span>
+<span id="cb43-286"><a href="#cb43-286"></a>We can conclude there is a significant effect of treatment on the Shannon diversity of frog communities in streams (p-value = 0.003). This indicates that at least one of the treatment groups has a significantly different mean Shannon diversity compared to the others.</span>
+<span id="cb43-287"><a href="#cb43-287"></a></span>
+<span id="cb43-288"><a href="#cb43-288"></a>---</span>
+<span id="cb43-289"><a href="#cb43-289"></a></span>
+<span id="cb43-290"><a href="#cb43-290"></a><span class="fu">### Part E --- Post-hoc tests</span></span>
+<span id="cb43-291"><a href="#cb43-291"></a></span>
+<span id="cb43-292"><a href="#cb43-292"></a>::: {.column-margin}</span>
+<span id="cb43-293"><a href="#cb43-293"></a>Post-hoc tests are performed after an ANOVA when there are significant differences among group means. The purpose of post-hoc tests is to identify which specific pairs of group means are significantly different from each other. **Do not do a post-hoc test if the ANOVA is not significant!**</span>
+<span id="cb43-294"><a href="#cb43-294"></a>:::</span>
+<span id="cb43-295"><a href="#cb43-295"></a></span>
+<span id="cb43-296"><a href="#cb43-296"></a>We can determine which pairs of treatment means are significantly different. We can do this using Tukey's Honest Significant Difference using the <span class="in">`emmeans`</span> package.</span>
+<span id="cb43-297"><a href="#cb43-297"></a></span>
+<span id="cb43-300"><a href="#cb43-300"></a><span class="in">```{r}</span></span>
+<span id="cb43-301"><a href="#cb43-301"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb43-302"><a href="#cb43-302"></a>tukey.frogs <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova.log.frogs, pairwise <span class="sc">~</span> treatment)</span>
+<span id="cb43-303"><a href="#cb43-303"></a>tukey.frogs</span>
+<span id="cb43-304"><a href="#cb43-304"></a><span class="in">```</span></span>
+<span id="cb43-305"><a href="#cb43-305"></a></span>
+<span id="cb43-306"><a href="#cb43-306"></a>The output shows the pairwise comparisons between the different Zinc treatments. The <span class="in">`p.value`</span> column indicates whether the differences between the means are statistically significant. A p-value less than 0.05 indicates a significant difference between the treatment means.</span>
+<span id="cb43-307"><a href="#cb43-307"></a></span>
+<span id="cb43-308"><a href="#cb43-308"></a>From the results, we can see that:</span>
+<span id="cb43-309"><a href="#cb43-309"></a></span>
+<span id="cb43-310"><a href="#cb43-310"></a><span class="ss">-   </span>The comparison between high and low has a p-value of 0.0165, indicating a significant difference in means. The back - high comparison has a p-value of 0.0035, also indicating a significant difference.</span>
+<span id="cb43-311"><a href="#cb43-311"></a><span class="ss">-   </span>The other comparisons were not significant as their p-values are greater than 0.05.</span>
+<span id="cb43-312"><a href="#cb43-312"></a></span>
+<span id="cb43-313"><a href="#cb43-313"></a>You can also see the P values have been adjusted for multiple comparisons by the last line in the output.</span>
+<span id="cb43-314"><a href="#cb43-314"></a></span>
+<span id="cb43-315"><a href="#cb43-315"></a>We can also visualise the results using a plot.</span>
+<span id="cb43-316"><a href="#cb43-316"></a></span>
+<span id="cb43-319"><a href="#cb43-319"></a><span class="in">```{r}</span></span>
+<span id="cb43-320"><a href="#cb43-320"></a><span class="fu">plot</span>(tukey.frogs, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-321"><a href="#cb43-321"></a><span class="in">```</span></span>
+<span id="cb43-322"><a href="#cb43-322"></a></span>
+<span id="cb43-323"><a href="#cb43-323"></a>This plot shows the estimated marginal means (EMM) for each Zinc treatment. In the plot function above, we have specified <span class="in">`comparisons = TRUE`</span>. The blue bars are 95% confidence intervals for the EMMs, and the red arrows are for the comparisons among them (they are adjusted for the multiple comparisons to reduce type 1 errors). If an arrow from one mean overlaps an arrow from another group, the difference is not significant.</span>
+<span id="cb43-324"><a href="#cb43-324"></a></span>
+<span id="cb43-325"><a href="#cb43-325"></a>Overall, this analysis allows us to identify which Zinc treatments have significantly different effects on frog diversity in streams.</span>
+<span id="cb43-326"><a href="#cb43-326"></a></span>
+<span id="cb43-327"><a href="#cb43-327"></a>::: {.column-margin}</span>
+<span id="cb43-328"><a href="#cb43-328"></a>Statistical tests for multiple comparisons can sometimes be difficult to interpret, especially when there are many groups involved. Hence many propose graphical methods as a more powerful way to determine which groups are different.</span>
+<span id="cb43-329"><a href="#cb43-329"></a>:::</span>
+<span id="cb43-330"><a href="#cb43-330"></a></span>
+<span id="cb43-331"><a href="#cb43-331"></a>::: {.callout-note}</span>
+<span id="cb43-332"><a href="#cb43-332"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb43-333"><a href="#cb43-333"></a>We should be able to test ANOVA assumptions using diagnostic plots and formal tests, apply a log transformation when assumptions are violated, and use Tukey's test to identify which groups differ.</span>
+<span id="cb43-334"><a href="#cb43-334"></a>:::</span>
+<span id="cb43-335"><a href="#cb43-335"></a></span>
+<span id="cb43-336"><a href="#cb43-336"></a></span>
+<span id="cb43-337"><a href="#cb43-337"></a><span class="fu"># Multiple comparisons and the error-power trade-off</span></span>
+<span id="cb43-338"><a href="#cb43-338"></a></span>
+<span id="cb43-339"><a href="#cb43-339"></a><span class="fu">## Exercise 3: Family-wise error rate and power {.unnumbered}</span></span>
+<span id="cb43-340"><a href="#cb43-340"></a></span>
+<span id="cb43-341"><a href="#cb43-341"></a>When conducting multiple pairwise comparisons, the family-wise error rate increases. To control the family-wise error rate, post-hoc tests like Tukey's HSD are used, which adjust the significance levels to account for the number of comparisons being made.</span>
+<span id="cb43-342"><a href="#cb43-342"></a></span>
+<span id="cb43-343"><a href="#cb43-343"></a>::: {.column-margin}</span>
+<span id="cb43-344"><a href="#cb43-344"></a>The family-wise error rate is the probability of making at least one Type I error (false positive) among all the comparisons.</span>
+<span id="cb43-345"><a href="#cb43-345"></a>:::</span>
+<span id="cb43-346"><a href="#cb43-346"></a></span>
+<span id="cb43-347"><a href="#cb43-347"></a>Tukey's HSD test is designed to maintain the overall family-wise error rate at a specified level (commonly 0.05) while still providing sufficient power to detect true differences between group means.</span>
+<span id="cb43-348"><a href="#cb43-348"></a></span>
+<span id="cb43-349"><a href="#cb43-349"></a>However, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</span>
+<span id="cb43-350"><a href="#cb43-350"></a></span>
+<span id="cb43-351"><a href="#cb43-351"></a>Therefore, it is important to carefully consider the number of comparisons being made and choose appropriate post-hoc tests that balance the need for controlling Type I errors with the desire to maintain adequate statistical power.</span>
+<span id="cb43-352"><a href="#cb43-352"></a></span>
+<span id="cb43-353"><a href="#cb43-353"></a><span class="fu">### Part A --- Tukey-adjusted comparisons</span></span>
+<span id="cb43-354"><a href="#cb43-354"></a></span>
+<span id="cb43-355"><a href="#cb43-355"></a>We can look at an example of the trade-off between family-wise error rate and power using simulation.</span>
+<span id="cb43-356"><a href="#cb43-356"></a></span>
+<span id="cb43-359"><a href="#cb43-359"></a><span class="in">```{r}</span></span>
+<span id="cb43-360"><a href="#cb43-360"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb43-361"><a href="#cb43-361"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb43-362"><a href="#cb43-362"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb43-363"><a href="#cb43-363"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb43-364"><a href="#cb43-364"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb43-365"><a href="#cb43-365"></a>family_wise_errors <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb43-366"><a href="#cb43-366"></a></span>
+<span id="cb43-367"><a href="#cb43-367"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb43-368"><a href="#cb43-368"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb43-369"><a href="#cb43-369"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-370"><a href="#cb43-370"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb43-371"><a href="#cb43-371"></a>  )</span>
+<span id="cb43-372"><a href="#cb43-372"></a></span>
+<span id="cb43-373"><a href="#cb43-373"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb43-374"><a href="#cb43-374"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb43-375"><a href="#cb43-375"></a></span>
+<span id="cb43-376"><a href="#cb43-376"></a>  <span class="cf">if</span> (<span class="fu">any</span>(tukey_result<span class="sc">$</span>group[, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb43-377"><a href="#cb43-377"></a>    family_wise_errors <span class="ot">&lt;-</span> family_wise_errors <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb43-378"><a href="#cb43-378"></a>  }</span>
+<span id="cb43-379"><a href="#cb43-379"></a>}</span>
+<span id="cb43-380"><a href="#cb43-380"></a>family_wise_error_rate <span class="ot">&lt;-</span> family_wise_errors <span class="sc">/</span> n_simulations</span>
+<span id="cb43-381"><a href="#cb43-381"></a>family_wise_error_rate</span>
+<span id="cb43-382"><a href="#cb43-382"></a><span class="in">```</span></span>
+<span id="cb43-383"><a href="#cb43-383"></a></span>
+<span id="cb43-384"><a href="#cb43-384"></a>In this simulation, we create 5 groups with 10 observations each, and we run 1000 simulations. We fit a one-way ANOVA model to the data and perform Tukey's HSD test for pairwise comparisons. We count how many times at *least one comparison is significant (p-value &lt; 0.05)* across all simulations to estimate the family-wise error rate (~0.04 or 4% error rate).</span>
+<span id="cb43-385"><a href="#cb43-385"></a></span>
+<span id="cb43-386"><a href="#cb43-386"></a>The resulting family-wise error rate should be close to the nominal level of 0.05, demonstrating that Tukey's HSD test effectively controls the family-wise error rate while maintaining reasonable power to detect true differences between group means.</span>
+<span id="cb43-387"><a href="#cb43-387"></a></span>
+<span id="cb43-388"><a href="#cb43-388"></a><span class="fu">### Part B --- Unadjusted t-tests</span></span>
+<span id="cb43-389"><a href="#cb43-389"></a></span>
+<span id="cb43-390"><a href="#cb43-390"></a>If we do not use a post-hoc test and just do multiple t-tests we can see how the family-wise error rate increases. For example, we will not adjust the p-values for multiple comparisons:</span>
+<span id="cb43-391"><a href="#cb43-391"></a></span>
+<span id="cb43-394"><a href="#cb43-394"></a><span class="in">```{r}</span></span>
+<span id="cb43-395"><a href="#cb43-395"></a>family_wise_errors_no_adjust <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb43-396"><a href="#cb43-396"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb43-397"><a href="#cb43-397"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb43-398"><a href="#cb43-398"></a>    <span class="at">value =</span> <span class="fu">rnorm</span>(n_groups <span class="sc">*</span> n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-399"><a href="#cb43-399"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb43-400"><a href="#cb43-400"></a>  )</span>
+<span id="cb43-401"><a href="#cb43-401"></a></span>
+<span id="cb43-402"><a href="#cb43-402"></a>  p_values <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb43-403"><a href="#cb43-403"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n_groups <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb43-404"><a href="#cb43-404"></a>    <span class="cf">for</span> (k <span class="cf">in</span> (j <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>n_groups) {</span>
+<span id="cb43-405"><a href="#cb43-405"></a>      t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(j, k)))</span>
+<span id="cb43-406"><a href="#cb43-406"></a>      p_values <span class="ot">&lt;-</span> <span class="fu">c</span>(p_values, t_test_result<span class="sc">$</span>p.value)</span>
+<span id="cb43-407"><a href="#cb43-407"></a>    }</span>
+<span id="cb43-408"><a href="#cb43-408"></a>  }</span>
+<span id="cb43-409"><a href="#cb43-409"></a></span>
+<span id="cb43-410"><a href="#cb43-410"></a>  <span class="cf">if</span> (<span class="fu">any</span>(p_values <span class="sc">&lt;</span> alpha)) {</span>
+<span id="cb43-411"><a href="#cb43-411"></a>    family_wise_errors_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb43-412"><a href="#cb43-412"></a>  }</span>
+<span id="cb43-413"><a href="#cb43-413"></a>}</span>
+<span id="cb43-414"><a href="#cb43-414"></a>family_wise_error_rate_no_adjust <span class="ot">&lt;-</span> family_wise_errors_no_adjust <span class="sc">/</span> n_simulations</span>
+<span id="cb43-415"><a href="#cb43-415"></a>family_wise_error_rate_no_adjust</span>
+<span id="cb43-416"><a href="#cb43-416"></a><span class="in">```</span></span>
+<span id="cb43-417"><a href="#cb43-417"></a></span>
+<span id="cb43-418"><a href="#cb43-418"></a>In this simulation, we perform multiple t-tests without adjusting the p-values for multiple comparisons. We count how many times at *least one comparison is significant (p-value &lt; 0.05)* across all simulations to estimate the family-wise error rate.</span>
+<span id="cb43-419"><a href="#cb43-419"></a></span>
+<span id="cb43-420"><a href="#cb43-420"></a>The resulting family-wise error rate should be significantly higher than the nominal level of 0.05 (i.e. ~0.286 or 29% error rate!), demonstrating that not adjusting for multiple comparisons leads to an increased risk of Type I errors.</span>
+<span id="cb43-421"><a href="#cb43-421"></a></span>
+<span id="cb43-422"><a href="#cb43-422"></a>This example highlights the importance of using post-hoc tests like Tukey's HSD to control the family-wise error rate when conducting multiple pairwise comparisons in ANOVA.</span>
+<span id="cb43-423"><a href="#cb43-423"></a></span>
+<span id="cb43-424"><a href="#cb43-424"></a><span class="fu">### Part C --- Power trade-off</span></span>
+<span id="cb43-425"><a href="#cb43-425"></a></span>
+<span id="cb43-426"><a href="#cb43-426"></a>::: {.column-margin}</span>
+<span id="cb43-427"><a href="#cb43-427"></a>Statistical power is the probability of correctly rejecting the null hypothesis when it is false (i.e., detecting a true effect).</span>
+<span id="cb43-428"><a href="#cb43-428"></a>:::</span>
+<span id="cb43-429"><a href="#cb43-429"></a></span>
+<span id="cb43-430"><a href="#cb43-430"></a>When conducting multiple comparisons, there is a trade-off between controlling the family-wise error rate and maintaining statistical power. As the number of comparisons increases, the adjustments made by post-hoc tests can lead to a reduction in power, making it more difficult to detect true differences.</span>
+<span id="cb43-431"><a href="#cb43-431"></a></span>
+<span id="cb43-432"><a href="#cb43-432"></a>To illustrate this trade-off, we can simulate data with a known effect size and compare the power of Tukey's HSD test to that of unadjusted t-tests.</span>
+<span id="cb43-433"><a href="#cb43-433"></a></span>
+<span id="cb43-436"><a href="#cb43-436"></a><span class="in">```{r}</span></span>
+<span id="cb43-437"><a href="#cb43-437"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb43-438"><a href="#cb43-438"></a>n_groups <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb43-439"><a href="#cb43-439"></a>n_per_group <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb43-440"><a href="#cb43-440"></a>n_simulations <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb43-441"><a href="#cb43-441"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb43-442"><a href="#cb43-442"></a>true_effect_size <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb43-443"><a href="#cb43-443"></a>power_tukey <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb43-444"><a href="#cb43-444"></a>power_t_test <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb43-445"><a href="#cb43-445"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulations) {</span>
+<span id="cb43-446"><a href="#cb43-446"></a>  data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb43-447"><a href="#cb43-447"></a>    <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-448"><a href="#cb43-448"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> true_effect_size, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-449"><a href="#cb43-449"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-450"><a href="#cb43-450"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb43-451"><a href="#cb43-451"></a>              <span class="fu">rnorm</span>(n_per_group, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)),</span>
+<span id="cb43-452"><a href="#cb43-452"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n_groups, <span class="at">each =</span> n_per_group))</span>
+<span id="cb43-453"><a href="#cb43-453"></a>  )</span>
+<span id="cb43-454"><a href="#cb43-454"></a></span>
+<span id="cb43-455"><a href="#cb43-455"></a>  anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(value <span class="sc">~</span> group, <span class="at">data =</span> data)</span>
+<span id="cb43-456"><a href="#cb43-456"></a>  tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb43-457"><a href="#cb43-457"></a></span>
+<span id="cb43-458"><a href="#cb43-458"></a>  <span class="cf">if</span> (tukey_result<span class="sc">$</span>group[<span class="st">"2-1"</span>, <span class="st">"p adj"</span>] <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb43-459"><a href="#cb43-459"></a>    power_tukey <span class="ot">&lt;-</span> power_tukey <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb43-460"><a href="#cb43-460"></a>  }</span>
+<span id="cb43-461"><a href="#cb43-461"></a></span>
+<span id="cb43-462"><a href="#cb43-462"></a>  t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(value <span class="sc">~</span> group, <span class="at">data =</span> <span class="fu">subset</span>(data, group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
+<span id="cb43-463"><a href="#cb43-463"></a>  <span class="cf">if</span> (t_test_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb43-464"><a href="#cb43-464"></a>    power_t_test <span class="ot">&lt;-</span> power_t_test <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb43-465"><a href="#cb43-465"></a>  }</span>
+<span id="cb43-466"><a href="#cb43-466"></a>}</span>
+<span id="cb43-467"><a href="#cb43-467"></a>power_tukey_rate <span class="ot">&lt;-</span> power_tukey <span class="sc">/</span> n_simulations</span>
+<span id="cb43-468"><a href="#cb43-468"></a>power_t_test_rate <span class="ot">&lt;-</span> power_t_test <span class="sc">/</span> n_simulations</span>
+<span id="cb43-469"><a href="#cb43-469"></a><span class="in">```</span></span>
+<span id="cb43-470"><a href="#cb43-470"></a></span>
+<span id="cb43-473"><a href="#cb43-473"></a><span class="in">```{r}</span></span>
+<span id="cb43-474"><a href="#cb43-474"></a><span class="co"># print results:</span></span>
+<span id="cb43-475"><a href="#cb43-475"></a><span class="fu">cat</span>(<span class="st">"Adjusted for family-rate errors using Tukey's test. Proportion correctly detected:"</span>, power_tukey_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb43-476"><a href="#cb43-476"></a><span class="fu">cat</span>(<span class="st">"Unadjusted t-tests. Proportion correctly detected:"</span>, power_t_test_rate, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb43-477"><a href="#cb43-477"></a><span class="in">```</span></span>
+<span id="cb43-478"><a href="#cb43-478"></a></span>
+<span id="cb43-479"><a href="#cb43-479"></a>In this simulation, we create 5 groups with 10 observations each, where one group has a true effect size of 1. We run 1000 simulations and fit a one-way ANOVA model to the data. We then perform Tukey's HSD test and unadjusted t-tests to compare the power of each method in detecting the true effect.</span>
+<span id="cb43-480"><a href="#cb43-480"></a></span>
+<span id="cb43-481"><a href="#cb43-481"></a>The resulting power rates indicate the proportion of simulations in which each method correctly detected the true effect. We expect the power of the unadjusted t-tests to be *higher (~57%)* than that of Tukey's HSD test *(\~30%)*, demonstrating the trade-off between controlling the family-wise error rate and maintaining statistical power.</span>
+<span id="cb43-482"><a href="#cb43-482"></a></span>
+<span id="cb43-483"><a href="#cb43-483"></a><span class="fu">### Part D --- Explore the trade-off</span></span>
+<span id="cb43-484"><a href="#cb43-484"></a></span>
+<span id="cb43-485"><a href="#cb43-485"></a>The simulations above used 5 groups. Use the widget below to see how the trade-off changes as the number of groups increases.</span>
+<span id="cb43-486"><a href="#cb43-486"></a></span>
+<span id="cb43-487"><a href="#cb43-487"></a><span class="in">```{=html}</span></span>
+<span id="cb43-488"><a href="#cb43-488"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb43-489"><a href="#cb43-489"></a><span class="in">#part-d-explore-the-trade-off .cell-output-display {</span></span>
+<span id="cb43-490"><a href="#cb43-490"></a><span class="in">  border: none;</span></span>
+<span id="cb43-491"><a href="#cb43-491"></a><span class="in">  padding: 0;</span></span>
+<span id="cb43-492"><a href="#cb43-492"></a><span class="in">  margin: 0;</span></span>
+<span id="cb43-493"><a href="#cb43-493"></a><span class="in">}</span></span>
+<span id="cb43-494"><a href="#cb43-494"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb43-495"><a href="#cb43-495"></a><span class="in">```</span></span>
+<span id="cb43-496"><a href="#cb43-496"></a></span>
+<span id="cb43-499"><a href="#cb43-499"></a><span class="in">```{ojs}</span></span>
+<span id="cb43-500"><a href="#cb43-500"></a><span class="co">//| echo: false</span></span>
+<span id="cb43-501"><a href="#cb43-501"></a><span class="im">import</span> { fwePowerWidget } <span class="im">from</span> <span class="st">"../assets/js/fwe-power-widget.js"</span></span>
+<span id="cb43-502"><a href="#cb43-502"></a><span class="fu">fwePowerWidget</span>()</span>
+<span id="cb43-503"><a href="#cb43-503"></a><span class="in">```</span></span>
+<span id="cb43-504"><a href="#cb43-504"></a></span>
+<span id="cb43-505"><a href="#cb43-505"></a>::: {.callout-note}</span>
+<span id="cb43-506"><a href="#cb43-506"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb43-507"><a href="#cb43-507"></a>We should be able to explain the trade-off between controlling the family-wise error rate and maintaining statistical power, and why Tukey's test is preferred over unadjusted t-tests for multiple comparisons.</span>
+<span id="cb43-508"><a href="#cb43-508"></a>:::</span>
+<span id="cb43-509"><a href="#cb43-509"></a></span>
+<span id="cb43-510"><a href="#cb43-510"></a></span>
+<span id="cb43-511"><a href="#cb43-511"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb43-512"><a href="#cb43-512"></a></span>
+<span id="cb43-513"><a href="#cb43-513"></a>We covered the use of residuals for checking ANOVA assumptions, applied diagnostic tools to a real dataset, and explored how post-hoc tests balance error control with statistical power. In the lab, we will apply these techniques to new datasets and practise interpreting back-transformed results.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

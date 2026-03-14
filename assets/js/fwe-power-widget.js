@@ -61,7 +61,7 @@ export function fwePowerWidget(opts = {}) {
     colorUnadj = "#404040",
   } = opts;
 
-  const W = 660, panelW = 280, panelH = 200;
+  const panelW = 280, panelH = 200;
   const margin = { top: 30, right: 10, bottom: 40, left: 50 };
   const barAreaW = panelW - margin.left - margin.right;
   const barAreaH = panelH - margin.top - margin.bottom;
@@ -81,6 +81,7 @@ export function fwePowerWidget(opts = {}) {
   ctrl.innerHTML =
     '<span style="font-size:14px;color:#666">2</span>' +
     `<input type="range" min="2" max="10" value="${nGroups}" step="1" ` +
+    `aria-label="Number of groups" ` +
     `style="flex:1;accent-color:${colorTukey};height:6px">` +
     '<span style="font-size:14px;color:#666">10</span>';
   box.appendChild(ctrl);

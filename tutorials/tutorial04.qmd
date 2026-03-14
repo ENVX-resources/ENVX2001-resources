@@ -152,7 +152,7 @@ It is good practice to base this on the standardised residuals which can be extr
 
 **Histogram of standardised residuals:**
 
-The figure below presents the histogram of the standardised residuals. The majority of the observations plot as a show a skew in the distribution.
+The figure below presents the histogram of the standardised residuals. The majority of the observations show a skew in the distribution.
 
 ```{r}
 hist(rstandard(anova.frogs))
@@ -175,7 +175,7 @@ shapiro.test(rstandard(anova.frogs))
 
 ### Part C --- Testing equal variance (homoscedasticity)
 
-The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. We do not want to see *fanning* where the spread of residuals increases or decreases while the fitted values increase. In this case it is hard to see any fanning in this plot - mostly at the beginning, so your conclusion maybe the assumption of equal variance is fine.
+The plot below shows the standardised residuals plotted against the fitted values (the group means in this case). To test the assumption of constant variance we want to have the same spread of observations for increases in the fitted values. We do not want to see *fanning* where the spread of residuals increases or decreases while the fitted values increase. In this case it is hard to see any fanning in this plot - mostly at the beginning, so your conclusion may be that the assumption of equal variance is fine.
 
 ```{r}
 plot(fitted(anova.frogs), rstandard(anova.frogs))
@@ -263,7 +263,7 @@ We can determine which pairs of treatment means are significantly different. We 
 
 ```{r}
 library(emmeans)
-tukey.frogs <- emmeans(anova.log.frogs, pairwise ~ "treatment")
+tukey.frogs <- emmeans(anova.log.frogs, pairwise ~ treatment)
 tukey.frogs
 ```
 
@@ -271,7 +271,7 @@ The output shows the pairwise comparisons between the different Zinc treatments.
 
 From the results, we can see that:
 
--   The comparison between Zinc High and Zinc low has a p-value of 0.0165, indicating a significant difference in means. Also  back - high has a p-value of 0.0035, indicating a significant difference in means.
+-   The comparison between high and low has a p-value of 0.0165, indicating a significant difference in means. The back - high comparison has a p-value of 0.0035, also indicating a significant difference.
 -   The other comparisons were not significant as their p-values are greater than 0.05.
 
 You can also see the P values have been adjusted for multiple comparisons by the last line in the output.

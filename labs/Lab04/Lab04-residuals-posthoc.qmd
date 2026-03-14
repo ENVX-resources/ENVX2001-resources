@@ -506,7 +506,7 @@ exp(1.1136265) # upper CI
 exp(0.001593344) # lower CI
 ```
 
-Since we interpret the back-transformed difference as a ratio, we conclude that the mean prolactin concentration in Treatment B is estimated as 1.75 that in Treatment A.  However, the 95% CI for this ratio extends from 1.002 to 3.045.  Since the 95% CI for the ratio >1 (just), this also demonstrates the mean prolactin concentrations for Treatments A and B do differ significantly (P < 0.05).  Note if the ratio (on the original prolaction scale) is 1, then, this implies meanB / meanA = 1, i.e. $mean_{B} = mean_{A}$.
+Since we interpret the back-transformed difference as a ratio, we conclude that the mean prolactin concentration in Treatment B is estimated as 1.75 that in Treatment A.  However, the 95% CI for this ratio extends from 1.002 to 3.045.  Since the 95% CI for the ratio >1 (just), this also demonstrates the mean prolactin concentrations for Treatments A and B do differ significantly (P < 0.05).  Note if the ratio (on the original prolactin scale) is 1, then, this implies meanB / meanA = 1, i.e. $mean_{B} = mean_{A}$.
 
 :::
 :::

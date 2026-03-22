@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 05: Experimental Design and ANOVA</title>
+<title>Tutorial 05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,6 +133,49 @@ background: white;
 </noscript>
 <script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
@@ -144,7 +187,7 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tutorial 05: Experimental Design and ANOVA</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tutorial 05</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
             <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
                       </div>
   </div>
@@ -171,31 +214,27 @@ background: white;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#randomisation" id="toc-randomisation" class="nav-link active" data-scroll-target="#randomisation"><span class="header-section-number">1</span> Randomisation</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#randomisation" id="toc-randomisation" class="nav-link" data-scroll-target="#randomisation"><span class="header-section-number">1</span> Randomisation</a>
   <ul class="collapse">
-  <li><a href="#exercise-1-testing-randomisation" id="toc-exercise-1-testing-randomisation" class="nav-link" data-scroll-target="#exercise-1-testing-randomisation"><span class="header-section-number">1.1</span> Exercise 1: Testing randomisation</a>
+  <li><a href="#exercise-1-testing-randomisation" id="toc-exercise-1-testing-randomisation" class="nav-link" data-scroll-target="#exercise-1-testing-randomisation">Exercise 1: Testing randomisation</a>
   <ul class="collapse">
-  <li><a href="#non-random-sample" id="toc-non-random-sample" class="nav-link" data-scroll-target="#non-random-sample">1.1) Non-random sample</a></li>
-  <li><a href="#percentages-from-the-non-random-sample" id="toc-percentages-from-the-non-random-sample" class="nav-link" data-scroll-target="#percentages-from-the-non-random-sample">1.2) Percentages from the non-random sample</a></li>
-  <li><a href="#random-sample" id="toc-random-sample" class="nav-link" data-scroll-target="#random-sample">1.3) Random sample</a></li>
+  <li><a href="#part-a-non-random-sample" id="toc-part-a-non-random-sample" class="nav-link" data-scroll-target="#part-a-non-random-sample">Part A — Non-random sample</a></li>
+  <li><a href="#part-b-percentages-from-the-non-random-sample" id="toc-part-b-percentages-from-the-non-random-sample" class="nav-link" data-scroll-target="#part-b-percentages-from-the-non-random-sample">Part B — Percentages from the non-random sample</a></li>
+  <li><a href="#part-c-random-sample" id="toc-part-c-random-sample" class="nav-link" data-scroll-target="#part-c-random-sample">Part C — Random sample</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#experimental-unit-vs-sampling-unit" id="toc-experimental-unit-vs-sampling-unit" class="nav-link" data-scroll-target="#experimental-unit-vs-sampling-unit"><span class="header-section-number">2</span> Experimental Unit vs Sampling Unit</a>
+  <li><a href="#control-of-variation-crd" id="toc-control-of-variation-crd" class="nav-link" data-scroll-target="#control-of-variation-crd"><span class="header-section-number">2</span> Control of variation: CRD</a>
   <ul class="collapse">
-  <li><a href="#exercise-2-identifying-units" id="toc-exercise-2-identifying-units" class="nav-link" data-scroll-target="#exercise-2-identifying-units"><span class="header-section-number">2.1</span> Exercise 2: Identifying units</a></li>
+  <li><a href="#exercise-2-crd" id="toc-exercise-2-crd" class="nav-link" data-scroll-target="#exercise-2-crd">Exercise 2: CRD</a></li>
   </ul></li>
-  <li><a href="#replication" id="toc-replication" class="nav-link" data-scroll-target="#replication"><span class="header-section-number">3</span> Replication</a></li>
-  <li><a href="#control-of-variation-completely-randomised-design-crd" id="toc-control-of-variation-completely-randomised-design-crd" class="nav-link" data-scroll-target="#control-of-variation-completely-randomised-design-crd"><span class="header-section-number">4</span> Control of Variation: Completely Randomised Design (CRD)</a>
+  <li><a href="#control-of-variation-rcbd" id="toc-control-of-variation-rcbd" class="nav-link" data-scroll-target="#control-of-variation-rcbd"><span class="header-section-number">3</span> Control of variation: RCBD</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-completely-randomised-design-crd" id="toc-exercise-3-completely-randomised-design-crd" class="nav-link" data-scroll-target="#exercise-3-completely-randomised-design-crd"><span class="header-section-number">4.1</span> Exercise 3: Completely Randomised Design (CRD)</a></li>
+  <li><a href="#exercise-3-rcbd" id="toc-exercise-3-rcbd" class="nav-link" data-scroll-target="#exercise-3-rcbd">Exercise 3: RCBD</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions">Example exam questions</a></li>
   </ul></li>
-  <li><a href="#control-of-variation-randomised-complete-block-design-rcbd" id="toc-control-of-variation-randomised-complete-block-design-rcbd" class="nav-link" data-scroll-target="#control-of-variation-randomised-complete-block-design-rcbd"><span class="header-section-number">5</span> Control of Variation: Randomised Complete Block Design (RCBD)</a>
-  <ul class="collapse">
-  <li><a href="#exercise-4-randomised-complete-block-design-rcbd" id="toc-exercise-4-randomised-complete-block-design-rcbd" class="nav-link" data-scroll-target="#exercise-4-randomised-complete-block-design-rcbd"><span class="header-section-number">5.1</span> Exercise 4: Randomised Complete Block Design (RCBD)</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6</span> Summary</a>
-  <ul class="collapse">
-  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions"><span class="header-section-number">6.1</span> Example exam questions</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial05.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -211,34 +250,16 @@ background: white;
 
 
 
-<p>In this week’s lectures we covered complete randomised designs (CRD) and randomized block designs (RBD) for experiments with one factor or treatment. We also covered analysis of variance (ANOVA) as a method to analyse data from these experimental designs.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Key learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Assess the validity of an experiment in terms of the appropriateness of replication:
-<ul>
-<li>Randomisation</li>
-<li>Experimental unit vs sampling unit</li>
-<li>Replication</li>
-</ul></li>
-<li>Control of variation
-<ul>
-<li>Completely randomised design (CRD)</li>
-<li>Explain the concept of blocking</li>
-<li>Randomised complete block design (RCBD)</li>
-<li>Know how to calculate the % variation explained by treatments and blocking terms</li>
-</ul></li>
-</ul>
-</div>
-</div>
+<section id="welcome" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
+<p>In this tutorial we will explore experimental design principles by testing randomisation with a class activity, then analysing simulated CRD and RCBD experiments in R.</p>
+<p>You will learn how to:</p>
+<ol type="1">
+<li>Assess the validity of an experiment in terms of randomisation, experimental units, and replication.</li>
+<li>Analyse a completely randomised design (CRD) using ANOVA.</li>
+<li>Analyse a randomised complete block design (RCBD) and calculate the percentage of variation explained by treatments and blocks.</li>
+</ol>
+</section>
 <section id="randomisation" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Randomisation</h1>
 <p>Randomisation is a key principle of experimental design. It helps to ensure that the treatment groups are comparable and that the results of the experiment are not biased by confounding factors.</p>
@@ -260,32 +281,32 @@ background: white;
 </ul>
 </div>
 </div>
-<section id="exercise-1-testing-randomisation" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="exercise-1-testing-randomisation"><span class="header-section-number">1.1</span> Exercise 1: Testing randomisation</h2>
-<p>Let’s work together as a class to test the effect of randomisation on an experiment. We will simulate an experiment with and without randomisation and compare the results.</p>
+<section id="exercise-1-testing-randomisation" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-1-testing-randomisation">Exercise 1: Testing randomisation</h2>
+<p>Let us work together as a class to test the effect of randomisation on an experiment. We will simulate an experiment with and without randomisation and compare the results.</p>
 <p>Assign each student a number from 1 to the total number of students in the class. Each student will be asked to answer the question:</p>
 <blockquote class="blockquote">
 <p>“Do you know the student next to you? Yes or No”</p>
 </blockquote>
-<section id="non-random-sample" class="level3">
-<h3 class="anchored" data-anchor-id="non-random-sample">1.1) Non-random sample</h3>
+<section id="part-a-non-random-sample" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-non-random-sample">Part A — Non-random sample</h3>
 <blockquote class="blockquote">
-<p>“Do you know the student sitting next to you? Yes or No”</p>
+<p>“Do you know the student next to you? Yes or No”</p>
 </blockquote>
 <p>Put your hand up if you answer “Yes”, and keep it down if you answer “No”. The students with their hands up are counted as “Yes” and the students with their hands down are counted as “No”. This is our non-random sample.</p>
 <p><strong>Class answers</strong> — Replace these with your class numbers:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>total_nonrandom <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># total students in non-random sample/class size</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>count_yes_nonrandom <span class="ot">&lt;-</span> <span class="dv">38</span> <span class="co"># yes I know the person next to me</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># no I don't know the person next to me</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># no I do not know the person next to me</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Class size (number of students present):</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>class_size <span class="ot">&lt;-</span> total_nonrandom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="percentages-from-the-non-random-sample" class="level3">
-<h3 class="anchored" data-anchor-id="percentages-from-the-non-random-sample">1.2) Percentages from the non-random sample</h3>
+<section id="part-b-percentages-from-the-non-random-sample" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-percentages-from-the-non-random-sample">Part B — Percentages from the non-random sample</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>prop_yes_nonrandom <span class="ot">&lt;-</span> (count_yes_nonrandom <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>prop_no_nonrandom  <span class="ot">&lt;-</span> (count_no_nonrandom  <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -301,8 +322,8 @@ background: white;
 </div>
 </div>
 </section>
-<section id="random-sample" class="level3">
-<h3 class="anchored" data-anchor-id="random-sample">1.3) Random sample</h3>
+<section id="part-c-random-sample" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-random-sample">Part C — Random sample</h3>
 <p>We simulate student IDs and assign a random number to each ID.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
@@ -369,21 +390,16 @@ background: white;
 <p>Bar plot of % Yes/No for non-random vs random samples using ggplot2.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>percent_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">sample_type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Non-random sample"</span>, <span class="st">"Random sample"</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">response     =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="at">percent      =</span> <span class="fu">c</span>(prop_yes_nonrandom, prop_no_nonrandom, prop_yes_random, prop_no_random)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="at">sample_type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Non-random"</span>, <span class="st">"Random"</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="at">response    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="at">percent     =</span> <span class="fu">c</span>(prop_yes_nonrandom, prop_no_nonrandom, prop_yes_random, prop_no_random)</span>
 <span id="cb23-5"><a href="#cb23-5"></a>)</span>
 <span id="cb23-6"><a href="#cb23-6"></a></span>
 <span id="cb23-7"><a href="#cb23-7"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb23-8"><a href="#cb23-8"></a></span>
-<span id="cb23-9"><a href="#cb23-9"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(percent_df, <span class="fu">aes</span>(<span class="at">x =</span> response, <span class="at">y =</span> percent, <span class="at">fill =</span> sample_type)) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Non-random vs Random Sample: % Knowing the Neighbour"</span>,</span>
-<span id="cb23-12"><a href="#cb23-12"></a>       <span class="at">x =</span> <span class="st">"Response"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">fill =</span> <span class="st">"Sample type"</span>) <span class="sc">+</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Non-random sample"</span> <span class="ot">=</span> <span class="st">"#4C78A8"</span>, <span class="st">"Random sample"</span> <span class="ot">=</span> <span class="st">"#F58518"</span>)) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb23-15"><a href="#cb23-15"></a></span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="fu">print</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="fu">ggplot</span>(percent_df, <span class="fu">aes</span>(<span class="at">x =</span> response, <span class="at">y =</span> percent, <span class="at">fill =</span> sample_type)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Response"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">fill =</span> <span class="st">"Sample type"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -397,93 +413,24 @@ background: white;
 <li>Random sampling gives each student an equal chance, reducing systematic bias.</li>
 <li>Comparing the two percentages provides a simple measure of bias in this context.</li>
 </ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="experimental-unit-vs-sampling-unit" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Experimental Unit vs Sampling Unit</h1>
-<p>In an experiment, it is important to distinguish between the experimental unit and the sampling unit.</p>
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Experimental unit vs Sampling unit
+<span class="screen-reader-only">Note</span>Checkpoint
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>The <strong>experimental unit</strong> is the smallest unit to which a treatment is applied.</li>
-<li>The <strong>sampling unit</strong> is the smallest unit from which measurements are taken.</li>
-</ul>
+<p>You should now be able to explain why random sampling reduces bias compared to convenience sampling, and how to estimate the magnitude of that bias.</p>
 </div>
 </div>
-<section id="exercise-2-identifying-units" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="exercise-2-identifying-units"><span class="header-section-number">2.1</span> Exercise 2: Identifying units</h2>
-<p>Consider an experiment to test the effect of different fertilizers on plant growth. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</p>
-<blockquote class="blockquote">
-<p>What is the experimental unit and what is the sampling unit in this experiment?</p>
-</blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Experimental unit: pot</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># Sampling unit: individual plant</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ul>
-<li>The experimental unit is the pot, as the fertilizer treatment is applied to the entire pot.</li>
-<li>The sampling unit is the individual plant, as the height of each plant is measured.</li>
-</ul>
-<blockquote class="blockquote">
-<p>Working in pairs, identify other examples of experimental units vs sampling units and check answers with staff.</p>
-</blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Examples here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<hr>
 </section>
 </section>
-<section id="replication" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Replication</h1>
-<p>Replication is the repetition of an experimental condition to estimate the variability of the data and increase the precision of the results.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Why replicate?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>To estimate the variability of the data.</li>
-<li>To increase the precision of the results.</li>
-<li>To increase the power of statistical tests.</li>
-</ul>
-</div>
-</div>
-<p>Consider the plant growth experiment above. If each fertilizer treatment is applied to only one pot, there is no replication, and it is impossible to estimate the variability of plant growth within each treatment. However, if each fertilizer treatment is applied to 4 pots, there is replication, allowing for estimation of variability and more reliable statistical analysis.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Understanding variation is our job as scientists!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Variation is inherent in all biological systems.</li>
-<li>Our job is to understand and account for this variation in our experimental designs and analyses.</li>
-</ul>
-</div>
-</div>
-<hr>
 </section>
-<section id="control-of-variation-completely-randomised-design-crd" class="level1 page-columns page-full" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Control of Variation: Completely Randomised Design (CRD)</h1>
+<section id="control-of-variation-crd" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Control of variation: CRD</h1>
 <p>In a Completely Randomised Design (CRD), experimental units are randomly assigned to treatments. This design is appropriate when the experimental units are homogeneous and there are no known sources of variation that need to be controlled.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -509,18 +456,30 @@ background: white;
 </div>
 </div>
 <p>Simple experiments can be easier to interpret, but may not control for variation as well as more complex designs.</p>
-<section id="exercise-3-completely-randomised-design-crd" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="exercise-3-completely-randomised-design-crd"><span class="header-section-number">4.1</span> Exercise 3: Completely Randomised Design (CRD)</h2>
+<section id="exercise-2-crd" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-2-crd">Exercise 2: CRD</h2>
 <p>Consider an experiment to test the effect of different fertilizers on plant growth using a CRD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</p>
+<p>The statistical model for this CRD can be expressed as: <span class="math display">Y_{ij} = \mu + \alpha_i + \epsilon_{ij}</span> Where:</p>
+<ul>
+<li><span class="math inline">Y_{ij}</span> is the observed height of the <span class="math inline">j</span>-th plant in the <span class="math inline">i</span>-th fertilizer treatment.</li>
+<li><span class="math inline">\mu</span> is the overall mean height across all fertilizer treatments.</li>
+<li><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>-th fertilizer treatment (i = A, B, C).</li>
+<li><span class="math inline">\epsilon_{ij}</span> is the random error associated with the <span class="math inline">j</span>-th plant in the <span class="math inline">i</span>-th treatment, assumed to be independently and identically distributed with mean 0 and variance <span class="math inline">\sigma^2</span>.</li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">Plant\ height = overall\ mean + fertilizer\ treatment + random\ error.</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Randomly assign treatments to pots</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb26-3"><a href="#cb26-3"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
-<span id="cb26-4"><a href="#cb26-4"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb26-6"><a href="#cb26-6"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
-<span id="cb26-7"><a href="#cb26-7"></a>)</span>
-<span id="cb26-8"><a href="#cb26-8"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Randomly assign treatments to pots</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb24-3"><a href="#cb24-3"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>)</span>
+<span id="cb24-8"><a href="#cb24-8"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id treatment
 1       1         A
@@ -542,15 +501,18 @@ background: white;
 <li>The height of each plant is measured after 4 weeks.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Simulate plant height data</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb28-3"><a href="#cb28-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
-<span id="cb28-6"><a href="#cb28-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb28-7"><a href="#cb28-7"></a>)</span>
-<span id="cb28-8"><a href="#cb28-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
-<span id="cb28-9"><a href="#cb28-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb26-5"><a href="#cb26-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb26-7"><a href="#cb26-7"></a>)</span>
+<span id="cb26-8"><a href="#cb26-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id plant_id    height treatment
 1       1        1  7.312957         A
@@ -622,12 +584,12 @@ background: white;
 <p>Is there a significant difference in plant height between the fertilizer treatments?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># ANOVA analysis</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> treatment, <span class="at">data =</span> plant_heights)</span>
-<span id="cb31-3"><a href="#cb31-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># ANOVA analysis</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
 treatment    2  100.1   50.04   2.641   0.08 .
@@ -639,11 +601,23 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <ul>
 <li>The ANOVA results will indicate whether there are significant differences in plant height between the fertilizer treatments.</li>
 </ul>
-<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to write out a CRD statistical model, fit it using <code>aov()</code>, and interpret the ANOVA output to determine whether there are significant treatment effects.</p>
+</div>
+</div>
 </section>
 </section>
-<section id="control-of-variation-randomised-complete-block-design-rcbd" class="level1 page-columns page-full" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Control of Variation: Randomised Complete Block Design (RCBD)</h1>
+<section id="control-of-variation-rcbd" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Control of variation: RCBD</h1>
 <p>In a Randomised Complete Block Design (RCBD), experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block. This design is appropriate when there are known sources of variation that need to be controlled.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -668,20 +642,33 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ul>
 </div>
 </div>
-<section id="exercise-4-randomised-complete-block-design-rcbd" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="exercise-4-randomised-complete-block-design-rcbd"><span class="header-section-number">5.1</span> Exercise 4: Randomised Complete Block Design (RCBD)</h2>
+<section id="exercise-3-rcbd" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-3-rcbd">Exercise 3: RCBD</h2>
 <p>Consider an experiment to test the effect of different fertilizers on plant growth using an RCBD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). The pots are grouped into 4 blocks based on their location in the greenhouse (North, South, East, West). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</p>
+<p>The statistical model for this RCBD can be expressed as: <span class="math display">Y_{ijk} = \mu +  \beta_j + \alpha_i + \epsilon _{ijk}</span> Where:</p>
+<ul>
+<li><span class="math inline">Y_{ijk}</span> is the observed height of the <span class="math inline">k</span>-th plant in the <span class="math inline">i</span>-th fertilizer treatment and <span class="math inline">j</span>-th block.</li>
+<li><span class="math inline">\mu</span> is the overall mean height across all fertilizer treatments and blocks.</li>
+<li><span class="math inline">\beta_j</span> is the effect of the <span class="math inline">j</span>-th block (j = North, South, East, West).</li>
+<li><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>-th fertilizer treatment (i = A, B, C).</li>
+<li><span class="math inline">\epsilon_{ijk}</span> is the random error associated with the <span class="math inline">k</span>-th plant in the <span class="math inline">i</span>-th treatment and <span class="math inline">j</span>-th block, assumed to be independently and identically distributed with mean 0 and variance <span class="math inline">\sigma^2</span>.</li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">Plant\ height = overall\ mean + block + fertilizer\ treatment + random\ error.</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Create blocks and randomly assign treatments within blocks</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb33-3"><a href="#cb33-3"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
-<span id="cb33-4"><a href="#cb33-4"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
-<span id="cb33-5"><a href="#cb33-5"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb33-6"><a href="#cb33-6"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
-<span id="cb33-7"><a href="#cb33-7"></a>  <span class="at">block =</span> blocks,</span>
-<span id="cb33-8"><a href="#cb33-8"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
-<span id="cb33-9"><a href="#cb33-9"></a>)</span>
-<span id="cb33-10"><a href="#cb33-10"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># Create blocks and randomly assign treatments within blocks</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb31-3"><a href="#cb31-3"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb31-4"><a href="#cb31-4"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb31-5"><a href="#cb31-5"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="at">block =</span> blocks,</span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb31-9"><a href="#cb31-9"></a>)</span>
+<span id="cb31-10"><a href="#cb31-10"></a>pots</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id block treatment
 1       1 North         C
@@ -703,15 +690,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>The height of each plant is measured after 4 weeks.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Simulate plant height data</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb35-3"><a href="#cb35-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb35-4"><a href="#cb35-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
-<span id="cb35-5"><a href="#cb35-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
-<span id="cb35-6"><a href="#cb35-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">each =</span> <span class="dv">15</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
-<span id="cb35-7"><a href="#cb35-7"></a>)</span>
-<span id="cb35-8"><a href="#cb35-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
-<span id="cb35-9"><a href="#cb35-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb33-3"><a href="#cb33-3"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">each =</span> <span class="dv">15</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb33-7"><a href="#cb33-7"></a>)</span>
+<span id="cb33-8"><a href="#cb33-8"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb33-9"><a href="#cb33-9"></a>plant_heights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   pot_id plant_id    height block treatment
 1       1        1  9.312957 North         C
@@ -778,9 +768,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p>The data can be analysed using ANOVA to test for differences in plant height between the fertilizer treatments while accounting for block effects.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># ANOVA analysis with blocking</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> plant_heights)</span>
-<span id="cb37-3"><a href="#cb37-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># ANOVA analysis with blocking</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="fu">summary</span>(anova_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 block        3  664.5  221.50  41.589 4.59e-14 ***
@@ -831,30 +821,41 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>anova_table <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_result)[[<span class="dv">1</span>]]</span>
-<span id="cb39-2"><a href="#cb39-2"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>ss_treatment <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">2</span>]</span>
-<span id="cb39-4"><a href="#cb39-4"></a>ss_block <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
-<span id="cb39-5"><a href="#cb39-5"></a>percent_treatment <span class="ot">&lt;-</span> (ss_treatment <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb39-6"><a href="#cb39-6"></a>percent_block <span class="ot">&lt;-</span> (ss_block <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb39-7"><a href="#cb39-7"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by treatments:"</span>, <span class="fu">round</span>(percent_treatment, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>anova_table <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_result)[[<span class="dv">1</span>]]</span>
+<span id="cb37-2"><a href="#cb37-2"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
+<span id="cb37-3"><a href="#cb37-3"></a>ss_treatment <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb37-4"><a href="#cb37-4"></a>ss_block <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb37-5"><a href="#cb37-5"></a>percent_treatment <span class="ot">&lt;-</span> (ss_treatment <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>percent_block <span class="ot">&lt;-</span> (ss_block <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by treatments:"</span>, <span class="fu">round</span>(percent_treatment, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Percentage of variation explained by treatments: 3.4 %</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by blocks:"</span>, <span class="fu">round</span>(percent_block, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by blocks:"</span>, <span class="fu">round</span>(percent_block, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Percentage of variation explained by blocks: 67.4 %</code></pre>
 </div>
 </div>
 <p>This information helps to understand the contribution of treatments and blocks to the overall variation in plant height.</p>
-<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to write out an RCBD statistical model, fit it using <code>aov()</code> with a blocking term, interpret the output, and calculate the percentage of variation explained by treatments and blocks from the ANOVA table.</p>
+</div>
+</div>
 </section>
-</section>
-<section id="summary" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Summary</h1>
+<section id="wrap-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
 <p>In this tutorial, we covered key concepts in experimental design, including randomisation, experimental units vs sampling units, replication, and control of variation through CRD and RCBD. We also demonstrated how to analyse data from these designs using ANOVA in R.</p>
-<section id="example-exam-questions" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="example-exam-questions"><span class="header-section-number">6.1</span> Example exam questions</h2>
+<section id="example-exam-questions" class="level3">
+<h3 class="anchored" data-anchor-id="example-exam-questions">Example exam questions</h3>
 <ol type="1">
 <li><p>Define the terms “experimental unit” and “sampling unit”. Provide an example of each from a hypothetical agricultural experiment.</p></li>
 <li><p>Explain the importance of randomisation in experimental design. How does randomisation help to reduce bias in an experiment?</p></li>
@@ -864,6 +865,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ol>
 
 
+<!-- -->
+
+</section>
 </section>
 </section>
 
@@ -938,6 +942,57 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1267,7 +1322,395 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">---</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="an">title:</span><span class="co"> "Tutorial 05"</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="co"># reviewed-by:</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="an">format:</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="co">---</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a></span>
+<span id="cb41-9"><a href="#cb41-9"></a><span class="fu">## Welcome {.unnumbered}</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a></span>
+<span id="cb41-11"><a href="#cb41-11"></a>In this tutorial we will explore experimental design principles by testing randomisation with a class activity, then analysing simulated CRD and RCBD experiments in R.</span>
+<span id="cb41-12"><a href="#cb41-12"></a></span>
+<span id="cb41-13"><a href="#cb41-13"></a>You will learn how to:</span>
+<span id="cb41-14"><a href="#cb41-14"></a></span>
+<span id="cb41-15"><a href="#cb41-15"></a><span class="ss">1. </span>Assess the validity of an experiment in terms of randomisation, experimental units, and replication.</span>
+<span id="cb41-16"><a href="#cb41-16"></a><span class="ss">2. </span>Analyse a completely randomised design (CRD) using ANOVA.</span>
+<span id="cb41-17"><a href="#cb41-17"></a><span class="ss">3. </span>Analyse a randomised complete block design (RCBD) and calculate the percentage of variation explained by treatments and blocks.</span>
+<span id="cb41-18"><a href="#cb41-18"></a></span>
+<span id="cb41-19"><a href="#cb41-19"></a></span>
+<span id="cb41-20"><a href="#cb41-20"></a><span class="fu"># Randomisation</span></span>
+<span id="cb41-21"><a href="#cb41-21"></a></span>
+<span id="cb41-22"><a href="#cb41-22"></a>Randomisation is a key principle of experimental design. It helps to ensure that the treatment groups are comparable and that the results of the experiment are not biased by confounding factors.</span>
+<span id="cb41-23"><a href="#cb41-23"></a></span>
+<span id="cb41-24"><a href="#cb41-24"></a>::: callout-important</span>
+<span id="cb41-25"><a href="#cb41-25"></a><span class="fu">## Why randomise?</span></span>
+<span id="cb41-26"><a href="#cb41-26"></a></span>
+<span id="cb41-27"><a href="#cb41-27"></a><span class="ss">-   </span>It helps to eliminate bias in the allocation of treatments to experimental units.</span>
+<span id="cb41-28"><a href="#cb41-28"></a><span class="ss">-   </span>It helps to ensure that the treatment groups are comparable.</span>
+<span id="cb41-29"><a href="#cb41-29"></a><span class="ss">-   </span>It helps to ensure that the results of the experiment are not confounded by other factors.</span>
+<span id="cb41-30"><a href="#cb41-30"></a><span class="ss">-   </span>It is a key assumption of all statistical models.</span>
+<span id="cb41-31"><a href="#cb41-31"></a>:::</span>
+<span id="cb41-32"><a href="#cb41-32"></a></span>
+<span id="cb41-33"><a href="#cb41-33"></a><span class="fu">## Exercise 1: Testing randomisation {.unnumbered}</span></span>
+<span id="cb41-34"><a href="#cb41-34"></a></span>
+<span id="cb41-35"><a href="#cb41-35"></a>Let us work together as a class to test the effect of randomisation on an experiment. We will simulate an experiment with and without randomisation and compare the results.</span>
+<span id="cb41-36"><a href="#cb41-36"></a></span>
+<span id="cb41-37"><a href="#cb41-37"></a>Assign each student a number from 1 to the total number of students in the class. Each student will be asked to answer the question:</span>
+<span id="cb41-38"><a href="#cb41-38"></a></span>
+<span id="cb41-39"><a href="#cb41-39"></a><span class="at">&gt; "Do you know the student next to you? Yes or No"</span></span>
+<span id="cb41-40"><a href="#cb41-40"></a></span>
+<span id="cb41-41"><a href="#cb41-41"></a><span class="fu">### Part A --- Non-random sample</span></span>
+<span id="cb41-42"><a href="#cb41-42"></a></span>
+<span id="cb41-43"><a href="#cb41-43"></a><span class="at">&gt; "Do you know the student next to you? Yes or No"</span></span>
+<span id="cb41-44"><a href="#cb41-44"></a></span>
+<span id="cb41-45"><a href="#cb41-45"></a>Put your hand up if you answer "Yes", and keep it down if you answer "No". The students with their hands up are counted as "Yes" and the students with their hands down are counted as "No". This is our non-random sample.</span>
+<span id="cb41-46"><a href="#cb41-46"></a></span>
+<span id="cb41-47"><a href="#cb41-47"></a>**Class answers** --- Replace these with your class numbers:</span>
+<span id="cb41-48"><a href="#cb41-48"></a></span>
+<span id="cb41-51"><a href="#cb41-51"></a><span class="in">```{r}</span></span>
+<span id="cb41-52"><a href="#cb41-52"></a>total_nonrandom <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># total students in non-random sample/class size</span></span>
+<span id="cb41-53"><a href="#cb41-53"></a>count_yes_nonrandom <span class="ot">&lt;-</span> <span class="dv">38</span> <span class="co"># yes I know the person next to me</span></span>
+<span id="cb41-54"><a href="#cb41-54"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># no I do not know the person next to me</span></span>
+<span id="cb41-55"><a href="#cb41-55"></a><span class="in">```</span></span>
+<span id="cb41-56"><a href="#cb41-56"></a></span>
+<span id="cb41-57"><a href="#cb41-57"></a>**Class size (number of students present):**</span>
+<span id="cb41-58"><a href="#cb41-58"></a></span>
+<span id="cb41-61"><a href="#cb41-61"></a><span class="in">```{r}</span></span>
+<span id="cb41-62"><a href="#cb41-62"></a>class_size <span class="ot">&lt;-</span> total_nonrandom</span>
+<span id="cb41-63"><a href="#cb41-63"></a><span class="in">```</span></span>
+<span id="cb41-64"><a href="#cb41-64"></a></span>
+<span id="cb41-65"><a href="#cb41-65"></a></span>
+<span id="cb41-66"><a href="#cb41-66"></a><span class="fu">### Part B --- Percentages from the non-random sample</span></span>
+<span id="cb41-67"><a href="#cb41-67"></a></span>
+<span id="cb41-70"><a href="#cb41-70"></a><span class="in">```{r}</span></span>
+<span id="cb41-71"><a href="#cb41-71"></a>prop_yes_nonrandom <span class="ot">&lt;-</span> (count_yes_nonrandom <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-72"><a href="#cb41-72"></a>prop_no_nonrandom  <span class="ot">&lt;-</span> (count_no_nonrandom  <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-73"><a href="#cb41-73"></a><span class="in">```</span></span>
+<span id="cb41-74"><a href="#cb41-74"></a></span>
+<span id="cb41-77"><a href="#cb41-77"></a><span class="in">```{r}</span></span>
+<span id="cb41-78"><a href="#cb41-78"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_nonrandom, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-79"><a href="#cb41-79"></a><span class="fu">cat</span>(<span class="st">"Non-random sample % No :"</span>, <span class="fu">round</span>(prop_no_nonrandom, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb41-80"><a href="#cb41-80"></a><span class="in">```</span></span>
+<span id="cb41-81"><a href="#cb41-81"></a></span>
+<span id="cb41-82"><a href="#cb41-82"></a><span class="fu">### Part C --- Random sample</span></span>
+<span id="cb41-83"><a href="#cb41-83"></a></span>
+<span id="cb41-84"><a href="#cb41-84"></a>We simulate student IDs and assign a random number to each ID.</span>
+<span id="cb41-85"><a href="#cb41-85"></a></span>
+<span id="cb41-88"><a href="#cb41-88"></a><span class="in">```{r}</span></span>
+<span id="cb41-89"><a href="#cb41-89"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb41-90"><a href="#cb41-90"></a>student_ids <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(class_size)</span>
+<span id="cb41-91"><a href="#cb41-91"></a>rand_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(class_size)</span>
+<span id="cb41-92"><a href="#cb41-92"></a>class_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> student_ids, <span class="at">rand_num =</span> rand_num)</span>
+<span id="cb41-93"><a href="#cb41-93"></a><span class="in">```</span></span>
+<span id="cb41-94"><a href="#cb41-94"></a></span>
+<span id="cb41-95"><a href="#cb41-95"></a>**Random sample size (how many students you will sample at random):**</span>
+<span id="cb41-96"><a href="#cb41-96"></a></span>
+<span id="cb41-99"><a href="#cb41-99"></a><span class="in">```{r}</span></span>
+<span id="cb41-100"><a href="#cb41-100"></a>random_sample_size <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="co"># choose a sample size for the random sample</span></span>
+<span id="cb41-101"><a href="#cb41-101"></a><span class="in">```</span></span>
+<span id="cb41-102"><a href="#cb41-102"></a></span>
+<span id="cb41-103"><a href="#cb41-103"></a>**Randomly select students:**</span>
+<span id="cb41-104"><a href="#cb41-104"></a></span>
+<span id="cb41-107"><a href="#cb41-107"></a><span class="in">```{r}</span></span>
+<span id="cb41-108"><a href="#cb41-108"></a><span class="fu">set.seed</span>(<span class="dv">202</span>)</span>
+<span id="cb41-109"><a href="#cb41-109"></a>sampled_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(class_df<span class="sc">$</span>id, <span class="at">size =</span> random_sample_size, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb41-110"><a href="#cb41-110"></a></span>
+<span id="cb41-111"><a href="#cb41-111"></a>sampled_ids <span class="co"># students with these numbers were randomly selected to be asked the question again.</span></span>
+<span id="cb41-112"><a href="#cb41-112"></a><span class="in">```</span></span>
+<span id="cb41-113"><a href="#cb41-113"></a></span>
+<span id="cb41-114"><a href="#cb41-114"></a><span class="at">&gt; "Do you know the student next to you? Yes or No"</span></span>
+<span id="cb41-115"><a href="#cb41-115"></a></span>
+<span id="cb41-116"><a href="#cb41-116"></a>**Enter counts for the random sample:**</span>
+<span id="cb41-117"><a href="#cb41-117"></a></span>
+<span id="cb41-118"><a href="#cb41-118"></a>After you randomly select those students and ask the question, enter the counts here.</span>
+<span id="cb41-119"><a href="#cb41-119"></a></span>
+<span id="cb41-122"><a href="#cb41-122"></a><span class="in">```{r}</span></span>
+<span id="cb41-123"><a href="#cb41-123"></a>count_yes_random <span class="ot">&lt;-</span> <span class="dv">14</span></span>
+<span id="cb41-124"><a href="#cb41-124"></a>count_no_random  <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb41-125"><a href="#cb41-125"></a><span class="in">```</span></span>
+<span id="cb41-126"><a href="#cb41-126"></a></span>
+<span id="cb41-127"><a href="#cb41-127"></a>**Percentages for the random sample:**</span>
+<span id="cb41-128"><a href="#cb41-128"></a></span>
+<span id="cb41-131"><a href="#cb41-131"></a><span class="in">```{r}</span></span>
+<span id="cb41-132"><a href="#cb41-132"></a>prop_yes_random <span class="ot">&lt;-</span> (count_yes_random <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-133"><a href="#cb41-133"></a>prop_no_random  <span class="ot">&lt;-</span> (count_no_random  <span class="sc">/</span> random_sample_size) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-134"><a href="#cb41-134"></a><span class="in">```</span></span>
+<span id="cb41-135"><a href="#cb41-135"></a></span>
+<span id="cb41-138"><a href="#cb41-138"></a><span class="in">```{r}</span></span>
+<span id="cb41-139"><a href="#cb41-139"></a><span class="fu">cat</span>(<span class="st">"Random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_random, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-140"><a href="#cb41-140"></a><span class="fu">cat</span>(<span class="st">"Random sample % No :"</span>, <span class="fu">round</span>(prop_no_random, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb41-141"><a href="#cb41-141"></a><span class="in">```</span></span>
+<span id="cb41-142"><a href="#cb41-142"></a></span>
+<span id="cb41-143"><a href="#cb41-143"></a>**Estimate the bias:**</span>
+<span id="cb41-144"><a href="#cb41-144"></a></span>
+<span id="cb41-145"><a href="#cb41-145"></a>Bias here is the difference between the non-random sample proportion and the random sample proportion.</span>
+<span id="cb41-146"><a href="#cb41-146"></a></span>
+<span id="cb41-149"><a href="#cb41-149"></a><span class="in">```{r}</span></span>
+<span id="cb41-150"><a href="#cb41-150"></a>bias_yes <span class="ot">&lt;-</span> prop_yes_nonrandom <span class="sc">-</span> prop_yes_random</span>
+<span id="cb41-151"><a href="#cb41-151"></a>bias_no  <span class="ot">&lt;-</span> prop_no_nonrandom  <span class="sc">-</span> prop_no_random</span>
+<span id="cb41-152"><a href="#cb41-152"></a><span class="in">```</span></span>
+<span id="cb41-153"><a href="#cb41-153"></a></span>
+<span id="cb41-156"><a href="#cb41-156"></a><span class="in">```{r}</span></span>
+<span id="cb41-157"><a href="#cb41-157"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % Yes (non-random - random):"</span>, <span class="fu">round</span>(bias_yes, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-158"><a href="#cb41-158"></a><span class="fu">cat</span>(<span class="st">"Estimated bias in % No  (non-random - random):"</span>, <span class="fu">round</span>(bias_no, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb41-159"><a href="#cb41-159"></a><span class="in">```</span></span>
+<span id="cb41-160"><a href="#cb41-160"></a></span>
+<span id="cb41-161"><a href="#cb41-161"></a>**Visualisation:**</span>
+<span id="cb41-162"><a href="#cb41-162"></a></span>
+<span id="cb41-163"><a href="#cb41-163"></a>Bar plot of % Yes/No for non-random vs random samples using ggplot2.</span>
+<span id="cb41-164"><a href="#cb41-164"></a></span>
+<span id="cb41-167"><a href="#cb41-167"></a><span class="in">```{r}</span></span>
+<span id="cb41-168"><a href="#cb41-168"></a>percent_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-169"><a href="#cb41-169"></a>  <span class="at">sample_type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Non-random"</span>, <span class="st">"Random"</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb41-170"><a href="#cb41-170"></a>  <span class="at">response    =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb41-171"><a href="#cb41-171"></a>  <span class="at">percent     =</span> <span class="fu">c</span>(prop_yes_nonrandom, prop_no_nonrandom, prop_yes_random, prop_no_random)</span>
+<span id="cb41-172"><a href="#cb41-172"></a>)</span>
+<span id="cb41-173"><a href="#cb41-173"></a></span>
+<span id="cb41-174"><a href="#cb41-174"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb41-175"><a href="#cb41-175"></a></span>
+<span id="cb41-176"><a href="#cb41-176"></a><span class="fu">ggplot</span>(percent_df, <span class="fu">aes</span>(<span class="at">x =</span> response, <span class="at">y =</span> percent, <span class="at">fill =</span> sample_type)) <span class="sc">+</span></span>
+<span id="cb41-177"><a href="#cb41-177"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb41-178"><a href="#cb41-178"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Response"</span>, <span class="at">y =</span> <span class="st">"Percent"</span>, <span class="at">fill =</span> <span class="st">"Sample type"</span>)</span>
+<span id="cb41-179"><a href="#cb41-179"></a><span class="in">```</span></span>
+<span id="cb41-180"><a href="#cb41-180"></a></span>
+<span id="cb41-181"><a href="#cb41-181"></a>Non-random sampling (asking about the person next to you) is typically biased because seating patterns cluster friends or cohorts.</span>
+<span id="cb41-182"><a href="#cb41-182"></a></span>
+<span id="cb41-183"><a href="#cb41-183"></a><span class="ss">-   </span>Random sampling gives each student an equal chance, reducing systematic bias.</span>
+<span id="cb41-184"><a href="#cb41-184"></a><span class="ss">-   </span>Comparing the two percentages provides a simple measure of bias in this context.</span>
+<span id="cb41-185"><a href="#cb41-185"></a></span>
+<span id="cb41-186"><a href="#cb41-186"></a>::: {.callout-note}</span>
+<span id="cb41-187"><a href="#cb41-187"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb41-188"><a href="#cb41-188"></a></span>
+<span id="cb41-189"><a href="#cb41-189"></a>You should now be able to explain why random sampling reduces bias compared to convenience sampling, and how to estimate the magnitude of that bias.</span>
+<span id="cb41-190"><a href="#cb41-190"></a>:::</span>
+<span id="cb41-191"><a href="#cb41-191"></a></span>
+<span id="cb41-192"><a href="#cb41-192"></a></span>
+<span id="cb41-193"><a href="#cb41-193"></a><span class="fu"># Control of variation: CRD</span></span>
+<span id="cb41-194"><a href="#cb41-194"></a></span>
+<span id="cb41-195"><a href="#cb41-195"></a>In a Completely Randomised Design (CRD), experimental units are randomly assigned to treatments. This design is appropriate when the experimental units are homogeneous and there are no known sources of variation that need to be controlled.</span>
+<span id="cb41-196"><a href="#cb41-196"></a></span>
+<span id="cb41-197"><a href="#cb41-197"></a><span class="al">![Completely Randomised Design](images/Slide1.PNG)</span>{fig-align="center" width="767"}</span>
+<span id="cb41-198"><a href="#cb41-198"></a></span>
+<span id="cb41-199"><a href="#cb41-199"></a>::: callout-tip</span>
+<span id="cb41-200"><a href="#cb41-200"></a><span class="fu">## Key features of CRD</span></span>
+<span id="cb41-201"><a href="#cb41-201"></a></span>
+<span id="cb41-202"><a href="#cb41-202"></a><span class="ss">-   </span>Random assignment of treatments to experimental units.</span>
+<span id="cb41-203"><a href="#cb41-203"></a><span class="ss">-   </span>Appropriate for homogeneous experimental units.</span>
+<span id="cb41-204"><a href="#cb41-204"></a><span class="ss">-   </span>Simple to implement and analyse.</span>
+<span id="cb41-205"><a href="#cb41-205"></a>:::</span>
+<span id="cb41-206"><a href="#cb41-206"></a></span>
+<span id="cb41-207"><a href="#cb41-207"></a>Simple experiments can be easier to interpret, but may not control for variation as well as more complex designs.</span>
+<span id="cb41-208"><a href="#cb41-208"></a></span>
+<span id="cb41-209"><a href="#cb41-209"></a><span class="fu">## Exercise 2: CRD {.unnumbered}</span></span>
+<span id="cb41-210"><a href="#cb41-210"></a></span>
+<span id="cb41-211"><a href="#cb41-211"></a>Consider an experiment to test the effect of different fertilizers on plant growth using a CRD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</span>
+<span id="cb41-212"><a href="#cb41-212"></a></span>
+<span id="cb41-213"><a href="#cb41-213"></a>The statistical model for this CRD can be expressed as:</span>
+<span id="cb41-214"><a href="#cb41-214"></a>$$Y_{ij} = \mu + \alpha_i + \epsilon_{ij}$$</span>
+<span id="cb41-215"><a href="#cb41-215"></a>Where:</span>
+<span id="cb41-216"><a href="#cb41-216"></a></span>
+<span id="cb41-217"><a href="#cb41-217"></a><span class="ss">- </span>$Y_{ij}$ is the observed height of the $j$-th plant in the $i$-th fertilizer treatment.</span>
+<span id="cb41-218"><a href="#cb41-218"></a><span class="ss">- </span>$\mu$ is the overall mean height across all fertilizer treatments.</span>
+<span id="cb41-219"><a href="#cb41-219"></a><span class="ss">- </span>$\alpha_i$ is the effect of the $i$-th fertilizer treatment (i = A, B, C).</span>
+<span id="cb41-220"><a href="#cb41-220"></a><span class="ss">- </span>$\epsilon_{ij}$ is the random error associated with the $j$-th plant in the $i$-th treatment, assumed to be independently and identically distributed with mean 0 and variance $\sigma^2$.</span>
+<span id="cb41-221"><a href="#cb41-221"></a></span>
+<span id="cb41-222"><a href="#cb41-222"></a>OR:</span>
+<span id="cb41-223"><a href="#cb41-223"></a></span>
+<span id="cb41-224"><a href="#cb41-224"></a>$$Plant\ height = overall\ mean + fertilizer\ treatment + random\ error.$$</span>
+<span id="cb41-225"><a href="#cb41-225"></a></span>
+<span id="cb41-228"><a href="#cb41-228"></a><span class="in">```{r}</span></span>
+<span id="cb41-229"><a href="#cb41-229"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb41-230"><a href="#cb41-230"></a><span class="co"># Randomly assign treatments to pots</span></span>
+<span id="cb41-231"><a href="#cb41-231"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb41-232"><a href="#cb41-232"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb41-233"><a href="#cb41-233"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-234"><a href="#cb41-234"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb41-235"><a href="#cb41-235"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb41-236"><a href="#cb41-236"></a>)</span>
+<span id="cb41-237"><a href="#cb41-237"></a>pots</span>
+<span id="cb41-238"><a href="#cb41-238"></a><span class="in">```</span></span>
+<span id="cb41-239"><a href="#cb41-239"></a></span>
+<span id="cb41-240"><a href="#cb41-240"></a><span class="ss">-   </span>The treatments are randomly assigned to the pots.</span>
+<span id="cb41-241"><a href="#cb41-241"></a><span class="ss">-   </span>The height of each plant is measured after 4 weeks.</span>
+<span id="cb41-242"><a href="#cb41-242"></a></span>
+<span id="cb41-245"><a href="#cb41-245"></a><span class="in">```{r}</span></span>
+<span id="cb41-246"><a href="#cb41-246"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb41-247"><a href="#cb41-247"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb41-248"><a href="#cb41-248"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb41-249"><a href="#cb41-249"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-250"><a href="#cb41-250"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb41-251"><a href="#cb41-251"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb41-252"><a href="#cb41-252"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb41-253"><a href="#cb41-253"></a>)</span>
+<span id="cb41-254"><a href="#cb41-254"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb41-255"><a href="#cb41-255"></a>plant_heights</span>
+<span id="cb41-256"><a href="#cb41-256"></a><span class="in">```</span></span>
+<span id="cb41-257"><a href="#cb41-257"></a></span>
+<span id="cb41-258"><a href="#cb41-258"></a><span class="ss">-   </span>The data can be analysed using ANOVA to test for differences in plant height between the fertilizer treatments.</span>
+<span id="cb41-259"><a href="#cb41-259"></a></span>
+<span id="cb41-260"><a href="#cb41-260"></a><span class="at">&gt; Is there a significant difference in plant height between the fertilizer treatments?</span></span>
+<span id="cb41-261"><a href="#cb41-261"></a></span>
+<span id="cb41-264"><a href="#cb41-264"></a><span class="in">```{r}</span></span>
+<span id="cb41-265"><a href="#cb41-265"></a><span class="co"># answer here</span></span>
+<span id="cb41-266"><a href="#cb41-266"></a><span class="in">```</span></span>
+<span id="cb41-267"><a href="#cb41-267"></a></span>
+<span id="cb41-268"><a href="#cb41-268"></a></span>
+<span id="cb41-271"><a href="#cb41-271"></a><span class="in">```{r}</span></span>
+<span id="cb41-272"><a href="#cb41-272"></a><span class="co"># ANOVA analysis</span></span>
+<span id="cb41-273"><a href="#cb41-273"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb41-274"><a href="#cb41-274"></a><span class="fu">summary</span>(anova_result)</span>
+<span id="cb41-275"><a href="#cb41-275"></a><span class="in">```</span></span>
+<span id="cb41-276"><a href="#cb41-276"></a></span>
+<span id="cb41-277"><a href="#cb41-277"></a><span class="ss">-   </span>The ANOVA results will indicate whether there are significant differences in plant height between the fertilizer treatments.</span>
+<span id="cb41-278"><a href="#cb41-278"></a></span>
+<span id="cb41-279"><a href="#cb41-279"></a>::: {.callout-note}</span>
+<span id="cb41-280"><a href="#cb41-280"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb41-281"><a href="#cb41-281"></a></span>
+<span id="cb41-282"><a href="#cb41-282"></a>You should now be able to write out a CRD statistical model, fit it using <span class="in">`aov()`</span>, and interpret the ANOVA output to determine whether there are significant treatment effects.</span>
+<span id="cb41-283"><a href="#cb41-283"></a>:::</span>
+<span id="cb41-284"><a href="#cb41-284"></a></span>
+<span id="cb41-285"><a href="#cb41-285"></a></span>
+<span id="cb41-286"><a href="#cb41-286"></a><span class="fu"># Control of variation: RCBD</span></span>
+<span id="cb41-287"><a href="#cb41-287"></a></span>
+<span id="cb41-288"><a href="#cb41-288"></a>In a Randomised Complete Block Design (RCBD), experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block. This design is appropriate when there are known sources of variation that need to be controlled.</span>
+<span id="cb41-289"><a href="#cb41-289"></a></span>
+<span id="cb41-290"><a href="#cb41-290"></a><span class="al">![Randomised Complete Block Design](images/Slide2.PNG)</span></span>
+<span id="cb41-291"><a href="#cb41-291"></a></span>
+<span id="cb41-292"><a href="#cb41-292"></a>::: callout-tip</span>
+<span id="cb41-293"><a href="#cb41-293"></a><span class="fu">## Key features of RCBD</span></span>
+<span id="cb41-294"><a href="#cb41-294"></a></span>
+<span id="cb41-295"><a href="#cb41-295"></a><span class="ss">-   </span>Grouping of experimental units into blocks.</span>
+<span id="cb41-296"><a href="#cb41-296"></a><span class="ss">-   </span>Random assignment of treatments within blocks.</span>
+<span id="cb41-297"><a href="#cb41-297"></a><span class="ss">-   </span>Appropriate for heterogeneous experimental units.</span>
+<span id="cb41-298"><a href="#cb41-298"></a>:::</span>
+<span id="cb41-299"><a href="#cb41-299"></a></span>
+<span id="cb41-300"><a href="#cb41-300"></a><span class="fu">## Exercise 3: RCBD {.unnumbered}</span></span>
+<span id="cb41-301"><a href="#cb41-301"></a></span>
+<span id="cb41-302"><a href="#cb41-302"></a>Consider an experiment to test the effect of different fertilizers on plant growth using an RCBD. The experiment uses 12 pots, with 4 pots assigned to each of 3 fertilizer treatments (A, B, and C). The pots are grouped into 4 blocks based on their location in the greenhouse (North, South, East, West). Each pot contains 5 plants, and the height of each plant is measured after 4 weeks.</span>
+<span id="cb41-303"><a href="#cb41-303"></a></span>
+<span id="cb41-304"><a href="#cb41-304"></a>The statistical model for this RCBD can be expressed as:</span>
+<span id="cb41-305"><a href="#cb41-305"></a>$$Y_{ijk} = \mu +  \beta_j + \alpha_i + \epsilon _{ijk}$$</span>
+<span id="cb41-306"><a href="#cb41-306"></a>Where:</span>
+<span id="cb41-307"><a href="#cb41-307"></a></span>
+<span id="cb41-308"><a href="#cb41-308"></a><span class="ss">- </span>$Y_{ijk}$ is the observed height of the $k$-th plant in the $i$-th fertilizer treatment and $j$-th block.</span>
+<span id="cb41-309"><a href="#cb41-309"></a><span class="ss">- </span>$\mu$ is the overall mean height across all fertilizer treatments and blocks.</span>
+<span id="cb41-310"><a href="#cb41-310"></a><span class="ss">- </span>$\beta_j$ is the effect of the $j$-th block (j = North, South, East, West).</span>
+<span id="cb41-311"><a href="#cb41-311"></a><span class="ss">- </span>$\alpha_i$ is the effect of the $i$-th fertilizer treatment (i = A, B, C).</span>
+<span id="cb41-312"><a href="#cb41-312"></a><span class="ss">- </span>$\epsilon_{ijk}$ is the random error associated with the $k$-th plant in the $i$-th treatment and $j$-th block, assumed to be independently and identically distributed with mean 0 and variance $\sigma^2$.</span>
+<span id="cb41-313"><a href="#cb41-313"></a></span>
+<span id="cb41-314"><a href="#cb41-314"></a>OR:</span>
+<span id="cb41-315"><a href="#cb41-315"></a></span>
+<span id="cb41-316"><a href="#cb41-316"></a>$$Plant\ height = overall\ mean + block + fertilizer\ treatment + random\ error.$$</span>
+<span id="cb41-317"><a href="#cb41-317"></a></span>
+<span id="cb41-318"><a href="#cb41-318"></a></span>
+<span id="cb41-321"><a href="#cb41-321"></a><span class="in">```{r}</span></span>
+<span id="cb41-322"><a href="#cb41-322"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb41-323"><a href="#cb41-323"></a><span class="co"># Create blocks and randomly assign treatments within blocks</span></span>
+<span id="cb41-324"><a href="#cb41-324"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb41-325"><a href="#cb41-325"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb41-326"><a href="#cb41-326"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb41-327"><a href="#cb41-327"></a>pots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-328"><a href="#cb41-328"></a>  <span class="at">pot_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb41-329"><a href="#cb41-329"></a>  <span class="at">block =</span> blocks,</span>
+<span id="cb41-330"><a href="#cb41-330"></a>  <span class="at">treatment =</span> <span class="fu">sample</span>(treatments)</span>
+<span id="cb41-331"><a href="#cb41-331"></a>)</span>
+<span id="cb41-332"><a href="#cb41-332"></a>pots</span>
+<span id="cb41-333"><a href="#cb41-333"></a><span class="in">```</span></span>
+<span id="cb41-334"><a href="#cb41-334"></a></span>
+<span id="cb41-335"><a href="#cb41-335"></a><span class="ss">-   </span>The treatments are randomly assigned to the pots within each block.</span>
+<span id="cb41-336"><a href="#cb41-336"></a><span class="ss">-   </span>The height of each plant is measured after 4 weeks.</span>
+<span id="cb41-337"><a href="#cb41-337"></a></span>
+<span id="cb41-340"><a href="#cb41-340"></a><span class="in">```{r}</span></span>
+<span id="cb41-341"><a href="#cb41-341"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb41-342"><a href="#cb41-342"></a><span class="co"># Simulate plant height data</span></span>
+<span id="cb41-343"><a href="#cb41-343"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb41-344"><a href="#cb41-344"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-345"><a href="#cb41-345"></a>  <span class="at">pot_id =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">each =</span> <span class="dv">5</span>),</span>
+<span id="cb41-346"><a href="#cb41-346"></a>  <span class="at">plant_id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>,</span>
+<span id="cb41-347"><a href="#cb41-347"></a>  <span class="at">height =</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">each =</span> <span class="dv">20</span>) <span class="sc">+</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>), <span class="at">each =</span> <span class="dv">15</span>), <span class="at">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb41-348"><a href="#cb41-348"></a>)</span>
+<span id="cb41-349"><a href="#cb41-349"></a>plant_heights <span class="ot">&lt;-</span> <span class="fu">merge</span>(plant_heights, pots, <span class="at">by =</span> <span class="st">"pot_id"</span>)</span>
+<span id="cb41-350"><a href="#cb41-350"></a>plant_heights</span>
+<span id="cb41-351"><a href="#cb41-351"></a><span class="in">```</span></span>
+<span id="cb41-352"><a href="#cb41-352"></a></span>
+<span id="cb41-353"><a href="#cb41-353"></a>The data can be analysed using ANOVA to test for differences in plant height between the fertilizer treatments while accounting for block effects.</span>
+<span id="cb41-354"><a href="#cb41-354"></a></span>
+<span id="cb41-357"><a href="#cb41-357"></a><span class="in">```{r}</span></span>
+<span id="cb41-358"><a href="#cb41-358"></a><span class="co"># ANOVA analysis with blocking</span></span>
+<span id="cb41-359"><a href="#cb41-359"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">aov</span>(height <span class="sc">~</span> block <span class="sc">+</span> treatment, <span class="at">data =</span> plant_heights)</span>
+<span id="cb41-360"><a href="#cb41-360"></a><span class="fu">summary</span>(anova_result)</span>
+<span id="cb41-361"><a href="#cb41-361"></a><span class="in">```</span></span>
+<span id="cb41-362"><a href="#cb41-362"></a></span>
+<span id="cb41-363"><a href="#cb41-363"></a>The ANOVA results will indicate whether there are significant differences in plant height between the fertilizer treatments while controlling for block effects.</span>
+<span id="cb41-364"><a href="#cb41-364"></a></span>
+<span id="cb41-365"><a href="#cb41-365"></a>The percentage of variation explained by treatments and blocking terms can be calculated from the ANOVA table.</span>
+<span id="cb41-366"><a href="#cb41-366"></a></span>
+<span id="cb41-367"><a href="#cb41-367"></a>::: callout-tip</span>
+<span id="cb41-368"><a href="#cb41-368"></a><span class="fu">## Calculating percentage of variation explained</span></span>
+<span id="cb41-369"><a href="#cb41-369"></a></span>
+<span id="cb41-370"><a href="#cb41-370"></a><span class="ss">-   </span>Sum of Squares (SS) for each source of variation can be found in the ANOVA table.</span>
+<span id="cb41-371"><a href="#cb41-371"></a><span class="ss">-   </span>Percentage of variation explained by a source = (SS for that source / Total SS) × 100</span>
+<span id="cb41-372"><a href="#cb41-372"></a></span>
+<span id="cb41-373"><a href="#cb41-373"></a>For example, to calculate the percentage of variation explained by treatments and blocks:</span>
+<span id="cb41-374"><a href="#cb41-374"></a></span>
+<span id="cb41-375"><a href="#cb41-375"></a><span class="ss">-   </span>SS_total = Sum of Squares Total</span>
+<span id="cb41-376"><a href="#cb41-376"></a><span class="ss">-   </span>SS_treatment = Sum of Squares for Treatment</span>
+<span id="cb41-377"><a href="#cb41-377"></a><span class="ss">-   </span>SS_block = Sum of Squares for Block</span>
+<span id="cb41-378"><a href="#cb41-378"></a></span>
+<span id="cb41-379"><a href="#cb41-379"></a>Percentage of variation explained by treatments = (SS_treatment / SS_total) × 100</span>
+<span id="cb41-380"><a href="#cb41-380"></a></span>
+<span id="cb41-381"><a href="#cb41-381"></a>Percentage of variation explained by blocks = (SS_block / SS_total) × 100</span>
+<span id="cb41-382"><a href="#cb41-382"></a>:::</span>
+<span id="cb41-383"><a href="#cb41-383"></a></span>
+<span id="cb41-384"><a href="#cb41-384"></a>We are using R to subset the ANOVA results to calculate these percentages, but you can do this by hand from the ANOVA table using a calculator. Try this and compare your answers to the results from the code below.</span>
+<span id="cb41-385"><a href="#cb41-385"></a></span>
+<span id="cb41-386"><a href="#cb41-386"></a>::: callout-important</span>
+<span id="cb41-387"><a href="#cb41-387"></a><span class="fu">## Note</span></span>
+<span id="cb41-388"><a href="#cb41-388"></a></span>
+<span id="cb41-389"><a href="#cb41-389"></a>You will need to know how to read the ANOVA table and calculate the percentage variation explained by hand for your assessments.</span>
+<span id="cb41-390"><a href="#cb41-390"></a>:::</span>
+<span id="cb41-391"><a href="#cb41-391"></a></span>
+<span id="cb41-394"><a href="#cb41-394"></a><span class="in">```{r}</span></span>
+<span id="cb41-395"><a href="#cb41-395"></a>anova_table <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_result)[[<span class="dv">1</span>]]</span>
+<span id="cb41-396"><a href="#cb41-396"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>)</span>
+<span id="cb41-397"><a href="#cb41-397"></a>ss_treatment <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">2</span>]</span>
+<span id="cb41-398"><a href="#cb41-398"></a>ss_block <span class="ot">&lt;-</span> anova_table<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb41-399"><a href="#cb41-399"></a>percent_treatment <span class="ot">&lt;-</span> (ss_treatment <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-400"><a href="#cb41-400"></a>percent_block <span class="ot">&lt;-</span> (ss_block <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb41-401"><a href="#cb41-401"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by treatments:"</span>, <span class="fu">round</span>(percent_treatment, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-402"><a href="#cb41-402"></a><span class="fu">cat</span>(<span class="st">"Percentage of variation explained by blocks:"</span>, <span class="fu">round</span>(percent_block, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb41-403"><a href="#cb41-403"></a><span class="in">```</span></span>
+<span id="cb41-404"><a href="#cb41-404"></a></span>
+<span id="cb41-405"><a href="#cb41-405"></a>This information helps to understand the contribution of treatments and blocks to the overall variation in plant height.</span>
+<span id="cb41-406"><a href="#cb41-406"></a></span>
+<span id="cb41-407"><a href="#cb41-407"></a>::: {.callout-note}</span>
+<span id="cb41-408"><a href="#cb41-408"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb41-409"><a href="#cb41-409"></a></span>
+<span id="cb41-410"><a href="#cb41-410"></a>You should now be able to write out an RCBD statistical model, fit it using <span class="in">`aov()`</span> with a blocking term, interpret the output, and calculate the percentage of variation explained by treatments and blocks from the ANOVA table.</span>
+<span id="cb41-411"><a href="#cb41-411"></a>:::</span>
+<span id="cb41-412"><a href="#cb41-412"></a></span>
+<span id="cb41-413"><a href="#cb41-413"></a></span>
+<span id="cb41-414"><a href="#cb41-414"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb41-415"><a href="#cb41-415"></a></span>
+<span id="cb41-416"><a href="#cb41-416"></a>In this tutorial, we covered key concepts in experimental design, including randomisation, experimental units vs sampling units, replication, and control of variation through CRD and RCBD. We also demonstrated how to analyse data from these designs using ANOVA in R.</span>
+<span id="cb41-417"><a href="#cb41-417"></a></span>
+<span id="cb41-418"><a href="#cb41-418"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb41-419"><a href="#cb41-419"></a></span>
+<span id="cb41-420"><a href="#cb41-420"></a><span class="ss">1.  </span>Define the terms "experimental unit" and "sampling unit". Provide an example of each from a hypothetical agricultural experiment.</span>
+<span id="cb41-421"><a href="#cb41-421"></a></span>
+<span id="cb41-422"><a href="#cb41-422"></a><span class="ss">2.  </span>Explain the importance of randomisation in experimental design. How does randomisation help to reduce bias in an experiment?</span>
+<span id="cb41-423"><a href="#cb41-423"></a></span>
+<span id="cb41-424"><a href="#cb41-424"></a><span class="ss">3.  </span>Describe the key features of a Completely Randomised Design (CRD). When is it appropriate to use a CRD?</span>
+<span id="cb41-425"><a href="#cb41-425"></a></span>
+<span id="cb41-426"><a href="#cb41-426"></a><span class="ss">4.  </span>Describe the key features of a Randomised Complete Block Design (RCBD). When is it appropriate to use an RCBD?</span>
+<span id="cb41-427"><a href="#cb41-427"></a></span>
+<span id="cb41-428"><a href="#cb41-428"></a><span class="ss">5.  </span>Given an ANOVA table from an RCBD experiment, calculate the percentage of variation explained by treatments and blocks.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

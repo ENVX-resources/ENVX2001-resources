@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>Lab 5 - Experimental Design</title>
+<title>Lab 05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,14 +181,14 @@ window.Quarto = {
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Lab 5 - Experimental Design</h1>
+      <h1 class="title">Lab 05</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -202,12 +202,6 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -220,31 +214,35 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1---randomisation-for-a-crd-using-r-walk-through" id="toc-exercise-1---randomisation-for-a-crd-using-r-walk-through" class="nav-link active" data-scroll-target="#exercise-1---randomisation-for-a-crd-using-r-walk-through">Exercise 1 - Randomisation for a CRD using R (Walk-through)</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
   <ul class="collapse">
-  <li><a href="#question-1.1" id="toc-question-1.1" class="nav-link" data-scroll-target="#question-1.1">Question 1.1</a></li>
-  <li><a href="#question-1.2" id="toc-question-1.2" class="nav-link" data-scroll-target="#question-1.2">Question 1.2</a></li>
-  <li><a href="#question-1.3" id="toc-question-1.3" class="nav-link" data-scroll-target="#question-1.3">Question 1.3</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
-  <li><a href="#exercise-2---the-balance-between-the-number-of-sampling-units-and-experimental-units-walk-through" id="toc-exercise-2---the-balance-between-the-number-of-sampling-units-and-experimental-units-walk-through" class="nav-link" data-scroll-target="#exercise-2---the-balance-between-the-number-of-sampling-units-and-experimental-units-walk-through">Exercise 2 - The balance between the number of sampling units and experimental units (Walk-through)</a>
-  <ul class="collapse">
-  <li><a href="#question-2.1" id="toc-question-2.1" class="nav-link" data-scroll-target="#question-2.1">Question 2.1</a></li>
-  <li><a href="#question-2.2" id="toc-question-2.2" class="nav-link" data-scroll-target="#question-2.2">Question 2.2</a></li>
-  <li><a href="#question-2.3" id="toc-question-2.3" class="nav-link" data-scroll-target="#question-2.3">Question 2.3</a></li>
-  <li><a href="#question-2.4" id="toc-question-2.4" class="nav-link" data-scroll-target="#question-2.4">Question 2.4</a></li>
-  <li><a href="#question-2.5" id="toc-question-2.5" class="nav-link" data-scroll-target="#question-2.5">Question 2.5</a></li>
-  <li><a href="#question-2.6" id="toc-question-2.6" class="nav-link" data-scroll-target="#question-2.6">Question 2.6</a></li>
   </ul></li>
-  <li><a href="#exercise-3---a-paired-t-test-generalises-to-a-one-way-anova-rcbd" id="toc-exercise-3---a-paired-t-test-generalises-to-a-one-way-anova-rcbd" class="nav-link" data-scroll-target="#exercise-3---a-paired-t-test-generalises-to-a-one-way-anova-rcbd">Exercise 3 - A paired t-test generalises to a one-way ANOVA – RCBD</a>
+  <li><a href="#completely-randomised-design-25-min" id="toc-completely-randomised-design-25-min" class="nav-link" data-scroll-target="#completely-randomised-design-25-min">1. Completely randomised design (~25 min)</a>
   <ul class="collapse">
-  <li><a href="#question-3.1" id="toc-question-3.1" class="nav-link" data-scroll-target="#question-3.1">Question 3.1</a></li>
-  <li><a href="#question-3.2" id="toc-question-3.2" class="nav-link" data-scroll-target="#question-3.2">Question 3.2</a></li>
-  <li><a href="#question-3.3" id="toc-question-3.3" class="nav-link" data-scroll-target="#question-3.3">Question 3.3</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
-  <li><a href="#exercise-4---one-way-anova---rcbd" id="toc-exercise-4---one-way-anova---rcbd" class="nav-link" data-scroll-target="#exercise-4---one-way-anova---rcbd">Exercise 4 - One-way ANOVA - RCBD</a>
+  </ul></li>
+  <li><a href="#randomised-complete-block-design-25-min" id="toc-randomised-complete-block-design-25-min" class="nav-link" data-scroll-target="#randomised-complete-block-design-25-min">2. Randomised complete block design (~25 min)</a>
   <ul class="collapse">
-  <li><a href="#question-4.1" id="toc-question-4.1" class="nav-link" data-scroll-target="#question-4.1">Question 4.1</a></li>
-  <li><a href="#question-4.2" id="toc-question-4.2" class="nav-link" data-scroll-target="#question-4.2">Question 4.2</a></li>
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab05-exp-designs.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -254,195 +252,165 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>At the end of this lab students should be able to:</p>
-<ul>
-<li><p>distinguish between sampling units and experimental units;</p></li>
-<li><p>use R to generate randomisations for CRDs and RCBDs;</p></li>
-<li><p>use R to analyse experiments with blocking, and assess the usefulness of blocking.</p></li>
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
+<p>This week we will analyse two experiments using one-way ANOVA: a completely randomised design investigating dingo and fox activity from camera trap data, and a randomised complete block design examining fire severity effects on small mammal abundance.</p>
+<p>You will come across <strong>Exercises</strong> in this lab. Solutions will be posted on Friday evening.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Use R to analyse CRDs and RCBDs.</li>
+<li>Assess the usefulness of blocking.</li>
+</ol>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fit and interpret a one-way ANOVA for a CRD</label></li>
+<li><label><input type="checkbox">Check ANOVA assumptions using diagnostic plots</label></li>
+<li><label><input type="checkbox">Perform post-hoc tests using <code>emmeans</code></label></li>
+<li><label><input type="checkbox">Fit a one-way ANOVA with a blocking term for an RCBD</label></li>
+<li><label><input type="checkbox">Calculate the percentage of variation explained by blocking</label></li>
 </ul>
-<p>All of the data for this lab is in the <strong>Data5.xlsx</strong> file.</p>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>This lab uses <code>emmeans</code>. Install it if you are missing it by running the following <strong>in the console</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"emmeans"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>crd_dingo_fox_exclusion.csv</code></td>
+<td>Section 1</td>
+<td><a href="data/crd_dingo_fox_exclusion.csv">Download</a></td>
+</tr>
+<tr class="even">
+<td><code>rcbd_mammals.csv</code></td>
+<td>Section 2</td>
+<td><a href="data/rcbd_mammals.csv">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Save the files into a folder called <code>data</code> inside your project folder.</p>
+</section>
+</section>
+</section>
+<section id="completely-randomised-design-25-min" class="level1 page-columns page-full">
+<h1>1. Completely randomised design (~25 min)</h1>
+<p>You are tasked with analysing data from an experiment that investigated the effect of dingo activity on fox activity. You set out camera traps at 36 sites for 36 days at sites with high, medium and no dingoes (exclusion). You recorded the number of foxes that were captured on camera. Our measure of activity is the number of images per 100 trap nights. This was calculated by:</p>
+<p><span class="math display">FoxRatePer100 = \frac{FoxDetections}{TrapNights} \times 100</span></p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/Juv_Fox.jpeg" class="img-fluid figure-img" width="767"></p>
+<figcaption class="margin-caption">Introduced red fox (<em>Vulpes vulpes</em>) caught on camera trap in the Greater Blue Mountains World Heritage Area. Image credit: Ecosystems Dynamics Lab, The University of Sydney.</figcaption>
+</figure>
 </div>
-</div>
-<section id="exercise-1---randomisation-for-a-crd-using-r-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1---randomisation-for-a-crd-using-r-walk-through">Exercise 1 - Randomisation for a CRD using R (Walk-through)</h2>
-<p>Consider a glass house experiment conducted on a bench on which it was judged that the growing conditions would be consistent across the bench. The experimenter had five different smoked water treatments for assisting the germination of <em>Banksia</em> seeds. She had 50 dishes on which she could place seeds randomly selected from a uniform batch of <em>Banksia</em> seeds. The dishes were to be placed on the bench and each of the five water solutions allocated randomly to 10 of the dishes.</p>
-<section id="question-1.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.1">Question 1.1</h3>
-<p><em>(i)</em> What would the degrees of freedom be in a corresponding ANOVA table?</p>
-</section>
-<section id="question-1.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.2">Question 1.2</h3>
-<p><em>(ii)</em> Suppose that Treatment 1 was a control. In situations where the comparisons of interest are of the other treatments (2 to 5) with the control, and not amongst the other treatments, it can be advantageous to increase the number of control replicates to 20. What are the degrees of freedom in the corresponding ANOVA table?</p>
-</section>
-<section id="question-1.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.3">Question 1.3</h3>
-<p><em>(iii)</em> The formula for standard error of the difference (SED) is:</p>
-<p><span class="math inline">SED=\sqrt{Resid\ MS\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}</span>.</p>
-<p>Given the SED formula, what percentage improvement (i.e.&nbsp;reduction) has been achieved for the SED between Treatment 1 and 2 when there are equal replicates <em>(i)</em> versus unequal replicates <em>(ii)</em>? Assume the Residual MS is a constant.</p>
-</section>
-</section>
-<section id="exercise-2---the-balance-between-the-number-of-sampling-units-and-experimental-units-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2---the-balance-between-the-number-of-sampling-units-and-experimental-units-walk-through">Exercise 2 - The balance between the number of sampling units and experimental units (Walk-through)</h2>
-<p>Horticulturalists have been studying the nutrient requirements of lettuce growing in a sand medium; in particular they are looking at the nitrate concentration in leaf petioles in response to varying applied nitrogen nutrient levels (5, 11, 18 and 32 mmol/L). Lettuce plants are grown in separate pots, so different nitrogen levels may be applied to individual pots, and one or more leaves sampled per plant. They are also interested in optimising their experimental protocol for future studies; consequently they conducted five separate experiments where they sampled different number of leaves per plant, and differing number of plants, but kept the total number of leaves sampled at 128 in each experiment. The experiments were conducted as follows:</p>
+<p>We predict Higher fox activity → lower dingo activity based on mesopredator release hypothesis.</p>
+<p>Data is in the <strong>crd_dingo_fox_exclusion.csv</strong> file.</p>
 <ul>
-<li><p>Experiment 1: 16 leaves per plant; 2 plants per treatment;</p></li>
-<li><p>Experiment 2: 8 leaves per plant; 4 plants per treatment;</p></li>
-<li><p>Experiment 3: 4 leaves per plant; 8 plants per treatment;</p></li>
-<li><p>Experiment 4: 2 leaves per plant; 16 plants per treatment;</p></li>
-<li><p>Experiment 5: 1 leaf per plant; 32 plants per treatment.</p></li>
+<li>Experimental units: Sites (randomly assigned to treatments; no blocking)</li>
+<li>Factor: DingoActivity (3 levels: High, Medium, Exclusion)</li>
+<li>Response: FoxRatePer100 (images per 100 trap-nights)</li>
+<li>Replicates: n = 12 sites per treatment (36 total)</li>
 </ul>
-<p>Similar lettuce plants were used across all five experiments, and in all cases, a CRD was used to allocate the plants amongst the treatments. The datasets are located in the <em>Data5.xlsx</em> file. There are separate sheets for each Experiment called <em>Experiment1</em>, <em>Experiment2</em>, etc.</p>
-<section id="question-2.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.1">Question 2.1</h3>
-<p><em>(i)</em> What are the experimental units and what are the sampling units in the above experiments. For each experiment, how many experimental units and how many sampling units are used?</p>
-</section>
-<section id="question-2.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.2">Question 2.2</h3>
-<p><em>(ii)</em> When there are multiple sampling units per experimental unit, in simple situations (as is here), an appropriate method is simply to average the responses over all the sampling units belonging to an experimental unit, and analyse these. So in this case, we need to average the observed nitrate values over all the leaves in the plant. The code below shows how to do this using a function called <code>rowMeans</code> which finds the average in a row across multiple columns. Here we do this for <em>Experiment1</em>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="question-2.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.3">Question 2.3</h3>
-<p><em>(iii)</em> Perform a one-way ANOVA on these average data. (It will also be helpful to obtain the treatment means using the <code>emmeans</code> function, as done in previous topics. What are your conclusions about the effect of varying applied nitrogen levels? You don’t have to look at post-hoc tests, just examine the F-test.</p>
+<p>Other variables:</p>
+<ul>
+<li>SiteID: unique identifier for each site</li>
+<li>TrapNights: number of nights the camera trap was active at each site (max of 36, but some cameras surveyed for less)</li>
+<li>FoxDetections: number of images of foxes captured by the camera trap at each site</li>
+</ul>
+<p>Statistical model for CRD: <span class="math display">Y_{ij} = \mu + \alpha_i + \epsilon_{ij}</span> Where:</p>
+<ul>
+<li><span class="math inline">Y_{ij}</span> is the observed fox activity (FoxRatePer100) at the <span class="math inline">j</span>-th site in the <span class="math inline">i</span>-th dingo activity level.</li>
+<li><span class="math inline">\mu</span> is the overall mean fox activity across all dingo activity levels.</li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">fox\ activity = overall\ mean + dingo\ activity + random\ error.</span></p>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p><em>(i)</em> Test the assumptions of the ANOVA and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="question-2.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.4">Question 2.4</h3>
-<p><em>(iV)</em> Repeat this for Experiments 2 to 5. What are your conclusions in each experiment?</p>
-</section>
-<p>Experiment 2: 8 leaves per plant, 4 plants per treatment</p>
+<p><em>(ii)</em> Use an ANOVA to analyse the CRD and report on the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Experiment 3: 4 leaves per plant, 8 plants per treatment</p>
+<p><em>(iii)</em> Explore any significant results using post-hoc tests from <code>emmeans</code> package and its <code>emmeans()</code> function. Include any plots that you think are useful to visualise the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Experiment 4: 2 leaves per plant, 16 plants per treatment</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<p>Before we move on, now is a good time to take a 5-minute break.</p>
+</section>
+</section>
+<section id="randomised-complete-block-design-25-min" class="level1 page-columns page-full">
+<h1>2. Randomised complete block design (~25 min)</h1>
+<p>A researcher designs a study to investigate the effect of fire treatment (unburnt, low severity and high severity) on small mammal abundance. They set up four blocks (Block_1, Block_2, etc) and select sites that were unburnt, low severity and high severity fire within each block. At each site to survey small mammal abundance. The data is in the <strong>rcbd_mammals.csv</strong> file.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/fire_severity.png" class="img-fluid figure-img" width="767"></p>
+<figcaption class="margin-caption">Fire severity classes. Image credit: CoPilot.</figcaption>
+</figure>
 </div>
-<p>Experiment 5: 1 leaf per plant, 32 plants per treatment. Note, no averaging required as sampling unit = experimental unit.</p>
+<section id="analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for the ANOVA model for this experiment. Define all the terms in the model. You can write out in words or in mathematical notation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>(ii)</em> Test the assumptions of the ANOVA and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="question-2.5" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.5">Question 2.5</h3>
-<p><em>(v)</em> Summarise the results in terms of the balance between sampling plants versus leaves, and what recommendations would you make for future studies?</p>
+<p><em>(iii)</em> Use an ANOVA to analyse the RCBD and report on the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="question-2.6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2.6">Question 2.6</h3>
-<p><em>(vi)</em> There are two sources of random variation encountered in these experiments:</p>
-<p>-variation between leaves within a plant; and</p>
-<p>-variation between plants within the same treatment group.</p>
-<p>How do you think your recommendations might change in <em>(iv)</em> if:</p>
-<p>-there was (virtually) no variation between leaves within a plant; only between plants; or</p>
-<p>-there was (virtually) no variation between plants, only variation between leaves within a plant.</p>
-</section>
-</section>
-<section id="exercise-3---a-paired-t-test-generalises-to-a-one-way-anova-rcbd" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3---a-paired-t-test-generalises-to-a-one-way-anova-rcbd">Exercise 3 - A paired t-test generalises to a one-way ANOVA – RCBD</h2>
-<p>Fifteen farms cooperated in a field trial in which a normal fattening ration for pigs (ration A) was compared with the same rations supplemented with a small trace of copper (ration B). Each farmer set up two pens of pigs, as similar as possible in all respects, and allocated the two rations at random, ration A to one pen and ration B to the other. The mean weight gains per pen (g/day) are stored in the two columns of the <strong>copper</strong> sheet in the <strong>Data5.xlsx</strong> file.</p>
-<p>This description clearly suggests the design is an RCBD, with 15 farms but only 2 treatments. As we have seen, a paired design is the simplest form of RCBD. In this example we will not worry about model assumptions.</p>
-<section id="question-3.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.1">Question 3.1</h3>
-<p><em>(i)</em> Firstly analyse the data using a paired t-test. Assuming you read the data is as a data frame called <code>copper</code> the code is <code>t.test(x=copper$RationA,y=copper$RationB,paired=T)</code>. Interpret the results.</p>
+<p><em>(iv)</em> Explore any significant results using post-hoc tests from <code>emmeans</code> package and its <code>emmeans()</code> function. Include any plots that you think are useful to visualise the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="question-3.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.2">Question 3.2</h3>
-<p><em>(ii)</em> Next we will obtain an analysis of the data using ANOVA. To do this analysis however, you will first need to re-arrange the data set into a form suitable for ANOVA. That is, you will need a single column of weight gains, a column of treatment identifiers, and a column indicating the Farm number. The code below will do this for you:</p>
-<ul>
-<li><p><code>dat&lt;-stack(copper[,2:3])</code></p></li>
-<li><p><code>farms&lt;-rep(c(1:15),times=2)</code></p></li>
-<li><p><code>coppern&lt;-cbind(farms,dat)</code></p></li>
-</ul>
-<p>The first line stacks (using the <code>stack</code> function) the 2 columns of weight gain on top of each other (column name is <code>values</code>) and adds a column indicating which ration is associated with each weight gain value (column name is <code>ind</code>).</p>
-<p>The second line repeats (using the <code>rep</code> function) the values of farm numbers twice so for each of the weight gains we have an associated farm.</p>
-<p>The third line joins the two data frames together (using the <code>cbind</code> function) to create the new stacked dataset which can be used by the <code>aov</code> function.</p>
+<p><em>(v)</em> Calculate the variation explained by the blocking term.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">head</span>(copper)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-   Farm RationA RationB
-  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1     1     422     531
-2     2     526     467
-3     3     476     558
-4     4     499     585
-5     5     422     472
-6     6     503     522</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dat<span class="ot">&lt;-</span><span class="fu">stack</span>(copper[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb11-2"><a href="#cb11-2"></a>farms<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>),<span class="at">times=</span><span class="dv">2</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>coppern<span class="ot">&lt;-</span><span class="fu">cbind</span>(farms,dat)</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">str</span>(coppern)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   30 obs. of  3 variables:
- $ farms : int  1 2 3 4 5 6 7 8 9 10 ...
- $ values: num  422 526 476 499 422 503 445 449 299 517 ...
- $ ind   : Factor w/ 2 levels "RationA","RationB": 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
-</div>
-</div>
-</section>
-<section id="question-3.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3.3">Question 3.3</h3>
-<p><em>(iii)</em> The general code for performing an 1-way anova with a randomised complete block design is:</p>
-<p><code>aov(response~block+treatment,data=data)</code></p>
-<p>In this example the <code>response</code> is the weight gain, <code>blocks</code> are farms and the <code>treatment</code> is ration. Your names will be different. Having obtained the analysis, check that the results from the ANOVA is identical to the paired t-test:</p>
-<ul>
-<li><p>the same <em>P</em>-value;</p></li>
-<li><p>the same test statistic (though expressed as an <em>F</em>-statistic instead of a <em>t</em>-statistic, with <em>F</em> = <span class="math inline">t^2</span> to that from the paired <em>t</em>-test.</p></li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
-<section id="exercise-4---one-way-anova---rcbd" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4---one-way-anova---rcbd">Exercise 4 - One-way ANOVA - RCBD</h2>
-<p>Three diets for hamsters were tested for differences in weight gain after a specified period of time. Six inbred lines were used with three hamsters selected from each line. The three diets were assigned at random to the hamsters in each line. The data is in the <strong>hamsters</strong> sheet in the <strong>Data5.xlsx</strong> file.</p>
-<section id="question-4.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4.1">Question 4.1</h3>
-<p><em>(i)</em> Are the mean weight gains the same across diets? Are any diets more or less effective than other diets? You will need to use the <code>emmeans</code> package and its <code>emmeans()</code> function. Read in the data and perform post-hoc tests.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
-<section id="question-4.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4.2">Question 4.2</h3>
-<p><em>(ii)</em> Re-run the analysis without blocking, i.e.&nbsp;as a CRD. Are the conclusions different? Would you use blocking in the future? What proportion of the variation was explained by blocking?</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>We analysed two experimental designs this week: a CRD using camera trap data to test the mesopredator release hypothesis, and an RCBD examining fire severity effects on small mammal abundance. These designs and analysis techniques will continue to be used as we work with more complex models throughout the course.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

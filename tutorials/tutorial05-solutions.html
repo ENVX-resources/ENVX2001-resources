@@ -223,10 +223,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#exercise-2-crd" id="toc-exercise-2-crd" class="nav-link" data-scroll-target="#exercise-2-crd"><span class="header-section-number">3</span> Exercise 2: CRD</a></li>
   <li><a href="#exercise-3-rcbd" id="toc-exercise-3-rcbd" class="nav-link" data-scroll-target="#exercise-3-rcbd"><span class="header-section-number">4</span> Exercise 3: RCBD</a></li>
-  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">5</span> Wrapping up</a>
-  <ul class="collapse">
-  <li><a href="#what-to-say-5" id="toc-what-to-say-5" class="nav-link" data-scroll-target="#what-to-say-5">What to say</a></li>
-  </ul></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">5</span> Wrapping up</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial05-solutions.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
 </nav>
@@ -241,27 +238,27 @@ window.Quarto = {
 
 
 
-<p>Companion document for tutors running Tutorial 05. This tutorial is a walkthrough — you lead every exercise from start to finish. The only section students work on independently is the exam questions at the end.</p>
+<p>Companion document for tutors running Tutorial 05. You lead every exercise from start to finish. The only part students do on their own is the exam questions at the end.</p>
 <p>Student document: <a href="../tutorials/tutorial05.html">Tutorial 05</a></p>
 <section id="before-you-start" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="before-you-start"><span class="header-section-number">1</span> Before you start</h2>
-<p>Get these sorted before students arrive:</p>
+<p>Sort these out before students arrive:</p>
 <ul>
-<li>Have RStudio open with a fresh session. No special data files are needed — all data is simulated in the tutorial code.</li>
-<li>Make sure <code>ggplot2</code> is installed. No other packages are required.</li>
-<li>Count the number of students present. You will need this for Exercise 1.</li>
-<li>Skim the three exercises: Exercise 1 is a class activity on randomisation (~15 min), Exercise 2 walks through a CRD analysis (~10 min), Exercise 3 walks through an RCBD analysis with variance partitioning (~15 min). Budget about 40 minutes total.</li>
+<li>RStudio open, fresh session. All data is simulated in the tutorial code, so no files to download.</li>
+<li><code>ggplot2</code> needs to be installed. Nothing else.</li>
+<li>Count how many students are present. You need this for Exercise 1.</li>
+<li>Exercise 1 is a class activity on randomisation (~15 min). Exercises 2 and 3 walk through CRD and RCBD analyses (~10 min and ~15 min). Budget about 40 minutes total.</li>
 </ul>
 </section>
 <section id="exercise-1-testing-randomisation" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="exercise-1-testing-randomisation"><span class="header-section-number">2</span> Exercise 1: Testing randomisation</h2>
-<p>This is a live class activity. You run the non-random sample first (whole class), then randomly select a subset of students and repeat the question.</p>
+<p>This is a live class activity. You survey the whole class first (non-random), then randomly pick a subset and repeat.</p>
 <section id="part-a-non-random-sample" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-non-random-sample">Part A — Non-random sample</h3>
 <section id="what-to-do" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-do">What to do</h4>
-<p>Ask every student: “Do you know the student sitting next to you? Yes or No.” Have students raise their hand for Yes and keep it down for No.&nbsp;Count the Yes and No responses.</p>
-<p>Update the code with the actual class numbers:</p>
+<p>Ask every student: “Do you know the student sitting next to you? Yes or No.” Hands up for Yes, down for No.&nbsp;Count them.</p>
+<p>Update the code with the real numbers:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>total_nonrandom <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># replace with actual class size</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>count_yes_nonrandom <span class="ot">&lt;-</span> <span class="dv">38</span> <span class="co"># replace with actual Yes count</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>count_no_nonrandom  <span class="ot">&lt;-</span> <span class="dv">22</span> <span class="co"># replace with actual No count</span></span>
@@ -270,17 +267,14 @@ window.Quarto = {
 </section>
 <section id="what-to-say" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-say">What to say</h4>
-<ul>
-<li>This is our non-random (convenience) sample. We asked everyone, but the question itself introduces bias — students who sit next to friends will answer differently from those who sat in a random spot.</li>
-<li>Point out that the sample is “non-random” in the sense that seating arrangements are not random. Friends tend to cluster.</li>
-</ul>
+<p>This is a convenience sample. We asked everyone, but the question itself introduces bias because students who sit next to friends will answer differently from those who ended up in a random seat. Friends cluster. That is the whole point.</p>
 </section>
 </section>
 <section id="part-b-percentages" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-percentages">Part B — Percentages</h3>
 <section id="what-to-do-1" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-do-1">What to do</h4>
-<p>Walk through the percentage calculation. Run the code live.</p>
+<p>Run the percentage calculation live.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>prop_yes_nonrandom <span class="ot">&lt;-</span> (count_yes_nonrandom <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>prop_no_nonrandom  <span class="ot">&lt;-</span> (count_no_nonrandom  <span class="sc">/</span> total_nonrandom) <span class="sc">*</span> <span class="dv">100</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
@@ -289,16 +283,14 @@ window.Quarto = {
 </section>
 <section id="what-to-say-1" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-say-1">What to say</h4>
-<ul>
-<li>Typically the Yes percentage is high (60-70%), because friends sit together. This is the bias we want to demonstrate.</li>
-</ul>
+<p>The Yes percentage is usually high, 60-70%, because friends sit together. That is the bias you are trying to demonstrate.</p>
 </section>
 </section>
 <section id="part-c-random-sample" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-random-sample">Part C — Random sample</h3>
 <section id="what-to-do-2" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-do-2">What to do</h4>
-<p>Run the random selection code to pick a subset of students. Call out the selected student numbers. Ask only those students the question again, and record the counts.</p>
+<p>Run the random selection code to pick a subset. Call out the selected student numbers. Ask only those students again, record the counts.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>student_ids <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(class_size)</span>
 <span id="cb3-3"><a href="#cb3-3"></a>rand_num <span class="ot">&lt;-</span> <span class="fu">runif</span>(class_size)</span>
@@ -318,7 +310,7 @@ window.Quarto = {
 <span id="cb4-6"><a href="#cb4-6"></a></span>
 <span id="cb4-7"><a href="#cb4-7"></a><span class="fu">cat</span>(<span class="st">"Random sample % Yes:"</span>, <span class="fu">round</span>(prop_yes_random, <span class="dv">1</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span>
 <span id="cb4-8"><a href="#cb4-8"></a><span class="fu">cat</span>(<span class="st">"Random sample % No :"</span>, <span class="fu">round</span>(prop_no_random, <span class="dv">1</span>),  <span class="st">"%</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then compute the bias and show the bar plot:</p>
+<p>Then the bias and bar plot:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>bias_yes <span class="ot">&lt;-</span> prop_yes_nonrandom <span class="sc">-</span> prop_yes_random</span>
 <span id="cb5-2"><a href="#cb5-2"></a>bias_no  <span class="ot">&lt;-</span> prop_no_nonrandom  <span class="sc">-</span> prop_no_random</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -338,12 +330,9 @@ window.Quarto = {
 </section>
 <section id="what-to-say-2" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-say-2">What to say</h4>
-<ul>
-<li>The random sample typically has a lower Yes percentage than the non-random sample. The difference is our estimate of bias.</li>
-<li>If the percentages happen to be similar, that is fine — it does not mean randomisation failed. It means seating was not very clustered in this particular class. The principle still holds.</li>
-<li>The key takeaway: non-random sampling (convenience sampling) can systematically over- or under-represent certain groups. Random sampling gives every unit an equal chance of selection, which reduces systematic bias.</li>
-<li>Connect to experimental design: randomisation in experiments works the same way. If we do not randomly assign treatments, systematic differences between groups can confound our results.</li>
-</ul>
+<p>The random sample usually has a lower Yes percentage. The difference is our estimate of bias.</p>
+<p>If the percentages happen to come out similar, that is fine. It does not mean randomisation failed. It means seating was not very clustered in this class. The principle still holds.</p>
+<p>The thing to land here: convenience sampling can systematically over- or under-represent certain groups. Random sampling gives every unit an equal chance, which cuts out that systematic bias. This is exactly why we randomise in experiments too. If you do not randomly assign treatments, systematic differences between groups can confound your results.</p>
 </section>
 <section id="common-issues" class="level4">
 <h4 class="anchored" data-anchor-id="common-issues">Common issues</h4>
@@ -357,7 +346,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Students do not know their number.</strong> If you did not assign numbers at the start, you can number students by row and seat position (e.g.&nbsp;“row 3, seat 5 is student 17”). Alternatively, skip the physical selection and just use the pre-filled example data.</p>
+<p><strong>Students do not know their number.</strong> If you forgot to assign numbers at the start, just number by row and seat (“row 3, seat 5 is student 17”). Or skip the physical selection and use the pre-filled example data.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -370,7 +359,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>The bias is small or reversed.</strong> This can happen with smaller classes or when seating is genuinely mixed. Use it as a teaching moment — randomisation does not guarantee a perfect result every time, but on average it produces less biased estimates.</p>
+<p><strong>The bias is small or goes the wrong way.</strong> This happens with smaller classes or when seating is genuinely mixed. Use it as a teaching moment: randomisation does not guarantee a perfect result every single time, but on average it produces less biased estimates.</p>
 </div>
 </div>
 </section>
@@ -378,15 +367,15 @@ Warning
 </section>
 <section id="exercise-2-crd" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="exercise-2-crd"><span class="header-section-number">3</span> Exercise 2: CRD</h2>
-<p>This exercise walks through a simulated CRD experiment. You lead the entire exercise — students follow along and run each code block.</p>
+<p>You lead this one end to end. Students follow along and run each code block.</p>
 <section id="what-to-do-3" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-do-3">What to do</h4>
-<p>Walk through the CRD concept using the diagram (Slide1.PNG), then work through the simulated experiment step by step:</p>
+<p>Show the CRD diagram (Slide1.PNG), then work through the simulated experiment:</p>
 <ol type="1">
 <li>Show the statistical model and explain each term.</li>
-<li>Run the treatment assignment code and data simulation code (both are code-folded — expand them).</li>
-<li>Ask students: “Is there a significant difference?” before showing the ANOVA output.</li>
-<li>Run the ANOVA and interpret the result together.</li>
+<li>Expand the code-folded blocks for treatment assignment and data simulation. Run them.</li>
+<li>Before showing the ANOVA output, ask: “Do you think there is a significant difference?”</li>
+<li>Run the ANOVA and read the output together.</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>treatments <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
@@ -405,12 +394,10 @@ Warning
 </section>
 <section id="what-to-say-3" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-say-3">What to say</h4>
-<ul>
-<li><strong>Statistical model:</strong> <span class="math inline">Y_{ij} = \mu + \alpha_i + \epsilon_{ij}</span>. Walk through what each symbol means in plain language. The “word version” (plant height = overall mean + fertilizer treatment + random error) is there to help students who find the notation intimidating.</li>
-<li><strong>The simulation:</strong> We are generating fake data where treatment A has a true mean of 10, B has 15, and C has 20. The ANOVA should easily detect these differences. This is deliberate — the point is to practise reading the output, not to deal with ambiguous results.</li>
-<li><strong>ANOVA output:</strong> The treatment F-statistic will be large and the p-value very small. Point out: large F means the between-group differences are much bigger than the within-group noise. That is all F measures.</li>
-<li><strong>Experimental unit:</strong> Each pot is the experimental unit (treatment is applied to the pot). Each plant is a measurement unit. With 5 plants per pot, there are 12 experimental units but 60 observations. In a real analysis we would need to account for this — but for now the simulated data ignores the nesting to keep things simple.</li>
-</ul>
+<p>Walk through <span class="math inline">Y_{ij} = \mu + \alpha_i + \epsilon_{ij}</span> in plain language. The “word version” (plant height = overall mean + fertilizer treatment + random error) is there for students who find the notation intimidating. Spend a moment on it.</p>
+<p>We are generating fake data where treatment A has a true mean of 10, B has 15, and C has 20. The ANOVA will easily detect these differences. That is deliberate. The point is to practise reading the output, not to wrestle with an ambiguous result.</p>
+<p>When you get to the ANOVA table: a large F means the between-group differences are much bigger than the within-group noise. That is all F measures.</p>
+<p>Worth mentioning: each pot is the experimental unit (the treatment is applied to the pot), and each plant is a measurement unit. With 5 plants per pot there are 12 experimental units but 60 observations. In a real analysis you would need to account for this, but the simulation ignores the nesting to keep things simple.</p>
 </section>
 <section id="common-issues-1" class="level4">
 <h4 class="anchored" data-anchor-id="common-issues-1">Common issues</h4>
@@ -424,22 +411,22 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Why are there 5 plants per pot but we are not averaging them?”</strong> Good question. In a real experiment with sub-sampling, you would either average within pots or use a nested/mixed model. This simulation treats each plant as independent to keep the ANOVA straightforward. Acknowledge the shortcut and mention that more realistic designs are covered in later weeks.</p>
+<p><strong>“Why are there 5 plants per pot but we are not averaging them?”</strong> Fair question. In a real experiment with sub-sampling you would either average within pots or use a nested model. This simulation treats each plant as independent to keep the ANOVA straightforward. Acknowledge the shortcut and mention that more realistic designs come up later in the course.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="exercise-3-rcbd" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="exercise-3-rcbd"><span class="header-section-number">4</span> Exercise 3: RCBD</h2>
-<p>This exercise extends the CRD by adding blocks. You lead the entire exercise.</p>
+<p>Same as Exercise 2: you lead, students follow.</p>
 <section id="what-to-do-4" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-do-4">What to do</h4>
-<p>Walk through the RCBD concept using the diagram (Slide2.PNG), then work through the simulated experiment:</p>
+<p>Show the RCBD diagram (Slide2.PNG), then work through the simulated experiment:</p>
 <ol type="1">
-<li>Show the statistical model — highlight the extra <span class="math inline">\beta_j</span> (block) term compared to the CRD model.</li>
+<li>Show the statistical model. Point out the extra <span class="math inline">\beta_j</span> (block) term compared to the CRD model.</li>
 <li>Run the block assignment, data simulation, and ANOVA code.</li>
 <li>Walk through the percentage of variation explained calculation.</li>
-<li>Ask students to try the hand calculation before showing the R code.</li>
+<li>Before showing the R code for the SS calculation, ask students to try it by hand from the ANOVA table.</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>blocks <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"North"</span>, <span class="st">"South"</span>, <span class="st">"East"</span>, <span class="st">"West"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
@@ -468,13 +455,11 @@ Warning
 </section>
 <section id="what-to-say-4" class="level4">
 <h4 class="anchored" data-anchor-id="what-to-say-4">What to say</h4>
-<ul>
-<li><strong>CRD vs RCBD:</strong> The only difference in R is adding <code>block</code> to the formula before <code>treatment</code>. The block term absorbs variation that would otherwise end up in the residual, making it easier to detect treatment effects.</li>
-<li><strong>Model formula order matters:</strong> <code>aov(height ~ block + treatment)</code> tests block first, then treatment. In a balanced design (equal numbers in each cell) the order does not change the treatment F-test. Mention this briefly but do not go deep — it becomes important in unbalanced designs later.</li>
-<li><strong>Percentage of variation explained:</strong> This is SS for a source divided by total SS, times 100. Walk through one calculation by hand from the ANOVA table before showing the R code. Emphasise that students need to be able to do this with a calculator in assessments.</li>
-<li><strong>Is blocking useful?</strong> Look at the block p-value. If it is significant, blocking explained real variation that would have inflated the residual in a CRD. If it is not significant, blocking was unnecessary (but did not hurt).</li>
-<li><strong>Connect to the lab:</strong> In the lab this week, students will analyse real CRD and RCBD data (dingo/fox camera traps and fire/mammal abundance). The tutorial has given them practice with the R code and model interpretation on simulated data so the lab is not their first time seeing it.</li>
-</ul>
+<p>The only difference in R between a CRD and an RCBD is adding <code>block</code> to the formula before <code>treatment</code>. The block term absorbs variation that would otherwise inflate the residual, making treatment effects easier to detect.</p>
+<p>On formula order: <code>aov(height ~ block + treatment)</code> tests block first, then treatment. In a balanced design the order does not change the treatment F-test. Mention it briefly but do not go deep. It matters for unbalanced designs, which come later.</p>
+<p>For the percentage of variation explained, walk through one calculation by hand from the ANOVA table before showing the R code. It is SS for a source divided by total SS, times 100. Emphasise that students need to be able to do this with a calculator in assessments.</p>
+<p>Look at the block p-value with students. If it is significant, blocking explained real variation that would have inflated the residual in a CRD. If it is not significant, blocking was unnecessary (but did no harm).</p>
+<p>Finish by connecting to the lab: this week students will analyse real CRD and RCBD data (dingo/fox camera traps and fire/mammal abundance) using the same <code>aov()</code> and variance partitioning workflow. The tutorial gives them practice on simulated data so the lab is not their first time.</p>
 </section>
 <section id="common-issues-2" class="level4">
 <h4 class="anchored" data-anchor-id="common-issues-2">Common issues</h4>
@@ -488,7 +473,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Students confuse the block and treatment rows in the ANOVA table.</strong> The order in the table matches the formula: block appears first, treatment second. Point to the row names explicitly when reading the output.</p>
+<p><strong>Students confuse the block and treatment rows in the ANOVA table.</strong> The row order matches the formula: block first, treatment second. Point to the row names explicitly.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -501,7 +486,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Why do we not test interactions between block and treatment?”</strong> In an RCBD we assume no interaction between blocks and treatments. This is a simplifying assumption. If the interaction were real, we would need more replicates per cell to estimate it. This comes up later in the course with factorial designs.</p>
+<p><strong>“Why do we not test interactions between block and treatment?”</strong> In an RCBD we assume no block-by-treatment interaction. If the interaction were real, we would need more replicates per cell to estimate it. Factorial designs come later in the course.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -514,20 +499,18 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Hand calculation errors with SS.</strong> Students sometimes use the wrong rows or forget to sum all SS for the total. Walk through it slowly: Total SS = Block SS + Treatment SS + Residual SS. Then percentage = (source SS / Total SS) × 100.</p>
+<p><strong>Hand calculation errors with SS.</strong> Students sometimes grab the wrong rows or forget to sum all three SS for the total. Walk through it slowly: Total SS = Block SS + Treatment SS + Residual SS. Then percentage = (source SS / Total SS) × 100.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="wrapping-up" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">5</span> Wrapping up</h2>
-<section id="what-to-say-5" class="level3">
-<h3 class="anchored" data-anchor-id="what-to-say-5">What to say</h3>
-<ul>
-<li>Three ideas from today: (1) randomisation reduces bias in both sampling and experiments; (2) a CRD randomly assigns treatments to homogeneous units; (3) an RCBD adds blocks to account for known sources of variation, which reduces residual noise and makes treatment effects easier to detect.</li>
-<li>The exam questions at the end of the tutorial are for self-study. Do not walk through them in class, but encourage students to attempt them before the lab.</li>
-<li>In the lab, students will work with real data (camera trap surveys and fire ecology) using the same <code>aov()</code> and variance partitioning workflow they practised here.</li>
-</ul>
+<section id="what-to-say-5" class="level4">
+<h4 class="anchored" data-anchor-id="what-to-say-5">What to say</h4>
+<p>Randomisation reduces bias in both sampling and experiments. A CRD randomly assigns treatments to homogeneous units. An RCBD adds blocks to account for known variation, which shrinks the residual and makes treatment effects easier to pick up. Those are the ideas from today.</p>
+<p>The exam questions at the end of the tutorial are for self-study. Do not walk through them in class, but encourage students to have a go before the lab.</p>
+<p>In the lab, students work with real data (camera trap surveys and fire ecology) using the same <code>aov()</code> and variance partitioning workflow they practised here.</p>
 
 
 </section>

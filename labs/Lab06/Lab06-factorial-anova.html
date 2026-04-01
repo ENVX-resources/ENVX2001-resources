@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>Lab 6 - Factorial Designs</title>
+<title>Lab 06</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
@@ -134,61 +134,18 @@ background: white;
 </noscript>
 <script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Lab 6 - Factorial Designs</h1>
+      <h1 class="title">Lab 06</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -202,12 +159,6 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -220,14 +171,36 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1---more-treatment-structures-walk-through" id="toc-exercise-1---more-treatment-structures-walk-through" class="nav-link active" data-scroll-target="#exercise-1---more-treatment-structures-walk-through">Exercise 1 - More Treatment Structures (Walk-through)</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
   <ul class="collapse">
-  <li><a href="#question-1.1" id="toc-question-1.1" class="nav-link" data-scroll-target="#question-1.1">Question 1.1</a></li>
-  <li><a href="#question-1.2" id="toc-question-1.2" class="nav-link" data-scroll-target="#question-1.2">Question 1.2</a></li>
-  <li><a href="#question-1.3" id="toc-question-1.3" class="nav-link" data-scroll-target="#question-1.3">Question 1.3</a></li>
-  <li><a href="#question-1.4" id="toc-question-1.4" class="nav-link" data-scroll-target="#question-1.4">Question 1.4</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
-  <li><a href="#exercise-2---more-practice" id="toc-exercise-2---more-practice" class="nav-link" data-scroll-target="#exercise-2---more-practice">Exercise 2 - More practice</a></li>
+  </ul></li>
+  <li><a href="#factorial-anova-as-crd-30-min" id="toc-factorial-anova-as-crd-30-min" class="nav-link" data-scroll-target="#factorial-anova-as-crd-30-min">1. Factorial ANOVA as CRD (~30 min)</a>
+  <ul class="collapse">
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#factorial-anova-with-blocking-30-min" id="toc-factorial-anova-with-blocking-30-min" class="nav-link" data-scroll-target="#factorial-anova-with-blocking-30-min">2. Factorial ANOVA with blocking (~30 min)</a>
+  <ul class="collapse">
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab06-factorial-anova.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
 </nav>
@@ -236,133 +209,147 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
+<p>This week we will analyse a factorial experiment using ANOVA: first as a completely randomised design (CRD), then as a randomised complete block design (RCBD). The experiment investigates aggressive interactions in Tasmanian devils.</p>
+<p>You will come across <strong>Exercises</strong> in this lab. Solutions will be posted on Friday evening.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
 <p>At the end of this practical students should be able to:</p>
 <ul>
 <li>use R to analyse experiments with a factorial treatment structure where the experimental design is a CRD or RCBD;</li>
 </ul>
-<p>All of the data for this practical is in the <strong>Data6.xlsx</strong> file.</p>
-</div>
-</div>
-<section id="exercise-1---more-treatment-structures-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1---more-treatment-structures-walk-through">Exercise 1 - More Treatment Structures (Walk-through)</h2>
-<p>A microbiologist conducted an experiment to assess the survival of <em>Salmonella typhinerium</em> when subjected to various treatments. A factorial treatment design was used, the treatments being various combinations of sorbic acid, pH, and water activity. The density of Salmonella seven days after the treatment began was recorded. The Salmonella data is in the form:</p>
-<p><span class="math display">log_{e}(density/ml)</span>, to 2 decimal places.</p>
-<p>The data is found in the <strong>Salmonella</strong> sheet in the <strong>Data6.xlsx</strong> file.</p>
-<p>There is a slight <strong>trick</strong> to analysing this experiment which will improve your ability to analyse factorial experiments in general.</p>
-<p>The table below shows you how to specify the treatment structure and individual interaction term in a factorial design involving 2 factors, <code>A</code> and <code>B</code>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fit and interpret a factorial ANOVA for a CRD</label></li>
+<li><label><input type="checkbox">Check ANOVA assumptions and apply transformations when needed</label></li>
+<li><label><input type="checkbox">Fit a factorial ANOVA with a blocking term for an RCBD</label></li>
+<li><label><input type="checkbox">Perform post-hoc tests using <code>emmeans</code></label></li>
+<li><label><input type="checkbox">Calculate the percentage of variation explained by blocking</label></li>
+</ul>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>This lab uses <code>emmeans</code>. Install it if you are missing it by running the following <strong>in the console</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"emmeans"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: left;">command</th>
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2-way factorial</td>
-<td style="text-align: left;">A*B</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2-way interaction</td>
-<td style="text-align: left;">A:B</td>
+<td><code>tasmanian_devil_aggression.csv</code></td>
+<td>Sections 1 and 2</td>
+<td><a href="data/tasmanian_devil_aggression.csv">Download</a></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<section id="question-1.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.1">Question 1.1</h3>
-<p><em>(i)</em> Import the data into R and describe the data using numerical and graphical summaries. In particular does the exploratory data analysis (EDA) show any difference in <em>S.typhinerium</em> density between the levels of each of the treatment factors (a) sorbic acid (b) pH (c) water activity? Is there evidence of an interaction using interaction plots. No need to look at marginal means as the interaction plots summarise these.</p>
 </section>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some hints for the EDA are:</p>
+</section>
+</section>
+<section id="factorial-anova-as-crd-30-min" class="level1 page-columns page-full">
+<h1>1. Factorial ANOVA as CRD (~30 min)</h1>
+<p>You are interested in investigating if aggressive interactions between Tasmanian devil individuals are influenced by eating in a group or alone, and if they are male or female. You conduct an experiment where you observe the number of aggressive interactions between individuals in a 10 minute trial. You have 12 nights to conduct the experiment and each night you observe one trial for each of the 4 treatment combinations.</p>
+<p>Analyse the data using a factorial ANOVA as if it was collected by a CRD.</p>
+<p>The data is in the <strong>tasmanian_devil_aggression.csv</strong> file.</p>
+<p>Factors:</p>
 <ul>
-<li><p>in many experiments we will have treatment factors which have a numerical value (as is the case here) but for ANOVA-type problems we are comparing the mean response between each value so we need to tell R the data type is a <code>factor</code>. If we don’t, it will fit a regression model which is Topics 7-9. This will result in the wrong type of analysis.</p></li>
-<li><p>use the <code>tapply</code> function in conjunction with the <code>summary</code> function;</p></li>
-<li><p>boxplots for individual levels of a factor are likely to be the most informative as compared to numerical summaries they visually show the spread of the observations as well. Example R code is below.</p></li>
+<li>feeding_context: Alone vs Group</li>
+<li>sex: Female vs Male</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">boxplot</span>(Density<span class="sc">~</span>pH,<span class="at">data=</span>salm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>Response variables:</p>
 <ul>
-<li>to create interaction plots use the <code>interaction.plot</code> or <code>emmip</code> function. You will need one of these for each 2-way interaction in your model.</li>
+<li>aggression_count (integer count per trial)</li>
+<li>log_aggression = log(aggression_count + 1)</li>
 </ul>
+<p>Blocking factor (we will ignore this for the CRD analysis but it will be used in the RCBD analysis):</p>
+<ul>
+<li>block: Night_01 … Night_12 (each night includes all 4 treatment combinations)</li>
+<li>Total N: 12 blocks × 2 sexes × 2 contexts = 48 trials (1 obs per cell per block)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/devil_Wayne_McLean.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Tasmanian devil (<em>Sarcophilus harrisii</em>) is the largest carnivorous marsupial in the world. Image credit: Wayne McLean.</figcaption>
+</figure>
 </div>
-</div>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p><em>(i)</em> Write out the statistical model for the factorial ANOVA for this experiment. Define all the terms in the model. You can write out in words or in mathematical notation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="question-1.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.2">Question 1.2</h3>
-<p><em>(ii)</em> Write out the model you are fitting in terms of main effects and interactions, words are fine. Note, that each of these will have an associated statistical hypotheses. Obtain an ANOVA for these data, including appropriate interaction terms in the model.</p>
-<p>What do you notice in the ANOVA table when your run the full 3-way factorial ANOVA? Use the <code>summary</code> function to extract the ANOVA table.</p>
-<p>Run the model again but only include the interactions involving two factors: <strong>do not include the three factor interaction term</strong>. Why are we not including the three factor interaction?</p>
-</section>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Look at the data in Excel and <strong>manually</strong> calculate the mean <code>Density</code> for when <code>pH</code> = 5.0, <code>Activity</code> = 0.78 and <code>Sorbic.Acid</code> = 0. How many observations were used to calculate the mean?</p>
-</div>
-</div>
-<p>The model in words is:</p>
-<section id="question-1.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.3">Question 1.3</h3>
-<p><em>(iii)</em> Test that the model assumptions have been met.</p>
-</section>
+<p><em>(ii)</em> Test the assumptions of the factorial ANOVA and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="question-1.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.4">Question 1.4</h3>
-<p><em>(iv)</em> What are the significant effects in the model? For the significant effects we conduct post-hoc tests the Tukey’s Test to determine which pairs are significantly different. Write overall conclusions, in terms of the statistical hypothesis testing and in terms of the biological description of the experiment.</p>
-</section>
+<p><em>(iii)</em> Use an ANOVA to analyse the CRD and report on the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="exercise-2---more-practice" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2---more-practice">Exercise 2 - More practice</h2>
-<p>An experiment was performed to study the control of potato blight on potatoes. A factorial treatment structure was employed with 3 Varieties in combination with 5 Chemical treatments. The experiment was conducted using a randomised complete block design (RCBD) with three blocks. The response is yield of potatoes (lbs).</p>
-<p>Provide graphical summaries of the data, analyse the experiment, conduct any post-hoc tests if the results are significant. The data is found in the <strong>Potato</strong> sheet in the <strong>Data6.xlsx</strong> file.</p>
+<p><em>(iv)</em> Explore any significant results using post-hoc tests from <code>emmeans</code> package and its <code>emmeans()</code> function. Include any plots that you think are useful to visualise the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<p>Before we move on, now is a good time to take a 5-minute break.</p>
+</section>
+</section>
+<section id="factorial-anova-with-blocking-30-min" class="level1">
+<h1>2. Factorial ANOVA with blocking (~30 min)</h1>
+<p>Now we will analyse the same experiment as above but this time we will include the blocking factor of <code>block</code> (night) in the analysis. This means we will be analysing the data as if it was collected by a RCBD.</p>
+<section id="analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for the factorial ANOVA with blocking for this experiment. Define all the terms in the model. You can write out in words or in mathematical notation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>(ii)</em> Test the assumptions of the ANOVA model and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>(iii)</em> Use an ANOVA to analyse the RCBD and report on the results.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>(iv)</em> Calculate how much variation the blocking term captured.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>We analysed a factorial experiment this week using Tasmanian devil aggression data: first as a CRD to test for main effects and interactions, then as an RCBD to account for night-to-night variation. These factorial designs and analysis techniques extend the one-way ANOVA methods from previous weeks.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

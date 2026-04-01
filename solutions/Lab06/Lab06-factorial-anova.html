@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>Lab 6 - Factorial Designs</title>
+<title>Lab 06</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
@@ -181,14 +181,14 @@ window.Quarto = {
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Lab 6 - Factorial Designs</h1>
+      <h1 class="title">Lab 06</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -202,12 +202,6 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -220,19 +214,35 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1---more-treatment-structures-walk-through" id="toc-exercise-1---more-treatment-structures-walk-through" class="nav-link active" data-scroll-target="#exercise-1---more-treatment-structures-walk-through">Exercise 1 - More Treatment Structures (Walk-through)</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
   <ul class="collapse">
-  <li><a href="#question-1.1" id="toc-question-1.1" class="nav-link" data-scroll-target="#question-1.1">Question 1.1</a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
-  <li><a href="#question-1.2" id="toc-question-1.2" class="nav-link" data-scroll-target="#question-1.2">Question 1.2</a></li>
-  <li><a href="#question-1.3" id="toc-question-1.3" class="nav-link" data-scroll-target="#question-1.3">Question 1.3</a></li>
-  <li><a href="#solution-2" id="toc-solution-2" class="nav-link" data-scroll-target="#solution-2">Solution</a></li>
-  <li><a href="#question-1.4" id="toc-question-1.4" class="nav-link" data-scroll-target="#question-1.4">Question 1.4</a></li>
-  <li><a href="#solution-3" id="toc-solution-3" class="nav-link" data-scroll-target="#solution-3">Solution</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
-  <li><a href="#exercise-2---more-practice" id="toc-exercise-2---more-practice" class="nav-link" data-scroll-target="#exercise-2---more-practice">Exercise 2 - More practice</a>
+  </ul></li>
+  <li><a href="#factorial-anova-as-crd-30-min" id="toc-factorial-anova-as-crd-30-min" class="nav-link" data-scroll-target="#factorial-anova-as-crd-30-min">1. Factorial ANOVA as CRD (~30 min)</a>
   <ul class="collapse">
-  <li><a href="#solution-4" id="toc-solution-4" class="nav-link" data-scroll-target="#solution-4">Solution</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#factorial-anova-with-blocking-30-min" id="toc-factorial-anova-with-blocking-30-min" class="nav-link" data-scroll-target="#factorial-anova-with-blocking-30-min">2. Factorial ANOVA with blocking (~30 min)</a>
+  <ul class="collapse">
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab06-factorial-anova.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -242,171 +252,160 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="welcome" class="level1">
+<h1>Welcome!</h1>
+<p>This week we will analyse a factorial experiment using ANOVA: first as a completely randomised design (CRD), then as a randomised complete block design (RCBD). The experiment investigates aggressive interactions in Tasmanian devils.</p>
+<p>You will come across <strong>Exercises</strong> in this lab. Solutions will be posted on Friday evening.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
 <p>At the end of this practical students should be able to:</p>
 <ul>
 <li>use R to analyse experiments with a factorial treatment structure where the experimental design is a CRD or RCBD;</li>
 </ul>
-<p>All of the data for this practical is in the <strong>Data6.xlsx</strong> file.</p>
-</div>
-</div>
-<section id="exercise-1---more-treatment-structures-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1---more-treatment-structures-walk-through">Exercise 1 - More Treatment Structures (Walk-through)</h2>
-<p>A microbiologist conducted an experiment to assess the survival of <em>Salmonella typhinerium</em> when subjected to various treatments. A factorial treatment design was used, the treatments being various combinations of sorbic acid, pH, and water activity. The density of Salmonella seven days after the treatment began was recorded. The Salmonella data is in the form:</p>
-<p><span class="math display">log_{e}(density/ml)</span>, to 2 decimal places.</p>
-<p>The data is found in the <strong>Salmonella</strong> sheet in the <strong>Data6.xlsx</strong> file.</p>
-<p>There is a slight <strong>trick</strong> to analysing this experiment which will improve your ability to analyse factorial experiments in general.</p>
-<p>The table below shows you how to specify the treatment structure and individual interaction term in a factorial design involving 2 factors, <code>A</code> and <code>B</code>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fit and interpret a factorial ANOVA for a CRD</label></li>
+<li><label><input type="checkbox">Check ANOVA assumptions and apply transformations when needed</label></li>
+<li><label><input type="checkbox">Fit a factorial ANOVA with a blocking term for an RCBD</label></li>
+<li><label><input type="checkbox">Perform post-hoc tests using <code>emmeans</code></label></li>
+<li><label><input type="checkbox">Calculate the percentage of variation explained by blocking</label></li>
+</ul>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>This lab uses <code>emmeans</code>. Install it if you are missing it by running the following <strong>in the console</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="st">"emmeans"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">term</th>
-<th style="text-align: left;">command</th>
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2-way factorial</td>
-<td style="text-align: left;">A*B</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2-way interaction</td>
-<td style="text-align: left;">A:B</td>
+<td><code>tasmanian_devil_aggression.csv</code></td>
+<td>Sections 1 and 2</td>
+<td><a href="data/tasmanian_devil_aggression.csv">Download</a></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<section id="question-1.1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.1">Question 1.1</h3>
-<p><em>(i)</em> Import the data into R and describe the data using numerical and graphical summaries. In particular does the exploratory data analysis (EDA) show any difference in <em>S.typhinerium</em> density between the levels of each of the treatment factors (a) sorbic acid (b) pH (c) water activity? Is there evidence of an interaction using interaction plots. No need to look at marginal means as the interaction plots summarise these.</p>
 </section>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some hints for the EDA are:</p>
+</section>
+</section>
+<section id="factorial-anova-as-crd-30-min" class="level1 page-columns page-full">
+<h1>1. Factorial ANOVA as CRD (~30 min)</h1>
+<p>You are interested in investigating if aggressive interactions between Tasmanian devil individuals are influenced by eating in a group or alone, and if they are male or female. You conduct an experiment where you observe the number of aggressive interactions between individuals in a 10 minute trial. You have 12 nights to conduct the experiment and each night you observe one trial for each of the 4 treatment combinations.</p>
+<p>Analyse the data using a factorial ANOVA as if it was collected by a CRD.</p>
+<p>The data is in the <strong>tasmanian_devil_aggression.csv</strong> file.</p>
+<p>Factors:</p>
 <ul>
-<li><p>in many experiments we will have treatment factors which have a numerical value (as is the case here) but for ANOVA-type problems we are comparing the mean response between each value so we need to tell R the data type is a <code>factor</code>. If we don’t, it will fit a regression model which is Topics 7-9. This will result in the wrong type of analysis.</p></li>
-<li><p>use the <code>tapply</code> function in conjunction with the <code>summary</code> function;</p></li>
-<li><p>boxplots for individual levels of a factor are likely to be the most informative as compared to numerical summaries they visually show the spread of the observations as well. Example R code is below.</p></li>
+<li>feeding_context: Alone vs Group</li>
+<li>sex: Female vs Male</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">boxplot</span>(Density<span class="sc">~</span>pH,<span class="at">data=</span>salm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>Response variables:</p>
 <ul>
-<li>to create interaction plots use the <code>interaction.plot</code> or <code>emmip</code> function. You will need one of these for each 2-way interaction in your model.</li>
+<li>aggression_count (integer count per trial)</li>
+<li>log_aggression = log(aggression_count + 1)</li>
 </ul>
+<p>Blocking factor (we will ignore this for the CRD analysis but it will be used in the RCBD analysis):</p>
+<ul>
+<li>block: Night_01 … Night_12 (each night includes all 4 treatment combinations)</li>
+<li>Total N: 12 blocks × 2 sexes × 2 contexts = 48 trials (1 obs per cell per block)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/devil_Wayne_McLean.png" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Tasmanian devil (<em>Sarcophilus harrisii</em>) is the largest carnivorous marsupial in the world. Image credit: Wayne McLean.</figcaption>
+</figure>
 </div>
-</div>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p><em>(i)</em> Write out the statistical model for the factorial ANOVA for this experiment. Define all the terms in the model. You can write out in words or in mathematical notation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="solution" class="level3 ans">
-<h3 class="anchored" data-anchor-id="solution">Solution</h3>
+<p><em>(ii)</em> Test the assumptions of the factorial ANOVA and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>salm<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data6.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Salmonella"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">str</span>(salm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [45 × 4] (S3: tbl_df/tbl/data.frame)
- $ Sorbic.Acid: num [1:45] 0 0 0 100 100 100 200 200 200 0 ...
- $ pH         : num [1:45] 5 5.5 6 5 5.5 6 5 5.5 6 5 ...
- $ Activity   : num [1:45] 0.78 0.78 0.78 0.78 0.78 0.78 0.78 0.78 0.78 0.82 ...
- $ Density    : num [1:45] 4.2 4.34 4.31 4.18 4.39 4.13 4.15 4.12 3.93 4.52 ...</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>salm<span class="sc">$</span>Sorbic.Acid<span class="ot">&lt;-</span><span class="fu">as.factor</span>(salm<span class="sc">$</span>Sorbic.Acid)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>salm<span class="sc">$</span>pH<span class="ot">&lt;-</span><span class="fu">as.factor</span>(salm<span class="sc">$</span>pH)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>salm<span class="sc">$</span>Activity<span class="ot">&lt;-</span><span class="fu">as.factor</span>(salm<span class="sc">$</span>Activity)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">str</span>(salm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [45 × 4] (S3: tbl_df/tbl/data.frame)
- $ Sorbic.Acid: Factor w/ 3 levels "0","100","200": 1 1 1 2 2 2 3 3 3 1 ...
- $ pH         : Factor w/ 3 levels "5","5.5","6": 1 2 3 1 2 3 1 2 3 1 ...
- $ Activity   : Factor w/ 5 levels "0.78","0.82",..: 1 1 1 1 1 1 1 1 1 2 ...
- $ Density    : num [1:45] 4.2 4.34 4.31 4.18 4.39 4.13 4.15 4.12 3.93 4.52 ...</code></pre>
-</div>
-</div>
-<p>First we calculate summary statistics for different levels of each treatment factor.</p>
+<p><em>(iii)</em> Use an ANOVA to analyse the CRD and report on the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">tapply</span>(salm<span class="sc">$</span>Density,salm<span class="sc">$</span>Sorbic.Acid,summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$`0`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  4.200   4.430   5.060   5.303   6.060   6.700 
-
-$`100`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  4.130   4.290   4.850   4.999   5.530   6.520 
-
-$`200`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  3.930   4.265   4.410   4.891   5.315   6.430 </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">tapply</span>(salm<span class="sc">$</span>Density,salm<span class="sc">$</span>pH,summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$`5`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  4.150   4.245   4.790   5.082   5.960   6.510 
-
-$`5.5`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  4.120   4.365   4.950   5.066   5.665   6.700 
-
-$`6`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  3.930   4.300   4.850   5.045   5.535   6.650 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">tapply</span>(salm<span class="sc">$</span>Density,salm<span class="sc">$</span>Activity,summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$`0.78`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  3.930   4.130   4.180   4.194   4.310   4.390 
-
-$`0.82`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  4.180   4.270   4.310   4.387   4.430   4.850 
-
-$`0.86`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   4.29    4.41    4.85    4.79    5.01    5.35 
-
-$`0.9`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  5.010   5.200   5.430   5.532   5.870   6.140 
-
-$`0.94`
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  6.180   6.250   6.430   6.418   6.520   6.700 </code></pre>
-</div>
-</div>
-<p>There are a lot of statistics to examine which is where graphical summaries are easier to interpret.</p>
-<p>The boxplots for each level of <code>Sorbic.Acid</code> show that <code>Density</code> decreases as the <code>Sorbic.Acid</code> increases, this is based off the median values. However it should be noted the distributions at each level do overlap each other which may indicate no significant differences.</p>
+<p><em>(iv)</em> Explore any significant results using post-hoc tests from <code>emmeans</code> package and its <code>emmeans()</code> function. Include any plots that you think are useful to visualise the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">boxplot</span>(Density<span class="sc">~</span>Sorbic.Acid,<span class="at">data=</span>salm,<span class="at">main=</span><span class="st">" "</span>,<span class="at">xlab=</span><span class="st">"Sorbic Acid"</span>,<span class="at">ylab=</span><span class="st">"Density"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="solution" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution">Solution</h4>
+<section id="i-the-statistical-model-for-the-factorial-anova-is" class="level5">
+<h5 class="anchored" data-anchor-id="i-the-statistical-model-for-the-factorial-anova-is"><em>(i)</em> The statistical model for the factorial ANOVA is:</h5>
+<p><span class="math display">
+Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijk}
+</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">Y_{ijk}</span> is the response variable (aggression count) for the <span class="math inline">k</span>th observation in the <span class="math inline">i</span>th level of feeding context and <span class="math inline">j</span>th level of sex</p></li>
+<li><p><span class="math inline">\mu</span> is the overall mean aggression count</p></li>
+<li><p><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>th level of feeding context (Alone vs Group)</p></li>
+<li><p><span class="math inline">\beta_j</span> is the effect of the <span class="math inline">j</span>th level of sex (Female vs Male)</p></li>
+<li><p><span class="math inline">(\alpha\beta)_{ij}</span> is the interaction effect between feeding context and sex</p></li>
+<li><p><span class="math inline">\epsilon_{ijk}</span> is the random error term for the <span class="math inline">k</span>th observation in the <span class="math inline">i</span>th level of feeding context and <span class="math inline">j</span>th level of sex and is assumed to be normally distributed with mean 0 and constant variance <span class="math inline">\sigma^2</span>.</p></li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">Aggression\ count = overall\ mean +  feeding\ context +  sex + feeding\ context\times sex + random\ error</span></p>
+</section>
+<section id="ii-test-the-assumptions-of-the-factorial-anova-and-transform-the-data-if-needed." class="level5">
+<h5 class="anchored" data-anchor-id="ii-test-the-assumptions-of-the-factorial-anova-and-transform-the-data-if-needed."><em>(ii)</em> Test the assumptions of the factorial ANOVA and transform the data (if needed).</h5>
+<p>Read in the data and convert to <code>factor</code> if required.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>devil <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/tasmanian_devil_aggression.csv"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">str</span>(devil)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   48 obs. of  6 variables:
+ $ id              : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ block           : chr  "Night_01" "Night_01" "Night_01" "Night_01" ...
+ $ sex             : chr  "Female" "Female" "Male" "Male" ...
+ $ feeding_context : chr  "Alone" "Group" "Alone" "Group" ...
+ $ aggression_count: int  3 5 5 8 1 4 3 3 5 3 ...
+ $ log_aggression  : num  1.386 1.792 1.792 2.197 0.693 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>devil<span class="sc">$</span>feeding_context <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(devil<span class="sc">$</span>feeding_context)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>devil<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(devil<span class="sc">$</span>sex)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">str</span>(devil)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   48 obs. of  6 variables:
+ $ id              : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ block           : chr  "Night_01" "Night_01" "Night_01" "Night_01" ...
+ $ sex             : Factor w/ 2 levels "Female","Male": 1 1 2 2 1 1 2 2 1 1 ...
+ $ feeding_context : Factor w/ 2 levels "Alone","Group": 1 2 1 2 1 2 1 2 1 2 ...
+ $ aggression_count: int  3 5 5 8 1 4 3 3 5 3 ...
+ $ log_aggression  : num  1.386 1.792 1.792 2.197 0.693 ...</code></pre>
+</div>
+</div>
+<p>Run the model and check the assumptions with the <code>plot()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>devil.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(aggression_count <span class="sc">~</span> feeding_context<span class="sc">*</span>sex, <span class="at">data=</span>devil)</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">plot</span>(devil.aov, <span class="at">which=</span><span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">plot</span>(devil.aov, <span class="at">which=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -414,10 +413,15 @@ $`0.94`
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The boxplots for each level of <code>pH</code> show that there is little difference in <code>Density</code>, this is based off the median values.</p>
+<p>The residual diagnostics show that the data is not normally distributed, has unequal variance (fanning). A log transformation is applied to the response variable to try and meet the assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">boxplot</span>(Density<span class="sc">~</span>pH,<span class="at">data=</span>salm,<span class="at">main=</span><span class="st">" "</span>,<span class="at">xlab=</span><span class="st">"pH"</span>,<span class="at">ylab=</span><span class="st">"Density"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>devil.log.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(aggression_count<span class="sc">+</span><span class="dv">1</span>) <span class="sc">~</span> feeding_context<span class="sc">*</span>sex, <span class="at">data=</span>devil)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">plot</span>(devil.log.aov, <span class="at">which=</span><span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="fu">plot</span>(devil.log.aov, <span class="at">which=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -425,40 +429,65 @@ $`0.94`
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The boxplots for each level of <code>Activity</code> show that <code>Density</code> increases as the <code>Activity</code> increases quite markedly, this is based off the median values. Also note the distributions for each level in some cases do not overlap at all, for example <code>0.78</code> and <code>0.82</code> are quite distinct from <code>0.9</code> and <code>0.94</code>.</p>
+<p>The residual diagnostics show that the data is not normally distributed, but now has equal variance. Given ANOVA is robust against non-normality, we will proceed with the analysis using the log transformed response variable.</p>
+</section>
+<section id="iii-use-an-anova-to-analyse-the-crd-and-report-on-the-results." class="level5">
+<h5 class="anchored" data-anchor-id="iii-use-an-anova-to-analyse-the-crd-and-report-on-the-results."><em>(iii)</em> Use an ANOVA to analyse the CRD and report on the results.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">boxplot</span>(Density<span class="sc">~</span>Activity,<span class="at">data=</span>salm,<span class="at">main=</span><span class="st">" "</span>,<span class="at">xlab=</span><span class="st">"Activity"</span>,<span class="at">ylab=</span><span class="st">"Density"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">summary</span>(devil.log.aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+feeding_context      1  4.937   4.937  16.637 0.000187 ***
+sex                  1  2.752   2.752   9.274 0.003917 ** 
+feeding_context:sex  1  0.082   0.082   0.276 0.601716    
+Residuals           44 13.058   0.297                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-</div>
-<p>There are three 2 factor interactions which we can explore with interaction plots. When interpreting the interaction plots we are looking for changes in the shape of the lines for different levels of the treatment factor shown in the inset.</p>
+<p>The ANOVA table shows that there is not a significant interaction between <code>feeding_context</code> and <code>sex</code> with a P-value of 0.60. This means we can now move to the main effects and see that both <code>feeding_context</code> and <code>sex</code> have a significant influence on <code>log_aggression</code>.</p>
+</section>
+<section id="iv-explore-any-significant-results-using-post-hoc-tests-from-emmeans-package-and-its-emmeans-function.-include-any-plots-that-you-think-are-useful-to-visualise-the-results." class="level5">
+<h5 class="anchored" data-anchor-id="iv-explore-any-significant-results-using-post-hoc-tests-from-emmeans-package-and-its-emmeans-function.-include-any-plots-that-you-think-are-useful-to-visualise-the-results."><em>(iv)</em> Explore any significant results using post-hoc tests from <code>emmeans</code> package and its <code>emmeans()</code> function. Include any plots that you think are useful to visualise the results.</h5>
+<p>Main effect of <code>feeding_context</code> is significant so we can use <code>emmeans()</code> to conduct post-hoc tests to determine which pairs are significantly different. The results show that the <code>log_aggression</code> is significantly higher when feeding in a group compared to alone.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">interaction.plot</span>(salm<span class="sc">$</span>Sorbic.Acid,salm<span class="sc">$</span>pH,salm<span class="sc">$</span>Density)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Or:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Welcome to emmeans.
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>salm.aov<span class="fl">.2</span><span class="ot">&lt;-</span><span class="fu">aov</span>(Density<span class="sc">~</span>Sorbic.Acid<span class="sc">*</span>pH<span class="sc">*</span>Activity<span class="sc">-</span>Sorbic.Acid<span class="sc">:</span>pH<span class="sc">:</span>Activity,<span class="at">data=</span>salm)</span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">emmip</span>(salm.aov<span class="fl">.2</span>, pH <span class="sc">~</span> Sorbic.Acid, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">emmeans</span>(devil.log.aov, pairwise <span class="sc">~</span> feeding_context)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$emmeans
+ feeding_context emmean    SE df lower.CL upper.CL
+ Alone             1.12 0.111 44    0.894     1.34
+ Group             1.76 0.111 44    1.535     1.98
+
+Results are averaged over the levels of: sex 
+Results are given on the log(mu + 1) (not the response) scale. 
+Confidence level used: 0.95 
+
+$contrasts
+ contrast      estimate    SE df t.ratio p.value
+ Alone - Group   -0.641 0.157 44  -4.079  0.0002
+
+Results are averaged over the levels of: sex 
+Note: contrasts are still on the log(mu + 1) scale. Consider using
+      regrid() if you want contrasts of back-transformed estimates. </code></pre>
+</div>
+</div>
+<p>Plotting the marginal means for <code>feeding_context</code> shows that the <code>log_aggression</code> is higher when feeding in a group compared to alone.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(devil.log.aov, pairwise <span class="sc">~</span> feeding_context), <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -467,30 +496,38 @@ See '? untidy'</code></pre>
 </div>
 </div>
 </div>
-<p>The <code>pH</code> and <code>Sorbic.Acid</code> interaction plot does not have parallel lines, the difference being when <code>pH</code> = 5. There may be an interaction here but formal hypothesis testing is needed to determine this.</p>
+<p>The main effect of <code>sex</code> is significant so we can use <code>emmeans()</code> to conduct post-hoc tests to determine which pairs are significantly different. The results show that the <code>log_aggression</code> is significantly</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">interaction.plot</span>(salm<span class="sc">$</span>Sorbic.Acid,salm<span class="sc">$</span>Activity,salm<span class="sc">$</span>Density)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">emmeans</span>(devil.log.aov, pairwise <span class="sc">~</span> sex)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$emmeans
+ sex    emmean    SE df lower.CL upper.CL
+ Female   1.20 0.111 44    0.975     1.42
+ Male     1.68 0.111 44    1.454     1.90
+
+Results are averaged over the levels of: feeding_context 
+Results are given on the log(mu + 1) (not the response) scale. 
+Confidence level used: 0.95 
+
+$contrasts
+ contrast      estimate    SE df t.ratio p.value
+ Female - Male   -0.479 0.157 44  -3.045  0.0039
+
+Results are averaged over the levels of: feeding_context 
+Note: contrasts are still on the log(mu + 1) scale. Consider using
+      regrid() if you want contrasts of back-transformed estimates. </code></pre>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">#Or</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">emmip</span>(salm.aov<span class="fl">.2</span>, Activity <span class="sc">~</span> Sorbic.Acid, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The <code>Activity</code> and <code>Sorbic.Acid</code> interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different <code>Activity</code> levels are quite well separated in most cases which is further evidence of a treatment effect for <code>Activity</code>.</p>
+<p>Males have a significantly higher <code>log_aggression</code> compared to females.</p>
+<p>Plotting:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">interaction.plot</span>(salm<span class="sc">$</span>pH,salm<span class="sc">$</span>Activity,salm<span class="sc">$</span>Density)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(devil.log.aov, pairwise <span class="sc">~</span> sex), <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -498,108 +535,63 @@ See '? untidy'</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">#Or</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a> <span class="fu">emmip</span>(salm.aov<span class="fl">.2</span>, Activity <span class="sc">~</span> pH, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
 </div>
-</div>
-</div>
-<p>The <code>Activity</code> and <code>pH</code> interaction plot does have parallel lines so there is not likely to be an interaction. Note that the traces for different <code>Activity</code> levels are quite well separated in most cases which is further evidence of a treatment effect for <code>Activity</code>.</p>
 </section>
-<section id="question-1.2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.2">Question 1.2</h3>
-<p><em>(ii)</em> Write out the model you are fitting in terms of main effects and interactions, words are fine. Note, that each of these will have an associated statistical hypotheses. Obtain an ANOVA for these data, including appropriate interaction terms in the model.</p>
-<p>What do you notice in the ANOVA table when your run the full 3-way factorial ANOVA? Use the <code>summary</code> function to extract the ANOVA table.</p>
-<p>Run the model again but only include the interactions involving two factors: <strong>do not include the three factor interaction term</strong>. Why are we not including the three factor interaction?</p>
 </section>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Look at the data in Excel and <strong>manually</strong> calculate the mean <code>Density</code> for when <code>pH</code> = 5.0, <code>Activity</code> = 0.78 and <code>Sorbic.Acid</code> = 0. How many observations were used to calculate the mean?</p>
-</div>
-</div>
-<p>The model in words is:</p>
-<div class="ans">
+<p>Before we move on, now is a good time to take a 5-minute break.</p>
+</section>
+</section>
+<section id="factorial-anova-with-blocking-30-min" class="level1">
+<h1>2. Factorial ANOVA with blocking (~30 min)</h1>
+<p>Now we will analyse the same experiment as above but this time we will include the blocking factor of <code>block</code> (night) in the analysis. This means we will be analysing the data as if it was collected by a RCBD.</p>
+<section id="analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for the factorial ANOVA with blocking for this experiment. Define all the terms in the model. You can write out in words or in mathematical notation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="solution-1" class="level3">
-<h3 class="anchored" data-anchor-id="solution-1">Solution</h3>
-<p>density = sorbic acid + pH + activity (main effects) +</p>
-<p>sorbic acid:pH + sorbic acid:activity + activity:pH (2 factor interactions) +</p>
-<p>sorbic acid:pH:activity (3 factor interaction)</p>
-<p>We are not fitting the 3 factor interaction as there is no replication at that level. For every combination of the three factors (<code>Sorbic.Acid</code>, <code>Activity</code> and <code>pH</code>), there is only one observation, so if this is fitted there will be zero degrees of freedom; replication would be needed to fit a three-way interaction. Effectively, by not fitting a three factor interaction, this term, becomes the Residual term.</p>
-<p>To illustrate compare the output from a model with and without the 3 factor interaction.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>salm.aov<span class="ot">&lt;-</span><span class="fu">aov</span>(Density<span class="sc">~</span>Sorbic.Acid<span class="sc">*</span>pH<span class="sc">*</span>Activity,<span class="at">data=</span>salm)</span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="fu">summary</span>(salm.aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                        Df Sum Sq Mean Sq
-Sorbic.Acid              2  1.366   0.683
-pH                       2  0.011   0.005
-Activity                 4 30.077   7.519
-Sorbic.Acid:pH           4  0.209   0.052
-Sorbic.Acid:Activity     8  0.501   0.063
-pH:Activity              8  0.452   0.056
-Sorbic.Acid:pH:Activity 16  0.635   0.040</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>salm.aov<span class="fl">.2</span><span class="ot">&lt;-</span><span class="fu">aov</span>(Density<span class="sc">~</span>Sorbic.Acid<span class="sc">*</span>pH<span class="sc">*</span>Activity<span class="sc">-</span>Sorbic.Acid<span class="sc">:</span>pH<span class="sc">:</span>Activity,<span class="at">data=</span>salm)</span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">summary</span>(salm.aov<span class="fl">.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-Sorbic.Acid           2  1.366   0.683  17.196 0.000103 ***
-pH                    2  0.011   0.005   0.133 0.876834    
-Activity              4 30.077   7.519 189.367 2.96e-13 ***
-Sorbic.Acid:pH        4  0.209   0.052   1.319 0.305270    
-Sorbic.Acid:Activity  8  0.501   0.063   1.578 0.208120    
-pH:Activity           8  0.452   0.056   1.422 0.260864    
-Residuals            16  0.635   0.040                     
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-</section>
-</div>
-<section id="question-1.3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.3">Question 1.3</h3>
-<p><em>(iii)</em> Test that the model assumptions have been met.</p>
-</section>
+<p><em>(ii)</em> Test the assumptions of the ANOVA model and transform the data (if needed). Hint first run the model using the <code>aov()</code> function and then use the <code>plot()</code> function to check the assumptions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="solution-2" class="level3 ans">
-<h3 class="anchored" data-anchor-id="solution-2">Solution</h3>
-<p>The residual diagnostics show that the data is normally distributed, has constant variance and has no obvious outliers. The response has been log transformed so this is no surprise.</p>
+<p><em>(iii)</em> Use an ANOVA to analyse the RCBD and report on the results.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(salm.aov<span class="fl">.2</span>))</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">plot</span>(salm.aov<span class="fl">.2</span><span class="sc">$</span>fitted.values,(<span class="fu">rstandard</span>(salm.aov<span class="fl">.2</span>)))</span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(salm.aov<span class="fl">.2</span>))</span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<p>or</p>
+<p><em>(iv)</em> Calculate how much variation the blocking term captured.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">check_model</span>(salm.aov<span class="fl">.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="solution-1" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
+<section id="i-the-statistical-model-for-the-factorial-anova-with-blocking-is" class="level5">
+<h5 class="anchored" data-anchor-id="i-the-statistical-model-for-the-factorial-anova-with-blocking-is"><em>(i)</em> The statistical model for the factorial ANOVA with blocking is:</h5>
+<p><span class="math display">
+Y_{ijkl} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \gamma_k + \epsilon_{ijkl}
+</span> Where:</p>
+<ul>
+<li><span class="math inline">Y_{ijkl}</span> is the response variable (aggression count) for the $l $th observation in the <span class="math inline">i</span>th level of feeding context, $j $th level of sex and <span class="math inline">k</span>th block (night)</li>
+<li><span class="math inline">\mu</span> is the overall mean aggression count</li>
+<li><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>th level of feeding context (Alone vs Group)</li>
+<li><span class="math inline">\beta_j</span> is the effect of the $j $th level of sex (Male vs Female)</li>
+<li><span class="math inline">(\alpha\beta)_{ij}</span> is the interaction effect between feeding context and sex</li>
+<li><span class="math inline">\gamma_k</span> is the effect of the <span class="math inline">k</span>th block (night)</li>
+<li><span class="math inline">\epsilon_{ijkl}</span> is the random error term for the <span class="math inline">l</span>th observation in the <span class="math inline">i</span>th level of feeding context, $j $th level of sex and <span class="math inline">k</span>th block (night) and is assumed to be normally distributed with mean 0 and constant variance <span class="math inline">\sigma^2</span>.</li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">Aggression\ count = overall\ mean + block + feeding\ context + sex + feeding\ context \times sex + random\ error</span></p>
+</section>
+<section id="ii-test-the-assumptions-of-the-anova-model-and-transform-the-data-if-needed." class="level5">
+<h5 class="anchored" data-anchor-id="ii-test-the-assumptions-of-the-anova-model-and-transform-the-data-if-needed."><em>(ii)</em> Test the assumptions of the ANOVA model and transform the data (if needed).</h5>
+<p>Run the model and check the assumptions with the <code>plot()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>devil.block.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(aggression_count <span class="sc">~</span> block <span class="sc">+</span> feeding_context <span class="sc">*</span> sex, <span class="at">data=</span>devil)</span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="fu">plot</span>(devil.block.aov, <span class="at">which=</span><span class="dv">1</span>)</span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="fu">plot</span>(devil.block.aov, <span class="at">which=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -607,303 +599,77 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="question-1.4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1.4">Question 1.4</h3>
-<p><em>(iv)</em> What are the significant effects in the model? For the significant effects we conduct post-hoc tests the Tukey’s Test to determine which pairs are significantly different. Write overall conclusions, in terms of the statistical hypothesis testing and in terms of the biological description of the experiment.</p>
-</section>
+<p>The residual diagnostics show that the data is not normally distributed, but has equal variance. A log transformation is applied to the response variable to try and meet the assumption of normality.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>devil.block.log.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">log</span>(aggression_count<span class="sc">+</span><span class="dv">1</span>) <span class="sc">~</span> block <span class="sc">+</span> feeding_context <span class="sc">*</span> sex, <span class="at">data=</span>devil)</span>
+<span id="cb34-2"><a href="#cb34-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">plot</span>(devil.block.log.aov, <span class="at">which=</span><span class="dv">1</span>)</span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="fu">plot</span>(devil.block.log.aov, <span class="at">which=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<section id="solution-3" class="level3 ans">
-<h3 class="anchored" data-anchor-id="solution-3">Solution</h3>
-<p>The ANOVA shows that none of the 2 factor interactions are significant which means we can examine the main effects individually. The significant effects are <code>pH</code> and <code>Sorbic.Acid</code> with P-values less than 0.05.</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The residual diagnostics show that the data is close to being normally distributed. Given ANOVA is robust against non-normality, we will proceed with the analysis using the log transformed response variable.</p>
+</section>
+<section id="iii-use-an-anova-to-analyse-the-rcbd-and-report-on-the-results." class="level5">
+<h5 class="anchored" data-anchor-id="iii-use-an-anova-to-analyse-the-rcbd-and-report-on-the-results."><em>(iii)</em> Use an ANOVA to analyse the RCBD and report on the results.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">summary</span>(salm.aov<span class="fl">.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">summary</span>(devil.block.log.aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                     Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-Sorbic.Acid           2  1.366   0.683  17.196 0.000103 ***
-pH                    2  0.011   0.005   0.133 0.876834    
-Activity              4 30.077   7.519 189.367 2.96e-13 ***
-Sorbic.Acid:pH        4  0.209   0.052   1.319 0.305270    
-Sorbic.Acid:Activity  8  0.501   0.063   1.578 0.208120    
-pH:Activity           8  0.452   0.056   1.422 0.260864    
-Residuals            16  0.635   0.040                     
+<pre><code>                    Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+block               11  4.115   0.374   1.380 0.227950    
+feeding_context      1  4.937   4.937  18.219 0.000156 ***
+sex                  1  2.752   2.752  10.156 0.003140 ** 
+feeding_context:sex  1  0.082   0.082   0.303 0.585914    
+Residuals           33  8.943   0.271                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Tukey test for the significant effects is shown below.</p>
+<p>The ANOVA table shows that there is not a significant interaction between <code>feeding_context</code> and <code>sex</code> with a P-value of 0.59. However, both main effects are significant.</p>
+</section>
+<section id="iv-calculate-how-much-variation-the-blocking-term-captured." class="level5">
+<h5 class="anchored" data-anchor-id="iv-calculate-how-much-variation-the-blocking-term-captured."><em>(iv)</em> Calculate how much variation the blocking term captured.</h5>
+<p>The sum of squares for the block term is 4.115 Total sum of squares is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">emmeans</span>(salm.aov<span class="fl">.2</span>, pairwise <span class="sc">~</span> Sorbic.Acid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>Total.SS <span class="ot">&lt;-</span> <span class="fl">4.115+4.937+2.752+0.082+8.943</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a>Total.SS</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$emmeans
- Sorbic.Acid emmean     SE df lower.CL upper.CL
- 0             5.30 0.0515 16     5.19     5.41
- 100           5.00 0.0515 16     4.89     5.11
- 200           4.89 0.0515 16     4.78     5.00
-
-Results are averaged over the levels of: pH, Activity 
-Confidence level used: 0.95 
-
-$contrasts
- contrast                        estimate     SE df t.ratio p.value
- Sorbic.Acid0 - Sorbic.Acid100      0.304 0.0728 16   4.178  0.0019
- Sorbic.Acid0 - Sorbic.Acid200      0.411 0.0728 16   5.653  0.0001
- Sorbic.Acid100 - Sorbic.Acid200    0.107 0.0728 16   1.475  0.3285
-
-Results are averaged over the levels of: pH, Activity 
-P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
+<pre><code>[1] 20.829</code></pre>
 </div>
 </div>
-<p>Increased concentrations of sorbic acid result in significant reductions in Salmonella levels. There was a far greater reduction in Salmonella when the the <code>Sorbic.Acid</code> was increased from <code>0</code> to <code>100</code>, compared with <code>100</code> to <code>200</code>, suggesting that a saturation effect may be occurring.</p>
+<p>The percentage of variation captured by the block term is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">emmeans</span>(salm.aov<span class="fl">.2</span>, pairwise <span class="sc">~</span> Activity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>(<span class="fl">4.115</span><span class="sc">/</span>Total.SS)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$emmeans
- Activity emmean     SE df lower.CL upper.CL
- 0.78       4.19 0.0664 16     4.05     4.34
- 0.82       4.39 0.0664 16     4.25     4.53
- 0.86       4.79 0.0664 16     4.65     4.93
- 0.9        5.53 0.0664 16     5.39     5.67
- 0.94       6.42 0.0664 16     6.28     6.56
-
-Results are averaged over the levels of: Sorbic.Acid, pH 
-Confidence level used: 0.95 
-
-$contrasts
- contrast                    estimate     SE df t.ratio p.value
- Activity0.78 - Activity0.82   -0.192 0.0939 16  -2.046  0.2894
- Activity0.78 - Activity0.86   -0.596 0.0939 16  -6.340  0.0001
- Activity0.78 - Activity0.9    -1.338 0.0939 16 -14.241  &lt;.0001
- Activity0.78 - Activity0.94   -2.223 0.0939 16 -23.669  &lt;.0001
- Activity0.82 - Activity0.86   -0.403 0.0939 16  -4.294  0.0044
- Activity0.82 - Activity0.9    -1.146 0.0939 16 -12.195  &lt;.0001
- Activity0.82 - Activity0.94   -2.031 0.0939 16 -21.622  &lt;.0001
- Activity0.86 - Activity0.9    -0.742 0.0939 16  -7.901  &lt;.0001
- Activity0.86 - Activity0.94   -1.628 0.0939 16 -17.329  &lt;.0001
- Activity0.9 - Activity0.94    -0.886 0.0939 16  -9.427  &lt;.0001
-
-Results are averaged over the levels of: Sorbic.Acid, pH 
-P value adjustment: tukey method for comparing a family of 5 estimates </code></pre>
+<pre><code>[1] 19.75611</code></pre>
 </div>
 </div>
-<p>As the <code>Activity</code> increases, the <span class="math inline">log_{e}</span>(Density) of Salmonella increases approximately exponentially, and based on the Tukey Test the increase is significant at each increase in water activity with the exception of between <code>0.78</code> and <code>0.82</code>.</p>
+<p>The block term captured 19.76% of the variation in the data, so it was useful using a RCBD for this experiment.</p>
 </section>
 </section>
-<section id="exercise-2---more-practice" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2---more-practice">Exercise 2 - More practice</h2>
-<p>An experiment was performed to study the control of potato blight on potatoes. A factorial treatment structure was employed with 3 Varieties in combination with 5 Chemical treatments. The experiment was conducted using a randomised complete block design (RCBD) with three blocks. The response is yield of potatoes (lbs).</p>
-<p>Provide graphical summaries of the data, analyse the experiment, conduct any post-hoc tests if the results are significant. The data is found in the <strong>Potato</strong> sheet in the <strong>Data6.xlsx</strong> file.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">#</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="solution-4" class="level3 ans">
-<h3 class="anchored" data-anchor-id="solution-4">Solution</h3>
-<p>First we read in the data and convert to <code>factor</code> if required.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb42-2"><a href="#cb42-2"></a>pot<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"data/Data6.xlsx"</span>,<span class="at">sheet=</span><span class="st">"Potato"</span>)</span>
-<span id="cb42-3"><a href="#cb42-3"></a><span class="fu">str</span>(pot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [45 × 4] (S3: tbl_df/tbl/data.frame)
- $ Yield   : num [1:45] 34.1 76.3 72.2 51.9 42.9 62.1 66.3 39.1 75.1 41.7 ...
- $ Block   : num [1:45] 1 1 1 2 2 2 3 3 3 1 ...
- $ Variety : chr [1:45] "Pontiac" "Sebago" "Sebago" "Desire" ...
- $ Chemical: chr [1:45] "CuOxy4" "Dithane10" "Dithane4" "CuOxy4" ...</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>pot<span class="sc">$</span>Block<span class="ot">&lt;-</span><span class="fu">as.factor</span>(pot<span class="sc">$</span>Block)</span>
-<span id="cb44-2"><a href="#cb44-2"></a>pot<span class="sc">$</span>Variety<span class="ot">&lt;-</span><span class="fu">as.factor</span>(pot<span class="sc">$</span>Variety)</span>
-<span id="cb44-3"><a href="#cb44-3"></a>pot<span class="sc">$</span>Chemical<span class="ot">&lt;-</span><span class="fu">as.factor</span>(pot<span class="sc">$</span>Chemical)</span>
-<span id="cb44-4"><a href="#cb44-4"></a><span class="fu">str</span>(pot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [45 × 4] (S3: tbl_df/tbl/data.frame)
- $ Yield   : num [1:45] 34.1 76.3 72.2 51.9 42.9 62.1 66.3 39.1 75.1 41.7 ...
- $ Block   : Factor w/ 3 levels "1","2","3": 1 1 1 2 2 2 3 3 3 1 ...
- $ Variety : Factor w/ 3 levels "Desire","Pontiac",..: 2 3 3 1 3 2 3 3 1 2 ...
- $ Chemical: Factor w/ 5 levels "Control","CuOxy10",..: 3 4 5 3 2 4 4 2 5 5 ...</code></pre>
-</div>
-</div>
-<p>Graphical summaries for the main effects are easier to interpret than summary statistics.</p>
-<p>The boxplots based on <code>Variety</code> show that <code>Pontiac</code> is the worst performing.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">boxplot</span>(Yield<span class="sc">~</span>Variety,<span class="at">data=</span>pot,<span class="at">main=</span><span class="st">" "</span>,<span class="at">xlab=</span><span class="st">"Variety"</span>,<span class="at">ylab=</span><span class="st">"Yield"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The boxplots for each level of <code>Chemical</code> show that <code>Dithane10</code> results in the greatest yield.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">boxplot</span>(Yield<span class="sc">~</span>Chemical,<span class="at">data=</span>pot,<span class="at">main=</span><span class="st">" "</span>,<span class="at">xlab=</span><span class="st">"Chemical"</span>,<span class="at">ylab=</span><span class="st">"Yield"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The marginal means below show that applying no chemical (<code>Control</code>) to suppress potato blight results in the worse yields for all varieties. The combination of <code>Desire</code> and <code>Dithane10</code> result in the greatest yield.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">with</span>(pot, <span class="fu">tapply</span>(Yield, <span class="fu">list</span>(<span class="at">Chemical=</span>Chemical,<span class="at">Variety=</span>Variety), mean) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           Variety
-Chemical      Desire  Pontiac   Sebago
-  Control   42.13333 14.83333 36.06667
-  CuOxy10   60.53333 28.96667 45.40000
-  CuOxy4    51.63333 27.80000 40.70000
-  Dithane10 97.10000 65.00000 76.93333
-  Dithane4  70.83333 47.50000 63.80000</code></pre>
-</div>
-</div>
-<p>The interaction plot below shows the lines to be reasonably parallel so an interaction effect is unlikely.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">interaction.plot</span>(pot<span class="sc">$</span>Variety,pot<span class="sc">$</span>Chemical,pot<span class="sc">$</span>Yield)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The residual diagnostics show that the data is normally distributed, has constant variance and has no obvious outliers.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>pot.aov<span class="ot">&lt;-</span><span class="fu">aov</span>(Yield<span class="sc">~</span>Block<span class="sc">+</span>Chemical<span class="sc">*</span>Variety,<span class="at">data=</span>pot)</span>
-<span id="cb51-2"><a href="#cb51-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb51-3"><a href="#cb51-3"></a><span class="fu">hist</span>(<span class="fu">rstandard</span>(pot.aov))</span>
-<span id="cb51-4"><a href="#cb51-4"></a><span class="fu">plot</span>(pot.aov<span class="sc">$</span>fitted.values,(<span class="fu">rstandard</span>(pot.aov)))</span>
-<span id="cb51-5"><a href="#cb51-5"></a><span class="fu">qqnorm</span>(<span class="fu">rstandard</span>(pot.aov))</span>
-<span id="cb51-6"><a href="#cb51-6"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>or</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co">#library(performance)</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="fu">check_model</span>(pot.aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The ANOVA shows that interactions is not significant so we can examine the main effects individually. Both are significant with P-values less than 0.05.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">summary</span>(pot.aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                 Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-Block             2    111      55   1.071    0.356    
-Chemical          4  13251    3313  64.109 1.09e-13 ***
-Variety           2   5762    2881  55.756 1.72e-10 ***
-Chemical:Variety  8    259      32   0.628    0.748    
-Residuals        28   1447      52                     
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-<p>Tukey Post-hoc tests on the main effects is shown below.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">emmeans</span>(pot.aov, pairwise <span class="sc">~</span> Variety)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$emmeans
- Variety emmean   SE df lower.CL upper.CL
- Desire    64.4 1.86 28     60.6     68.2
- Pontiac   36.8 1.86 28     33.0     40.6
- Sebago    52.6 1.86 28     48.8     56.4
-
-Results are averaged over the levels of: Block, Chemical 
-Confidence level used: 0.95 
-
-$contrasts
- contrast         estimate   SE df t.ratio p.value
- Desire - Pontiac     27.6 2.62 28  10.525  &lt;.0001
- Desire - Sebago      11.9 2.62 28   4.521  0.0003
- Pontiac - Sebago    -15.8 2.62 28  -6.004  &lt;.0001
-
-Results are averaged over the levels of: Block, Chemical 
-P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(pot.aov, pairwise <span class="sc">~</span> Variety), <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">emmeans</span>(pot.aov, pairwise <span class="sc">~</span> Chemical)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$emmeans
- Chemical  emmean  SE df lower.CL upper.CL
- Control     31.0 2.4 28     26.1     35.9
- CuOxy10     45.0 2.4 28     40.1     49.9
- CuOxy4      40.0 2.4 28     35.1     45.0
- Dithane10   79.7 2.4 28     74.8     84.6
- Dithane4    60.7 2.4 28     55.8     65.6
-
-Results are averaged over the levels of: Block, Variety 
-Confidence level used: 0.95 
-
-$contrasts
- contrast             estimate   SE df t.ratio p.value
- Control - CuOxy10      -13.96 3.39 28  -4.118  0.0026
- Control - CuOxy4        -9.03 3.39 28  -2.666  0.0852
- Control - Dithane10    -48.67 3.39 28 -14.362  &lt;.0001
- Control - Dithane4     -29.70 3.39 28  -8.765  &lt;.0001
- CuOxy10 - CuOxy4         4.92 3.39 28   1.453  0.6003
- CuOxy10 - Dithane10    -34.71 3.39 28 -10.243  &lt;.0001
- CuOxy10 - Dithane4     -15.74 3.39 28  -4.646  0.0006
- CuOxy4 - Dithane10     -39.63 3.39 28 -11.696  &lt;.0001
- CuOxy4 - Dithane4      -20.67 3.39 28  -6.099  &lt;.0001
- Dithane10 - Dithane4    18.97 3.39 28   5.597  0.0001
-
-Results are averaged over the levels of: Block, Variety 
-P value adjustment: tukey method for comparing a family of 5 estimates </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(pot.aov, pairwise <span class="sc">~</span> Chemical), <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab06-factorial-anova_files/figure-html/unnamed-chunk-31-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The results are quite clean with one level resulting in significantly greater mean yield for both treatment factors; <code>Desire</code> for <code>Variety</code> and <code>Dithane10</code> for <code>Chemical</code>. From this we would recommend the use of <code>Desire</code> and <code>Dithane10</code> for maximise yield via supressing potato blight.</p>
 </section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>We analysed a factorial experiment this week using Tasmanian devil aggression data: first as a CRD to test for main effects and interactions, then as an RCBD to account for night-to-night variation. These factorial designs and analysis techniques extend the one-way ANOVA methods from previous weeks.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

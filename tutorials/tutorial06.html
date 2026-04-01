@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 06: Factorial Designs</title>
+<title>Tutorial 06</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-a12f568daf72ffd58861f58c31e8fae8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
@@ -133,6 +133,49 @@ background: white;
 </noscript>
 <script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
@@ -144,7 +187,7 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tutorial 06: Factorial Designs</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tutorial 06</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
             <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
                       </div>
   </div>
@@ -171,25 +214,26 @@ background: white;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#treatment-designs-and-experimental-designs" id="toc-treatment-designs-and-experimental-designs" class="nav-link active" data-scroll-target="#treatment-designs-and-experimental-designs"><span class="header-section-number">1</span> Treatment Designs and Experimental Designs</a></li>
-  <li><a href="#factorial-treatment-structure" id="toc-factorial-treatment-structure" class="nav-link" data-scroll-target="#factorial-treatment-structure"><span class="header-section-number">2</span> Factorial Treatment Structure</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#treatment-designs-and-experimental-designs" id="toc-treatment-designs-and-experimental-designs" class="nav-link" data-scroll-target="#treatment-designs-and-experimental-designs"><span class="header-section-number">1</span> Treatment designs and experimental designs</a></li>
+  <li><a href="#factorial-treatment-structure" id="toc-factorial-treatment-structure" class="nav-link" data-scroll-target="#factorial-treatment-structure"><span class="header-section-number">2</span> Factorial treatment structure</a>
   <ul class="collapse">
-  <li><a href="#main-effects-and-interactions" id="toc-main-effects-and-interactions" class="nav-link" data-scroll-target="#main-effects-and-interactions"><span class="header-section-number">2.1</span> Main Effects and Interactions</a></li>
-  <li><a href="#exercise-1-identifying-main-effects-and-interactions" id="toc-exercise-1-identifying-main-effects-and-interactions" class="nav-link" data-scroll-target="#exercise-1-identifying-main-effects-and-interactions"><span class="header-section-number">2.2</span> Exercise 1: Identifying Main Effects and Interactions</a></li>
-  <li><a href="#exercise-2-anova-using-a-factorial-treatment-design" id="toc-exercise-2-anova-using-a-factorial-treatment-design" class="nav-link" data-scroll-target="#exercise-2-anova-using-a-factorial-treatment-design"><span class="header-section-number">2.3</span> Exercise 2: ANOVA using a Factorial Treatment Design</a></li>
+  <li><a href="#main-effects-and-interactions" id="toc-main-effects-and-interactions" class="nav-link" data-scroll-target="#main-effects-and-interactions"><span class="header-section-number">2.1</span> Main effects and interactions</a></li>
+  <li><a href="#exercise-1-identifying-main-effects-and-interactions" id="toc-exercise-1-identifying-main-effects-and-interactions" class="nav-link" data-scroll-target="#exercise-1-identifying-main-effects-and-interactions">Exercise 1: Identifying main effects and interactions</a></li>
+  <li><a href="#exercise-2-anova-using-a-factorial-treatment-design" id="toc-exercise-2-anova-using-a-factorial-treatment-design" class="nav-link" data-scroll-target="#exercise-2-anova-using-a-factorial-treatment-design">Exercise 2: ANOVA using a factorial treatment design</a></li>
   </ul></li>
-  <li><a href="#factorial-design-with-blocking" id="toc-factorial-design-with-blocking" class="nav-link" data-scroll-target="#factorial-design-with-blocking"><span class="header-section-number">3</span> Factorial Design with Blocking</a>
+  <li><a href="#factorial-design-with-blocking" id="toc-factorial-design-with-blocking" class="nav-link" data-scroll-target="#factorial-design-with-blocking"><span class="header-section-number">3</span> Factorial design with blocking</a>
   <ul class="collapse">
-  <li><a href="#exercise-3-factorial-design-with-blocking" id="toc-exercise-3-factorial-design-with-blocking" class="nav-link" data-scroll-target="#exercise-3-factorial-design-with-blocking"><span class="header-section-number">3.1</span> Exercise 3: Factorial Design with Blocking</a>
+  <li><a href="#exercise-3-factorial-design-with-blocking" id="toc-exercise-3-factorial-design-with-blocking" class="nav-link" data-scroll-target="#exercise-3-factorial-design-with-blocking">Exercise 3: Factorial design with blocking</a>
   <ul class="collapse">
-  <li><a href="#anova-with-blocking" id="toc-anova-with-blocking" class="nav-link" data-scroll-target="#anova-with-blocking">3.1) ANOVA with Blocking</a></li>
-  <li><a href="#visualising-factorial-design-with-blocking" id="toc-visualising-factorial-design-with-blocking" class="nav-link" data-scroll-target="#visualising-factorial-design-with-blocking">3.2) Visualising Factorial Design with Blocking</a></li>
-  <li><a href="#calculate-the-variance-explained-by-each-effect" id="toc-calculate-the-variance-explained-by-each-effect" class="nav-link" data-scroll-target="#calculate-the-variance-explained-by-each-effect">3.3) Calculate the variance explained by each effect</a></li>
+  <li><a href="#part-a-anova-with-blocking" id="toc-part-a-anova-with-blocking" class="nav-link" data-scroll-target="#part-a-anova-with-blocking">Part A — ANOVA with blocking</a></li>
+  <li><a href="#part-b-visualising-the-effects" id="toc-part-b-visualising-the-effects" class="nav-link" data-scroll-target="#part-b-visualising-the-effects">Part B — Visualising the effects</a></li>
+  <li><a href="#part-c-variance-explained-by-each-effect" id="toc-part-c-variance-explained-by-each-effect" class="nav-link" data-scroll-target="#part-c-variance-explained-by-each-effect">Part C — Variance explained by each effect</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4</span> Summary</a>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
-  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions"><span class="header-section-number">4.1</span> Example exam questions</a></li>
+  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions">Example exam questions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial06.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -205,39 +249,27 @@ background: white;
 
 
 
+<section id="welcome" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
 <p>In this week’s lectures we covered factorial designs, main effects and interactions. We applied these concepts by using analysis of variance (ANOVA) as a method to analyse data from these experimental designs.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Key learning outcomes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Treatment Designs and Experimental Designs</li>
-<li>Factorial Treatment Structures
-<ul>
-<li>Main Effects and Interactions, including graphical interpretations</li>
-<li>ANOVA with Factorial Treatment Designs (up to 3-way designs, with and without blocking)</li>
-</ul></li>
-</ul>
-</div>
-</div>
+<p>You will learn how to:</p>
+<ol type="1">
+<li>Distinguish between treatment designs and experimental designs.</li>
+<li>Identify main effects and interactions in factorial treatment structures, including graphical interpretations.</li>
+<li>Perform ANOVA with factorial treatment designs, with and without blocking.</li>
+</ol>
+</section>
 <section id="treatment-designs-and-experimental-designs" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Treatment Designs and Experimental Designs</h1>
+<h1 data-number="1"><span class="header-section-number">1</span> Treatment designs and experimental designs</h1>
 <p>An experimental design is a structured approach to conducting experiments that allows researchers to systematically investigate the effects of one or more factors on a response variable. Treatment designs refer to the specific arrangements of treatments (or interventions) applied to experimental units within an experimental design. There are several types of treatment designs, including (but not limited to):</p>
 <ul>
-<li><p><strong>Completely Randomized Design (CRD)</strong>: Experimental units are randomly assigned to different treatment groups without any restrictions. This design is suitable when experimental units are homogeneous.</p></li>
-<li><p><strong>Randomized Block Design (RBD)</strong>: Experimental units are grouped into blocks based on certain characteristics, and treatments are randomly assigned within each block. This design helps control for variability among experimental units.</p></li>
+<li><p><strong>Completely Randomised Design (CRD)</strong>: Experimental units are randomly assigned to different treatment groups without any restrictions. This design is suitable when experimental units are homogeneous.</p></li>
+<li><p><strong>Randomised Block Design (RBD)</strong>: Experimental units are grouped into blocks based on certain characteristics, and treatments are randomly assigned within each block. This design helps control for variability among experimental units.</p></li>
 <li><p><strong>Factorial Design</strong>: Multiple factors are investigated simultaneously, with all possible combinations of factor levels included in the experiment. This design allows for the study of main effects and interactions between factors.</p></li>
 </ul>
-<hr>
 </section>
 <section id="factorial-treatment-structure" class="level1 page-columns page-full" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Factorial Treatment Structure</h1>
+<h1 data-number="2"><span class="header-section-number">2</span> Factorial treatment structure</h1>
 <p>Factorial treatment structures involve experiments where there are two or more treatment factors, each with two or more levels. In these designs, all possible combinations of the levels of each factor are included in the experiment. For example, in a 2-way factorial design with factors A and B, where factor A has 2 levels (A1 and A2) and factor B has 3 levels (B1, B2, and B3), the treatment combinations would be A1B1, A1B2, A1B3, A2B1, A2B2, and A2B3.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -246,15 +278,17 @@ background: white;
 </figure>
 </div>
 <section id="main-effects-and-interactions" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="main-effects-and-interactions"><span class="header-section-number">2.1</span> Main Effects and Interactions</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="main-effects-and-interactions"><span class="header-section-number">2.1</span> Main effects and interactions</h2>
 <p>In a factorial design, the <strong>main effects</strong> refer to the individual effects of each treatment/factor on the response variable, while <strong>interactions</strong> refer to the combined effects of two or more treatments/factors on the response variable. An interaction occurs when the effect of one treatment/factor depends on the level of another treatment/factor.</p>
-<p>Let’s plot some examples of interaction plots:</p>
+<p>Let us plot some examples of interaction plots:</p>
 <ul>
 <li>No interaction</li>
 <li>Positive interaction</li>
 <li>Negative interaction</li>
 </ul>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># No interaction</span></span>
@@ -268,6 +302,7 @@ background: white;
 <span id="cb1-11"><a href="#cb1-11"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb1-12"><a href="#cb1-12"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"No Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -275,6 +310,8 @@ background: white;
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Positive interaction</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>positive_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
@@ -286,6 +323,7 @@ background: white;
 <span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Positive Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -293,6 +331,8 @@ background: white;
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Negative interaction</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>negative_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
@@ -304,6 +344,7 @@ background: white;
 <span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Negative Interaction"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -324,7 +365,7 @@ background: white;
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Interpreting Interaction Plots
+<span class="screen-reader-only">Tip</span>Interpreting interaction plots
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -335,9 +376,15 @@ background: white;
 </div>
 </div>
 </section>
-<section id="exercise-1-identifying-main-effects-and-interactions" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="exercise-1-identifying-main-effects-and-interactions"><span class="header-section-number">2.2</span> Exercise 1: Identifying Main Effects and Interactions</h2>
+<section id="exercise-1-identifying-main-effects-and-interactions" class="level2 unnumbered page-columns page-full">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-1-identifying-main-effects-and-interactions">Exercise 1: Identifying main effects and interactions</h2>
 <p>In this ecological experiment, we investigated the influence of two factors: Fire and Rainfall on small mammal captures (using a 2-way factorial design).</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/desert_mouse_Greenville.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Desert mouse (<em>Pseudomys desertor</em>) is a native rodent that undergoes population irruptions after extreme rainfall events in arid Australia. Image credit: Aaron Greenville</figcaption>
+</figure>
+</div>
 <p>Our main effects are:</p>
 <ul>
 <li>Effect of Fire (Levels: Burnt, Unburnt)</li>
@@ -347,8 +394,29 @@ background: white;
 <ul>
 <li>Interaction between Fire and Rainfall</li>
 </ul>
-<p>Let’s simulate some data and plot the main effects and interactions:</p>
+<p>The statistical model for this experiment can be written as: <span class="math display">
+Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijk}
+</span> Where:</p>
+<ul>
+<li><span class="math inline">Y_{ijk}</span> is the response variable (small mammal captures) for the <span class="math inline">k</span>th observation in the <span class="math inline">i</span>th level of Fire and <span class="math inline">j</span>th level of Rainfall<br>
+</li>
+<li><span class="math inline">\mu</span> is the overall mean small mammal captures<br>
+</li>
+<li><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>th level of Fire (Burnt vs Unburnt)<br>
+</li>
+<li><span class="math inline">\beta_j</span> is the effect of the <span class="math inline">j</span>th level of Rainfall (Low, Medium, High)<br>
+</li>
+<li><span class="math inline">(\alpha\beta)_{ij}</span> is the interaction effect between Fire and Rainfall<br>
+</li>
+<li><span class="math inline">\epsilon_{ijk}</span> is the random error term for the <span class="math inline">k</span>th observation in the <span class="math inline">i</span>th level of Fire and <span class="math inline">j</span>th level of Rainfall and is assumed to be normally distributed with mean 0 and constant variance <span class="math inline">\sigma^2</span>.<br>
+</li>
+</ul>
+<p>OR in words:</p>
+<p><span class="math display">Small\ mammal\ captures = overall\ mean + Fire + Rainfall + Fire \times Rainfall  + random\ error</span></p>
+<p>Let us simulate some data and plot the main effects and interactions:</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>fire <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Burnt"</span>, <span class="st">"Unburnt"</span>), <span class="at">each =</span> <span class="dv">30</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a>rainfall <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">times =</span> <span class="dv">20</span>)</span>
@@ -370,6 +438,7 @@ background: white;
 <span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -377,11 +446,14 @@ background: white;
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Plot main effect: Fire</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Fire, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Fire on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -389,12 +461,15 @@ background: white;
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Plot interaction</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures, <span class="at">color =</span> Fire, <span class="at">group =</span> Fire)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interaction between Fire and Rainfall on Small Mammal Captures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -422,14 +497,27 @@ background: white;
 <p>You must understand these concepts to correctly interpret the results of factorial experiments.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to identify main effects and interactions from interaction plots, and write out a statistical model for a two-way factorial design.</p>
+</div>
+</div>
 </section>
-<section id="exercise-2-anova-using-a-factorial-treatment-design" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="exercise-2-anova-using-a-factorial-treatment-design"><span class="header-section-number">2.3</span> Exercise 2: ANOVA using a Factorial Treatment Design</h2>
+<section id="exercise-2-anova-using-a-factorial-treatment-design" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-2-anova-using-a-factorial-treatment-design">Exercise 2: ANOVA using a factorial treatment design</h2>
 <p>Now that we have visualised the main effects and interaction, we can fit an ANOVA model to test for the significance of these effects.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Fit ANOVA model</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>data<span class="sc">$</span>Fire <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Fire)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Rainfall) </span>
+<span id="cb7-3"><a href="#cb7-3"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Rainfall)</span>
 <span id="cb7-4"><a href="#cb7-4"></a></span>
 <span id="cb7-5"><a href="#cb7-5"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Captures <span class="sc">~</span> Fire <span class="sc">*</span> Rainfall, <span class="at">data =</span> data)</span>
 <span id="cb7-6"><a href="#cb7-6"></a></span>
@@ -448,14 +536,23 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <blockquote class="blockquote">
 <p>Which effects are significant? Are they main effects and/or interactions? Are they consistent with the plots above?</p>
 </blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<hr>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to fit a factorial ANOVA using <code>aov()</code>, read the ANOVA table from the bottom up (interaction first, then main effects), and identify significant effects.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="factorial-design-with-blocking" class="level1 page-columns page-full" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Factorial Design with Blocking</h1>
+<h1 data-number="3"><span class="header-section-number">3</span> Factorial design with blocking</h1>
 <p>A factorial design with blocking is an experimental design that combines the principles of factorial treatment structures with blocking techniques to control for variability in experimental units. Blocking is used to group similar experimental units together, reducing the impact of confounding variables and improving the precision of the experiment.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
@@ -464,36 +561,55 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </figure>
 </div>
 <p>These designs have main effects and interactions as before, but also have blocking effects. You need to be able to identify these in the ANOVA table and plots.</p>
-<section id="exercise-3-factorial-design-with-blocking" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="exercise-3-factorial-design-with-blocking"><span class="header-section-number">3.1</span> Exercise 3: Factorial Design with Blocking</h2>
-<section id="anova-with-blocking" class="level3">
-<h3 class="anchored" data-anchor-id="anova-with-blocking">3.1) ANOVA with Blocking</h3>
+<section id="exercise-3-factorial-design-with-blocking" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exercise-3-factorial-design-with-blocking">Exercise 3: Factorial design with blocking</h2>
+<section id="part-a-anova-with-blocking" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-anova-with-blocking">Part A — ANOVA with blocking</h3>
 <p>In this exercise, we will simulate data for a factorial design with blocking. We will investigate the effects of two factors: Fertilizer (Levels: A, B) and Irrigation (Levels: Low, High) on crop yield, while blocking by Field (Levels: 1, 2, 3).</p>
+<p>Our statistical model for this experiment can be written as:</p>
+<p><span class="math display">
+Y_{ijkl} = \mu + \gamma_k + \alpha_i + \beta_j + (\alpha\beta)_{ij} +  \epsilon_{ijkl}
+</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">Y_{ijkl}</span> is the response variable (crop yield) for the <span class="math inline">l</span> th observation in the <span class="math inline">i</span>th level of Fertilizer, <span class="math inline">j</span>th level of Irrigation, and <span class="math inline">k</span>th block (Field)</li>
+<li><span class="math inline">\mu</span> is the overall mean crop yield</li>
+<li><span class="math inline">\gamma_k</span> is the effect of the <span class="math inline">k</span>th block (Field)</li>
+<li><span class="math inline">\alpha_i</span> is the effect of the <span class="math inline">i</span>th level of Fertilizer (A vs B)</li>
+<li><span class="math inline">\beta_j</span> is the effect of the <span class="math inline">j</span>th level of Irrigation (Low vs High)</li>
+<li><span class="math inline">(\alpha\beta)_{ij}</span> is the interaction effect between Fertilizer and Irrigation</li>
+<li><span class="math inline">\epsilon_{ijkl}</span> is the random error term for the <span class="math inline">l</span> th observation in the <span class="math inline">i</span>th level of Fertilizer , <span class="math inline">j</span>th level of Irrigation, and <span class="math inline">k</span>th block (Field) and is assumed to be normally distributed with mean 0 and constant variance <span class="math inline">\sigma^2</span>.</li>
+</ul>
+<p>OR:</p>
+<p><span class="math display">Crop\ yield = overall\ mean + block + Fertilizer + Irrigation + Fertilizer \times Irrigation + random\ error</span></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>field <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Field1"</span>, <span class="st">"Field2"</span>, <span class="st">"Field3"</span>), <span class="at">each =</span> <span class="dv">20</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>fertilizer <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">times =</span> <span class="dv">30</span>)</span>
-<span id="cb10-4"><a href="#cb10-4"></a>irrigation <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>), <span class="at">each =</span> <span class="dv">10</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
-<span id="cb10-5"><a href="#cb10-5"></a>yield <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fertilizer <span class="sc">==</span> <span class="st">"A"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
-<span id="cb10-7"><a href="#cb10-7"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">35</span>, <span class="dv">45</span>)) <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>                  <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field1"</span>, <span class="dv">5</span>,</span>
-<span id="cb10-9"><a href="#cb10-9"></a>                         <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field2"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>)), <span class="at">sd =</span> <span class="dv">4</span>)</span>
-<span id="cb10-10"><a href="#cb10-10"></a></span>
-<span id="cb10-11"><a href="#cb10-11"></a>data_blocked <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Field =</span> field, <span class="at">Fertilizer =</span> fertilizer,</span>
-<span id="cb10-12"><a href="#cb10-12"></a>                           <span class="at">Irrigation =</span> irrigation, <span class="at">Yield =</span> yield)</span>
-<span id="cb10-13"><a href="#cb10-13"></a></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="co"># Add level order for plotting</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_blocked<span class="sc">$</span>Irrigation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
-<span id="cb10-16"><a href="#cb10-16"></a>data_blocked<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Field)</span>
-<span id="cb10-17"><a href="#cb10-17"></a>data_blocked<span class="sc">$</span>Fertilizer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Fertilizer)</span>
-<span id="cb10-18"><a href="#cb10-18"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Irrigation)</span>
-<span id="cb10-19"><a href="#cb10-19"></a></span>
-<span id="cb10-20"><a href="#cb10-20"></a><span class="co"># Fit ANOVA model with blocking</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>anova_blocked_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Yield <span class="sc">~</span> Field <span class="sc">+</span> Fertilizer <span class="sc">*</span> Irrigation, <span class="at">data =</span> data_blocked)</span>
-<span id="cb10-22"><a href="#cb10-22"></a></span>
-<span id="cb10-23"><a href="#cb10-23"></a><span class="co"># Summary of ANOVA model</span></span>
-<span id="cb10-24"><a href="#cb10-24"></a><span class="fu">summary</span>(anova_blocked_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>field <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Field1"</span>, <span class="st">"Field2"</span>, <span class="st">"Field3"</span>), <span class="at">each =</span> <span class="dv">20</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>fertilizer <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">times =</span> <span class="dv">30</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>irrigation <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>), <span class="at">each =</span> <span class="dv">10</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>yield <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fertilizer <span class="sc">==</span> <span class="st">"A"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb9-7"><a href="#cb9-7"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">35</span>, <span class="dv">45</span>)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>                  <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field1"</span>, <span class="dv">5</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>                         <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field2"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>)), <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a>data_blocked <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Field =</span> field, <span class="at">Fertilizer =</span> fertilizer,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>                           <span class="at">Irrigation =</span> irrigation, <span class="at">Yield =</span> yield)</span>
+<span id="cb9-13"><a href="#cb9-13"></a></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co"># Add level order for plotting</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_blocked<span class="sc">$</span>Irrigation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
+<span id="cb9-16"><a href="#cb9-16"></a>data_blocked<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Field)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>data_blocked<span class="sc">$</span>Fertilizer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Fertilizer)</span>
+<span id="cb9-18"><a href="#cb9-18"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Irrigation)</span>
+<span id="cb9-19"><a href="#cb9-19"></a></span>
+<span id="cb9-20"><a href="#cb9-20"></a><span class="co"># Fit ANOVA model with blocking</span></span>
+<span id="cb9-21"><a href="#cb9-21"></a>anova_blocked_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Yield <span class="sc">~</span> Field <span class="sc">+</span> Fertilizer <span class="sc">*</span> Irrigation, <span class="at">data =</span> data_blocked)</span>
+<span id="cb9-22"><a href="#cb9-22"></a></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="co"># Summary of ANOVA model</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="fu">summary</span>(anova_blocked_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 Field                  2 1208.9   604.4  43.669 5.22e-12 ***
@@ -508,65 +624,62 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <blockquote class="blockquote">
 <p>Which effects are significant? Are they main effects, interactions, or blocking effects?</p>
 </blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
-<section id="visualising-factorial-design-with-blocking" class="level3">
-<h3 class="anchored" data-anchor-id="visualising-factorial-design-with-blocking">3.2) Visualising Factorial Design with Blocking</h3>
-<p>Now let’s visualise the effects in this blocked factorial design using the <code>emmeans</code> package and its plotting functions.</p>
+<section id="part-b-visualising-the-effects" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-visualising-the-effects">Part B — Visualising the effects</h3>
+<p>Now let us visualise the effects in this blocked factorial design using the <code>emmeans</code> package and its plotting functions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(emmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Welcome to emmeans.
 Caution: You lose important information if you filter this package's results.
 See '? untidy'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Calculate estimated marginal means</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer <span class="sc">*</span> Irrigation)</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># Main effect plots using emmeans</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer), </span>
-<span id="cb15-6"><a href="#cb15-6"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Fertilizer on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate estimated marginal means</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer <span class="sc">*</span> Irrigation)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># Main effect plots using emmeans</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Fertilizer on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial06_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial06_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Irrigation), </span>
-<span id="cb17-2"><a href="#cb17-2"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Irrigation on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Irrigation),</span>
+<span id="cb15-2"><a href="#cb15-2"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Irrigation on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>NOTE: Results may be misleading due to involvement in interactions</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial06_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial06_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Blocking effect plot using emmeans</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Field), </span>
-<span id="cb19-3"><a href="#cb19-3"></a>     <span class="at">main =</span> <span class="st">"Blocking Effect of Field on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Blocking effect plot using emmeans</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Field),</span>
+<span id="cb17-3"><a href="#cb17-3"></a>     <span class="at">main =</span> <span class="st">"Blocking Effect of Field on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial06_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial06_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Interaction plot using emmeans</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">emmip</span>(anova_blocked_model, Fertilizer <span class="sc">~</span> Irrigation,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>      <span class="at">main =</span> <span class="st">"Interaction between Fertilizer and Irrigation on Crop Yield"</span>, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Interaction plot using emmeans</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">emmip</span>(anova_blocked_model, Fertilizer <span class="sc">~</span> Irrigation,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>      <span class="at">main =</span> <span class="st">"Interaction between Fertilizer and Irrigation on Crop Yield"</span>, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial06_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial06_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -574,23 +687,20 @@ See '? untidy'</code></pre>
 <blockquote class="blockquote">
 <p>Describe the main effects and interaction effects observed in the plots above. How do these visualisations help in understanding the effects of Fertilizer and Irrigation on crop yield?</p>
 </blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Note: We usually don’t plot blocking effects as they are not of primary interest, but it can be useful to check for large differences between blocks.</p>
+<p>Note: We usually do not plot blocking effects as they are not of primary interest, but it can be useful to check for large differences between blocks.</p>
 <p>Depending on our hypotheses, we may be interested in post-hoc tests for the main effects or interaction effects. If there is a significant interaction, we should focus on that rather than the main effects. We may not need to use all the plots. Always let your hypotheses guide what plots to produce.</p>
 </section>
-<section id="calculate-the-variance-explained-by-each-effect" class="level3">
-<h3 class="anchored" data-anchor-id="calculate-the-variance-explained-by-each-effect">3.3) Calculate the variance explained by each effect</h3>
+<section id="part-c-variance-explained-by-each-effect" class="level3">
+<h3 class="anchored" data-anchor-id="part-c-variance-explained-by-each-effect">Part C — Variance explained by each effect</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Calculate variance explained by each effect</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_blocked_model)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>])</span>
-<span id="cb22-4"><a href="#cb22-4"></a>ss_effects <span class="ot">&lt;-</span> anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>]</span>
-<span id="cb22-5"><a href="#cb22-5"></a></span>
-<span id="cb22-6"><a href="#cb22-6"></a>variance_explained <span class="ot">&lt;-</span> (ss_effects <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a></span>
-<span id="cb22-8"><a href="#cb22-8"></a>anova_summary <span class="co"># ANOVA table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Calculate variance explained by each effect</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_blocked_model)</span>
+<span id="cb19-3"><a href="#cb19-3"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>])</span>
+<span id="cb19-4"><a href="#cb19-4"></a>ss_effects <span class="ot">&lt;-</span> anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>]</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a>variance_explained <span class="ot">&lt;-</span> (ss_effects <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a></span>
+<span id="cb19-8"><a href="#cb19-8"></a>anova_summary <span class="co"># ANOVA table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                      Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 Field                  2 1208.9   604.4  43.669 5.22e-12 ***
@@ -601,7 +711,7 @@ Residuals             54  747.4    13.8
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>variance_explained <span class="co"># variation explained by each effect in order of the ANOVA table from top to bottom</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>variance_explained <span class="co"># variation explained by each effect in order of the ANOVA table from top to bottom</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 26.1042461 13.6367542 43.2524207  0.8665808 16.1399983</code></pre>
 </div>
@@ -609,18 +719,26 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <blockquote class="blockquote">
 <p>Which effect explains the most variance in crop yield? How does this information help in understanding the factors influencing crop yield?</p>
 </blockquote>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Add your answers here and check with teaching staff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<hr>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to fit a factorial ANOVA with blocking, visualise the effects using <code>emmeans</code>, and calculate the percentage of variation explained by each effect from the ANOVA table.</p>
+</div>
+</div>
 </section>
 </section>
-</section>
-<section id="summary" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Summary</h1>
+<section id="wrap-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
 <p>In this tutorial, we explored factorial designs and their analysis using ANOVA. We learned about main effects, interactions, and blocking effects, and how to interpret ANOVA results in the context of factorial experiments. We also visualised these effects using ggplot2 and emmeans, enhancing our understanding of the relationships between factors and response variables in experimental designs.</p>
-<section id="example-exam-questions" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="example-exam-questions"><span class="header-section-number">4.1</span> Example exam questions</h2>
+<section id="example-exam-questions" class="level3">
+<h3 class="anchored" data-anchor-id="example-exam-questions">Example exam questions</h3>
 <ol type="1">
 <li><p>In a 2-way factorial design with factors A (2 levels) and B (3 levels), describe how you would identify and interpret main effects and interactions using ANOVA. Provide an example of how to visualise these effects.</p></li>
 <li><p>Explain the difference between a treatment design and an experimental design. Provide examples of each and discuss how they can be combined in a factorial design with blocking.</p></li>
@@ -628,6 +746,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </ol>
 
 
+<!-- -->
+
+</section>
 </section>
 </section>
 
@@ -702,6 +823,57 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1031,7 +1203,362 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">---</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="an">title:</span><span class="co"> "Tutorial 06"</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># reviewed-by:</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="an">format:</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="co">---</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="in">```</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="fu">## Welcome {.unnumbered}</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a></span>
+<span id="cb23-15"><a href="#cb23-15"></a>In this week's lectures we covered factorial designs, main effects and interactions. We applied these concepts by using analysis of variance (ANOVA) as a method to analyse data from these experimental designs.</span>
+<span id="cb23-16"><a href="#cb23-16"></a></span>
+<span id="cb23-17"><a href="#cb23-17"></a>You will learn how to:</span>
+<span id="cb23-18"><a href="#cb23-18"></a></span>
+<span id="cb23-19"><a href="#cb23-19"></a><span class="ss">1. </span>Distinguish between treatment designs and experimental designs.</span>
+<span id="cb23-20"><a href="#cb23-20"></a><span class="ss">2. </span>Identify main effects and interactions in factorial treatment structures, including graphical interpretations.</span>
+<span id="cb23-21"><a href="#cb23-21"></a><span class="ss">3. </span>Perform ANOVA with factorial treatment designs, with and without blocking.</span>
+<span id="cb23-22"><a href="#cb23-22"></a></span>
+<span id="cb23-23"><a href="#cb23-23"></a></span>
+<span id="cb23-24"><a href="#cb23-24"></a><span class="fu"># Treatment designs and experimental designs</span></span>
+<span id="cb23-25"><a href="#cb23-25"></a></span>
+<span id="cb23-26"><a href="#cb23-26"></a>An experimental design is a structured approach to conducting experiments that allows researchers to systematically investigate the effects of one or more factors on a response variable. Treatment designs refer to the specific arrangements of treatments (or interventions) applied to experimental units within an experimental design. There are several types of treatment designs, including (but not limited to):</span>
+<span id="cb23-27"><a href="#cb23-27"></a></span>
+<span id="cb23-28"><a href="#cb23-28"></a><span class="ss">-   </span>**Completely Randomised Design (CRD)**: Experimental units are randomly assigned to different treatment groups without any restrictions. This design is suitable when experimental units are homogeneous.</span>
+<span id="cb23-29"><a href="#cb23-29"></a></span>
+<span id="cb23-30"><a href="#cb23-30"></a><span class="ss">-   </span>**Randomised Block Design (RBD)**: Experimental units are grouped into blocks based on certain characteristics, and treatments are randomly assigned within each block. This design helps control for variability among experimental units.</span>
+<span id="cb23-31"><a href="#cb23-31"></a></span>
+<span id="cb23-32"><a href="#cb23-32"></a><span class="ss">-   </span>**Factorial Design**: Multiple factors are investigated simultaneously, with all possible combinations of factor levels included in the experiment. This design allows for the study of main effects and interactions between factors.</span>
+<span id="cb23-33"><a href="#cb23-33"></a></span>
+<span id="cb23-34"><a href="#cb23-34"></a></span>
+<span id="cb23-35"><a href="#cb23-35"></a><span class="fu"># Factorial treatment structure</span></span>
+<span id="cb23-36"><a href="#cb23-36"></a></span>
+<span id="cb23-37"><a href="#cb23-37"></a>Factorial treatment structures involve experiments where there are two or more treatment factors, each with two or more levels. In these designs, all possible combinations of the levels of each factor are included in the experiment. For example, in a 2-way factorial design with factors A and B, where factor A has 2 levels (A1 and A2) and factor B has 3 levels (B1, B2, and B3), the treatment combinations would be A1B1, A1B2, A1B3, A2B1, A2B2, and A2B3.</span>
+<span id="cb23-38"><a href="#cb23-38"></a></span>
+<span id="cb23-39"><a href="#cb23-39"></a><span class="al">![Factorial designs have more than one treatment or factor. For each treatment there are two or more levels.](images/Slide3.PNG)</span></span>
+<span id="cb23-40"><a href="#cb23-40"></a></span>
+<span id="cb23-41"><a href="#cb23-41"></a><span class="fu">## Main effects and interactions</span></span>
+<span id="cb23-42"><a href="#cb23-42"></a></span>
+<span id="cb23-43"><a href="#cb23-43"></a>In a factorial design, the **main effects** refer to the individual effects of each treatment/factor on the response variable, while **interactions** refer to the combined effects of two or more treatments/factors on the response variable. An interaction occurs when the effect of one treatment/factor depends on the level of another treatment/factor.</span>
+<span id="cb23-44"><a href="#cb23-44"></a></span>
+<span id="cb23-45"><a href="#cb23-45"></a>Let us plot some examples of interaction plots:</span>
+<span id="cb23-46"><a href="#cb23-46"></a></span>
+<span id="cb23-47"><a href="#cb23-47"></a><span class="ss">-   </span>No interaction</span>
+<span id="cb23-48"><a href="#cb23-48"></a><span class="ss">-   </span>Positive interaction</span>
+<span id="cb23-49"><a href="#cb23-49"></a><span class="ss">-   </span>Negative interaction</span>
+<span id="cb23-50"><a href="#cb23-50"></a></span>
+<span id="cb23-53"><a href="#cb23-53"></a><span class="in">```{r}</span></span>
+<span id="cb23-54"><a href="#cb23-54"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb23-55"><a href="#cb23-55"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-56"><a href="#cb23-56"></a></span>
+<span id="cb23-57"><a href="#cb23-57"></a><span class="co"># No interaction</span></span>
+<span id="cb23-58"><a href="#cb23-58"></a>no_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-59"><a href="#cb23-59"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb23-60"><a href="#cb23-60"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb23-61"><a href="#cb23-61"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">17</span>)</span>
+<span id="cb23-62"><a href="#cb23-62"></a>)</span>
+<span id="cb23-63"><a href="#cb23-63"></a></span>
+<span id="cb23-64"><a href="#cb23-64"></a><span class="fu">ggplot</span>(no_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb23-65"><a href="#cb23-65"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-66"><a href="#cb23-66"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-67"><a href="#cb23-67"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"No Interaction"</span>)</span>
+<span id="cb23-68"><a href="#cb23-68"></a></span>
+<span id="cb23-69"><a href="#cb23-69"></a><span class="co"># Positive interaction</span></span>
+<span id="cb23-70"><a href="#cb23-70"></a>positive_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-71"><a href="#cb23-71"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb23-72"><a href="#cb23-72"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb23-73"><a href="#cb23-73"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb23-74"><a href="#cb23-74"></a>)</span>
+<span id="cb23-75"><a href="#cb23-75"></a></span>
+<span id="cb23-76"><a href="#cb23-76"></a><span class="fu">ggplot</span>(positive_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb23-77"><a href="#cb23-77"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-78"><a href="#cb23-78"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-79"><a href="#cb23-79"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Positive Interaction"</span>)</span>
+<span id="cb23-80"><a href="#cb23-80"></a></span>
+<span id="cb23-81"><a href="#cb23-81"></a><span class="co"># Negative interaction</span></span>
+<span id="cb23-82"><a href="#cb23-82"></a>negative_interaction <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-83"><a href="#cb23-83"></a>  <span class="at">FactorA =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A1"</span>, <span class="st">"A2"</span>), <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb23-84"><a href="#cb23-84"></a>  <span class="at">FactorB =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"B1"</span>, <span class="st">"B2"</span>, <span class="st">"B3"</span>), <span class="at">times =</span> <span class="dv">2</span>),</span>
+<span id="cb23-85"><a href="#cb23-85"></a>  <span class="at">Response =</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>)</span>
+<span id="cb23-86"><a href="#cb23-86"></a>)</span>
+<span id="cb23-87"><a href="#cb23-87"></a></span>
+<span id="cb23-88"><a href="#cb23-88"></a><span class="fu">ggplot</span>(negative_interaction, <span class="fu">aes</span>(<span class="at">x =</span> FactorB, <span class="at">y =</span> Response, <span class="at">color =</span> FactorA, <span class="at">group =</span> FactorA)) <span class="sc">+</span></span>
+<span id="cb23-89"><a href="#cb23-89"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-90"><a href="#cb23-90"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb23-91"><a href="#cb23-91"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Negative Interaction"</span>)</span>
+<span id="cb23-92"><a href="#cb23-92"></a><span class="in">```</span></span>
+<span id="cb23-93"><a href="#cb23-93"></a></span>
+<span id="cb23-94"><a href="#cb23-94"></a>The plots above illustrate different types of interactions between two factors:</span>
+<span id="cb23-95"><a href="#cb23-95"></a></span>
+<span id="cb23-96"><a href="#cb23-96"></a><span class="ss">- </span>In the **"No Interaction"** plot, the lines are parallel, indicating that the effect of one factor does not depend on the level of the other factor.</span>
+<span id="cb23-97"><a href="#cb23-97"></a><span class="ss">- </span>In the **"Positive Interaction"** plot, the lines diverge, indicating that the effect of one factor increases with the level of the other factor.</span>
+<span id="cb23-98"><a href="#cb23-98"></a><span class="ss">- </span>In the **"Negative Interaction"** plot, the lines converge, indicating that the effect of one factor decreases with the level of the other factor.</span>
+<span id="cb23-99"><a href="#cb23-99"></a></span>
+<span id="cb23-100"><a href="#cb23-100"></a>::: callout-tip</span>
+<span id="cb23-101"><a href="#cb23-101"></a><span class="fu">## Interpreting interaction plots</span></span>
+<span id="cb23-102"><a href="#cb23-102"></a></span>
+<span id="cb23-103"><a href="#cb23-103"></a><span class="ss">-   </span>Parallel lines indicate **no interaction** between factors.</span>
+<span id="cb23-104"><a href="#cb23-104"></a><span class="ss">-   </span>Non-parallel lines indicate an **interaction** between factors.</span>
+<span id="cb23-105"><a href="#cb23-105"></a>:::</span>
+<span id="cb23-106"><a href="#cb23-106"></a></span>
+<span id="cb23-107"><a href="#cb23-107"></a><span class="fu">## Exercise 1: Identifying main effects and interactions {.unnumbered}</span></span>
+<span id="cb23-108"><a href="#cb23-108"></a></span>
+<span id="cb23-109"><a href="#cb23-109"></a>In this ecological experiment, we investigated the influence of two factors: Fire and Rainfall on small mammal captures (using a 2-way factorial design).</span>
+<span id="cb23-110"><a href="#cb23-110"></a></span>
+<span id="cb23-111"><a href="#cb23-111"></a><span class="al">![Desert mouse (*Pseudomys desertor*) is a native rodent that undergoes population irruptions after extreme rainfall events in arid Australia. Image credit: Aaron Greenville](images/desert_mouse_Greenville.jpg)</span></span>
+<span id="cb23-112"><a href="#cb23-112"></a></span>
+<span id="cb23-113"><a href="#cb23-113"></a></span>
+<span id="cb23-114"><a href="#cb23-114"></a>Our main effects are:</span>
+<span id="cb23-115"><a href="#cb23-115"></a></span>
+<span id="cb23-116"><a href="#cb23-116"></a><span class="ss">-   </span>Effect of Fire (Levels: Burnt, Unburnt)</span>
+<span id="cb23-117"><a href="#cb23-117"></a><span class="ss">-   </span>Effect of Rainfall (Levels: Low, Medium, High)</span>
+<span id="cb23-118"><a href="#cb23-118"></a></span>
+<span id="cb23-119"><a href="#cb23-119"></a>Our interaction is:</span>
+<span id="cb23-120"><a href="#cb23-120"></a></span>
+<span id="cb23-121"><a href="#cb23-121"></a><span class="ss">-   </span>Interaction between Fire and Rainfall</span>
+<span id="cb23-122"><a href="#cb23-122"></a></span>
+<span id="cb23-123"><a href="#cb23-123"></a>The statistical model for this experiment can be written as:</span>
+<span id="cb23-124"><a href="#cb23-124"></a>$$</span>
+<span id="cb23-125"><a href="#cb23-125"></a>Y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijk}</span>
+<span id="cb23-126"><a href="#cb23-126"></a>$$</span>
+<span id="cb23-127"><a href="#cb23-127"></a>Where:</span>
+<span id="cb23-128"><a href="#cb23-128"></a></span>
+<span id="cb23-129"><a href="#cb23-129"></a><span class="ss">-   </span>$Y_{ijk}$ is the response variable (small mammal captures) for the $k$th observation in the $i$th level of Fire and $j$th level of Rainfall\</span>
+<span id="cb23-130"><a href="#cb23-130"></a><span class="ss">-   </span>$\mu$ is the overall mean small mammal captures\</span>
+<span id="cb23-131"><a href="#cb23-131"></a><span class="ss">-   </span>$\alpha_i$ is the effect of the $i$th level of Fire (Burnt vs Unburnt)\</span>
+<span id="cb23-132"><a href="#cb23-132"></a><span class="ss">-   </span>$\beta_j$ is the effect of the $j$th level of Rainfall (Low, Medium, High)\</span>
+<span id="cb23-133"><a href="#cb23-133"></a><span class="ss">-   </span>$(\alpha\beta)_{ij}$ is the interaction effect between Fire and Rainfall\</span>
+<span id="cb23-134"><a href="#cb23-134"></a><span class="ss">-   </span>$\epsilon_{ijk}$ is the random error term for the $k$th observation in the $i$th level of Fire and $j$th level of Rainfall and is assumed to be normally distributed with mean 0 and constant variance $\sigma^2$.\</span>
+<span id="cb23-135"><a href="#cb23-135"></a></span>
+<span id="cb23-136"><a href="#cb23-136"></a>OR in words:</span>
+<span id="cb23-137"><a href="#cb23-137"></a></span>
+<span id="cb23-138"><a href="#cb23-138"></a>$$Small\ mammal\ captures = overall\ mean + Fire + Rainfall + Fire \times Rainfall  + random\ error$$</span>
+<span id="cb23-139"><a href="#cb23-139"></a></span>
+<span id="cb23-140"><a href="#cb23-140"></a></span>
+<span id="cb23-141"><a href="#cb23-141"></a></span>
+<span id="cb23-142"><a href="#cb23-142"></a>Let us simulate some data and plot the main effects and interactions:</span>
+<span id="cb23-143"><a href="#cb23-143"></a></span>
+<span id="cb23-146"><a href="#cb23-146"></a><span class="in">```{r}</span></span>
+<span id="cb23-147"><a href="#cb23-147"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb23-148"><a href="#cb23-148"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb23-149"><a href="#cb23-149"></a>fire <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Burnt"</span>, <span class="st">"Unburnt"</span>), <span class="at">each =</span> <span class="dv">30</span>)</span>
+<span id="cb23-150"><a href="#cb23-150"></a>rainfall <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>), <span class="at">times =</span> <span class="dv">20</span>)</span>
+<span id="cb23-151"><a href="#cb23-151"></a>captures <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fire <span class="sc">==</span> <span class="st">"Burnt"</span>,</span>
+<span id="cb23-152"><a href="#cb23-152"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">5</span>,</span>
+<span id="cb23-153"><a href="#cb23-153"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">10</span>, <span class="dv">15</span>)),</span>
+<span id="cb23-154"><a href="#cb23-154"></a>                                    <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">10</span>,</span>
+<span id="cb23-155"><a href="#cb23-155"></a>                                           <span class="fu">ifelse</span>(rainfall <span class="sc">==</span> <span class="st">"Medium"</span>, <span class="dv">15</span>, <span class="dv">20</span>))), <span class="at">sd =</span> <span class="dv">3</span>)</span>
+<span id="cb23-156"><a href="#cb23-156"></a></span>
+<span id="cb23-157"><a href="#cb23-157"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Fire =</span> fire, <span class="at">Rainfall =</span> rainfall, <span class="at">Captures =</span> captures)</span>
+<span id="cb23-158"><a href="#cb23-158"></a></span>
+<span id="cb23-159"><a href="#cb23-159"></a><span class="co"># Add level order for plotting</span></span>
+<span id="cb23-160"><a href="#cb23-160"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>Rainfall, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
+<span id="cb23-161"><a href="#cb23-161"></a></span>
+<span id="cb23-162"><a href="#cb23-162"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-163"><a href="#cb23-163"></a></span>
+<span id="cb23-164"><a href="#cb23-164"></a><span class="co"># Plot main effect: Rainfall</span></span>
+<span id="cb23-165"><a href="#cb23-165"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
+<span id="cb23-166"><a href="#cb23-166"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-167"><a href="#cb23-167"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb23-168"><a href="#cb23-168"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Rainfall on Small Mammal Captures"</span>)</span>
+<span id="cb23-169"><a href="#cb23-169"></a></span>
+<span id="cb23-170"><a href="#cb23-170"></a><span class="co"># Plot main effect: Fire</span></span>
+<span id="cb23-171"><a href="#cb23-171"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Fire, <span class="at">y =</span> Captures)) <span class="sc">+</span></span>
+<span id="cb23-172"><a href="#cb23-172"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-173"><a href="#cb23-173"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb23-174"><a href="#cb23-174"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Main Effect of Fire on Small Mammal Captures"</span>)</span>
+<span id="cb23-175"><a href="#cb23-175"></a></span>
+<span id="cb23-176"><a href="#cb23-176"></a><span class="co"># Plot interaction</span></span>
+<span id="cb23-177"><a href="#cb23-177"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> Rainfall, <span class="at">y =</span> Captures, <span class="at">color =</span> Fire, <span class="at">group =</span> Fire)) <span class="sc">+</span></span>
+<span id="cb23-178"><a href="#cb23-178"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span></span>
+<span id="cb23-179"><a href="#cb23-179"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb23-180"><a href="#cb23-180"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb23-181"><a href="#cb23-181"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Interaction between Fire and Rainfall on Small Mammal Captures"</span>)</span>
+<span id="cb23-182"><a href="#cb23-182"></a><span class="in">```</span></span>
+<span id="cb23-183"><a href="#cb23-183"></a></span>
+<span id="cb23-184"><a href="#cb23-184"></a>::: callout-tip</span>
+<span id="cb23-185"><a href="#cb23-185"></a><span class="fu">## Key concepts</span></span>
+<span id="cb23-186"><a href="#cb23-186"></a></span>
+<span id="cb23-187"><a href="#cb23-187"></a><span class="ss">-   </span>Main effects represent the individual impact of each factor on the response variable.</span>
+<span id="cb23-188"><a href="#cb23-188"></a><span class="ss">-   </span>Interactions occur when the effect of one factor depends on the level of another factor.</span>
+<span id="cb23-189"><a href="#cb23-189"></a><span class="ss">-   </span>**If an interaction is significant, do not interpret the main effects on their own.**</span>
+<span id="cb23-190"><a href="#cb23-190"></a><span class="ss">-   </span>Read a factorial ANOVA table from the bottom up: interaction terms first, then main effects.</span>
+<span id="cb23-191"><a href="#cb23-191"></a></span>
+<span id="cb23-192"><a href="#cb23-192"></a>You must understand these concepts to correctly interpret the results of factorial experiments.</span>
+<span id="cb23-193"><a href="#cb23-193"></a>:::</span>
+<span id="cb23-194"><a href="#cb23-194"></a></span>
+<span id="cb23-195"><a href="#cb23-195"></a>::: {.callout-note}</span>
+<span id="cb23-196"><a href="#cb23-196"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb23-197"><a href="#cb23-197"></a></span>
+<span id="cb23-198"><a href="#cb23-198"></a>You should now be able to identify main effects and interactions from interaction plots, and write out a statistical model for a two-way factorial design.</span>
+<span id="cb23-199"><a href="#cb23-199"></a>:::</span>
+<span id="cb23-200"><a href="#cb23-200"></a></span>
+<span id="cb23-201"><a href="#cb23-201"></a><span class="fu">## Exercise 2: ANOVA using a factorial treatment design {.unnumbered}</span></span>
+<span id="cb23-202"><a href="#cb23-202"></a></span>
+<span id="cb23-203"><a href="#cb23-203"></a>Now that we have visualised the main effects and interaction, we can fit an ANOVA model to test for the significance of these effects.</span>
+<span id="cb23-204"><a href="#cb23-204"></a></span>
+<span id="cb23-207"><a href="#cb23-207"></a><span class="in">```{r}</span></span>
+<span id="cb23-208"><a href="#cb23-208"></a><span class="co"># Fit ANOVA model</span></span>
+<span id="cb23-209"><a href="#cb23-209"></a>data<span class="sc">$</span>Fire <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Fire)</span>
+<span id="cb23-210"><a href="#cb23-210"></a>data<span class="sc">$</span>Rainfall <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Rainfall)</span>
+<span id="cb23-211"><a href="#cb23-211"></a></span>
+<span id="cb23-212"><a href="#cb23-212"></a>anova_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Captures <span class="sc">~</span> Fire <span class="sc">*</span> Rainfall, <span class="at">data =</span> data)</span>
+<span id="cb23-213"><a href="#cb23-213"></a></span>
+<span id="cb23-214"><a href="#cb23-214"></a><span class="co"># Summary of ANOVA model</span></span>
+<span id="cb23-215"><a href="#cb23-215"></a><span class="fu">summary</span>(anova_model)</span>
+<span id="cb23-216"><a href="#cb23-216"></a><span class="in">```</span></span>
+<span id="cb23-217"><a href="#cb23-217"></a></span>
+<span id="cb23-218"><a href="#cb23-218"></a><span class="at">&gt; Which effects are significant? Are they main effects and/or interactions? Are they consistent with the plots above?</span></span>
+<span id="cb23-219"><a href="#cb23-219"></a></span>
+<span id="cb23-220"><a href="#cb23-220"></a>::: {.callout-note}</span>
+<span id="cb23-221"><a href="#cb23-221"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb23-222"><a href="#cb23-222"></a></span>
+<span id="cb23-223"><a href="#cb23-223"></a>You should now be able to fit a factorial ANOVA using <span class="in">`aov()`</span>, read the ANOVA table from the bottom up (interaction first, then main effects), and identify significant effects.</span>
+<span id="cb23-224"><a href="#cb23-224"></a>:::</span>
+<span id="cb23-225"><a href="#cb23-225"></a></span>
+<span id="cb23-226"><a href="#cb23-226"></a></span>
+<span id="cb23-227"><a href="#cb23-227"></a><span class="fu"># Factorial design with blocking</span></span>
+<span id="cb23-228"><a href="#cb23-228"></a></span>
+<span id="cb23-229"><a href="#cb23-229"></a>A factorial design with blocking is an experimental design that combines the principles of factorial treatment structures with blocking techniques to control for variability in experimental units. Blocking is used to group similar experimental units together, reducing the impact of confounding variables and improving the precision of the experiment.</span>
+<span id="cb23-230"><a href="#cb23-230"></a></span>
+<span id="cb23-231"><a href="#cb23-231"></a><span class="al">![Factorial design with blocking. Factorial designs have more than one treatment or factor. For each treatment there are two or more levels. The experimental units are grouped into blocks based on known sources of variation, and treatments are randomly assigned within each block.](images/Slide4.PNG)</span></span>
+<span id="cb23-232"><a href="#cb23-232"></a></span>
+<span id="cb23-233"><a href="#cb23-233"></a>These designs have main effects and interactions as before, but also have blocking effects. You need to be able to identify these in the ANOVA table and plots.</span>
+<span id="cb23-234"><a href="#cb23-234"></a></span>
+<span id="cb23-235"><a href="#cb23-235"></a><span class="fu">## Exercise 3: Factorial design with blocking {.unnumbered}</span></span>
+<span id="cb23-236"><a href="#cb23-236"></a></span>
+<span id="cb23-237"><a href="#cb23-237"></a><span class="fu">### Part A --- ANOVA with blocking</span></span>
+<span id="cb23-238"><a href="#cb23-238"></a></span>
+<span id="cb23-239"><a href="#cb23-239"></a>In this exercise, we will simulate data for a factorial design with blocking. We will investigate the effects of two factors: Fertilizer (Levels: A, B) and Irrigation (Levels: Low, High) on crop yield, while blocking by Field (Levels: 1, 2, 3).</span>
+<span id="cb23-240"><a href="#cb23-240"></a></span>
+<span id="cb23-241"><a href="#cb23-241"></a>Our statistical model for this experiment can be written as:</span>
+<span id="cb23-242"><a href="#cb23-242"></a></span>
+<span id="cb23-243"><a href="#cb23-243"></a>$$</span>
+<span id="cb23-244"><a href="#cb23-244"></a>Y_{ijkl} = \mu + \gamma_k + \alpha_i + \beta_j + (\alpha\beta)_{ij} +  \epsilon_{ijkl}</span>
+<span id="cb23-245"><a href="#cb23-245"></a>$$</span>
+<span id="cb23-246"><a href="#cb23-246"></a></span>
+<span id="cb23-247"><a href="#cb23-247"></a>Where:</span>
+<span id="cb23-248"><a href="#cb23-248"></a></span>
+<span id="cb23-249"><a href="#cb23-249"></a><span class="ss">- </span>$Y_{ijkl}$ is the response variable (crop yield) for the $l$ th observation in the $i$th level of Fertilizer, $j$th level of Irrigation, and $k$th block (Field)</span>
+<span id="cb23-250"><a href="#cb23-250"></a><span class="ss">- </span>$\mu$ is the overall mean crop yield</span>
+<span id="cb23-251"><a href="#cb23-251"></a><span class="ss">- </span>$\gamma_k$ is the effect of the $k$th block (Field)</span>
+<span id="cb23-252"><a href="#cb23-252"></a><span class="ss">- </span>$\alpha_i$ is the effect of the $i$th level of Fertilizer (A vs B)</span>
+<span id="cb23-253"><a href="#cb23-253"></a><span class="ss">- </span>$\beta_j$ is the effect of the $j$th level of Irrigation (Low vs High)</span>
+<span id="cb23-254"><a href="#cb23-254"></a><span class="ss">- </span>$(\alpha\beta)_{ij}$ is the interaction effect between Fertilizer and Irrigation</span>
+<span id="cb23-255"><a href="#cb23-255"></a><span class="ss">- </span>$\epsilon_{ijkl}$ is the random error term for the $l$ th observation in the $i$th level of Fertilizer , $j$th level of Irrigation, and $k$th block (Field) and is assumed to be normally distributed with mean 0 and constant variance $\sigma^2$.</span>
+<span id="cb23-256"><a href="#cb23-256"></a></span>
+<span id="cb23-257"><a href="#cb23-257"></a>OR:</span>
+<span id="cb23-258"><a href="#cb23-258"></a></span>
+<span id="cb23-259"><a href="#cb23-259"></a>$$Crop\ yield = overall\ mean + block + Fertilizer + Irrigation + Fertilizer \times Irrigation + random\ error$$</span>
+<span id="cb23-260"><a href="#cb23-260"></a></span>
+<span id="cb23-261"><a href="#cb23-261"></a></span>
+<span id="cb23-262"><a href="#cb23-262"></a></span>
+<span id="cb23-265"><a href="#cb23-265"></a><span class="in">```{r}</span></span>
+<span id="cb23-266"><a href="#cb23-266"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb23-267"><a href="#cb23-267"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb23-268"><a href="#cb23-268"></a>field <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Field1"</span>, <span class="st">"Field2"</span>, <span class="st">"Field3"</span>), <span class="at">each =</span> <span class="dv">20</span>)</span>
+<span id="cb23-269"><a href="#cb23-269"></a>fertilizer <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">times =</span> <span class="dv">30</span>)</span>
+<span id="cb23-270"><a href="#cb23-270"></a>irrigation <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>), <span class="at">each =</span> <span class="dv">10</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb23-271"><a href="#cb23-271"></a>yield <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">60</span>, <span class="at">mean =</span> <span class="fu">ifelse</span>(fertilizer <span class="sc">==</span> <span class="st">"A"</span>,</span>
+<span id="cb23-272"><a href="#cb23-272"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">30</span>, <span class="dv">40</span>),</span>
+<span id="cb23-273"><a href="#cb23-273"></a>                                 <span class="fu">ifelse</span>(irrigation <span class="sc">==</span> <span class="st">"Low"</span>, <span class="dv">35</span>, <span class="dv">45</span>)) <span class="sc">+</span></span>
+<span id="cb23-274"><a href="#cb23-274"></a>                  <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field1"</span>, <span class="dv">5</span>,</span>
+<span id="cb23-275"><a href="#cb23-275"></a>                         <span class="fu">ifelse</span>(field <span class="sc">==</span> <span class="st">"Field2"</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">5</span>)), <span class="at">sd =</span> <span class="dv">4</span>)</span>
+<span id="cb23-276"><a href="#cb23-276"></a></span>
+<span id="cb23-277"><a href="#cb23-277"></a>data_blocked <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Field =</span> field, <span class="at">Fertilizer =</span> fertilizer,</span>
+<span id="cb23-278"><a href="#cb23-278"></a>                           <span class="at">Irrigation =</span> irrigation, <span class="at">Yield =</span> yield)</span>
+<span id="cb23-279"><a href="#cb23-279"></a></span>
+<span id="cb23-280"><a href="#cb23-280"></a><span class="co"># Add level order for plotting</span></span>
+<span id="cb23-281"><a href="#cb23-281"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_blocked<span class="sc">$</span>Irrigation, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
+<span id="cb23-282"><a href="#cb23-282"></a>data_blocked<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Field)</span>
+<span id="cb23-283"><a href="#cb23-283"></a>data_blocked<span class="sc">$</span>Fertilizer <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Fertilizer)</span>
+<span id="cb23-284"><a href="#cb23-284"></a>data_blocked<span class="sc">$</span>Irrigation <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data_blocked<span class="sc">$</span>Irrigation)</span>
+<span id="cb23-285"><a href="#cb23-285"></a></span>
+<span id="cb23-286"><a href="#cb23-286"></a><span class="co"># Fit ANOVA model with blocking</span></span>
+<span id="cb23-287"><a href="#cb23-287"></a>anova_blocked_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Yield <span class="sc">~</span> Field <span class="sc">+</span> Fertilizer <span class="sc">*</span> Irrigation, <span class="at">data =</span> data_blocked)</span>
+<span id="cb23-288"><a href="#cb23-288"></a></span>
+<span id="cb23-289"><a href="#cb23-289"></a><span class="co"># Summary of ANOVA model</span></span>
+<span id="cb23-290"><a href="#cb23-290"></a><span class="fu">summary</span>(anova_blocked_model)</span>
+<span id="cb23-291"><a href="#cb23-291"></a><span class="in">```</span></span>
+<span id="cb23-292"><a href="#cb23-292"></a></span>
+<span id="cb23-293"><a href="#cb23-293"></a><span class="at">&gt; Which effects are significant? Are they main effects, interactions, or blocking effects?</span></span>
+<span id="cb23-294"><a href="#cb23-294"></a></span>
+<span id="cb23-295"><a href="#cb23-295"></a><span class="fu">### Part B --- Visualising the effects</span></span>
+<span id="cb23-296"><a href="#cb23-296"></a></span>
+<span id="cb23-297"><a href="#cb23-297"></a>Now let us visualise the effects in this blocked factorial design using the <span class="in">`emmeans`</span> package and its plotting functions.</span>
+<span id="cb23-298"><a href="#cb23-298"></a></span>
+<span id="cb23-301"><a href="#cb23-301"></a><span class="in">```{r}</span></span>
+<span id="cb23-302"><a href="#cb23-302"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb23-303"><a href="#cb23-303"></a></span>
+<span id="cb23-304"><a href="#cb23-304"></a><span class="co"># Calculate estimated marginal means</span></span>
+<span id="cb23-305"><a href="#cb23-305"></a>emm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer <span class="sc">*</span> Irrigation)</span>
+<span id="cb23-306"><a href="#cb23-306"></a></span>
+<span id="cb23-307"><a href="#cb23-307"></a><span class="co"># Main effect plots using emmeans</span></span>
+<span id="cb23-308"><a href="#cb23-308"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Fertilizer),</span>
+<span id="cb23-309"><a href="#cb23-309"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Fertilizer on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-310"><a href="#cb23-310"></a></span>
+<span id="cb23-311"><a href="#cb23-311"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Irrigation),</span>
+<span id="cb23-312"><a href="#cb23-312"></a>     <span class="at">main =</span> <span class="st">"Main Effect of Irrigation on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-313"><a href="#cb23-313"></a></span>
+<span id="cb23-314"><a href="#cb23-314"></a><span class="co"># Blocking effect plot using emmeans</span></span>
+<span id="cb23-315"><a href="#cb23-315"></a><span class="fu">plot</span>(<span class="fu">emmeans</span>(anova_blocked_model, <span class="sc">~</span> Field),</span>
+<span id="cb23-316"><a href="#cb23-316"></a>     <span class="at">main =</span> <span class="st">"Blocking Effect of Field on Crop Yield"</span>, <span class="at">comparisons =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-317"><a href="#cb23-317"></a></span>
+<span id="cb23-318"><a href="#cb23-318"></a><span class="co"># Interaction plot using emmeans</span></span>
+<span id="cb23-319"><a href="#cb23-319"></a><span class="fu">emmip</span>(anova_blocked_model, Fertilizer <span class="sc">~</span> Irrigation,</span>
+<span id="cb23-320"><a href="#cb23-320"></a>      <span class="at">main =</span> <span class="st">"Interaction between Fertilizer and Irrigation on Crop Yield"</span>, <span class="at">CIs =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-321"><a href="#cb23-321"></a><span class="in">```</span></span>
+<span id="cb23-322"><a href="#cb23-322"></a></span>
+<span id="cb23-323"><a href="#cb23-323"></a><span class="at">&gt; Describe the main effects and interaction effects observed in the plots above. How do these visualisations help in understanding the effects of Fertilizer and Irrigation on crop yield?</span></span>
+<span id="cb23-324"><a href="#cb23-324"></a></span>
+<span id="cb23-325"><a href="#cb23-325"></a>Note: We usually do not plot blocking effects as they are not of primary interest, but it can be useful to check for large differences between blocks.</span>
+<span id="cb23-326"><a href="#cb23-326"></a></span>
+<span id="cb23-327"><a href="#cb23-327"></a>Depending on our hypotheses, we may be interested in post-hoc tests for the main effects or interaction effects. If there is a significant interaction, we should focus on that rather than the main effects. We may not need to use all the plots. Always let your hypotheses guide what plots to produce.</span>
+<span id="cb23-328"><a href="#cb23-328"></a></span>
+<span id="cb23-329"><a href="#cb23-329"></a><span class="fu">### Part C --- Variance explained by each effect</span></span>
+<span id="cb23-330"><a href="#cb23-330"></a></span>
+<span id="cb23-333"><a href="#cb23-333"></a><span class="in">```{r}</span></span>
+<span id="cb23-334"><a href="#cb23-334"></a><span class="co"># Calculate variance explained by each effect</span></span>
+<span id="cb23-335"><a href="#cb23-335"></a>anova_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_blocked_model)</span>
+<span id="cb23-336"><a href="#cb23-336"></a>ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>])</span>
+<span id="cb23-337"><a href="#cb23-337"></a>ss_effects <span class="ot">&lt;-</span> anova_summary[[<span class="dv">1</span>]][, <span class="st">"Sum Sq"</span>]</span>
+<span id="cb23-338"><a href="#cb23-338"></a></span>
+<span id="cb23-339"><a href="#cb23-339"></a>variance_explained <span class="ot">&lt;-</span> (ss_effects <span class="sc">/</span> ss_total) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb23-340"><a href="#cb23-340"></a></span>
+<span id="cb23-341"><a href="#cb23-341"></a>anova_summary <span class="co"># ANOVA table</span></span>
+<span id="cb23-342"><a href="#cb23-342"></a></span>
+<span id="cb23-343"><a href="#cb23-343"></a>variance_explained <span class="co"># variation explained by each effect in order of the ANOVA table from top to bottom</span></span>
+<span id="cb23-344"><a href="#cb23-344"></a><span class="in">```</span></span>
+<span id="cb23-345"><a href="#cb23-345"></a></span>
+<span id="cb23-346"><a href="#cb23-346"></a><span class="at">&gt; Which effect explains the most variance in crop yield? How does this information help in understanding the factors influencing crop yield?</span></span>
+<span id="cb23-347"><a href="#cb23-347"></a></span>
+<span id="cb23-348"><a href="#cb23-348"></a>::: {.callout-note}</span>
+<span id="cb23-349"><a href="#cb23-349"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb23-350"><a href="#cb23-350"></a></span>
+<span id="cb23-351"><a href="#cb23-351"></a>You should now be able to fit a factorial ANOVA with blocking, visualise the effects using <span class="in">`emmeans`</span>, and calculate the percentage of variation explained by each effect from the ANOVA table.</span>
+<span id="cb23-352"><a href="#cb23-352"></a>:::</span>
+<span id="cb23-353"><a href="#cb23-353"></a></span>
+<span id="cb23-354"><a href="#cb23-354"></a></span>
+<span id="cb23-355"><a href="#cb23-355"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb23-356"><a href="#cb23-356"></a></span>
+<span id="cb23-357"><a href="#cb23-357"></a>In this tutorial, we explored factorial designs and their analysis using ANOVA. We learned about main effects, interactions, and blocking effects, and how to interpret ANOVA results in the context of factorial experiments. We also visualised these effects using ggplot2 and emmeans, enhancing our understanding of the relationships between factors and response variables in experimental designs.</span>
+<span id="cb23-358"><a href="#cb23-358"></a></span>
+<span id="cb23-359"><a href="#cb23-359"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb23-360"><a href="#cb23-360"></a></span>
+<span id="cb23-361"><a href="#cb23-361"></a><span class="ss">1.  </span>In a 2-way factorial design with factors A (2 levels) and B (3 levels), describe how you would identify and interpret main effects and interactions using ANOVA. Provide an example of how to visualise these effects.</span>
+<span id="cb23-362"><a href="#cb23-362"></a></span>
+<span id="cb23-363"><a href="#cb23-363"></a><span class="ss">2.  </span>Explain the difference between a treatment design and an experimental design. Provide examples of each and discuss how they can be combined in a factorial design with blocking.</span>
+<span id="cb23-364"><a href="#cb23-364"></a></span>
+<span id="cb23-365"><a href="#cb23-365"></a><span class="ss">3.  </span>If you conducted a factorial experiment with blocking and found a significant interaction between two factors, how would you interpret this result? Would you still consider the main effects of each factor? Justify your answer with reference to ANOVA principles.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

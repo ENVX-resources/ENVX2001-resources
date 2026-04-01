@@ -1,5 +1,6 @@
 ---
 title: Lab 06
+# revised-by:
 subtitle: ENVX2001 Applied Statistical Methods
 description: The University of Sydney
 toc: true
@@ -162,7 +163,7 @@ par(mfrow=c(1,1))
 
 ```
 
-The residual diagnostics show that the data is not normally distributed, but now has equal variance.  Given ANOVA is robust again non-normality, we will proceed with the analysis using the log transformed response variable.
+The residual diagnostics show that the data is not normally distributed, but now has equal variance.  Given ANOVA is robust against non-normality, we will proceed with the analysis using the log transformed response variable.
 
 ##### *(iii)* Use an ANOVA to analyse the CRD and report on the results.
 
@@ -283,7 +284,7 @@ plot(devil.block.log.aov, which=1)
 plot(devil.block.log.aov, which=2)
 par(mfrow=c(1,1))
 ```
-The residual diagnostics show that the data is close to be normally distributed.  Given ANOVA is robust again non-normality, we will proceed with the analysis using the log transformed response variable.
+The residual diagnostics show that the data is close to being normally distributed.  Given ANOVA is robust against non-normality, we will proceed with the analysis using the log transformed response variable.
 
 ##### *(iii)* Use an ANOVA to analyse the RCBD and report on the results.
 

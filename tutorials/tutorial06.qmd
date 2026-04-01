@@ -27,7 +27,7 @@ An experimental design is a structured approach to conducting experiments that a
 
 -   **Completely Randomised Design (CRD)**: Experimental units are randomly assigned to different treatment groups without any restrictions. This design is suitable when experimental units are homogeneous.
 
--   **Randomized Block Design (RBD)**: Experimental units are grouped into blocks based on certain characteristics, and treatments are randomly assigned within each block. This design helps control for variability among experimental units.
+-   **Randomised Block Design (RBD)**: Experimental units are grouped into blocks based on certain characteristics, and treatments are randomly assigned within each block. This design helps control for variability among experimental units.
 
 -   **Factorial Design**: Multiple factors are investigated simultaneously, with all possible combinations of factor levels included in the experiment. This design allows for the study of main effects and interactions between factors.
 

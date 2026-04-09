@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,9 +73,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f249475e52cfe1a8e33717ce9f888b08.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8c72952ee3bb7393c4da19789dad797f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-e3345c6ef29c45a7958e8df45469d16f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -134,54 +134,11 @@ background: white;
 </noscript>
 <script>window.QUARTO_PROGRESSIVE_SECTIONS = true;</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -214,7 +171,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
+  <li><a href="#welcome-to-week-7" id="toc-welcome-to-week-7" class="nav-link active" data-scroll-target="#welcome-to-week-7">Welcome to week 7!</a>
   <ul class="collapse">
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
   <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
@@ -228,15 +185,11 @@ window.Quarto = {
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
-  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">1. Exploratory data analysis</a></li>
-  <li><a href="#state-hypotheses" id="toc-state-hypotheses" class="nav-link" data-scroll-target="#state-hypotheses">1.2 State hypotheses</a></li>
-  <li><a href="#fit-a-simple-linear-regression-model" id="toc-fit-a-simple-linear-regression-model" class="nav-link" data-scroll-target="#fit-a-simple-linear-regression-model">1.3 Fit a simple linear regression model</a></li>
-  <li><a href="#check-model-assumptions" id="toc-check-model-assumptions" class="nav-link" data-scroll-target="#check-model-assumptions">1.4 Check model assumptions</a></li>
-  <li><a href="#interpret-model-parameters-and-fit-statistics" id="toc-interpret-model-parameters-and-fit-statistics" class="nav-link" data-scroll-target="#interpret-model-parameters-and-fit-statistics">1.5 Interpret model parameters and fit statistics</a></li>
-  <li><a href="#make-conclusions" id="toc-make-conclusions" class="nav-link" data-scroll-target="#make-conclusions">1.6 Make conclusions</a></li>
   </ul></li>
-  <li><a href="#exercise-2-california-streamflow" id="toc-exercise-2-california-streamflow" class="nav-link" data-scroll-target="#exercise-2-california-streamflow">Exercise 2: California streamflow</a>
+  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a></li>
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a>
   <ul class="collapse">
+  <li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1">Exercise 1</a></li>
   <li><a href="#partial-f-tests" id="toc-partial-f-tests" class="nav-link" data-scroll-target="#partial-f-tests">Partial F-Tests</a></li>
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
@@ -258,14 +211,14 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="welcome" class="level1">
-<h1>Welcome!</h1>
+<section id="welcome-to-week-7" class="level1">
+<h1>Welcome to week 7!</h1>
 <p>This week’s lab will give you some practice fitting and interpreting Simple Linear Regression (SLR) and Multiple Linear Regression (MLR) models.</p>
 <p>This will prepare you for next week’s content where we will seek to improve our models, and then in week 9 we will use improved models for prediction.</p>
 <section id="learning-outcomes" class="level2">
@@ -371,7 +324,7 @@ Tip
 </section>
 </section>
 </section>
-<section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1">
+<section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1 page-columns page-full">
 <h1>Simple linear regression model fitting and interpretation (~ 30 minutes)</h1>
 <p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
 <p>The data is in the <strong>Loyn_SLR.xlsx</strong> file.</p>
@@ -381,6 +334,13 @@ Tip
 <li>AREA: Area of each forest patch (ha)</li>
 </ul>
 <p>Original data source: Loyn, R. H. (1987). Effects of patch area and habitat on bird abundances, species numbers, and tree health in fragmented Victorian forests. In <em>Nature Conservation: the role of remnants of native vegetation</em> eds.&nbsp;D.S. Saunders, G.W. Arnold, A.A. Burbridge, &amp;A.J.M. Hopkins, pp.&nbsp;65-77. Surrey Beatty and Sons.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
+</figure>
+</div>
+<p><br></p>
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <section id="exercise-1" class="level3 question">
@@ -388,138 +348,57 @@ Tip
 <p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
 <p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><em>(iv)</em> Look at the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
 <p><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
-<p>Hint: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
-<p>:::</p>
-<section id="exploratory-data-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="exploratory-data-analysis">1. Exploratory data analysis</h3>
-<p>We need to understand the data we are working with, so we need to perform exploratory data analysis. To do this, we can look at summary statistics, distributions, and visualise the data.</p>
-<p>For linear regression, we also need to look at the relationship between the predictor and response. We first look at a scatter plot to determine if we have linear data, and then we choose a suitable correlation coefficient.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loyn<span class="sc">$</span>AREA, <span class="at">y =</span> loyn<span class="sc">$</span>ABUND) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bird abundance vs area of forest patch"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>       <span class="at">x =</span> <span class="st">"Area of forest patch (ha)"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cor</span>(loyn<span class="sc">$</span>AREA, loyn<span class="sc">$</span>ABUND) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>) <span class="co"># calculate correlation |&gt; round to 2 decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.26</code></pre>
-</div>
-</div>
-<p>The correlation coefficient is 0.26, which is quite low, indicating a weak or no positive relationship between bird abundance and patch area.</p>
-<p>However, we can see from the scatter plot that there is a lot of variation in bird abundance for small patch areas, and that there are some large patches with high bird abundance. This suggests that there may be other factors influencing bird abundance, and that patch area alone may not be a strong predictor. We will explore this further in next week’s lecture.</p>
-<p>For now, it is possible to fit a model of the relationship between these two variables.</p>
 </section>
-<section id="state-hypotheses" class="level3">
-<h3 class="anchored" data-anchor-id="state-hypotheses">1.2 State hypotheses</h3>
-<p>Remembering back to the lecture and tutorial, the general equations for our hypotheses are:</p>
-<p><span class="math display">
-H_0 : \beta_1 = 0
-</span></p>
-<p><span class="math display">
-H_1 : \beta_1 \neq 0
-</span></p>
-<p>In the context of our data, the hypotheses would be:</p>
-<p><span class="math inline">H_0</span>: Slope = 0; fertiliser is not a significant predictor of yield.</p>
-<p><span class="math inline">H_1</span>: Slope <span class="math inline">\neq</span> 0; fertiliser is a significant predictor of yield.</p>
-<p>If P &gt; 0.05, we fail to reject the null hypothesis that the true slope (<span class="math inline">\beta_1</span>) is equal to 0. If this is the case, it means our model does not predict better than the mean of our observations, and so there is no advantage to using our model over the mean of y (<span class="math inline">\bar{y}</span>).</p>
-<p>If we find there is a high probability of the slope not being equal to 0 (P &lt; 0.05), we can reject the null hypothesis and conclude our model is better at predicting than the mean of our observations.</p>
-<p>Now we understand what we are testing for, we can fit the model.</p>
-</section>
-<section id="fit-a-simple-linear-regression-model" class="level3">
-<h3 class="anchored" data-anchor-id="fit-a-simple-linear-regression-model">1.3 Fit a simple linear regression model</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>loyn_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AREA, <span class="at">data =</span> loyn)</span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">plot</span>(loyn_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-4.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Look at the model sulog()# Look at the model summary</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">#summary(loyn_lm) NOT YET</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The model summary gives us a lot of information about the model fit. We can see that the coefficient for log(AREA) is 0.26, which means that for every unit increase in log(AREA), we expect bird abundance to increase by 0.26 on average.</p>
-</section>
-<section id="check-model-assumptions" class="level3">
-<h3 class="anchored" data-anchor-id="check-model-assumptions">1.4 Check model assumptions</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">check_model</span>(loyn_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The diagnostic plots show us that the residuals are not normally distributed, and that there is some heteroscedasticity (the variance of the residuals is not constant). This suggests that the model may not be a good fit for the data, and that we may need to consider a different model or transformation of the data.</p>
-</section>
-<section id="interpret-model-parameters-and-fit-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="interpret-model-parameters-and-fit-statistics">1.5 Interpret model parameters and fit statistics</h3>
-</section>
-<section id="make-conclusions" class="level3">
-<h3 class="anchored" data-anchor-id="make-conclusions">1.6 Make conclusions</h3>
-</section>
-</section>
-<section id="exercise-2-california-streamflow" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-california-streamflow">Exercise 2: California streamflow</h2>
-<p>The following dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. I have reduced this to three variables labelled <code>lake_sabrina</code> (Lake Sabrina), <code>pine_creek</code> (Big Pine Creek), <code>rock_creek</code> (Rock Creek), and the dependent variable stream runoff volume (measured in ML/year) at a site near Bishop, California (labelled <code>runoff_volume</code>).</p>
+<section id="multiple-linear-regression-30-minutes" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</h2>
+<p><strong>You are a water scientist tasked with analysing legacy stream runoff data to determineprecipitation sites influence the stream runoff volume. </strong></p>
+<p>The california_streamflow dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. I have reduced this to three variables:</p>
+<ul>
+<li><code>lake_sabrina</code>: Precipitation recorded at Lake Sabrina (mm)</li>
+<li><code>pine_creek</code>: Precipitation recorded at Big Pine Creek (mm),</li>
+<li><code>rock_creek</code>: Precipitation recorded at Rock Creek (mm)</li>
+<li><code>runoff_volume</code>: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.</li>
+</ul>
 <p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
-<p>Start with a full model and manually remove the variables one at a time, checking every time whether removal of a variable actually improves the model.</p>
+<p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out work out the most suitable model.</p>
+<p><strong>DATA SOURCE</strong></p>
+</section>
+<section id="analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
+<section id="exercise-1-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1-1">Exercise 1</h3>
+<p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
+<p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</p>
+<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
+<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+</section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># read in the data</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># read in the data</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "lake_sabrina"  "pine_creek"    "rock_creek"    "runoff_volume"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -548,8 +427,8 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The above analysis tells us that both <code>pine_creek</code> &amp; <code>rock_creek</code> are significant, according to the t-test, in the model and <code>lake_sabrina</code> is not? This involves performing Partial F-Tests as discussed in the lecture.</p>
 <p>This can be done in <strong>R</strong> by using <code>anova()</code> on two model objects. To be able to compare the models and run the anova, you need to make objects of all the possible model combinations you want to compare.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The last row gives the results of the partial F-test.</p>
 </section>
@@ -567,8 +446,8 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <p>Perform a Partial F-Test to work out if the removal of <code>lake_sabrina</code> and <code>pine_creek</code> improves upon the full model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -590,8 +469,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.</p>
 </section>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="question-6" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-6">Question 6</h3>

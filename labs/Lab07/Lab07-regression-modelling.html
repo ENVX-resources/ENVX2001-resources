@@ -182,26 +182,21 @@ background: white;
   </ul></li>
   <li><a href="#simple-linear-regression-model-fitting-and-interpretation-30-minutes" id="toc-simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="nav-link" data-scroll-target="#simple-linear-regression-model-fitting-and-interpretation-30-minutes">Simple linear regression model fitting and interpretation (~ 30 minutes)</a>
   <ul class="collapse">
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
+  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
-  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a></li>
-  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1">Exercise 1</a></li>
-  <li><a href="#partial-f-tests" id="toc-partial-f-tests" class="nav-link" data-scroll-target="#partial-f-tests">Partial F-Tests</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
   </ul></li>
-  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">Review</a>
+  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab07-regression-modelling.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -252,7 +247,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please work on this exercise by creating your own R Markdown file.</p>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
 </div>
 </div>
 </section>
@@ -326,6 +321,24 @@ Tip
 </section>
 <section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1 page-columns page-full">
 <h1>Simple linear regression model fitting and interpretation (~ 30 minutes)</h1>
+<p>Simple linear regression is a statistical method that allows us to investigate the relationship between two continuous variables. It is a powerful tool for understanding how one variable (the predictor) influences another variable (the response). Often a simple linear regression is the most appropriate model, so it is worth understanding.</p>
+<p>Key points to follow:</p>
+<ul>
+<li>State the model and hypotheses</li>
+<li>Conduct exploratory data analysis (EDA) to understand the data and relationships between variables. This includes correlation analysis and scatterplots.</li>
+<li>Fit the model</li>
+<li>Check the assumptions of the model and apply transformations if needed</li>
+<li>Interpret the model parameters and fit statistics</li>
+</ul>
+<p>Good luck!</p>
+<section id="analysis-for-bird-abundance-and-area-of-forest-patch" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
+</figure>
+</div>
 <p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
 <p>The data is in the <strong>Loyn_SLR.xlsx</strong> file.</p>
 <p>Variables are as follows:</p>
@@ -334,19 +347,11 @@ Tip
 <li>AREA: Area of each forest patch (ha)</li>
 </ul>
 <p>Original data source: Loyn, R. H. (1987). Effects of patch area and habitat on bird abundances, species numbers, and tree health in fragmented Victorian forests. In <em>Nature Conservation: the role of remnants of native vegetation</em> eds.&nbsp;D.S. Saunders, G.W. Arnold, A.A. Burbridge, &amp;A.J.M. Hopkins, pp.&nbsp;65-77. Surrey Beatty and Sons.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
-</figure>
-</div>
-<p><br></p>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
+<p>Remember: Null hypothesis = no change, no slope, therefore no relationship.</p>
 <p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
 <p><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
 <p><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</p>
@@ -357,10 +362,29 @@ Tip
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
 </section>
-<section id="multiple-linear-regression-30-minutes" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</h2>
-<p><strong>You are a water scientist tasked with analysing legacy stream runoff data to determineprecipitation sites influence the stream runoff volume. </strong></p>
-<p>The california_streamflow dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. I have reduced this to three variables:</p>
+</section>
+<section id="multiple-linear-regression-30-minutes" class="level1 page-columns page-full">
+<h1>Multiple linear regression (~ 30 minutes)</h1>
+<p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
+<ul>
+<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
+<li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
+<li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
+<li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
+<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables don’t actually improve the model fit. We will explain this more next week.</p></li>
+</ul>
+<p><br></p>
+<section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: <a href="https://stock.adobe.com/au/search?k=bishop+california&amp;asset_id=668401555">Adobe Stock</a></figcaption>
+</figure>
+</div>
+<p>You are a hydrologist tasked with analysing legacy data to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California. The dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</p>
+<p>The data is in the <strong>california_streamflow.xlsx</strong> file.</p>
+<p>Variables are as follows:</p>
 <ul>
 <li><code>lake_sabrina</code>: Precipitation recorded at Lake Sabrina (mm)</li>
 <li><code>pine_creek</code>: Precipitation recorded at Big Pine Creek (mm),</li>
@@ -368,148 +392,49 @@ Tip
 <li><code>runoff_volume</code>: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.</li>
 </ul>
 <p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
-<p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out work out the most suitable model.</p>
-<p><strong>DATA SOURCE</strong></p>
-</section>
-<section id="analysis-1" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
-<section id="exercise-1-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-1-1">Exercise 1</h3>
-<p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
-<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
-<p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
-<p><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
-<p><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</p>
+<p>Data source: Hollett, K.J., Danskin, F.M., McCaffrey, W.F., and Walti, S.L., 1991. Geology and water resources of Owens Valley, California. U.S. Geological Survey Water-Supply Paper 2370-H.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out the most suitable model.</p>
+</div>
+</div>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
+<p>You can write it out in words and/or in mathematical notation.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>
+<p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
+<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
-<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># read in the data</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "lake_sabrina"  "pine_creek"    "rock_creek"    "runoff_volume"</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = runoff_volume ~ ., data = stream_data)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.09885 -0.03331  0.01025  0.03359  0.09495 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   3.25716    0.12360  26.352  &lt; 2e-16 ***
-lake_sabrina  0.05631    0.03756   1.499  0.14185    
-pine_creek    0.21085    0.06756   3.121  0.00339 ** 
-rock_creek    0.43838    0.08798   4.983 1.32e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.04861 on 39 degrees of freedom
-Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726 
-F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<section id="partial-f-tests" class="level3">
-<h3 class="anchored" data-anchor-id="partial-f-tests">Partial F-Tests</h3>
-<p>The above analysis tells us that both <code>pine_creek</code> &amp; <code>rock_creek</code> are significant, according to the t-test, in the model and <code>lake_sabrina</code> is not? This involves performing Partial F-Tests as discussed in the lecture.</p>
-<p>This can be done in <strong>R</strong> by using <code>anova()</code> on two model objects. To be able to compare the models and run the anova, you need to make objects of all the possible model combinations you want to compare.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The last row gives the results of the partial F-test.</p>
-</section>
-<section id="question-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>Should we remove <code>lake_sabrina</code> from the model?</p>
-</section>
-<section id="question-2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Is the p-value for the f-test the same as for the t-test?</p>
-</section>
-<section id="question-3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
-<p>Write out the hypotheses you are testing.</p>
-</section>
-<p>Perform a Partial F-Test to work out if the removal of <code>lake_sabrina</code> and <code>pine_creek</code> improves upon the full model.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-
-Model 1: runoff_volume ~ lake_sabrina + pine_creek
-Model 2: runoff_volume ~ lake_sabrina + pine_creek + rock_creek
-  Res.Df      RSS Df Sum of Sq     F    Pr(&gt;F)    
-1     40 0.150845                                 
-2     39 0.092166  1   0.05868 24.83 1.321e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-</div>
-<section id="question-4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
-<p>Which variable should be added to the model containing rock_creek?</p>
-</section>
-<section id="question-5" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
-<p>Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.</p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="question-6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
-<p>What is your optimal model?</p>
 </section>
 <hr>
 </section>
-<section id="review" class="level2">
-<h2 class="anchored" data-anchor-id="review">Review</h2>
-<ul>
-<li><p>Simple linear regressions model the relationship between two variables</p>
-<ul>
-<li>We can also make linear models with more than one predictor</li>
-</ul></li>
-<li><p>We can use histograms and correlation matrices to do some preliminary exploration of the data</p></li>
-<li><p>If any variables are skewed, we can transform them</p></li>
-<li><p>Looking at a correlation matrix to identify the best predictors (for both simple and multiple linear regression)</p></li>
-<li><p>Fit model using <code>lm()</code> function</p></li>
-<li><p>Check assumptions:</p>
-<ul>
-<li>Collinearity (multiple linear regression only)</li>
-<li>Linearity</li>
-<li>Independence</li>
-<li>Normality</li>
-<li>Equal variance</li>
-</ul></li>
-<li><p>Use <code>summary()</code> to look at model output and interpret it</p>
-<ul>
-<li>F-test : overall model significance</li>
-<li>Coefficients table : individual predictors’ significance</li>
-<li>R<sup>2</sup> : How much variation in the data is explained by the model?</li>
-</ul></li>
-</ul>
-<p>That’s it for today! Great work fitting simple and multiple linear regression! Next week we jump into stepwise selection!</p>
+</section>
+<section id="closing-thoughts" class="level1">
+<h1>Closing thoughts</h1>
+<p>You have done a great job fitting linear regression models and interpreting the output.</p>
+<p>As you may have noticed in this lab, models are rarely perfect, so next week we will focus on working out the most suitable model for our data based on what we have.</p>
+<p>Keep up the great work and see you in the week 8 lecture!</p>
+<p>If you have any questions, please approach your tutors or you are welcome to post to the Ed Discussion board.</p>
 <section id="attribution" class="level3">
 <h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
-</section>
 </section>
 </section>
 

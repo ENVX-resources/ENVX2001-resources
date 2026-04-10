@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>ENVX2001 Lab 07 - Regression modelling</title>
+<title>Lab 07</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,7 +188,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ENVX2001 Lab 07 - Regression modelling</h1>
+      <h1 class="title">Lab 07</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -220,26 +220,33 @@ window.Quarto = {
   <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
   <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#comparing-diagnostic-plots" id="toc-comparing-diagnostic-plots" class="nav-link" data-scroll-target="#comparing-diagnostic-plots">Comparing diagnostic plots</a></li>
   <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#simple-linear-regression-model-fitting-and-interpretation-30-minutes" id="toc-simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="nav-link" data-scroll-target="#simple-linear-regression-model-fitting-and-interpretation-30-minutes">Simple linear regression model fitting and interpretation (~ 30 minutes)</a>
+  <li><a href="#simple-linear-regression-30-min" id="toc-simple-linear-regression-30-min" class="nav-link" data-scroll-target="#simple-linear-regression-30-min">1. Simple linear regression (~30 min)</a>
   <ul class="collapse">
-  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a>
+  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a>
+  <li><a href="#multiple-linear-regression-30-min" id="toc-multiple-linear-regression-30-min" class="nav-link" data-scroll-target="#multiple-linear-regression-30-min">2. Multiple linear regression (~30 min)</a>
   <ul class="collapse">
-  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a>
+  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
   <ul class="collapse">
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
   <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab07-regression-modelling.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -267,58 +274,56 @@ window.Quarto = {
 <li><p>LO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R</p></li>
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Fit and interpret simple linear regression (SLR) models</li>
+<li>Fit and interpret multiple linear regression (MLR) models</li>
+<li>Assess model assumptions and apply transformations when needed</li>
+<li>Evaluate and compare model fit statistics</li>
+</ol>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
-<p>By the end of this lab, students should be able to:</p>
+<p>By the end of this lab, you should be able to:</p>
 <ul class="task-list">
 <li><label><input type="checkbox">Fit a simple linear regression model</label></li>
 <li><label><input type="checkbox">Assess model assumptions and apply transformations when needed</label></li>
 <li><label><input type="checkbox">Interpret model parameters and fit statistics</label></li>
-<li><label><input type="checkbox">Fit a multiple linear regression model (<strong>different structure</strong>)</label></li>
-<li><label><input type="checkbox">Assess model assumptions, recalling key differences between MLR and SLR (<strong>collinearity</strong>)</label></li>
-<li><label><input type="checkbox">Determine the most suitable fit statistics for assessing the fit of a MLR model(<strong>r-sq vs adj</strong>)</label></li>
+<li><label><input type="checkbox">Fit a multiple linear regression model</label></li>
+<li><label><input type="checkbox">Assess model assumptions, including collinearity between predictor variables</label></li>
+<li><label><input type="checkbox">Determine the most suitable fit statistics for a multiple linear regression model</label></li>
 <li><label><input type="checkbox">Write a conclusion on your findings</label></li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
-</div>
-</div>
 </section>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Install or update the <code>performance</code> package</label></li>
-</ul>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, and <code>performance</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#install.packages("performance")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This package is really good for checking your models. For this lab, we will focus on the <code>check_model()</code> function, which gives us nice pretty diagnostic plots for models:</p>
+<p>If a package is already installed, R will simply reinstall it — no harm done.</p>
+</section>
+<section id="comparing-diagnostic-plots" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-diagnostic-plots">Comparing diagnostic plots</h3>
+<p>This package is really good for checking your models. For this lab, we will focus on the <code>check_model()</code> function from the <code>performance</code> package, which produces diagnostic plots that are easier to read than the base R <code>plot()</code> output. Compare the two approaches below to see why we recommend it:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>plot()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>check_model()</code> from <code>performance</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">plot</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -328,7 +333,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/warning - false-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -336,6 +341,7 @@ Tip
 </div>
 </div>
 </div>
+</section>
 <section id="downloads" class="level3">
 <h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
 <table class="caption-top table">
@@ -362,8 +368,8 @@ Tip
 </section>
 </section>
 </section>
-<section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1 page-columns page-full">
-<h1>Simple linear regression model fitting and interpretation (~ 30 minutes)</h1>
+<section id="simple-linear-regression-30-min" class="level1 page-columns page-full">
+<h1>1. Simple linear regression (~30 min)</h1>
 <p>Simple linear regression is a statistical method that allows us to investigate the relationship between two continuous variables. It is a powerful tool for understanding how one variable (the predictor) influences another variable (the response). Often a simple linear regression is the most appropriate model, so it is worth understanding.</p>
 <p>Key points to follow:</p>
 <ul>
@@ -379,7 +385,7 @@ Tip
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
+<figcaption class="margin-caption">Kookaburra sitting on a branch, from Unsplash, by pen_ash.</figcaption>
 </figure>
 </div>
 <p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
@@ -390,6 +396,9 @@ Tip
 <li>AREA: Area of each forest patch (ha)</li>
 </ul>
 <p>Original data source: Loyn, R. H. (1987). Effects of patch area and habitat on bird abundances, species numbers, and tree health in fragmented Victorian forests. In <em>Nature Conservation: the role of remnants of native vegetation</em> eds.&nbsp;D.S. Saunders, G.W. Arnold, A.A. Burbridge, &amp;A.J.M. Hopkins, pp.&nbsp;65-77. Surrey Beatty and Sons.</p>
+</section>
+<section id="section" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
@@ -404,7 +413,7 @@ Tip
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
-<section id="solution" class="level4 ans">
+<section id="solution" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution">Solution</h4>
 <section id="i-write-out-the-statistical-model-for-a-simple-linear-regression-and-define-it-in-terms-of-influence-of-forest-fragment-size-upon-bird-abundance." class="level5">
 <h5 class="anchored" data-anchor-id="i-write-out-the-statistical-model-for-a-simple-linear-regression-and-define-it-in-terms-of-influence-of-forest-fragment-size-upon-bird-abundance."><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance.</h5>
@@ -430,7 +439,7 @@ Abundance = \beta_0 + \beta_1Area + \epsilon_{i}
 <p>The hypotheses for the relationship between bird abundance and patch area are:</p>
 <p><span class="math display">H_0 : \beta_1 = 0</span> <span class="math display">H_0 : \beta_1 \neq 0</span> Where <span class="math inline">\beta_1</span> is the slope of the regression line and represents the change in abundance for a one-unit increase in patch area.</p>
 </section>
-<section id="iii-read-in-the-dataset-and-conduct-some-exploratory-data-analysis-upon-your-two-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5">
+<section id="iii-read-in-the-dataset-and-conduct-some-exploratory-data-analysis-upon-your-two-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="iii-read-in-the-dataset-and-conduct-some-exploratory-data-analysis-upon-your-two-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the dataset and conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
 <p>Read in the data</p>
 <div class="cell">
@@ -518,15 +527,16 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 </ol>
 <p>The mean bird abundance in forest patches is 19.5 and the median is 21.0 (Table 1). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of -0.28, which is close to 0, and the relatively symmetrical boxplot (Fig. 1), indicating a fairly symmetric distribution.</p>
 <p>Bird abundance ranges from a minimum of 1.5 to 39.6 birds and the standard deviation is 10.73, which indicates that there is quite a bit of variability in bird abundance across the patches. This is also evident in the wider interquartile range visible in the boxplot (fig.&nbsp;1).</p>
-<div class="cell" data-caption="Figure 1. Boxplot of bird abundance">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(loyn) <span class="sc">+</span> </span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> ABUND)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Abundance"</span>,</span>
 <span id="cb8-4"><a href="#cb8-4"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 1. Boxplot of bird abundance</figcaption>
 </figure>
 </div>
 </div>
@@ -536,21 +546,22 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 </ol>
 <p>The mean area is 69.3 ha (Table 1), which is very different to the median of 7.5 ha, suggesting a highly skewed distribution. This is further supported by the skewness coefficient of 5.5.</p>
 <p>We can also see this high amount of variability in the standard deviation of 266.1, and the area ranging from 0.1 ha to 1771 ha. The skewness and high amount of variation is most likely a result of two outliers present, visible in the boxplot (Fig. 2).</p>
-<div class="cell" data-caption="Figure 2. Boxplot of area of forest patches (ha)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(loyn) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> AREA)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Area"</span>,</span>
 <span id="cb9-4"><a href="#cb9-4"></a>       <span class="at">y =</span> <span class="st">"Area of forest patch (ha)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 2. Boxplot of area of forest patches (ha)</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="iv-investigate-the-relationship-between-bird-abundance-and-patch-area.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots." class="level5">
+<section id="iv-investigate-the-relationship-between-bird-abundance-and-patch-area.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="iv-investigate-the-relationship-between-bird-abundance-and-patch-area.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots."><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</h5>
 <p>Calculate the correlation coefficient</p>
 <div class="cell">
@@ -560,16 +571,17 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 </div>
 </div>
 <p>Generate a scatter plot</p>
-<div class="cell" data-caption="Figure 3. Scatterplot of Bird abundance vs area of forest patch (ha)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loyn<span class="sc">$</span>AREA, <span class="at">y =</span> loyn<span class="sc">$</span>ABUND)) <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bird abundance vs area of forest patch"</span>,</span>
 <span id="cb12-4"><a href="#cb12-4"></a>       <span class="at">x =</span> <span class="st">"Area of forest patch (ha)"</span>,</span>
 <span id="cb12-5"><a href="#cb12-5"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 3. Scatterplot of Bird abundance vs area of forest patch (ha)</figcaption>
 </figure>
 </div>
 </div>
@@ -593,7 +605,7 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -606,7 +618,7 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 <li><p>Equal variance: The reference line in the plot is not straight, and there is a funnel shape in the plot, suggesting that the variance of the residuals is not constant (heteroscedasticity).</p></li>
 <li><p>Influential observations: Hard to see, but there is a point lying outside the dashed lines, which suggests that there may be an influential observation in the data.</p></li>
 </ul>
-<p>Decision: Usually we would transform the response variable first if the assumptions aren’t met, but we know the Area variable is highly skewed, so it is worth transforming the Area variable to see if this improves the model fit.</p>
+<p>Decision: Usually we would transform the response variable first if the assumptions are not met, but we know the Area variable is highly skewed, so it is worth transforming the Area variable to see if this improves the model fit.</p>
 <p><strong>Transform Area and refit</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#I have used log10 transformation here</span></span>
@@ -620,7 +632,7 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -669,25 +681,25 @@ F-statistic: 65.38 on 1 and 54 DF,  p-value: 7.178e-11</code></pre>
 <p>The model explains a statistically significant and moderate proportion of variance (R<sup>2</sup> = 0.55, F(1, 54) = 65.38, p &lt; .001). Within this model, the effect of forest patch area is statistically significant and positive (<span class="math inline">\beta_1</span> = 9.778, t(54) = 8.086, p &lt; .001).</p>
 </section>
 </section>
+<p>Before moving on to the next section, take a short break and stretch your legs.</p>
 </section>
 </section>
-<section id="multiple-linear-regression-30-minutes" class="level1 page-columns page-full">
-<h1>Multiple linear regression (~ 30 minutes)</h1>
+<section id="multiple-linear-regression-30-min" class="level1 page-columns page-full">
+<h1>2. Multiple linear regression (~30 min)</h1>
 <p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
 <ul>
 <li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
 <li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
 <li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
 <li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
-<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables don’t actually improve the model fit. We will explain this more next week.</p></li>
+<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
 </ul>
-<p><br></p>
 <section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: <a href="https://stock.adobe.com/au/search?k=bishop+california&amp;asset_id=668401555">Adobe Stock</a></figcaption>
+<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock.</figcaption>
 </figure>
 </div>
 <p>You are a hydrologist tasked with analysing legacy data to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California. The dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</p>
@@ -714,6 +726,9 @@ Tip
 <p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out the most suitable model.</p>
 </div>
 </div>
+</section>
+<section id="section-1" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
 <section id="exercise-2" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
@@ -729,7 +744,7 @@ Tip
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
-<section id="solution-1" class="level4 ans">
+<section id="solution-1" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
 <section id="i-write-out-the-statistical-model-for-a-multiple-linear-regression-and-define-it-in-terms-of-the-data-precipitation-at-each-site-vs-runoff-volume-at-bishop." class="level5">
 <h5 class="anchored" data-anchor-id="i-write-out-the-statistical-model-for-a-multiple-linear-regression-and-define-it-in-terms-of-the-data-precipitation-at-each-site-vs-runoff-volume-at-bishop."><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</h5>
@@ -764,7 +779,7 @@ y_{i} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \epsilon_{i}
 <p><span class="math display">H_0 : \beta_3 = 0</span> <span class="math display">H_1 : \beta_3 \neq 0</span> 4. Overal model:</p>
 <p><span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = 0</span> <span class="math display">H_1 : \text{at least one } \beta_i \neq 0</span></p>
 </section>
-<section id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5">
+<section id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
 <p>Read in the data</p>
 <div class="cell">
@@ -886,15 +901,16 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </ol>
 <p>The mean runoff volume recorded at the site near Bishop, California is 4.96 ML/year and the median is 4.93 ML/year (Table 2). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of 0.29, which is close to 0, and the relatively symmetrical boxplot (Fig. 3), indicating a fairly symmetric distribution. The median does seem to sit closer to the first quartile than the third quartile, suggesting a slight skew, but everything else seems to indicate a fairly normal distribution.</p>
 <p>Runoff volume ranges from a minimum of 4.71 ML/year to 5.26 ML/year and the standard deviation is 0.14, which indicates that the spread of values is quite small.</p>
-<div class="cell" data-caption="Figure 3. Boxplot of Runoff volume (ML/year)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
 <span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> runoff_volume)) <span class="sc">+</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Runoff volume (ML/year)"</span>,</span>
 <span id="cb21-4"><a href="#cb21-4"></a>       <span class="at">y =</span> <span class="st">"Runoff volume (ML/year)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 3. Boxplot of Runoff volume (ML/year)</figcaption>
 </figure>
 </div>
 </div>
@@ -904,15 +920,16 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </ol>
 <p>The mean precipitation recorded at Lake Sabrina is 2.03 mm and the median is 2.05 mm (Table 2). These are quite similar, but given the narrow range of values the difference could be quite large. We can see this in the skewness coefficient of -0.44, which suggests the distribution is symmetrical, but there is a slight skew to the left. Upon visual inspection of the boxplot (Fig. 4) we can see there are a number of outliers which may be influencing this skew.</p>
 <p>Precipitation at Lake Sabrina ranged from a minimum of 1.6 mm to 2.5 mm and the standard deviation is 0.20, indicating that there is some variability in precipitation at Lake Sabrina across the years.</p>
-<div class="cell" data-caption="Figure 4. Boxplot of precipitation at Lake Sabrina (mm)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
 <span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> lake_sabrina)) <span class="sc">+</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Lake Sabrina (mm)"</span>,</span>
 <span id="cb22-4"><a href="#cb22-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 4. Boxplot of precipitation at Lake Sabrina (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -922,15 +939,16 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </ol>
 <p>The mean precipitation at Pine Creek was 2.45 mm and the median was 2.38 mm. The mean and median are similar and the skewness coefficient of 0.19 suggests the distribution is symmetrical. Upon visual inspection of the boxplot (Fig. 5) we can see the median lies closer to the first quartile, but otherwise the boxplot looks fairly symmetrical.</p>
 <p>Precipitation at Pine Creek ranged from a minimum of 2.01 mm to a maximum of 3.04 mm and the standard deviation is 0.24, indicating that there is some variability in precipitation at Pine Creek across the years.</p>
-<div class="cell" data-caption="Figure 5. Boxplot of precipitation at Pine Creek (mm)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> pine_creek)) <span class="sc">+</span></span>
 <span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Pine Creek (mm)"</span>,</span>
 <span id="cb23-4"><a href="#cb23-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 5. Boxplot of precipitation at Pine Creek (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -940,15 +958,16 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </ol>
 <p>The mean precipitation at Rock Creek was the same as the median (2.45 mm), and the skewness coefficient of -0.03 suggests the distribution is very symmetrical. Upon visual inspection of the boxplot (Fig. 6) we can see the median lies exactly in the middle of the box, and there are no outliers, suggesting a very symmetrical distribution.</p>
 <p>Precipitation ranged from 2.04 mm to 2.80 mm and the standard deviation is 0.18, indicating that there was a small amount of variability in precipitation at Rock Creek across the years.</p>
-<div class="cell" data-caption="Figure 6. Boxplot of precipitation at Rock Creek (mm)">
+<div class="cell page-columns page-full">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
 <span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> rock_creek)) <span class="sc">+</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Rock Creek (mm)"</span>,</span>
 <span id="cb24-4"><a href="#cb24-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 6. Boxplot of precipitation at Rock Creek (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -979,7 +998,7 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -992,7 +1011,7 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1043,7 +1062,7 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1132,11 +1151,12 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The model explains a statistically significant and strong proportion of variance (R<sup>2</sup> = 0.87, F(3, 39) = 96.88, p &lt; 0.05). Within this model, the effect of precipitation at Lake Sabrina was not statistically significant (<span class="math inline">\beta_1</span> = 0.056, t(39) = 1.499, p &gt; 0.05), while the effects of precipitation at Pine Creek and Rock Creek were statistically significant and positive (<span class="math inline">\beta_2</span> = 0.211, t(39) = 3.12, p &lt; 0.05; <span class="math inline">\beta_3</span> = 0.438, t(39) = 4.98, p &lt; 0.05).</p>
 </section>
 </section>
-<hr>
 </section>
 </section>
-<section id="closing-thoughts" class="level1">
-<h1>Closing thoughts</h1>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
 <p>You have done a great job fitting linear regression models and interpreting the output.</p>
 <p>As you may have noticed in this lab, models are rarely perfect, so next week we will focus on working out the most suitable model for our data based on what we have.</p>
 <p>Keep up the great work and see you in the week 8 lecture!</p>
@@ -1146,6 +1166,7 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
 </section>
 </section>
 

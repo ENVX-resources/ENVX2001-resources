@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>ENVX2001 Lab 07 - Regression modelling</title>
+<title>Lab 07</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ENVX2001 Lab 07 - Regression modelling</h1>
+      <h1 class="title">Lab 07</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -177,26 +177,33 @@ background: white;
   <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
   <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#comparing-diagnostic-plots" id="toc-comparing-diagnostic-plots" class="nav-link" data-scroll-target="#comparing-diagnostic-plots">Comparing diagnostic plots</a></li>
   <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#simple-linear-regression-model-fitting-and-interpretation-30-minutes" id="toc-simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="nav-link" data-scroll-target="#simple-linear-regression-model-fitting-and-interpretation-30-minutes">Simple linear regression model fitting and interpretation (~ 30 minutes)</a>
+  <li><a href="#simple-linear-regression-30-min" id="toc-simple-linear-regression-30-min" class="nav-link" data-scroll-target="#simple-linear-regression-30-min">1. Simple linear regression (~30 min)</a>
   <ul class="collapse">
-  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a>
+  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a>
+  <li><a href="#multiple-linear-regression-30-min" id="toc-multiple-linear-regression-30-min" class="nav-link" data-scroll-target="#multiple-linear-regression-30-min">2. Multiple linear regression (~30 min)</a>
   <ul class="collapse">
-  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a>
+  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
   <ul class="collapse">
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
   <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab07-regression-modelling.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -224,58 +231,56 @@ background: white;
 <li><p>LO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R</p></li>
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
+<p>In this lab, we will learn how to:</p>
+<ol type="1">
+<li>Fit and interpret simple linear regression (SLR) models</li>
+<li>Fit and interpret multiple linear regression (MLR) models</li>
+<li>Assess model assumptions and apply transformations when needed</li>
+<li>Evaluate and compare model fit statistics</li>
+</ol>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
-<p>By the end of this lab, students should be able to:</p>
+<p>By the end of this lab, you should be able to:</p>
 <ul class="task-list">
 <li><label><input type="checkbox">Fit a simple linear regression model</label></li>
 <li><label><input type="checkbox">Assess model assumptions and apply transformations when needed</label></li>
 <li><label><input type="checkbox">Interpret model parameters and fit statistics</label></li>
-<li><label><input type="checkbox">Fit a multiple linear regression model (<strong>different structure</strong>)</label></li>
-<li><label><input type="checkbox">Assess model assumptions, recalling key differences between MLR and SLR (<strong>collinearity</strong>)</label></li>
-<li><label><input type="checkbox">Determine the most suitable fit statistics for assessing the fit of a MLR model(<strong>r-sq vs adj</strong>)</label></li>
+<li><label><input type="checkbox">Fit a multiple linear regression model</label></li>
+<li><label><input type="checkbox">Assess model assumptions, including collinearity between predictor variables</label></li>
+<li><label><input type="checkbox">Determine the most suitable fit statistics for a multiple linear regression model</label></li>
 <li><label><input type="checkbox">Write a conclusion on your findings</label></li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
-</div>
-</div>
 </section>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Install or update the <code>performance</code> package</label></li>
-</ul>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, and <code>performance</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#install.packages("performance")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This package is really good for checking your models. For this lab, we will focus on the <code>check_model()</code> function, which gives us nice pretty diagnostic plots for models:</p>
+<p>If a package is already installed, R will simply reinstall it — no harm done.</p>
+</section>
+<section id="comparing-diagnostic-plots" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-diagnostic-plots">Comparing diagnostic plots</h3>
+<p>This package is really good for checking your models. For this lab, we will focus on the <code>check_model()</code> function from the <code>performance</code> package, which produces diagnostic plots that are easier to read than the base R <code>plot()</code> output. Compare the two approaches below to see why we recommend it:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>plot()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>check_model()</code> from <code>performance</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">plot</span>(iris_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -285,7 +290,7 @@ Tip
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/warning - false-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -293,6 +298,7 @@ Tip
 </div>
 </div>
 </div>
+</section>
 <section id="downloads" class="level3">
 <h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
 <table class="caption-top table">
@@ -319,8 +325,8 @@ Tip
 </section>
 </section>
 </section>
-<section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1 page-columns page-full">
-<h1>Simple linear regression model fitting and interpretation (~ 30 minutes)</h1>
+<section id="simple-linear-regression-30-min" class="level1 page-columns page-full">
+<h1>1. Simple linear regression (~30 min)</h1>
 <p>Simple linear regression is a statistical method that allows us to investigate the relationship between two continuous variables. It is a powerful tool for understanding how one variable (the predictor) influences another variable (the response). Often a simple linear regression is the most appropriate model, so it is worth understanding.</p>
 <p>Key points to follow:</p>
 <ul>
@@ -336,7 +342,7 @@ Tip
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
+<figcaption class="margin-caption">Kookaburra sitting on a branch, from Unsplash, by pen_ash.</figcaption>
 </figure>
 </div>
 <p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
@@ -347,6 +353,9 @@ Tip
 <li>AREA: Area of each forest patch (ha)</li>
 </ul>
 <p>Original data source: Loyn, R. H. (1987). Effects of patch area and habitat on bird abundances, species numbers, and tree health in fragmented Victorian forests. In <em>Nature Conservation: the role of remnants of native vegetation</em> eds.&nbsp;D.S. Saunders, G.W. Arnold, A.A. Burbridge, &amp;A.J.M. Hopkins, pp.&nbsp;65-77. Surrey Beatty and Sons.</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
@@ -361,25 +370,25 @@ Tip
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
+<p>Before moving on to the next section, take a short break and stretch your legs.</p>
 </section>
 </section>
-<section id="multiple-linear-regression-30-minutes" class="level1 page-columns page-full">
-<h1>Multiple linear regression (~ 30 minutes)</h1>
+<section id="multiple-linear-regression-30-min" class="level1 page-columns page-full">
+<h1>2. Multiple linear regression (~30 min)</h1>
 <p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
 <ul>
 <li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
 <li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
 <li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
 <li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
-<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables don’t actually improve the model fit. We will explain this more next week.</p></li>
+<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
 </ul>
-<p><br></p>
 <section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: <a href="https://stock.adobe.com/au/search?k=bishop+california&amp;asset_id=668401555">Adobe Stock</a></figcaption>
+<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock.</figcaption>
 </figure>
 </div>
 <p>You are a hydrologist tasked with analysing legacy data to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California. The dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</p>
@@ -406,6 +415,9 @@ Tip
 <p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out the most suitable model.</p>
 </div>
 </div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
 <section id="exercise-2" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
@@ -421,11 +433,12 @@ Tip
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
-<hr>
 </section>
 </section>
-<section id="closing-thoughts" class="level1">
-<h1>Closing thoughts</h1>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
 <p>You have done a great job fitting linear regression models and interpreting the output.</p>
 <p>As you may have noticed in this lab, models are rarely perfect, so next week we will focus on working out the most suitable model for our data based on what we have.</p>
 <p>Keep up the great work and see you in the week 8 lecture!</p>
@@ -435,6 +448,7 @@ Tip
 <p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
 </section>
 </section>
 

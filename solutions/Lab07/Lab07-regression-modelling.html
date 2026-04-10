@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>ENVX2001 Lab 07 - Regression model development</title>
+<title>ENVX2001 Lab 07 - Regression modelling</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,13 +78,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-27a38963a03246360c3a2f0f96efa443.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -181,14 +181,14 @@ window.Quarto = {
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ENVX2001 Lab 07 - Regression model development</h1>
+      <h1 class="title">ENVX2001 Lab 07 - Regression modelling</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -202,12 +202,6 @@ window.Quarto = {
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -220,47 +214,30 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning outcomes</a>
+  <li><a href="#welcome-to-week-7" id="toc-welcome-to-week-7" class="nav-link active" data-scroll-target="#welcome-to-week-7">Welcome to week 7!</a>
   <ul class="collapse">
-  <li><a href="#lab-objectives" id="toc-lab-objectives" class="nav-link" data-scroll-target="#lab-objectives">Lab objectives</a></li>
-  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a></li>
-  </ul></li>
-  <li><a href="#exercise-1-modelling-bird-abundance" id="toc-exercise-1-modelling-bird-abundance" class="nav-link" data-scroll-target="#exercise-1-modelling-bird-abundance">Exercise 1: Modelling bird abundance</a>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul class="collapse">
-  <li><a href="#best-single-predictor" id="toc-best-single-predictor" class="nav-link" data-scroll-target="#best-single-predictor">Best single predictor?</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
-  <li><a href="#answer" id="toc-answer" class="nav-link" data-scroll-target="#answer">Answer</a></li>
-  <li><a href="#assumptions-and-interpretation" id="toc-assumptions-and-interpretation" class="nav-link" data-scroll-target="#assumptions-and-interpretation">Assumptions and interpretation</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
-  <li><a href="#answer-1" id="toc-answer-1" class="nav-link" data-scroll-target="#answer-1">Answer</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
-  <li><a href="#answer-2" id="toc-answer-2" class="nav-link" data-scroll-target="#answer-2">Answer</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
-  <li><a href="#answer-3" id="toc-answer-3" class="nav-link" data-scroll-target="#answer-3">Answer</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
-  <li><a href="#answer-4" id="toc-answer-4" class="nav-link" data-scroll-target="#answer-4">Answer</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
-  <li><a href="#answer-5" id="toc-answer-5" class="nav-link" data-scroll-target="#answer-5">Answer</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
-  <li><a href="#answer-6" id="toc-answer-6" class="nav-link" data-scroll-target="#answer-6">Answer</a></li>
-  <li><a href="#exercise-2-california-streamflow" id="toc-exercise-2-california-streamflow" class="nav-link" data-scroll-target="#exercise-2-california-streamflow">Exercise 2: California streamflow</a>
+  </ul></li>
+  <li><a href="#simple-linear-regression-model-fitting-and-interpretation-30-minutes" id="toc-simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="nav-link" data-scroll-target="#simple-linear-regression-model-fitting-and-interpretation-30-minutes">Simple linear regression model fitting and interpretation (~ 30 minutes)</a>
   <ul class="collapse">
-  <li><a href="#partial-f-tests" id="toc-partial-f-tests" class="nav-link" data-scroll-target="#partial-f-tests">Partial F-Tests</a></li>
-  <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
-  <li><a href="#answer-7" id="toc-answer-7" class="nav-link" data-scroll-target="#answer-7">Answer</a></li>
-  <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
-  <li><a href="#answer-8" id="toc-answer-8" class="nav-link" data-scroll-target="#answer-8">Answer</a></li>
-  <li><a href="#question-3-1" id="toc-question-3-1" class="nav-link" data-scroll-target="#question-3-1">Question 3</a></li>
-  <li><a href="#answer-9" id="toc-answer-9" class="nav-link" data-scroll-target="#answer-9">Answer</a></li>
-  <li><a href="#question-4-1" id="toc-question-4-1" class="nav-link" data-scroll-target="#question-4-1">Question 4</a></li>
-  <li><a href="#answer-10" id="toc-answer-10" class="nav-link" data-scroll-target="#answer-10">Answer</a></li>
-  <li><a href="#question-5-1" id="toc-question-5-1" class="nav-link" data-scroll-target="#question-5-1">Question 5</a></li>
-  <li><a href="#answer-11" id="toc-answer-11" class="nav-link" data-scroll-target="#answer-11">Answer</a></li>
-  <li><a href="#question-6-1" id="toc-question-6-1" class="nav-link" data-scroll-target="#question-6-1">Question 6</a></li>
-  <li><a href="#answer-12" id="toc-answer-12" class="nav-link" data-scroll-target="#answer-12">Answer</a></li>
+  <li><a href="#analysis-for-bird-abundance-and-area-of-forest-patch" id="toc-analysis-for-bird-abundance-and-area-of-forest-patch" class="nav-link" data-scroll-target="#analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
-  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">Review</a>
+  </ul></li>
+  <li><a href="#multiple-linear-regression-30-minutes" id="toc-multiple-linear-regression-30-minutes" class="nav-link" data-scroll-target="#multiple-linear-regression-30-minutes">Multiple linear regression (~ 30 minutes)</a>
+  <ul class="collapse">
+  <li><a href="#analysis-for-runoff-and-precipitation-in-bishop-california" id="toc-analysis-for-runoff-and-precipitation-in-bishop-california" class="nav-link" data-scroll-target="#analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
   </ul></li>
@@ -272,22 +249,36 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
+<section id="welcome-to-week-7" class="level1">
+<h1>Welcome to week 7!</h1>
+<p>This week’s lab will give you some practice fitting and interpreting Simple Linear Regression (SLR) and Multiple Linear Regression (MLR) models.</p>
+<p>This will prepare you for next week’s content where we will seek to improve our models, and then in week 9 we will use improved models for prediction.</p>
 <section id="learning-outcomes" class="level2">
 <h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
-<p>In this lab, you will work towards achieving learning outcomes <a href="">L03</a>, and <a href="">L05</a>.</p>
-<section id="lab-objectives" class="level3">
-<h3 class="anchored" data-anchor-id="lab-objectives">Lab objectives</h3>
-<p>In this lab, we will:</p>
+<p>This module links to the following unit learning outcomes:</p>
+<ul>
+<li><p>LO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data</p></li>
+<li><p>LO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R</p></li>
+<li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
+</ul>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p>By the end of this lab, students should be able to:</p>
 <ul class="task-list">
-<li><label><input type="checkbox">Identify best predictors for model - Exercise 1</label></li>
-<li><label><input type="checkbox">Fit model and check assumptions - Exercise 1</label></li>
-<li><label><input type="checkbox">Interpret model output - Exercise 1</label></li>
+<li><label><input type="checkbox">Fit a simple linear regression model</label></li>
+<li><label><input type="checkbox">Assess model assumptions and apply transformations when needed</label></li>
+<li><label><input type="checkbox">Interpret model parameters and fit statistics</label></li>
+<li><label><input type="checkbox">Fit a multiple linear regression model (<strong>different structure</strong>)</label></li>
+<li><label><input type="checkbox">Assess model assumptions, recalling key differences between MLR and SLR (<strong>collinearity</strong>)</label></li>
+<li><label><input type="checkbox">Determine the most suitable fit statistics for assessing the fit of a MLR model(<strong>r-sq vs adj</strong>)</label></li>
+<li><label><input type="checkbox">Write a conclusion on your findings</label></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -299,12 +290,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please work on this exercise by creating your own R Markdown file.</p>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
 </div>
 </div>
 </section>
-<section id="preparation" class="level3">
-<h3 class="anchored" data-anchor-id="preparation">Preparation</h3>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">Install or update the <code>performance</code> package</label></li>
 </ul>
@@ -345,11 +336,371 @@ Tip
 </div>
 </div>
 </div>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Loyn_SLR.xlsx</code></td>
+<td>Exercise 1</td>
+<td><a href="data/Loyn_SLR.xlsx">Download</a></td>
+</tr>
+<tr class="even">
+<td><code>california_streamflow.xlsx</code></td>
+<td>Exercise 2</td>
+<td><a href="data/california_streamflow.xlsx">Download</a></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
-<section id="exercise-1-modelling-bird-abundance" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-modelling-bird-abundance">Exercise 1: Modelling bird abundance</h2>
-<p>We will now use the transformed data in <code>loyn</code> for this exercise. If you have not already figured out how to perform the transformation, or if something is wrong, you may use the <code>loyn</code> tab in the <code>mlr.xlsx</code> MS Excel document. Alternatively, the code to convert the data is below.</p>
+</section>
+<section id="simple-linear-regression-model-fitting-and-interpretation-30-minutes" class="level1 page-columns page-full">
+<h1>Simple linear regression model fitting and interpretation (~ 30 minutes)</h1>
+<p>Simple linear regression is a statistical method that allows us to investigate the relationship between two continuous variables. It is a powerful tool for understanding how one variable (the predictor) influences another variable (the response). Often a simple linear regression is the most appropriate model, so it is worth understanding.</p>
+<p>Key points to follow:</p>
+<ul>
+<li>State the model and hypotheses</li>
+<li>Conduct exploratory data analysis (EDA) to understand the data and relationships between variables. This includes correlation analysis and scatterplots.</li>
+<li>Fit the model</li>
+<li>Check the assumptions of the model and apply transformations if needed</li>
+<li>Interpret the model parameters and fit statistics</li>
+</ul>
+<p>Good luck!</p>
+<section id="analysis-for-bird-abundance-and-area-of-forest-patch" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="analysis-for-bird-abundance-and-area-of-forest-patch">Analysis for bird abundance and area of forest patch</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/pen_ash-mph8XzVCVkw-unsplash.jpg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Kookaburra sitting on a branch. Photo by <a href="https://unsplash.com/photos/a-kookaburra-bird-perches-on-a-tree-branch-mph8XzVCVkw">pen_ash on Unsplash</a></figcaption>
+</figure>
+</div>
+<p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
+<p>The data is in the <strong>Loyn_SLR.xlsx</strong> file.</p>
+<p>Variables are as follows:</p>
+<ul>
+<li>ABUND: Bird abundance within each forest patch (number of birds)</li>
+<li>AREA: Area of each forest patch (ha)</li>
+</ul>
+<p>Original data source: Loyn, R. H. (1987). Effects of patch area and habitat on bird abundances, species numbers, and tree health in fragmented Victorian forests. In <em>Nature Conservation: the role of remnants of native vegetation</em> eds.&nbsp;D.S. Saunders, G.W. Arnold, A.A. Burbridge, &amp;A.J.M. Hopkins, pp.&nbsp;65-77. Surrey Beatty and Sons.</p>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
+<p>Remember: Null hypothesis = no change, no slope, therefore no relationship.</p>
+<p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</p>
+<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
+<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+</section>
+<section id="solution" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution">Solution</h4>
+<section id="i-write-out-the-statistical-model-for-a-simple-linear-regression-and-define-it-in-terms-of-influence-of-forest-fragment-size-upon-bird-abundance." class="level5">
+<h5 class="anchored" data-anchor-id="i-write-out-the-statistical-model-for-a-simple-linear-regression-and-define-it-in-terms-of-influence-of-forest-fragment-size-upon-bird-abundance."><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance.</h5>
+<p>The statistical model for a simple linear regression is:</p>
+<p><span class="math display">
+y_{i} = \beta_0 + \beta_1x_i + \epsilon_{i}
+</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">y_{i}</span> is the response variable (abundance) for the <span class="math inline">i</span>th observation when the predictor X = <span class="math inline">x_i</span> (area of the patch)</li>
+<li><span class="math inline">\beta_0</span> is the intercept where the regression line crosses the y-axis (the expected abundance when patch area is 0)</li>
+<li><span class="math inline">\beta_1</span> is the slope of the regression line, which represents the change in abundance for a one-unit increase in patch area</li>
+<li><span class="math inline">\epsilon_{i}</span> is the random error term for the ith observation and is assumed to be normally distributed with mean 0 and constant variance</li>
+</ul>
+<p>OR if written in terms of the variables in our dataset, the model would be:</p>
+<p><span class="math display">
+Abundance = \beta_0 + \beta_1Area + \epsilon_{i}
+</span></p>
+</section>
+<section id="ii-state-the-hypotheses-you-will-be-testing-for-the-relationship-between-bird-abundance-and-patch-area." class="level5">
+<h5 class="anchored" data-anchor-id="ii-state-the-hypotheses-you-will-be-testing-for-the-relationship-between-bird-abundance-and-patch-area."><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</h5>
+<p>Remember: Null hypothesis = no change, no slope, therefore no relationship.</p>
+<p>The hypotheses for the relationship between bird abundance and patch area are:</p>
+<p><span class="math display">H_0 : \beta_1 = 0</span> <span class="math display">H_0 : \beta_1 \neq 0</span> Where <span class="math inline">\beta_1</span> is the slope of the regression line and represents the change in abundance for a one-unit increase in patch area.</p>
+</section>
+<section id="iii-read-in-the-dataset-and-conduct-some-exploratory-data-analysis-upon-your-two-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5">
+<h5 class="anchored" data-anchor-id="iii-read-in-the-dataset-and-conduct-some-exploratory-data-analysis-upon-your-two-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the dataset and conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
+<p>Read in the data</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load library if needed</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Import the data</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/Loyn_SLR.xlsx"</span>, <span class="st">"Loyn_SLR"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># check</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">glimpse</span>(loyn) <span class="co"># could also use str() or head() to look at the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 56
+Columns: 2
+$ ABUND &lt;dbl&gt; 5.3, 2.0, 1.5, 17.1, 13.8, 14.1, 3.8, 2.2, 3.3, 3.0, 27.6, 1.8, …
+$ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0,…</code></pre>
+</div>
+</div>
+<p>We can see there are two variables, with 56 observations each. and both are numeric (coded as ‘dbl’ here, which is a type of numeric/continuous variable).</p>
+<p>Summary statistics</p>
+<p>I have calculated each summary statistic separately here to produce the output as a table. If you are exploring the data for yourself, you are welcome to use <code>summary()</code> function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(moments) <span class="co"># gives us the skewness() function</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>Abundance <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(loyn<span class="sc">$</span>ABUND),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="at">median =</span> <span class="fu">median</span>(loyn<span class="sc">$</span>ABUND),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="at">min =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>ABUND),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="at">max =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>ABUND),</span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(loyn<span class="sc">$</span>ABUND),</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(loyn<span class="sc">$</span>ABUND)</span>
+<span id="cb7-10"><a href="#cb7-10"></a>)</span>
+<span id="cb7-11"><a href="#cb7-11"></a></span>
+<span id="cb7-12"><a href="#cb7-12"></a>Area <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(loyn<span class="sc">$</span>AREA),</span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="at">median =</span> <span class="fu">median</span>(loyn<span class="sc">$</span>AREA),</span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="at">min =</span> <span class="fu">min</span>(loyn<span class="sc">$</span>AREA),</span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="at">max =</span> <span class="fu">max</span>(loyn<span class="sc">$</span>AREA),</span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(loyn<span class="sc">$</span>AREA),</span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(loyn<span class="sc">$</span>AREA)</span>
+<span id="cb7-19"><a href="#cb7-19"></a>)</span>
+<span id="cb7-20"><a href="#cb7-20"></a></span>
+<span id="cb7-21"><a href="#cb7-21"></a>summary_loyn <span class="ot">=</span> <span class="fu">rbind</span>(Abundance, Area) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb7-22"><a href="#cb7-22"></a></span>
+<span id="cb7-23"><a href="#cb7-23"></a><span class="fu">kable</span>(summary_loyn, <span class="at">caption =</span> <span class="st">"Table 1. Summary statistics for bird abundance and area of forest patches"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 1. Summary statistics for bird abundance and area of forest patches</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">median</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">skewness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Abundance</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">39.6</td>
+<td style="text-align: right;">10.7</td>
+<td style="text-align: right;">-0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Area</td>
+<td style="text-align: right;">69.3</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">1771.0</td>
+<td style="text-align: right;">266.1</td>
+<td style="text-align: right;">5.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ol type="1">
+<li>Bird Abundance (aka number of birds counted)</li>
+</ol>
+<p>The mean bird abundance in forest patches is 19.5 and the median is 21.0 (Table 1). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of -0.28, which is close to 0, and the relatively symmetrical boxplot (Fig. 1), indicating a fairly symmetric distribution.</p>
+<p>Bird abundance ranges from a minimum of 1.5 to 39.6 birds and the standard deviation is 10.73, which indicates that there is quite a bit of variability in bird abundance across the patches. This is also evident in the wider interquartile range visible in the boxplot (fig.&nbsp;1).</p>
+<div class="cell" data-caption="Figure 1. Boxplot of bird abundance">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(loyn) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> ABUND)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Abundance"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Area of forest patches (in hectares, ha)</li>
+</ol>
+<p>The mean area is 69.3 ha (Table 1), which is very different to the median of 7.5 ha, suggesting a highly skewed distribution. This is further supported by the skewness coefficient of 5.5.</p>
+<p>We can also see this high amount of variability in the standard deviation of 266.1, and the area ranging from 0.1 ha to 1771 ha. The skewness and high amount of variation is most likely a result of two outliers present, visible in the boxplot (Fig. 2).</p>
+<div class="cell" data-caption="Figure 2. Boxplot of area of forest patches (ha)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>(loyn) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> AREA)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Area"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>       <span class="at">y =</span> <span class="st">"Area of forest patch (ha)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="iv-investigate-the-relationship-between-bird-abundance-and-patch-area.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots." class="level5">
+<h5 class="anchored" data-anchor-id="iv-investigate-the-relationship-between-bird-abundance-and-patch-area.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots."><em>(iv)</em> Investigate the relationship between bird abundance and patch area. Describe the relationship, supported by values (correlation coefficient) and plots.</h5>
+<p>Calculate the correlation coefficient</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">cor</span>(loyn<span class="sc">$</span>AREA, loyn<span class="sc">$</span>ABUND) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>) <span class="co"># calculate correlation |&gt; round to 2 decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.26</code></pre>
+</div>
+</div>
+<p>Generate a scatter plot</p>
+<div class="cell" data-caption="Figure 3. Scatterplot of Bird abundance vs area of forest patch (ha)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> loyn<span class="sc">$</span>AREA, <span class="at">y =</span> loyn<span class="sc">$</span>ABUND)) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bird abundance vs area of forest patch"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>       <span class="at">x =</span> <span class="st">"Area of forest patch (ha)"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The correlation coefficient is 0.26, which indicates a weak positive relationship between patch area and bird abundance.</p>
+<p>This is evident in the scatterplot (Fig. 3) where the relationship is not very clear, as most of the points clustered towards one side of the plot. This tells us that there is a high amount of variation in bird abundance for small patch areas, and mostly smaller areas of forest with two larger areas &gt;500 ha.</p>
+</section>
+<section id="v-fit-a-simple-linear-regression-model-to-the-data-with-bird-abundance-as-the-response-variable-and-patch-area-as-the-predictor-variable." class="level5">
+<h5 class="anchored" data-anchor-id="v-fit-a-simple-linear-regression-model-to-the-data-with-bird-abundance-as-the-response-variable-and-patch-area-as-the-predictor-variable."><em>(v)</em> Fit a simple linear regression model to the data, with bird abundance as the response variable and patch area as the predictor variable.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>loyn_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AREA, <span class="at">data =</span> loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables" class="level5">
+<h5 class="anchored" data-anchor-id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables"><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</h5>
+<p>HINT: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p>Use the <code>check_model()</code> function to check the assumptions of the model. You can also use plot(loyn_lm) to check the assumptions, but <code>check_model()</code> gives you a prettier output.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">check_model</span>(loyn_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Linearity: Line doesn’t follow the dashed line, indicating relationship may not be linear.<br>
+</p></li>
+<li><p>Independence: No clear pattern in the residuals vs fitted plot, suggesting that the residuals are independent.</p></li>
+<li><p>Normality of residuals: Most points follow the line, but there are some deviations at the tails, suggesting that the residuals may not be perfectly normally distributed.</p></li>
+<li><p>Equal variance: The reference line in the plot is not straight, and there is a funnel shape in the plot, suggesting that the variance of the residuals is not constant (heteroscedasticity).</p></li>
+<li><p>Influential observations: Hard to see, but there is a point lying outside the dashed lines, which suggests that there may be an influential observation in the data.</p></li>
+</ul>
+<p>Decision: Usually we would transform the response variable first if the assumptions aren’t met, but we know the Area variable is highly skewed, so it is worth transforming the Area variable to see if this improves the model fit.</p>
+<p><strong>Transform Area and refit</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">#I have used log10 transformation here</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>loyn<span class="sc">$</span>log10_AREA <span class="ot">&lt;-</span> <span class="fu">log10</span>(loyn<span class="sc">$</span>AREA)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co"># refit model with the transformed variable</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>loyn_lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> log10_AREA, <span class="at">data =</span> loyn)</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co"># recheck assumptions</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="fu">check_model</span>(loyn_lm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The assumptions of the model with the log10 transformed Area variable are much better. The relationship looks more linear, the residuals are more normally distributed, and there is less evidence of heteroscedasticity.</p>
+</section>
+<section id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area" class="level5">
+<h5 class="anchored" data-anchor-id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area"><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</h5>
+<p>Get the model summary of your final model (with the transformed variable)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(loyn_lm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = ABUND ~ log10_AREA, data = loyn)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-13.380  -6.119   1.372   4.631  14.255 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   10.401      1.489   6.984 4.38e-09 ***
+log10_AREA     9.778      1.209   8.086 7.18e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7.286 on 54 degrees of freedom
+Multiple R-squared:  0.5477,    Adjusted R-squared:  0.5393 
+F-statistic: 65.38 on 1 and 54 DF,  p-value: 7.178e-11</code></pre>
+</div>
+</div>
+<ol type="1">
+<li><p>State the model equation Model equation is <span class="math inline">Abundance = 10.401 + 9.778 log10(Area)</span></p></li>
+<li><p>Interpretation of regression coefficients For every 1 unit change in log10(Area), we expect a 9.778 increase in bird abundance.</p></li>
+<li><p>P-value The P-value for the slope coefficient is &lt; 0.001, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_1 \neq 0</span>) and conclude that log10(Area) is a significant predictor of bird abundance.</p></li>
+<li><p>R-squared As we only have one predictor in the model, we can use the r<sup>2</sup> value rather than the adjusted r<sup>2</sup>.</p></li>
+</ol>
+<p>The r<sup>2</sup> value is 0.55, which means that 55% of the variation in bird abundance can be explained by log10(Area). This is not really a strong r<sup>2</sup> value, so it suggests that there are other factors influencing bird abundance that are not included in the model.</p>
+</section>
+<section id="viii-write-a-concluding-statement-on-your-findings." class="level5">
+<h5 class="anchored" data-anchor-id="viii-write-a-concluding-statement-on-your-findings."><em>(viii)</em> Write a concluding statement on your findings.</h5>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p>Recall that our original aim was to investigate the influence of forest fragment size upon bird abundance. Therefore we would say something like:</p>
+<p>We fitted a linear model (estimated using OLS) to investigate the relationship between bird abundance and forest fragment size (area) upon bird abundance (equation: abundance = <span class="math inline">\beta_0 + \beta_1 \cdot area</span>).</p>
+<p>The model explains a statistically significant and moderate proportion of variance (R<sup>2</sup> = 0.55, F(1, 54) = 65.38, p &lt; .001). Within this model, the effect of forest patch area is statistically significant and positive (<span class="math inline">\beta_1</span> = 9.778, t(54) = 8.086, p &lt; .001).</p>
+</section>
+</section>
+</section>
+</section>
+<section id="multiple-linear-regression-30-minutes" class="level1 page-columns page-full">
+<h1>Multiple linear regression (~ 30 minutes)</h1>
+<p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
+<ul>
+<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
+<li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
+<li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
+<li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
+<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables don’t actually improve the model fit. We will explain this more next week.</p></li>
+</ul>
+<p><br></p>
+<section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: <a href="https://stock.adobe.com/au/search?k=bishop+california&amp;asset_id=668401555">Adobe Stock</a></figcaption>
+</figure>
+</div>
+<p>You are a hydrologist tasked with analysing legacy data to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California. The dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</p>
+<p>The data is in the <strong>california_streamflow.xlsx</strong> file.</p>
+<p>Variables are as follows:</p>
+<ul>
+<li><code>lake_sabrina</code>: Precipitation recorded at Lake Sabrina (mm)</li>
+<li><code>pine_creek</code>: Precipitation recorded at Big Pine Creek (mm),</li>
+<li><code>rock_creek</code>: Precipitation recorded at Rock Creek (mm)</li>
+<li><code>runoff_volume</code>: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.</li>
+</ul>
+<p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
+<p>Data source: Hollett, K.J., Danskin, F.M., McCaffrey, W.F., and Walti, S.L., 1991. Geology and water resources of Owens Valley, California. U.S. Geological Survey Water-Supply Paper 2370-H.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -360,218 +711,305 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is the same data we used in the walkthrough exercise</p>
+<p>This week we will focus on getting the model running and practice interpretation of the output. Next week we will focus on working out the most suitable model.</p>
 </div>
 </div>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
+<p>You can write it out in words and/or in mathematical notation.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>
+<p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
+<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
+<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
+<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+</section>
+<section id="solution-1" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
+<section id="i-write-out-the-statistical-model-for-a-multiple-linear-regression-and-define-it-in-terms-of-the-data-precipitation-at-each-site-vs-runoff-volume-at-bishop." class="level5">
+<h5 class="anchored" data-anchor-id="i-write-out-the-statistical-model-for-a-multiple-linear-regression-and-define-it-in-terms-of-the-data-precipitation-at-each-site-vs-runoff-volume-at-bishop."><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</h5>
+<p>You can write it out in words and/or in mathematical notation.</p>
+<p>The statistical model for a multiple linear regression with 3 predictors is:</p>
+<p><span class="math display">
+y_{i} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \epsilon_{i}
+</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">y_{i}</span> is the response variable (runoff volume) for the <span class="math inline">i</span>th observation when the predictor X = <span class="math inline">x_i</span> (precipitation at a site)</li>
+<li><span class="math inline">\beta_0</span> is the intercept where the regression line crosses the y-axis</li>
+<li><span class="math inline">\beta_1</span> is the slope of the regression line for the first predictor, which represents the change in runoff volume for a one-unit increase in precipitation at lake_sabrina</li>
+<li><span class="math inline">\beta_2</span> is the slope of the regression line for the first predictor, which represents the change in runoff volume for a one-unit increase in precipitation at pine_creek</li>
+<li><span class="math inline">\beta_3</span> is the slope of the regression line for the first predictor, which represents the change in runoff volume for a one-unit increase in precipitation at rock_creek</li>
+<li><span class="math inline">\epsilon_{i}</span> is the random error term for the ith observation and is assumed to be normally distributed with mean 0 and constant variance</li>
+</ul>
+<p>OR if written in terms of the variables in our dataset, the model would be:</p>
+<p><span class="math display">
+\text{Runoff volume} = \beta_0 + \beta_1\cdot \text{lake_sabrina} + \beta_2\cdot \text{pine_creek} + \beta_3\cdot \text{rock_creek} +  \epsilon_{i}
+</span></p>
+</section>
+<section id="ii-state-the-hypotheses-you-will-be-testing-for-the-relationship-between-each-site-and-runoff-volume." class="level5">
+<h5 class="anchored" data-anchor-id="ii-state-the-hypotheses-you-will-be-testing-for-the-relationship-between-each-site-and-runoff-volume."><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</h5>
+<p>In multiple linear regression we are testing multiple hypotheses (one per predictor + one for the overall model).</p>
+<p>Therefore:</p>
+<ol type="1">
+<li>Relationship between precipitation at lake_sabrina and runoff volume: <span class="math display">H_0 : \beta_1 = 0</span> <span class="math display">H_1 : \beta_1 \neq 0</span></li>
+<li>Precipitation at pine_creek and runoff volume: <span class="math display">H_0 : \beta_2 = 0</span> <span class="math display">H_1 : \beta_2 \neq 0</span></li>
+<li>Precipitation at rock_creek and runoff volume:</li>
+</ol>
+<p><span class="math display">H_0 : \beta_3 = 0</span> <span class="math display">H_1 : \beta_3 \neq 0</span> 4. Overal model:</p>
+<p><span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = 0</span> <span class="math display">H_1 : \text{at least one } \beta_i \neq 0</span></p>
+</section>
+<section id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5">
+<h5 class="anchored" data-anchor-id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
+<p>Read in the data</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Load library if needed</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># reset the data import just in case it has been modified</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span>, <span class="st">"Loyn"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># make transformations</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>loyn <span class="ot">&lt;-</span> loyn <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb5-9"><a href="#cb5-9"></a>        <span class="at">L10AREA =</span> <span class="fu">log10</span>(AREA),</span>
-<span id="cb5-10"><a href="#cb5-10"></a>        <span class="at">L10DIST =</span> <span class="fu">log10</span>(DIST),</span>
-<span id="cb5-11"><a href="#cb5-11"></a>        <span class="at">L10LDIST =</span> <span class="fu">log10</span>(LDIST)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>    )</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co"># check</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">glimpse</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># read in the data</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3"></a></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 56
-Columns: 10
-$ ABUND    &lt;dbl&gt; 5.3, 2.0, 1.5, 17.1, 13.8, 14.1, 3.8, 2.2, 3.3, 3.0, 27.6, 1.…
-$ AREA     &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2…
-$ YR.ISOL  &lt;dbl&gt; 1968, 1920, 1900, 1966, 1918, 1965, 1955, 1920, 1965, 1900, 1…
-$ DIST     &lt;dbl&gt; 39, 234, 104, 66, 246, 234, 467, 284, 156, 311, 66, 93, 39, 4…
-$ LDIST    &lt;dbl&gt; 39, 234, 311, 66, 246, 285, 467, 1829, 156, 571, 332, 93, 39,…
-$ GRAZE    &lt;dbl&gt; 2, 5, 5, 3, 5, 3, 5, 5, 4, 5, 3, 5, 2, 1, 5, 5, 3, 3, 3, 2, 2…
-$ ALT      &lt;dbl&gt; 160, 60, 140, 160, 140, 130, 90, 60, 130, 130, 210, 160, 210,…
-$ L10AREA  &lt;dbl&gt; -1.0000000, -0.3010300, -0.3010300, 0.0000000, 0.0000000, 0.0…
-$ L10DIST  &lt;dbl&gt; 1.591065, 2.369216, 2.017033, 1.819544, 2.390935, 2.369216, 2…
-$ L10LDIST &lt;dbl&gt; 1.591065, 2.369216, 2.492760, 1.819544, 2.390935, 2.454845, 2…</code></pre>
+<pre><code>Rows: 43
+Columns: 4
+$ lake_sabrina  &lt;dbl&gt; 1.958717, 2.087881, 1.981175, 2.054169, 2.102934, 2.1568…
+$ pine_creek    &lt;dbl&gt; 2.017618, 2.282781, 2.383471, 2.451719, 2.618086, 2.3532…
+$ rock_creek    &lt;dbl&gt; 2.275823, 2.450548, 2.491194, 2.585246, 2.706948, 2.3159…
+$ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.9210…</code></pre>
 </div>
 </div>
-<section id="best-single-predictor" class="level3">
-<h3 class="anchored" data-anchor-id="best-single-predictor">Best single predictor?</h3>
-</section>
-<section id="question-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
-<p>Obtain the correlation between ABUND and all of the predictor variables using <code>cor()</code>. Based on these, what would you expect to be the best single predictor of ABUND?</p>
-</section>
+<p>We can see there are four variables, with 43 observations each. All variables are numeric (coded as ‘dbl’ here, which is a type of numeric/continuous variable).</p>
+<p>Summary statistics</p>
+<p>I have calculated each summary statistic separately here to produce the output as a table. If you are exploring the data for yourself, you are welcome to use <code>summary()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">cor</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(moments) <span class="co"># gives us the skewness() function</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>runoff_volume <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>runoff_volume)</span>
+<span id="cb20-10"><a href="#cb20-10"></a>)</span>
+<span id="cb20-11"><a href="#cb20-11"></a></span>
+<span id="cb20-12"><a href="#cb20-12"></a>lake_sabrina <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb20-13"><a href="#cb20-13"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb20-14"><a href="#cb20-14"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb20-15"><a href="#cb20-15"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb20-16"><a href="#cb20-16"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb20-17"><a href="#cb20-17"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb20-18"><a href="#cb20-18"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>lake_sabrina)</span>
+<span id="cb20-19"><a href="#cb20-19"></a>)</span>
+<span id="cb20-20"><a href="#cb20-20"></a></span>
+<span id="cb20-21"><a href="#cb20-21"></a>pine_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb20-22"><a href="#cb20-22"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb20-23"><a href="#cb20-23"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb20-24"><a href="#cb20-24"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb20-25"><a href="#cb20-25"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb20-26"><a href="#cb20-26"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb20-27"><a href="#cb20-27"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>pine_creek)</span>
+<span id="cb20-28"><a href="#cb20-28"></a>)</span>
+<span id="cb20-29"><a href="#cb20-29"></a></span>
+<span id="cb20-30"><a href="#cb20-30"></a>rock_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb20-31"><a href="#cb20-31"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb20-32"><a href="#cb20-32"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb20-33"><a href="#cb20-33"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb20-34"><a href="#cb20-34"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb20-35"><a href="#cb20-35"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb20-36"><a href="#cb20-36"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>rock_creek)</span>
+<span id="cb20-37"><a href="#cb20-37"></a>)</span>
+<span id="cb20-38"><a href="#cb20-38"></a></span>
+<span id="cb20-39"><a href="#cb20-39"></a>summary_creeks <span class="ot">=</span> <span class="fu">rbind</span>(runoff_volume, lake_sabrina, pine_creek, rock_creek) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb20-40"><a href="#cb20-40"></a></span>
+<span id="cb20-41"><a href="#cb20-41"></a><span class="fu">kable</span>(summary_creeks, <span class="at">caption =</span> <span class="st">"Table 2. Summary statistics for runoff volume (ML/year) and precipitation at Lake Sabrina, Pine Creek, and Rock Creek (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 2. Summary statistics for runoff volume (ML/year) and precipitation at Lake Sabrina, Pine Creek, and Rock Creek (mm)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">median</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">skewness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">runoff_volume</td>
+<td style="text-align: right;">4.96</td>
+<td style="text-align: right;">4.93</td>
+<td style="text-align: right;">4.71</td>
+<td style="text-align: right;">5.26</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lake_sabrina</td>
+<td style="text-align: right;">2.03</td>
+<td style="text-align: right;">2.05</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">2.48</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">-0.44</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pine_creek</td>
+<td style="text-align: right;">2.45</td>
+<td style="text-align: right;">2.38</td>
+<td style="text-align: right;">2.01</td>
+<td style="text-align: right;">3.04</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rock_creek</td>
+<td style="text-align: right;">2.45</td>
+<td style="text-align: right;">2.45</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: right;">2.80</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">-0.03</td>
+</tr>
+</tbody>
+</table>
 </div>
-<section id="answer" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer">Answer</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">cor</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>               ABUND         AREA      YR.ISOL       DIST       LDIST
-ABUND     1.00000000  0.255970206  0.503357741  0.2361125  0.08715258
-AREA      0.25597021  1.000000000 -0.001494192  0.1083429  0.03458035
-YR.ISOL   0.50335774 -0.001494192  1.000000000  0.1132175 -0.08331686
-DIST      0.23611248  0.108342870  0.113217524  1.0000000  0.31717234
-LDIST     0.08715258  0.034580346 -0.083316857  0.3171723  1.00000000
-GRAZE    -0.68251138 -0.310402417 -0.635567104 -0.2558418 -0.02800944
-ALT       0.38583617  0.387753885  0.232715406 -0.1101125 -0.30602220
-L10AREA   0.74003580  0.584651024  0.278414517  0.3047850  0.33680642
-L10DIST   0.12672333  0.163054319 -0.019572228  0.8233190  0.29365797
-L10LDIST  0.11812448  0.101607829 -0.161116108  0.4968169  0.82059568
-               GRAZE        ALT    L10AREA     L10DIST    L10LDIST
-ABUND    -0.68251138  0.3858362  0.7400358  0.12672333  0.11812448
-AREA     -0.31040242  0.3877539  0.5846510  0.16305432  0.10160783
-YR.ISOL  -0.63556710  0.2327154  0.2784145 -0.01957223 -0.16111611
-DIST     -0.25584182 -0.1101125  0.3047850  0.82331904  0.49681692
-LDIST    -0.02800944 -0.3060222  0.3368064  0.29365797  0.82059568
-GRAZE     1.00000000 -0.4071671 -0.5590886 -0.14263922 -0.03399082
-ALT      -0.40716705  1.0000000  0.2751428 -0.21900701 -0.27404380
-L10AREA  -0.55908864  0.2751428  1.0000000  0.30216662  0.38247952
-L10DIST  -0.14263922 -0.2190070  0.3021666  1.00000000  0.60386637
-L10LDIST -0.03399082 -0.2740438  0.3824795  0.60386637  1.00000000</code></pre>
 </div>
-</div>
-<p>The best single predictor would be <code>L10AREA</code> as this has the highest <em>r</em> (r = 0.74)</p>
-</section>
-<section id="assumptions-and-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="assumptions-and-interpretation">Assumptions and interpretation</h3>
-</section>
-<section id="question-2" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
-<p>Use multiple linear regression to see whether ABUND can be predicted from L10AREA and GRAZE. Are the assumptions met? Is there a significant relationship? <em>Note: we are using these 2 predictors as they have the largest absolute correlations. Use <code>lm()</code> and specify the model as <code>ABUND ~ L10AREA + GRAZE</code>.</em></p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>lm.mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> GRAZE <span class="sc">+</span> L10AREA, <span class="at">data =</span> loyn)</span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">plot</span>(lm.mod1)</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb10-6"><a href="#cb10-6"></a></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="fu">summary</span>(lm.mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="answer-1" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-1">Answer</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>lm.mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> GRAZE <span class="sc">+</span> L10AREA, <span class="at">data =</span> loyn)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">plot</span>(lm.mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Runoff volume (ML/year)</li>
+</ol>
+<p>The mean runoff volume recorded at the site near Bishop, California is 4.96 ML/year and the median is 4.93 ML/year (Table 2). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of 0.29, which is close to 0, and the relatively symmetrical boxplot (Fig. 3), indicating a fairly symmetric distribution. The median does seem to sit closer to the first quartile than the third quartile, suggesting a slight skew, but everything else seems to indicate a fairly normal distribution.</p>
+<p>Runoff volume ranges from a minimum of 4.71 ML/year to 5.26 ML/year and the standard deviation is 0.14, which indicates that the spread of values is quite small.</p>
+<div class="cell" data-caption="Figure 3. Boxplot of Runoff volume (ML/year)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> runoff_volume)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Runoff volume (ML/year)"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>       <span class="at">y =</span> <span class="st">"Runoff volume (ML/year)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/mlmod-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">summary</span>(lm.mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = ABUND ~ GRAZE + L10AREA, data = loyn)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--13.4296  -4.3186  -0.6323   4.1273  13.0739 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  21.6029     3.0917   6.987 4.73e-09 ***
-GRAZE        -2.8535     0.7125  -4.005 0.000195 ***
-L10AREA       6.8901     1.2900   5.341 1.98e-06 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 6.444 on 53 degrees of freedom
-Multiple R-squared:  0.6527,    Adjusted R-squared:  0.6396 
-F-statistic: 49.81 on 2 and 53 DF,  p-value: 6.723e-13</code></pre>
 </div>
-</div>
-<p>This is a significant model as both b1 and b2 are significant and the model is significant.</p>
-<p>The residuals look reasonable. They are approximately normally distributed (both right hand plots), but possibly the variance is not totally constant and there are possibly a few values with high leverage (left hand plots).</p>
-</section>
-<section id="question-3" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
-<p>How good is the model based on the (i) <em>r</em><sup>2</sup> (ii) adjusted <em>r</em><sup>2</sup>? Use <code>summary()</code>.</p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>r.squared</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">summary</span>(lm.mod1)<span class="sc">$</span>adj.r.squared</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="answer-2" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-2">Answer</h3>
-<p>The Adjusted <em>r</em><sup>2</sup> is lower than the <em>r</em><sup>2</sup>, but we would opt for the adjusted <em>r</em><sup>2</sup> as it takes the number of predictors into account. Overall the model is ok, explaining 64.0% of variation in Abundance.</p>
-</section>
-<section id="question-4" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
-<p>Which variable(s) has the most significant effect(s)? <em>(Refer specifically to the t probabilities in the table of predictors and their estimated parameters or coefficients in the output of <code>summary()</code>)</em>. Interpret the p-values in terms of dropping predictor variables.</p>
-</section>
-<section id="answer-3" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-3">Answer</h3>
-<p>Both <code>L10AREA</code> and <code>GRAZE</code> are highly significant, <code>L10AREA</code> is the most significant. In terms of effect, a 1 unit change in <code>GRAZE</code> results in a -2.9 decrease in abundance (with <code>L10AREA</code> remaining constant), while a 1 unit change in <code>L10AREA</code>, (therefore a 10 unit change in <code>AREA</code>) results in a 6.9 increase in abundance (<code>GRAZE</code> holding constant).</p>
-</section>
-</section>
-<section id="question-5" class="level2 question">
-<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
-<p>Repeat the multiple regression, but this time include YRS.ISOL as a predictor variable (it has the 3rd largest absolute correlation). This will allow you to assess the effect of YRS.ISOL with the other variables taken into account.</p>
-</section>
-<section id="answer-4" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-4">Answer</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>lm.mod2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> GRAZE <span class="sc">+</span> L10AREA <span class="sc">+</span> YR.ISOL, <span class="at">data=</span>loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="question-6" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
-<p>Check assumptions, do the residuals look ok? If you are happy with the assumptions, you can proceed to interpret the model output.</p>
-</section>
-<section id="answer-5" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-5">Answer</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">plot</span>(lm.mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Precipitation at Lake Sabrina (mm)</li>
+</ol>
+<p>The mean precipitation recorded at Lake Sabrina is 2.03 mm and the median is 2.05 mm (Table 2). These are quite similar, but given the narrow range of values the difference could be quite large. We can see this in the skewness coefficient of -0.44, which suggests the distribution is symmetrical, but there is a slight skew to the left. Upon visual inspection of the boxplot (Fig. 4) we can see there are a number of outliers which may be influencing this skew.</p>
+<p>Precipitation at Lake Sabrina ranged from a minimum of 1.6 mm to 2.5 mm and the standard deviation is 0.20, indicating that there is some variability in precipitation at Lake Sabrina across the years.</p>
+<div class="cell" data-caption="Figure 4. Boxplot of precipitation at Lake Sabrina (mm)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> lake_sabrina)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Lake Sabrina (mm)"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The residuals look OK, but YR.ISOL is borderline significant (p = 0.0768).</p>
-</section>
-<section id="question-7" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-7">Question 7</h3>
-<p>Compare the <em>r</em><sup>2</sup> and adjusted <em>r</em><sup>2</sup> values with those you calculated for the 2 predictor model, Which is the better model? Why?</p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(lm.mod2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>Precipitation at Pine Creek (mm)</li>
+</ol>
+<p>The mean precipitation at Pine Creek was 2.45 mm and the median was 2.38 mm. The mean and median are similar and the skewness coefficient of 0.19 suggests the distribution is symmetrical. Upon visual inspection of the boxplot (Fig. 5) we can see the median lies closer to the first quartile, but otherwise the boxplot looks fairly symmetrical.</p>
+<p>Precipitation at Pine Creek ranged from a minimum of 2.01 mm to a maximum of 3.04 mm and the standard deviation is 0.24, indicating that there is some variability in precipitation at Pine Creek across the years.</p>
+<div class="cell" data-caption="Figure 5. Boxplot of precipitation at Pine Creek (mm)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> pine_creek)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Pine Creek (mm)"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<section id="answer-6" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-6">Answer</h3>
-<p>Both of these are greater than for model in step 3, so this is a better model.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Precipitation at Rock Creek (mm)</li>
+</ol>
+<p>The mean precipitation at Rock Creek was the same as the median (2.45 mm), and the skewness coefficient of -0.03 suggests the distribution is very symmetrical. Upon visual inspection of the boxplot (Fig. 6) we can see the median lies exactly in the middle of the box, and there are no outliers, suggesting a very symmetrical distribution.</p>
+<p>Precipitation ranged from 2.04 mm to 2.80 mm and the standard deviation is 0.18, indicating that there was a small amount of variability in precipitation at Rock Creek across the years.</p>
+<div class="cell" data-caption="Figure 6. Boxplot of precipitation at Rock Creek (mm)">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> rock_creek)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Rock Creek (mm)"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="exercise-2-california-streamflow" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-california-streamflow">Exercise 2: California streamflow</h2>
-<p>The following dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. I have reduced this to three variables labelled <code>lake_sabrina</code> (Lake Sabrina), <code>pine_creek</code> (Big Pine Creek), <code>rock_creek</code> (Rock Creek), and the dependent variable stream runoff volume (measured in ML/year) at a site near Bishop, California (labelled <code>runoff_volume</code>).</p>
-<p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
-<p>Start with a full model and manually remove the variables one at a time, checking every time whether removal of a variable actually improves the model.</p>
+<section id="iv-investigate-the-relationship-between-each-of-your-variables.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots." class="level5">
+<h5 class="anchored" data-anchor-id="iv-investigate-the-relationship-between-each-of-your-variables.-describe-the-relationship-supported-by-values-correlation-coefficient-and-plots."><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</h5>
+<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
+<p>It is good to have a numeric value (correlation coefficient) and a visual (scatterplot) to investigate the relationship between each of the variables.</p>
+<p>You can do this separately using <code>cor()</code> and <code>pairs()</code>, or you can use the <code>pairs.panels()</code> function from the <code>psych</code> package to get both the correlation coefficients and the scatterplots in one go.</p>
+<ol type="1">
+<li>separately</li>
+</ol>
+<p>Correlation coefficient</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># read in the data</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">names</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">cor</span>(stream_data) <span class="co"># calculate correlation |&gt; round to 2 decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "lake_sabrina"  "pine_creek"    "rock_creek"    "runoff_volume"</code></pre>
+<pre><code>              lake_sabrina pine_creek rock_creek runoff_volume
+lake_sabrina    1.00000000 0.07848517 0.09054996     0.1649284
+pine_creek      0.07848517 1.00000000 0.88381452     0.8929251
+rock_creek      0.09054996 0.88381452 1.00000000     0.9194688
+runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 </div>
 </div>
+<p>Pairs plot</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>s.mod_full <span class="ot">&lt;-</span><span class="fu">lm</span>(runoff_volume<span class="sc">~</span>., <span class="at">data=</span>stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">summary</span>(s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>All in one</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interpretation</p>
+<p>Stream runoff volume is highly correlated with rock_creek (r = 0.92) and with pine_creek (r = 0.88), but weakly correlated with lake_sabrina (r = 0.16). This is also evident in the scatterplots betweeen runoff_volume and rock_creek, and runoff_volume and pine_creek, which show a clear positive relationship, while the scatterplot between runoff_volume and lake_sabrina shows points scattered about the plot, indicating no clear relationship.</p>
+<p>We can also see a strong correlation between pine_creek and rock_creek (r = 0.88), which may indicate collinearity between these two predictor variables. This is also evident in the scatterplot between pine_creek and rock_creek, which shows a clear positive relationship.</p>
+<p>Lake Sabrina does not appear to be correlated with pine_creek or rock_creek (r = 0.08 and 0.09, respectively), which is also evident in the scatterplots which show points scattered about the plot rather than following a clear trend.</p>
+</section>
+<section id="v-fit-a-multiple-linear-regression-model-to-the-data-with-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables." class="level5">
+<h5 class="anchored" data-anchor-id="v-fit-a-multiple-linear-regression-model-to-the-data-with-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables."><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> ., <span class="at">data =</span> stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -595,117 +1033,117 @@ Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726
 F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<section id="partial-f-tests" class="level3">
-<h3 class="anchored" data-anchor-id="partial-f-tests">Partial F-Tests</h3>
-<p>The above analysis tells us that both <code>pine_creek</code> &amp; <code>rock_creek</code> are significant, according to the t-test, in the model and <code>lake_sabrina</code> is not? This involves performing Partial F-Tests as discussed in the lecture.</p>
-<p>This can be done in <strong>R</strong> by using <code>anova()</code> on two model objects. To be able to compare the models and run the anova, you need to make objects of all the possible model combinations you want to compare.</p>
+</section>
+<section id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-1" class="level5">
+<h5 class="anchored" data-anchor-id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-1"><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</h5>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>s.mod_reduced <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data=</span>stream_data)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">anova</span>(s.mod_reduced, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">check_model</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>The last row gives the results of the partial F-test.</p>
+</div>
+</div>
+<ul>
+<li><p>Linearity: Line mostly follows the dashed line, so we can say the relationship is mostly linear. There are some deviations at the tails, suggesting that the relationship may not be perfectly linear (is there a better model for this relationship?).</p></li>
+<li><p>Independence: No clear pattern in the residuals vs fitted plot, suggesting that the residuals are independent.</p></li>
+<li><p>Normality of residuals: Most points follow the line, but there are some deviations at the tails, suggesting that the residuals may not be perfectly normally distributed.</p></li>
+<li><p>Equal variance: The reference line in the plot relatively straight, suggesting that the variance of the residuals is constant.</p></li>
+<li><p>Influential observations: No points lying outside the contour lines, which suggests that there are no influential observations in the data.</p></li>
+<li><p>Collinearity: This is an additional assumption for Multiple Linear Regression. We can check for collinearity by looking at the correlation matrix (which we have already done) and by looking at the Variance Inflation Factor (VIF) values. VIF values greater than 5 or 10 indicate a potential problem with collinearity.</p></li>
+</ul>
+<p>We will explore collinearity and VIF more in next week’s lecture as it will help us fit a more appropriate model.</p>
+<p>Decision: No transformations needed BUT we are seeing an issue with collinearity.</p>
+<p>For now we can continue with this model and explore the output, keeping in mind that is is not perfect. We will explore how to deal with collinearity in next week’s lecture.</p>
 </section>
-<section id="question-1-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
-<p>Should we remove <code>lake_sabrina</code> from the model?</p>
-</section>
-<section id="answer-7" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-7">Answer</h3>
-<p>Yes, we should remove lake_sabrina as the p-value is &gt; 0.05 and opt for the simpler model.</p>
-</section>
-<section id="question-2-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-2-1">Question 2</h3>
-<p>Is the p-value for the f-test the same as for the t-test?</p>
-</section>
-<section id="answer-8" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-8">Answer</h3>
-<p>Yes, P-values for the t-statistic and for the Partial F-statistic are related (Partial F = t<sup>2</sup>)</p>
-</section>
-<section id="question-3-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-3-1">Question 3</h3>
-<p>Write out the hypotheses you are testing.</p>
-</section>
-<section id="answer-9" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-9">Answer</h3>
-<p>H<sub>0</sub>: <span class="math inline">\beta_{lake_sabrina} = 0</span><br>
-H<sub>1</sub>: <span class="math inline">\beta_{lake_sabrina} \neq 0</span></p>
-</section>
-<p>Perform a Partial F-Test to work out if the removal of <code>lake_sabrina</code> and <code>pine_creek</code> improves upon the full model.</p>
+<section id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-precipitation-at-each-site-and-runoff-volume-at-bishop-california" class="level5">
+<h5 class="anchored" data-anchor-id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-precipitation-at-each-site-and-runoff-volume-at-bishop-california"><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>s.mod_reduced2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">anova</span>(s.mod_reduced2, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
+<pre><code>
+Call:
+lm(formula = runoff_volume ~ ., data = stream_data)
 
-Model 1: runoff_volume ~ lake_sabrina + pine_creek
-Model 2: runoff_volume ~ lake_sabrina + pine_creek + rock_creek
-  Res.Df      RSS Df Sum of Sq     F    Pr(&gt;F)    
-1     40 0.150845                                 
-2     39 0.092166  1   0.05868 24.83 1.321e-05 ***
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.09885 -0.03331  0.01025  0.03359  0.09495 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   3.25716    0.12360  26.352  &lt; 2e-16 ***
+lake_sabrina  0.05631    0.03756   1.499  0.14185    
+pine_creek    0.21085    0.06756   3.121  0.00339 ** 
+rock_creek    0.43838    0.08798   4.983 1.32e-05 ***
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04861 on 39 degrees of freedom
+Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726 
+F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<section id="question-4-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-4-1">Question 4</h3>
-<p>Which variable should be added to the model containing rock_creek?</p>
+<ol type="1">
+<li>State the model equation Model equation is:</li>
+</ol>
+<p>$ = 3.257 + 0.05631 + 0.210 + 0.438 $</p>
+<ol start="2" type="1">
+<li>Interpretation of regression coefficients</li>
+</ol>
+<p><em>Holding all other variables constant:</em> (very important to include this)</p>
+<ul>
+<li><p>For every 1 unit change in precipitation at lake_sabrina, we expect a 0.056 increase in runoff_volume;</p></li>
+<li><p>For every 1 unit change in precipitation at pine_creek, we expect a 0.210 increase in runoff_volume;</p></li>
+<li><p>For every 1 unit change in precipitation at rock_creek, we expect a 0.438 increase in runoff_volume.</p></li>
+</ul>
+<ol start="3" type="1">
+<li>P-value</li>
+</ol>
+<p>When assessing the p-values, we must consider the p-value associated with each partial regression coefficient, as well as the overall model.</p>
+<ol type="a">
+<li>Relationship between precipitation at lake_sabrina and runoff volume:</li>
+</ol>
+<p>The P-value for the partial regression coefficient is &gt; 0.001, meaning we FAIL TO reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_1 = 0</span>) and conclude that precipitation at Lake Sabrina is NOT a significant predictor of runoff volume at the site near Bishop, California.</p>
+<ol start="2" type="a">
+<li>Precipitation at pine_creek and runoff volume:</li>
+</ol>
+<p>The P-value for the partial regression coefficient is &lt; 0.05, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_2 = 0</span>) and conclude that precipitation at Pine Creek is a significant predictor of runoff volume at the site near Bishop, California.</p>
+<ol start="3" type="a">
+<li>Precipitation at rock_creek and runoff volume:</li>
+</ol>
+<p>The P-value for the partial regression coefficient is &lt; 0.05, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_3 = 0</span>) and conclude that precipitation at Rock Creek is a significant predictor of runoff volume at the site near Bishop, California.</p>
+<ol start="4" type="a">
+<li>Overall model:</li>
+</ol>
+<p>The P-value for the model is &lt; 0.001, indicating that at least one slope is not equal to zero. This means we reject our null hypothesis that the all partial slopes are equal to zero (<span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = 0</span>) and conclude that our model is significant.</p>
+<ol start="4" type="1">
+<li>R-squared As we more than one predictor in the model, we will need to use the adjusted r<sup>2</sup>. We will cover the reason for this in next week’s lecture.</li>
+</ol>
+<p>The r<sup>2</sup> value is 0.87, which means that 87% of the variation in stream runoff volume can be explained our model. This is quite a strong r<sup>2</sup> value, but we will need to acknowledge that more investigation is needed as the collinearity between predictors may be influencing our model.</p>
 </section>
-<section id="answer-10" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-10">Answer</h3>
-<p>lake_sabrina does not improve the model with only rock_creek (<span class="math inline">\beta_{lake_sabrina} = 0</span>), so we can say that we should add pine_creek to the model containing rock_creek.</p>
-<p>Remember: H0: No difference between the models, so choose the simplest H1: Full model is better</p>
+<section id="viii-write-a-concluding-statement-on-your-findings.-1" class="level5">
+<h5 class="anchored" data-anchor-id="viii-write-a-concluding-statement-on-your-findings.-1"><em>(viii)</em> Write a concluding statement on your findings.</h5>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p>We fitted a multiple linear regression model (estimated using OLS) to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California (equation: runoff_volume = <span class="math inline">\beta_0 + \beta_1\cdot lake_sabrina + \beta_2\cdot pine_creek + \beta_3\cdot rock_creek</span>).</p>
+<p>The model explains a statistically significant and strong proportion of variance (R<sup>2</sup> = 0.87, F(3, 39) = 96.88, p &lt; 0.05). Within this model, the effect of precipitation at Lake Sabrina was not statistically significant (<span class="math inline">\beta_1</span> = 0.056, t(39) = 1.499, p &gt; 0.05), while the effects of precipitation at Pine Creek and Rock Creek were statistically significant and positive (<span class="math inline">\beta_2</span> = 0.211, t(39) = 3.12, p &lt; 0.05; <span class="math inline">\beta_3</span> = 0.438, t(39) = 4.98, p &lt; 0.05).</p>
 </section>
-<section id="question-5-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-5-1">Question 5</h3>
-<p>Could things be even simpler? Perform a partial F-Test to see if a model containing rock_creek alone could be suitable.</p>
-</section>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>s.mod_reduced3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek,<span class="at">data=</span>stream_data)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">anova</span>(s.mod_reduced3, s.mod_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="answer-11" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-11">Answer</h3>
-<p>Fitting with only rock_creek does not improve model fit (P&lt;0.05) and so we can conclude that the better model is the one with pine_creek and rock_creek as predictors, with lake_sabrina removed.</p>
-</section>
-<section id="question-6-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-6-1">Question 6</h3>
-<p>What is your optimal model?</p>
-</section>
-<section id="answer-12" class="level3 ans">
-<h3 class="anchored" data-anchor-id="answer-12">Answer</h3>
-<p>The best model is: <span class="math inline">runoff_volume = \beta_0 + \beta_1 rock_creek + \beta_2pine_creek+ error</span></p>
 </section>
 <hr>
 </section>
-<section id="review" class="level2">
-<h2 class="anchored" data-anchor-id="review">Review</h2>
-<ul>
-<li><p>Simple linear regressions model the relationship between two variables</p>
-<ul>
-<li>We can also make linear models with more than one predictor</li>
-</ul></li>
-<li><p>We can use histograms and correlation matrices to do some preliminary exploration of the data</p></li>
-<li><p>If any variables are skewed, we can transform them</p></li>
-<li><p>Looking at a correlation matrix to identify the best predictors (for both simple and multiple linear regression)</p></li>
-<li><p>Fit model using <code>lm()</code> function</p></li>
-<li><p>Check assumptions:</p>
-<ul>
-<li>Collinearity (multiple linear regression only)</li>
-<li>Linearity</li>
-<li>Independence</li>
-<li>Normality</li>
-<li>Equal variance</li>
-</ul></li>
-<li><p>Use <code>summary()</code> to look at model output and interpret it</p>
-<ul>
-<li>F-test : overall model significance</li>
-<li>Coefficients table : individual predictors’ significance</li>
-<li>R<sup>2</sup> : How much variation in the data is explained by the model?</li>
-</ul></li>
-</ul>
-<p>That’s it for today! Great work fitting simple and multiple linear regression! Next week we jump into stepwise selection!</p>
+</section>
+<section id="closing-thoughts" class="level1">
+<h1>Closing thoughts</h1>
+<p>You have done a great job fitting linear regression models and interpreting the output.</p>
+<p>As you may have noticed in this lab, models are rarely perfect, so next week we will focus on working out the most suitable model for our data based on what we have.</p>
+<p>Keep up the great work and see you in the week 8 lecture!</p>
+<p>If you have any questions, please approach your tutors or you are welcome to post to the Ed Discussion board.</p>
 <section id="attribution" class="level3">
 <h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
 </section>

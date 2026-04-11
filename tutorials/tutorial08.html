@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,18 +72,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-e3345c6ef29c45a7958e8df45469d16f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -214,9 +214,29 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-backward-elimination-in-r" id="toc-exercise-1-backward-elimination-in-r" class="nav-link active" data-scroll-target="#exercise-1-backward-elimination-in-r"><span class="header-section-number">1</span> Exercise 1: Backward elimination in R</a>
+  <li><a href="#from-tut07-old---need-to-use-this-to-update-for-week-8" id="toc-from-tut07-old---need-to-use-this-to-update-for-week-8" class="nav-link active" data-scroll-target="#from-tut07-old---need-to-use-this-to-update-for-week-8"><span class="header-section-number">1</span> from tut07 old - need to use this to update for week 8!!:</a>
   <ul class="collapse">
+  <li><a href="#bird-abundance" id="toc-bird-abundance" class="nav-link" data-scroll-target="#bird-abundance"><span class="header-section-number">1.1</span> Bird abundance</a>
+  <ul class="collapse">
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">Correlation matrix</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#plotting-correlation" id="toc-plotting-correlation" class="nav-link" data-scroll-target="#plotting-correlation">Plotting correlation</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations">Transformations</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions">Example exam questions</a></li>
+  </ul></li>
+  <li><a href="#exercise-1-backward-elimination-in-r" id="toc-exercise-1-backward-elimination-in-r" class="nav-link" data-scroll-target="#exercise-1-backward-elimination-in-r"><span class="header-section-number">1.2</span> Exercise 1: Backward elimination in R</a>
+  <ul class="collapse">
+  <li><a href="#question-1-1" id="toc-question-1-1" class="nav-link" data-scroll-target="#question-1-1">Question 1</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial08.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -232,8 +252,280 @@ window.Quarto = {
 
 
 
-<section id="exercise-1-backward-elimination-in-r" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="exercise-1-backward-elimination-in-r"><span class="header-section-number">1</span> Exercise 1: Backward elimination in R</h2>
+<section id="from-tut07-old---need-to-use-this-to-update-for-week-8" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> from tut07 old - need to use this to update for week 8!!:</h1>
+<section id="bird-abundance" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="bird-abundance"><span class="header-section-number">1.1</span> Bird abundance</h2>
+<p>Fragmentation of forest habitat has an impact of wildlife abundance. This study looked at the relationship between bird abundance (bird ha<sup>-1</sup>) and the characteristics of forest patches at 56 locations in SE Victoria.</p>
+<p>The predictor variables are:</p>
+<ul>
+<li><code>ALT</code> Altitude (m)</li>
+<li><code>YR.ISOL</code> Year when the patch was isolated (years)</li>
+<li><code>GRAZE</code> Grazing (coded 1-5 which is light to heavy)</li>
+<li><code>AREA</code> Patch area (ha)</li>
+<li><code>DIST</code> Distance to nearest patch (km)</li>
+<li><code>LDIST</code> Distance to largest patch (km)</li>
+</ul>
+<p>Import the data from the “Loyn” tab in the MS Excel file.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>loyn <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span>, <span class="st">"Loyn"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Often, the first step in model development is to examine the data. This is a good way to get a feel for the data and to identify any issues that may need to be addressed. In this case, we will examine the data using histograms and a correlation matrix.</p>
+<section id="histograms" class="level3">
+<h3 class="anchored" data-anchor-id="histograms">Histograms</h3>
+<p>There are a breadth of ways to create histograms in R. In each tab below you will find some different ways to create the same plot outputs.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>hist()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>hist.data.frame()</code> from <code>Hmisc</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href=""><code>ggplot()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href=""><code>ggplot()</code> with <code>dplyr</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>This is a straightforward way to create multiple histograms with <code>hist()</code>. The <code>par()</code> function is used to arrange the plots on the page. The <code>mfrow</code> argument specifies the number of rows and columns of plots.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># par(mfrow=c(3,3))</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>ABUND)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>ALT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>YR.ISOL)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>GRAZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>AREA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>DIST)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>LDIST)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-2-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># par(mfrow=c(1,1))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>The <code>Hmisc</code> package provides a function <code>hist.data.frame()</code> that can be used to create multiple histograms, which can be called by simply using <code>hist()</code>. You may need to tweak the <code>nclass</code> argument to get the desired number of bins, as the default may not look appropriate.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># install.packages("Hmisc")</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="fu">hist</span>(loyn, <span class="at">nclass =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>A more modern approach is to use <code>ggplot()</code> with <code>facet_wrap()</code> to arrange multiple plots on a single page. To do this, the <code>pivot_longer()</code> function from the <code>tidyr</code> package is used to reshape the data into a tidy format.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># tidy the data</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>loyn_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(loyn, <span class="at">cols =</span> <span class="fu">everything</span>())</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># plot</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">ggplot</span>(loyn_tidy, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>Here we use the pipe operator <code>%&gt;%</code> from <code>dplyr</code> to chain together a series of commands. The pipe operator takes the output of the command on the left and passes it to the command on the right (or below) the pipe. This means that we can create a series of commands that are executed in order.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>loyn <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>name, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>    <span class="fu">theme_bw</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<p>Comment on the histograms in terms of leverage. <em>Hint: what is the relationship between leverage and skewness?</em></p>
+</section>
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">Correlation matrix</h3>
+<p>Calculate the correlation matrix using <code>cor(Loyn)</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">cor</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              ABUND         AREA      YR.ISOL       DIST       LDIST
+ABUND    1.00000000  0.255970206  0.503357741  0.2361125  0.08715258
+AREA     0.25597021  1.000000000 -0.001494192  0.1083429  0.03458035
+YR.ISOL  0.50335774 -0.001494192  1.000000000  0.1132175 -0.08331686
+DIST     0.23611248  0.108342870  0.113217524  1.0000000  0.31717234
+LDIST    0.08715258  0.034580346 -0.083316857  0.3171723  1.00000000
+GRAZE   -0.68251138 -0.310402417 -0.635567104 -0.2558418 -0.02800944
+ALT      0.38583617  0.387753885  0.232715406 -0.1101125 -0.30602220
+              GRAZE        ALT
+ABUND   -0.68251138  0.3858362
+AREA    -0.31040242  0.3877539
+YR.ISOL -0.63556710  0.2327154
+DIST    -0.25584182 -0.1101125
+LDIST   -0.02800944 -0.3060222
+GRAZE    1.00000000 -0.4071671
+ALT     -0.40716705  1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="question-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-2">Question 2</h3>
+<p>Which independent variables are useful for predicting the dependent variable abundance? Is there evidence for multi-collinearity?</p>
+</section>
+<section id="plotting-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-correlation">Plotting correlation</h3>
+<p>Examine correlations visually using <code>pairs()</code> or <code>corrplot()</code> from the <code>corrplot</code> package.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Scatterplot matrix</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Correlation matrix</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">pairs</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(loyn))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial08_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-3">Question 3</h3>
+<p>Are there any trends visible from the plots?</p>
+</section>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can also bring in variance inflation factors (VIF) to help us identify multi-collinearity, but that is done only after we have selected a model.</p>
+</div>
+</div>
+<section id="transformations" class="level3">
+<h3 class="anchored" data-anchor-id="transformations">Transformations</h3>
+<p>The AREA predictor has a small number of observations with very large values. Apply a log<sub>10</sub> transformation and label the new variable <code>Loyn$L10AREA</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>loyn<span class="sc">$</span>L10AREA <span class="ot">&lt;-</span> <span class="fu">log10</span>(loyn<span class="sc">$</span>AREA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="question-4" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-4">Question 4</h3>
+<p>Why are we transforming AREA?</p>
+</section>
+<section id="question-5" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-5">Question 5</h3>
+<p>Re-run <code>pairs(Loyn)</code> and create a histogram using the transformed value of AREA, how do the plots look?</p>
+</section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">hist</span>(loyn<span class="sc">$</span>L10AREA)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">pairs</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="question-6" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-6">Question 6</h3>
+<p>In preparation for modelling, transform the remaining skewed variables, DIST and LDIST the same way you did for AREA and examine the histogram and pairs plots using these new variables.</p>
+</section>
+<p>Make sure you end up with two new variables labelled <code>loyn$L10DIST</code> and <code>loyn$L10LDIST</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Checkpoint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You should now be able to …[PUT THIS AFTER EACH OBJECTIVE]</p>
+</div>
+</div>
+</section>
+<section id="wrap-up" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
+<p>In this tutorial, <strong>we explored factorial designs and their analysis using ANOVA. We learned about main effects, interactions, and blocking effects, and how to interpret ANOVA results in the context of factorial experiments. We also visualised these effects using ggplot2 and emmeans, enhancing our understanding of the relationships between factors and response variables in experimental designs.</strong></p>
+<section id="example-exam-questions" class="level3">
+<h3 class="anchored" data-anchor-id="example-exam-questions">Example exam questions</h3>
+<p><strong>1. In a 2-way factorial design with factors A (2 levels) and B (3 levels), describe how you would identify and interpret main effects and interactions using ANOVA. Provide an example of how to visualise these effects.</strong></p>
+<ol start="2" type="1">
+<li><p>Explain the difference between a treatment design and an experimental design. Provide examples of each and discuss how they can be combined in a factorial design with blocking.</p></li>
+<li><p><strong>If you conducted a factorial experiment with blocking and found a significant interaction between two factors, how would you interpret this result? Would you still consider the main effects of each factor? Justify your answer with reference to ANOVA principles.</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="exercise-1-backward-elimination-in-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="exercise-1-backward-elimination-in-r"><span class="header-section-number">1.2</span> Exercise 1: Backward elimination in R</h2>
 <p>Data: <em>Dippers</em> spreadsheet</p>
 <p><a href="https://en.wikipedia.org/wiki/Dipper">Dippers</a> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers.</p>
 <p>Twenty-two sites were included in the survey. Some of the variables have been transformed.</p>
@@ -250,9 +542,9 @@ window.Quarto = {
 </ul>
 <p>In the analyses, the four invertebrate variables were transformed using a <span class="math inline">log(x+1)</span> transformation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>Dippers <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span> , <span class="at">sheet =</span> <span class="st">"Dippers"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">glimpse</span>(Dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>Dippers <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/mlr.xlsx"</span> , <span class="at">sheet =</span> <span class="st">"Dippers"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">glimpse</span>(Dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22
 Columns: 8
@@ -269,18 +561,19 @@ $ LogOther   &lt;dbl&gt; 1.386, 1.609, 1.386, 1.386, 1.099, 3.045, 1.386, 2.944,
 <p>You may explore the data on your own (hint: look at last week’s exercise on histogram and scatterplot matrices).</p>
 <p>When ready, perform a backward elimination starting from the full model:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>FullMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> ., <span class="at">data=</span>Dippers)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>RedMod <span class="ot">&lt;-</span> <span class="fu">step</span>(FullMod, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">summary</span>(FullMod)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">summary</span>(RedMod)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">AIC</span>(FullMod, RedMod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>FullMod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> ., <span class="at">data=</span>Dippers)</span>
+<span id="cb21-2"><a href="#cb21-2"></a>RedMod <span class="ot">&lt;-</span> <span class="fu">step</span>(FullMod, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="fu">summary</span>(FullMod)</span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">summary</span>(RedMod)</span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="fu">AIC</span>(FullMod, RedMod)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="question-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
+<section id="question-1-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="question-1-1">Question 1</h3>
 <p>Which model is chosen? Why?</p>
 </section>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -357,7 +650,7 @@ $ LogOther   &lt;dbl&gt; 1.386, 1.609, 1.386, 1.386, 1.099, 3.045, 1.386, 2.944,
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/ENVX-resources\.github\.io\/ENVX2001-resources\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

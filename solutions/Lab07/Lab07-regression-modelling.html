@@ -388,7 +388,7 @@ window.Quarto = {
 <figcaption class="margin-caption">Kookaburra sitting on a branch, from Unsplash, by pen_ash.</figcaption>
 </figure>
 </div>
-<p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with some data containing data on bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
+<p>Habitat fragmentation resulting from agriculture and urbanisation has increased the rate of wildlife population decline in Australia. You are a consultant and have been asked to investigate the influence of forest fragment size upon bird abundance. You have been provided with a dataset containing measurements of bird abundance and patch area from 56 different forest patches in Southeastern Victoria, Australia, and you want to know if there is a relationship between these two variables.</p>
 <p>The data is in the <strong>Loyn_SLR.xlsx</strong> file.</p>
 <p>Variables are as follows:</p>
 <ul>
@@ -401,7 +401,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="section"></h2>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
-<p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest fragment size upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
+<p><em>(i)</em> Write out the statistical model for a simple linear regression and define it in terms of influence of forest patch area upon bird abundance. You can write it out in words and/or in mathematical notation.</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between bird abundance and patch area.</p>
 <p>Remember: Null hypothesis = no change, no slope, therefore no relationship.</p>
 <p><em>(iii)</em> Conduct some exploratory data analysis upon your two variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
@@ -411,7 +411,8 @@ window.Quarto = {
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
 <section id="solution" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution">Solution</h4>
@@ -666,11 +667,21 @@ F-statistic: 65.38 on 1 and 54 DF,  p-value: 7.178e-11</code></pre>
 </div>
 </div>
 <ol type="1">
-<li><p>State the model equation Model equation is <span class="math inline">Abundance = 10.401 + 9.778 log10(Area)</span></p></li>
-<li><p>Interpretation of regression coefficients For every 1 unit change in log10(Area), we expect a 9.778 increase in bird abundance.</p></li>
-<li><p>P-value The P-value for the slope coefficient is &lt; 0.001, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_1 \neq 0</span>) and conclude that log10(Area) is a significant predictor of bird abundance.</p></li>
-<li><p>R-squared As we only have one predictor in the model, we can use the r<sup>2</sup> value rather than the adjusted r<sup>2</sup>.</p></li>
+<li>State the model equation</li>
 </ol>
+<p>Model equation is <span class="math inline">Abundance = 10.401 + 9.778 log10(Area)</span></p>
+<ol start="2" type="1">
+<li>Interpretation of regression coefficients</li>
+</ol>
+<p>For every 1 unit change in log10(Area), we expect a 9.778 increase in bird abundance.</p>
+<ol start="3" type="1">
+<li>P-value</li>
+</ol>
+<p>The P-value for the slope coefficient is &lt; 0.001, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_1 \neq 0</span>) and conclude that log10(Area) is a significant predictor of bird abundance.</p>
+<ol start="4" type="1">
+<li>R-squared</li>
+</ol>
+<p>As we only have one predictor in the model, we can use the r<sup>2</sup> value rather than the adjusted r<sup>2</sup>.</p>
 <p>The r<sup>2</sup> value is 0.55, which means that 55% of the variation in bird abundance can be explained by log10(Area). This is not really a strong r<sup>2</sup> value, so it suggests that there are other factors influencing bird abundance that are not included in the model.</p>
 </section>
 <section id="viii-write-a-concluding-statement-on-your-findings." class="level5">
@@ -688,11 +699,11 @@ F-statistic: 65.38 on 1 and 54 DF,  p-value: 7.178e-11</code></pre>
 <h1>2. Multiple linear regression (~30 min)</h1>
 <p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
 <ul>
-<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
+<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also need to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
 <li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
 <li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
-<li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
-<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
+<li><p>More interpretation: rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
+<li><p>You will need to use the <strong>adjusted</strong> r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
 </ul>
 <section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
@@ -740,9 +751,10 @@ Tip
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
-<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
 <section id="solution-1" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
@@ -764,7 +776,7 @@ y_{i} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \epsilon_{i}
 </ul>
 <p>OR if written in terms of the variables in our dataset, the model would be:</p>
 <p><span class="math display">
-\text{Runoff volume} = \beta_0 + \beta_1\cdot \text{lake_sabrina} + \beta_2\cdot \text{pine_creek} + \beta_3\cdot \text{rock_creek} +  \epsilon_{i}
+\textrm{Runoff volume} = \beta_0 + \beta_1\cdot \textrm{lake_sabrina} + \beta_2\cdot \textrm{pine_creek} + \beta_3\cdot \textrm{rock_creek} +  \epsilon_{i}
 </span></p>
 </section>
 <section id="ii-state-the-hypotheses-you-will-be-testing-for-the-relationship-between-each-site-and-runoff-volume." class="level5">
@@ -777,7 +789,7 @@ y_{i} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \epsilon_{i}
 <li>Precipitation at rock_creek and runoff volume:</li>
 </ol>
 <p><span class="math display">H_0 : \beta_3 = 0</span> <span class="math display">H_1 : \beta_3 \neq 0</span> 4. Overal model:</p>
-<p><span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = 0</span> <span class="math display">H_1 : \text{at least one } \beta_i \neq 0</span></p>
+<p><span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = 0</span> <span class="math display">H_1 : \textrm{at least one } \beta_i \neq 0</span></p>
 </section>
 <section id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots." class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
@@ -1056,7 +1068,7 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-1" class="level5">
 <h5 class="anchored" data-anchor-id="vi-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-1"><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</h5>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
-<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">check_model</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -1075,8 +1087,8 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p>Influential observations: No points lying outside the contour lines, which suggests that there are no influential observations in the data.</p></li>
 <li><p>Collinearity: This is an additional assumption for Multiple Linear Regression. We can check for collinearity by looking at the correlation matrix (which we have already done) and by looking at the Variance Inflation Factor (VIF) values. VIF values greater than 5 or 10 indicate a potential problem with collinearity.</p></li>
 </ul>
-<p>We will explore collinearity and VIF more in next week’s lecture as it will help us fit a more appropriate model.</p>
 <p>Decision: No transformations needed BUT we are seeing an issue with collinearity.</p>
+<p>We will explore collinearity and VIF more in next week’s lecture as it will help us fit a more appropriate model.</p>
 <p>For now we can continue with this model and explore the output, keeping in mind that is is not perfect. We will explore how to deal with collinearity in next week’s lecture.</p>
 </section>
 <section id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-precipitation-at-each-site-and-runoff-volume-at-bishop-california" class="level5">
@@ -1147,7 +1159,7 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="viii-write-a-concluding-statement-on-your-findings.-1" class="level5">
 <h5 class="anchored" data-anchor-id="viii-write-a-concluding-statement-on-your-findings.-1"><em>(viii)</em> Write a concluding statement on your findings.</h5>
 <p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
-<p>We fitted a multiple linear regression model (estimated using OLS) to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California (equation: runoff_volume = <span class="math inline">\beta_0 + \beta_1\cdot lake_sabrina + \beta_2\cdot pine_creek + \beta_3\cdot rock_creek</span>).</p>
+<p>We fitted a multiple linear regression model (estimated using OLS) to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California (equation: <span class="math inline">\textrm{runoff_volume} = \beta_0 + \beta_1\cdot \textrm{lake_sabrina} + \beta_2\cdot \textrm{pine_creek} + \beta_3\cdot \textrm{rock_creek}</span>).</p>
 <p>The model explains a statistically significant and strong proportion of variance (R<sup>2</sup> = 0.87, F(3, 39) = 96.88, p &lt; 0.05). Within this model, the effect of precipitation at Lake Sabrina was not statistically significant (<span class="math inline">\beta_1</span> = 0.056, t(39) = 1.499, p &gt; 0.05), while the effects of precipitation at Pine Creek and Rock Creek were statistically significant and positive (<span class="math inline">\beta_2</span> = 0.211, t(39) = 3.12, p &lt; 0.05; <span class="math inline">\beta_3</span> = 0.438, t(39) = 4.98, p &lt; 0.05).</p>
 </section>
 </section>

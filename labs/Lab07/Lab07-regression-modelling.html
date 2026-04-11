@@ -368,7 +368,8 @@ background: white;
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
 <p>Before moving on to the next section, take a short break and stretch your legs.</p>
 </section>
@@ -377,11 +378,11 @@ background: white;
 <h1>2. Multiple linear regression (~30 min)</h1>
 <p>Multiple linear regression has a slightly different approach compared to simple linear regression. We are still fitting a linear model and you will notice the process is similar, but we are incorporating more than one predictor variable into the model, which brings some additional steps.</p>
 <ul>
-<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also nee to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
+<li><p>More hypotheses: rather than a single null and alternate hypothesis, you will also need to consider the hypotheses for each predictor variable, as well as the overall model.</p></li>
 <li><p>More EDA: Rather than exploring only two variables, you will need to explore the additional variables. You will also need to explore the relationships between the predictor variables (signs of collinearity).</p></li>
 <li><p>More assumptions: in addition to the assumptions of linearity, independence, normality of residuals, and equal variance, we also need to consider the assumption of no collinearity between predictor variables as this can trick us into thinking our model is better than it actually is (we will explore this more in next week’s lecture).</p></li>
-<li><p>More interpretation: Rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
-<li><p>You will need to use the adjusted r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
+<li><p>More interpretation: rather than only interpreting one regression coefficient, you will now have to assess a number of <em>partial regression coefficients</em> and their significance. You will also need to consider the overall model fit, and whether the model is a good fit for the data.</p></li>
+<li><p>You will need to use the <strong>adjusted</strong> r<sup>2</sup> value rather than the r<sup>2</sup> value to assess the fit of the model, as r<sup>2</sup> will always increase with the addition of more predictor variables, even if those variables do not actually improve the model fit. We will explain this more next week.</p></li>
 </ul>
 <section id="analysis-for-runoff-and-precipitation-in-bishop-california" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="analysis-for-runoff-and-precipitation-in-bishop-california">Analysis for runoff and precipitation in Bishop, California</h2>
@@ -429,9 +430,10 @@ Tip
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
-<p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
+<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings. Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
 </section>
 </section>

@@ -223,12 +223,17 @@ window.Quarto = {
   </ul></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
   <ul class="collapse">
-  <li><a href="#explore-the-data---eda" id="toc-explore-the-data---eda" class="nav-link" data-scroll-target="#explore-the-data---eda"><span class="header-section-number">3.1</span> Explore the data - EDA</a></li>
-  <li><a href="#explore-the-data---correlations" id="toc-explore-the-data---correlations" class="nav-link" data-scroll-target="#explore-the-data---correlations"><span class="header-section-number">3.2</span> Explore the data - correlations</a></li>
-  <li><a href="#implement-the-fitting-process-for-each-type-of-model" id="toc-implement-the-fitting-process-for-each-type-of-model" class="nav-link" data-scroll-target="#implement-the-fitting-process-for-each-type-of-model"><span class="header-section-number">3.3</span> Implement the fitting process for each type of model</a></li>
-  <li><a href="#test-assumptions-and-transform-if-needed" id="toc-test-assumptions-and-transform-if-needed" class="nav-link" data-scroll-target="#test-assumptions-and-transform-if-needed"><span class="header-section-number">3.4</span> Test assumptions and transform if needed</a></li>
-  <li><a href="#evaluate-model-fit-of-slr-and-mlr-models." id="toc-evaluate-model-fit-of-slr-and-mlr-models." class="nav-link" data-scroll-target="#evaluate-model-fit-of-slr-and-mlr-models."><span class="header-section-number">3.5</span> Evaluate model fit of SLR and MLR models.</a></li>
-  <li><a href="#write-up-conclusions" id="toc-write-up-conclusions" class="nav-link" data-scroll-target="#write-up-conclusions"><span class="header-section-number">3.6</span> Write up conclusions</a></li>
+  <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data"><span class="header-section-number">3.1</span> Explore the data</a>
+  <ul class="collapse">
+  <li><a href="#diameter" id="toc-diameter" class="nav-link" data-scroll-target="#diameter">Diameter</a></li>
+  <li><a href="#height" id="toc-height" class="nav-link" data-scroll-target="#height">Height</a></li>
+  <li><a href="#volume" id="toc-volume" class="nav-link" data-scroll-target="#volume">Volume</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a></li>
+  </ul></li>
+  <li><a href="#implement-the-fitting-process-for-each-type-of-model" id="toc-implement-the-fitting-process-for-each-type-of-model" class="nav-link" data-scroll-target="#implement-the-fitting-process-for-each-type-of-model"><span class="header-section-number">3.2</span> Implement the fitting process for each type of model</a></li>
+  <li><a href="#test-assumptions-and-transform-if-needed" id="toc-test-assumptions-and-transform-if-needed" class="nav-link" data-scroll-target="#test-assumptions-and-transform-if-needed"><span class="header-section-number">3.3</span> Test assumptions and transform if needed</a></li>
+  <li><a href="#evaluate-model-fit-of-slr-and-mlr-models." id="toc-evaluate-model-fit-of-slr-and-mlr-models." class="nav-link" data-scroll-target="#evaluate-model-fit-of-slr-and-mlr-models."><span class="header-section-number">3.4</span> Evaluate model fit of SLR and MLR models.</a></li>
+  <li><a href="#write-up-conclusions" id="toc-write-up-conclusions" class="nav-link" data-scroll-target="#write-up-conclusions"><span class="header-section-number">3.5</span> Write up conclusions</a></li>
   </ul></li>
   <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
   <ul class="collapse">
@@ -329,7 +334,14 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
 </section>
 <section id="the-data" class="level2 page-columns page-full" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="the-data"><span class="header-section-number">2.2</span> The data</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/Prunus-serotina.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Black Cherry tree foliage and flowers, from Wikimedia Commons, by Sten Porse.</figcaption>
+</figure>
+</div>
 <p>For both examples we will use the <em>trees</em> dataset, which is an in-built dataset provided by R. It contains measurements of diameter (inches), height (feet) and volume of timber (cubic feet) of 31 felled Black Cherry trees.</p>
+<p><code>Volume</code> will be our response variable for both models.</p>
 <p>Note: the ‘girth’ variable within the dataset is actually the diameter of the tree. We can rename it now, which also adds it into our R Environment:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>trees <span class="ot">&lt;-</span> trees <span class="sc">%&gt;%</span></span>
@@ -349,18 +361,12 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
 <p>Original data source:</p>
 <p>⁠Meyer H. A. (1953). Forest Mensuration. Penns Valley Publishers.</p>
 <p>⁠Ryan T. A., Joiner B. L., Ryan B. F. (1976). The Minitab Student Handbook. Duxbury Press, North Scituate, MA. ISBN 087150359X</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="images/Prunus-serotina.jpeg" class="img-fluid figure-img"></p>
-<figcaption class="margin-caption">Black Cherry tree foliage and flowers, from Wikimedia Commons, by Sten Porse.</figcaption>
-</figure>
-</div>
 </section>
 </section>
 <section id="analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
-<section id="explore-the-data---eda" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="explore-the-data---eda"><span class="header-section-number">3.1</span> Explore the data - EDA</h2>
+<section id="explore-the-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="explore-the-data"><span class="header-section-number">3.1</span> Explore the data</h2>
 <p>For each variable we need to check the distribution, identify outliers and check for correlations between predictors (for MLR).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(moments)</span>
@@ -387,7 +393,9 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
  0.5263163 -0.3748690  1.0643575 </code></pre>
 </div>
 </div>
-<p>Diameter: The mean diameter is 13.25 inches and the median is 12.90 inches. The values range from 8.30 to 20.60 inches and the standard deviation is 3.14 inches. There is a slight skew, indicated by the skewness coefficient of 0.526. The slight skew is also visible in the following boxplot where the median lies closer to the first quartile.</p>
+<section id="diameter" class="level3">
+<h3 class="anchored" data-anchor-id="diameter">Diameter</h3>
+<p>The mean diameter is 13.25 inches and the median is 12.90 inches. The values range from 8.30 to 20.60 inches and the standard deviation is 3.14 inches. There is a slight skew, indicated by the skewness coefficient of 0.526. The slight skew is also visible in the following boxplot where the median lies closer to the first quartile.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Diameter)) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -400,7 +408,10 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
 </div>
 </div>
 </div>
-<p>Height: The mean and median height is 76 feet and the values range from 63 to 87 feet. The standard deviation is 6.37 feet and the skewness coefficient is -0.37, indicating a relatively symmetrical distribution. The boxplot also shows a relatively symmetrical distribution, with the median lying close to the centre of the box.</p>
+</section>
+<section id="height" class="level3">
+<h3 class="anchored" data-anchor-id="height">Height</h3>
+<p>The mean and median height is 76 feet and the values range from 63 to 87 feet. The standard deviation is 6.37 feet and the skewness coefficient is -0.37, indicating a relatively symmetrical distribution. The boxplot also shows a relatively symmetrical distribution, with the median lying close to the centre of the box.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Height)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -413,7 +424,10 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
 </div>
 </div>
 </div>
-<p>Volume: The mean volume of timber is 30.17 and the median is 24.20 cubic feet. The values range from 10.20 to 77.00 cubic feet and the standard deviation is 16.44 cubic feet. The skewness coefficient is 1.06, indicating a the variable is positively skewed. This is also visible in the boxplot, where the median lies closer to the first quartile and there are some high values that are potential outliers.</p>
+</section>
+<section id="volume" class="level3">
+<h3 class="anchored" data-anchor-id="volume">Volume</h3>
+<p>The mean volume of timber is 30.17 cubic feet and the median is 24.20 cubic feet. The values range from 10.20 to 77.00 cubic feet and the standard deviation is 16.44 cubic feet. The skewness coefficient is 1.06, indicating a the variable is positively skewed. This is also visible in the boxplot, where the median lies closer to the first quartile and there are some high values that are potential outliers.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Volume)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
@@ -429,9 +443,27 @@ Table&nbsp;1: Similarities and differences between MLR and SLR models
 <p><strong>Why do the high values matter?</strong></p>
 <p>The high values would have high leverage in our model, causing the residuals to be skewed, violating our assumptions. The boxplot is therefore telling us that we might need to transform Volume to stabilise the variance of the regression, but it is worth confirming this with the diagnostic plots after fitting the model.</p>
 </section>
-<section id="explore-the-data---correlations" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="explore-the-data---correlations"><span class="header-section-number">3.2</span> Explore the data - correlations</h2>
-<p>Correlations</p>
+<section id="correlations" class="level3">
+<h3 class="anchored" data-anchor-id="correlations">Correlations</h3>
+<p>For both simple and multiple linear regression we need to check the correlation between our response variable and our predictor variable.</p>
+<p>For multiple linear regression it is also important to check the relationships between the predictor variables, as a strong correlation may indicate collinearity, which can influence the model.</p>
+<p>We will start by looking at all correlations, and then for our simple linear regression we will select the variable that has the the strongest correlation with the response (Volume) to use as our single predictor variable.</p>
+<p>First we will use the correlation coefficient to understand the strength and direction of the relationships between the variables. Then we can look at the scatterplots between variables to verify the correlation coefficients and identify if there are any other types of relationships (e.g.&nbsp;non-linear) that may be occurring between variables.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Remember
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Correlation coefficients only measure the strength and direction of LINEAR relationships.</p>
+<p>It is therefore important to visualise the relationships between variables to check for non-linear relationships, which may not be captured by the correlation coefficient.</p>
+</div>
+</div>
+<p>Let’s have a look at the correlation coefficients between variables:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">cor</span>(trees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -441,16 +473,47 @@ Height   0.5192801 1.0000000 0.5982497
 Volume   0.9671194 0.5982497 1.0000000</code></pre>
 </div>
 </div>
-<p><strong>Why do we care about correlations between predictors?</strong></p>
-<p>multi-collinearity which may influence the model. If the relationship between these two variables was stronger, we would remove one of the variables to prevent this collinearity from affecting the model.</p>
-<p><em>Note: For more information on collinearity and how it may impact the model, see Quinn &amp; Keough p 127.</em></p>
-</section>
-<section id="implement-the-fitting-process-for-each-type-of-model" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="implement-the-fitting-process-for-each-type-of-model"><span class="header-section-number">3.3</span> Implement the fitting process for each type of model</h2>
+<p>The correlation coefficient between Volume and Diameter is 0.967, which indicates a very strong positive linear relationship.</p>
+<p>The correlation coefficient between Volume and Height is 0.598, which indicates a weak positive linear relationship.</p>
+<p>The correlation coefficient between Diameter and Height is 0.519, which indicates a weak positive linear relationship, suggesting that there may be collinearity between these two predictor variables.</p>
+<p>Now let’s look at the scatterplots between variables to verify these relationships:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>mod_slr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter, <span class="at">data =</span> trees)</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>mod_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter <span class="sc">+</span> Height, <span class="at">data =</span> trees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">pairs</span>(trees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial07_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The scatterplots confirm the strong positive linear relationship between Volume and Diameter as we can see the points following a clear trend on the plot. The points in the plot between height and volume also seem to follow a weaker positive trend as they appear more scattered across the plot area.</p>
+<p>This is similar in the scatterplot between diameter and height where the points are also quite scattered but still follow weak positive trend.</p>
+<p>You are welcome to use the above code to create scatterplots between each pair of variables, and calculate the correlation coefficients separately, but if you prefer something cleaner, you can also use the <code>pairs.panels()</code> function from the <code>psych</code> package which produces a neat array of plots and coefficients.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># not using library(psych) as I am only using the function once</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co"># instead do the following: </span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(trees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial07_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see the function produces scatterplots and correlation coefficients between each variable, as well as histograms for each individual variable. The histograms can supplement our EDA where we are looking at the distribution for each variable.</p>
+<p>We have identified some potential colinnearity occurring between height and diameter, but will run the models today. Next week we will cover how to manage collinearity in MLR.</p>
+</section>
+</section>
+<section id="implement-the-fitting-process-for-each-type-of-model" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="implement-the-fitting-process-for-each-type-of-model"><span class="header-section-number">3.2</span> Implement the fitting process for each type of model</h2>
+<p>Our correlation analyses identified that Diameter is more strongly correlated with Volume, so we will use diameter as our response variable in the simple linear regression.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>mod_slr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter, <span class="at">data =</span> trees)</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>mod_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter <span class="sc">+</span> Height, <span class="at">data =</span> trees)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -466,26 +529,26 @@ Volume   0.9671194 0.5982497 1.0000000</code></pre>
 </div>
 </div>
 </section>
-<section id="test-assumptions-and-transform-if-needed" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="test-assumptions-and-transform-if-needed"><span class="header-section-number">3.4</span> Test assumptions and transform if needed</h2>
+<section id="test-assumptions-and-transform-if-needed" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="test-assumptions-and-transform-if-needed"><span class="header-section-number">3.3</span> Test assumptions and transform if needed</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">check_model</span>(mod_slr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">check_model</span>(mod_slr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial07_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial07_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">check_model</span>(mod_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">check_model</span>(mod_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial07_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial07_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -505,10 +568,10 @@ Volume   0.9671194 0.5982497 1.0000000</code></pre>
 </div>
 </div>
 </section>
-<section id="evaluate-model-fit-of-slr-and-mlr-models." class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="evaluate-model-fit-of-slr-and-mlr-models."><span class="header-section-number">3.5</span> Evaluate model fit of SLR and MLR models.</h2>
+<section id="evaluate-model-fit-of-slr-and-mlr-models." class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="evaluate-model-fit-of-slr-and-mlr-models."><span class="header-section-number">3.4</span> Evaluate model fit of SLR and MLR models.</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(mod_slr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(mod_slr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -531,7 +594,7 @@ F-statistic:   452 on 1 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(mod_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(mod_mlr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -568,8 +631,8 @@ F-statistic: 429.7 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-<section id="write-up-conclusions" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="write-up-conclusions"><span class="header-section-number">3.6</span> Write up conclusions</h2>
+<section id="write-up-conclusions" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="write-up-conclusions"><span class="header-section-number">3.5</span> Write up conclusions</h2>
 </section>
 </section>
 <section id="wrap-up" class="level1 unnumbered">
@@ -1042,237 +1105,281 @@ F-statistic: 429.7 on 2 and 28 DF,  p-value: &lt; 2.2e-16</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">---</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="an">title:</span><span class="co"> "Tutorial 07"</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># reviewed-by: ACA, 2026</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="an">format:</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co">  sandstone-html:</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co">    code-tools: true</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="co">---</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="fu">library</span>()</span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="in">```</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="fu">## Welcome to week 7! {.unnumbered}</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a></span>
-<span id="cb22-17"><a href="#cb22-17"></a>This week's lecture introduced you to Simple- and Multiple- Linear Regression. For both of these regression techniques we defined the key steps in model fitting and how to interpret model output. </span>
-<span id="cb22-18"><a href="#cb22-18"></a></span>
-<span id="cb22-19"><a href="#cb22-19"></a>In this tutorial, we will explore key differences between simple linear regression (SLR) and multiple linear regression (MLR), and we will learn how to fit these models in R. We will also discuss how to test assumptions and evaluate model fit for both types of regression.</span>
-<span id="cb22-20"><a href="#cb22-20"></a></span>
-<span id="cb22-21"><a href="#cb22-21"></a>You will learn how to:</span>
-<span id="cb22-22"><a href="#cb22-22"></a></span>
-<span id="cb22-23"><a href="#cb22-23"></a><span class="ss">1.  </span>Distinguish key similarities and differences between simple linear regression (SLR) and multiple linear regression (MLR) models</span>
-<span id="cb22-24"><a href="#cb22-24"></a><span class="ss">2.  </span>Implement the fitting process for each type of model</span>
-<span id="cb22-25"><a href="#cb22-25"></a><span class="ss">3.  </span>Test assumptions and evaluate model fit of SLR and MLR models.</span>
-<span id="cb22-26"><a href="#cb22-26"></a></span>
-<span id="cb22-27"><a href="#cb22-27"></a><span class="fu"># Simple linear regression vs Multiple Linear Regression</span></span>
-<span id="cb22-28"><a href="#cb22-28"></a></span>
-<span id="cb22-29"><a href="#cb22-29"></a><span class="pp">|</span> Element <span class="pp">|</span> Simple Linear Regression (SLR) <span class="pp">|</span> Multiple Linear Regression (MLR) <span class="pp">|</span></span>
-<span id="cb22-30"><a href="#cb22-30"></a><span class="pp">|:------------------------|:------------------------|:------------------------|</span></span>
-<span id="cb22-31"><a href="#cb22-31"></a><span class="pp">|</span> Number of predictors <span class="pp">|</span> 1 <span class="pp">|</span> 2 or more <span class="pp">|</span></span>
-<span id="cb22-32"><a href="#cb22-32"></a><span class="pp">|</span> Model form <span class="pp">|</span> $Y = \beta_0 + \beta_1x + \epsilon$ <span class="pp">|</span> $Y = \beta_0 + \beta_1x_1 + + \beta_2x_2 + ... + \beta_nx_n + \epsilon$ <span class="pp">|</span></span>
-<span id="cb22-33"><a href="#cb22-33"></a><span class="pp">|</span> How to fit in R <span class="pp">|</span> <span class="in">`lm(y ~ x, data = dataset)`</span> <span class="pp">|</span> <span class="in">`lm(y ~ x1 + x2 + ... + xn, data = dataset)`</span> <span class="pp">|</span></span>
-<span id="cb22-34"><a href="#cb22-34"></a><span class="pp">|</span> Assumptions <span class="pp">|</span> L.I.N.E. <span class="pp">|</span> L.I.N.E., collinearity <span class="pp">|</span></span>
-<span id="cb22-35"><a href="#cb22-35"></a><span class="pp">|</span> Model evaluation <span class="pp">|</span> $r^2$, residual plots <span class="pp">|</span> Adjusted $r^2$, residual plots, VIF<span class="pp">|</span></span>
-<span id="cb22-36"><a href="#cb22-36"></a><span class="pp">|</span> Conclusion <span class="pp">|</span> "as $x$ increases, $y$ also increases/decreases by $\beta_1$ units" <span class="pp">|</span> "as $x_1$ increases, $y$ also increases/decreases by $\beta_1$ units, holding all other predictors constant" <span class="pp">|</span></span>
-<span id="cb22-37"><a href="#cb22-37"></a></span>
-<span id="cb22-38"><a href="#cb22-38"></a>: Similarities and differences between MLR and SLR models {#tbl-perf}</span>
-<span id="cb22-39"><a href="#cb22-39"></a></span>
-<span id="cb22-40"><a href="#cb22-40"></a><span class="fu"># Setting up for our analysis</span></span>
-<span id="cb22-41"><a href="#cb22-41"></a></span>
-<span id="cb22-42"><a href="#cb22-42"></a><span class="fu">## Packages</span></span>
-<span id="cb22-43"><a href="#cb22-43"></a></span>
-<span id="cb22-44"><a href="#cb22-44"></a>This lab uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, and <span class="in">`performance`</span>. Install any you are missing by running the following **in the console**:</span>
-<span id="cb22-45"><a href="#cb22-45"></a></span>
-<span id="cb22-48"><a href="#cb22-48"></a><span class="in">```{r}</span></span>
-<span id="cb22-49"><a href="#cb22-49"></a><span class="co">#| eval: false</span></span>
-<span id="cb22-50"><a href="#cb22-50"></a></span>
-<span id="cb22-51"><a href="#cb22-51"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span>
-<span id="cb22-52"><a href="#cb22-52"></a><span class="in">```</span></span>
-<span id="cb22-53"><a href="#cb22-53"></a></span>
-<span id="cb22-54"><a href="#cb22-54"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
-<span id="cb22-55"><a href="#cb22-55"></a></span>
-<span id="cb22-56"><a href="#cb22-56"></a><span class="fu">## The data</span></span>
-<span id="cb22-57"><a href="#cb22-57"></a></span>
-<span id="cb22-58"><a href="#cb22-58"></a>For both examples we will use the *trees* dataset, which is an in-built dataset provided by R. It contains measurements of diameter (inches), height (feet) and volume of timber (cubic feet) of 31 felled Black Cherry trees. </span>
-<span id="cb22-59"><a href="#cb22-59"></a></span>
-<span id="cb22-60"><a href="#cb22-60"></a>Note: the 'girth' variable within the dataset is actually the diameter of the tree. We can rename it now, which also adds it into our R Environment: </span>
-<span id="cb22-61"><a href="#cb22-61"></a></span>
-<span id="cb22-64"><a href="#cb22-64"></a><span class="in">```{r}</span></span>
-<span id="cb22-65"><a href="#cb22-65"></a>trees <span class="ot">&lt;-</span> trees <span class="sc">%&gt;%</span></span>
-<span id="cb22-66"><a href="#cb22-66"></a>    <span class="fu">rename</span>(<span class="at">Diameter =</span> Girth)</span>
-<span id="cb22-67"><a href="#cb22-67"></a></span>
-<span id="cb22-68"><a href="#cb22-68"></a><span class="fu">head</span>(trees)</span>
-<span id="cb22-69"><a href="#cb22-69"></a><span class="in">```</span></span>
-<span id="cb22-70"><a href="#cb22-70"></a></span>
-<span id="cb22-71"><a href="#cb22-71"></a></span>
-<span id="cb22-72"><a href="#cb22-72"></a>Original data source: </span>
-<span id="cb22-73"><a href="#cb22-73"></a></span>
-<span id="cb22-74"><a href="#cb22-74"></a>⁠Meyer H. A. (1953). Forest Mensuration. Penns Valley Publishers.</span>
-<span id="cb22-75"><a href="#cb22-75"></a></span>
-<span id="cb22-76"><a href="#cb22-76"></a>⁠Ryan T. A., Joiner B. L., Ryan B. F. (1976). The Minitab Student Handbook. Duxbury Press, North Scituate, MA. ISBN 087150359X</span>
-<span id="cb22-77"><a href="#cb22-77"></a></span>
-<span id="cb22-78"><a href="#cb22-78"></a><span class="al">![Black Cherry tree foliage and flowers, from Wikimedia Commons, by Sten Porse.](images/Prunus-serotina.jpeg)</span></span>
-<span id="cb22-79"><a href="#cb22-79"></a></span>
-<span id="cb22-80"><a href="#cb22-80"></a><span class="fu"># Analysis</span></span>
-<span id="cb22-81"><a href="#cb22-81"></a></span>
-<span id="cb22-82"><a href="#cb22-82"></a><span class="fu">## Explore the data - EDA</span></span>
-<span id="cb22-83"><a href="#cb22-83"></a></span>
-<span id="cb22-84"><a href="#cb22-84"></a>For each variable we need to check the distribution, identify outliers and check for correlations between predictors (for MLR).</span>
-<span id="cb22-85"><a href="#cb22-85"></a></span>
-<span id="cb22-88"><a href="#cb22-88"></a><span class="in">```{r}</span></span>
-<span id="cb22-89"><a href="#cb22-89"></a><span class="fu">library</span>(moments)</span>
-<span id="cb22-90"><a href="#cb22-90"></a></span>
-<span id="cb22-91"><a href="#cb22-91"></a><span class="fu">summary</span>(trees)</span>
-<span id="cb22-92"><a href="#cb22-92"></a></span>
-<span id="cb22-93"><a href="#cb22-93"></a><span class="co"># Apply the sd function for each column </span></span>
-<span id="cb22-94"><a href="#cb22-94"></a><span class="fu">apply</span>(trees, <span class="dv">2</span>, sd) <span class="co"># (margin = 2 means apply the function to columns)</span></span>
-<span id="cb22-95"><a href="#cb22-95"></a></span>
-<span id="cb22-96"><a href="#cb22-96"></a><span class="fu">skewness</span>(trees)</span>
-<span id="cb22-97"><a href="#cb22-97"></a></span>
-<span id="cb22-98"><a href="#cb22-98"></a><span class="in">```</span></span>
-<span id="cb22-99"><a href="#cb22-99"></a></span>
-<span id="cb22-100"><a href="#cb22-100"></a>Diameter: </span>
-<span id="cb22-101"><a href="#cb22-101"></a>The mean diameter is 13.25 inches and the median is 12.90 inches. The values range from 8.30 to 20.60 inches and the standard deviation is 3.14 inches. There is a slight skew, indicated by the skewness coefficient of 0.526. The slight skew is also visible in the following boxplot where the median lies closer to the first quartile. </span>
-<span id="cb22-102"><a href="#cb22-102"></a></span>
-<span id="cb22-105"><a href="#cb22-105"></a><span class="in">```{r}</span></span>
-<span id="cb22-106"><a href="#cb22-106"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Diameter)) <span class="sc">+</span></span>
-<span id="cb22-107"><a href="#cb22-107"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb22-108"><a href="#cb22-108"></a>    <span class="fu">theme_bw</span>()</span>
-<span id="cb22-109"><a href="#cb22-109"></a><span class="in">```</span></span>
-<span id="cb22-110"><a href="#cb22-110"></a></span>
-<span id="cb22-111"><a href="#cb22-111"></a></span>
-<span id="cb22-112"><a href="#cb22-112"></a>Height: </span>
-<span id="cb22-113"><a href="#cb22-113"></a>The mean and median height is 76 feet and the values range from 63 to 87 feet. The standard deviation is 6.37 feet and the skewness coefficient is -0.37, indicating a relatively symmetrical distribution. The boxplot also shows a relatively symmetrical distribution, with the median lying close to the centre of the box.</span>
-<span id="cb22-114"><a href="#cb22-114"></a></span>
-<span id="cb22-117"><a href="#cb22-117"></a><span class="in">```{r}</span></span>
-<span id="cb22-118"><a href="#cb22-118"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Height)) <span class="sc">+</span></span>
-<span id="cb22-119"><a href="#cb22-119"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb22-120"><a href="#cb22-120"></a>    <span class="fu">theme_bw</span>()</span>
-<span id="cb22-121"><a href="#cb22-121"></a></span>
-<span id="cb22-122"><a href="#cb22-122"></a><span class="in">```</span></span>
-<span id="cb22-123"><a href="#cb22-123"></a></span>
-<span id="cb22-124"><a href="#cb22-124"></a></span>
-<span id="cb22-125"><a href="#cb22-125"></a>Volume: </span>
-<span id="cb22-126"><a href="#cb22-126"></a>The mean volume of timber is 30.17 and the median is 24.20 cubic feet. The values range from 10.20 to 77.00 cubic feet and the standard deviation is 16.44 cubic feet. The skewness coefficient is 1.06, indicating a the variable is positively skewed. This is also visible in the boxplot, where the median lies closer to the first quartile and there are some high values that are potential outliers.</span>
-<span id="cb22-127"><a href="#cb22-127"></a></span>
-<span id="cb22-130"><a href="#cb22-130"></a><span class="in">```{r}</span></span>
-<span id="cb22-131"><a href="#cb22-131"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Volume)) <span class="sc">+</span></span>
-<span id="cb22-132"><a href="#cb22-132"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb22-133"><a href="#cb22-133"></a>    <span class="fu">theme_bw</span>()</span>
-<span id="cb22-134"><a href="#cb22-134"></a></span>
-<span id="cb22-135"><a href="#cb22-135"></a><span class="in">```</span></span>
-<span id="cb22-136"><a href="#cb22-136"></a></span>
-<span id="cb22-137"><a href="#cb22-137"></a></span>
-<span id="cb22-138"><a href="#cb22-138"></a>**Why do the high values matter?**</span>
-<span id="cb22-139"><a href="#cb22-139"></a></span>
-<span id="cb22-140"><a href="#cb22-140"></a>The high values would have high leverage in our model, causing the residuals to be skewed, violating our assumptions. The boxplot is therefore telling us that we might need to transform Volume to stabilise the variance of the regression, but it is worth confirming this with the diagnostic plots after fitting the model.</span>
-<span id="cb22-141"><a href="#cb22-141"></a></span>
-<span id="cb22-142"><a href="#cb22-142"></a><span class="fu">## Explore the data - correlations</span></span>
-<span id="cb22-143"><a href="#cb22-143"></a></span>
-<span id="cb22-144"><a href="#cb22-144"></a>Correlations </span>
-<span id="cb22-147"><a href="#cb22-147"></a><span class="in">```{r}</span></span>
-<span id="cb22-148"><a href="#cb22-148"></a><span class="fu">cor</span>(trees)</span>
-<span id="cb22-149"><a href="#cb22-149"></a><span class="in">```</span></span>
-<span id="cb22-150"><a href="#cb22-150"></a></span>
-<span id="cb22-151"><a href="#cb22-151"></a></span>
-<span id="cb22-152"><a href="#cb22-152"></a></span>
-<span id="cb22-153"><a href="#cb22-153"></a></span>
-<span id="cb22-154"><a href="#cb22-154"></a></span>
-<span id="cb22-155"><a href="#cb22-155"></a>**Why do we care about correlations between predictors?**</span>
-<span id="cb22-156"><a href="#cb22-156"></a></span>
-<span id="cb22-157"><a href="#cb22-157"></a>multi-collinearity which may influence the model. If the relationship between these two variables was stronger, we would remove one of the variables to prevent this collinearity from affecting the model.</span>
-<span id="cb22-158"><a href="#cb22-158"></a></span>
-<span id="cb22-159"><a href="#cb22-159"></a>*Note: For more information on collinearity and how it may impact the model, see Quinn &amp; Keough p 127.*</span>
-<span id="cb22-160"><a href="#cb22-160"></a></span>
-<span id="cb22-161"><a href="#cb22-161"></a></span>
-<span id="cb22-162"><a href="#cb22-162"></a><span class="fu">## Implement the fitting process for each type of model</span></span>
-<span id="cb22-163"><a href="#cb22-163"></a></span>
-<span id="cb22-164"><a href="#cb22-164"></a></span>
-<span id="cb22-167"><a href="#cb22-167"></a><span class="in">```{r}</span></span>
-<span id="cb22-168"><a href="#cb22-168"></a>mod_slr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter, <span class="at">data =</span> trees)</span>
-<span id="cb22-169"><a href="#cb22-169"></a></span>
-<span id="cb22-170"><a href="#cb22-170"></a>mod_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter <span class="sc">+</span> Height, <span class="at">data =</span> trees)</span>
-<span id="cb22-171"><a href="#cb22-171"></a></span>
-<span id="cb22-172"><a href="#cb22-172"></a><span class="in">```</span></span>
-<span id="cb22-173"><a href="#cb22-173"></a></span>
-<span id="cb22-174"><a href="#cb22-174"></a></span>
-<span id="cb22-175"><a href="#cb22-175"></a>::: callout-note</span>
-<span id="cb22-176"><a href="#cb22-176"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb22-177"><a href="#cb22-177"></a></span>
-<span id="cb22-178"><a href="#cb22-178"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
-<span id="cb22-179"><a href="#cb22-179"></a>:::</span>
-<span id="cb22-180"><a href="#cb22-180"></a></span>
-<span id="cb22-181"><a href="#cb22-181"></a></span>
-<span id="cb22-182"><a href="#cb22-182"></a><span class="fu">## Test assumptions and transform if needed</span></span>
-<span id="cb22-183"><a href="#cb22-183"></a></span>
-<span id="cb22-184"><a href="#cb22-184"></a></span>
-<span id="cb22-187"><a href="#cb22-187"></a><span class="in">```{r}</span></span>
-<span id="cb22-188"><a href="#cb22-188"></a><span class="fu">library</span>(performance)</span>
-<span id="cb22-189"><a href="#cb22-189"></a></span>
-<span id="cb22-190"><a href="#cb22-190"></a><span class="fu">check_model</span>(mod_slr)</span>
-<span id="cb22-191"><a href="#cb22-191"></a></span>
-<span id="cb22-192"><a href="#cb22-192"></a><span class="in">```</span></span>
-<span id="cb22-193"><a href="#cb22-193"></a></span>
-<span id="cb22-194"><a href="#cb22-194"></a></span>
-<span id="cb22-197"><a href="#cb22-197"></a><span class="in">```{r}</span></span>
-<span id="cb22-198"><a href="#cb22-198"></a><span class="fu">check_model</span>(mod_mlr)</span>
-<span id="cb22-199"><a href="#cb22-199"></a></span>
-<span id="cb22-200"><a href="#cb22-200"></a><span class="in">```</span></span>
-<span id="cb22-201"><a href="#cb22-201"></a></span>
-<span id="cb22-202"><a href="#cb22-202"></a></span>
-<span id="cb22-203"><a href="#cb22-203"></a>You do this to stabilise the variance of the regression to manage the leverage of the outliers in the variable. This reduces the skew. L10AREA is more likely to be a significant predictor.</span>
-<span id="cb22-204"><a href="#cb22-204"></a></span>
-<span id="cb22-205"><a href="#cb22-205"></a></span>
-<span id="cb22-206"><a href="#cb22-206"></a>::: callout-note</span>
-<span id="cb22-207"><a href="#cb22-207"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb22-208"><a href="#cb22-208"></a></span>
-<span id="cb22-209"><a href="#cb22-209"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
-<span id="cb22-210"><a href="#cb22-210"></a>:::</span>
-<span id="cb22-211"><a href="#cb22-211"></a></span>
-<span id="cb22-212"><a href="#cb22-212"></a><span class="fu">## Evaluate model fit of SLR and MLR models.</span></span>
-<span id="cb22-213"><a href="#cb22-213"></a></span>
-<span id="cb22-216"><a href="#cb22-216"></a><span class="in">```{r}</span></span>
-<span id="cb22-217"><a href="#cb22-217"></a><span class="fu">summary</span>(mod_slr)</span>
-<span id="cb22-218"><a href="#cb22-218"></a></span>
-<span id="cb22-219"><a href="#cb22-219"></a><span class="in">```</span></span>
-<span id="cb22-220"><a href="#cb22-220"></a></span>
-<span id="cb22-221"><a href="#cb22-221"></a></span>
-<span id="cb22-222"><a href="#cb22-222"></a></span>
-<span id="cb22-225"><a href="#cb22-225"></a><span class="in">```{r}</span></span>
-<span id="cb22-226"><a href="#cb22-226"></a><span class="fu">summary</span>(mod_mlr)</span>
-<span id="cb22-227"><a href="#cb22-227"></a></span>
-<span id="cb22-228"><a href="#cb22-228"></a><span class="in">```</span></span>
-<span id="cb22-229"><a href="#cb22-229"></a></span>
-<span id="cb22-230"><a href="#cb22-230"></a></span>
-<span id="cb22-231"><a href="#cb22-231"></a>::: callout-note</span>
-<span id="cb22-232"><a href="#cb22-232"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb22-233"><a href="#cb22-233"></a></span>
-<span id="cb22-234"><a href="#cb22-234"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
-<span id="cb22-235"><a href="#cb22-235"></a>:::</span>
-<span id="cb22-236"><a href="#cb22-236"></a></span>
-<span id="cb22-237"><a href="#cb22-237"></a></span>
-<span id="cb22-238"><a href="#cb22-238"></a><span class="fu">## Write up conclusions</span></span>
-<span id="cb22-239"><a href="#cb22-239"></a></span>
-<span id="cb22-240"><a href="#cb22-240"></a></span>
-<span id="cb22-241"><a href="#cb22-241"></a></span>
-<span id="cb22-242"><a href="#cb22-242"></a></span>
-<span id="cb22-243"><a href="#cb22-243"></a><span class="fu"># Wrap-up {.unnumbered}</span></span>
-<span id="cb22-244"><a href="#cb22-244"></a></span>
-<span id="cb22-245"><a href="#cb22-245"></a>In this tutorial, we have walked through the processes for simple and multiple linear regression, including how to fit models, check assumptions and how to interpret the output. You will hopefully now be able to recall key differences between the two types of models, which will help direct your analysis. </span>
-<span id="cb22-246"><a href="#cb22-246"></a></span>
-<span id="cb22-247"><a href="#cb22-247"></a>You will now apply these skills in the lab. If you have any questions please reach out to your tutors. </span>
-<span id="cb22-248"><a href="#cb22-248"></a></span>
-<span id="cb22-249"><a href="#cb22-249"></a><span class="fu">### Example exam questions</span></span>
-<span id="cb22-250"><a href="#cb22-250"></a></span>
-<span id="cb22-251"><a href="#cb22-251"></a><span class="ss">1. </span>Describe 3 key differences between simple linear regression and multiple linear regression. </span>
-<span id="cb22-252"><a href="#cb22-252"></a></span>
-<span id="cb22-253"><a href="#cb22-253"></a><span class="ss">2. </span>Describe how we would check the assumptions of a multiple linear regression. What would we do if we found that one of the assumptions was violated?</span>
-<span id="cb22-254"><a href="#cb22-254"></a></span>
-<span id="cb22-255"><a href="#cb22-255"></a><span class="ss">3.  </span>If you fitted a multiple linear regression and only one predictor was significant, would you still expect the model to be significant? Justify your answer (it may help to recall the hypotheses for MLR).</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">---</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="an">title:</span><span class="co"> "Tutorial 07"</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="co"># reviewed-by: ACA, 2026, updated by LP 2026</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="an">format:</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">---</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="fu">library</span>()</span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="in">```</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a></span>
+<span id="cb24-15"><a href="#cb24-15"></a><span class="fu">## Welcome to week 7! {.unnumbered}</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a></span>
+<span id="cb24-17"><a href="#cb24-17"></a>This week's lecture introduced you to Simple- and Multiple- Linear Regression. For both of these regression techniques we defined the key steps in model fitting and how to interpret model output. </span>
+<span id="cb24-18"><a href="#cb24-18"></a></span>
+<span id="cb24-19"><a href="#cb24-19"></a>In this tutorial, we will explore key differences between simple linear regression (SLR) and multiple linear regression (MLR), and we will learn how to fit these models in R. We will also discuss how to test assumptions and evaluate model fit for both types of regression.</span>
+<span id="cb24-20"><a href="#cb24-20"></a></span>
+<span id="cb24-21"><a href="#cb24-21"></a>You will learn how to:</span>
+<span id="cb24-22"><a href="#cb24-22"></a></span>
+<span id="cb24-23"><a href="#cb24-23"></a><span class="ss">1.  </span>Distinguish key similarities and differences between simple linear regression (SLR) and multiple linear regression (MLR) models</span>
+<span id="cb24-24"><a href="#cb24-24"></a><span class="ss">2.  </span>Implement the fitting process for each type of model</span>
+<span id="cb24-25"><a href="#cb24-25"></a><span class="ss">3.  </span>Test assumptions and evaluate model fit of SLR and MLR models.</span>
+<span id="cb24-26"><a href="#cb24-26"></a></span>
+<span id="cb24-27"><a href="#cb24-27"></a><span class="fu"># Simple linear regression vs Multiple Linear Regression</span></span>
+<span id="cb24-28"><a href="#cb24-28"></a></span>
+<span id="cb24-29"><a href="#cb24-29"></a><span class="pp">|</span> Element <span class="pp">|</span> Simple Linear Regression (SLR) <span class="pp">|</span> Multiple Linear Regression (MLR) <span class="pp">|</span></span>
+<span id="cb24-30"><a href="#cb24-30"></a><span class="pp">|:------------------------|:------------------------|:------------------------|</span></span>
+<span id="cb24-31"><a href="#cb24-31"></a><span class="pp">|</span> Number of predictors <span class="pp">|</span> 1 <span class="pp">|</span> 2 or more <span class="pp">|</span></span>
+<span id="cb24-32"><a href="#cb24-32"></a><span class="pp">|</span> Model form <span class="pp">|</span> $Y = \beta_0 + \beta_1x + \epsilon$ <span class="pp">|</span> $Y = \beta_0 + \beta_1x_1 + + \beta_2x_2 + ... + \beta_nx_n + \epsilon$ <span class="pp">|</span></span>
+<span id="cb24-33"><a href="#cb24-33"></a><span class="pp">|</span> How to fit in R <span class="pp">|</span> <span class="in">`lm(y ~ x, data = dataset)`</span> <span class="pp">|</span> <span class="in">`lm(y ~ x1 + x2 + ... + xn, data = dataset)`</span> <span class="pp">|</span></span>
+<span id="cb24-34"><a href="#cb24-34"></a><span class="pp">|</span> Assumptions <span class="pp">|</span> L.I.N.E. <span class="pp">|</span> L.I.N.E., collinearity <span class="pp">|</span></span>
+<span id="cb24-35"><a href="#cb24-35"></a><span class="pp">|</span> Model evaluation <span class="pp">|</span> $r^2$, residual plots <span class="pp">|</span> Adjusted $r^2$, residual plots, VIF<span class="pp">|</span></span>
+<span id="cb24-36"><a href="#cb24-36"></a><span class="pp">|</span> Conclusion <span class="pp">|</span> "as $x$ increases, $y$ also increases/decreases by $\beta_1$ units" <span class="pp">|</span> "as $x_1$ increases, $y$ also increases/decreases by $\beta_1$ units, holding all other predictors constant" <span class="pp">|</span></span>
+<span id="cb24-37"><a href="#cb24-37"></a></span>
+<span id="cb24-38"><a href="#cb24-38"></a>: Similarities and differences between MLR and SLR models {#tbl-perf}</span>
+<span id="cb24-39"><a href="#cb24-39"></a></span>
+<span id="cb24-40"><a href="#cb24-40"></a><span class="fu"># Setting up for our analysis</span></span>
+<span id="cb24-41"><a href="#cb24-41"></a></span>
+<span id="cb24-42"><a href="#cb24-42"></a><span class="fu">## Packages</span></span>
+<span id="cb24-43"><a href="#cb24-43"></a></span>
+<span id="cb24-44"><a href="#cb24-44"></a>This lab uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, and <span class="in">`performance`</span>. Install any you are missing by running the following **in the console**:</span>
+<span id="cb24-45"><a href="#cb24-45"></a></span>
+<span id="cb24-48"><a href="#cb24-48"></a><span class="in">```{r}</span></span>
+<span id="cb24-49"><a href="#cb24-49"></a><span class="co">#| eval: false</span></span>
+<span id="cb24-50"><a href="#cb24-50"></a></span>
+<span id="cb24-51"><a href="#cb24-51"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span>
+<span id="cb24-52"><a href="#cb24-52"></a><span class="in">```</span></span>
+<span id="cb24-53"><a href="#cb24-53"></a></span>
+<span id="cb24-54"><a href="#cb24-54"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
+<span id="cb24-55"><a href="#cb24-55"></a></span>
+<span id="cb24-56"><a href="#cb24-56"></a><span class="fu">## The data</span></span>
+<span id="cb24-57"><a href="#cb24-57"></a></span>
+<span id="cb24-58"><a href="#cb24-58"></a><span class="al">![Black Cherry tree foliage and flowers, from Wikimedia Commons, by Sten Porse.](images/Prunus-serotina.jpeg)</span></span>
+<span id="cb24-59"><a href="#cb24-59"></a></span>
+<span id="cb24-60"><a href="#cb24-60"></a>For both examples we will use the *trees* dataset, which is an in-built dataset provided by R. It contains measurements of diameter (inches), height (feet) and volume of timber (cubic feet) of 31 felled Black Cherry trees. </span>
+<span id="cb24-61"><a href="#cb24-61"></a></span>
+<span id="cb24-62"><a href="#cb24-62"></a><span class="in">`Volume`</span> will be our response variable for both models. </span>
+<span id="cb24-63"><a href="#cb24-63"></a></span>
+<span id="cb24-64"><a href="#cb24-64"></a>Note: the 'girth' variable within the dataset is actually the diameter of the tree. We can rename it now, which also adds it into our R Environment: </span>
+<span id="cb24-65"><a href="#cb24-65"></a></span>
+<span id="cb24-68"><a href="#cb24-68"></a><span class="in">```{r}</span></span>
+<span id="cb24-69"><a href="#cb24-69"></a>trees <span class="ot">&lt;-</span> trees <span class="sc">%&gt;%</span></span>
+<span id="cb24-70"><a href="#cb24-70"></a>    <span class="fu">rename</span>(<span class="at">Diameter =</span> Girth)</span>
+<span id="cb24-71"><a href="#cb24-71"></a></span>
+<span id="cb24-72"><a href="#cb24-72"></a><span class="fu">head</span>(trees)</span>
+<span id="cb24-73"><a href="#cb24-73"></a><span class="in">```</span></span>
+<span id="cb24-74"><a href="#cb24-74"></a></span>
+<span id="cb24-75"><a href="#cb24-75"></a>Original data source: </span>
+<span id="cb24-76"><a href="#cb24-76"></a></span>
+<span id="cb24-77"><a href="#cb24-77"></a>⁠Meyer H. A. (1953). Forest Mensuration. Penns Valley Publishers.</span>
+<span id="cb24-78"><a href="#cb24-78"></a></span>
+<span id="cb24-79"><a href="#cb24-79"></a>⁠Ryan T. A., Joiner B. L., Ryan B. F. (1976). The Minitab Student Handbook. Duxbury Press, North Scituate, MA. ISBN 087150359X</span>
+<span id="cb24-80"><a href="#cb24-80"></a></span>
+<span id="cb24-81"><a href="#cb24-81"></a></span>
+<span id="cb24-82"><a href="#cb24-82"></a></span>
+<span id="cb24-83"><a href="#cb24-83"></a><span class="fu"># Analysis</span></span>
+<span id="cb24-84"><a href="#cb24-84"></a></span>
+<span id="cb24-85"><a href="#cb24-85"></a><span class="fu">## Explore the data</span></span>
+<span id="cb24-86"><a href="#cb24-86"></a></span>
+<span id="cb24-87"><a href="#cb24-87"></a>For each variable we need to check the distribution, identify outliers and check for correlations between predictors (for MLR).</span>
+<span id="cb24-88"><a href="#cb24-88"></a></span>
+<span id="cb24-91"><a href="#cb24-91"></a><span class="in">```{r}</span></span>
+<span id="cb24-92"><a href="#cb24-92"></a><span class="fu">library</span>(moments)</span>
+<span id="cb24-93"><a href="#cb24-93"></a></span>
+<span id="cb24-94"><a href="#cb24-94"></a><span class="fu">summary</span>(trees)</span>
+<span id="cb24-95"><a href="#cb24-95"></a></span>
+<span id="cb24-96"><a href="#cb24-96"></a><span class="co"># Apply the sd function for each column </span></span>
+<span id="cb24-97"><a href="#cb24-97"></a><span class="fu">apply</span>(trees, <span class="dv">2</span>, sd) <span class="co"># (margin = 2 means apply the function to columns)</span></span>
+<span id="cb24-98"><a href="#cb24-98"></a></span>
+<span id="cb24-99"><a href="#cb24-99"></a><span class="fu">skewness</span>(trees)</span>
+<span id="cb24-100"><a href="#cb24-100"></a></span>
+<span id="cb24-101"><a href="#cb24-101"></a><span class="in">```</span></span>
+<span id="cb24-102"><a href="#cb24-102"></a></span>
+<span id="cb24-103"><a href="#cb24-103"></a><span class="fu">### Diameter </span></span>
+<span id="cb24-104"><a href="#cb24-104"></a></span>
+<span id="cb24-105"><a href="#cb24-105"></a>The mean diameter is 13.25 inches and the median is 12.90 inches. The values range from 8.30 to 20.60 inches and the standard deviation is 3.14 inches. There is a slight skew, indicated by the skewness coefficient of 0.526. The slight skew is also visible in the following boxplot where the median lies closer to the first quartile. </span>
+<span id="cb24-106"><a href="#cb24-106"></a></span>
+<span id="cb24-109"><a href="#cb24-109"></a><span class="in">```{r}</span></span>
+<span id="cb24-110"><a href="#cb24-110"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Diameter)) <span class="sc">+</span></span>
+<span id="cb24-111"><a href="#cb24-111"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-112"><a href="#cb24-112"></a>    <span class="fu">theme_bw</span>()</span>
+<span id="cb24-113"><a href="#cb24-113"></a><span class="in">```</span></span>
+<span id="cb24-114"><a href="#cb24-114"></a></span>
+<span id="cb24-115"><a href="#cb24-115"></a></span>
+<span id="cb24-116"><a href="#cb24-116"></a><span class="fu">### Height</span></span>
+<span id="cb24-117"><a href="#cb24-117"></a></span>
+<span id="cb24-118"><a href="#cb24-118"></a>The mean and median height is 76 feet and the values range from 63 to 87 feet. The standard deviation is 6.37 feet and the skewness coefficient is -0.37, indicating a relatively symmetrical distribution. The boxplot also shows a relatively symmetrical distribution, with the median lying close to the centre of the box.</span>
+<span id="cb24-119"><a href="#cb24-119"></a></span>
+<span id="cb24-122"><a href="#cb24-122"></a><span class="in">```{r}</span></span>
+<span id="cb24-123"><a href="#cb24-123"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Height)) <span class="sc">+</span></span>
+<span id="cb24-124"><a href="#cb24-124"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-125"><a href="#cb24-125"></a>    <span class="fu">theme_bw</span>()</span>
+<span id="cb24-126"><a href="#cb24-126"></a></span>
+<span id="cb24-127"><a href="#cb24-127"></a><span class="in">```</span></span>
+<span id="cb24-128"><a href="#cb24-128"></a></span>
+<span id="cb24-129"><a href="#cb24-129"></a></span>
+<span id="cb24-130"><a href="#cb24-130"></a><span class="fu">### Volume</span></span>
+<span id="cb24-131"><a href="#cb24-131"></a></span>
+<span id="cb24-132"><a href="#cb24-132"></a>The mean volume of timber is 30.17 cubic feet and the median is 24.20 cubic feet. The values range from 10.20 to 77.00 cubic feet and the standard deviation is 16.44 cubic feet. The skewness coefficient is 1.06, indicating a the variable is positively skewed. This is also visible in the boxplot, where the median lies closer to the first quartile and there are some high values that are potential outliers.</span>
+<span id="cb24-133"><a href="#cb24-133"></a></span>
+<span id="cb24-136"><a href="#cb24-136"></a><span class="in">```{r}</span></span>
+<span id="cb24-137"><a href="#cb24-137"></a><span class="fu">ggplot</span>(trees, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> Volume)) <span class="sc">+</span></span>
+<span id="cb24-138"><a href="#cb24-138"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb24-139"><a href="#cb24-139"></a>    <span class="fu">theme_bw</span>()</span>
+<span id="cb24-140"><a href="#cb24-140"></a></span>
+<span id="cb24-141"><a href="#cb24-141"></a><span class="in">```</span></span>
+<span id="cb24-142"><a href="#cb24-142"></a></span>
+<span id="cb24-143"><a href="#cb24-143"></a></span>
+<span id="cb24-144"><a href="#cb24-144"></a>**Why do the high values matter?**</span>
+<span id="cb24-145"><a href="#cb24-145"></a></span>
+<span id="cb24-146"><a href="#cb24-146"></a>The high values would have high leverage in our model, causing the residuals to be skewed, violating our assumptions. The boxplot is therefore telling us that we might need to transform Volume to stabilise the variance of the regression, but it is worth confirming this with the diagnostic plots after fitting the model.</span>
+<span id="cb24-147"><a href="#cb24-147"></a></span>
+<span id="cb24-148"><a href="#cb24-148"></a><span class="fu">### Correlations</span></span>
+<span id="cb24-149"><a href="#cb24-149"></a></span>
+<span id="cb24-150"><a href="#cb24-150"></a>For both simple and multiple linear regression we need to check the correlation between our response variable and our predictor variable. </span>
+<span id="cb24-151"><a href="#cb24-151"></a></span>
+<span id="cb24-152"><a href="#cb24-152"></a>For multiple linear regression it is also important to check the relationships between the predictor variables, as a strong correlation may indicate collinearity, which can influence the model.</span>
+<span id="cb24-153"><a href="#cb24-153"></a></span>
+<span id="cb24-154"><a href="#cb24-154"></a>We will start by looking at all correlations, and then for our simple linear regression we will select the variable that has the the strongest correlation with the response (Volume) to use as our single predictor variable.</span>
+<span id="cb24-155"><a href="#cb24-155"></a></span>
+<span id="cb24-156"><a href="#cb24-156"></a>First we will use the correlation coefficient to understand the strength and direction of the relationships between the variables. Then we can look at the scatterplots between variables to verify the correlation coefficients and identify if there are any other types of relationships (e.g. non-linear) that may be occurring between variables. </span>
+<span id="cb24-157"><a href="#cb24-157"></a></span>
+<span id="cb24-158"><a href="#cb24-158"></a>::: {.callout-tip}</span>
+<span id="cb24-159"><a href="#cb24-159"></a><span class="fu">## Remember</span></span>
+<span id="cb24-160"><a href="#cb24-160"></a></span>
+<span id="cb24-161"><a href="#cb24-161"></a>Correlation coefficients only measure the strength and direction of LINEAR relationships. </span>
+<span id="cb24-162"><a href="#cb24-162"></a></span>
+<span id="cb24-163"><a href="#cb24-163"></a>It is therefore important to visualise the relationships between variables to check for non-linear relationships, which may not be captured by the correlation coefficient.</span>
+<span id="cb24-164"><a href="#cb24-164"></a></span>
+<span id="cb24-165"><a href="#cb24-165"></a>:::</span>
+<span id="cb24-166"><a href="#cb24-166"></a></span>
+<span id="cb24-167"><a href="#cb24-167"></a>Let's have a look at the correlation coefficients between variables: </span>
+<span id="cb24-168"><a href="#cb24-168"></a></span>
+<span id="cb24-171"><a href="#cb24-171"></a><span class="in">```{r}</span></span>
+<span id="cb24-172"><a href="#cb24-172"></a><span class="fu">cor</span>(trees)</span>
+<span id="cb24-173"><a href="#cb24-173"></a><span class="in">```</span></span>
+<span id="cb24-174"><a href="#cb24-174"></a></span>
+<span id="cb24-175"><a href="#cb24-175"></a>The correlation coefficient between Volume and Diameter is 0.967, which indicates a very strong positive linear relationship. </span>
+<span id="cb24-176"><a href="#cb24-176"></a></span>
+<span id="cb24-177"><a href="#cb24-177"></a>The correlation coefficient between Volume and Height is 0.598, which indicates a weak positive linear relationship. </span>
+<span id="cb24-178"><a href="#cb24-178"></a></span>
+<span id="cb24-179"><a href="#cb24-179"></a>The correlation coefficient between Diameter and Height is 0.519, which indicates a weak positive linear relationship, suggesting that there may be collinearity between these two predictor variables. </span>
+<span id="cb24-180"><a href="#cb24-180"></a></span>
+<span id="cb24-181"><a href="#cb24-181"></a>Now let's look at the scatterplots between variables to verify these relationships:</span>
+<span id="cb24-182"><a href="#cb24-182"></a></span>
+<span id="cb24-185"><a href="#cb24-185"></a><span class="in">```{r}</span></span>
+<span id="cb24-186"><a href="#cb24-186"></a><span class="fu">pairs</span>(trees)</span>
+<span id="cb24-187"><a href="#cb24-187"></a><span class="in">```</span></span>
+<span id="cb24-188"><a href="#cb24-188"></a></span>
+<span id="cb24-189"><a href="#cb24-189"></a>The scatterplots confirm the strong positive linear relationship between Volume and Diameter as we can see the points following a clear trend on the plot. The points in the plot between height and volume also seem to follow a weaker positive trend as they appear more scattered across the plot area. </span>
+<span id="cb24-190"><a href="#cb24-190"></a></span>
+<span id="cb24-191"><a href="#cb24-191"></a>This is similar in the scatterplot between diameter and height where the points are also quite scattered but still follow weak positive trend. </span>
+<span id="cb24-192"><a href="#cb24-192"></a></span>
+<span id="cb24-193"><a href="#cb24-193"></a>You are welcome to use the above code to create scatterplots between each pair of variables, and calculate the correlation coefficients separately, but if you prefer something cleaner, you can also use the <span class="in">`pairs.panels()`</span> function from the <span class="in">`psych`</span> package which produces a neat array of plots and coefficients. </span>
+<span id="cb24-194"><a href="#cb24-194"></a></span>
+<span id="cb24-197"><a href="#cb24-197"></a><span class="in">```{r}</span></span>
+<span id="cb24-198"><a href="#cb24-198"></a><span class="co"># not using library(psych) as I am only using the function once</span></span>
+<span id="cb24-199"><a href="#cb24-199"></a></span>
+<span id="cb24-200"><a href="#cb24-200"></a><span class="co"># instead do the following: </span></span>
+<span id="cb24-201"><a href="#cb24-201"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(trees)</span>
+<span id="cb24-202"><a href="#cb24-202"></a></span>
+<span id="cb24-203"><a href="#cb24-203"></a><span class="in">```</span></span>
+<span id="cb24-204"><a href="#cb24-204"></a></span>
+<span id="cb24-205"><a href="#cb24-205"></a>We can see the function produces scatterplots and correlation coefficients between each variable, as well as histograms for each individual variable. The histograms can supplement our EDA where we are looking at the distribution for each variable. </span>
+<span id="cb24-206"><a href="#cb24-206"></a></span>
+<span id="cb24-207"><a href="#cb24-207"></a>We have identified some potential colinnearity occurring between height and diameter, but will run the models today. Next week we will cover how to manage collinearity in MLR.</span>
+<span id="cb24-208"><a href="#cb24-208"></a></span>
+<span id="cb24-209"><a href="#cb24-209"></a><span class="fu">## Implement the fitting process for each type of model</span></span>
+<span id="cb24-210"><a href="#cb24-210"></a></span>
+<span id="cb24-211"><a href="#cb24-211"></a>Our correlation analyses identified that Diameter is more strongly correlated with Volume, so we will use diameter as our response variable in the simple linear regression. </span>
+<span id="cb24-212"><a href="#cb24-212"></a></span>
+<span id="cb24-215"><a href="#cb24-215"></a><span class="in">```{r}</span></span>
+<span id="cb24-216"><a href="#cb24-216"></a>mod_slr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter, <span class="at">data =</span> trees)</span>
+<span id="cb24-217"><a href="#cb24-217"></a></span>
+<span id="cb24-218"><a href="#cb24-218"></a>mod_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log10</span>(Volume) <span class="sc">~</span> Diameter <span class="sc">+</span> Height, <span class="at">data =</span> trees)</span>
+<span id="cb24-219"><a href="#cb24-219"></a></span>
+<span id="cb24-220"><a href="#cb24-220"></a><span class="in">```</span></span>
+<span id="cb24-221"><a href="#cb24-221"></a></span>
+<span id="cb24-222"><a href="#cb24-222"></a></span>
+<span id="cb24-223"><a href="#cb24-223"></a>::: callout-note</span>
+<span id="cb24-224"><a href="#cb24-224"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb24-225"><a href="#cb24-225"></a></span>
+<span id="cb24-226"><a href="#cb24-226"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
+<span id="cb24-227"><a href="#cb24-227"></a>:::</span>
+<span id="cb24-228"><a href="#cb24-228"></a></span>
+<span id="cb24-229"><a href="#cb24-229"></a></span>
+<span id="cb24-230"><a href="#cb24-230"></a><span class="fu">## Test assumptions and transform if needed</span></span>
+<span id="cb24-231"><a href="#cb24-231"></a></span>
+<span id="cb24-232"><a href="#cb24-232"></a></span>
+<span id="cb24-235"><a href="#cb24-235"></a><span class="in">```{r}</span></span>
+<span id="cb24-236"><a href="#cb24-236"></a><span class="fu">library</span>(performance)</span>
+<span id="cb24-237"><a href="#cb24-237"></a></span>
+<span id="cb24-238"><a href="#cb24-238"></a><span class="fu">check_model</span>(mod_slr)</span>
+<span id="cb24-239"><a href="#cb24-239"></a></span>
+<span id="cb24-240"><a href="#cb24-240"></a><span class="in">```</span></span>
+<span id="cb24-241"><a href="#cb24-241"></a></span>
+<span id="cb24-242"><a href="#cb24-242"></a></span>
+<span id="cb24-245"><a href="#cb24-245"></a><span class="in">```{r}</span></span>
+<span id="cb24-246"><a href="#cb24-246"></a><span class="fu">check_model</span>(mod_mlr)</span>
+<span id="cb24-247"><a href="#cb24-247"></a></span>
+<span id="cb24-248"><a href="#cb24-248"></a><span class="in">```</span></span>
+<span id="cb24-249"><a href="#cb24-249"></a></span>
+<span id="cb24-250"><a href="#cb24-250"></a></span>
+<span id="cb24-251"><a href="#cb24-251"></a>You do this to stabilise the variance of the regression to manage the leverage of the outliers in the variable. This reduces the skew. L10AREA is more likely to be a significant predictor.</span>
+<span id="cb24-252"><a href="#cb24-252"></a></span>
+<span id="cb24-253"><a href="#cb24-253"></a></span>
+<span id="cb24-254"><a href="#cb24-254"></a>::: callout-note</span>
+<span id="cb24-255"><a href="#cb24-255"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb24-256"><a href="#cb24-256"></a></span>
+<span id="cb24-257"><a href="#cb24-257"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
+<span id="cb24-258"><a href="#cb24-258"></a>:::</span>
+<span id="cb24-259"><a href="#cb24-259"></a></span>
+<span id="cb24-260"><a href="#cb24-260"></a><span class="fu">## Evaluate model fit of SLR and MLR models.</span></span>
+<span id="cb24-261"><a href="#cb24-261"></a></span>
+<span id="cb24-264"><a href="#cb24-264"></a><span class="in">```{r}</span></span>
+<span id="cb24-265"><a href="#cb24-265"></a><span class="fu">summary</span>(mod_slr)</span>
+<span id="cb24-266"><a href="#cb24-266"></a></span>
+<span id="cb24-267"><a href="#cb24-267"></a><span class="in">```</span></span>
+<span id="cb24-268"><a href="#cb24-268"></a></span>
+<span id="cb24-269"><a href="#cb24-269"></a></span>
+<span id="cb24-270"><a href="#cb24-270"></a></span>
+<span id="cb24-273"><a href="#cb24-273"></a><span class="in">```{r}</span></span>
+<span id="cb24-274"><a href="#cb24-274"></a><span class="fu">summary</span>(mod_mlr)</span>
+<span id="cb24-275"><a href="#cb24-275"></a></span>
+<span id="cb24-276"><a href="#cb24-276"></a><span class="in">```</span></span>
+<span id="cb24-277"><a href="#cb24-277"></a></span>
+<span id="cb24-278"><a href="#cb24-278"></a></span>
+<span id="cb24-279"><a href="#cb24-279"></a>::: callout-note</span>
+<span id="cb24-280"><a href="#cb24-280"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb24-281"><a href="#cb24-281"></a></span>
+<span id="cb24-282"><a href="#cb24-282"></a>You should now be able to ...<span class="sc">\[</span>PUT THIS AFTER EACH OBJECTIVE<span class="sc">\]</span></span>
+<span id="cb24-283"><a href="#cb24-283"></a>:::</span>
+<span id="cb24-284"><a href="#cb24-284"></a></span>
+<span id="cb24-285"><a href="#cb24-285"></a></span>
+<span id="cb24-286"><a href="#cb24-286"></a><span class="fu">## Write up conclusions</span></span>
+<span id="cb24-287"><a href="#cb24-287"></a></span>
+<span id="cb24-288"><a href="#cb24-288"></a></span>
+<span id="cb24-289"><a href="#cb24-289"></a></span>
+<span id="cb24-290"><a href="#cb24-290"></a></span>
+<span id="cb24-291"><a href="#cb24-291"></a><span class="fu"># Wrap-up {.unnumbered}</span></span>
+<span id="cb24-292"><a href="#cb24-292"></a></span>
+<span id="cb24-293"><a href="#cb24-293"></a>In this tutorial, we have walked through the processes for simple and multiple linear regression, including how to fit models, check assumptions and how to interpret the output. You will hopefully now be able to recall key differences between the two types of models, which will help direct your analysis. </span>
+<span id="cb24-294"><a href="#cb24-294"></a></span>
+<span id="cb24-295"><a href="#cb24-295"></a>You will now apply these skills in the lab. If you have any questions please reach out to your tutors. </span>
+<span id="cb24-296"><a href="#cb24-296"></a></span>
+<span id="cb24-297"><a href="#cb24-297"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb24-298"><a href="#cb24-298"></a></span>
+<span id="cb24-299"><a href="#cb24-299"></a><span class="ss">1. </span>Describe 3 key differences between simple linear regression and multiple linear regression. </span>
+<span id="cb24-300"><a href="#cb24-300"></a></span>
+<span id="cb24-301"><a href="#cb24-301"></a><span class="ss">2. </span>Describe how we would check the assumptions of a multiple linear regression. What would we do if we found that one of the assumptions was violated?</span>
+<span id="cb24-302"><a href="#cb24-302"></a></span>
+<span id="cb24-303"><a href="#cb24-303"></a><span class="ss">3.  </span>If you fitted a multiple linear regression and only one predictor was significant, would you still expect the model to be significant? Justify your answer (it may help to recall the hypotheses for MLR).</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

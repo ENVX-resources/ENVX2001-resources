@@ -2594,21 +2594,35 @@
     "href": "lectures/L07/Lecture-07.html#about-me",
     "title": "Regression: modelling",
     "section": "About me",
-    "text": "About me\n\n\n\n\nResearch topics: spatial modelling and mapping, precision agriculture, winter grains\nTimeline at USYD\n\nBSc (Hons) in Agricultural Science\nPhD in Digital Agriculture\nPostdoc in Spatial Modelling\nAssociate Lecturer in Agricultural Data Science\n\n\n\n\n\n\n\nFaba beans at Trangie"
+    "text": "About me\n\n\n\n\nLecturer in Agricultural Data Science\nResearch topics: spatial modelling and mapping, precision agriculture, soil contamination\nHow did I get here?\n\nBSc (Hons) in Environmental Biology - Thesis on satellite detection of phytoplankton off Australian coast\nPhD in Agriculture - Thesis on soil contamination mapping and spatial modelling\nVarious postdocs - Teaching, Wagyu metabolomics, soil constraints, soil carbon\n\n\n\n\n\n\n\nAerial view of marine phytoplankton bloom, Image by Mete Caner Arican via Adobe Stock"
   },
   {
-    "objectID": "lectures/L07/Lecture-07.html#learning-outcomes",
-    "href": "lectures/L07/Lecture-07.html#learning-outcomes",
+    "objectID": "lectures/L07/Lecture-07.html#unit-learning-outcomes",
+    "href": "lectures/L07/Lecture-07.html#unit-learning-outcomes",
     "title": "Regression: modelling",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nLO1. demonstrate proficiency in designing sample schemes and analysing data from them using using R\nLO2. describe and identify the basic features of an experimental design; replicate, treatment structure and blocking structure\nLO3. demonstrate proficiency in the use or the statistical programming language R to an ANOVA and fit regression models to experimental data\nLO4. demonstrate proficiency in the use or the statistical programming language R to use multivariate methods to find patterns in data\nLO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R\nLO6. write statistical and modelling results as part of a scientific report\nLO7. appraise the validity of statistical analyses used publications."
+    "section": "Unit Learning Outcomes",
+    "text": "Unit Learning Outcomes\nLO1. demonstrate proficiency in designing sample schemes and analysing data from them using using R\nLO2. describe and identify the basic features of an experimental design; replicate, treatment structure and blocking structure\nLO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data\nLO4. demonstrate proficiency in the use or the statistical programming language R to use multivariate methods to find patterns in data\nLO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R\nLO6. write statistical and modelling results as part of a scientific report\nLO7. appraise the validity of statistical analyses used publications."
   },
   {
-    "objectID": "lectures/L07/Lecture-07.html#refresher-from-envx1002",
-    "href": "lectures/L07/Lecture-07.html#refresher-from-envx1002",
+    "objectID": "lectures/L07/Lecture-07.html#topic-7-learning-outcomes",
+    "href": "lectures/L07/Lecture-07.html#topic-7-learning-outcomes",
     "title": "Regression: modelling",
-    "section": "Refresher from ENVX1002",
-    "text": "Refresher from ENVX1002\n\nRegression modelling is for one continuous numerical response (\\(y\\)) and one or more numerical predictors (\\(x_1\\), \\(x_2\\), \\(x_n\\))\nCan be for linear or nonlinear relationships – focus on linear in ENVX2001\nTo help us:\n\nUnderstand the relationship between variables\nPredict new values of \\(y\\) based on \\(x\\)\nTest hypotheses about the relationship between variables\n\nFit a ‘line of best fit’ that minimises the sum of the squared residuals (least-squares)"
+    "section": "Topic 7 Learning Outcomes",
+    "text": "Topic 7 Learning Outcomes\nBy the end of this week, students should be able to:\n\nDescribe the purpose and application of linear regression\nIdentify the key components of a linear regression model\nUnderstand the assumptions of linear regression and how to check them\nUnderstand the concept of model fit and how to evaluate it\nInterpret the output of a linear regression model\nDistinguish key similarities and differences between simple linear regression (SLR) and multiple linear regression (MLR) models"
+  },
+  {
+    "objectID": "lectures/L07/Lecture-07.html#topic-7-lecture-outline",
+    "href": "lectures/L07/Lecture-07.html#topic-7-lecture-outline",
+    "title": "Regression: modelling",
+    "section": "Topic 7 lecture outline",
+    "text": "Topic 7 lecture outline\n\nPurpose and brief history of regression modelling\nSimple linear regression\n\nDefining a linear relationship\nFitting the model\nAssumptions\nModel fit\nInterpret output\n\nTransformations\nMultiple linear regression"
+  },
+  {
+    "objectID": "lectures/L07/Lecture-07.html#what-is-regression-modelling-for",
+    "href": "lectures/L07/Lecture-07.html#what-is-regression-modelling-for",
+    "title": "Regression: modelling",
+    "section": "What is regression modelling for?",
+    "text": "What is regression modelling for?\n\nRegression modelling is for one continuous numerical response (\\(y\\)) and one or more numerical predictors (\\(x_1\\), \\(x_2\\), \\(x_n\\))\nCan be for linear or nonlinear relationships – focus on linear in ENVX2001\nTo help us:\n\nUnderstand the relationship between variables\nPredict new values of \\(y\\) based on \\(x\\)\nTest hypotheses about the relationship between variables\n\nFit a ‘line of best fit’ that minimises the sum of the squared residuals (least-squares)"
   },
   {
     "objectID": "lectures/L07/Lecture-07.html#workflow",

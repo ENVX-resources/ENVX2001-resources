@@ -2800,6 +2800,13 @@
     "text": "Model fit\n\n\n\nsummary(fit)\n\n\nCall:\nlm(formula = child ~ parent, data = Galton)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.8050 -1.3661  0.0487  1.6339  5.9264 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 23.94153    2.81088   8.517   &lt;2e-16 ***\nparent       0.64629    0.04114  15.711   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.239 on 926 degrees of freedom\nMultiple R-squared:  0.2105,    Adjusted R-squared:  0.2096 \nF-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16\n\n\n\n\\[\\widehat{child} = 23.9 + 0.65 \\cdot parent\\]\nFor every unit change in parent (i.e. 1 inch), we expect a 0.65 unit change in child.\nHow much variation is explained? R2 = 0.21 = 21%\n\nMultiple R2: proportion of variance in the response variable explained by the model.\nAdjusted R2: as above but adjusted for the number of predictors in the model.\n\nFor multiple linear regression\nIt only increases if the new term improves the model more than would be expected by chance\nAlways lower than multiple R2"
   },
   {
+    "objectID": "lectures/L07/Lecture-07.html#plot-the-model",
+    "href": "lectures/L07/Lecture-07.html#plot-the-model",
+    "title": "Regression: modelling",
+    "section": "Plot the model",
+    "text": "Plot the model\n\n\n\nggplot(Galton, aes(x = parent, y = child)) +\n  geom_point(alpha = .2, size = 3) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(subtitle = paste(\"R^2^:\", round(summary(fit)$r.squared, 2)))\n\n\n\n\n\n\n\n\n\n\\[\\widehat{child} = 23.9 + 0.65 \\cdot parent\\] How much variation is explained? R2 = 0.21 = 21%\nIf the r2 accounted for more variation, the points would follow the line more closely."
+  },
+  {
     "objectID": "lectures/L07/Lecture-07.html#making-predictions",
     "href": "lectures/L07/Lecture-07.html#making-predictions",
     "title": "Regression: modelling",

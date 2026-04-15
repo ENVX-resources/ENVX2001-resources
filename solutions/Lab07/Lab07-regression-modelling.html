@@ -410,7 +410,7 @@ window.Quarto = {
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: If you do choose to transform a variable you will need to refit the model and check the assumptions again.</p>
-<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
+<p><em>(vii)</em> Provide a plot of your model and interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings.</p>
 <p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
 </section>
@@ -640,11 +640,31 @@ $ AREA  &lt;dbl&gt; 0.1, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 
 </div>
 <p>The assumptions of the model with the log10 transformed Area variable are much better. The relationship looks more linear, the residuals are more normally distributed, and there is less evidence of heteroscedasticity.</p>
 </section>
-<section id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area" class="level5">
-<h5 class="anchored" data-anchor-id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area"><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</h5>
+<section id="vii-provide-a-plot-of-your-model-and-interpret-the-model-parameters-and-fit-statistics.-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area" class="level5 page-columns page-full">
+<h5 class="anchored" data-anchor-id="vii-provide-a-plot-of-your-model-and-interpret-the-model-parameters-and-fit-statistics.-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-bird-abundance-and-patch-area"><em>(vii)</em> Provide a plot of your model and interpret the model parameters and fit statistics. Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between bird abundance and patch area?</h5>
+<p>Plot model to provide a visual of the relationship between bird abundance and patch area, with the fitted regression line.</p>
+<div class="cell page-columns page-full">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(loyn) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10_AREA, <span class="at">y =</span> ABUND)) <span class="sc">+</span> </span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> log10_AREA, <span class="at">y =</span> ABUND), <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bird abundance vs log10 transformed area of forest patch"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>       <span class="at">x =</span> <span class="st">"log10 transformed area of forest patch (ha)"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>       <span class="at">y =</span> <span class="st">"Bird abundance (number of birds)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 4. Scatterplot and model of Bird abundance vs log10 transformed area of forest patch (ha) with fitted regression line</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Get the model summary of your final model (with the transformed variable)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">summary</span>(loyn_lm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(loyn_lm2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -678,11 +698,13 @@ F-statistic: 65.38 on 1 and 54 DF,  p-value: 7.178e-11</code></pre>
 <li>P-value</li>
 </ol>
 <p>The P-value for the slope coefficient is &lt; 0.001, meaning we reject our null hypothesis that the slope is equal to zero (<span class="math inline">H0: \beta_1 \neq 0</span>) and conclude that log10(Area) is a significant predictor of bird abundance.</p>
+<p>This is also supported by Figure 4, where the model is sloped, indicating there is a relationship between the two variables.</p>
 <ol start="4" type="1">
 <li>R-squared</li>
 </ol>
 <p>As we only have one predictor in the model, we can use the r<sup>2</sup> value rather than the adjusted r<sup>2</sup>.</p>
 <p>The r<sup>2</sup> value is 0.55, which means that 55% of the variation in bird abundance can be explained by log10(Area). This is not really a strong r<sup>2</sup> value, so it suggests that there are other factors influencing bird abundance that are not included in the model.</p>
+<p>We can see this in Figure 4 where the points do not follow the regression line too closely. If the r<sup>2</sup> were higher, then we would expect the points to sit closer to the line.</p>
 </section>
 <section id="viii-write-a-concluding-statement-on-your-findings." class="level5">
 <h5 class="anchored" data-anchor-id="viii-write-a-concluding-statement-on-your-findings."><em>(viii)</em> Write a concluding statement on your findings.</h5>
@@ -795,10 +817,10 @@ y_{i} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \epsilon_{i}
 <h5 class="anchored" data-anchor-id="iii-read-in-the-data-and-conduct-some-exploratory-data-analysis-upon-your-variables.-describe-the-spread-and-central-tendency-of-each-supported-by-values-summary-statistics-and-plots."><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</h5>
 <p>Read in the data</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># read in the data</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># read in the data</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 43
 Columns: 4
@@ -812,47 +834,47 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <p>Summary statistics</p>
 <p>I have calculated each summary statistic separately here to produce the output as a table. If you are exploring the data for yourself, you are welcome to use <code>summary()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(moments) <span class="co"># gives us the skewness() function</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>runoff_volume <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
-<span id="cb20-8"><a href="#cb20-8"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
-<span id="cb20-9"><a href="#cb20-9"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>runoff_volume)</span>
-<span id="cb20-10"><a href="#cb20-10"></a>)</span>
-<span id="cb20-11"><a href="#cb20-11"></a></span>
-<span id="cb20-12"><a href="#cb20-12"></a>lake_sabrina <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb20-13"><a href="#cb20-13"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
-<span id="cb20-14"><a href="#cb20-14"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
-<span id="cb20-15"><a href="#cb20-15"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
-<span id="cb20-16"><a href="#cb20-16"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
-<span id="cb20-17"><a href="#cb20-17"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
-<span id="cb20-18"><a href="#cb20-18"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>lake_sabrina)</span>
-<span id="cb20-19"><a href="#cb20-19"></a>)</span>
-<span id="cb20-20"><a href="#cb20-20"></a></span>
-<span id="cb20-21"><a href="#cb20-21"></a>pine_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb20-22"><a href="#cb20-22"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>pine_creek),</span>
-<span id="cb20-23"><a href="#cb20-23"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>pine_creek),</span>
-<span id="cb20-24"><a href="#cb20-24"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>pine_creek),</span>
-<span id="cb20-25"><a href="#cb20-25"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>pine_creek),</span>
-<span id="cb20-26"><a href="#cb20-26"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>pine_creek),</span>
-<span id="cb20-27"><a href="#cb20-27"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>pine_creek)</span>
-<span id="cb20-28"><a href="#cb20-28"></a>)</span>
-<span id="cb20-29"><a href="#cb20-29"></a></span>
-<span id="cb20-30"><a href="#cb20-30"></a>rock_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb20-31"><a href="#cb20-31"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>rock_creek),</span>
-<span id="cb20-32"><a href="#cb20-32"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>rock_creek),</span>
-<span id="cb20-33"><a href="#cb20-33"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>rock_creek),</span>
-<span id="cb20-34"><a href="#cb20-34"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>rock_creek),</span>
-<span id="cb20-35"><a href="#cb20-35"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>rock_creek),</span>
-<span id="cb20-36"><a href="#cb20-36"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>rock_creek)</span>
-<span id="cb20-37"><a href="#cb20-37"></a>)</span>
-<span id="cb20-38"><a href="#cb20-38"></a></span>
-<span id="cb20-39"><a href="#cb20-39"></a>summary_creeks <span class="ot">=</span> <span class="fu">rbind</span>(runoff_volume, lake_sabrina, pine_creek, rock_creek) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb20-40"><a href="#cb20-40"></a></span>
-<span id="cb20-41"><a href="#cb20-41"></a><span class="fu">kable</span>(summary_creeks, <span class="at">caption =</span> <span class="st">"Table 2. Summary statistics for runoff volume (ML/year) and precipitation at Lake Sabrina, Pine Creek, and Rock Creek (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">library</span>(moments) <span class="co"># gives us the skewness() function</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a>runoff_volume <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>runoff_volume),</span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>runoff_volume)</span>
+<span id="cb22-10"><a href="#cb22-10"></a>)</span>
+<span id="cb22-11"><a href="#cb22-11"></a></span>
+<span id="cb22-12"><a href="#cb22-12"></a>lake_sabrina <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb22-13"><a href="#cb22-13"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb22-14"><a href="#cb22-14"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb22-15"><a href="#cb22-15"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb22-16"><a href="#cb22-16"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb22-17"><a href="#cb22-17"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>lake_sabrina),</span>
+<span id="cb22-18"><a href="#cb22-18"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>lake_sabrina)</span>
+<span id="cb22-19"><a href="#cb22-19"></a>)</span>
+<span id="cb22-20"><a href="#cb22-20"></a></span>
+<span id="cb22-21"><a href="#cb22-21"></a>pine_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb22-22"><a href="#cb22-22"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb22-23"><a href="#cb22-23"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb22-24"><a href="#cb22-24"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb22-25"><a href="#cb22-25"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb22-26"><a href="#cb22-26"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>pine_creek),</span>
+<span id="cb22-27"><a href="#cb22-27"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>pine_creek)</span>
+<span id="cb22-28"><a href="#cb22-28"></a>)</span>
+<span id="cb22-29"><a href="#cb22-29"></a></span>
+<span id="cb22-30"><a href="#cb22-30"></a>rock_creek <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb22-31"><a href="#cb22-31"></a>  <span class="at">mean =</span> <span class="fu">mean</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb22-32"><a href="#cb22-32"></a>  <span class="at">median =</span> <span class="fu">median</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb22-33"><a href="#cb22-33"></a>  <span class="at">min =</span> <span class="fu">min</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb22-34"><a href="#cb22-34"></a>  <span class="at">max =</span> <span class="fu">max</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb22-35"><a href="#cb22-35"></a>  <span class="at">sd =</span> <span class="fu">sd</span>(stream_data<span class="sc">$</span>rock_creek),</span>
+<span id="cb22-36"><a href="#cb22-36"></a>  <span class="at">skewness =</span> <span class="fu">skewness</span>(stream_data<span class="sc">$</span>rock_creek)</span>
+<span id="cb22-37"><a href="#cb22-37"></a>)</span>
+<span id="cb22-38"><a href="#cb22-38"></a></span>
+<span id="cb22-39"><a href="#cb22-39"></a>summary_creeks <span class="ot">=</span> <span class="fu">rbind</span>(runoff_volume, lake_sabrina, pine_creek, rock_creek) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb22-40"><a href="#cb22-40"></a></span>
+<span id="cb22-41"><a href="#cb22-41"></a><span class="fu">kable</span>(summary_creeks, <span class="at">caption =</span> <span class="st">"Table 2. Summary statistics for runoff volume (ML/year) and precipitation at Lake Sabrina, Pine Creek, and Rock Creek (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Table 2. Summary statistics for runoff volume (ML/year) and precipitation at Lake Sabrina, Pine Creek, and Rock Creek (mm)</caption>
@@ -911,18 +933,18 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <ol type="1">
 <li>Runoff volume (ML/year)</li>
 </ol>
-<p>The mean runoff volume recorded at the site near Bishop, California is 4.96 ML/year and the median is 4.93 ML/year (Table 2). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of 0.29, which is close to 0, and the relatively symmetrical boxplot (Fig. 3), indicating a fairly symmetric distribution. The median does seem to sit closer to the first quartile than the third quartile, suggesting a slight skew, but everything else seems to indicate a fairly normal distribution.</p>
+<p>The mean runoff volume recorded at the site near Bishop, California is 4.96 ML/year and the median is 4.93 ML/year (Table 2). These are quite similar, suggesting a normal distribution. This is further supported by the skewness coefficient of 0.29, which is close to 0, and the relatively symmetrical boxplot (Fig. 5), indicating a fairly symmetric distribution. The median does seem to sit closer to the first quartile than the third quartile, suggesting a slight skew, but everything else seems to indicate a fairly normal distribution.</p>
 <p>Runoff volume ranges from a minimum of 4.71 ML/year to 5.26 ML/year and the standard deviation is 0.14, which indicates that the spread of values is quite small.</p>
 <div class="cell page-columns page-full">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> runoff_volume)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Runoff volume (ML/year)"</span>,</span>
-<span id="cb21-4"><a href="#cb21-4"></a>       <span class="at">y =</span> <span class="st">"Runoff volume (ML/year)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> runoff_volume)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Runoff volume (ML/year)"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>       <span class="at">y =</span> <span class="st">"Runoff volume (ML/year)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="margin-caption">Figure 3. Boxplot of Runoff volume (ML/year)</figcaption>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 5. Boxplot of Runoff volume (ML/year)</figcaption>
 </figure>
 </div>
 </div>
@@ -930,18 +952,18 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <ol start="2" type="1">
 <li>Precipitation at Lake Sabrina (mm)</li>
 </ol>
-<p>The mean precipitation recorded at Lake Sabrina is 2.03 mm and the median is 2.05 mm (Table 2). These are quite similar, but given the narrow range of values the difference could be quite large. We can see this in the skewness coefficient of -0.44, which suggests the distribution is symmetrical, but there is a slight skew to the left. Upon visual inspection of the boxplot (Fig. 4) we can see there are a number of outliers which may be influencing this skew.</p>
+<p>The mean precipitation recorded at Lake Sabrina is 2.03 mm and the median is 2.05 mm (Table 2). These are quite similar, but given the narrow range of values the difference could be quite large. We can see this in the skewness coefficient of -0.44, which suggests the distribution is symmetrical, but there is a slight skew to the left. Upon visual inspection of the boxplot (Fig. 6) we can see there are a number of outliers which may be influencing this skew.</p>
 <p>Precipitation at Lake Sabrina ranged from a minimum of 1.6 mm to 2.5 mm and the standard deviation is 0.20, indicating that there is some variability in precipitation at Lake Sabrina across the years.</p>
 <div class="cell page-columns page-full">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> lake_sabrina)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Lake Sabrina (mm)"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> lake_sabrina)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Lake Sabrina (mm)"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="margin-caption">Figure 4. Boxplot of precipitation at Lake Sabrina (mm)</figcaption>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 6. Boxplot of precipitation at Lake Sabrina (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -949,18 +971,18 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <ol start="3" type="1">
 <li>Precipitation at Pine Creek (mm)</li>
 </ol>
-<p>The mean precipitation at Pine Creek was 2.45 mm and the median was 2.38 mm. The mean and median are similar and the skewness coefficient of 0.19 suggests the distribution is symmetrical. Upon visual inspection of the boxplot (Fig. 5) we can see the median lies closer to the first quartile, but otherwise the boxplot looks fairly symmetrical.</p>
+<p>The mean precipitation at Pine Creek was 2.45 mm and the median was 2.38 mm. The mean and median are similar and the skewness coefficient of 0.19 suggests the distribution is symmetrical. Upon visual inspection of the boxplot (Fig. 7) we can see the median lies closer to the first quartile, but otherwise the boxplot looks fairly symmetrical.</p>
 <p>Precipitation at Pine Creek ranged from a minimum of 2.01 mm to a maximum of 3.04 mm and the standard deviation is 0.24, indicating that there is some variability in precipitation at Pine Creek across the years.</p>
 <div class="cell page-columns page-full">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> pine_creek)) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Pine Creek (mm)"</span>,</span>
-<span id="cb23-4"><a href="#cb23-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> pine_creek)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Pine Creek (mm)"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="margin-caption">Figure 5. Boxplot of precipitation at Pine Creek (mm)</figcaption>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 7. Boxplot of precipitation at Pine Creek (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -968,18 +990,18 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <ol start="4" type="1">
 <li>Precipitation at Rock Creek (mm)</li>
 </ol>
-<p>The mean precipitation at Rock Creek was the same as the median (2.45 mm), and the skewness coefficient of -0.03 suggests the distribution is very symmetrical. Upon visual inspection of the boxplot (Fig. 6) we can see the median lies exactly in the middle of the box, and there are no outliers, suggesting a very symmetrical distribution.</p>
+<p>The mean precipitation at Rock Creek was the same as the median (2.45 mm), and the skewness coefficient of -0.03 suggests the distribution is very symmetrical. Upon visual inspection of the boxplot (Fig. 8) we can see the median lies exactly in the middle of the box, and there are no outliers, suggesting a very symmetrical distribution.</p>
 <p>Precipitation ranged from 2.04 mm to 2.80 mm and the standard deviation is 0.18, indicating that there was a small amount of variability in precipitation at Rock Creek across the years.</p>
 <div class="cell page-columns page-full">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> rock_creek)) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Rock Creek (mm)"</span>,</span>
-<span id="cb24-4"><a href="#cb24-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(stream_data) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> rock_creek)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Precipitation at Rock Creek (mm)"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>       <span class="at">y =</span> <span class="st">"Precipitation (mm)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display page-columns page-full">
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="margin-caption">Figure 6. Boxplot of precipitation at Rock Creek (mm)</figcaption>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="margin-caption">Figure 8. Boxplot of precipitation at Rock Creek (mm)</figcaption>
 </figure>
 </div>
 </div>
@@ -995,7 +1017,7 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </ol>
 <p>Correlation coefficient</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">cor</span>(stream_data) <span class="co"># calculate correlation |&gt; round to 2 decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">cor</span>(stream_data) <span class="co"># calculate correlation |&gt; round to 2 decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              lake_sabrina pine_creek rock_creek runoff_volume
 lake_sabrina    1.00000000 0.07848517 0.09054996     0.1649284
@@ -1006,11 +1028,11 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 </div>
 <p>Pairs plot</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1019,11 +1041,11 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <li>All in one</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>psych<span class="sc">::</span><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1036,11 +1058,11 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <section id="v-fit-a-multiple-linear-regression-model-to-the-data-with-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables." class="level5">
 <h5 class="anchored" data-anchor-id="v-fit-a-multiple-linear-regression-model-to-the-data-with-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables."><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> ., <span class="at">data =</span> stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a></span>
-<span id="cb29-5"><a href="#cb29-5"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a>runoff_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> ., <span class="at">data =</span> stream_data) <span class="do">## you can also use the . to indicate use all variables</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1070,11 +1092,11 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">check_model</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">check_model</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab07-regression-modelling_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1094,7 +1116,7 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-precipitation-at-each-site-and-runoff-volume-at-bishop-california" class="level5">
 <h5 class="anchored" data-anchor-id="vii-interpret-the-model-parameters-and-fit-statistics.-recall-the-key-information-we-draw-from-the-output-what-do-these-statistics-tell-you-about-the-relationship-between-precipitation-at-each-site-and-runoff-volume-at-bishop-california"><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">summary</span>(runoff_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="The University of Sydney">
 
-<title>ENVX2001 - Model selection</title>
+<title>Lab 08</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,8 +145,14 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ENVX2001 - Model selection</h1>
-                      </div>
+      <h1 class="title">Lab 08</h1>
+            <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
+                  <div>
+        <div class="description">
+          The University of Sydney
+        </div>
+      </div>
+                </div>
   </div>
     
   
@@ -164,14 +171,37 @@ background: white;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
-  <li><a href="#lab-objectives" id="toc-lab-objectives" class="nav-link" data-scroll-target="#lab-objectives">Lab Objectives</a></li>
-  <li><a href="#exercise-1-model-quality---multiple-vs-adjusted-r2" id="toc-exercise-1-model-quality---multiple-vs-adjusted-r2" class="nav-link" data-scroll-target="#exercise-1-model-quality---multiple-vs-adjusted-r2">Exercise 1: Model quality - multiple vs adjusted <em>r</em><sup>2</sup></a>
+  <li><a href="#welcome-to-week-8" id="toc-welcome-to-week-8" class="nav-link active" data-scroll-target="#welcome-to-week-8">Welcome to week 8!</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#variable-selection-for-california_streamflow-20-mins" id="toc-variable-selection-for-california_streamflow-20-mins" class="nav-link" data-scroll-target="#variable-selection-for-california_streamflow-20-mins">1. Variable selection for California_streamflow (~20 mins)</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-model-quality---multiple-vs-adjusted-r2" id="toc-exercise-2-model-quality---multiple-vs-adjusted-r2" class="nav-link" data-scroll-target="#exercise-2-model-quality---multiple-vs-adjusted-r2">Exercise 2: Model quality - multiple vs adjusted <em>r</em><sup>2</sup></a>
   <ul class="collapse">
   <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
   </ul></li>
-  <li><a href="#exercise-2-fish-productivity" id="toc-exercise-2-fish-productivity" class="nav-link" data-scroll-target="#exercise-2-fish-productivity">Exercise 2: Fish productivity</a>
+  <li><a href="#exercise-2-fish-productivity.-do-full-run-of-model-process" id="toc-exercise-2-fish-productivity.-do-full-run-of-model-process" class="nav-link" data-scroll-target="#exercise-2-fish-productivity.-do-full-run-of-model-process">Exercise 2: Fish productivity. ’[DO FULL RUN OF MODEL PROCESS]</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
   <ul class="collapse">
+  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1">Exercise 2</a></li>
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
   </ul></li>
@@ -179,6 +209,7 @@ background: white;
   <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">Review</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab08-model-selection.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -194,17 +225,238 @@ background: white;
 
 
 
+<section id="welcome-to-week-8" class="level1">
+<h1>Welcome to week 8!</h1>
+<p>This week’s lab will give you some practice improving models by selecting the most useful predictors.</p>
+<p>This will prepare you for next week’s content where we will use models for prediction.</p>
 <section id="learning-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
-<p>In this lab, you will work towards achieving learning outcomes</p>
-</section>
-<section id="lab-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="lab-objectives">Lab Objectives</h2>
-<p>In this lab, we will:</p>
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>This module links to the following unit learning outcomes:</p>
 <ul>
-<li>[]</li>
-<li>[]</li>
+<li><p>LO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data</p></li>
+<li><p>LO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R</p></li>
+<li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
+<p>In this lab, we will learn how to:</p>
+<p><strong>1. Fit and interpret simple linear regression (SLR) models</strong> <strong>2. Fit and interpret multiple linear regression (MLR) models</strong> <strong>3. Assess model assumptions and apply transformations when needed</strong> <strong>4. Evaluate and compare model fit statistics</strong></p>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p><strong>By the end of this lab, you should be able to:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Fit a simple linear regression model</label></li>
+<li><label><input type="checkbox">Assess model assumptions and apply transformations when needed</label></li>
+<li><label><input type="checkbox">Interpret model parameters and fit statistics</label></li>
+<li><label><input type="checkbox">Fit a multiple linear regression model</label></li>
+<li><label><input type="checkbox">Assess model assumptions, including collinearity between predictor variables</label></li>
+<li><label><input type="checkbox">Determine the most suitable fit statistics for a multiple linear regression model</label></li>
+<li><label><input type="checkbox">Write a conclusion on your findings</label></li>
+</ul>
+<p><strong>FIX EVERYTHING UP above</strong></p>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, and <code>performance</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If a package is already installed, R will simply reinstall it — no harm done.</p>
+</section>
+</section>
+</section>
+<section id="variable-selection-for-california_streamflow-20-mins" class="level1">
+<h1>1. Variable selection for California_streamflow (~20 mins)</h1>
+<p>#<img src="images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."></p>
+<p><strong>You are a hydrologist tasked with analysing legacy data to investigate the relationship between precipitation at three sites (Lake Sabrina, Pine Creek, and Rock Creek) and stream runoff volume at a site near Bishop, California. The dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</strong></p>
+<p><strong>focussing on the process rather than report writing, but can still write up conclusions as if it were for a report. </strong></p>
+<p>The data is in the <strong>california_streamflow.xlsx</strong> file.</p>
+<p>Variables are as follows:</p>
+<ul>
+<li><code>lake_sabrina</code>: Precipitation recorded at Lake Sabrina (mm)</li>
+<li><code>pine_creek</code>: Precipitation recorded at Big Pine Creek (mm),</li>
+<li><code>rock_creek</code>: Precipitation recorded at Rock Creek (mm)</li>
+<li><code>runoff_volume</code>: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.</li>
+</ul>
+<p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
+<p>Data source: Hollett, K.J., Danskin, F.M., McCaffrey, W.F., and Walti, S.L., 1991. Geology and water resources of Owens Valley, California. U.S. Geological Survey Water-Supply Paper 2370-H.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Last week we concluded that Lake Sabrina is NOT a significant predictor of runoff volume at the site near Bishop, California.</p>
+<p>Today we will follow steps to produce the most suitable model.</p>
+</div>
+</div>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p><em>(i)</em> Read in the data and investigate the relationship between each of your variables. Describe the relationships, supported by values (correlation coefficient) and plots.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># read in the data</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 43
+Columns: 4
+$ lake_sabrina  &lt;dbl&gt; 1.958717, 2.087881, 1.981175, 2.054169, 2.102934, 2.1568…
+$ pine_creek    &lt;dbl&gt; 2.017618, 2.282781, 2.383471, 2.451719, 2.618086, 2.3532…
+$ rock_creek    &lt;dbl&gt; 2.275823, 2.450548, 2.491194, 2.585246, 2.706948, 2.3159…
+$ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.9210…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'psych'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:ggplot2':
+
+    %+%, alpha</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># can also get the same results separately</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">cor</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              lake_sabrina pine_creek rock_creek runoff_volume
+lake_sabrina    1.00000000 0.07848517 0.09054996     0.1649284
+pine_creek      0.07848517 1.00000000 0.88381452     0.8929251
+rock_creek      0.09054996 0.88381452 1.00000000     0.9194688
+runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We see that runoff volume has a strong relationship with rock creek and pine creek, but not with lake sabrina. We also see that there is a strong relationship between rock creek and pine creek, which could be a sign of collinearity. We can confirm if this may be an issue with the model by observing the Variance inflation factor (VIF) later on when we check our model assumptions.</p>
+<p><em>(ii)</em> Fit a multiple linear regression model to the data using all variables. Set <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables. This will be known as the ‘full model’.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># fit the full model</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><em>(iii)</em> Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">check_model</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Lake Sabrina is doing something weird, so let's get VIF values too</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>) <span class="co"># numbers</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lake_sabrina   pine_creek   rock_creek 
+        1.01         4.57         4.58 </code></pre>
+</div>
+</div>
+<p>Lake Sabrina = 1.01</p>
+<p>Pine_creek = 4.57</p>
+<p>Rock_creek = 4.58</p>
+<p>Our threshold is 5, so we are not too concerned about collinearity here, but it is something to keep in mind when interpreting the model parameters.</p>
+<p><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = runoff_volume ~ lake_sabrina + pine_creek + rock_creek, 
+    data = stream_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.09885 -0.03331  0.01025  0.03359  0.09495 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   3.25716    0.12360  26.352  &lt; 2e-16 ***
+lake_sabrina  0.05631    0.03756   1.499  0.14185    
+pine_creek    0.21085    0.06756   3.121  0.00339 ** 
+rock_creek    0.43838    0.08798   4.983 1.32e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04861 on 39 degrees of freedom
+Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726 
+F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>As we saw last week,</p>
+<p><em>(v)</em> Remove the least significant predictor variable from the model and run the model again. This will be known as the ‘reduced model’.</p>
+<p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
+</section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>We can compare the models using the adjusted r<sup>2</sup>, but we will need to use hypothesis testing to decide whether the reduced model is a significant improvement or not. Let’s explore this by using the F-test to compare the full and reduced models.</p>
+<p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
+<p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Is the reduced model a significant improvement on the full model?</p>
+<p><em>(iii)</em> What does this mean in terms of the predictor variable you removed?</p>
+</section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<section id="exercise-3" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<p>Instead of removing one predictor at a time, there is a much quicker way involving the <code>step()</code> function in R. This function performs stepwise regression, which is an automated process of adding or removing predictors based on their significance in the model and the Akaike Information Criterion (AIC).</p>
+<p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
+<p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Is the reduced model a significant improvement on the full model?</p>
+<p><em>(iii)</em> What does this mean in terms of the predictor variable you removed?</p>
+</section>
+<p>:::</p>
+<p>revise from last week (not everyone will have done the prac last week)</p>
+<p>fit the model with all predictors</p>
+<p>check assumptions</p>
+<p>interpret</p>
+<p>Which predictor is the less significant?</p>
+<p>Run the model removing this predictor</p>
+<p>interpret -&gt; impoved r2 adj?</p>
+<p>rm one more predictor</p>
+<p>run the model</p>
+<p>interpret –&gt; improved?</p>
+<p>expecting a no</p>
+<p>let’s try automation! step function of the full model - which one does it select?</p>
+<p>What is the AIC of the full model?</p>
+<p>What is the AIC of the reduced model?</p>
+<p>We concluded that Lake Sabrina was not a significant predictor of runoff volume, so let’s see what happens when we remove it from the model</p>
+<p>Has the model improved? how can we tell? (what statistics to look at here)</p>
+<p>let’s try backwards selection (step function, automated), does it tell the same story?</p>
+<p>Which model has the lowest AIC?</p>
+<p>Some in Fit last week’s model again:</p>
+<p>X. State hypothesis for the F-test between full and reduced models</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -219,26 +471,26 @@ Tip
 </div>
 </div>
 </section>
-<section id="exercise-1-model-quality---multiple-vs-adjusted-r2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-model-quality---multiple-vs-adjusted-r2">Exercise 1: Model quality - multiple vs adjusted <em>r</em><sup>2</sup></h2>
+<section id="exercise-2-model-quality---multiple-vs-adjusted-r2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-model-quality---multiple-vs-adjusted-r2">Exercise 2: Model quality - multiple vs adjusted <em>r</em><sup>2</sup></h2>
 <p>Data: <em>California_streamflow</em> spreadsheet</p>
 <p>Import the “California_streamflow” sheet into R.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load library if needed</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Load data</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Load library if needed</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># Load data</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>in this exercise we will use the same data as last week. To jog your memory, the dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. Through model selection via partial F-test we have the final model as below:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will now add a totally useless variable to the dataset. This variable is a random number generated from a normal distribution with mean 3 and standard deviation 2. We use the <code>set.seed()</code> function to make sure that everybody gets the same random values.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># to make sure everybody gets the same results</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># this generates the random number into the dataset</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>stream_data<span class="sc">$</span>random_no <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(stream_data), <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># to make sure everybody gets the same results</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># this generates the random number into the dataset</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>stream_data<span class="sc">$</span>random_no <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(stream_data), <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will see the impact of including a totally useless variable, such as this random variable, has on measures of model quality, <em>r</em><sup>2</sup> and adjusted <em>r</em><sup>2</sup> values.</p>
 <p><strong>Task: create two regression models:</strong></p>
@@ -251,8 +503,8 @@ Tip
 <p>Compare each in terms of their multiple <em>r</em><sup>2</sup> and adjusted <em>r</em><sup>2</sup> values. Which performance measure (multiple <em>r</em><sup>2</sup> or adj <em>r</em><sup>2</sup>) would you use to identify which predictors to use in your model?</p>
 </section>
 </section>
-<section id="exercise-2-fish-productivity" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-fish-productivity">Exercise 2: Fish productivity</h2>
+<section id="exercise-2-fish-productivity.-do-full-run-of-model-process" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-fish-productivity.-do-full-run-of-model-process">Exercise 2: Fish productivity. ’[DO FULL RUN OF MODEL PROCESS]</h2>
 <p>Fish communities were surveyed in lakes across a eutrophication gradient to investigate the relatioship between productivity and fish diversity.</p>
 <p>The datasheet has thefollowing variables:</p>
 <ul>
@@ -267,11 +519,11 @@ Tip
 <li><code>productivity</code> Log-transformed productivity proxy</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#Load library if necessary</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#Read in data</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>fish_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fish_communities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#Load library if necessary</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co">#Read in data</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>fish_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fish_communities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 39 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
@@ -282,8 +534,8 @@ dbl (6): chla, richness, evenness, abundance, biomass, productivity
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#Have a look at the structure of the data</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">str</span>(fish_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#Have a look at the structure of the data</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">str</span>(fish_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [39 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  $ lake_id     : chr [1:39] "FTH" "XLH" "HGH" "LH" ...
@@ -307,6 +559,25 @@ dbl (6): chla, richness, evenness, abundance, biomass, productivity
 </div>
 </div>
 <p>Explore the data on your own before making any models. (<em>Hint:</em> remember that we are only interested in the numeric variables for our linear models)</p>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<section id="exercise-2-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2-1">Exercise 2</h3>
+<p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
+<p>You can write it out in words and/or in mathematical notation.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>
+<p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
+<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
+<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
+</section>
 <section id="question-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>Are there any obvious relationships between the response variable (productivity) and the other variables?</p>
@@ -325,6 +596,7 @@ dbl (6): chla, richness, evenness, abundance, biomass, productivity
 <h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
 
 
+</section>
 </section>
 </section>
 

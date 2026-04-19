@@ -188,11 +188,11 @@ background: white;
   </ul></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
   <ul class="collapse">
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-2---model-comparison" id="toc-exercise-2---model-comparison" class="nav-link" data-scroll-target="#exercise-2---model-comparison">Exercise 2 - model comparison</a></li>
   </ul></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
   <ul class="collapse">
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-3---stepwise-regression" id="toc-exercise-3---stepwise-regression" class="nav-link" data-scroll-target="#exercise-3---stepwise-regression">Exercise 3 - stepwise regression</a></li>
   </ul></li>
   <li><a href="#exercise-2-model-quality---multiple-vs-adjusted-r2" id="toc-exercise-2-model-quality---multiple-vs-adjusted-r2" class="nav-link" data-scroll-target="#exercise-2-model-quality---multiple-vs-adjusted-r2">Exercise 2: Model quality - multiple vs adjusted <em>r</em><sup>2</sup></a>
   <ul class="collapse">
@@ -201,7 +201,7 @@ background: white;
   <li><a href="#exercise-2-fish-productivity.-do-full-run-of-model-process" id="toc-exercise-2-fish-productivity.-do-full-run-of-model-process" class="nav-link" data-scroll-target="#exercise-2-fish-productivity.-do-full-run-of-model-process">Exercise 2: Fish productivity. ’[DO FULL RUN OF MODEL PROCESS]</a></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
   <ul class="collapse">
-  <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1">Exercise 2</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a></li>
   <li><a href="#question-2-1" id="toc-question-2-1" class="nav-link" data-scroll-target="#question-2-1">Question 2</a></li>
   </ul></li>
@@ -293,7 +293,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>Last week we concluded that Lake Sabrina is NOT a significant predictor of runoff volume at the site near Bishop, California.</p>
-<p>Today we will follow steps to produce the most suitable model.</p>
+<p>Today we will follow steps to see if we can produce a more parsimonious model.</p>
 </div>
 </div>
 <section id="section" class="level2">
@@ -412,29 +412,129 @@ Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726
 F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>As we saw last week,</p>
-<p><em>(v)</em> Remove the least significant predictor variable from the model and run the model again. This will be known as the ‘reduced model’.</p>
+<p>As we saw last week, Lake Sabrina is not a significant predictor of runoff volume, but Pine Creek and Rock Creek are. The model has an adjusted R<sup>2</sup> of 0.87, which means that 87% of the variation in runoff volume can be explained by the three predictor variables.</p>
+<p><em>(v)</em> Remove <code>lake_sabrina</code> from the model and run the model again. This will be known as the ‘reduced model’.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = runoff_volume ~ lake_sabrina + pine_creek + rock_creek, 
+    data = stream_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.09885 -0.03331  0.01025  0.03359  0.09495 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   3.25716    0.12360  26.352  &lt; 2e-16 ***
+lake_sabrina  0.05631    0.03756   1.499  0.14185    
+pine_creek    0.21085    0.06756   3.121  0.00339 ** 
+rock_creek    0.43838    0.08798   4.983 1.32e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04861 on 39 degrees of freedom
+Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726 
+F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = runoff_volume ~ pine_creek + rock_creek, data = stream_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.09832 -0.02350  0.01076  0.03291  0.08568 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  3.35762    0.10547  31.835  &lt; 2e-16 ***
+pine_creek   0.21051    0.06861   3.068  0.00385 ** 
+rock_creek   0.44437    0.08925   4.979 1.26e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.04937 on 40 degrees of freedom
+Multiple R-squared:  0.8749,    Adjusted R-squared:  0.8686 
+F-statistic: 139.8 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>Removing the <code>lake_sabrina</code> predictor from the model has slightly decreased the adjusted R<sup>2</sup> value, but it has also removed a non-significant predictor from the model. This is an improvement in terms of parsimony, but we will need to use hypothesis testing to determine whether the reduced model is a <em>significant</em> improvement on the full model. We can do this using an F-test, which we will explore in the next exercise.</p>
 </section>
 </section>
 <section id="section-1" class="level2">
 <h2 class="anchored" data-anchor-id="section-1"></h2>
-<section id="exercise-2" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<section id="exercise-2---model-comparison" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2---model-comparison">Exercise 2 - model comparison</h3>
 <p>We can compare the models using the adjusted r<sup>2</sup>, but we will need to use hypothesis testing to decide whether the reduced model is a significant improvement or not. Let’s explore this by using the F-test to compare the full and reduced models.</p>
 <p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
+<p>H0: No significant difference between full and reduced models H1: There is a significant difference between full and reduced models</p>
 <p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Is the reduced model a significant improvement on the full model?</p>
-<p><em>(iii)</em> What does this mean in terms of the predictor variable you removed?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">anova</span>(full_model, reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: runoff_volume ~ lake_sabrina + pine_creek + rock_creek
+Model 2: runoff_volume ~ pine_creek + rock_creek
+  Res.Df      RSS Df  Sum of Sq      F Pr(&gt;F)
+1     39 0.092166                            
+2     40 0.097478 -1 -0.0053121 2.2478 0.1419</code></pre>
+</div>
+</div>
+<p>The P-value is 0.1419, which is larger than 0.05, so we fail to reject the null hypothesis. This means that the reduced model is not a significant improvement on the full model, and we would opt for the reduced model as it is more parsimonious.</p>
 </section>
 </section>
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2"></h2>
-<section id="exercise-3" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<section id="exercise-3---stepwise-regression" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3---stepwise-regression">Exercise 3 - stepwise regression</h3>
 <p>Instead of removing one predictor at a time, there is a much quicker way involving the <code>step()</code> function in R. This function performs stepwise regression, which is an automated process of adding or removing predictors based on their significance in the model and the Akaike Information Criterion (AIC).</p>
-<p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
-<p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Is the reduced model a significant improvement on the full model?</p>
-<p><em>(iii)</em> What does this mean in terms of the predictor variable you removed?</p>
+<p><em>(i)</em> When using the AIC, how do we select the better model?</p>
+<p>Select the model with the lowest AIC value.</p>
+<p>The AIC is a measure of the relative quality of a statistical model for a given set of data. It takes into account the goodness of fit and the complexity of the model (number of predictors). A lower AIC value indicates a better model.</p>
+<p><em>(ii)</em> Have a go at running the <code>step()</code> function on the full model. Which model does it select as the best model?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=-256.25
+runoff_volume ~ lake_sabrina + pine_creek + rock_creek
+
+               Df Sum of Sq      RSS     AIC
+&lt;none&gt;                      0.092166 -256.25
+- lake_sabrina  1  0.005312 0.097478 -255.84
+- pine_creek    1  0.023015 0.115181 -248.66
+- rock_creek    1  0.058680 0.150845 -237.07</code></pre>
+</div>
+</div>
+<p>The <code>step()</code> function selects the full model as the best model, which is inconsistent with our previous analysis using the F-test.</p>
+<p>This is because the <code>step()</code> function uses the AIC to compare models, which is a different criterion than the F-test. The AIC takes into account both the goodness of fit and the complexity of the model, while the F-test only compares the goodness of fit between two models.</p>
+<p>In this case, the AIC may be favoring the full model due to its better fit, even though it includes a non-significant predictor.</p>
+<p><em>(iii)</em> One final check: what are the AIC values for the full and reduced models? Which model has the lowest AIC value?</p>
+<p>HINT: you can use the <code>AIC()</code> function to get the AIC values for each model. Insert the model name between the brackets.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">AIC</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -132.2222</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">AIC</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -131.8126</code></pre>
+</div>
+</div>
+<p><em>(iv)</em> Based on our tests, which model do you think is the best model to use for predicting runoff volume at Bishop, California? Why have you chosen this model?</p>
+<p>The reduced model is better. It is more parsimonious and does not include a non-significant predictor.</p>
+<p>The F-test also indicates that the reduced model is not a significant improvement on the full model, so we would opt for the reduced model as it is simpler and just as good at explaining the variation in runoff volume.</p>
+<p>We did see that the step function selected the full model as the best model based on AIC, but we would be cautious about this result given that it includes a non-significant predictor and the F-test did not support it as a significant improvement.</p>
+<p>It was also helpful to calculate the AIC for our full and reduced models to confirm that the reduced model had a lower AIC value, which supports our choice of the reduced model.</p>
+<p>Automated model selection methods are helpful when you have a large number of predictors, but our results demonstrate why we should not rely solely on these methods. We should also consider the significance of predictors and the overall fit of the model when making decisions about which model to use.</p>
 </section>
 <p>:::</p>
 <p>revise from last week (not everyone will have done the prac last week)</p>
@@ -476,21 +576,21 @@ Tip
 <p>Data: <em>California_streamflow</em> spreadsheet</p>
 <p>Import the “California_streamflow” sheet into R.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Load library if needed</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co"># Load data</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Load library if needed</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="co"># Load data</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>in this exercise we will use the same data as last week. To jog your memory, the dataset contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. Through model selection via partial F-test we have the final model as below:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> rock_creek <span class="sc">+</span> pine_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will now add a totally useless variable to the dataset. This variable is a random number generated from a normal distribution with mean 3 and standard deviation 2. We use the <code>set.seed()</code> function to make sure that everybody gets the same random values.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># to make sure everybody gets the same results</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="co"># this generates the random number into the dataset</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>stream_data<span class="sc">$</span>random_no <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(stream_data), <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">set.seed</span>(<span class="dv">100</span>) <span class="co"># to make sure everybody gets the same results</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># this generates the random number into the dataset</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>stream_data<span class="sc">$</span>random_no <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">nrow</span>(stream_data), <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will see the impact of including a totally useless variable, such as this random variable, has on measures of model quality, <em>r</em><sup>2</sup> and adjusted <em>r</em><sup>2</sup> values.</p>
 <p><strong>Task: create two regression models:</strong></p>
@@ -519,11 +619,11 @@ Tip
 <li><code>productivity</code> Log-transformed productivity proxy</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">#Load library if necessary</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-3"><a href="#cb20-3"></a></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="co">#Read in data</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>fish_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fish_communities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co">#Load library if necessary</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="co">#Read in data</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>fish_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fish_communities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 39 Columns: 7
 ── Column specification ────────────────────────────────────────────────────────
@@ -534,8 +634,8 @@ dbl (6): chla, richness, evenness, abundance, biomass, productivity
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">#Have a look at the structure of the data</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">str</span>(fish_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co">#Have a look at the structure of the data</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">str</span>(fish_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [39 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
  $ lake_id     : chr [1:39] "FTH" "XLH" "HGH" "LH" ...
@@ -562,8 +662,8 @@ dbl (6): chla, richness, evenness, abundance, biomass, productivity
 </section>
 <section id="section-3" class="level2">
 <h2 class="anchored" data-anchor-id="section-3"></h2>
-<section id="exercise-2-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2-1">Exercise 2</h3>
+<section id="exercise-2" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
 <p>You can write it out in words and/or in mathematical notation.</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>

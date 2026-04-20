@@ -246,9 +246,19 @@ window.Quarto = {
   <li><a href="#exercise-3---stepwise-regression-1" id="toc-exercise-3---stepwise-regression-1" class="nav-link" data-scroll-target="#exercise-3---stepwise-regression-1">Exercise 3 - stepwise regression</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#variable-selection-for-plant-aridity-20-mins" id="toc-variable-selection-for-plant-aridity-20-mins" class="nav-link" data-scroll-target="#variable-selection-for-plant-aridity-20-mins">2. Variable selection for plant aridity (~20 mins)</a>
+  <li><a href="#variable-selection-for-plant-aridity-45-mins" id="toc-variable-selection-for-plant-aridity-45-mins" class="nav-link" data-scroll-target="#variable-selection-for-plant-aridity-45-mins">2. Variable selection for plant aridity (~ 45 mins)</a>
   <ul class="collapse">
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-1---initial-analyses" id="toc-exercise-1---initial-analyses" class="nav-link" data-scroll-target="#exercise-1---initial-analyses">Exercise 1 - initial analyses</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
+  <ul class="collapse">
+  <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab08-model-selection.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -277,30 +287,29 @@ window.Quarto = {
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
 <p>In this lab, we will learn how to:</p>
-<p><strong>1. Fit and interpret simple linear regression (SLR) models</strong> <strong>2. Fit and interpret multiple linear regression (MLR) models</strong> <strong>3. Assess model assumptions and apply transformations when needed</strong> <strong>4. Evaluate and compare model fit statistics</strong></p>
+<p><strong>1. Fit multiple linear regression models and interpret associated indicators of collinearity</strong> <strong>2. Draw upon various methods to determine whether a full or reduced model is more suitable</strong></p>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
 <p><strong>By the end of this lab, you should be able to:</strong></p>
 <ul class="task-list">
-<li><label><input type="checkbox">Fit a simple linear regression model</label></li>
-<li><label><input type="checkbox">Assess model assumptions and apply transformations when needed</label></li>
-<li><label><input type="checkbox">Interpret model parameters and fit statistics</label></li>
 <li><label><input type="checkbox">Fit a multiple linear regression model</label></li>
-<li><label><input type="checkbox">Assess model assumptions, including collinearity between predictor variables</label></li>
-<li><label><input type="checkbox">Determine the most suitable fit statistics for a multiple linear regression model</label></li>
-<li><label><input type="checkbox">Write a conclusion on your findings</label></li>
+<li><label><input type="checkbox">Interpret VIF plots and output to determine whether collinearity is a concern in your model</label></li>
+<li><label><input type="checkbox">Remove non-significant predictors to produce a more parsimonious model</label></li>
+<li><label><input type="checkbox">Compare a full and reduced model using an F-test</label></li>
+<li><label><input type="checkbox">Run and interpret stepwise regression and associated output</label></li>
+<li><label><input type="checkbox">Compare a full and reduced model using the AIC</label></li>
+<li><label><input type="checkbox">Use the results of model comparisons to select the best model for your data</label></li>
 </ul>
-<p><strong>FIX EVERYTHING UP above</strong></p>
 </section>
 <section id="preparation" class="level2">
 <h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
 <p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, and <code>performance</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>, and <code>gridExtra</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"gridExtra"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 </section>
@@ -638,8 +647,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="variable-selection-for-plant-aridity-20-mins" class="level1 page-columns page-full">
-<h1>2. Variable selection for plant aridity (~20 mins)</h1>
+<section id="variable-selection-for-plant-aridity-45-mins" class="level1 page-columns page-full">
+<h1>2. Variable selection for plant aridity (~ 45 mins)</h1>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/AdobeStock_659883118.jpeg" class="img-fluid figure-img"></p>
@@ -647,7 +656,7 @@ Tip
 </figure>
 </div>
 <p>This dataset examines the adaptation of invasive capeweed (<em>Arctotheca calendula</em>) populations to aridity gradients across southern Australia. A common garden experiment was conducted from 2018-2019 with populations sourced from varying aridity levels, subjecting them to wet and dry treatments to measure traits related to drought escape, avoidance, and tolerance.</p>
-<p>The dataset has been reduced to contain only the variables you will need to fit in the model. Furthermore, only the samples that received the wet treatment will be used for this analysis (n = 94 observations).</p>
+<p>The dataset has been reduced to contain only the variables you will need to fit in the model. Furthermore, only the samples that received the wet treatment will be used for this analysis (n = 89 observations).</p>
 <p>The dataset is in the <em>plant_aridity.csv</em> file.</p>
 <p>Variables are as follows:</p>
 <ul>
@@ -663,15 +672,32 @@ Tip
 <p>Paper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018.</p>
 <section id="section-5" class="level2">
 <h2 class="anchored" data-anchor-id="section-5"></h2>
-<div class="question">
-<section id="exercise-1---initial-analyses" class="level3">
+<section id="exercise-1---initial-analyses" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1---initial-analyses">Exercise 1 - initial analyses</h3>
+<p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each variable and relative fitness.</p>
+<p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
+<p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
+<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
+<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
+<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 2: If you are unsure about the collinearity plot, you can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
+<p>Hint 3: If you find that the assumptions are not met you can use log-transformations or other transformations as appropriate based on the distribution of your variables. If you are log-transforming a variable which contains negative or zero values you will need to add a constant, i.e.&nbsp;<code>log(x+1)</code></p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
+<p><em>(viii)</em> Remove any highly non-significant predictors (P &gt; 0.1) from the model and run the model again. This will be known as the ‘reduced model’.</p>
+<p><em>(ix)</em> Run a partial f-test to determine whether the reduced model an improvement on the full model. Which model is better?</p>
+<p><em>(x)</em> Run stepwise regression using the <code>step()</code> function fitted to the full model. Which model does it select as the best model?</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+</section>
+<section id="solution-1" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
 <p>You can write it out in words and/or in mathematical notation.</p>
 <p><span class="math display">
 \textrm{relative_fitness} = \beta_0 + \beta_1\cdot \textrm{growth_rate} + \beta_2\cdot \textrm{days_to_flower} + \beta_3\cdot \textrm{specific_leaf_area} + \beta_4\cdot \textrm{root_shoot_ratio} +  \beta_5\cdot \textrm{chlorogenic_acid} + \epsilon_{i}
 </span></p>
-<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>
+<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each variable and relative fitness.</p>
 <p>In multiple linear regression we are testing multiple hypotheses (one per predictor + one for the overall model).</p>
 <p>Therefore:</p>
 <ol type="1">
@@ -707,91 +733,76 @@ Tip
 <span id="cb30-2"><a href="#cb30-2"></a></span>
 <span id="cb30-3"><a href="#cb30-3"></a><span class="fu">str</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   94 obs. of  6 variables:
- $ growth_rate       : num  -0.473 1.003 -0.301 0.742 1.436 ...
- $ days_to_flower    : num  1.496 0.647 -0.202 -0.415 -0.627 ...
- $ root_shoot_ratio  : num  -0.284 -0.504 -0.646 -0.463 1.204 ...
- $ specific_leaf_area: num  0.8466 -0.0843 0.1337 0.3673 0.4891 ...
- $ chlorogenic_acid  : num  0.594 -2.1821 -0.0745 1.4839 2.8136 ...
- $ rel_fitness       : num  1.63 1.248 2.172 2.834 0.682 ...</code></pre>
+<pre><code>'data.frame':   89 obs. of  6 variables:
+ $ growth_rate       : num  0.221 1.436 0.309 0.221 1.613 ...
+ $ days_to_flower    : num  -0.415 -0.627 -0.202 0.859 -0.839 ...
+ $ root_shoot_ratio  : num  1.207 1.204 0.961 0.652 0.633 ...
+ $ specific_leaf_area: num  0.248 0.489 0.793 0.461 -0.247 ...
+ $ chlorogenic_acid  : num  0.0614 2.8136 -0.3105 -1.7247 -0.5706 ...
+ $ rel_fitness       : num  1.254 0.682 1.355 2.436 1.61 ...</code></pre>
 </div>
 </div>
 <p>Because we have more variables, it is ok to use the summary function here and report the values.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  growth_rate      days_to_flower     root_shoot_ratio  specific_leaf_area
- Min.   :-1.5164   Min.   :-1.90082   Min.   :-0.9722   Min.   :-2.3928   
- 1st Qu.: 0.0694   1st Qu.:-0.78614   1st Qu.:-0.7792   1st Qu.:-0.2478   
- Median : 0.6536   Median : 0.11622   Median :-0.5730   Median : 0.0667   
- Mean   : 0.6526   Mean   : 0.08911   Mean   :-0.4217   Mean   : 0.0698   
- 3rd Qu.: 1.2418   3rd Qu.: 0.64702   3rd Qu.:-0.2949   3rd Qu.: 0.4846   
- Max.   : 4.6546   Max.   : 2.98253   Max.   : 1.2066   Max.   : 2.4417   
- chlorogenic_acid     rel_fitness   
- Min.   :-2.195664   Min.   :0.599  
- 1st Qu.:-0.605460   1st Qu.:1.364  
- Median :-0.007868   Median :1.821  
- Mean   :-0.024364   Mean   :1.867  
- 3rd Qu.: 0.706484   3rd Qu.:2.268  
- Max.   : 2.813636   Max.   :4.350  </code></pre>
+<pre><code>  growth_rate       days_to_flower     root_shoot_ratio  specific_leaf_area
+ Min.   :-1.51639   Min.   :-1.90082   Min.   :-0.9722   Min.   :-2.39281  
+ 1st Qu.: 0.04853   1st Qu.:-0.83922   1st Qu.:-0.7796   1st Qu.:-0.23729  
+ Median : 0.57017   Median :-0.20226   Median :-0.5712   Median : 0.06985  
+ Mean   : 0.53331   Mean   : 0.06731   Mean   :-0.4158   Mean   : 0.08423  
+ 3rd Qu.: 1.09181   3rd Qu.: 0.64702   3rd Qu.:-0.2839   3rd Qu.: 0.49105  
+ Max.   : 1.78559   Max.   : 2.98253   Max.   : 1.2066   Max.   : 2.44174  
+ chlorogenic_acid      rel_fitness    
+ Min.   :-2.196e+00   Min.   :0.6817  
+ 1st Qu.:-5.706e-01   1st Qu.:1.3553  
+ Median : 2.883e-02   Median :1.8132  
+ Mean   : 6.454e-05   Mean   :1.8667  
+ 3rd Qu.: 7.222e-01   3rd Qu.:2.2589  
+ Max.   : 2.814e+00   Max.   :4.3504  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">apply</span>(plant_aridity, <span class="dv">2</span>, sd) <span class="co"># apply sd over columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       growth_rate     days_to_flower   root_shoot_ratio specific_leaf_area 
-         0.8872247          1.0503455          0.5012798          0.6328410 
+         0.7133256          1.0508145          0.5095113          0.6444291 
   chlorogenic_acid        rel_fitness 
-         0.9962748          0.6462569 </code></pre>
+         1.0123975          0.6384944 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>moments<span class="sc">::</span><span class="fu">skewness</span>(plant_aridity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       growth_rate     days_to_flower   root_shoot_ratio specific_leaf_area 
-         0.8461223          0.3425118          1.4211986         -0.8075528 
+        -0.3885121          0.3767381          1.3954288         -0.8651712 
   chlorogenic_acid        rel_fitness 
-        -0.1087957          0.5975511 </code></pre>
+        -0.1603996          0.7169594 </code></pre>
 </div>
 </div>
-<p>Growth rate: mean growth rate is 0.6526, which is similar to the median (0.6536), suggesting a relatively symmetric distribution. The standard deviation is 0.887. The skewness is 0.846, less than 1 but greater than 0.5, indicating a degree of skewness.</p>
-<p>Days to flower: mean is 0.089, which is very close to the median (0.116), suggesting a symmetric distribution. The standard deviation is 1.05. The skewness is 0.343, which is close to zero, indicating a very symmetric distribution.</p>
-<p>root_shoot_ratio: mean is -0.573, which is close to the median (-0.422), suggesting a symmetric distribution. The standard deviation is 0.501. The skewness is 1.42, which is greater than 1, indicating a positively skewed distribution.</p>
-<p>specific_leaf_area: mean is 0.070, which is close to the median (0.067), suggesting a symmetric distribution. The standard deviation is 0.633. The skewness is -0.808, which is between -0.5 and -0.1, indicating a degree of skewness.</p>
-<p>chlorogenic_acid: mean is -0.024, which is close to the median (-0.008), suggesting a symmetric distribution. The standard deviation is 0.996. The skewness is -0.109, which is close to zero, indicating a very symmetric distribution.</p>
-<p>Specific leaf area: mean is 1.867, which is close to the median (1.821), suggesting a symmetric distribution. The standard deviation is 0.646. The skewness is 0.598, which is indicating a low amount of skewness.</p>
-<p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
-<p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
-<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
+<p>Growth rate: mean growth rate is 0.533, which is similar to the median (0.570), suggesting a relatively symmetric distribution. The standard deviation is 0.713. The skewness is -0.389, which is close to 0, indicating a very symmetric distribution.</p>
+<p>Days to flower: mean is 0.067, which is close to the median (-0.202). The standard deviation is 1.051. The skewness is 0.377, which is close to zero, indicating a very symmetric distribution.</p>
+<p>root_shoot_ratio: mean is -0.416, which is not too close to the median (-0.571), suggesting a possibly skewed distribution. The standard deviation is 0.510. The skewness is 1.395, which is greater than 1, indicating a positively skewed distribution.</p>
+<p>specific_leaf_area: mean is 0.084, which is close to the median (0.069). The standard deviation is 0.644. The skewness is -0.865, which is between -0.5 and -0.1, indicating a degree of skewness.</p>
+<p>chlorogenic_acid: mean is 0.000006454, which is close to the median (0.00283). The standard deviation is 1.012. The skewness is -0.160, which is close to zero, indicating a very symmetric distribution.</p>
+<p>rel_fitness: mean is 1.867, which is close to the median (1.813), suggesting a symmetric distribution. The standard deviation is 0.070. The skewness is 0.717, which is indicating a low amount of skewness.</p>
+<p>Boxplots indicate the at there are outliers present within each variable, but we can address the leverage plot when we go to test our model assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(rel_fitness <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
-<span id="cb38-2"><a href="#cb38-2"></a>    specific_leaf_area <span class="sc">+</span> root_shoot_ratio <span class="sc">+</span> chlorogenic_acid, </span>
-<span id="cb38-3"><a href="#cb38-3"></a>    <span class="at">data =</span> plant_aridity)</span>
-<span id="cb38-4"><a href="#cb38-4"></a></span>
-<span id="cb38-5"><a href="#cb38-5"></a><span class="fu">summary</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
 <pre><code>
-Call:
-lm(formula = rel_fitness ~ growth_rate + days_to_flower + specific_leaf_area + 
-    root_shoot_ratio + chlorogenic_acid, data = plant_aridity)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.30267 -0.42467 -0.04943  0.42253  2.46902 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)         1.67394    0.10120  16.541   &lt;2e-16 ***
-growth_rate         0.13706    0.07513   1.824   0.0715 .  
-days_to_flower      0.05923    0.06292   0.941   0.3492    
-specific_leaf_area  0.12711    0.10493   1.211   0.2290    
-root_shoot_ratio   -0.20716    0.13090  -1.583   0.1171    
-chlorogenic_acid   -0.09623    0.06615  -1.455   0.1493    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.6291 on 88 degrees of freedom
-Multiple R-squared:  0.1033,    Adjusted R-squared:  0.05233 
-F-statistic: 2.027 on 5 and 88 DF,  p-value: 0.08253</code></pre>
+Attaching package: 'gridExtra'</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="fu">check_model</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    combine</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">grid.arrange</span>(</span>
+<span id="cb41-2"><a href="#cb41-2"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> rel_fitness)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> growth_rate)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> days_to_flower)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-5"><a href="#cb41-5"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> root_shoot_ratio)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> specific_leaf_area)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-7"><a href="#cb41-7"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> chlorogenic_acid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb41-8"><a href="#cb41-8"></a>    <span class="at">nrow =</span> <span class="dv">2</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -799,83 +810,252 @@ F-statistic: 2.027 on 5 and 88 DF,  p-value: 0.08253</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       growth_rate     days_to_flower specific_leaf_area   root_shoot_ratio 
-          1.043994           1.026412           1.036008           1.011649 
-  chlorogenic_acid 
-          1.020416 </code></pre>
 </div>
-</div>
-<p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
-<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
-<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
-<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co">#Load library if necessary</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="co">#Read in data</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a>fish_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/fish_communities.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 39 Columns: 7
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): lake_id
-dbl (6): chla, richness, evenness, abundance, biomass, productivity
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co">#Have a look at the structure of the data</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a><span class="fu">str</span>(fish_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [39 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ lake_id     : chr [1:39] "FTH" "XLH" "HGH" "LH" ...
- $ chla        : num [1:39] 4.61 4.53 3.84 3.71 2.43 ...
- $ richness    : num [1:39] 2.64 2.89 1.99 2.94 2.37 ...
- $ evenness    : num [1:39] -0.356 -0.67 -0.423 -0.405 -0.589 ...
- $ abundance   : num [1:39] 2.24 3.34 1.24 2.67 1.12 ...
- $ biomass     : num [1:39] 4.96 6.03 4.67 6.52 5.32 ...
- $ productivity: num [1:39] 3.47 4.47 2.71 4.47 3.24 ...
- - attr(*, "spec")=
-  .. cols(
-  ..   lake_id = col_character(),
-  ..   chla = col_double(),
-  ..   richness = col_double(),
-  ..   evenness = col_double(),
-  ..   abundance = col_double(),
-  ..   biomass = col_double(),
-  ..   productivity = col_double()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
-</div>
-</div>
-<p>Explore the data on your own before making any models. (<em>Hint:</em> remember that we are only interested in the numeric variables for our linear models)</p>
-</section>
-<section id="section-6" class="level2">
-<h2 class="anchored" data-anchor-id="section-6"></h2>
-<section id="exercise-2" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
-<p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (precipitation at each site vs runoff volume at Bishop).</p>
-<p>You can write it out in words and/or in mathematical notation.</p>
-<p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each site and runoff volume.</p>
-<p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
 <p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
 <p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
-<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">cor</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   growth_rate days_to_flower root_shoot_ratio
+growth_rate         1.00000000    -0.21623517       0.13604063
+days_to_flower     -0.21623517     1.00000000       0.04914926
+root_shoot_ratio    0.13604063     0.04914926       1.00000000
+specific_leaf_area -0.12589551     0.08133447      -0.05095794
+chlorogenic_acid    0.01249025    -0.08041919       0.04684624
+rel_fitness         0.18208449     0.05277464      -0.13799422
+                   specific_leaf_area chlorogenic_acid rel_fitness
+growth_rate               -0.12589551       0.01249025  0.18208449
+days_to_flower             0.08133447      -0.08041919  0.05277464
+root_shoot_ratio          -0.05095794       0.04684624 -0.13799422
+specific_leaf_area         1.00000000       0.02726978  0.10073474
+chlorogenic_acid           0.02726978       1.00000000 -0.16645089
+rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">pairs</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">pairs.panels</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Low correlation coefficients (r &lt; 0.2) between all variables, but the correlations are stronger between each variable and rel_fitness.</p>
+<p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="#cb46-2"></a>    <span class="fu">log</span>(specific_leaf_area<span class="sc">+</span><span class="dv">3</span>) <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span><span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb46-3"><a href="#cb46-3"></a>    <span class="at">data =</span> plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
-<p>Hint 2: You may notice some collinearity occurring between predictors. This week you only need to acknowledge it and then you can move onto interpretation. Next week we will look at how to deal with collinearity in models.</p>
-<p><em>(vii)</em> Interpret the model parameters and fit statistics. Recall the key information we draw from the output; what do these statistics tell you about the relationship between precipitation at each site and runoff volume at Bishop, California?</p>
-<p><em>(viii)</em> Write a concluding statement on your findings.</p>
-<p>Hint: Consider the initial aim and hypothesis of the study and write it in a way that is easily understood by your client.</p>
-</section>
-
-
-</section>
+<p>Hint 2: If you are unsure about the collinearity plot, you can use the vif() function from the car package to get the VIF values for each predictor variable.</p>
+<p>Hint 3: If you find that the assumptions are not met you can use log-transformations or other transformations as appropriate based on the distribution of your variables. If you are log-transforming a variable which contains negative or zero values you will need to add a constant, i.e.&nbsp;<code>log(x+1)</code></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">check_model</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                growth_rate              days_to_flower 
+                   1.100586                    1.101592 
+log(specific_leaf_area + 3)   log(root_shoot_ratio + 1) 
+                   1.015116                    1.070635 
+           chlorogenic_acid 
+                   1.010842 </code></pre>
+</div>
+</div>
+<p>Linearity: The residuals vs fitted plot shows a random scatter of points, suggesting that the linearity assumption is met.</p>
+<p>Independence: The residuals appear to be randomly distributed (if correlated, they may follow a trend), which suggests that the independence assumption is met. We also know from the experimental design the observations are independant.</p>
+<p>Normality: The Q-Q plot shows that the residuals are not normally distributed, as the points deviate from the straight line, especially in the tails producing a u-shape. This suggests that the normality assumption may be violated.</p>
+<p>Equal variance: The scale-location plot shows a random scatter of points but the line is not too straight suggesting there may be some weird things happening.</p>
+<p>Influential observations: The residuals vs leverage plot shows that there are no influential observations, as all points are within the Cook’s distance lines.</p>
+<p>Collinearity: No concern about collinearity as all VIFs are below 5.</p>
+<p>Decision: We saw there were some issues with normality and equal variance, so we could try transforming the response variable to see if this improves the model assumptions.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>full_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="#cb50-2"></a>    specific_leaf_area <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span> <span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb50-3"><a href="#cb50-3"></a>    <span class="at">data =</span> plant_aridity)</span>
+<span id="cb50-4"><a href="#cb50-4"></a></span>
+<span id="cb50-5"><a href="#cb50-5"></a><span class="fu">check_model</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>After further testing, we found that log-transforming the response variable improved the normality and equal variance of the residuals, but it was improved further by transforming root_shoot_ratio, which was highly skewed, so thiswasalso transformed.</p>
+<p>Herein we will use the transformed model.</p>
+<p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">summary</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(rel_fitness) ~ growth_rate + days_to_flower + 
+    specific_leaf_area + log(root_shoot_ratio + 1) + chlorogenic_acid, 
+    data = plant_aridity)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.7947 -0.2410  0.0169  0.2435  0.9532 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                0.49232    0.06291   7.826 1.44e-11 ***
+growth_rate                0.10094    0.05400   1.869   0.0651 .  
+days_to_flower             0.01154    0.03645   0.317   0.7523    
+specific_leaf_area         0.06877    0.05757   1.194   0.2357    
+log(root_shoot_ratio + 1) -0.01304    0.03820  -0.341   0.7336    
+chlorogenic_acid          -0.08594    0.03631  -2.367   0.0203 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3431 on 83 degrees of freedom
+Multiple R-squared:  0.1088,    Adjusted R-squared:  0.0551 
+F-statistic: 2.026 on 5 and 83 DF,  p-value: 0.08329</code></pre>
+</div>
+</div>
+<p>The overall model is not significant (p &gt; 0.05), but we do see that chlorogenic_acid is significant and growth_rate is borderline significant. The adjusted R<sup>2</sup> value is 0.055, which means that approximately 6% of the variation in relative fitness can be explained by the model. This is a very low value, suggesting that the model does not explain much of the variation in relative fitness.</p>
+<p>Although the model is not significant, let’s see if there is a way to make it more parsimonious.</p>
+<p><em>(viii)</em> Remove any highly non-significant predictors (P &gt; 0.1) from the model and run the model again. This will be known as the ‘reduced model’.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>reduced_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb53-2"><a href="#cb53-2"></a>    <span class="at">data =</span> plant_aridity)</span>
+<span id="cb53-3"><a href="#cb53-3"></a></span>
+<span id="cb53-4"><a href="#cb53-4"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        df      AIC
+full_plant_log_model     7 69.95815
+reduced_plant_log_model  4 65.80463</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">anova</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
+    log(root_shoot_ratio + 1) + chlorogenic_acid
+Model 2: log(rel_fitness) ~ growth_rate + chlorogenic_acid
+  Res.Df    RSS Df Sum of Sq    F Pr(&gt;F)
+1     83 9.7718                         
+2     86 9.9767 -3  -0.20485 0.58 0.6298</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">summary</span>(reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(rel_fitness) ~ growth_rate + chlorogenic_acid, 
+    data = plant_aridity)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.78397 -0.25125  0.02644  0.23483  0.95917 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       0.51904    0.04517  11.490   &lt;2e-16 ***
+growth_rate       0.08618    0.05090   1.693   0.0941 .  
+chlorogenic_acid -0.08601    0.03587  -2.398   0.0186 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3406 on 86 degrees of freedom
+Multiple R-squared:  0.0901,    Adjusted R-squared:  0.06894 
+F-statistic: 4.258 on 2 and 86 DF,  p-value: 0.01725</code></pre>
+</div>
+</div>
+<p><em>(ix)</em> Run a partial f-test to determine whether the reduced model an improvement on the full model. Which model is better?</p>
+<p>The p-value from the F-test is 0.6298, which is greater than 0.05, so we fail to reject the null hypothesis. This means that the reduced model is not a significant improvement on the full model, and we would opt for the reduced model as it is more parsimonious.</p>
+<p><em>(x)</em> Run stepwise regression using the <code>step()</code> function fitted to the full model. Which model does it select as the best model?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_plant_log_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=-184.61
+log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
+    log(root_shoot_ratio + 1) + chlorogenic_acid
+
+                            Df Sum of Sq     RSS     AIC
+- days_to_flower             1   0.01181  9.7836 -186.50
+- log(root_shoot_ratio + 1)  1   0.01373  9.7855 -186.49
+- specific_leaf_area         1   0.16798  9.9398 -185.10
+&lt;none&gt;                                    9.7718 -184.61
+- growth_rate                1   0.41143 10.1832 -182.94
+- chlorogenic_acid           1   0.65952 10.4313 -180.80
+
+Step:  AIC=-186.51
+log(rel_fitness) ~ growth_rate + specific_leaf_area + log(root_shoot_ratio + 
+    1) + chlorogenic_acid
+
+                            Df Sum of Sq     RSS     AIC
+- log(root_shoot_ratio + 1)  1   0.00977  9.7934 -188.42
+- specific_leaf_area         1   0.17558  9.9592 -186.92
+&lt;none&gt;                                    9.7836 -186.50
+- growth_rate                1   0.40165 10.1853 -184.93
+- chlorogenic_acid           1   0.68071 10.4643 -182.52
+
+Step:  AIC=-188.42
+log(rel_fitness) ~ growth_rate + specific_leaf_area + chlorogenic_acid
+
+                     Df Sum of Sq     RSS     AIC
+- specific_leaf_area  1   0.18327  9.9767 -188.77
+&lt;none&gt;                             9.7934 -188.42
+- growth_rate         1   0.39195 10.1854 -186.92
+- chlorogenic_acid    1   0.68699 10.4804 -184.38
+
+Step:  AIC=-188.77
+log(rel_fitness) ~ growth_rate + chlorogenic_acid
+
+                   Df Sum of Sq     RSS     AIC
+&lt;none&gt;                           9.9767 -188.77
+- growth_rate       1   0.33248 10.3092 -187.85
+- chlorogenic_acid  1   0.66707 10.6437 -185.01</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        df      AIC
+full_plant_log_model     7 69.95815
+reduced_plant_log_model  4 65.80463</code></pre>
+</div>
+</div>
+<p>The step() function has told us that the full model is better than the reduced model, which is inconsistent with our previous analysis using the F-test. This is because the step() function uses the AIC to compare models, which is a different criterion. In this case, the AIC may be favoring the full model again due to its better fit, even though it includes a non-significant predictor.</p>
+<p>When we check this with the AIC() function to compare between full and reduced models, we can see that the reduced model is a better choice.</p>
+<p>This goes to show that we can use automated methods, but we also need to understand the underlying statistics and not rely solely on these methods for model selection. It is good to do some good ol’ hypothesis testing where realistic.</p>
+<p><em>(viii)</em> Write a concluding statement on your findings.</p>
+<p>Based on our analyses, we found that the full model with all predictors was not significant, and only chlorogenic_acid was a significant predictor of relative fitness.</p>
+<p>Removing the non-significant predictors did not result in a significant improvement in the model, so given we fail to reject the null hypothesis, it is better to select the reduced model.</p>
+<p>As our model is not significant, it is worth investigating whether another model would be better fit. In the original article they actually incorporated a treatment interaction into their model, so if you want to see how this was done, feel free to check out the article (source listed at the beginning of the exercise).</p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>You have done a great job working to improve and produce more parsimonious models.</p>
+<p>As you may have noticed in this lab, models are rarely perfect, which is okay; it is our job to find the best way to explain variation in our response variables by exploring alternatives.</p>
+<p>Keep up the great work and see you in the week 9 lecture for the last week of modelling!</p>
+<p>If you have any questions, please approach your tutors or you are welcome to post to the Ed Discussion board.</p>
+<section id="attribution" class="level3">
+<h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
+
+
+</section>
 </section>
 </section>
 

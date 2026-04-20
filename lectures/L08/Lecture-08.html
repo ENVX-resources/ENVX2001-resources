@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Liana Pozza">
   <title>Regression: model development</title>
@@ -375,11 +375,13 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><strong>Residual standard error</strong>: the mean error of the observed values from the predicted/fitted values (i.e.&nbsp;line of best fit).</li>
 <li><strong>Partial F-test</strong>: compare the full model to a reduced model, works well when the number of predictors is small and simple models.</li>
 </ul>
+<div class="fragment">
 <p>Some other commonly used measures:</p>
 <ul>
 <li><strong>Information criteria</strong>: AIC, BIC, etc. (more on this later).</li>
 <li><strong>Error measures</strong>: useful when the aim for the model is to <strong>predict</strong>. The best model has the smallest residual error (or other similar metrics).</li>
 </ul>
+</div>
 </section>
 <section id="what-models-do-we-try" class="slide level2">
 <h2>What models do we try?</h2>
@@ -1587,7 +1589,7 @@ Coefficients:
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/ENVX-resources\.github\.io\/ENVX2001-resources\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

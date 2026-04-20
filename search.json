@@ -3021,7 +3021,7 @@
     "href": "lectures/L08/Lecture-08.html#how-do-we-determine-the-best-model",
     "title": "Regression: model development",
     "section": "How do we determine the best model?",
-    "text": "How do we determine the best model?\nSome model quality measures you should be familiar with:\n\nR2: variance explained by the model with a maximum value of 1 = 100%\nResidual standard error: the mean error of the observed values from the predicted/fitted values (i.e. line of best fit).\nPartial F-test: compare the full model to a reduced model, works well when the number of predictors is small and simple models.\n\nSome other commonly used measures:\n\nInformation criteria: AIC, BIC, etc. (more on this later).\nError measures: useful when the aim for the model is to predict. The best model has the smallest residual error (or other similar metrics)."
+    "text": "How do we determine the best model?\nSome model quality measures you should be familiar with:\n\nR2: variance explained by the model with a maximum value of 1 = 100%\nResidual standard error: the mean error of the observed values from the predicted/fitted values (i.e. line of best fit).\nPartial F-test: compare the full model to a reduced model, works well when the number of predictors is small and simple models.\n\n\nSome other commonly used measures:\n\nInformation criteria: AIC, BIC, etc. (more on this later).\nError measures: useful when the aim for the model is to predict. The best model has the smallest residual error (or other similar metrics)."
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#what-models-do-we-try",

@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.27">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Liana Pozza">
   <title>Regression: model development</title>
@@ -398,10 +398,18 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul></li>
 <li>So…not recommended</li>
 </ul></li>
+</ul>
+<div class="fragment">
+<ul>
 <li><strong>Stepwise regression</strong>: add/remove predictors one at a time until removing a variable makes the model worse.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li><strong>Select meaningful predictors</strong> based on domain knowledge, correlation, or significance.</li>
 <li>More complex approaches are available for big data and machine learning.</li>
 </ul>
+</div>
 </section>
 <section id="air-quality-can-we-reduce-the-number-of-predictors" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Air quality: can we reduce the number of predictors?</h2>
@@ -487,12 +495,21 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1>Partial F-test</h1>
 
 </section>
-<section id="partial-f-test-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Partial F-test</h2>
+<section id="partial-f-test-1" class="slide level2">
+<h2>Partial F-test</h2>
 <p>How much of an improvement in adjusted <span class="math inline">\(R^2\)</span> is worth having an extra variable / more complex model?</p>
+<div class="fragment">
 <ul>
 <li>We can perform a hypothesis test to determine whether the improvement is significant.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>The F-test measures the full model against an intercept only model in terms of explained variance (residual sum of squares).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>The <strong>partial F-test</strong> compares the full model to a reduced model in terms of the trade-off between model complexity and variance explained (i.e.&nbsp;<strong>adjusted</strong> <span class="math inline">\(R^2\)</span>).
 <ul>
 <li><span class="math inline">\(H_0\)</span>: no significant difference between the full and reduced models</li>
@@ -501,10 +518,13 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul></li>
 </ul>
 <p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span></p>
+</div>
 </section>
-<section id="partial-f-test-calculation" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Partial F-test: calculation</h2>
-<p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span> where:</p>
+<section id="partial-f-test-calculation" class="slide level2">
+<h2>Partial F-test: calculation</h2>
+<p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span></p>
+<div class="fragment">
+<p>where:</p>
 <ul>
 <li><span class="math inline">\(SS_{reg,full}\)</span> is the sum of squares of the full model (total of predictors)</li>
 <li><span class="math inline">\(SS_{reg,reduced}\)</span> is the sum of squares of the reduced model (total of predictors)</li>
@@ -512,6 +532,11 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><span class="math inline">\(df_{res,reduced}\)</span> is the degrees of freedom of the residuals of the reduced model</li>
 <li><span class="math inline">\(MS_{res, full}\)</span> is the mean square of the residuals of the full model</li>
 </ul>
+</div>
+</section>
+<section id="partial-f-test-full-and-reduced-models" class="slide level2">
+<h2>Partial F-test: full and reduced models</h2>
+<div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
@@ -542,6 +567,7 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div></div>
 <p>Each row is the <em>individual effect</em> of each predictor on the response <span class="math inline">\(log(Ozone)\)</span> (whilst holding all other predictors constant).</p>
+</div>
 </section>
 <section id="by-hand" class="slide level2">
 <h2>By hand</h2>
@@ -657,8 +683,23 @@ Wind        -0.061562470 0.0157129654 -3.9179409 1.576806e-04</code></pre>
 <h1>Another example: Bird abundance</h1>
 
 </section>
-<section id="about" class="slide level2">
-<h2>About</h2>
+<section id="bird-abundance" class="slide level2">
+<h2>Bird Abundance</h2>
+<ul>
+<li>Can we predict the abundance of birds in forest patches cleared for agriculture, based on patch size, area, grazing and other variables?</li>
+<li>Loyn (<a href="https://www.researchgate.net/profile/Richard-Loyn/publication/279541149_Effects_of_patch_area_and_habitat_on_bird_abundances_species_numbers_and_tree_health_in_fragmented_Victoria_forests/links/563ae1bc08ae337ef2985592/Effects-of-patch-area-and-habitat-on-bird-abundances-species-numbers-and-tree-health-in-fragmented-Victoria-forests.pdf">1987</a>)
+<ul>
+<li>DIST: Distance to nearest patch (km)</li>
+<li>LDIST: Distance to a larger patch (km)</li>
+<li>AREA: Patch area (ha)</li>
+<li>GRAZE: Grazing pressure 1 (light) – 5 (heavy) – ALT: Altitude (m)</li>
+<li>YR.ISOL: Years since isolation (years)</li>
+<li>ABUND: Density of forest birds in a forest patch (birds/patch)</li>
+</ul></li>
+</ul>
+</section>
+<section id="bird-abundance-data" class="slide level2">
+<h2>Bird abundance: data</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>loyn <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/loyn.csv"</span>)</span>
 <span id="cb22-2"><a></a><span class="fu">str</span>(loyn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -673,18 +714,6 @@ Wind        -0.061562470 0.0157129654 -3.9179409 1.576806e-04</code></pre>
  $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ...</code></pre>
 </div>
 </div>
-<ul>
-<li>Can we predict the abundance of birds in forest patches cleared for agriculture, based on patch size, area, grazing and other variables?</li>
-<li>Loyn (<a href="https://www.researchgate.net/profile/Richard-Loyn/publication/279541149_Effects_of_patch_area_and_habitat_on_bird_abundances_species_numbers_and_tree_health_in_fragmented_Victoria_forests/links/563ae1bc08ae337ef2985592/Effects-of-patch-area-and-habitat-on-bird-abundances-species-numbers-and-tree-health-in-fragmented-Victoria-forests.pdf">1987</a>)
-<ul>
-<li>DIST: Distance to nearest patch (km)</li>
-<li>LDIST: Distance to a larger patch (km)</li>
-<li>AREA: Patch area (ha)</li>
-<li>GRAZE: Grazing pressure 1 (light) – 5 (heavy) – ALT: Altitude (m)</li>
-<li>YR.ISOL: Years since isolation (years)</li>
-<li>ABUND: Density of forest birds in a forest patch (birds/patch)</li>
-</ul></li>
-</ul>
 </section>
 <section id="data-exploration" class="slide level2">
 <h2>Data exploration</h2>
@@ -1031,9 +1060,9 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 </ul>
 <p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span></p>
 </section>
-<section id="about-aic-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">About AIC</h2>
-<p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span></p>
+<section id="about-aic-1" class="slide level2">
+<h2>About AIC</h2>
+<p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span> where:</p>
 <ul>
 <li><span class="math inline">\(k\)</span> is the number of parameters in the model (predictors + intercept)</li>
 <li><span class="math inline">\(L\)</span> is the maximum value of the likelihood function
@@ -1589,7 +1618,7 @@ Coefficients:
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/ENVX-resources\.github\.io\/ENVX2001-resources\/");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

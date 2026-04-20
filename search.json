@@ -3028,7 +3028,7 @@
     "href": "lectures/L08/Lecture-08.html#what-models-do-we-try",
     "title": "Regression: model development",
     "section": "What models do we try?",
-    "text": "What models do we try?\n\nEverything: all possible combinations of predictors.\n\nEach variable can either be included or excluded so the number of possible combinations is \\(2^n\\)\ne.g. 3 predictors (\\(x_1\\), \\(x_2\\), \\(x_3\\)) could have 8 models\n\nNo variables i.e. mean \\(y\\) the null hypothesis\n1 variable: \\(x_1\\); \\(x_2\\); \\(x_3\\)\n2 variables: \\(x_1\\) + \\(x_2\\); \\(x_1\\) + \\(x_3\\); \\(x_2\\) + \\(x_3\\)\n3 variables: \\(x_1\\) + \\(x_2\\) + \\(x_3\\)\n\nSo…not recommended\n\nStepwise regression: add/remove predictors one at a time until removing a variable makes the model worse.\nSelect meaningful predictors based on domain knowledge, correlation, or significance.\nMore complex approaches are available for big data and machine learning."
+    "text": "What models do we try?\n\nEverything: all possible combinations of predictors.\n\nEach variable can either be included or excluded so the number of possible combinations is \\(2^n\\)\ne.g. 3 predictors (\\(x_1\\), \\(x_2\\), \\(x_3\\)) could have 8 models\n\nNo variables i.e. mean \\(y\\) the null hypothesis\n1 variable: \\(x_1\\); \\(x_2\\); \\(x_3\\)\n2 variables: \\(x_1\\) + \\(x_2\\); \\(x_1\\) + \\(x_3\\); \\(x_2\\) + \\(x_3\\)\n3 variables: \\(x_1\\) + \\(x_2\\) + \\(x_3\\)\n\nSo…not recommended\n\n\n\n\nStepwise regression: add/remove predictors one at a time until removing a variable makes the model worse.\n\n\n\n\nSelect meaningful predictors based on domain knowledge, correlation, or significance.\nMore complex approaches are available for big data and machine learning."
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#air-quality-can-we-reduce-the-number-of-predictors",
@@ -3056,14 +3056,21 @@
     "href": "lectures/L08/Lecture-08.html#partial-f-test-1",
     "title": "Regression: model development",
     "section": "Partial F-test",
-    "text": "Partial F-test\nHow much of an improvement in adjusted \\(R^2\\) is worth having an extra variable / more complex model?\n\nWe can perform a hypothesis test to determine whether the improvement is significant.\nThe F-test measures the full model against an intercept only model in terms of explained variance (residual sum of squares).\nThe partial F-test compares the full model to a reduced model in terms of the trade-off between model complexity and variance explained (i.e. adjusted \\(R^2\\)).\n\n\\(H_0\\): no significant difference between the full and reduced models\n\\(H_1\\): the full model is significantly better than the reduced model\nCalculating the F-stat:\n\n\n\\[F = \\big| \\frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \\big | \\div MS_{res, full}\\]"
+    "text": "Partial F-test\nHow much of an improvement in adjusted \\(R^2\\) is worth having an extra variable / more complex model?\n\n\nWe can perform a hypothesis test to determine whether the improvement is significant.\n\n\n\n\nThe F-test measures the full model against an intercept only model in terms of explained variance (residual sum of squares).\n\n\n\n\nThe partial F-test compares the full model to a reduced model in terms of the trade-off between model complexity and variance explained (i.e. adjusted \\(R^2\\)).\n\n\\(H_0\\): no significant difference between the full and reduced models\n\\(H_1\\): the full model is significantly better than the reduced model\nCalculating the F-stat:\n\n\n\\[F = \\big| \\frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \\big | \\div MS_{res, full}\\]"
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#partial-f-test-calculation",
     "href": "lectures/L08/Lecture-08.html#partial-f-test-calculation",
     "title": "Regression: model development",
     "section": "Partial F-test: calculation",
-    "text": "Partial F-test: calculation\n\\[F = \\big| \\frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \\big | \\div MS_{res, full}\\] where:\n\n\\(SS_{reg,full}\\) is the sum of squares of the full model (total of predictors)\n\\(SS_{reg,reduced}\\) is the sum of squares of the reduced model (total of predictors)\n\\(df_{res,full}\\) is the degrees of freedom of the residuals of the full model\n\\(df_{res,reduced}\\) is the degrees of freedom of the residuals of the reduced model\n\\(MS_{res, full}\\) is the mean square of the residuals of the full model\n\n\n\n\nfull &lt;- anova(full_fit) %&gt;% broom::tidy()\nfull\n\n# A tibble: 4 × 6\n  term         df sumsq meansq statistic   p.value\n  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Temp          1 45.8  45.8       177.   2.07e-24\n2 Solar.R       1  5.07  5.07       19.6  2.29e- 5\n3 Wind          1  3.97  3.97       15.4  1.58e- 4\n4 Residuals   107 27.7   0.259      NA   NA       \n\n\n\n\nreduced &lt;- anova(reduced_fit) %&gt;% broom::tidy()\nreduced\n\n# A tibble: 3 × 6\n  term         df sumsq meansq statistic   p.value\n  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Temp          1 45.8  45.8       156.   1.05e-22\n2 Solar.R       1  5.07  5.07       17.3  6.38e- 5\n3 Residuals   108 31.6   0.293      NA   NA       \n\n\n\nEach row is the individual effect of each predictor on the response \\(log(Ozone)\\) (whilst holding all other predictors constant)."
+    "text": "Partial F-test: calculation\n\\[F = \\big| \\frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \\big | \\div MS_{res, full}\\]\n\nwhere:\n\n\\(SS_{reg,full}\\) is the sum of squares of the full model (total of predictors)\n\\(SS_{reg,reduced}\\) is the sum of squares of the reduced model (total of predictors)\n\\(df_{res,full}\\) is the degrees of freedom of the residuals of the full model\n\\(df_{res,reduced}\\) is the degrees of freedom of the residuals of the reduced model\n\\(MS_{res, full}\\) is the mean square of the residuals of the full model"
+  },
+  {
+    "objectID": "lectures/L08/Lecture-08.html#partial-f-test-full-and-reduced-models",
+    "href": "lectures/L08/Lecture-08.html#partial-f-test-full-and-reduced-models",
+    "title": "Regression: model development",
+    "section": "Partial F-test: full and reduced models",
+    "text": "Partial F-test: full and reduced models\n\n\n\n\nfull &lt;- anova(full_fit) %&gt;% broom::tidy()\nfull\n\n# A tibble: 4 × 6\n  term         df sumsq meansq statistic   p.value\n  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Temp          1 45.8  45.8       177.   2.07e-24\n2 Solar.R       1  5.07  5.07       19.6  2.29e- 5\n3 Wind          1  3.97  3.97       15.4  1.58e- 4\n4 Residuals   107 27.7   0.259      NA   NA       \n\n\n\n\nreduced &lt;- anova(reduced_fit) %&gt;% broom::tidy()\nreduced\n\n# A tibble: 3 × 6\n  term         df sumsq meansq statistic   p.value\n  &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 Temp          1 45.8  45.8       156.   1.05e-22\n2 Solar.R       1  5.07  5.07       17.3  6.38e- 5\n3 Residuals   108 31.6   0.293      NA   NA       \n\n\n\nEach row is the individual effect of each predictor on the response \\(log(Ozone)\\) (whilst holding all other predictors constant)."
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#by-hand",
@@ -3101,11 +3108,18 @@
     "text": "Nested models\n\nPrevious example is a simple example of a nested model.\nA model is nested within another model if the predictors in the first model are a subset of the predictors in the second model.\nThis makes comparing the two models easier, as we can compare the regression coefficients of the two models.\n\nExample\n\nIf the original model is y ~ a + b + c:\n\nNested: y ~ a + b\nNested: y ~ a\nNot nested: y ~ a + b + d – because d is not in the full model\n\n\n\n\n\n\n\n\nImportant\n\n\nPartial F-tests will only make sense/work for nested models!"
   },
   {
-    "objectID": "lectures/L08/Lecture-08.html#about",
-    "href": "lectures/L08/Lecture-08.html#about",
+    "objectID": "lectures/L08/Lecture-08.html#bird-abundance",
+    "href": "lectures/L08/Lecture-08.html#bird-abundance",
     "title": "Regression: model development",
-    "section": "About",
-    "text": "About\n\nloyn &lt;- read.csv(\"data/loyn.csv\")\nstr(loyn)\n\n'data.frame':   56 obs. of  7 variables:\n $ ABUND  : num  5.3 2 1.5 17.1 13.8 14.1 3.8 2.2 3.3 3 ...\n $ AREA   : num  0.1 0.5 0.5 1 1 1 1 1 1 1 ...\n $ YR.ISOL: int  1968 1920 1900 1966 1918 1965 1955 1920 1965 1900 ...\n $ DIST   : int  39 234 104 66 246 234 467 284 156 311 ...\n $ LDIST  : int  39 234 311 66 246 285 467 1829 156 571 ...\n $ GRAZE  : int  2 5 5 3 5 3 5 5 4 5 ...\n $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ...\n\n\n\nCan we predict the abundance of birds in forest patches cleared for agriculture, based on patch size, area, grazing and other variables?\nLoyn (1987)\n\nDIST: Distance to nearest patch (km)\nLDIST: Distance to a larger patch (km)\nAREA: Patch area (ha)\nGRAZE: Grazing pressure 1 (light) – 5 (heavy) – ALT: Altitude (m)\nYR.ISOL: Years since isolation (years)\nABUND: Density of forest birds in a forest patch (birds/patch)"
+    "section": "Bird Abundance",
+    "text": "Bird Abundance\n\nCan we predict the abundance of birds in forest patches cleared for agriculture, based on patch size, area, grazing and other variables?\nLoyn (1987)\n\nDIST: Distance to nearest patch (km)\nLDIST: Distance to a larger patch (km)\nAREA: Patch area (ha)\nGRAZE: Grazing pressure 1 (light) – 5 (heavy) – ALT: Altitude (m)\nYR.ISOL: Years since isolation (years)\nABUND: Density of forest birds in a forest patch (birds/patch)"
+  },
+  {
+    "objectID": "lectures/L08/Lecture-08.html#bird-abundance-data",
+    "href": "lectures/L08/Lecture-08.html#bird-abundance-data",
+    "title": "Regression: model development",
+    "section": "Bird abundance: data",
+    "text": "Bird abundance: data\n\nloyn &lt;- read.csv(\"data/loyn.csv\")\nstr(loyn)\n\n'data.frame':   56 obs. of  7 variables:\n $ ABUND  : num  5.3 2 1.5 17.1 13.8 14.1 3.8 2.2 3.3 3 ...\n $ AREA   : num  0.1 0.5 0.5 1 1 1 1 1 1 1 ...\n $ YR.ISOL: int  1968 1920 1900 1966 1918 1965 1955 1920 1965 1900 ...\n $ DIST   : int  39 234 104 66 246 234 467 284 156 311 ...\n $ LDIST  : int  39 234 311 66 246 285 467 1829 156 571 ...\n $ GRAZE  : int  2 5 5 3 5 3 5 5 4 5 ...\n $ ALT    : int  160 60 140 160 140 130 90 60 130 130 ..."
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#data-exploration",
@@ -3217,7 +3231,7 @@
     "href": "lectures/L08/Lecture-08.html#about-aic-1",
     "title": "Regression: model development",
     "section": "About AIC",
-    "text": "About AIC\n\\[AIC = 2k - 2\\ln(L)\\]\n\n\\(k\\) is the number of parameters in the model (predictors + intercept)\n\\(L\\) is the maximum value of the likelihood function\n\nIf we predict using the (current) model, what is the probability density of the prediction compared to the original distribution?\n\\(ln(L)\\) = goodness of fit (higher is better)\n\nFor the number of parameters in the model (\\(2k\\)) subtract the goodness of fit \\(2ln(L)\\)\n\nThe smaller the AIC, the better the model fits the data.\nA relative measure and unitless, so it is not worth trying to interpret alone.\n\nCan be calculated with the AIC() function in R"
+    "text": "About AIC\n\\[AIC = 2k - 2\\ln(L)\\] where:\n\n\\(k\\) is the number of parameters in the model (predictors + intercept)\n\\(L\\) is the maximum value of the likelihood function\n\nIf we predict using the (current) model, what is the probability density of the prediction compared to the original distribution?\n\\(ln(L)\\) = goodness of fit (higher is better)\n\nFor the number of parameters in the model (\\(2k\\)) subtract the goodness of fit \\(2ln(L)\\)\n\nThe smaller the AIC, the better the model fits the data.\nA relative measure and unitless, so it is not worth trying to interpret alone.\n\nCan be calculated with the AIC() function in R"
   },
   {
     "objectID": "lectures/L08/Lecture-08.html#about-aic---fyi",

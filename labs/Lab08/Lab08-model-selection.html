@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,18 +73,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d2800b5aef52857891e752670e942548.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-e3345c6ef29c45a7958e8df45469d16f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5acddea9ec7addd5e9532e878e20728d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-85a6e9acf135b508f40e500a51f36ff8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -199,7 +199,7 @@ background: white;
   <ul class="collapse">
   <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a>
   <ul class="collapse">
-  <li><a href="#exercise-1---initial-analyses" id="toc-exercise-1---initial-analyses" class="nav-link" data-scroll-target="#exercise-1---initial-analyses">Exercise 1 - initial analyses</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
@@ -236,7 +236,8 @@ background: white;
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
 <p>In this lab, we will learn how to:</p>
-<p><strong>1. Fit multiple linear regression models and interpret associated indicators of collinearity</strong> <strong>2. Draw upon various methods to determine whether a full or reduced model is more suitable</strong></p>
+<p><strong>1. Fit multiple linear regression models and interpret associated indicators of collinearity</strong></p>
+<p><strong>2. Draw upon various methods to determine whether a full or reduced model is more suitable</strong></p>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
@@ -256,9 +257,9 @@ background: white;
 <p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>, and <code>gridExtra</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"gridExtra"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 </section>
@@ -293,6 +294,28 @@ background: white;
 <p><em>(ii)</em> Fit a multiple linear regression model to the data using all variables. Set <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables. This will be known as the ‘full model’.</p>
 <p><em>(iii)</em> Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</p>
 <p>HINT: The VIF will appear as one of the plots in the <code>check_model()</code> function, but it can also be helpful to get the values. You can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
+<p>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Linearity</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Normality</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Equal variance</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># Outliers</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># VIF - visual</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</p>
 <p><em>(v)</em> Remove <code>lake_sabrina</code> from the model and run the model again. This will be known as the ‘reduced model’.</p>
 <p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
@@ -358,8 +381,8 @@ Tip
 <p>Paper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018.</p>
 <section id="section-5" class="level2">
 <h2 class="anchored" data-anchor-id="section-5"></h2>
-<section id="exercise-1---initial-analyses" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-1---initial-analyses">Exercise 1 - initial analyses</h3>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each variable and relative fitness.</p>
 <p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
@@ -367,7 +390,7 @@ Tip
 <p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
-<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model. Because the performance package can squish plots and make them hard to interpret, you can specify plots of interest, as shown in the previous exercises.</p>
 <p>Hint 2: If you are unsure about the collinearity plot, you can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
 <p>Hint 3: If you find that the assumptions are not met you can use log-transformations or other transformations as appropriate based on the distribution of your variables. If you are log-transforming a variable which contains negative or zero values you will need to add a constant, i.e.&nbsp;<code>log(x+1)</code></p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
@@ -469,7 +492,7 @@ Tip
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/ENVX-resources\.github\.io\/ENVX2001-resources\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -250,7 +250,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a>
   <ul class="collapse">
-  <li><a href="#exercise-1---initial-analyses" id="toc-exercise-1---initial-analyses" class="nav-link" data-scroll-target="#exercise-1---initial-analyses">Exercise 1 - initial analyses</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
@@ -287,7 +287,8 @@ window.Quarto = {
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
 <p>In this lab, we will learn how to:</p>
-<p><strong>1. Fit multiple linear regression models and interpret associated indicators of collinearity</strong> <strong>2. Draw upon various methods to determine whether a full or reduced model is more suitable</strong></p>
+<p><strong>1. Fit multiple linear regression models and interpret associated indicators of collinearity</strong></p>
+<p><strong>2. Draw upon various methods to determine whether a full or reduced model is more suitable</strong></p>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
@@ -307,9 +308,9 @@ window.Quarto = {
 <p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
 <section id="packages" class="level3">
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
-<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>, and <code>gridExtra</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"gridExtra"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"car"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 </section>
@@ -344,6 +345,28 @@ window.Quarto = {
 <p><em>(ii)</em> Fit a multiple linear regression model to the data using all variables. Set <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables. This will be known as the ‘full model’.</p>
 <p><em>(iii)</em> Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</p>
 <p>HINT: The VIF will appear as one of the plots in the <code>check_model()</code> function, but it can also be helpful to get the values. You can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
+<p>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Linearity</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Normality</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co"># Equal variance</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># Outliers</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># VIF - visual</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span>
+<span id="cb2-17"><a href="#cb2-17"></a></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</p>
 <p><em>(v)</em> Remove <code>lake_sabrina</code> from the model and run the model again. This will be known as the ‘reduced model’.</p>
 <p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
@@ -374,13 +397,13 @@ window.Quarto = {
 <section id="i-read-in-the-data-and-investigate-the-relationship-between-each-of-your-variables.-describe-the-relationships-supported-by-values-correlation-coefficient-and-plots." class="level5">
 <h5 class="anchored" data-anchor-id="i-read-in-the-data-and-investigate-the-relationship-between-each-of-your-variables.-describe-the-relationships-supported-by-values-correlation-coefficient-and-plots."><em>(i)</em> Read in the data and investigate the relationship between each of your variables. Describe the relationships, supported by values (correlation coefficient) and plots.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># read in the data</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># read in the data</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 43
 Columns: 4
@@ -389,8 +412,8 @@ $ pine_creek    &lt;dbl&gt; 2.017618, 2.282781, 2.383471, 2.451719, 2.618086, 2.
 $ rock_creek    &lt;dbl&gt; 2.275823, 2.450548, 2.491194, 2.585246, 2.706948, 2.3159…
 $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.9210…</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'psych'</code></pre>
@@ -400,7 +423,7 @@ Attaching package: 'psych'</code></pre>
 
     %+%, alpha</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">pairs.panels</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -408,8 +431,8 @@ Attaching package: 'psych'</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># can also get the same results separately</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">cor</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># can also get the same results separately</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">cor</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              lake_sabrina pine_creek rock_creek runoff_volume
 lake_sabrina    1.00000000 0.07848517 0.09054996     0.1649284
@@ -417,7 +440,7 @@ pine_creek      0.07848517 1.00000000 0.88381452     0.8929251
 rock_creek      0.09054996 0.88381452 1.00000000     0.9194688
 runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pairs</span>(stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -431,18 +454,20 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <section id="ii-fit-a-multiple-linear-regression-model-to-the-data-using-all-variables.-set-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables.-this-will-be-known-as-the-full-model." class="level5">
 <h5 class="anchored" data-anchor-id="ii-fit-a-multiple-linear-regression-model-to-the-data-using-all-variables.-set-runoff_volume-as-the-response-variable-and-lake_sabrina-pine_creek-and-rock_creek-as-the-predictor-variables.-this-will-be-known-as-the-full-model."><em>(ii)</em> Fit a multiple linear regression model to the data using all variables. Set <code>runoff_volume</code> as the response variable and <code>lake_sabrina</code>, <code>pine_creek</code> and <code>rock_creek</code> as the predictor variables. This will be known as the ‘full model’.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># fit the full model</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># fit the full model</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> lake_sabrina <span class="sc">+</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="iii-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-what-does-the-variance-inflation-factor-vif-tell-you-about-the-collinearity-between-predictor-variables" class="level5">
 <h5 class="anchored" data-anchor-id="iii-check-the-assumptions-of-your-model.-do-you-need-to-transform-any-variables-what-does-the-variance-inflation-factor-vif-tell-you-about-the-collinearity-between-predictor-variables"><em>(iii)</em> Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</h5>
 <p>HINT: The VIF will appear as one of the plots in the <code>check_model()</code> function, but it can also be helpful to get the values. You can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
+<p>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">check_model</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># Linearity</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -450,13 +475,61 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Lake Sabrina is doing something weird, so let's get VIF values too</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>) <span class="co"># numbers</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Normality</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Equal variance</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Outliers</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># VIF - visual</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lake_sabrina   pine_creek   rock_creek 
-        1.01         4.57         4.58 </code></pre>
+    1.008278     4.568933     4.578328 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">plot</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Lake Sabrina = 1.01</p>
 <p>Pine_creek = 4.57</p>
@@ -466,7 +539,7 @@ runoff_volume   0.16492838 0.89292511 0.91946880     1.0000000</code></pre>
 <section id="iv-make-a-note-of-the-model-parameters-and-fit-statistics-for-the-full-model." class="level5">
 <h5 class="anchored" data-anchor-id="iv-make-a-note-of-the-model-parameters-and-fit-statistics-for-the-full-model."><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -496,13 +569,13 @@ F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="v-remove-lake_sabrina-from-the-model-and-run-the-model-again.-this-will-be-known-as-the-reduced-model." class="level5">
 <h5 class="anchored" data-anchor-id="v-remove-lake_sabrina-from-the-model-and-run-the-model-again.-this-will-be-known-as-the-reduced-model."><em>(v)</em> Remove <code>lake_sabrina</code> from the model and run the model again. This will be known as the ‘reduced model’.</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="vi-is-the-reduced-model-an-improvement-on-the-full-model-how-can-you-tell-what-statistics-would-you-look-at-to-determine-this" class="level5">
 <h5 class="anchored" data-anchor-id="vi-is-the-reduced-model-an-improvement-on-the-full-model-how-can-you-tell-what-statistics-would-you-look-at-to-determine-this"><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -526,7 +599,7 @@ Residual standard error: 0.04861 on 39 degrees of freedom
 Multiple R-squared:  0.8817,    Adjusted R-squared:  0.8726 
 F-statistic: 96.88 on 3 and 39 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">summary</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">summary</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -565,7 +638,7 @@ F-statistic: 139.8 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="ii-perform-the-f-test-using-the-anova-function-to-compare-the-full-and-reduced-models.-what-is-the-p-value-based-on-this-what-might-we-conclude-to-be-the-better-model" class="level5">
 <h5 class="anchored" data-anchor-id="ii-perform-the-f-test-using-the-anova-function-to-compare-the-full-and-reduced-models.-what-is-the-p-value-based-on-this-what-might-we-conclude-to-be-the-better-model"><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Based on this, what might we conclude to be the better model?</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">anova</span>(full_model, reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">anova</span>(full_model, reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -593,7 +666,7 @@ Model 2: runoff_volume ~ pine_creek + rock_creek
 <section id="ii-have-a-go-at-running-the-step-function-on-the-full-model.-which-model-does-it-select-as-the-best-model" class="level5">
 <h5 class="anchored" data-anchor-id="ii-have-a-go-at-running-the-step-function-on-the-full-model.-which-model-does-it-select-as-the-best-model"><em>(ii)</em> Have a go at running the <code>step()</code> function on the full model. Which model does it select as the best model?</h5>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-256.25
 runoff_volume ~ lake_sabrina + pine_creek + rock_creek
@@ -613,11 +686,11 @@ runoff_volume ~ lake_sabrina + pine_creek + rock_creek
 <h5 class="anchored" data-anchor-id="iii-one-final-check-what-are-the-aic-values-for-the-full-and-reduced-models-which-model-has-the-lowest-aic-value"><em>(iii)</em> One final check: what are the AIC values for the full and reduced models? Which model has the lowest AIC value?</h5>
 <p>HINT: you can use the <code>AIC()</code> function to get the AIC values for each model. Insert the model name between the brackets.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">AIC</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">AIC</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -132.2222</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">AIC</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">AIC</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -131.8126</code></pre>
 </div>
@@ -672,8 +745,8 @@ Tip
 <p>Paper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018.</p>
 <section id="section-5" class="level2">
 <h2 class="anchored" data-anchor-id="section-5"></h2>
-<section id="exercise-1---initial-analyses" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-1---initial-analyses">Exercise 1 - initial analyses</h3>
+<section id="exercise-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
 <p><em>(ii)</em> State the hypotheses you will be testing for the relationship between each variable and relative fitness.</p>
 <p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
@@ -681,7 +754,7 @@ Tip
 <p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
-<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
+<p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model. Because the performance package can squish plots and make them hard to interpret, you can specify plots of interest, as shown in the previous exercises.</p>
 <p>Hint 2: If you are unsure about the collinearity plot, you can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
 <p>Hint 3: If you find that the assumptions are not met you can use log-transformations or other transformations as appropriate based on the distribution of your variables. If you are log-transforming a variable which contains negative or zero values you will need to add a constant, i.e.&nbsp;<code>log(x+1)</code></p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
@@ -729,9 +802,9 @@ Tip
 <p><span class="math display">H_0 : \beta_1 = \beta_2 = \beta_3 = \beta_4 = \beta_5 = 0</span> <span class="math display">H_1 : \textrm{at least one } \beta_i \neq 0</span></p>
 <p><em>(iii)</em> Read in the data and conduct some exploratory data analysis upon your variables. Describe the spread and central tendency of each, supported by values (summary statistics) and plots.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>plant_aridity <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plant_aridity.csv"</span>) </span>
-<span id="cb30-2"><a href="#cb30-2"></a></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">str</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>plant_aridity <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plant_aridity.csv"</span>) </span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="fu">str</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   89 obs. of  6 variables:
  $ growth_rate       : num  0.221 1.436 0.309 0.221 1.613 ...
@@ -744,7 +817,7 @@ Tip
 </div>
 <p>Because we have more variables, it is ok to use the summary function here and report the values.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">summary</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">summary</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  growth_rate       days_to_flower     root_shoot_ratio  specific_leaf_area
  Min.   :-1.51639   Min.   :-1.90082   Min.   :-0.9722   Min.   :-2.39281  
@@ -761,14 +834,14 @@ Tip
  3rd Qu.: 7.222e-01   3rd Qu.:2.2589  
  Max.   : 2.814e+00   Max.   :4.3504  </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">apply</span>(plant_aridity, <span class="dv">2</span>, sd) <span class="co"># apply sd over columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">apply</span>(plant_aridity, <span class="dv">2</span>, sd) <span class="co"># apply sd over columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       growth_rate     days_to_flower   root_shoot_ratio specific_leaf_area 
          0.7133256          1.0508145          0.5095113          0.6444291 
   chlorogenic_acid        rel_fitness 
          1.0123975          0.6384944 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>moments<span class="sc">::</span><span class="fu">skewness</span>(plant_aridity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>moments<span class="sc">::</span><span class="fu">skewness</span>(plant_aridity, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       growth_rate     days_to_flower   root_shoot_ratio specific_leaf_area 
         -0.3885121          0.3767381          1.3954288         -0.8651712 
@@ -784,7 +857,7 @@ Tip
 <p>rel_fitness: mean is 1.867, which is close to the median (1.813), suggesting a symmetric distribution. The standard deviation is 0.070. The skewness is 0.717, which is indicating a low amount of skewness.</p>
 <p>Boxplots indicate the at there are outliers present within each variable, but we can address the leverage plot when we go to test our model assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'gridExtra'</code></pre>
@@ -794,15 +867,15 @@ Attaching package: 'gridExtra'</code></pre>
 
     combine</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">grid.arrange</span>(</span>
-<span id="cb41-2"><a href="#cb41-2"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> rel_fitness)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> growth_rate)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-4"><a href="#cb41-4"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> days_to_flower)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-5"><a href="#cb41-5"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> root_shoot_ratio)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-6"><a href="#cb41-6"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> specific_leaf_area)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-7"><a href="#cb41-7"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> chlorogenic_acid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
-<span id="cb41-8"><a href="#cb41-8"></a>    <span class="at">nrow =</span> <span class="dv">2</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">grid.arrange</span>(</span>
+<span id="cb48-2"><a href="#cb48-2"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> rel_fitness)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-3"><a href="#cb48-3"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> growth_rate)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-4"><a href="#cb48-4"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> days_to_flower)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-5"><a href="#cb48-5"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> root_shoot_ratio)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-6"><a href="#cb48-6"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> specific_leaf_area)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-7"><a href="#cb48-7"></a>    <span class="fu">ggplot</span>(plant_aridity, <span class="fu">aes</span>(<span class="at">y =</span> chlorogenic_acid)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(),</span>
+<span id="cb48-8"><a href="#cb48-8"></a>    <span class="at">nrow =</span> <span class="dv">2</span></span>
+<span id="cb48-9"><a href="#cb48-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -814,7 +887,7 @@ Attaching package: 'gridExtra'</code></pre>
 <p><em>(iv)</em> Investigate the relationship between each of your variables. Describe the relationship, supported by values (correlation coefficient) and plots.</p>
 <p>Hint: we are not only looking at relationship between response and predictors here, but also the relationships between predictor variables (signs of collinearity).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">cor</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">cor</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   growth_rate days_to_flower root_shoot_ratio
 growth_rate         1.00000000    -0.21623517       0.13604063
@@ -831,7 +904,7 @@ specific_leaf_area         1.00000000       0.02726978  0.10073474
 chlorogenic_acid           0.02726978       1.00000000 -0.16645089
 rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">pairs</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">pairs</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -839,7 +912,7 @@ rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">pairs.panels</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">pairs.panels</span>(plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -851,16 +924,16 @@ rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 <p>Low correlation coefficients (r &lt; 0.2) between all variables, but the correlations are stronger between each variable and rel_fitness.</p>
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
-<span id="cb46-2"><a href="#cb46-2"></a>    <span class="fu">log</span>(specific_leaf_area<span class="sc">+</span><span class="dv">3</span>) <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span><span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
-<span id="cb46-3"><a href="#cb46-3"></a>    <span class="at">data =</span> plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="#cb53-2"></a>    <span class="fu">log</span>(specific_leaf_area<span class="sc">+</span><span class="dv">3</span>) <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span><span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb53-3"><a href="#cb53-3"></a>    <span class="at">data =</span> plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
 <p>Hint 1: you can use the the <code>check_model()</code> function from the <code>performance</code> package to check the assumptions of your model.</p>
 <p>Hint 2: If you are unsure about the collinearity plot, you can use the vif() function from the car package to get the VIF values for each predictor variable.</p>
 <p>Hint 3: If you find that the assumptions are not met you can use log-transformations or other transformations as appropriate based on the distribution of your variables. If you are log-transforming a variable which contains negative or zero values you will need to add a constant, i.e.&nbsp;<code>log(x+1)</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">check_model</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">check_model</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -868,7 +941,55 @@ rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="co"># Individual plots: </span></span>
+<span id="cb55-2"><a href="#cb55-2"></a></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="co"># Linearity</span></span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="fu">check_model</span>(full_plant_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Normality</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">check_model</span>(full_plant_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># Equal variance</span></span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="fu">check_model</span>(full_plant_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># Outliers</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">check_model</span>(full_plant_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># VIF - visual</span></span>
+<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_plant_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                growth_rate              days_to_flower 
                    1.100586                    1.101592 
@@ -877,6 +998,18 @@ log(specific_leaf_area + 3)   log(root_shoot_ratio + 1)
            chlorogenic_acid 
                    1.010842 </code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="do">### Alternately, you can use the base R plot function</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb62-3"><a href="#cb62-3"></a></span>
+<span id="cb62-4"><a href="#cb62-4"></a><span class="fu">plot</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-16-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Linearity: The residuals vs fitted plot shows a random scatter of points, suggesting that the linearity assumption is met.</p>
 <p>Independence: The residuals appear to be randomly distributed (if correlated, they may follow a trend), which suggests that the independence assumption is met. We also know from the experimental design the observations are independant.</p>
@@ -886,11 +1019,11 @@ log(specific_leaf_area + 3)   log(root_shoot_ratio + 1)
 <p>Collinearity: No concern about collinearity as all VIFs are below 5.</p>
 <p>Decision: We saw there were some issues with normality and equal variance, so we could try transforming the response variable to see if this improves the model assumptions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>full_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
-<span id="cb50-2"><a href="#cb50-2"></a>    specific_leaf_area <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span> <span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
-<span id="cb50-3"><a href="#cb50-3"></a>    <span class="at">data =</span> plant_aridity)</span>
-<span id="cb50-4"><a href="#cb50-4"></a></span>
-<span id="cb50-5"><a href="#cb50-5"></a><span class="fu">check_model</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>full_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
+<span id="cb64-2"><a href="#cb64-2"></a>    specific_leaf_area <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span> <span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb64-3"><a href="#cb64-3"></a>    <span class="at">data =</span> plant_aridity)</span>
+<span id="cb64-4"><a href="#cb64-4"></a></span>
+<span id="cb64-5"><a href="#cb64-5"></a><span class="fu">check_model</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -903,7 +1036,7 @@ log(specific_leaf_area + 3)   log(root_shoot_ratio + 1)
 <p>Herein we will use the transformed model.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">summary</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">summary</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -930,21 +1063,33 @@ Residual standard error: 0.3431 on 83 degrees of freedom
 Multiple R-squared:  0.1088,    Adjusted R-squared:  0.0551 
 F-statistic: 2.026 on 5 and 83 DF,  p-value: 0.08329</code></pre>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="do">### Alternately, you can use the base R plot function</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb67-3"><a href="#cb67-3"></a></span>
+<span id="cb67-4"><a href="#cb67-4"></a><span class="fu">plot</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The overall model is not significant (p &gt; 0.05), but we do see that chlorogenic_acid is significant and growth_rate is borderline significant. The adjusted R<sup>2</sup> value is 0.055, which means that approximately 6% of the variation in relative fitness can be explained by the model. This is a very low value, suggesting that the model does not explain much of the variation in relative fitness.</p>
 <p>Although the model is not significant, let’s see if there is a way to make it more parsimonious.</p>
 <p><em>(viii)</em> Remove any highly non-significant predictors (P &gt; 0.1) from the model and run the model again. This will be known as the ‘reduced model’.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>reduced_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> chlorogenic_acid, </span>
-<span id="cb53-2"><a href="#cb53-2"></a>    <span class="at">data =</span> plant_aridity)</span>
-<span id="cb53-3"><a href="#cb53-3"></a></span>
-<span id="cb53-4"><a href="#cb53-4"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>reduced_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> chlorogenic_acid, </span>
+<span id="cb69-2"><a href="#cb69-2"></a>    <span class="at">data =</span> plant_aridity)</span>
+<span id="cb69-3"><a href="#cb69-3"></a></span>
+<span id="cb69-4"><a href="#cb69-4"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        df      AIC
 full_plant_log_model     7 69.95815
 reduced_plant_log_model  4 65.80463</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">anova</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">anova</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -955,7 +1100,7 @@ Model 2: log(rel_fitness) ~ growth_rate + chlorogenic_acid
 1     83 9.7718                         
 2     86 9.9767 -3  -0.20485 0.58 0.6298</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">summary</span>(reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">summary</span>(reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -983,7 +1128,7 @@ F-statistic: 4.258 on 2 and 86 DF,  p-value: 0.01725</code></pre>
 <p>The p-value from the F-test is 0.6298, which is greater than 0.05, so we fail to reject the null hypothesis. This means that the reduced model is not a significant improvement on the full model, and we would opt for the reduced model as it is more parsimonious.</p>
 <p><em>(x)</em> Run stepwise regression using the <code>step()</code> function fitted to the full model. Which model does it select as the best model?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_plant_log_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_plant_log_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-184.61
 log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
@@ -1025,7 +1170,7 @@ log(rel_fitness) ~ growth_rate + chlorogenic_acid
 - growth_rate       1   0.33248 10.3092 -187.85
 - chlorogenic_acid  1   0.66707 10.6437 -185.01</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        df      AIC
 full_plant_log_model     7 69.95815

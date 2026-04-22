@@ -78,13 +78,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d44db0a80997b0779e83d7fd0e93c8cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d44db0a80997b0779e83d7fd0e93c8cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d44db0a80997b0779e83d7fd0e93c8cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -237,18 +237,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#exercise-3---stepwise-regression" id="toc-exercise-3---stepwise-regression" class="nav-link" data-scroll-target="#exercise-3---stepwise-regression">Exercise 3 - stepwise regression</a></li>
   </ul></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
-  <ul class="collapse">
-  <li><a href="#exercise-2---which-model-is-a-significant-improvement-1" id="toc-exercise-2---which-model-is-a-significant-improvement-1" class="nav-link" data-scroll-target="#exercise-2---which-model-is-a-significant-improvement-1">Exercise 2 - which model is a significant improvement?</a></li>
-  </ul></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a>
-  <ul class="collapse">
-  <li><a href="#exercise-3---stepwise-regression-1" id="toc-exercise-3---stepwise-regression-1" class="nav-link" data-scroll-target="#exercise-3---stepwise-regression-1">Exercise 3 - stepwise regression</a></li>
-  </ul></li>
   </ul></li>
   <li><a href="#variable-selection-for-plant-aridity-45-mins" id="toc-variable-selection-for-plant-aridity-45-mins" class="nav-link" data-scroll-target="#variable-selection-for-plant-aridity-45-mins">2. Variable selection for plant aridity (~ 45 mins)</a>
   <ul class="collapse">
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   </ul></li>
@@ -370,27 +362,6 @@ window.Quarto = {
 <p><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</p>
 <p><em>(v)</em> Remove <code>lake_sabrina</code> from the model and run the model again. This will be known as the ‘reduced model’.</p>
 <p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
-</section>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
-<section id="exercise-2---which-model-is-a-significant-improvement" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2---which-model-is-a-significant-improvement">Exercise 2 - which model is a significant improvement?</h3>
-<p>We can compare the models using the adjusted r<sup>2</sup>, but we will need to use hypothesis testing to decide whether the reduced model is a significant improvement or not. Let’s explore this by using the F-test to compare the full and reduced models.</p>
-<p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
-<p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Based on this, what might we conclude to be the better model?</p>
-</section>
-</section>
-<section id="section-2" class="level2">
-<h2 class="anchored" data-anchor-id="section-2"></h2>
-<section id="exercise-3---stepwise-regression" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-3---stepwise-regression">Exercise 3 - stepwise regression</h3>
-<p>Instead of removing one predictor at a time, there is a much quicker way involving the <code>step()</code> function in R. This function performs stepwise regression, which is an automated process of adding or removing predictors based on their significance in the model and the Akaike Information Criterion (AIC).</p>
-<p><em>(i)</em> When using the AIC, how do we select the better model?</p>
-<p><em>(ii)</em> Have a go at running the <code>step()</code> function on the full model. Which model does it select as the best model?</p>
-<p><em>(iii)</em> One final check: what are the AIC values for the full and reduced models? Which model has the lowest AIC value?</p>
-<p>HINT: you can use the <code>AIC()</code> function to get the AIC values for each model. Insert the model name between the brackets.</p>
-<p><em>(iv)</em> Based on our tests, which model do you think is the best model to use for predicting runoff volume at Bishop, California? Why have you chosen this model?</p>
 </section>
 <section id="solution" class="level4 ans">
 <h4 class="anchored" data-anchor-id="solution">Solution</h4>
@@ -626,11 +597,16 @@ F-statistic: 139.8 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 </section>
 </section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3"></h2>
-<section id="exercise-2---which-model-is-a-significant-improvement-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2---which-model-is-a-significant-improvement-1">Exercise 2 - which model is a significant improvement?</h3>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<section id="exercise-2---which-model-is-a-significant-improvement" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2---which-model-is-a-significant-improvement">Exercise 2 - which model is a significant improvement?</h3>
 <p>We can compare the models using the adjusted r<sup>2</sup>, but we will need to use hypothesis testing to decide whether the reduced model is a significant improvement or not. Let’s explore this by using the F-test to compare the full and reduced models.</p>
+<p><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</p>
+<p><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Based on this, what might we conclude to be the better model?</p>
+</section>
+<section id="solution-1" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
 <section id="i-state-the-null-and-alternative-hypotheses-for-the-f-test-between-the-full-and-reduced-models." class="level5">
 <h5 class="anchored" data-anchor-id="i-state-the-null-and-alternative-hypotheses-for-the-f-test-between-the-full-and-reduced-models."><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</h5>
 <p>H0: No significant difference between full and reduced models H1: There is a significant difference between full and reduced models</p>
@@ -653,11 +629,19 @@ Model 2: runoff_volume ~ pine_creek + rock_creek
 </section>
 </section>
 </section>
-<section id="section-4" class="level2">
-<h2 class="anchored" data-anchor-id="section-4"></h2>
-<section id="exercise-3---stepwise-regression-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-3---stepwise-regression-1">Exercise 3 - stepwise regression</h3>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<section id="exercise-3---stepwise-regression" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3---stepwise-regression">Exercise 3 - stepwise regression</h3>
 <p>Instead of removing one predictor at a time, there is a much quicker way involving the <code>step()</code> function in R. This function performs stepwise regression, which is an automated process of adding or removing predictors based on their significance in the model and the Akaike Information Criterion (AIC).</p>
+<p><em>(i)</em> When using the AIC, how do we select the better model?</p>
+<p><em>(ii)</em> Have a go at running the <code>step()</code> function on the full model. Which model does it select as the best model?</p>
+<p><em>(iii)</em> One final check: what are the AIC values for the full and reduced models? Which model has the lowest AIC value?</p>
+<p>HINT: you can use the <code>AIC()</code> function to get the AIC values for each model. Insert the model name between the brackets.</p>
+<p><em>(iv)</em> Based on our tests, which model do you think is the best model to use for predicting runoff volume at Bishop, California? Why have you chosen this model?</p>
+</section>
+<section id="solution-2" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-2">Solution</h4>
 <section id="i-when-using-the-aic-how-do-we-select-the-better-model" class="level5">
 <h5 class="anchored" data-anchor-id="i-when-using-the-aic-how-do-we-select-the-better-model"><em>(i)</em> When using the AIC, how do we select the better model?</h5>
 <p>Select the model with the lowest AIC value.</p>
@@ -743,8 +727,8 @@ Tip
 <p><code>rel_fitness</code> will be the response variable in your models, and the other variables will be the predictor variables.</p>
 <p>Data source: Uesugi, Akane (2022). Data from: Multivariate selection mediated by aridity predicts divergence of drought resistant traits along natural aridity gradients of an invasive weed [Dataset]. Dryad. https://doi.org/10.5061/dryad.tht76hf17</p>
 <p>Paper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018.</p>
-<section id="section-5" class="level2">
-<h2 class="anchored" data-anchor-id="section-5"></h2>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
 <section id="exercise-1" class="level3 question">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
@@ -763,8 +747,8 @@ Tip
 <p><em>(x)</em> Run stepwise regression using the <code>step()</code> function fitted to the full model. Which model does it select as the best model?</p>
 <p><em>(viii)</em> Write a concluding statement on your findings.</p>
 </section>
-<section id="solution-1" class="level4 ans">
-<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
+<section id="solution-3" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-3">Solution</h4>
 <p><em>(i)</em> Write out the statistical model for a multiple linear regression and define it in terms of the data (i.e.&nbsp;relative fitness vs all other variables).</p>
 <p>You can write it out in words and/or in mathematical notation.</p>
 <p><span class="math display">

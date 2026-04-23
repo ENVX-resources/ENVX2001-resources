@@ -609,7 +609,8 @@ F-statistic: 139.8 on 2 and 40 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
 <section id="i-state-the-null-and-alternative-hypotheses-for-the-f-test-between-the-full-and-reduced-models." class="level5">
 <h5 class="anchored" data-anchor-id="i-state-the-null-and-alternative-hypotheses-for-the-f-test-between-the-full-and-reduced-models."><em>(i)</em> State the null and alternative hypotheses for the F-test between the full and reduced models.</h5>
-<p>H0: No significant difference between full and reduced models H1: There is a significant difference between full and reduced models</p>
+<p>H0: No significant difference between full and reduced models</p>
+<p>H1: There is a significant difference between full and reduced models</p>
 </section>
 <section id="ii-perform-the-f-test-using-the-anova-function-to-compare-the-full-and-reduced-models.-what-is-the-p-value-based-on-this-what-might-we-conclude-to-be-the-better-model" class="level5">
 <h5 class="anchored" data-anchor-id="ii-perform-the-f-test-using-the-anova-function-to-compare-the-full-and-reduced-models.-what-is-the-p-value-based-on-this-what-might-we-conclude-to-be-the-better-model"><em>(ii)</em> Perform the F-test using the <code>anova()</code> function to compare the full and reduced models. What is the p-value? Based on this, what might we conclude to be the better model?</h5>
@@ -625,7 +626,8 @@ Model 2: runoff_volume ~ pine_creek + rock_creek
 2     40 0.097478 -1 -0.0053121 2.2478 0.1419</code></pre>
 </div>
 </div>
-<p>The P-value is 0.1419, which is larger than 0.05, so we fail to reject the null hypothesis. This means that the reduced model is not a significant improvement on the full model, and we would opt for the reduced model as it is more parsimonious.</p>
+<p>The P-value is 0.1419, which is larger than 0.05, so we fail to reject the null hypothesis.</p>
+<p>This means that the reduced model is not significantly different to the full model, so we would opt for the reduced model as it is more parsimonious.</p>
 </section>
 </section>
 </section>
@@ -679,14 +681,14 @@ runoff_volume ~ lake_sabrina + pine_creek + rock_creek
 <pre><code>[1] -131.8126</code></pre>
 </div>
 </div>
+<p>We can see that the full model has the lowest AIC value.</p>
 </section>
 <section id="iv-based-on-our-tests-which-model-do-you-think-is-the-best-model-to-use-for-predicting-runoff-volume-at-bishop-california-why-have-you-chosen-this-model" class="level5">
 <h5 class="anchored" data-anchor-id="iv-based-on-our-tests-which-model-do-you-think-is-the-best-model-to-use-for-predicting-runoff-volume-at-bishop-california-why-have-you-chosen-this-model"><em>(iv)</em> Based on our tests, which model do you think is the best model to use for predicting runoff volume at Bishop, California? Why have you chosen this model?</h5>
 <p>The reduced model is better. It is more parsimonious and does not include a non-significant predictor.</p>
 <p>The F-test also indicates that the reduced model is not a significant improvement on the full model, so we would opt for the reduced model as it is simpler and just as good at explaining the variation in runoff volume.</p>
-<p>We did see that the step function selected the full model as the best model based on AIC, but we would be cautious about this result given that it includes a non-significant predictor and the F-test did not support it as a significant improvement.</p>
-<p>It was also helpful to calculate the AIC for our full and reduced models to confirm that the reduced model had a lower AIC value, which supports our choice of the reduced model.</p>
-<p>Automated model selection methods are helpful when you have a large number of predictors, but our results demonstrate why we should not rely solely on these methods. We should also consider the significance of predictors and the overall fit of the model when making decisions about which model to use.</p>
+<p>We did see that the step function selected the full model as the best model based on AIC, as did our separate AIC calculation, but we would be cautious about this result given that it includes a non-significant predictor and the F-test did not support it as a significant improvement.</p>
+<p>Automated model selection methods are helpful when you have a large number of predictors, and calculating the AIC can assist with model selection, but our results demonstrate why we should not rely solely on these methods. We should also consider the significance of predictors and the overall fit of the model when making decisions about which model to use.</p>
 </section>
 </section>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -778,12 +780,12 @@ Tip
 <ol start="4" type="1">
 <li>root_shoot_ratio and relative_fitness:</li>
 </ol>
-<p><span class="math display">H_0 : \beta_3 = 0</span></p>
-<p><span class="math display">H_1 : \beta_3 \neq 0</span></p>
+<p><span class="math display">H_0 : \beta_4 = 0</span></p>
+<p><span class="math display">H_1 : \beta_4 \neq 0</span></p>
 <ol start="5" type="1">
 <li>chlorogenic_acid and relative_fitness:</li>
 </ol>
-<p><span class="math display">H_0 : \beta_4 = 0</span> <span class="math display">H_1 : \beta_4 \neq 0</span></p>
+<p><span class="math display">H_0 : \beta_5 = 0</span> <span class="math display">H_1 : \beta_5 \neq 0</span></p>
 <ol start="4" type="1">
 <li>Overall model:</li>
 </ol>
@@ -839,7 +841,7 @@ Tip
 </div>
 <p>Growth rate: mean growth rate is 0.533, which is similar to the median (0.570), suggesting a relatively symmetric distribution. The standard deviation is 0.713. The skewness is -0.389, which is close to 0, indicating a very symmetric distribution.</p>
 <p>Days to flower: mean is 0.067, which is close to the median (-0.202). The standard deviation is 1.051. The skewness is 0.377, which is close to zero, indicating a very symmetric distribution.</p>
-<p>root_shoot_ratio: mean is -0.416, which is not too close to the median (-0.571), suggesting a possibly skewed distribution. The standard deviation is 0.510. The skewness is 1.395, which is greater than 1, indicating a positively skewed distribution.</p>
+<p>root_shoot_ratio: mean is -0.416, which is not too close to the median (-0.571), suggesting a possibly skewed distribution. The standard deviation is 0.510. The skewness is 1.395, which is greater than 1, indicating a positively skewed distribution. It may be worth transforming this variable to see if a relationship becomes apparent.</p>
 <p>specific_leaf_area: mean is 0.084, which is close to the median (0.069). The standard deviation is 0.644. The skewness is -0.865, which is between -0.5 and -0.1, indicating a degree of skewness.</p>
 <p>chlorogenic_acid: mean is 0.000006454, which is close to the median (0.00283). The standard deviation is 1.012. The skewness is -0.160, which is close to zero, indicating a very symmetric distribution.</p>
 <p>rel_fitness: mean is 1.867, which is close to the median (1.813), suggesting a symmetric distribution. The standard deviation is 0.070. The skewness is 0.717, which is indicating a low amount of skewness.</p>
@@ -912,8 +914,8 @@ rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 <p>Low correlation coefficients (r &lt; 0.2) between all variables, but the correlations are stronger between each variable and rel_fitness.</p>
 <p><em>(v)</em> Fit a multiple linear regression model to the data, with <code>rel_fitness</code> as the response variable and <code>growth_rate</code>, <code>days_to_flower</code>, <code>specific_leaf_area</code>, <code>root_shoot_ratio</code>, and <code>chlorogenic_acid</code> as the predictor variables. Label this model as <code>full_plant_model</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
-<span id="cb53-2"><a href="#cb53-2"></a>    <span class="fu">log</span>(specific_leaf_area<span class="sc">+</span><span class="dv">3</span>) <span class="sc">+</span> <span class="fu">log</span>(root_shoot_ratio<span class="sc">+</span><span class="dv">1</span>) <span class="sc">+</span> chlorogenic_acid, </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>full_plant_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(rel_fitness <span class="sc">~</span> growth_rate <span class="sc">+</span> days_to_flower <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="#cb53-2"></a>    specific_leaf_area <span class="sc">+</span> root_shoot_ratio <span class="sc">+</span> chlorogenic_acid, </span>
 <span id="cb53-3"><a href="#cb53-3"></a>    <span class="at">data =</span> plant_aridity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>(vi)</em> Check the assumptions of your model. Do you need to transform any variables?</p>
@@ -979,12 +981,10 @@ rel_fitness                0.10073474      -0.16645089  1.00000000</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># VIF - numbers</span></span>
 <span id="cb60-2"><a href="#cb60-2"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_plant_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                growth_rate              days_to_flower 
-                   1.100586                    1.101592 
-log(specific_leaf_area + 3)   log(root_shoot_ratio + 1) 
-                   1.015116                    1.070635 
-           chlorogenic_acid 
-                   1.010842 </code></pre>
+<pre><code>       growth_rate     days_to_flower specific_leaf_area   root_shoot_ratio 
+          1.085235           1.067528           1.022162           1.030175 
+  chlorogenic_acid 
+          1.010600 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="do">### Alternately, you can use the base R plot function</span></span>
 <span id="cb62-2"><a href="#cb62-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
@@ -1019,12 +1019,24 @@ log(specific_leaf_area + 3)   log(root_shoot_ratio + 1)
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="do">### Alternately, you can use the base R plot function</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb65-3"><a href="#cb65-3"></a></span>
+<span id="cb65-4"><a href="#cb65-4"></a><span class="fu">plot</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>After further testing, we found that log-transforming the response variable improved the normality and equal variance of the residuals, but it was improved further by transforming root_shoot_ratio, which was highly skewed, so thiswasalso transformed.</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>After further testing, we found that log-transforming the response variable improved the normality and equal variance of the residuals, but it was improved further by transforming root_shoot_ratio, which was highly skewed, so this was also transformed.</p>
 <p>Herein we will use the transformed model.</p>
 <p><em>(vii)</em> Interpret the model parameters and fit statistics. Are there any significant predictors of relative fitness? does the model explain much variation in relative fitness?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">summary</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">summary</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1051,18 +1063,6 @@ Residual standard error: 0.3431 on 83 degrees of freedom
 Multiple R-squared:  0.1088,    Adjusted R-squared:  0.0551 
 F-statistic: 2.026 on 5 and 83 DF,  p-value: 0.08329</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="do">### Alternately, you can use the base R plot function</span></span>
-<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb67-3"><a href="#cb67-3"></a></span>
-<span id="cb67-4"><a href="#cb67-4"></a><span class="fu">plot</span>(full_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lab08-model-selection_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The overall model is not significant (p &gt; 0.05), but we do see that chlorogenic_acid is significant and growth_rate is borderline significant. The adjusted R<sup>2</sup> value is 0.055, which means that approximately 6% of the variation in relative fitness can be explained by the model. This is a very low value, suggesting that the model does not explain much of the variation in relative fitness.</p>
 <p>Although the model is not significant, let’s see if there is a way to make it more parsimonious.</p>
@@ -1071,24 +1071,8 @@ F-statistic: 2.026 on 5 and 83 DF,  p-value: 0.08329</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>reduced_plant_log_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(rel_fitness) <span class="sc">~</span> growth_rate <span class="sc">+</span> chlorogenic_acid, </span>
 <span id="cb69-2"><a href="#cb69-2"></a>    <span class="at">data =</span> plant_aridity)</span>
 <span id="cb69-3"><a href="#cb69-3"></a></span>
-<span id="cb69-4"><a href="#cb69-4"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                        df      AIC
-full_plant_log_model     7 69.95815
-reduced_plant_log_model  4 65.80463</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">anova</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-
-Model 1: log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
-    log(root_shoot_ratio + 1) + chlorogenic_acid
-Model 2: log(rel_fitness) ~ growth_rate + chlorogenic_acid
-  Res.Df    RSS Df Sum of Sq    F Pr(&gt;F)
-1     83 9.7718                         
-2     86 9.9767 -3  -0.20485 0.58 0.6298</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">summary</span>(reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb69-4"><a href="#cb69-4"></a></span>
+<span id="cb69-5"><a href="#cb69-5"></a><span class="fu">summary</span>(reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1113,10 +1097,24 @@ F-statistic: 4.258 on 2 and 86 DF,  p-value: 0.01725</code></pre>
 </div>
 </div>
 <p><em>(ix)</em> Run a partial f-test to determine whether the reduced model an improvement on the full model. Which model is better?</p>
-<p>The p-value from the F-test is 0.6298, which is greater than 0.05, so we fail to reject the null hypothesis. This means that the reduced model is not a significant improvement on the full model, and we would opt for the reduced model as it is more parsimonious.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">anova</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
+    log(root_shoot_ratio + 1) + chlorogenic_acid
+Model 2: log(rel_fitness) ~ growth_rate + chlorogenic_acid
+  Res.Df    RSS Df Sum of Sq    F Pr(&gt;F)
+1     83 9.7718                         
+2     86 9.9767 -3  -0.20485 0.58 0.6298</code></pre>
+</div>
+</div>
+<p>The p-value from the F-test is 0.6298, which is greater than 0.05, so we fail to reject the null hypothesis.</p>
+<p>This means that the reduced model is not significantly different to the full model, and we would opt for the reduced model as it is more parsimonious.</p>
 <p><em>(x)</em> Run stepwise regression using the <code>step()</code> function fitted to the full model. Which model does it select as the best model?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_plant_log_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_plant_log_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-184.61
 log(rel_fitness) ~ growth_rate + days_to_flower + specific_leaf_area + 
@@ -1158,20 +1156,43 @@ log(rel_fitness) ~ growth_rate + chlorogenic_acid
 - growth_rate       1   0.33248 10.3092 -187.85
 - chlorogenic_acid  1   0.66707 10.6437 -185.01</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">AIC</span>(full_plant_log_model, reduced_plant_log_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                        df      AIC
 full_plant_log_model     7 69.95815
 reduced_plant_log_model  4 65.80463</code></pre>
 </div>
 </div>
-<p>The step() function has told us that the full model is better than the reduced model, which is inconsistent with our previous analysis using the F-test. This is because the step() function uses the AIC to compare models, which is a different criterion. In this case, the AIC may be favoring the full model again due to its better fit, even though it includes a non-significant predictor.</p>
-<p>When we check this with the AIC() function to compare between full and reduced models, we can see that the reduced model is a better choice.</p>
-<p>This goes to show that we can use automated methods, but we also need to understand the underlying statistics and not rely solely on these methods for model selection. It is good to do some good ol’ hypothesis testing where realistic.</p>
+<p>The step() function has told us that the most appropriate model is the reduced model, as indicated by the smaller (more negative) AIC value. We can also see a similar outcome when we run the <code>AIC()</code> function for our models (70.0 for full model, 65.8 for reduced). This is consistent with our previous analysis using the F-test.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">summary</span>(step_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log(rel_fitness) ~ growth_rate + chlorogenic_acid, 
+    data = plant_aridity)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.78397 -0.25125  0.02644  0.23483  0.95917 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       0.51904    0.04517  11.490   &lt;2e-16 ***
+growth_rate       0.08618    0.05090   1.693   0.0941 .  
+chlorogenic_acid -0.08601    0.03587  -2.398   0.0186 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3406 on 86 degrees of freedom
+Multiple R-squared:  0.0901,    Adjusted R-squared:  0.06894 
+F-statistic: 4.258 on 2 and 86 DF,  p-value: 0.01725</code></pre>
+</div>
+</div>
+<p>In addition to the model becoming more parsimonious, we can also see that the model itself is now significant (P&lt;0.05), however it still only explains 7% of variation in log(rel_fitness).</p>
 <p><em>(viii)</em> Write a concluding statement on your findings.</p>
-<p>Based on our analyses, we found that the full model with all predictors was not significant, and only chlorogenic_acid was a significant predictor of relative fitness.</p>
-<p>Removing the non-significant predictors did not result in a significant improvement in the model, so given we fail to reject the null hypothesis, it is better to select the reduced model.</p>
-<p>As our model is not significant, it is worth investigating whether another model would be better fit. In the original article they actually incorporated a treatment interaction into their model, so if you want to see how this was done, feel free to check out the article (source listed at the beginning of the exercise).</p>
+<p>As identified by the partial F-test and stepwise regression, we found that the reduced model is most appropriate, which includes <code>growth rate</code> and <code>chlorogenic_acid</code> as the predictors. This reduction in predictors has also made our model more significant, though it only explains 7% of variation in log(rel_fitness).</p>
+<p>As our model does not explain much variation in the response, it is worth investigating whether another model would be better fit. In the original article they actually incorporated a treatment interaction into their model, so if you want to see how this was done, feel free to check out the article (source listed at the beginning of the exercise).</p>
 </section>
 </section>
 </section>

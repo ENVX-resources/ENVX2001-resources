@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -358,7 +374,7 @@ Januar Harianto
 <section id="measures-of-central-tendency" class="slide level2">
 <h2>Measures of central tendency</h2>
 <p>Central tendency tells you where the “middle” or “typical” value of your data falls. There are several ways to measure it, each with trade-offs.</p>
-<h3 id="mean-barx">Mean <span class="math inline">\(\bar{x}\)</span></h3>
+<h3 id="mean-barx">Mean <span class="math inline">\bar{x}</span></h3>
 <ul>
 <li>The sum of all values divided by the number of observations – what <code>mean()</code> does in R</li>
 <li>Sensitive to extreme values (outliers)</li>
@@ -373,12 +389,12 @@ Januar Harianto
 <p><strong>Formula</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i\]</span></p>
+<p><span class="math display">\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i</span></p>
 <ul>
-<li>where <span class="math inline">\(n\)</span> is the number of observations</li>
-<li><span class="math inline">\(x_i\)</span> represents each individual value</li>
-<li><span class="math inline">\(\sum\)</span> means we add up all values from <span class="math inline">\(i=1\)</span> to <span class="math inline">\(n\)</span></li>
-<li>Example: for data {2,4,6,8}, <span class="math inline">\(n=4\)</span> and <span class="math inline">\(\bar{x} = \frac{2+4+6+8}{4} = 5\)</span></li>
+<li>where <span class="math inline">n</span> is the number of observations</li>
+<li><span class="math inline">x_i</span> represents each individual value</li>
+<li><span class="math inline">\sum</span> means we add up all values from <span class="math inline">i=1</span> to <span class="math inline">n</span></li>
+<li>Example: for data {2,4,6,8}, <span class="math inline">n=4</span> and <span class="math inline">\bar{x} = \frac{2+4+6+8}{4} = 5</span></li>
 </ul>
 </div>
 </div>
@@ -409,7 +425,7 @@ Januar Harianto
 <section id="measures-of-dispersion" class="slide level2">
 <h2>Measures of dispersion</h2>
 <p>Dispersion measures how spread out your data is. Two datasets can have identical means but very different spreads.</p>
-<h3 id="variance-s2">Variance <span class="math inline">\(s^2\)</span></h3>
+<h3 id="variance-s2">Variance <span class="math inline">s^2</span></h3>
 <ul>
 <li>The average squared distance of each value from the mean</li>
 <li>Since the result is in squared units (e.g.&nbsp;m²), it’s hard to interpret directly – we usually take the square root to get standard deviation</li>
@@ -426,16 +442,16 @@ Januar Harianto
 <p><strong>Formula</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2\]</span></p>
+<p><span class="math display">s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2</span></p>
 <ul>
-<li>where <span class="math inline">\(n\)</span> is the number of observations</li>
-<li><span class="math inline">\(x_i\)</span> represents each individual value</li>
-<li><span class="math inline">\(\bar{x}\)</span> is the sample mean</li>
+<li>where <span class="math inline">n</span> is the number of observations</li>
+<li><span class="math inline">x_i</span> represents each individual value</li>
+<li><span class="math inline">\bar{x}</span> is the sample mean</li>
 <li>For data {2,4,6,8}:
 <ul>
 <li>mean = 5</li>
 <li>differences = (-3,-1,1,3), squares = (9,1,1,9), sum = 20</li>
-<li>Therefore, <span class="math inline">\(s^2 = \frac{20}{3} \approx 6.67\)</span></li>
+<li>Therefore, <span class="math inline">s^2 = \frac{20}{3} \approx 6.67</span></li>
 </ul></li>
 </ul>
 </div>
@@ -444,7 +460,7 @@ Januar Harianto
 </section>
 <section id="measures-of-dispersion-2" class="slide level2">
 <h2>Measures of dispersion</h2>
-<h3 id="standard-deviation-s">Standard Deviation <span class="math inline">\(s\)</span></h3>
+<h3 id="standard-deviation-s">Standard Deviation <span class="math inline">s</span></h3>
 <ul>
 <li>The square root of variance – expressed in your data’s original units (e.g.&nbsp;metres, not metres²)</li>
 <li>Shows how far a typical observation is from the mean</li>
@@ -459,9 +475,9 @@ Januar Harianto
 <p><strong>Formula</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[s = \sqrt{s^2}\]</span></p>
+<p><span class="math display">s = \sqrt{s^2}</span></p>
 <ul>
-<li>For our example data {2,4,6,8}: <span class="math inline">\(s = \sqrt{6.67} \approx 2.58\)</span></li>
+<li>For our example data {2,4,6,8}: <span class="math inline">s = \sqrt{6.67} \approx 2.58</span></li>
 </ul>
 </div>
 </div>
@@ -480,7 +496,7 @@ Januar Harianto
 <img data-src="Lecture-01b_files/figure-revealjs/dispersion-1.png" width="960" class="r-stretch"></section>
 <section id="population-parameters-vs-sample-statistics" class="slide level2">
 <h2>Population parameters vs sample statistics</h2>
-<p>Throughout the course you’ll see Greek letters (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) for population parameters and Roman letters (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>) for sample statistics:</p>
+<p>Throughout the course you’ll see Greek letters (<span class="math inline">\mu</span>, <span class="math inline">\sigma</span>) for population parameters and Roman letters (<span class="math inline">\bar{x}</span>, <span class="math inline">s</span>) for sample statistics:</p>
 <h3 id="mean">Mean</h3>
 <table class="caption-top">
 <colgroup>
@@ -495,8 +511,8 @@ Januar Harianto
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\mu = \frac{1}{N}\sum_{i=1}^N x_i\)</span></td>
-<td><span class="math inline">\(\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i\)</span></td>
+<td><span class="math inline">\mu = \frac{1}{N}\sum_{i=1}^N x_i</span></td>
+<td><span class="math inline">\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i</span></td>
 </tr>
 </tbody>
 </table>
@@ -514,8 +530,8 @@ Januar Harianto
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2\)</span></td>
-<td><span class="math inline">\(s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2\)</span></td>
+<td><span class="math inline">\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2</span></td>
+<td><span class="math inline">s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2</span></td>
 </tr>
 </tbody>
 </table>
@@ -529,8 +545,8 @@ Januar Harianto
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(\sigma = \sqrt{\sigma^2}\)</span></td>
-<td><span class="math inline">\(s = \sqrt{s^2}\)</span></td>
+<td><span class="math inline">\sigma = \sqrt{\sigma^2}</span></td>
+<td><span class="math inline">s = \sqrt{s^2}</span></td>
 </tr>
 </tbody>
 </table>
@@ -543,7 +559,7 @@ Januar Harianto
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Notice the use of <span class="math inline">\(n-1\)</span> in sample variance and standard deviation</p>
+<p>Notice the use of <span class="math inline">n-1</span> in sample variance and standard deviation</p>
 </div>
 </div>
 </div>
@@ -551,12 +567,12 @@ Januar Harianto
 <section id="why-n-1" class="slide level2">
 <h2>Why n-1?</h2>
 <ul>
-<li>Sample variance uses <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span> in the denominator</li>
+<li>Sample variance uses <span class="math inline">n-1</span> instead of <span class="math inline">n</span> in the denominator</li>
 <li>This correction (<a href="https://en.wikipedia.org/wiki/Bessel%27s_correction">Bessel’s correction</a>) accounts for bias when estimating the mean from the sample itself</li>
 </ul>
 <div class="fragment">
 <ul>
-<li>Here’s the logic: once you know the mean and all but one value, the last value is determined – it must satisfy the mean. Only <span class="math inline">\(n-1\)</span> values are truly free to vary</li>
+<li>Here’s the logic: once you know the mean and all but one value, the last value is determined – it must satisfy the mean. Only <span class="math inline">n-1</span> values are truly free to vary</li>
 <li>These independent values are your <strong>degrees of freedom</strong></li>
 </ul>
 </div>
@@ -591,7 +607,7 @@ Januar Harianto
 <ol type="1">
 <li>The distribution of sample means becomes <strong>approximately normal</strong>, regardless of the population’s shape</li>
 <li>The average of those sample means equals the <strong>true population mean</strong></li>
-<li>The spread of the sampling distribution decreases as sample size increases: <span class="math inline">\(SE = \frac{\sigma}{\sqrt{n}}\)</span></li>
+<li>The spread of the sampling distribution decreases as sample size increases: <span class="math inline">SE = \frac{\sigma}{\sqrt{n}}</span></li>
 </ol>
 <aside class="notes">
 <p>In short: with larger samples, their means form a predictable, bell-shaped pattern – even if the original data is skewed.</p>
@@ -932,10 +948,10 @@ Januar Harianto
 <p><strong>Formula</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}}\]</span></p>
+<p><span class="math display">SE_{\bar{x}} = \frac{s}{\sqrt{n}}</span></p>
 <ul>
-<li>where <span class="math inline">\(s\)</span> is the sample standard deviation</li>
-<li><span class="math inline">\(n\)</span> is the sample size</li>
+<li>where <span class="math inline">s</span> is the sample standard deviation</li>
+<li><span class="math inline">n</span> is the sample size</li>
 </ul>
 </div>
 </div>
@@ -952,11 +968,11 @@ Januar Harianto
 <h3 id="standard-error-se">Standard Error (SE)</h3>
 <ul>
 <li>Describes precision of your <strong>mean estimate</strong></li>
-<li>Shrinks as sample size increases (<span class="math inline">\(SE = \frac{SD}{\sqrt{n}}\)</span>)</li>
+<li>Shrinks as sample size increases (<span class="math inline">SE = \frac{SD}{\sqrt{n}}</span>)</li>
 </ul>
 <p>When reporting:</p>
 <ul>
-<li><strong>mean ± SE</strong> shows how precisely you’ve estimated the mean — but SE can be misleadingly small with large samples, so always report <span class="math inline">\(n\)</span></li>
+<li><strong>mean ± SE</strong> shows how precisely you’ve estimated the mean — but SE can be misleadingly small with large samples, so always report <span class="math inline">n</span></li>
 <li><strong>mean ± SD</strong> shows the spread of your raw data</li>
 </ul>
 </section>
@@ -978,9 +994,9 @@ Januar Harianto
 <p><strong>Formula for 95% CI</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math display">\[\bar{x} \pm (t_{n-1} \times SE_{\bar{x}})\]</span></p>
+<p><span class="math display">\bar{x} \pm (t_{n-1} \times SE_{\bar{x}})</span></p>
 <ul>
-<li>where <span class="math inline">\(t_{n-1}\)</span> comes from the t-distribution (covered next lecture)</li>
+<li>where <span class="math inline">t_{n-1}</span> comes from the t-distribution (covered next lecture)</li>
 </ul>
 </div>
 </div>
@@ -1051,7 +1067,6 @@ Januar Harianto
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1219,27 +1234,9 @@ Januar Harianto
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

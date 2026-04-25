@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -210,28 +226,28 @@ Januar Harianto
 </section>
 <section>
 <section id="from-t-tests-to-anova" class="title-slide slide level1 center">
-<h1>From <span class="math inline">\(t\)</span>-tests to ANOVA</h1>
+<h1>From <span class="math inline">t</span>-tests to ANOVA</h1>
 
 </section>
 <section id="from-two-groups-to-four" class="slide level2">
 <h2>From two groups to four</h2>
 <p>Before the break we compared two cattle breeds. But what if there were four breeds instead of two?</p>
 <ul>
-<li>Can we still use <span class="math inline">\(t\)</span>-tests? <strong>Yes</strong>, but we would need to test every pair</li>
-<li>With 4 groups that is <span class="math inline">\(\binom{4}{2} = 6\)</span> comparisons: 1 vs 2, 1 vs 3, 1 vs 4, 2 vs 3, 2 vs 4, 3 vs 4</li>
+<li>Can we still use <span class="math inline">t</span>-tests? <strong>Yes</strong>, but we would need to test every pair</li>
+<li>With 4 groups that is <span class="math inline">\binom{4}{2} = 6</span> comparisons: 1 vs 2, 1 vs 3, 1 vs 4, 2 vs 3, 2 vs 4, 3 vs 4</li>
 </ul>
 <div class="fragment">
 <p>The problem: every test carries a risk of a <strong>Type I error</strong> (a false positive).</p>
 <ul>
-<li>We set <span class="math inline">\(\alpha = 0.05\)</span>, so each comparison has a 5% chance of rejecting <span class="math inline">\(H_0\)</span> when it is actually true</li>
+<li>We set <span class="math inline">\alpha = 0.05</span>, so each comparison has a 5% chance of rejecting <span class="math inline">H_0</span> when it is actually true</li>
 <li>Six tests means six chances to get it wrong</li>
 </ul>
 </div>
 </section>
 <section id="the-multiple-comparisons-problem" class="slide level2">
 <h2>The multiple comparisons problem</h2>
-<p>With 6 groups there are <span class="math inline">\(\binom{6}{2} = 15\)</span> pairwise comparisons. The probability that <strong>none</strong> produce a false positive is <span class="math inline">\(0.95^{15}\)</span>, so:</p>
-<p><span class="math display">\[P(\text{at least one false positive}) = 1 - 0.95^{15} = 53.7\%\]</span></p>
+<p>With 6 groups there are <span class="math inline">\binom{6}{2} = 15</span> pairwise comparisons. The probability that <strong>none</strong> produce a false positive is <span class="math inline">0.95^{15}</span>, so:</p>
+<p><span class="math display">P(\text{at least one false positive}) = 1 - 0.95^{15} = 53.7\%</span></p>
 <div class="fragment">
 <table class="caption-top">
 <thead>
@@ -340,7 +356,7 @@ Januar Harianto
 <tr class="odd">
 <td><strong>Replicates</strong></td>
 <td>Observations per level</td>
-<td><span class="math inline">\(r = 5\)</span></td>
+<td><span class="math inline">r = 5</span></td>
 </tr>
 </tbody>
 </table>
@@ -353,21 +369,21 @@ Januar Harianto
 </section>
 <section id="h-hypotheses" class="slide level2">
 <h2>H: Hypotheses</h2>
-<p>In the <span class="math inline">\(t\)</span>-test we asked whether <strong>two</strong> means were equal. ANOVA extends this to <strong>any number</strong> of groups.</p>
+<p>In the <span class="math inline">t</span>-test we asked whether <strong>two</strong> means were equal. ANOVA extends this to <strong>any number</strong> of groups.</p>
 <ul>
-<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4\)</span></li>
-<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1:\)</span> not all <span class="math inline">\(\mu_i\)</span> are equal</li>
+<li><strong>Null hypothesis</strong>: <span class="math inline">H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4</span></li>
+<li><strong>Alternative hypothesis</strong>: <span class="math inline">H_1:</span> not all <span class="math inline">\mu_i</span> are equal</li>
 </ul>
 <p>The alternative does not say all means differ. It says at least two do.</p>
 <div class="fragment">
 <p><strong>Model equation</strong>:</p>
-<p><span class="math display">\[y_{ij} = \mu_i + \varepsilon_{ij}\]</span></p>
-<p>where <span class="math inline">\(i = 1, \ldots, t\)</span> treatments and <span class="math inline">\(j = 1, \ldots, n_i\)</span> replicates. The same structure as the <span class="math inline">\(t\)</span>-test model, but <span class="math inline">\(i\)</span> now ranges over more than two groups.</p>
+<p><span class="math display">y_{ij} = \mu_i + \varepsilon_{ij}</span></p>
+<p>where <span class="math inline">i = 1, \ldots, t</span> treatments and <span class="math inline">j = 1, \ldots, n_i</span> replicates. The same structure as the <span class="math inline">t</span>-test model, but <span class="math inline">i</span> now ranges over more than two groups.</p>
 </div>
 </section>
 <section id="a-assumptions" class="slide level2">
 <h2>A: Assumptions</h2>
-<p>The same three assumptions from the <span class="math inline">\(t\)</span>-test apply here. We fit the model first, then check.</p>
+<p>The same three assumptions from the <span class="math inline">t</span>-test apply here. We fit the model first, then check.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(weight <span class="sc">~</span> diet, <span class="at">data =</span> chicks)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -387,7 +403,7 @@ data:  residuals(model)
 W = 0.90961, p-value = 0.06265</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(p &gt; 0.05\)</span>: no evidence against normality.</p>
+<p><span class="math inline">p &gt; 0.05</span>: no evidence against normality.</p>
 </div><div class="column" style="width:50%;">
 <p><strong>Equal variances</strong> (Bartlett’s test):</p>
 <div class="cell">
@@ -403,7 +419,7 @@ data:  weight by diet
 Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(p &gt; 0.05\)</span>: variances are similar across groups.</p>
+<p><span class="math inline">p &gt; 0.05</span>: variances are similar across groups.</p>
 </div></div>
 </section>
 <section id="a-residual-diagnostics" class="slide level2">
@@ -523,17 +539,17 @@ Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 </section>
 <section id="the-f-ratio" class="slide level2">
 <h2>The F ratio</h2>
-<p><span class="math display">\[F = \frac{MS_{\text{trt}}}{MS_{\text{res}}}\]</span></p>
+<p><span class="math display">F = \frac{MS_{\text{trt}}}{MS_{\text{res}}}</span></p>
 <ul>
-<li><span class="math inline">\(F\)</span> compares variation due to group differences against random noise</li>
+<li><span class="math inline">F</span> compares variation due to group differences against random noise</li>
 <li>MS (mean square) is based on <strong>squared</strong> deviations: squaring prevents positive and negative differences from cancelling out</li>
-<li>When <span class="math inline">\(H_0\)</span> is true (all groups equal), <span class="math inline">\(F \approx 1\)</span></li>
-<li>When groups genuinely differ, <span class="math inline">\(F \gg 1\)</span></li>
+<li>When <span class="math inline">H_0</span> is true (all groups equal), <span class="math inline">F \approx 1</span></li>
+<li>When groups genuinely differ, <span class="math inline">F \gg 1</span></li>
 </ul>
 <div class="fragment">
-<p>For two groups, ANOVA gives the same answer as the <span class="math inline">\(t\)</span>-test:</p>
-<p><span class="math display">\[F = t^2\]</span></p>
-<p>ANOVA extends the <span class="math inline">\(t\)</span>-test to any number of groups.</p>
+<p>For two groups, ANOVA gives the same answer as the <span class="math inline">t</span>-test:</p>
+<p><span class="math display">F = t^2</span></p>
+<p>ANOVA extends the <span class="math inline">t</span>-test to any number of groups.</p>
 </div>
 </section>
 <section id="t-the-anova-table" class="slide level2">
@@ -558,22 +574,22 @@ Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 <tbody>
 <tr class="odd">
 <td>Treatment</td>
-<td><span class="math inline">\(t - 1\)</span></td>
-<td><span class="math inline">\(SS_{\text{trt}}\)</span></td>
-<td><span class="math inline">\(SS_{\text{trt}} / (t-1)\)</span></td>
-<td><span class="math inline">\(MS_{\text{trt}} / MS_{\text{res}}\)</span></td>
+<td><span class="math inline">t - 1</span></td>
+<td><span class="math inline">SS_{\text{trt}}</span></td>
+<td><span class="math inline">SS_{\text{trt}} / (t-1)</span></td>
+<td><span class="math inline">MS_{\text{trt}} / MS_{\text{res}}</span></td>
 </tr>
 <tr class="even">
 <td>Residual</td>
-<td><span class="math inline">\(N - t\)</span></td>
-<td><span class="math inline">\(SS_{\text{res}}\)</span></td>
-<td><span class="math inline">\(SS_{\text{res}} / (N-t)\)</span></td>
+<td><span class="math inline">N - t</span></td>
+<td><span class="math inline">SS_{\text{res}}</span></td>
+<td><span class="math inline">SS_{\text{res}} / (N-t)</span></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><strong>Total</strong></td>
-<td><span class="math inline">\(N - 1\)</span></td>
-<td><span class="math inline">\(SS_{\text{total}}\)</span></td>
+<td><span class="math inline">N - 1</span></td>
+<td><span class="math inline">SS_{\text{total}}</span></td>
 <td></td>
 <td></td>
 </tr>
@@ -596,14 +612,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="p-interpret" class="slide level2">
 <h2>P: Interpret</h2>
 <ul>
-<li><strong>diet</strong> row: variation explained by the four diets (<span class="math inline">\(df = 3\)</span>, since 4 groups minus 1)</li>
-<li><strong>Residuals</strong> row: leftover variation (<span class="math inline">\(df = 16\)</span>, since 20 observations minus 4 groups)</li>
-<li><span class="math inline">\(F = 6.65\)</span>: the treatment variance is 6.65 times larger than the residual variance</li>
-<li><span class="math inline">\(p = 0.004\)</span>: below 0.05, so we <strong>reject</strong> <span class="math inline">\(H_0\)</span></li>
+<li><strong>diet</strong> row: variation explained by the four diets (<span class="math inline">df = 3</span>, since 4 groups minus 1)</li>
+<li><strong>Residuals</strong> row: leftover variation (<span class="math inline">df = 16</span>, since 20 observations minus 4 groups)</li>
+<li><span class="math inline">F = 6.65</span>: the treatment variance is 6.65 times larger than the residual variance</li>
+<li><span class="math inline">p = 0.004</span>: below 0.05, so we <strong>reject</strong> <span class="math inline">H_0</span></li>
 </ul>
 <div class="fragment">
 <h3 id="how-much-variability-is-explained">How much variability is explained?</h3>
-<p><span class="math display">\[\frac{SS_{\text{treatment}}}{SS_{\text{total}}} = \frac{1.6467\times 10^{4}}{2.9679\times 10^{4}} = 55.5\%\]</span></p>
+<p><span class="math display">\frac{SS_{\text{treatment}}}{SS_{\text{total}}} = \frac{1.6467\times 10^{4}}{2.9679\times 10^{4}} = 55.5\%</span></p>
 <p>The diets explain about 55% of the total variability in chick weight gain.</p>
 </div>
 </section>
@@ -639,7 +655,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tr>
 </tbody>
 </table>
-<p>There are significant differences in mean weight gain among the four diets (<span class="math inline">\(F_{3,16} = 6.65\)</span>, <span class="math inline">\(p = 0.004\)</span>).</p>
+<p>There are significant differences in mean weight gain among the four diets (<span class="math inline">F_{3,16} = 6.65</span>, <span class="math inline">p = 0.004</span>).</p>
 <div class="fragment">
 <p>But ANOVA only tells us <strong>that</strong> groups differ, not <strong>which</strong> ones. To identify specific differences, we need post-hoc analysis.</p>
 </div>
@@ -651,11 +667,11 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="why-post-hoc" class="slide level2">
 <h2>Why post-hoc?</h2>
-<p><span class="math inline">\(H_1\)</span> says “not all means are equal,” but not <strong>which</strong> ones differ.</p>
+<p><span class="math inline">H_1</span> says “not all means are equal,” but not <strong>which</strong> ones differ.</p>
 <ul>
 <li>ANOVA tells us the four diet means are not all the same</li>
 <li>It does not tell us whether Diet 1 differs from Diet 2, or Diet 3 from Diet 4</li>
-<li>We cannot run separate <span class="math inline">\(t\)</span>-tests (the multiple comparisons problem from the first slide)</li>
+<li>We cannot run separate <span class="math inline">t</span>-tests (the multiple comparisons problem from the first slide)</li>
 <li>We need a method that compares pairs <strong>while controlling the overall error rate</strong></li>
 </ul>
 </section>
@@ -668,7 +684,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>If the CI <strong>includes zero</strong>, we cannot conclude they differ</li>
 </ul>
 <div class="fragment">
-<p>The key difference from running separate <span class="math inline">\(t\)</span>-tests: post-hoc methods <strong>widen</strong> the CIs to account for multiple comparisons, keeping the overall false positive rate at 5%.</p>
+<p>The key difference from running separate <span class="math inline">t</span>-tests: post-hoc methods <strong>widen</strong> the CIs to account for multiple comparisons, keeping the overall false positive rate at 5%.</p>
 <p>We will cover specific post-hoc methods (Tukey, Bonferroni) in detail next week.</p>
 </div>
 </section>
@@ -736,8 +752,8 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
 <section id="key-points" class="slide level2">
 <h2>Key points</h2>
 <ul>
-<li>ANOVA extends the <span class="math inline">\(t\)</span>-test to more than two groups (<span class="math inline">\(F = t^2\)</span> for two groups)</li>
-<li>Multiple pairwise <span class="math inline">\(t\)</span>-tests inflate the false positive rate. ANOVA tests all groups at once</li>
+<li>ANOVA extends the <span class="math inline">t</span>-test to more than two groups (<span class="math inline">F = t^2</span> for two groups)</li>
+<li>Multiple pairwise <span class="math inline">t</span>-tests inflate the false positive rate. ANOVA tests all groups at once</li>
 <li>The F ratio compares between-group variation to within-group variation</li>
 <li>Post-hoc methods construct CIs for pairwise differences to identify which groups differ</li>
 </ul>
@@ -772,7 +788,6 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -940,27 +955,9 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

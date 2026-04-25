@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -313,10 +329,10 @@ Januar Harianto
 <p>Once we have our stratified sample, the calculations follow the same logic as simple random sampling, but each step must account for the stratified design.</p>
 <div class="fragment">
 <ol type="1">
-<li><strong>Pooled mean</strong> (<span class="math inline">\(\bar{x}_{s}\)</span>): weight each stratum mean by the stratum’s share of the population</li>
-<li><strong>Pooled standard error</strong>: <span class="math inline">\(SE(\bar{x}_{s}) = \sqrt{\sum w_i^2 \times \frac{s_i^2}{n_i}}\)</span></li>
-<li><strong><em>t</em>-critical value</strong>: based on <span class="math inline">\(df = n - L\)</span> and <span class="math inline">\(\alpha = 0.05\)</span></li>
-<li><strong>Confidence interval</strong>: <span class="math inline">\(\bar{x}_{s} \pm t_{n-L} \times SE(\bar{x}_{s})\)</span></li>
+<li><strong>Pooled mean</strong> (<span class="math inline">\bar{x}_{s}</span>): weight each stratum mean by the stratum’s share of the population</li>
+<li><strong>Pooled standard error</strong>: <span class="math inline">SE(\bar{x}_{s}) = \sqrt{\sum w_i^2 \times \frac{s_i^2}{n_i}}</span></li>
+<li><strong><em>t</em>-critical value</strong>: based on <span class="math inline">df = n - L</span> and <span class="math inline">\alpha = 0.05</span></li>
+<li><strong>Confidence interval</strong>: <span class="math inline">\bar{x}_{s} \pm t_{n-L} \times SE(\bar{x}_{s})</span></li>
 </ol>
 </div>
 </section>
@@ -337,19 +353,19 @@ Januar Harianto
 </div>
 </section>
 <section id="pooled-mean-bar-x_s" class="slide level2">
-<h2>Pooled mean <span class="math inline">\(\bar x_{s}\)</span></h2>
+<h2>Pooled mean <span class="math inline">\bar x_{s}</span></h2>
 <blockquote>
 <p>The pooled mean is our best estimate of the overall population mean, taking into account the different stratum sizes.</p>
 </blockquote>
 <div class="fragment">
-<p><span class="math display">\[\bar{x}_{s} = \sum_{i=1}^L \bar{x}_i \times w_i\]</span></p>
-<p>We calculate the mean for each stratum (<span class="math inline">\(\bar{x}_i\)</span>), multiply by its weight (<span class="math inline">\(w_i\)</span>), and add them together.</p>
+<p><span class="math display">\bar{x}_{s} = \sum_{i=1}^L \bar{x}_i \times w_i</span></p>
+<p>We calculate the mean for each stratum (<span class="math inline">\bar{x}_i</span>), multiply by its weight (<span class="math inline">w_i</span>), and add them together.</p>
 </div>
 </section>
 <section id="calculating-pooled-mean-soil-carbon-example" class="slide level2">
 <h2>Calculating pooled mean: soil carbon example</h2>
 <div class="fragment">
-<p>We first define the weights <span class="math inline">\(w_i\)</span> for each stratum based on their area:</p>
+<p>We first define the weights <span class="math inline">w_i</span> for each stratum based on their area:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.62</span>, <span class="fl">0.38</span>)  <span class="co"># 62% of area is land type A, 38% is land type B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -366,8 +382,8 @@ Januar Harianto
 </div>
 </section>
 <section id="pooled-standard-error-of-the-mean-sebar-x_s" class="slide level2">
-<h2>Pooled standard error of the mean <span class="math inline">\(SE(\bar x_{s})\)</span></h2>
-<p><span class="math display">\[SE(\bar x_{s}) = \sqrt{\color{blue}{{\sum_{i=1}^L w_i^2}} \times \frac{s_i^2}{n_i}}\]</span></p>
+<h2>Pooled standard error of the mean <span class="math inline">SE(\bar x_{s})</span></h2>
+<p><span class="math display">SE(\bar x_{s}) = \sqrt{\color{blue}{{\sum_{i=1}^L w_i^2}} \times \frac{s_i^2}{n_i}}</span></p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -379,8 +395,8 @@ Januar Harianto
 <div class="callout-content">
 <ul>
 <li>Instead of a single variance term, we sum the weighted variances from each stratum</li>
-<li>The <span class="math inline">\(\color{blue}{w_i^2}\)</span> term accounts for the relative size of each stratum</li>
-<li>Each stratum contributes its own variance (<span class="math inline">\(s_i^2\)</span>) and sample size (<span class="math inline">\(n_i\)</span>)</li>
+<li>The <span class="math inline">\color{blue}{w_i^2}</span> term accounts for the relative size of each stratum</li>
+<li>Each stratum contributes its own variance (<span class="math inline">s_i^2</span>) and sample size (<span class="math inline">n_i</span>)</li>
 </ul>
 </div>
 </div>
@@ -415,14 +431,14 @@ Januar Harianto
 </div>
 </section>
 <section id="t-critical-value" class="slide level2">
-<h2><span class="math inline">\(t\)</span>-critical value</h2>
-<h3 id="degrees-of-freedom-df">Degrees of freedom <span class="math inline">\(df\)</span></h3>
-<p><span class="math display">\[df = n - L\]</span></p>
-<p>where <span class="math inline">\(n\)</span> is the total number of samples and <span class="math inline">\(L\)</span> is the number of strata.</p>
+<h2><span class="math inline">t</span>-critical value</h2>
+<h3 id="degrees-of-freedom-df">Degrees of freedom <span class="math inline">df</span></h3>
+<p><span class="math display">df = n - L</span></p>
+<p>where <span class="math inline">n</span> is the total number of samples and <span class="math inline">L</span> is the number of strata.</p>
 <div class="fragment">
 <ul>
 <li>For stratified sampling, we lose one degree of freedom for each stratum mean we estimate</li>
-<li><strong>Example:</strong> 12 samples across 3 strata gives <span class="math inline">\(df = 12 - 3 = 9\)</span></li>
+<li><strong>Example:</strong> 12 samples across 3 strata gives <span class="math inline">df = 12 - 3 = 9</span></li>
 </ul>
 </div>
 <div class="fragment">
@@ -537,7 +553,7 @@ Januar Harianto
 <section id="efficiency" class="slide level2">
 <h2>Efficiency</h2>
 <h3 id="how-much-more-precise-is-stratified-sampling">How much more precise is stratified sampling?</h3>
-<p><span class="math display">\[\text{Efficiency} = \frac{\text{Variance of SRS}}{\text{Variance of Stratified}}\]</span></p>
+<p><span class="math display">\text{Efficiency} = \frac{\text{Variance of SRS}}{\text{Variance of Stratified}}</span></p>
 <div class="fragment">
 <ul>
 <li>Efficiency &gt; 1 means stratified sampling is more precise for the same sample size</li>
@@ -598,12 +614,12 @@ Januar Harianto
 </ul>
 </section>
 <section id="change-in-mean-delta-bar-x" class="slide level2">
-<h2>Change in mean <span class="math inline">\(\Delta \bar x\)</span></h2>
+<h2>Change in mean <span class="math inline">\Delta \bar x</span></h2>
 <blockquote>
 <p>The difference between the means of the two sets of measurements.</p>
 </blockquote>
-<p><span class="math display">\[\Delta \bar x = \bar x_2 - \bar x_1\]</span></p>
-<p>where <span class="math inline">\(\bar x_2\)</span> and <span class="math inline">\(\bar x_1\)</span> are the means of the second and first set of measurements, respectively.</p>
+<p><span class="math display">\Delta \bar x = \bar x_2 - \bar x_1</span></p>
+<p>where <span class="math inline">\bar x_2</span> and <span class="math inline">\bar x_1</span> are the means of the second and first set of measurements, respectively.</p>
 </section>
 <section id="why-same-sites-give-better-estimates" class="slide level2">
 <h2>Why same sites give better estimates</h2>
@@ -690,7 +706,6 @@ Januar Harianto
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -858,27 +873,9 @@ Januar Harianto
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

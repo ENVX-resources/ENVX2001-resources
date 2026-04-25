@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -195,7 +211,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/ochre/logo_charcoal.svg" data-background-position="bottom 4em center" data-background-size="10%" class="quarto-title-block center">
-  <h1 class="title">Lecture 03a – <span class="math inline">\(t\)</span>-Tests</h1>
+  <h1 class="title">Lecture 03a – <span class="math inline">t</span>-Tests</h1>
   <p class="subtitle">ENVX2001 Applied Statistical Methods</p>
 
 <div class="quarto-title-authors">
@@ -210,19 +226,19 @@ Januar Harianto
 </section>
 <section>
 <section id="the-t-test-revision" class="title-slide slide level1 center">
-<h1>The <span class="math inline">\(t\)</span>-test (revision)</h1>
+<h1>The <span class="math inline">t</span>-test (revision)</h1>
 
 </section>
 <section id="introduction" class="slide level2">
 <h2>Introduction</h2>
 <ul>
-<li><strong>One-sample</strong> <span class="math inline">\(t\)</span>-test: compare a sample mean against a known value</li>
-<li><strong>Two-sample</strong> <span class="math inline">\(t\)</span>-test: compare the means of two independent groups</li>
-<li><strong>Paired</strong> <span class="math inline">\(t\)</span>-test: compare measurements taken on the same subjects (e.g.&nbsp;before and after)</li>
+<li><strong>One-sample</strong> <span class="math inline">t</span>-test: compare a sample mean against a known value</li>
+<li><strong>Two-sample</strong> <span class="math inline">t</span>-test: compare the means of two independent groups</li>
+<li><strong>Paired</strong> <span class="math inline">t</span>-test: compare measurements taken on the same subjects (e.g.&nbsp;before and after)</li>
 </ul>
 <p>Last week we learned about <strong>confidence intervals</strong>, which estimate the uncertainty of a parameter (e.g.&nbsp;a mean).</p>
 <div class="fragment">
-<p>The <span class="math inline">\(t\)</span>-test and the confidence interval are closely related. Both are derived from the same quantities, and this week we look at that connection more carefully.</p>
+<p>The <span class="math inline">t</span>-test and the confidence interval are closely related. Both are derived from the same quantities, and this week we look at that connection more carefully.</p>
 </div>
 </section>
 <section id="cattle" class="slide level2">
@@ -249,14 +265,14 @@ Januar Harianto
 </section></section>
 <section>
 <section id="from-cis-to-the-t-test" class="title-slide slide level1 center">
-<h1>From CIs to the <span class="math inline">\(t\)</span>-test</h1>
+<h1>From CIs to the <span class="math inline">t</span>-test</h1>
 
 </section>
 <section id="the-difference-between-two-means" class="slide level2">
 <h2>The difference between two means</h2>
 <p>In the last lecture, we constructed confidence intervals for a single mean. The same principle extends to the <strong>difference</strong> between two means.</p>
 <ul>
-<li>Estimate the difference: <span class="math inline">\(\bar{y}_1 - \bar{y}_2\)</span></li>
+<li>Estimate the difference: <span class="math inline">\bar{y}_1 - \bar{y}_2</span></li>
 <li>Construct a 95% confidence interval around that estimate</li>
 <li>Evaluate whether the interval includes zero</li>
 </ul>
@@ -294,7 +310,7 @@ mean in group Breed1 mean in group Breed2
 <li>A <strong>95% confidence interval</strong> for the difference between the two means</li>
 </ul>
 <div class="fragment">
-<p>These always agree. If the CI excludes zero, the p-value is below 0.05, and vice versa. The <span class="math inline">\(t\)</span>-statistic measures how far the observed difference is from zero, relative to its standard error.</p>
+<p>These always agree. If the CI excludes zero, the p-value is below 0.05, and vice versa. The <span class="math inline">t</span>-statistic measures how far the observed difference is from zero, relative to its standard error.</p>
 </div>
 </section>
 <section id="exploring-the-confidence-interval" class="slide level2">
@@ -333,25 +349,25 @@ mean in group Breed1 mean in group Breed2
 <section id="the-ci-for-a-difference" class="slide level2">
 <h2>The CI for a difference</h2>
 <p>In the last lecture, we built a 95% CI for a single mean:</p>
-<p><span class="math display">\[\bar{y} \pm t^* \times SE\]</span></p>
+<p><span class="math display">\bar{y} \pm t^* \times SE</span></p>
 <div class="fragment">
 <p>For the <strong>difference</strong> between two means, the same structure applies:</p>
-<p><span class="math display">\[(\bar{y}_1 - \bar{y}_2) \pm t^* \times SE(\bar{y}_1 - \bar{y}_2)\]</span></p>
+<p><span class="math display">(\bar{y}_1 - \bar{y}_2) \pm t^* \times SE(\bar{y}_1 - \bar{y}_2)</span></p>
 <p>If this interval excludes zero, the groups differ significantly.</p>
 </div>
 </section>
 <section id="the-t-statistic" class="slide level2">
-<h2>The <span class="math inline">\(t\)</span>-statistic</h2>
+<h2>The <span class="math inline">t</span>-statistic</h2>
 <p>We can rearrange the CI formula to isolate a single number that captures both the difference and the variability:</p>
-<p><span class="math display">\[t = \frac{\bar{y}_1 - \bar{y}_2}{SE(\bar{y}_1 - \bar{y}_2)}\]</span></p>
-<p>The <span class="math inline">\(t\)</span>-statistic counts how many standard errors the observed difference is from zero.</p>
+<p><span class="math display">t = \frac{\bar{y}_1 - \bar{y}_2}{SE(\bar{y}_1 - \bar{y}_2)}</span></p>
+<p>The <span class="math inline">t</span>-statistic counts how many standard errors the observed difference is from zero.</p>
 <div class="fragment">
-<p>For the cattle data: <span class="math inline">\(t = 42.5 / 4.5 = 9.46\)</span>. The observed difference is over nine standard errors from zero.</p>
+<p>For the cattle data: <span class="math inline">t = 42.5 / 4.5 = 9.46</span>. The observed difference is over nine standard errors from zero.</p>
 </div>
 </section>
 <section id="from-the-t-statistic-to-the-p-value" class="slide level2">
-<h2>From the <span class="math inline">\(t\)</span>-statistic to the p-value</h2>
-<p>We have a <span class="math inline">\(t\)</span>-statistic. The p-value answers: if there were truly no difference between the breeds, how often would we see a value of <span class="math inline">\(|t|\)</span> this large or larger?</p>
+<h2>From the <span class="math inline">t</span>-statistic to the p-value</h2>
+<p>We have a <span class="math inline">t</span>-statistic. The p-value answers: if there were truly no difference between the breeds, how often would we see a value of <span class="math inline">|t|</span> this large or larger?</p>
 <ul>
 <li>A small p-value means the observed difference is hard to explain by chance alone</li>
 <li>A large p-value means the observed difference is consistent with random variation</li>
@@ -389,7 +405,7 @@ mean in group Breed1 mean in group Breed2
 </div>
 <ul>
 <li>The shaded area under both tails is the p-value</li>
-<li>As the <span class="math inline">\(t\)</span>-statistic moves further from zero, the p-value decreases</li>
+<li>As the <span class="math inline">t</span>-statistic moves further from zero, the p-value decreases</li>
 <li>At low degrees of freedom the tails are heavier, but the shape approaches the normal as df increases</li>
 </ul>
 </section></section>
@@ -401,18 +417,18 @@ mean in group Breed1 mean in group Breed2
 <section id="step-1-state-what-we-are-testing" class="slide level2">
 <h2>Step 1: State what we are testing</h2>
 <ul>
-<li><strong>Null hypothesis</strong>: <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span> (no difference in mean weight between breeds)</li>
-<li><strong>Alternative hypothesis</strong>: <span class="math inline">\(H_1: \mu_1 \neq \mu_2\)</span> (means differ)</li>
+<li><strong>Null hypothesis</strong>: <span class="math inline">H_0: \mu_1 = \mu_2</span> (no difference in mean weight between breeds)</li>
+<li><strong>Alternative hypothesis</strong>: <span class="math inline">H_1: \mu_1 \neq \mu_2</span> (means differ)</li>
 <li>This is a <strong>two-tailed</strong> test: we are looking for a difference in either direction (Breed 1 heavier <em>or</em> lighter than Breed 2), not just one</li>
 </ul>
 <div class="fragment">
-<p><strong>Model equation</strong>: <span class="math inline">\(y_{ij} = \mu_i + \varepsilon_{ij}\)</span></p>
-<p>Each observation is the group mean plus random error. The hypothesis asks whether <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> are equal.</p>
+<p><strong>Model equation</strong>: <span class="math inline">y_{ij} = \mu_i + \varepsilon_{ij}</span></p>
+<p>Each observation is the group mean plus random error. The hypothesis asks whether <span class="math inline">\mu_1</span> and <span class="math inline">\mu_2</span> are equal.</p>
 </div>
 </section>
 <section id="step-2a-equal-variances" class="slide level2">
 <h2>Step 2a: Equal variances</h2>
-<p>The <span class="math inline">\(t\)</span>-test assumes both groups have similar variability. If they do not, then the test is unreliable because the pooled estimate of variance will not represent either group well.</p>
+<p>The <span class="math inline">t</span>-test assumes both groups have similar variability. If they do not, then the test is unreliable because the pooled estimate of variance will not represent either group well.</p>
 <ul>
 <li>Rule of thumb: the ratio of the larger SD to the smaller SD should be below 2.0</li>
 </ul>
@@ -443,7 +459,7 @@ mean in group Breed1 mean in group Breed2
 </section>
 <section id="step-2b-normality" class="slide level2">
 <h2>Step 2b: Normality</h2>
-<p>The <span class="math inline">\(t\)</span>-test assumes the data in each group follow a normal distribution. With small samples, departures from normality (strong skew, heavy tails, outliers) can distort the p-value and confidence interval. Check each group separately.</p>
+<p>The <span class="math inline">t</span>-test assumes the data in each group follow a normal distribution. With small samples, departures from normality (strong skew, heavy tails, outliers) can distort the p-value and confidence interval. Check each group separately.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -496,7 +512,7 @@ W = 0.94636, p-value = 0.4691</code></pre>
 </div>
 </div>
 </div>
-<p>If points fall close to the line, the data are approximately normal. Both groups pass the Shapiro-Wilk test (<span class="math inline">\(p &gt; 0.05\)</span>) and the QQ plots show no strong departures.</p>
+<p>If points fall close to the line, the data are approximately normal. Both groups pass the Shapiro-Wilk test (<span class="math inline">p &gt; 0.05</span>) and the QQ plots show no strong departures.</p>
 </section>
 <section id="step-2c-independence" class="slide level2">
 <h2>Step 2c: Independence</h2>
@@ -504,7 +520,7 @@ W = 0.94636, p-value = 0.4691</code></pre>
 <ul>
 <li>Each animal is measured once</li>
 <li>The weight of one animal does not affect the weight of another</li>
-<li>If the same animals were measured before and after a treatment, observations would not be independent (use a paired <span class="math inline">\(t\)</span>-test instead)</li>
+<li>If the same animals were measured before and after a treatment, observations would not be independent (use a paired <span class="math inline">t</span>-test instead)</li>
 </ul>
 </section>
 <section id="step-3-run-the-test-and-interpret" class="slide level2">
@@ -526,8 +542,8 @@ mean in group Breed1 mean in group Breed2
 </div>
 </div>
 <ul>
-<li>The <span class="math inline">\(t\)</span>-statistic, degrees of freedom (<span class="math inline">\(n_1 + n_2 - 2\)</span>), and p-value are reported together</li>
-<li><code>var.equal = TRUE</code> performs the pooled (Student’s) <span class="math inline">\(t\)</span>-test, which assumes equal variances</li>
+<li>The <span class="math inline">t</span>-statistic, degrees of freedom (<span class="math inline">n_1 + n_2 - 2</span>), and p-value are reported together</li>
+<li><code>var.equal = TRUE</code> performs the pooled (Student’s) <span class="math inline">t</span>-test, which assumes equal variances</li>
 </ul>
 <div class="fragment">
 <p>A p-value of 0.03 does not mean there is a 3% chance the null hypothesis is true. It means: if there were truly no difference, we would observe a result this extreme about 3% of the time.</p>
@@ -550,9 +566,9 @@ mean in group Breed1 mean in group Breed2
 <section id="what-if-assumptions-are-not-met" class="slide level2">
 <h2>What if assumptions are not met?</h2>
 <ul>
-<li class="fragment"><strong>Unequal variances</strong>: use Welch’s <span class="math inline">\(t\)</span>-test (the default in R when <code>var.equal = FALSE</code>)</li>
-<li class="fragment"><strong>Non-normality</strong>: if <span class="math inline">\(N &gt; 30\)</span>, the Central Limit Theorem provides reasonable coverage</li>
-<li class="fragment"><strong>Non-independence</strong>: consider a <strong>paired <span class="math inline">\(t\)</span>-test</strong> (e.g.&nbsp;before and after measurements on the same subjects)</li>
+<li class="fragment"><strong>Unequal variances</strong>: use Welch’s <span class="math inline">t</span>-test (the default in R when <code>var.equal = FALSE</code>)</li>
+<li class="fragment"><strong>Non-normality</strong>: if <span class="math inline">N &gt; 30</span>, the Central Limit Theorem provides reasonable coverage</li>
+<li class="fragment"><strong>Non-independence</strong>: consider a <strong>paired <span class="math inline">t</span>-test</strong> (e.g.&nbsp;before and after measurements on the same subjects)</li>
 </ul>
 </section></section>
 <section>
@@ -563,8 +579,8 @@ mean in group Breed1 mean in group Breed2
 <section id="key-points" class="slide level2">
 <h2>Key points</h2>
 <ul>
-<li>The <strong>two-sample <span class="math inline">\(t\)</span>-test</strong> compares means of two independent groups</li>
-<li>The <span class="math inline">\(t\)</span>-test and the CI for the difference are two views of the same calculation</li>
+<li>The <strong>two-sample <span class="math inline">t</span>-test</strong> compares means of two independent groups</li>
+<li>The <span class="math inline">t</span>-test and the CI for the difference are two views of the same calculation</li>
 <li>Check the three assumptions (equal variances, normality, independence) before running any test</li>
 <li>Follow <strong>HATPC</strong> as a structured process for hypothesis testing</li>
 </ul>
@@ -601,7 +617,6 @@ mean in group Breed1 mean in group Breed2
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -769,27 +784,9 @@ mean in group Breed1 mean in group Breed2
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

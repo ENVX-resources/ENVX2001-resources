@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -265,11 +281,11 @@ Multiple R-squared:  0.6644,    Adjusted R-squared:  0.655
 F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind</span></p>
 </section>
 <section id="question" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Question</h2>
-<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind</span></p>
 <p><strong>Are all the variables/predictors needed?</strong></p>
 <h3 id="principles">Principles</h3>
 <p>A good model:</p>
@@ -361,11 +377,11 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 <img data-src="images/bias_var.svg" class="r-stretch"><p>In concept…</p>
 <ul>
-<li>As complexity increases, bias (<span class="math inline">\(\sum{O-\bar{P}}\)</span>) <em>decreases</em> (the mean of a model’s predictions is closer to the true mean).</li>
-<li>As complexity increases, prediction variance (<span class="math inline">\(\frac{\sum{(P-\bar{P})}^2}{n}\)</span>) increases.</li>
+<li>As complexity increases, bias (<span class="math inline">\sum{O-\bar{P}}</span>) <em>decreases</em> (the mean of a model’s predictions is closer to the true mean).</li>
+<li>As complexity increases, prediction variance (<span class="math inline">\frac{\sum{(P-\bar{P})}^2}{n}</span>) increases.</li>
 <li>The <strong>goal</strong> is to find a model that isn’t too simple or complex with a good balance between bias and variance.</li>
 </ul>
-<p><span class="math display">\[ \text{Mean Squared Error} = \text{Bias}^2 + \text{Variance} + \text{Immeasureable Error} \]</span> In practice, the math and relationships are a bit more irregular.</p>
+<p><span class="math display"> \text{Mean Squared Error} = \text{Bias}^2 + \text{Variance} + \text{Immeasureable Error} </span> In practice, the math and relationships are a bit more irregular.</p>
 </section>
 <section id="how-do-we-determine-the-best-model" class="slide level2">
 <h2>How do we determine the best model?</h2>
@@ -388,13 +404,13 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li><strong>Everything</strong>: all possible combinations of predictors.
 <ul>
-<li>Each variable can either be included or excluded so the number of possible combinations is <span class="math inline">\(2^n\)</span></li>
-<li>e.g.&nbsp;3 predictors (<span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>) could have 8 models
+<li>Each variable can either be included or excluded so the number of possible combinations is <span class="math inline">2^n</span></li>
+<li>e.g.&nbsp;3 predictors (<span class="math inline">x_1</span>, <span class="math inline">x_2</span>, <span class="math inline">x_3</span>) could have 8 models
 <ul>
-<li>No variables i.e.&nbsp;mean <span class="math inline">\(y\)</span> the null hypothesis</li>
-<li>1 variable: <span class="math inline">\(x_1\)</span>; <span class="math inline">\(x_2\)</span>; <span class="math inline">\(x_3\)</span></li>
-<li>2 variables: <span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_2\)</span>; <span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_3\)</span>; <span class="math inline">\(x_2\)</span> + <span class="math inline">\(x_3\)</span></li>
-<li>3 variables: <span class="math inline">\(x_1\)</span> + <span class="math inline">\(x_2\)</span> + <span class="math inline">\(x_3\)</span></li>
+<li>No variables i.e.&nbsp;mean <span class="math inline">y</span> the null hypothesis</li>
+<li>1 variable: <span class="math inline">x_1</span>; <span class="math inline">x_2</span>; <span class="math inline">x_3</span></li>
+<li>2 variables: <span class="math inline">x_1</span> + <span class="math inline">x_2</span>; <span class="math inline">x_1</span> + <span class="math inline">x_3</span>; <span class="math inline">x_2</span> + <span class="math inline">x_3</span></li>
+<li>3 variables: <span class="math inline">x_1</span> + <span class="math inline">x_2</span> + <span class="math inline">x_3</span></li>
 </ul></li>
 <li>So…not recommended</li>
 </ul></li>
@@ -485,10 +501,10 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="the-r2-value" class="slide level2">
 <h2>The R<sup>2</sup> value</h2>
 <p>The R-squared value is the proportion of variance explained by the model.</p>
-<p><span class="math display">\[ R^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} \]</span></p>
+<p><span class="math display"> R^2 = \frac{SS_{reg}}{SS_{tot}} = 1 - \frac{SS_{res}}{SS_{tot}} </span></p>
 <p>The adjusted R-squared value is the proportion of variance explained by the model, adjusted for the number of predictors.</p>
-<p><span class="math display">\[R^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} \]</span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(p\)</span> is the number of predictors.</p>
+<p><span class="math display">R^2_{adj} = 1 - \frac{SS_{res}}{SS_{tot}} \frac{n-1}{n-p-1} </span></p>
+<p>where <span class="math inline">n</span> is the number of observations and <span class="math inline">p</span> is the number of predictors.</p>
 </section></section>
 <section>
 <section id="partial-f-test" class="title-slide slide level1 center">
@@ -497,7 +513,7 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="partial-f-test-1" class="slide level2">
 <h2>Partial F-test</h2>
-<p>How much of an improvement in adjusted <span class="math inline">\(R^2\)</span> is worth having an extra variable / more complex model?</p>
+<p>How much of an improvement in adjusted <span class="math inline">R^2</span> is worth having an extra variable / more complex model?</p>
 <div class="fragment">
 <ul>
 <li>We can perform a hypothesis test to determine whether the improvement is significant.</li>
@@ -510,27 +526,27 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="fragment">
 <ul>
-<li>The <strong>partial F-test</strong> compares the full model to a reduced model in terms of the trade-off between model complexity and variance explained (i.e.&nbsp;<strong>adjusted</strong> <span class="math inline">\(R^2\)</span>).
+<li>The <strong>partial F-test</strong> compares the full model to a reduced model in terms of the trade-off between model complexity and variance explained (i.e.&nbsp;<strong>adjusted</strong> <span class="math inline">R^2</span>).
 <ul>
-<li><span class="math inline">\(H_0\)</span>: no significant difference between the full and reduced models</li>
-<li><span class="math inline">\(H_1\)</span>: the full model is significantly better than the reduced model</li>
+<li><span class="math inline">H_0</span>: no significant difference between the full and reduced models</li>
+<li><span class="math inline">H_1</span>: the full model is significantly better than the reduced model</li>
 <li>Calculating the F-stat:</li>
 </ul></li>
 </ul>
-<p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span></p>
+<p><span class="math display">F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}</span></p>
 </div>
 </section>
 <section id="partial-f-test-calculation" class="slide level2">
 <h2>Partial F-test: calculation</h2>
-<p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span></p>
+<p><span class="math display">F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}</span></p>
 <div class="fragment">
 <p>where:</p>
 <ul>
-<li><span class="math inline">\(SS_{reg,full}\)</span> is the sum of squares of the full model (total of predictors)</li>
-<li><span class="math inline">\(SS_{reg,reduced}\)</span> is the sum of squares of the reduced model (total of predictors)</li>
-<li><span class="math inline">\(df_{res,full}\)</span> is the degrees of freedom of the residuals of the full model</li>
-<li><span class="math inline">\(df_{res,reduced}\)</span> is the degrees of freedom of the residuals of the reduced model</li>
-<li><span class="math inline">\(MS_{res, full}\)</span> is the mean square of the residuals of the full model</li>
+<li><span class="math inline">SS_{reg,full}</span> is the sum of squares of the full model (total of predictors)</li>
+<li><span class="math inline">SS_{reg,reduced}</span> is the sum of squares of the reduced model (total of predictors)</li>
+<li><span class="math inline">df_{res,full}</span> is the degrees of freedom of the residuals of the full model</li>
+<li><span class="math inline">df_{res,reduced}</span> is the degrees of freedom of the residuals of the reduced model</li>
+<li><span class="math inline">MS_{res, full}</span> is the mean square of the residuals of the full model</li>
 </ul>
 </div>
 </section>
@@ -566,20 +582,20 @@ F-statistic: 86.73 on 2 and 108 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div></div>
-<p>Each row is the <em>individual effect</em> of each predictor on the response <span class="math inline">\(log(Ozone)\)</span> (whilst holding all other predictors constant).</p>
+<p>Each row is the <em>individual effect</em> of each predictor on the response <span class="math inline">log(Ozone)</span> (whilst holding all other predictors constant).</p>
 </div>
 </section>
 <section id="by-hand" class="slide level2">
 <h2>By hand</h2>
-<p><span class="math display">\[F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}\]</span></p>
+<p><span class="math display">F = \big| \frac{SS_{reg,full} - SS_{reg,reduced}}{(df_{res,full} - df_{res,reduced})} \big | \div MS_{res, full}</span></p>
 <ul>
-<li><span class="math inline">\(SS_{reg,full} = 45.8 + 5.07 + 3.97 = 54.84\)</span></li>
-<li><span class="math inline">\(SS_{reg,reduced} = 45.8 + 5.07 = 50.87\)</span></li>
-<li><span class="math inline">\(df_{res,full} = 107\)</span></li>
-<li><span class="math inline">\(df_{res,reduced} = 108\)</span></li>
-<li><span class="math inline">\(MS_{res, full} = 0.259\)</span></li>
+<li><span class="math inline">SS_{reg,full} = 45.8 + 5.07 + 3.97 = 54.84</span></li>
+<li><span class="math inline">SS_{reg,reduced} = 45.8 + 5.07 = 50.87</span></li>
+<li><span class="math inline">df_{res,full} = 107</span></li>
+<li><span class="math inline">df_{res,reduced} = 108</span></li>
+<li><span class="math inline">MS_{res, full} = 0.259</span></li>
 </ul>
-<p><span class="math inline">\(F = |\frac{54.84 - 50.87}{(107-108)}| \div 0.259 = 15.33\)</span></p>
+<p><span class="math inline">F = |\frac{54.84 - 50.87}{(107-108)}| \div 0.259 = 15.33</span></p>
 </section>
 <section id="in-r-manually" class="slide level2">
 <h2>In R (manually)</h2>
@@ -906,7 +922,7 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <section id="collinearity" class="slide level2">
 <h2>Collinearity</h2>
 <ul>
-<li>Two predictors that have a <em>perfect</em> linear relationship (i.e.&nbsp;<span class="math inline">\(r\)</span> = 1 or -1) breaks the assumption of collinearity</li>
+<li>Two predictors that have a <em>perfect</em> linear relationship (i.e.&nbsp;<span class="math inline">r</span> = 1 or -1) breaks the assumption of collinearity</li>
 <li>Even strong correlations between predictors can lead to unstable estimates and large standard errors.</li>
 <li>Variance inflation factors (VIFs) are a measure of collinearity in the model.</li>
 </ul>
@@ -927,8 +943,8 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 
 </div>
 <img data-src="Lecture-08_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"><ul>
-<li><span class="math inline">\(1\)</span> = no correlation with other predictors.</li>
-<li><span class="math inline">\(&gt;10\)</span> is a sign for high, not tolerable correlation of model predictors (which need to be removed and the model refitted).</li>
+<li><span class="math inline">1</span> = no correlation with other predictors.</li>
+<li><span class="math inline">&gt;10</span> is a sign for high, not tolerable correlation of model predictors (which need to be removed and the model refitted).</li>
 </ul>
 </section>
 <section id="the-best-model" class="slide level2">
@@ -1058,19 +1074,19 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <li>Developed by <a href="https://en.wikipedia.org/wiki/Hirotugu_Akaike">Hirotsugu Akaike</a> under the name of “an information criterion” (AIC)</li>
 <li>Founded on information theory which is concerned with the transmission, processing, utilization, and extraction of information.</li>
 </ul>
-<p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span></p>
+<p><span class="math display">AIC = 2k - 2\ln(L)</span></p>
 </section>
 <section id="about-aic-1" class="slide level2">
 <h2>About AIC</h2>
-<p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span> where:</p>
+<p><span class="math display">AIC = 2k - 2\ln(L)</span> where:</p>
 <ul>
-<li><span class="math inline">\(k\)</span> is the number of parameters in the model (predictors + intercept)</li>
-<li><span class="math inline">\(L\)</span> is the maximum value of the likelihood function
+<li><span class="math inline">k</span> is the number of parameters in the model (predictors + intercept)</li>
+<li><span class="math inline">L</span> is the maximum value of the likelihood function
 <ul>
 <li>If we predict using the (current) model, what is the probability density of the prediction compared to the original distribution?</li>
-<li><span class="math inline">\(ln(L)\)</span> = goodness of fit (higher is better)</li>
+<li><span class="math inline">ln(L)</span> = goodness of fit (higher is better)</li>
 </ul></li>
-<li>For the number of parameters in the model (<span class="math inline">\(2k\)</span>) subtract the goodness of fit <span class="math inline">\(2ln(L)\)</span>
+<li>For the number of parameters in the model (<span class="math inline">2k</span>) subtract the goodness of fit <span class="math inline">2ln(L)</span>
 <ul>
 <li><strong>The smaller the AIC, the better the model fits the data.</strong></li>
 <li>A <em>relative</em> measure and <em>unitless</em>, so it is not worth trying to interpret alone.</li>
@@ -1081,8 +1097,8 @@ F-statistic: 17.75 on 6 and 49 DF,  p-value: 8.443e-11</code></pre>
 <section id="about-aic---fyi" class="slide level2">
 <h2>About AIC - FYI</h2>
 <p>In linear regression, AIC is sometimes calculated as:</p>
-<p><span class="math display">\[AIC = n\log(\frac{RSS}{n}) + 2k\]</span></p>
-<p>where <span class="math inline">\(RSS\)</span> is the residual sum of squares, <span class="math inline">\(2k\)</span> is the number of parameters in the model, and <span class="math inline">\(n\)</span> is the number of observations.</p>
+<p><span class="math display">AIC = n\log(\frac{RSS}{n}) + 2k</span></p>
+<p>where <span class="math inline">RSS</span> is the residual sum of squares, <span class="math inline">2k</span> is the number of parameters in the model, and <span class="math inline">n</span> is the number of observations.</p>
 <ul>
 <li>The difference between this equation and the previous equation is a constant, or scaling</li>
 <li>The <code>step()</code> function in R uses this equation (hence you may notice a difference in AIC values!)</li>
@@ -1315,7 +1331,6 @@ Coefficients:
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1483,27 +1498,9 @@ Coefficients:
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

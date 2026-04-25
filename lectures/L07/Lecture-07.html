@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -287,12 +303,12 @@ therefore, want students how to fit a linear regression model and be able to int
 <section id="what-is-regression-modelling-for" class="slide level2">
 <h2>What is regression modelling for?</h2>
 <ul>
-<li>Regression modelling is for one <em>continuous numerical</em> response (<span class="math inline">\(y\)</span>) and one or more <em>numerical</em> predictors (<span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_n\)</span>)</li>
+<li>Regression modelling is for one <em>continuous numerical</em> response (<span class="math inline">y</span>) and one or more <em>numerical</em> predictors (<span class="math inline">x_1</span>, <span class="math inline">x_2</span>, <span class="math inline">x_n</span>)</li>
 <li>Can be for linear or nonlinear relationships – focus on linear in ENVX2001</li>
 <li>To help us:
 <ul>
 <li>Understand the relationship between variables</li>
-<li>Predict new values of <span class="math inline">\(y\)</span> based on <span class="math inline">\(x\)</span></li>
+<li>Predict new values of <span class="math inline">y</span> based on <span class="math inline">x</span></li>
 <li>Test hypotheses about the relationship between variables</li>
 </ul></li>
 <li>Fit a ‘line of best fit’ that minimises the sum of the squared residuals (least-squares)</li>
@@ -397,11 +413,11 @@ therefore, want students how to fit a linear regression model and be able to int
 <section id="defining-a-linear-relationship" class="slide level2 nostretch">
 <h2>Defining a linear relationship</h2>
 <ul>
-<li>Pearson correlation coefficient (<span class="math inline">\(r\)</span>) measures the linear correlation between two variables (ranges from -1 to 1)</li>
+<li>Pearson correlation coefficient (<span class="math inline">r</span>) measures the linear correlation between two variables (ranges from -1 to 1)</li>
 <li>Useful for distinguishing <em>strength</em> (weak/moderate/strong) and <em>direction</em> (positive/negative) of the association</li>
 <li>Does not distinguish different <em>patterns</em> – i.e.&nbsp;is the relationship actually linear?</li>
 </ul>
-<p><span class="math display">\[ r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} \]</span></p>
+<p><span class="math display"> r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} </span></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">cor</span>(Galton<span class="sc">$</span>parent, Galton<span class="sc">$</span>child) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -429,44 +445,44 @@ therefore, want students how to fit a linear regression model and be able to int
 </section>
 <section id="simple-linear-regression-model" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Simple linear regression model</h2>
-<p>We want to predict a response <span class="math inline">\(Y\)</span> based on a predictor <span class="math inline">\(x\)</span> for <span class="math inline">\(i\)</span> number of observations:</p>
-<p><span class="math display">\[Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}\]</span></p>
+<p>We want to predict a response <span class="math inline">Y</span> based on a predictor <span class="math inline">x</span> for <span class="math inline">i</span> number of observations:</p>
+<p><span class="math display">Y_i = \color{royalblue}{\beta_0 + \beta_1 x_i} +\color{red}{\epsilon_i}</span></p>
 <p>where</p>
-<p><span class="math display">\[\epsilon_i \sim N(0, \sigma^2)\]</span></p>
+<p><span class="math display">\epsilon_i \sim N(0, \sigma^2)</span></p>
 <ul>
-<li><span class="math inline">\(Y_i\)</span>, the <em>response</em>, is an observed value of the dependent variable.</li>
-<li><span class="math inline">\(\beta_0\)</span>, the <em>constant</em>, is the population intercept and is <strong>fixed</strong>.</li>
-<li><span class="math inline">\(\beta_1\)</span> is the population <em>slope</em> parameter, and like <span class="math inline">\(\beta_0\)</span>, is also <strong>fixed</strong>.</li>
-<li><span class="math inline">\(\epsilon_i\)</span> is the error associated with predictions of <span class="math inline">\(y_i\)</span>, and unlike <span class="math inline">\(\beta_0\)</span> or <span class="math inline">\(\beta_1\)</span>, it is <em>not fixed</em>.</li>
+<li><span class="math inline">Y_i</span>, the <em>response</em>, is an observed value of the dependent variable.</li>
+<li><span class="math inline">\beta_0</span>, the <em>constant</em>, is the population intercept and is <strong>fixed</strong>.</li>
+<li><span class="math inline">\beta_1</span> is the population <em>slope</em> parameter, and like <span class="math inline">\beta_0</span>, is also <strong>fixed</strong>.</li>
+<li><span class="math inline">\epsilon_i</span> is the error associated with predictions of <span class="math inline">y_i</span>, and unlike <span class="math inline">\beta_0</span> or <span class="math inline">\beta_1</span>, it is <em>not fixed</em>.</li>
 </ul>
-<p>Because <span class="math inline">\(\epsilon_i\)</span> is the only part of the equation that is not fixed, we associate it with the <strong>residual error</strong> (<span class="math inline">\(observed-predicted\)</span>). It would also cover other aspects of error (e.g.&nbsp;sampling error, parallax error) but these are hard to discern.</p>
+<p>Because <span class="math inline">\epsilon_i</span> is the only part of the equation that is not fixed, we associate it with the <strong>residual error</strong> (<span class="math inline">observed-predicted</span>). It would also cover other aspects of error (e.g.&nbsp;sampling error, parallax error) but these are hard to discern.</p>
 </section>
 <section id="fitting-the-model" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Fitting the model</h2>
 <ul>
-<li><span class="math inline">\(\color{royalblue}{\hat{y}_i}\)</span> is the predicted value of <span class="math inline">\(y_i\)</span>:</li>
+<li><span class="math inline">\color{royalblue}{\hat{y}_i}</span> is the predicted value of <span class="math inline">y_i</span>:</li>
 </ul>
-<p><span class="math display">\[\color{royalblue}{\hat{y}_i} = \beta_0 + \beta_1 x_i\]</span></p>
+<p><span class="math display">\color{royalblue}{\hat{y}_i} = \beta_0 + \beta_1 x_i</span></p>
 <ul>
 <li>The <em>residual</em> is the difference between the observed value of the response and the predicted value:</li>
 </ul>
-<p><span class="math display">\[\hat\epsilon_i = y_i - \color{royalblue}{\hat{y}_i}\]</span></p>
+<p><span class="math display">\hat\epsilon_i = y_i - \color{royalblue}{\hat{y}_i}</span></p>
 <ul>
 <li>Therefore:</li>
 </ul>
-<p><span class="math display">\[\hat\epsilon_i = y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)}\]</span></p>
+<p><span class="math display">\hat\epsilon_i = y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)}</span></p>
 <ul>
 <li>We use the <strong>method of least squares</strong> and minimise the sum of the squared residuals (SS):</li>
 </ul>
-<p><span class="math display">\[\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2\]</span></p>
+<p><span class="math display">\sum_{i=1}^n \hat\epsilon_i^2 = \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2</span></p>
 </section>
 <section id="section" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"></h2>
 <p>Finding the minimum SS requires solving the following problem:</p>
-<p><span class="math display">\[\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2\]</span></p>
-<p>We can find <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> <strong>analytically</strong>. We first find <span class="math inline">\(\beta_1\)</span>:</p>
-<p><span class="math display">\[ \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} \]</span> And then substitute <span class="math inline">\(\beta_1\)</span> into the equation for <span class="math inline">\(\beta_0\)</span>:</p>
-<p><span class="math display">\[ \beta_0 = \bar{y} - \beta_1 \bar{x} \]</span></p>
+<p><span class="math display">\color{firebrick}{argmin_{\beta_0, \beta_1}} \sum_{i=1}^n (y_i - \color{royalblue}{(\beta_0 + \beta_1 x_i)})^2</span></p>
+<p>We can find <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> <strong>analytically</strong>. We first find <span class="math inline">\beta_1</span>:</p>
+<p><span class="math display"> \beta_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2} =  \frac{Cov(x,y)}{Var(x)} = \frac{SS_{xy}}{SS_{xx}} </span> And then substitute <span class="math inline">\beta_1</span> into the equation for <span class="math inline">\beta_0</span>:</p>
+<p><span class="math display"> \beta_0 = \bar{y} - \beta_1 \bar{x} </span></p>
 </section>
 <section id="numerical-fitting" class="slide level2">
 <h2>Numerical fitting</h2>
@@ -483,9 +499,9 @@ therefore, want students how to fit a linear regression model and be able to int
 </section>
 <section id="define-the-hypothesis" class="slide level2">
 <h2>Define the hypothesis</h2>
-<p><span class="math display">\[H_0: \beta_1=0\]</span></p>
-<p><span class="math display">\[H_1: \beta_1 \neq 0\]</span></p>
-<p>The null model is a line with no slope (i.e.&nbsp;flat or horizontal) at the mean of the child height (<span class="math inline">\(\bar{y}\)</span> = 68 inches).</p>
+<p><span class="math display">H_0: \beta_1=0</span></p>
+<p><span class="math display">H_1: \beta_1 \neq 0</span></p>
+<p>The null model is a line with no slope (i.e.&nbsp;flat or horizontal) at the mean of the child height (<span class="math inline">\bar{y}</span> = 68 inches).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -526,10 +542,10 @@ therefore, want students how to fit a linear regression model and be able to int
 <h2>Assumptions</h2>
 <p>The data <strong>must</strong> meet certain criteria, which we often call <em>assumptions</em>. They can be remembered using <strong>LINE</strong>:</p>
 <ul>
-<li><strong>L</strong>inearity. The relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> is linear.</li>
-<li><strong>I</strong>ndependence. The errors <span class="math inline">\(\epsilon\)</span> are independent.</li>
-<li><strong>N</strong>ormal. The errors <span class="math inline">\(\epsilon\)</span> are normally distributed.</li>
-<li><strong>E</strong>qual Variance. At each value of <span class="math inline">\(x\)</span>, the variance of <span class="math inline">\(y\)</span> is the same i.e.&nbsp;homoskedasticity, or constant variance.</li>
+<li><strong>L</strong>inearity. The relationship between <span class="math inline">y</span> and <span class="math inline">x</span> is linear.</li>
+<li><strong>I</strong>ndependence. The errors <span class="math inline">\epsilon</span> are independent.</li>
+<li><strong>N</strong>ormal. The errors <span class="math inline">\epsilon</span> are normally distributed.</li>
+<li><strong>E</strong>qual Variance. At each value of <span class="math inline">x</span>, the variance of <span class="math inline">y</span> is the same i.e.&nbsp;homoskedasticity, or constant variance.</li>
 </ul>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -591,7 +607,7 @@ therefore, want students how to fit a linear regression model and be able to int
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p>The linearity assumption can be checked again by looking at a plot of the residuals against <span class="math inline">\(x\)</span> (i.e.&nbsp;<code>parent</code> height).</p>
+<p>The linearity assumption can be checked again by looking at a plot of the residuals against <span class="math inline">x</span> (i.e.&nbsp;<code>parent</code> height).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>performance<span class="sc">::</span><span class="fu">check_model</span>(fit, <span class="at">check =</span> <span class="st">"linearity"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -620,7 +636,7 @@ therefore, want students how to fit a linear regression model and be able to int
 <h2>Assumption: Normality</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>For a given value of <span class="math inline">\(x\)</span>, the residuals should be normally distributed. In a scatterplot of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, the points would appear evenly distributed (linear and no fanning).</p>
+<p>For a given value of <span class="math inline">x</span>, the residuals should be normally distributed. In a scatterplot of <span class="math inline">x</span> and <span class="math inline">y</span>, the points would appear evenly distributed (linear and no fanning).</p>
 <p><img data-src="images/residual.jpg"></p>
 </div><div class="column" style="width:50%;">
 <div class="cell">
@@ -703,7 +719,7 @@ therefore, want students how to fit a linear regression model and be able to int
 <ul>
 <li>The standardised residual is the residual divided by the standard error of the residual (normalised).</li>
 </ul>
-<p><span class="math display">\[Standardised\ residual = \frac{Residual}{Standard\ error\ of\ the\ residual}\]</span></p>
+<p><span class="math display">Standardised\ residual = \frac{Residual}{Standard\ error\ of\ the\ residual}</span></p>
 <ul>
 <li>The <em>mean</em> of the residuals is 0 in linear regression</li>
 <li>A standardised residual of 2 or above suggests the point is an outlier (far from the regression line)</li>
@@ -742,7 +758,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li><code>Residuals Mean Sq</code>: variation (per degree of freedom) that the model does not explain</li>
 <li>The <code>F-value</code> is the ratio, i.e.&nbsp;does <code>parent</code> explain enough variation in <code>child</code> to be considered significant?</li>
 </ul>
-<p><span class="math display">\[\text{F-value} = \frac{\text{parent Sum Sq}}{\text{Residuals Mean Sq}} = \frac{1236.9}{5.01} = 246.84 \]</span></p>
+<p><span class="math display">\text{F-value} = \frac{\text{parent Sum Sq}}{\text{Residuals Mean Sq}} = \frac{1236.9}{5.01} = 246.84 </span></p>
 </div></div>
 <h3 id="regression-output">Regression Output</h3>
 <div class="cell">
@@ -758,7 +774,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h3 id="anova-output-1">ANOVA Output</h3>
 <p>The ANOVA suggests that the main effect of parent is statistically significant and large (F(1, 926) = 246.84, p &lt; .001)</p>
 <h3 id="regression-output-1">Regression Output</h3>
-<p>We fitted a linear model (estimated using OLS) to predict child with parent (formula: child ~ parent). The model explains a statistically significant and moderate proportion of variance (R<sup>2</sup> = 0.21, F(1, 926) = 246.84, p &lt; .001). Within this model, the effect of parent is statistically significant and positive (<span class="math inline">\(\beta_1\)</span> = 0.65, 95% CI [0.57, 0.73], t(926) = 15.71, p &lt; .001).</p>
+<p>We fitted a linear model (estimated using OLS) to predict child with parent (formula: child ~ parent). The model explains a statistically significant and moderate proportion of variance (R<sup>2</sup> = 0.21, F(1, 926) = 246.84, p &lt; .001). Within this model, the effect of parent is statistically significant and positive (<span class="math inline">\beta_1</span> = 0.65, 95% CI [0.57, 0.73], t(926) = 15.71, p &lt; .001).</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -808,7 +824,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><span class="math display">\[\widehat{child} = 23.9 + 0.65 \cdot parent\]</span></p>
+<p><span class="math display">\widehat{child} = 23.9 + 0.65 \cdot parent</span></p>
 <p>For every unit change in parent (i.e.&nbsp;<em>1 inch</em>), we expect a 0.65 unit change in child.</p>
 <p>How much variation is explained? R<sup>2</sup> = 0.21 = 21%</p>
 <ul>
@@ -840,7 +856,7 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><span class="math display">\[\widehat{child} = 23.9 + 0.65 \cdot parent\]</span> How much variation is explained? R<sup>2</sup> = 0.21 = 21%</p>
+<p><span class="math display">\widehat{child} = 23.9 + 0.65 \cdot parent</span> How much variation is explained? R<sup>2</sup> = 0.21 = 21%</p>
 <p>If the r<sup>2</sup> accounted for more variation, the points would follow the line more closely.</p>
 </div></div>
 </section>
@@ -895,8 +911,8 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li>Use less restrictive (but more complicated) models, e.g.&nbsp;generalised linear models, non-parametric techniques (ENVX3002)</li>
 <li>Perform variance corrections (complicated)</li>
-<li><span style="color: seagreen"><strong>Transform the response variable (<span class="math inline">\(y\)</span>)</strong> to stabilise variance and correct normality</span></li>
-<li><span style="color: seagreen"><strong>Transform the predictor variable (<span class="math inline">\(x\)</span>)</strong> if issues still exist in the diagnostics</span></li>
+<li><span style="color: seagreen"><strong>Transform the response variable (<span class="math inline">y</span>)</strong> to stabilise variance and correct normality</span></li>
+<li><span style="color: seagreen"><strong>Transform the predictor variable (<span class="math inline">x</span>)</strong> if issues still exist in the diagnostics</span></li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -963,44 +979,44 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="backtransforming-fyi" class="slide level2">
 <h2>Backtransforming – FYI</h2>
 <p>A log transformation (natural or a base) is relatively easy to back-transform.</p>
-<p><span class="math display">\[\widehat{log(Ozone)}=\color{royalblue}{-1.8380 + 0.0675 \times Temp}\]</span> <span class="math display">\[\widehat{Ozone}=e^{-1.8380 + 0.0675 \times Temp}=e^{-1.8380} \times e^{0.0675 \times Temp}\]</span> But given we are focused on a 1-unit change of <code>Temp</code>, <span class="math inline">\(\widehat{Ozone}\)</span> changes by <span class="math inline">\(e^{0.0675} = 1.07\)</span> <strong>times</strong>.</p>
+<p><span class="math display">\widehat{log(Ozone)}=\color{royalblue}{-1.8380 + 0.0675 \times Temp}</span> <span class="math display">\widehat{Ozone}=e^{-1.8380 + 0.0675 \times Temp}=e^{-1.8380} \times e^{0.0675 \times Temp}</span> But given we are focused on a 1-unit change of <code>Temp</code>, <span class="math inline">\widehat{Ozone}</span> changes by <span class="math inline">e^{0.0675} = 1.07</span> <strong>times</strong>.</p>
 <p>If this had been a <code>sqrt()</code> transformation…</p>
-<p><span class="math display">\[\widehat{\sqrt{Ozone}}=-1.8380 + 0.0675 \times Temp\]</span> <span class="math display">\[\widehat{Ozone}=(-1.8380 + 0.0675 \times Temp)^2 = 3.3782−(0.2481×Temp)+(0.0675×Temp)^2\]</span></p>
+<p><span class="math display">\widehat{\sqrt{Ozone}}=-1.8380 + 0.0675 \times Temp</span> <span class="math display">\widehat{Ozone}=(-1.8380 + 0.0675 \times Temp)^2 = 3.3782−(0.2481×Temp)+(0.0675×Temp)^2</span></p>
 </section>
 <section id="interpreting-log-transformations-fyi" class="slide level2">
 <h2>Interpreting log transformations – FYI</h2>
 <div class="fragment">
 <ul>
-<li>Log-linear: <span class="math inline">\(Log(Y)=\beta_0+\beta_1x\)</span>
+<li>Log-linear: <span class="math inline">Log(Y)=\beta_0+\beta_1x</span>
 <ul>
-<li>An increase of <span class="math inline">\(x\)</span> by 1 unit corresponds to a <span class="math inline">\(\beta_1\)</span> unit increase in <span class="math inline">\(log(Y)\)</span></li>
-<li>An increase of <span class="math inline">\(x\)</span> by 1 unit corresponds to approximately a <span class="math inline">\(\beta_1 \times 100\%\)</span> increase in <span class="math inline">\(Y\)</span></li>
+<li>An increase of <span class="math inline">x</span> by 1 unit corresponds to a <span class="math inline">\beta_1</span> unit increase in <span class="math inline">log(Y)</span></li>
+<li>An increase of <span class="math inline">x</span> by 1 unit corresponds to approximately a <span class="math inline">\beta_1 \times 100\%</span> increase in <span class="math inline">Y</span></li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Linear-log: <span class="math inline">\(Y=\beta_0+\beta_1log(x)\)</span>
+<li>Linear-log: <span class="math inline">Y=\beta_0+\beta_1log(x)</span>
 <ul>
-<li>An increase of <span class="math inline">\(1\%\)</span> in <span class="math inline">\(x\)</span> corresponds to a <span class="math inline">\(\frac{\beta_1}{100}\)</span> increase in <span class="math inline">\(Y\)</span></li>
+<li>An increase of <span class="math inline">1\%</span> in <span class="math inline">x</span> corresponds to a <span class="math inline">\frac{\beta_1}{100}</span> increase in <span class="math inline">Y</span></li>
 </ul></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Log-log: <span class="math inline">\(Log(Y)=\beta_0+\beta_1log(x)\)</span>
+<li>Log-log: <span class="math inline">Log(Y)=\beta_0+\beta_1log(x)</span>
 <ul>
-<li>An increase of <span class="math inline">\(1\%\)</span> in <span class="math inline">\(x\)</span> corresponds to a <span class="math inline">\(\beta_1\%\)</span> increase in <span class="math inline">\(Y\)</span></li>
+<li>An increase of <span class="math inline">1\%</span> in <span class="math inline">x</span> corresponds to a <span class="math inline">\beta_1\%</span> increase in <span class="math inline">Y</span></li>
 </ul></li>
 </ul>
 </div>
 </section>
 <section id="percent-change-with-ln-transformation-fyi" class="slide level2">
-<h2>Percent change with <span class="math inline">\(ln\)</span> transformation – FYI</h2>
-<p>Interpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute <span class="math inline">\(e\)</span> below for 10 or any other base), but the <strong>quick approximation only works with natural log transformations</strong>.</p>
-<p>If <span class="math inline">\(y\)</span> has been transformed with a natural log (<code>log(y)</code>), for a one-unit increase in <span class="math inline">\(x\)</span> the <strong>percent change in <span class="math inline">\(y\)</span></strong> (not <code>log(y)</code>) is calculated with:</p>
-<p><span class="math display">\[\Delta y \% = 100 \cdot (e^{\beta_1}-1)\]</span></p>
-<p>If <span class="math inline">\(\beta_1\)</span> is small (i.e.&nbsp;<span class="math inline">\(-0.25 &lt; \beta_1 &lt; 0.25\)</span>), then: <span class="math inline">\(e^{\beta_1} \approx 1 + \beta_1\)</span>. So <span class="math inline">\(\Delta y \% \approx 100 \cdot \beta_1\)</span>.</p>
+<h2>Percent change with <span class="math inline">ln</span> transformation – FYI</h2>
+<p>Interpreting as a percent change can be more meaningful - it can be done with any log transformation (substitute <span class="math inline">e</span> below for 10 or any other base), but the <strong>quick approximation only works with natural log transformations</strong>.</p>
+<p>If <span class="math inline">y</span> has been transformed with a natural log (<code>log(y)</code>), for a one-unit increase in <span class="math inline">x</span> the <strong>percent change in <span class="math inline">y</span></strong> (not <code>log(y)</code>) is calculated with:</p>
+<p><span class="math display">\Delta y \% = 100 \cdot (e^{\beta_1}-1)</span></p>
+<p>If <span class="math inline">\beta_1</span> is small (i.e.&nbsp;<span class="math inline">-0.25 &lt; \beta_1 &lt; 0.25</span>), then: <span class="math inline">e^{\beta_1} \approx 1 + \beta_1</span>. So <span class="math inline">\Delta y \% \approx 100 \cdot \beta_1</span>.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <table class="caption-top">
@@ -1012,8 +1028,8 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 <thead>
 <tr class="header">
 <th style="text-align: right;">β</th>
-<th style="text-align: right;">Exact <span class="math inline">\((e^{\beta} - 1)\)</span>%</th>
-<th style="text-align: right;">Approximate <span class="math inline">\(100 \cdot \beta\)</span></th>
+<th style="text-align: right;">Exact <span class="math inline">(e^{\beta} - 1)</span>%</th>
+<th style="text-align: right;">Approximate <span class="math inline">100 \cdot \beta</span></th>
 </tr>
 </thead>
 <tbody>
@@ -1056,9 +1072,9 @@ F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
 </table>
 </div><div class="column" style="width:50%;">
 <ul>
-<li><strong><span class="math inline">\(y\)</span> transformed</strong>: a one-unit increase in <span class="math inline">\(x\)</span> is <em>approximately</em> a <span class="math inline">\(\beta_1\)</span>% change in <span class="math inline">\(y\)</span>.</li>
-<li><strong><span class="math inline">\(x\)</span> transformed</strong>: a 1% increase in <span class="math inline">\(x\)</span> is <em>approximately</em> a <span class="math inline">\(0.01 \cdot \beta_1\)</span> change in <span class="math inline">\(y\)</span>.</li>
-<li><strong>Both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> transformed</strong>: a 1% increase in x is <em>approximately</em> a <span class="math inline">\(\beta_1\)</span>% change in y.</li>
+<li><strong><span class="math inline">y</span> transformed</strong>: a one-unit increase in <span class="math inline">x</span> is <em>approximately</em> a <span class="math inline">\beta_1</span>% change in <span class="math inline">y</span>.</li>
+<li><strong><span class="math inline">x</span> transformed</strong>: a 1% increase in <span class="math inline">x</span> is <em>approximately</em> a <span class="math inline">0.01 \cdot \beta_1</span> change in <span class="math inline">y</span>.</li>
+<li><strong>Both <span class="math inline">x</span> and <span class="math inline">y</span> transformed</strong>: a 1% increase in x is <em>approximately</em> a <span class="math inline">\beta_1</span>% change in y.</li>
 </ul>
 </div></div>
 </section>
@@ -1288,23 +1304,23 @@ F-statistic: 137.8 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section class="slide level2">
 
 <p>The transformed model model equation is:</p>
-<p><span class="math display">\[\widehat{log(Ozone)}=\color{royalblue}{-1.8380 + 0.0675 \times Temp}\]</span> A 1 degree (°F) increase in temperature is associated with a:</p>
+<p><span class="math display">\widehat{log(Ozone)}=\color{royalblue}{-1.8380 + 0.0675 \times Temp}</span> A 1 degree (°F) increase in temperature is associated with a:</p>
 <ul>
 <li>0.0675 increase in <code>log(Ozone)</code> concentration</li>
-<li><span class="math inline">\(e^{0.0675} = 1.07\)</span> <em>times</em> increase in <code>Ozone</code> concentration</li>
+<li><span class="math inline">e^{0.0675} = 1.07</span> <em>times</em> increase in <code>Ozone</code> concentration</li>
 <li>Approximately a 6.75% increase in <code>Ozone</code> concentration</li>
 </ul>
 </section>
 <section id="multiple-linear-regression" class="slide level2">
 <h2>Multiple linear regression</h2>
 <h3 id="the-mlr-model">The MLR model</h3>
-<p><span class="math display">\[Y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k + \epsilon\]</span></p>
+<p><span class="math display">Y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k + \epsilon</span></p>
 <p>where</p>
 <ul>
-<li>a response variable (<span class="math inline">\(Y\)</span>) which we wish to predict using predictor variables (<span class="math inline">\(x_k\)</span>)</li>
-<li><span class="math inline">\(\beta_0\)</span> is the y-intercept</li>
-<li><span class="math inline">\(\beta_k\)</span> is the partial regression coefficient associated with the <span class="math inline">\(k^{th}\)</span> predictor variable</li>
-<li><span class="math inline">\(\epsilon\)</span> is error and <span class="math inline">\(\epsilon \sim N(0,\ \sigma^2)\)</span></li>
+<li>a response variable (<span class="math inline">Y</span>) which we wish to predict using predictor variables (<span class="math inline">x_k</span>)</li>
+<li><span class="math inline">\beta_0</span> is the y-intercept</li>
+<li><span class="math inline">\beta_k</span> is the partial regression coefficient associated with the <span class="math inline">k^{th}</span> predictor variable</li>
+<li><span class="math inline">\epsilon</span> is error and <span class="math inline">\epsilon \sim N(0,\ \sigma^2)</span></li>
 </ul>
 </section>
 <section id="can-we-use-more-predictors" class="slide level2" data-auto-animate="true">
@@ -1318,13 +1334,13 @@ F-statistic: 137.8 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="can-we-use-more-predictors-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Can we use more predictors?</h2>
 <h3 id="from">From:</h3>
-<p><span class="math display">\[log(size)_i = \beta_0 + \beta_1Temp_i + \epsilon_i\]</span></p>
+<p><span class="math display">log(size)_i = \beta_0 + \beta_1Temp_i + \epsilon_i</span></p>
 <h3 id="to">To:</h3>
-<p><span class="math display">\[log(size)_i = \beta_0 + \beta_1Temp_i + \color{royalblue}{\beta_2Solar.R_i + \beta_3Wind_i} + \epsilon_i\]</span></p>
+<p><span class="math display">log(size)_i = \beta_0 + \beta_1Temp_i + \color{royalblue}{\beta_2Solar.R_i + \beta_3Wind_i} + \epsilon_i</span></p>
 </section>
 <section id="can-we-use-more-predictors-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Can we use more predictors?</h2>
-<p><span class="math display">\[log(size)_i = \beta_0 + \beta_1Temp_i + \color{royalblue}{\beta_2Solar.R_i + \beta_3Wind_i} + \epsilon_i\]</span></p>
+<p><span class="math display">log(size)_i = \beta_0 + \beta_1Temp_i + \color{royalblue}{\beta_2Solar.R_i + \beta_3Wind_i} + \epsilon_i</span></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb46-1" class="hljs-ln-code"><a></a>multi_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Ozone) <span class="sc">~</span> Temp <span class="sc">+</span> Solar.R <span class="sc">+</span> Wind, <span class="at">data =</span> airquality)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1343,11 +1359,11 @@ F-statistic: 137.8 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li>Individual predictors, where the significance of each predictor is tested via t-tests</li>
 </ul>
-<p><span class="math display">\[H_0: \beta_k = 0\]</span> <span class="math display">\[H_1: \beta_k \neq 0\]</span></p>
+<p><span class="math display">H_0: \beta_k = 0</span> <span class="math display">H_1: \beta_k \neq 0</span></p>
 <ul>
-<li>The overall model, which is tested with an F-test (to get F-stat). <span class="math inline">\(H_0\)</span> is an intercept-only model (i.e.&nbsp;the mean), so if at least one predictor is useful, the model is better than the intercept-only model.</li>
+<li>The overall model, which is tested with an F-test (to get F-stat). <span class="math inline">H_0</span> is an intercept-only model (i.e.&nbsp;the mean), so if at least one predictor is useful, the model is better than the intercept-only model.</li>
 </ul>
-<p><span class="math display">\[H_0: \beta_1 = \beta_2 = ... = \beta_k = 0\]</span> <span class="math display">\[H_1: \text{At least one } \beta_k \neq 0\]</span></p>
+<p><span class="math display">H_0: \beta_1 = \beta_2 = ... = \beta_k = 0</span> <span class="math display">H_1: \text{At least one } \beta_k \neq 0</span></p>
 </section>
 <section id="model-fit-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Model Fit</h2>
@@ -1379,11 +1395,11 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p><br></p>
 <p>Model equation:</p>
-<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind</span></p>
 </section>
 <section id="interpretation" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Interpretation</h2>
-<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind</span></p>
 <p><strong>Holding all other variables constant:</strong></p>
 <ul>
 <li>A one degree (°F) increase in <code>Temp</code> is associated with a 4.9% increase in <code>Ozone</code> concentration.</li>
@@ -1462,8 +1478,8 @@ $$</code></pre>
 </div>
 </div>
 <ul>
-<li>The adjusted <span class="math inline">\(R^2\)</span> is higher for the MLR model…</li>
-<li>Interpretation of <span class="math inline">\(R^2\)</span> is the same as for simple linear regression: how much of the variation in the response variable is explained by the model</li>
+<li>The adjusted <span class="math inline">R^2</span> is higher for the MLR model…</li>
+<li>Interpretation of <span class="math inline">R^2</span> is the same as for simple linear regression: how much of the variation in the response variable is explained by the model</li>
 <li><strong>Are all the variables/predictors needed?</strong> (next week)</li>
 </ul>
 </section></section>
@@ -1474,7 +1490,7 @@ $$</code></pre>
 <li>We fit a simple linear model to represent a linear relationship between two variables
 <ul>
 <li>used method of least squares to find the best fitting line</li>
-<li>model equation; <span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \epsilon_i\)</span></li>
+<li>model equation; <span class="math inline">Y_i = \beta_0 + \beta_1 x_i + \epsilon_i</span></li>
 </ul></li>
 </ul>
 </div>
@@ -1483,7 +1499,7 @@ $$</code></pre>
 <li>Multiple linear regression
 <ul>
 <li>Do more predictors improve model fit?</li>
-<li><span class="math inline">\(Y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k + \epsilon\)</span></li>
+<li><span class="math inline">Y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k + \epsilon</span></li>
 </ul></li>
 </ul>
 </div>
@@ -1532,7 +1548,6 @@ $$</code></pre>
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1700,27 +1715,9 @@ $$</code></pre>
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

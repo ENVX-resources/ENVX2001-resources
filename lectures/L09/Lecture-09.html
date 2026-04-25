@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -310,11 +326,11 @@ Multiple R-squared:  0.6644,    Adjusted R-squared:  0.655
 F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p><span class="math display">\[\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}=-0.262 + 0.0492 \cdot Temp + 0.00252 \cdot Solar.R - 0.0616 \cdot Wind</span></p>
 </section>
 <section id="predictions-by-hand" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Predictions by hand</h2>
-<p><span class="math display">\[ \widehat{log(Ozone)}=-0.262 + \color{darkorchid}{0.0492} \cdot Temp + \color{darkorange}{0.00252} \cdot Solar.R - \color{seagreen}{0.0616} \cdot Wind \]</span></p>
+<p><span class="math display"> \widehat{log(Ozone)}=-0.262 + \color{darkorchid}{0.0492} \cdot Temp + \color{darkorange}{0.00252} \cdot Solar.R - \color{seagreen}{0.0616} \cdot Wind </span></p>
 <p>On a certain day, we measured (<em>in imperial units</em>):</p>
 <ul>
 <li><span style="color: darkorchid">temperature <code>Temp</code> to be 80 degrees Fahrenheit</span></li>
@@ -322,7 +338,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><span style="color: seagreen">wind speed <code>Wind</code> to be 10.9 miles per hour</span></li>
 </ul>
 <p><strong>What is the predicted ozone level?</strong></p>
-<p><span class="math display">\[\widehat{log(Ozone)}= -0.262 + \color{darkorchid}{0.0492 \cdot 80} + \color{darkorange}{0.00252 \cdot 145} - \color{seagreen}{0.0616 \cdot 10.9}\]</span></p>
+<p><span class="math display">\widehat{log(Ozone)}= -0.262 + \color{darkorchid}{0.0492 \cdot 80} + \color{darkorange}{0.00252 \cdot 145} - \color{seagreen}{0.0616 \cdot 10.9}</span></p>
 <p>Easy! The two things we need to think about are…</p>
 <ul>
 <li><strong>What is the uncertainty in this prediction?</strong></li>
@@ -337,38 +353,38 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </ul>
 <h3 id="what-it-means">What it means</h3>
 <blockquote>
-<p><strong>95% confidence interval</strong>: Given the parameters of the model, we are 95% confident that the <em>mean</em> response at a given predictor value is between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+<p><strong>95% confidence interval</strong>: Given the parameters of the model, we are 95% confident that the <em>mean</em> response at a given predictor value is between <span class="math inline">y_1</span> and <span class="math inline">y_2</span>.</p>
 </blockquote>
 <blockquote>
-<p><strong>95% prediction interval</strong>: Given the parameters of the model, we are 95% confident that a <em>single</em> response at a given predictor value is between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+<p><strong>95% prediction interval</strong>: Given the parameters of the model, we are 95% confident that a <em>single</em> response at a given predictor value is between <span class="math inline">y_1</span> and <span class="math inline">y_2</span>.</p>
 </blockquote>
 </section>
 <section id="equations" class="slide level2">
 <h2>Equations</h2>
 <p>The equation to calculate any prediction interval is:</p>
-<p><span class="math display">\[ \widehat{y} \pm t_{\alpha/2} \cdot se(\widehat{y}) \]</span></p>
+<p><span class="math display"> \widehat{y} \pm t_{\alpha/2} \cdot se(\widehat{y}) </span></p>
 <p>where:</p>
 <ul>
-<li><span class="math inline">\(\widehat{y}\)</span> is the predicted value</li>
-<li><span class="math inline">\(t_{\alpha/2}\)</span> is the critical value of the t-distribution for a given confidence level</li>
-<li><span class="math inline">\(se(\widehat{y})\)</span> is the standard error of the prediction</li>
+<li><span class="math inline">\widehat{y}</span> is the predicted value</li>
+<li><span class="math inline">t_{\alpha/2}</span> is the critical value of the t-distribution for a given confidence level</li>
+<li><span class="math inline">se(\widehat{y})</span> is the standard error of the prediction</li>
 </ul>
 <p>The difference in calculating a confidence interval and a prediction interval is in the standard error of the prediction.</p>
 </section>
 <section id="equations-1" class="slide level2">
 <h2>Equations</h2>
 <h3 id="ci-standard-error-of-the-fit">CI: standard error of the fit</h3>
-<p><span class="math display">\[ se(\widehat{y}) = \sqrt{MSE \cdot \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)} \]</span></p>
+<p><span class="math display"> se(\widehat{y}) = \sqrt{MSE \cdot \left( \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)} </span></p>
 <h3 id="pi-standard-error-of-the-prediction">PI: standard error of the prediction</h3>
-<p><span class="math display">\[ se(\widehat{y}) = \sqrt{MSE \cdot \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)}\]</span></p>
+<p><span class="math display"> se(\widehat{y}) = \sqrt{MSE \cdot \left( 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \right)}</span></p>
 <ul>
-<li><span class="math inline">\(x_0\)</span> is value of the predictor for which we want a response</li>
-<li><span class="math inline">\(MSE\)</span> is the mean squared error of the fit (<span class="math inline">\(SS_{xx}\)</span>)</li>
-<li><span class="math inline">\(\sum_{i=1}^n (x_i - \bar{x})^2\)</span> is the sum of squares of the predictor values</li>
-<li><span class="math inline">\(n\)</span> is the number of observations</li>
-<li><span class="math inline">\(\bar{x}\)</span> is the mean of the predictor values</li>
+<li><span class="math inline">x_0</span> is value of the predictor for which we want a response</li>
+<li><span class="math inline">MSE</span> is the mean squared error of the fit (<span class="math inline">SS_{xx}</span>)</li>
+<li><span class="math inline">\sum_{i=1}^n (x_i - \bar{x})^2</span> is the sum of squares of the predictor values</li>
+<li><span class="math inline">n</span> is the number of observations</li>
+<li><span class="math inline">\bar{x}</span> is the mean of the predictor values</li>
 </ul>
-<p>The prediction interval formula has an additional term (<span class="math inline">\(1 \cdot MSE\)</span>). There is uncertainty that the <em>mean</em> prediction will be similar to the observed, and additional uncertainty/variability for a <em>single</em> response (equivalent to the MSE). <strong>Thus the confidence interval is always narrower than the prediction interval.</strong></p>
+<p>The prediction interval formula has an additional term (<span class="math inline">1 \cdot MSE</span>). There is uncertainty that the <em>mean</em> prediction will be similar to the observed, and additional uncertainty/variability for a <em>single</em> response (equivalent to the MSE). <strong>Thus the confidence interval is always narrower than the prediction interval.</strong></p>
 </section>
 <section id="predictions-in-r" class="slide level2">
 <h2>Predictions in R</h2>
@@ -560,7 +576,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Dataset (train)</p>
 </div>
 </div>
-<p><span class="math inline">\(+\)</span></p>
+<p><span class="math inline">+</span></p>
 <div class="split-col">
 <div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 200px; height: 50px;">
 
@@ -943,7 +959,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="visually" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Visually</h2>
 <ul>
-<li><strong>Plot</strong>: observed (<span class="math inline">\(y_i\)</span>) vs predicted (<span class="math inline">\(\hat y\)</span>) values</li>
+<li><strong>Plot</strong>: observed (<span class="math inline">y_i</span>) vs predicted (<span class="math inline">\hat y</span>) values</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb14-1" class="hljs-ln-code"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> airquality, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(Ozone), <span class="at">y =</span> pred)) <span class="sc">+</span></span>
@@ -966,14 +982,14 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li>Can be positive or negative to indicate over- or under-estimation (a measure of bias)</li>
 </ul>
-<p><span class="math display">\[ME = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><span class="math display">ME = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i</span> (in <span class="math inline">y</span> units)</p>
 <p>The smaller the error, the better the model.</p>
 </section>
 <section id="mean-absolute-error" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Mean Absolute Error</h2>
 <p><br></p>
 <p><strong>Mean absolute error</strong>: the average (absolute) difference between observed and predicted values (residual).</p>
-<p><span class="math display">\[MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><span class="math display">MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|</span> (in <span class="math inline">y</span> units)</p>
 <p><br></p>
 <p>The smaller the error, the better the model.</p>
 </section>
@@ -985,7 +1001,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Squared so positive and negative errors do not cancel each other out</li>
 <li>Penalises poor predictions more</li>
 </ul>
-<p><span class="math display">\[MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]</span></p>
+<p><span class="math display">MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2</span></p>
 <p><br></p>
 <p>The smaller the error, the better the model.</p>
 </section>
@@ -996,7 +1012,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <ul>
 <li>Squaring the error penalises poor predictions more</li>
 </ul>
-<p><span class="math display">\[RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><span class="math display">RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}</span> (in <span class="math inline">y</span> units)</p>
 <p><br></p>
 <p>The smaller the error, the better the model.</p>
 </section>
@@ -1008,7 +1024,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>A measure of the strength and direction of a linear relationship between two variables.</li>
 <li>Ranges from -1 to 1, with 0 indicating no relationship and 1 indicating a perfect positive linear relationship.</li>
 </ul>
-<p><span class="math display">\[r = \frac{\sum_{i=1}^{n} (y_i - \bar{y})(\hat{y}_i - \bar{\hat{y}})}{\sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2 \sum_{i=1}^{n} (\hat{y}_i - \bar{\hat{y}})^2}}\]</span></p>
+<p><span class="math display">r = \frac{\sum_{i=1}^{n} (y_i - \bar{y})(\hat{y}_i - \bar{\hat{y}})}{\sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2 \sum_{i=1}^{n} (\hat{y}_i - \bar{\hat{y}})^2}}</span></p>
 </section>
 <section id="linearity-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Linearity</h2>
@@ -1019,21 +1035,21 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>When two variables are compared (e.g.&nbsp;observed vs predicted) it is the same as correlation squared.</li>
 <li>A value of 1 indicates a perfect linear relationship.</li>
 </ul>
-<p><span class="math display">\[R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
+<p><span class="math display">R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}</span></p>
 </section>
 <section id="linearity-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Linearity</h2>
 <p>The more linear the relationship between observed and predicted values, the better the model.</p>
-<p><strong>Lin’s concordance correlation coefficient (<span class="math inline">\(\rho_c\)</span>)</strong>:</p>
+<p><strong>Lin’s concordance correlation coefficient (<span class="math inline">\rho_c</span>)</strong>:</p>
 <ul>
 <li>A measure of agreement between two variables (based on covariance, variances, and difference in means).</li>
 <li>How well the points fit the 1:1 line.</li>
 <li>A value of 0 indicates no agreement and 1 indicating perfect agreement.</li>
 </ul>
-<p><span class="math display">\[LCCC = \frac{2\text{Cov}(X,Y)}{\text{Var}(X) + \text{Var}(Y) + (\mu_X - \mu_Y)^2}\]</span></p>
+<p><span class="math display">LCCC = \frac{2\text{Cov}(X,Y)}{\text{Var}(X) + \text{Var}(Y) + (\mu_X - \mu_Y)^2}</span></p>
 </section>
 <section id="lccc-vs-r-and-r2" class="slide level2">
-<h2>LCCC vs <span class="math inline">\(r\)</span> and R<sup>2</sup></h2>
+<h2>LCCC vs <span class="math inline">r</span> and R<sup>2</sup></h2>
 <p>LCCC combines error and linearity so it better measures the fit to the 1:1 line.</p>
 <div class="cell">
 <details class="code-fold">
@@ -1731,7 +1747,6 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1899,27 +1914,9 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

@@ -96,6 +96,22 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-680fda4a82d3ddbb801858fd34fe5c9f.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -217,7 +233,7 @@ Januar Harianto
 <h2>Key concepts we covered</h2>
 <ul class="task-list">
 <li><label><input type="checkbox"><strong>Population vs.&nbsp;sample</strong>: the complete set vs.&nbsp;the subset we measure</label></li>
-<li><label><input type="checkbox"><strong>Parameters</strong> (<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>) vs.&nbsp;<strong>statistics</strong> (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>)</label></li>
+<li><label><input type="checkbox"><strong>Parameters</strong> (<span class="math inline">\mu</span>, <span class="math inline">\sigma</span>) vs.&nbsp;<strong>statistics</strong> (<span class="math inline">\bar{x}</span>, <span class="math inline">s</span>)</label></li>
 <li><label><input type="checkbox"><strong>Central tendency and spread</strong>: mean, variance, standard deviation</label></li>
 <li><label><input type="checkbox"><strong>Standard error</strong>: how precisely we estimate the mean (decreases with larger samples)</label></li>
 <li><label><input type="checkbox"><strong>Confidence intervals</strong>: we will build on last week’s introduction today</label></li>
@@ -399,18 +415,18 @@ Januar Harianto
 <h2>Calculating confidence intervals</h2>
 <h3 id="the-three-ingredients-formally">The three ingredients, formally</h3>
 <ol type="1">
-<li><p><span style="color: #e64626;"><strong>Sample mean</strong> (<span class="math inline">\(\bar{x}\)</span>)</span>: our estimate of the population parameter</p></li>
-<li><p><span style="color: #e64626;"><strong>Standard error of the mean</strong> (<span class="math inline">\(SE_{\bar{x}} = s / \sqrt{n}\)</span>)</span>: how precise that estimate is</p></li>
-<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">\(t_{n-1}\)</span>)</span>: from the <em>t</em>-distribution at our chosen confidence level (e.g.&nbsp;95%). We use <em>t</em> rather than the normal distribution because we estimate <span class="math inline">\(\sigma\)</span> from the sample.</p></li>
+<li><p><span style="color: #e64626;"><strong>Sample mean</strong> (<span class="math inline">\bar{x}</span>)</span>: our estimate of the population parameter</p></li>
+<li><p><span style="color: #e64626;"><strong>Standard error of the mean</strong> (<span class="math inline">SE_{\bar{x}} = s / \sqrt{n}</span>)</span>: how precise that estimate is</p></li>
+<li><p><span style="color: #e64626;"><strong>Critical value</strong> (<span class="math inline">t_{n-1}</span>)</span>: from the <em>t</em>-distribution at our chosen confidence level (e.g.&nbsp;95%). We use <em>t</em> rather than the normal distribution because we estimate <span class="math inline">\sigma</span> from the sample.</p></li>
 </ol>
 </section>
 <section id="ci-formula" class="slide level2">
 <h2>CI formula</h2>
 <p>These three ingredients combine into:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \bar{x} \pm \left(t_{n-1} \times \frac{s}{\sqrt{n}}\right)
-\]</span></p>
-<p>The <span class="math inline">\(t_{n-1} \times SE_{\bar{x}}\)</span> part is the <strong>margin of error</strong>, the “plus or minus” value you often see in survey results (±3%).</p>
+</span></p>
+<p>The <span class="math inline">t_{n-1} \times SE_{\bar{x}}</span> part is the <strong>margin of error</strong>, the “plus or minus” value you often see in survey results (±3%).</p>
 <div class="fragment">
 <p>To use this formula, we need to understand two things: <strong>degrees of freedom</strong> and the <strong><em>t</em>-distribution</strong>.</p>
 </div>
@@ -418,17 +434,17 @@ Januar Harianto
 <section id="degrees-of-freedom" class="slide level2">
 <h2>Degrees of freedom</h2>
 <p>The farmer estimated one thing from their sample: the mean. That uses up one <strong>degree of freedom</strong>:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \text{df} = n - 1
-\]</span></p>
-<p>For the farmer: <span class="math inline">\(df = 7 - 1 = 6\)</span>. This number determines which <em>t</em>-distribution we use, and therefore how wide the CI is.</p>
+</span></p>
+<p>For the farmer: <span class="math inline">df = 7 - 1 = 6</span>. This number determines which <em>t</em>-distribution we use, and therefore how wide the CI is.</p>
 <div class="fragment">
-<h3 id="why-n---1">Why <span class="math inline">\(n - 1\)</span>?</h3>
+<h3 id="why-n---1">Why <span class="math inline">n - 1</span>?</h3>
 <p>Imagine you have 4 numbers with a mean of 5:</p>
 <ul>
 <li>You can freely choose the first three numbers: 3, 10, and 7</li>
-<li>But the fourth number MUST be 0 to make the mean equal 5: <span class="math inline">\((3 + 10 + 7 + 0) \div 4 = 5\)</span></li>
-<li>So only 3 numbers (<span class="math inline">\(n - 1\)</span>) can be freely chosen = 3 degrees of freedom</li>
+<li>But the fourth number MUST be 0 to make the mean equal 5: <span class="math inline">(3 + 10 + 7 + 0) \div 4 = 5</span></li>
+<li>So only 3 numbers (<span class="math inline">n - 1</span>) can be freely chosen = 3 degrees of freedom</li>
 </ul>
 </div>
 </section>
@@ -437,14 +453,14 @@ Januar Harianto
 <p>The farmer only has 7 samples, so they do not know the true population standard deviation. They have to estimate it from the sample, and that adds uncertainty.</p>
 <p>The <em>t</em>-distribution accounts for this extra uncertainty. It has <strong>heavier tails</strong> than the normal, meaning more probability in the extremes.</p>
 <ul>
-<li class="fragment">The farmer’s <span class="math inline">\(df = 6\)</span> gives a critical value of <strong>2.447</strong> (compared to 1.96 from the normal)</li>
+<li class="fragment">The farmer’s <span class="math inline">df = 6</span> gives a critical value of <strong>2.447</strong> (compared to 1.96 from the normal)</li>
 <li class="fragment">This makes the CI wider, which is more honest about how uncertain a small sample really is</li>
-<li class="fragment">With larger samples, the <em>t</em> and normal distributions converge, and the difference stops mattering around <span class="math inline">\(n = 30\)</span></li>
+<li class="fragment">With larger samples, the <em>t</em> and normal distributions converge, and the difference stops mattering around <span class="math inline">n = 30</span></li>
 </ul>
 </section>
 <section id="the-t-distribution-in-action" class="slide level2">
 <h2>The <em>t</em>-distribution in action</h2>
-<p>The solid curve is the <em>t</em>-distribution; the dashed curve is the normal. At <span class="math inline">\(df = 6\)</span> (the farmer’s case), the tails are noticeably heavier. As <span class="math inline">\(df\)</span> increases, the two curves converge.</p>
+<p>The solid curve is the <em>t</em>-distribution; the dashed curve is the normal. At <span class="math inline">df = 6</span> (the farmer’s case), the tails are noticeably heavier. As <span class="math inline">df</span> increases, the two curves converge.</p>
 
 <img data-src="images/t-distribution.gif" class="quarto-figure quarto-figure-center r-stretch"><div class="cell">
 <details class="code-fold">
@@ -482,16 +498,16 @@ Januar Harianto
 </section>
 <section id="step-by-step-calculation" class="slide level2">
 <h2>Step-by-step calculation</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \bar{x} \pm \left(t_{n-1} \times \frac{s}{\sqrt{n}}\right)
-\]</span></p>
+</span></p>
 <ol type="1">
-<li class="fragment">Calculate the sample mean, <span class="math inline">\(\bar{x}\)</span></li>
-<li class="fragment">Calculate the sample standard deviation, <span class="math inline">\(s\)</span></li>
-<li class="fragment">Determine the standard error of the mean, <span class="math inline">\(SE_{\bar{x}} = \frac{s}{\sqrt{n}}\)</span></li>
-<li class="fragment">Look up the <em>t</em>-critical value, <span class="math inline">\(t_{n-1}\)</span>, for 95% confidence and <span class="math inline">\(n - 1\)</span> degrees of freedom</li>
-<li class="fragment">Compute the margin of error: <span class="math inline">\(\text{ME} = t_{n-1} \times SE_{\bar{x}}\)</span></li>
-<li class="fragment">The 95% CI is: <span class="math inline">\(\bar{x} \pm \text{ME}\)</span></li>
+<li class="fragment">Calculate the sample mean, <span class="math inline">\bar{x}</span></li>
+<li class="fragment">Calculate the sample standard deviation, <span class="math inline">s</span></li>
+<li class="fragment">Determine the standard error of the mean, <span class="math inline">SE_{\bar{x}} = \frac{s}{\sqrt{n}}</span></li>
+<li class="fragment">Look up the <em>t</em>-critical value, <span class="math inline">t_{n-1}</span>, for 95% confidence and <span class="math inline">n - 1</span> degrees of freedom</li>
+<li class="fragment">Compute the margin of error: <span class="math inline">\text{ME} = t_{n-1} \times SE_{\bar{x}}</span></li>
+<li class="fragment">The 95% CI is: <span class="math inline">\bar{x} \pm \text{ME}</span></li>
 </ol>
 <div class="fragment">
 <p><strong>You need to be able to calculate this by hand or with a calculator.</strong></p>
@@ -541,10 +557,10 @@ Januar Harianto
 <h2>The farmer’s 95% confidence interval</h2>
 <p>Applying the CI formula to the farmer’s data:</p>
 <ol type="1">
-<li class="fragment">Mean: <span class="math inline">\(\bar{x} \approx 67.3\)</span> t/ha</li>
-<li class="fragment">Standard error: <span class="math inline">\(SE = s / \sqrt{n} \approx 7.12\)</span> t/ha</li>
-<li class="fragment"><em>t</em>-critical value (df = 6): <span class="math inline">\(t_{0.975,6} \approx 2.447\)</span></li>
-<li class="fragment">95% CI: <span class="math inline">\(67.3 \pm (2.447 \times 7.12) = (49.87,\ 84.73)\)</span> t/ha</li>
+<li class="fragment">Mean: <span class="math inline">\bar{x} \approx 67.3</span> t/ha</li>
+<li class="fragment">Standard error: <span class="math inline">SE = s / \sqrt{n} \approx 7.12</span> t/ha</li>
+<li class="fragment"><em>t</em>-critical value (df = 6): <span class="math inline">t_{0.975,6} \approx 2.447</span></li>
+<li class="fragment">95% CI: <span class="math inline">67.3 \pm (2.447 \times 7.12) = (49.87,\ 84.73)</span> t/ha</li>
 </ol>
 <div class="fragment">
 <p>We report: <strong>67.3 t/ha with a 95% CI of (49.87, 84.73).</strong></p>
@@ -631,7 +647,6 @@ Januar Harianto
   <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -799,27 +814,9 @@ Januar Harianto
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom

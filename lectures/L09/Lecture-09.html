@@ -206,6 +206,46 @@ Liana Pozza
 
   <p class="date">Apr 2026</p>
 </section>
+<section class="slide level2">
+
+<style>
+/* L09 split-bar visuals: bar + label coupled in a column so labels never drift */
+.split-frame { margin: 1em 0; }
+.split-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 5px;
+  min-height: 90px;            /* uniform column height keeps bar y-positions stable across slides */
+}
+.split-label { display: block; margin-top: 8px; font-size: 14pt; font-weight: 600; }
+
+/* L09 k-fold variant: bars stay centred on slide; iteration labels are absolutely positioned to the left of each row, so v3→v4 doesn't shift the bars */
+.fold-stack {
+  width: max-content;
+  margin: 1em auto;
+  min-height: 110px;             /* fixed height so v3's single row sits at the same y as v4's top row */
+}
+.fold-row, .fold-foot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  min-height: 28px;             /* prevents collapse when a row has only an absolutely-positioned label (e.g. "And so on...") */
+}
+.fold-label {
+  position: absolute;
+  right: calc(100% + 12px);
+  white-space: nowrap;
+  font-size: 18pt;
+  color: #000;
+}
+.fold-bars { display: flex; width: 500px; font-size: 18pt; color: #000; }
+.fold-bars > .fold-cell { flex: 1; text-align: center; }
+</style>
+</section>
 <section id="predictive-modelling" class="title-slide slide level1 center">
 <h1>Predictive modelling</h1>
 <blockquote>
@@ -498,32 +538,44 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="our-data" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Our data</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 10px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px;">
 
 </div>
+<div class="split-label" style="color: #2D708EFF;" data-id="text1">
+<p>Dataset</p>
 </div>
-<p><span class="absolute" style="color: #2D708EFF;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+</div>
+</div>
 </section>
 <section id="collecting-new-data" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Collecting new data</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 10px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px;">
 
 </div>
-<p><span class="absolute" style="color: #2D708EFF;top: 130px; left: 155px; " data-id="text1">Dataset (train)</span></p>
+<div class="split-label" style="color: #2D708EFF;" data-id="text1">
+<p>Dataset (train)</p>
+</div>
+</div>
 <p><span class="math inline">\(+\)</span></p>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 200px; height: 50px; margin: 10px;">
+<div class="split-col">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 200px; height: 50px;">
 
 </div>
+<div class="split-label" style="color: #3fb618;">
+<p>New dataset (test)</p>
 </div>
-<p><span class="absolute" style="color: #95D840FF;top: 130px; left: 700px; ">New dataset (test)</span></p>
+</div>
+</div>
 <p><br></p>
 <ul>
 <li>The best way to assess how well a model predicts new data is to collect new data.
 <ul>
 <li><span style="color: #2D708EFF"><strong>Training set</strong></span>: used to fit the model.</li>
-<li><span style="color: #95D840FF"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
+<li><span style="color: #3fb618"><strong>Test set</strong></span>: used to assess how well the model predicts new data.</li>
 </ul></li>
 </ul>
 </section>
@@ -542,43 +594,63 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="data-splitting" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title">Data splitting</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 500px; height: 50px; margin: 0px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 500px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 0px; height: 50px; margin: 0px;">
+<div class="split-label" style="color: #2780e3;" data-id="text1">
+<p>Dataset</p>
+</div>
+</div>
+<div class="split-col">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 0px; height: 50px;">
 
 </div>
 </div>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
+</div>
 </section>
 <section id="data-splitting-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title">Data splitting</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+<div class="split-label" style="color: #2780e3;" data-id="text1">
+<p>Dataset (Training)</p>
+</div>
+</div>
+<div class="split-col">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px;">
 
 </div>
+<div class="split-label" style="color: #3fb618;">
+<p>Subset (Test)</p>
 </div>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
-<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+</div>
+</div>
 </section>
 <section id="data-splitting-2" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Data splitting</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+<div class="split-label" style="color: #2780e3;" data-id="text1">
+<p>Dataset (Training)</p>
+</div>
+</div>
+<div class="split-col">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px;">
 
 </div>
+<div class="split-label" style="color: #3fb618;">
+<p>Subset (Test)</p>
 </div>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
-<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+</div>
+</div>
 <p><br></p>
 <ul>
 <li>Split the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)
@@ -590,17 +662,32 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="data-splitting-3" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Data splitting</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 400px; height: 50px; margin: 0px;">
+<div class="r-hstack split-frame">
+<div class="split-col">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 350px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #3fb618; width: 100px; height: 50px; margin: 0px;">
+<div class="split-label" style="color: #2D708EFF;" data-id="text1">
+<p>Calibration</p>
+</div>
+</div>
+<div class="split-col">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 75px; height: 50px;">
 
 </div>
+<div class="split-label" style="color: #95D840FF;">
+<p>Validation</p>
 </div>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
-<p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
+</div>
+<div class="split-col">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #D84095; width: 75px; height: 50px;">
+
+</div>
+<div class="split-label" style="color: #D84095;">
+<p>Test</p>
+</div>
+</div>
+</div>
 <p><br></p>
 <ul>
 <li>Only possible for larger datasets (hundreds of observations)</li>
@@ -626,129 +713,188 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="k-fold-cross-validation" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
-<!-- Single dataset -->
+<!-- Single dataset: same widths as v2 but all blue, so v1→v2 is a pure colour change on box2 -->
+<div class="fold-stack">
+<div class="fold-row">
 <div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 500px; height: 50px; margin: 0px;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 0px; height: 50px; margin: 0px;">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #2D708EFF; width: 167px; height: 50px;">
 
 </div>
-<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 50px; margin: 0px;">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 50px;">
 
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="k-fold-cross-validation-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
-<!-- Cross-validated dataset (random split) -->
+<!-- Cross-validated dataset: literal 3-fold, fold 1 as test -->
+<div class="fold-stack">
+<div class="fold-row">
 <div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 50px; margin: 0px;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 50px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 50px; margin: 0px;">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 50px;">
 
 </div>
-<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 50px; margin: 0px;">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 50px;">
 
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="k-fold-cross-validation-2" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
-<!-- Make bars smaller -->
+<!-- Make bars smaller; same 3-fold structure. Wrapped in .fold-stack > .fold-row to match v4's structure so auto-animate matches cleanly. -->
+<div class="fold-stack">
+<div class="fold-row">
 <div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 20px;">
 
 </div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 20px;">
 
 </div>
-<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 20px;">
 
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="k-fold-cross-validation-3" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-id="quarto-animate-title"><em>k</em>-fold cross-validation</h2>
 <!-- Add iterations -->
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
-
-</div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
-
-</div>
-<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
-
-</div>
+<div class="fold-stack">
+<div class="fold-row">
+<div class="fold-label" data-id="text1">
+<p>Iteration 1</p>
 </div>
 <div class="r-hstack">
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 20px;">
 
 </div>
+</div>
+</div>
+<div class="fold-row">
+<div class="fold-label" data-id="text2">
+<p>Iteration 2</p>
 </div>
 <div class="r-hstack">
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 250px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 167px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 166px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 150px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 167px; height: 20px;">
 
 </div>
 </div>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 55px; right: 790px; " data-id="text1">Iteration 1</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 75px; right: 790px; " data-id="text2">Iteration 2</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 95px; right: 790px; " data-id="text3">Iteration 3</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 115px; right: 790px; " data-id="text4">And so on…</span></p>
+</div>
+<div class="fold-row">
+<div class="fold-label" data-id="text3">
+<p>Iteration 3</p>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 20px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 20px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 20px;">
+
+</div>
+</div>
+</div>
+<div class="fold-row">
+<div class="fold-label" data-id="text4">
+<p>And so on…</p>
+</div>
+</div>
+</div>
 </section>
 <section id="k-fold-cross-validation-4" class="slide level2">
 <h2><em>k</em>-fold cross-validation</h2>
-<div class="r-hstack">
-<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
-
-</div>
-<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
-
-</div>
-<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
-
-</div>
+<div class="fold-stack">
+<div class="fold-row">
+<div class="fold-label" data-id="text1">
+<p>Iteration 1</p>
 </div>
 <div class="r-hstack">
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+<div data-id="box2" data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 300px; height: 20px; margin: 0px;">
+<div data-id="box3" data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 20px;">
 
 </div>
+</div>
+</div>
+<div class="fold-row">
+<div class="fold-label" data-id="text2">
+<p>Iteration 2</p>
 </div>
 <div class="r-hstack">
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 250px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 167px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #95D840FF; width: 100px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 166px; height: 20px;">
 
 </div>
-<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 150px; height: 20px; margin: 0px;">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 167px; height: 20px;">
 
 </div>
 </div>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 55px; right: 790px; " data-id="text1">Iteration 1</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 75px; right: 790px; " data-id="text2">Iteration 2</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 95px; right: 790px; " data-id="text3">Iteration 3</span></p>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 790px; " data-id="text4">3-fold cross-validation</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 660px; ">Fold 1</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 494px; ">Fold 2</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 328px; ">Fold 3</span></p>
+</div>
+<div class="fold-row">
+<div class="fold-label" data-id="text3">
+<p>Iteration 3</p>
+</div>
+<div class="r-hstack">
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 333px; height: 20px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #95D840FF; width: 167px; height: 20px;">
+
+</div>
+<div data-auto-animate-delay="0" style="background: #2D708EFF; width: 0px; height: 20px;">
+
+</div>
+</div>
+</div>
+<div class="fold-foot">
+<div class="fold-label" data-id="text4">
+<p>3-fold cross-validation</p>
+</div>
+<div class="fold-bars">
+<div class="fold-cell">
+<p>Fold 1</p>
+</div>
+<div class="fold-cell">
+<p>Fold 2</p>
+</div>
+<div class="fold-cell">
+<p>Fold 3</p>
+</div>
+</div>
+</div>
+</div>
 <p><br></p>
 <ul>
 <li>Like data splitting, where existing data is split into two parts:

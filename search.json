@@ -536,14 +536,14 @@
     "href": "lectures/L09/Lecture-09.html#our-data",
     "title": "Regression: predictive modelling",
     "section": "Our data",
-    "text": "Our data\n\n\n\n\n\nDataset"
+    "text": "Our data\n\n\n\n\n\n\nDataset"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#collecting-new-data",
     "href": "lectures/L09/Lecture-09.html#collecting-new-data",
     "title": "Regression: predictive modelling",
     "section": "Collecting new data",
-    "text": "Collecting new data\n\n\n\n\nDataset (train)\n\\(+\\)\n\n\n\n\nNew dataset (test)\n\n\nThe best way to assess how well a model predicts new data is to collect new data.\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
+    "text": "Collecting new data\n\n\n\n\n\n\nDataset (train)\n\n\n\\(+\\)\n\n\n\n\n\nNew dataset (test)\n\n\n\n\n\nThe best way to assess how well a model predicts new data is to collect new data.\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#collecting-new-data-1",
@@ -557,28 +557,28 @@
     "href": "lectures/L09/Lecture-09.html#data-splitting",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset"
+    "text": "Data splitting\n\n\n\n\n\n\nDataset"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-1",
     "href": "lectures/L09/Lecture-09.html#data-splitting-1",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)"
+    "text": "Data splitting\n\n\n\n\n\n\nDataset (Training)\n\n\n\n\n\n\n\nSubset (Test)"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-2",
     "href": "lectures/L09/Lecture-09.html#data-splitting-2",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)\n\n\nSplit the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
+    "text": "Data splitting\n\n\n\n\n\n\nDataset (Training)\n\n\n\n\n\n\n\nSubset (Test)\n\n\n\n\n\nSplit the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-3",
     "href": "lectures/L09/Lecture-09.html#data-splitting-3",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)\n\n\nOnly possible for larger datasets (hundreds of observations)\nSplit the existing dataset into calibration, validation and test datasets (70:15:15, etc.)\n\nCalibration set: used to fit the model.\nValidation set: used to test model development (prevent overfitting).\nTest set: used to assess how well the model predicts new data."
+    "text": "Data splitting\n\n\n\n\n\n\nCalibration\n\n\n\n\n\n\n\nValidation\n\n\n\n\n\n\n\nTest\n\n\n\n\n\nOnly possible for larger datasets (hundreds of observations)\nSplit the existing dataset into calibration, validation and test datasets (70:15:15, etc.)\n\nCalibration set: used to fit the model.\nValidation set: used to test model development (prevent overfitting).\nTest set: used to assess how well the model predicts new data."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-4",
@@ -613,14 +613,14 @@
     "href": "lectures/L09/Lecture-09.html#k-fold-cross-validation-3",
     "title": "Regression: predictive modelling",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 1\nIteration 2\nIteration 3\nAnd so on…"
+    "text": "k-fold cross-validation\n\n\n\n\nIteration 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnd so on…"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#k-fold-cross-validation-4",
     "href": "lectures/L09/Lecture-09.html#k-fold-cross-validation-4",
     "title": "Regression: predictive modelling",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 1\nIteration 2\nIteration 3\n3-fold cross-validation Fold 1 Fold 2 Fold 3\n\n\nLike data splitting, where existing data is split into two parts:\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data.\n\nThe difference is that the splitting is done multiple times, and the model is fit and validated multiple times.\nEach iteration or fold is used for testing once."
+    "text": "k-fold cross-validation\n\n\n\nIteration 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3-fold cross-validation\n\n\n\nFold 1\n\n\nFold 2\n\n\nFold 3\n\n\n\n\n\n\nLike data splitting, where existing data is split into two parts:\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data.\n\nThe difference is that the splitting is done multiple times, and the model is fit and validated multiple times.\nEach iteration or fold is used for testing once."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#k-fold-cross-validation-5",

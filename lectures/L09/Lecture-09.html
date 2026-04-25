@@ -342,6 +342,9 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>We use the <code>predict()</code> function to obtain the predicted value.</li>
 <li>Specifying <code>interval = "confidence"</code> or <code>interval = "prediction"</code> also calculates the confidence or prediction interval.</li>
 </ul>
+</section>
+<section id="predictions-in-r-1" class="slide level2">
+<h2>Predictions in R</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">predict</span>(fit, <span class="at">newdata =</span> predict_df) <span class="co"># the predicted value</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -560,7 +563,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
 <p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
 </section>
 <section id="data-splitting-2" class="slide level2" data-auto-animate="true">
@@ -574,7 +577,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
 <p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
 <p><br></p>
 <ul>
@@ -596,7 +599,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <p><span class="absolute" style="color: #2780e3;top: 130px; left: 275px; " data-id="text1">Dataset</span></p>
-<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">(Training)</span></p>
+<p><span class="absolute" style="color: #2780e3;top: 130px; left: 368px; " data-id="text2">&nbsp; (Training)</span></p>
 <p><span class="absolute" style="color: #3fb618;top: 130px; left: 680px; ">Subset (Test)</span></p>
 <p><br></p>
 <ul>
@@ -742,7 +745,10 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 </div>
 </div>
-<p><span class="absolute" style="color: #000; font-size: 18pt;top: 55px; right: 790px; " data-id="text1">Iteration 1</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 75px; right: 790px; " data-id="text2">Iteration 2</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 95px; right: 790px; " data-id="text3">Iteration 3</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 790px; " data-id="text4">3-fold cross-validation</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 660px; ">Fold 1</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 494px; ">Fold 2</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 328px; ">Fold 3</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18pt;top: 55px; right: 790px; " data-id="text1">Iteration 1</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18pt;top: 75px; right: 790px; " data-id="text2">Iteration 2</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18pt;top: 95px; right: 790px; " data-id="text3">Iteration 3</span></p>
+<p><span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 790px; " data-id="text4">3-fold cross-validation</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 660px; ">Fold 1</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 494px; ">Fold 2</span> <span class="absolute" style="color: #000; font-size: 18pt;top: 120px; right: 328px; ">Fold 3</span></p>
 <p><br></p>
 <ul>
 <li>Like data splitting, where existing data is split into two parts:
@@ -807,27 +813,46 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>How <em>linear</em> the relationship is between observed and predicted values</li>
 </ul>
 </section>
-<section id="error" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Error</h2>
-<p>The smaller the error, the better the model.</p>
+<section id="mean-error" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Mean Error</h2>
+<p><br></p>
 <p><strong>Mean error</strong>: the average difference between observed and predicted values.</p>
 <ul>
 <li>Can be positive or negative to indicate over- or under-estimation (a measure of bias)</li>
 </ul>
 <p><span class="math display">\[ME = \frac{1}{n} \sum_{i=1}^{n} y_i - \hat{y}_i\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p>The smaller the error, the better the model.</p>
+</section>
+<section id="mean-absolute-error" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Mean Absolute Error</h2>
+<p><br></p>
 <p><strong>Mean absolute error</strong>: the average (absolute) difference between observed and predicted values (residual).</p>
 <p><span class="math display">\[MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><br></p>
+<p>The smaller the error, the better the model.</p>
+</section>
+<section id="mean-square-error" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Mean Square Error</h2>
+<p><br></p>
 <p><strong>Mean squared error</strong>: the average of the squared residuals</p>
 <ul>
 <li>Squared so positive and negative errors do not cancel each other out</li>
 <li>Penalises poor predictions more</li>
 </ul>
 <p><span class="math display">\[MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]</span></p>
+<p><br></p>
+<p>The smaller the error, the better the model.</p>
+</section>
+<section id="root-mean-squared-error" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Root Mean Squared Error</h2>
+<p><br></p>
 <p><strong>Root mean squared error</strong>: the standard deviation of the residuals</p>
 <ul>
 <li>Squaring the error penalises poor predictions more</li>
 </ul>
 <p><span class="math display">\[RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}\]</span> (in <span class="math inline">\(y\)</span> units)</p>
+<p><br></p>
+<p>The smaller the error, the better the model.</p>
 </section>
 <section id="linearity" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Linearity</h2>
@@ -838,13 +863,22 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li>Ranges from -1 to 1, with 0 indicating no relationship and 1 indicating a perfect positive linear relationship.</li>
 </ul>
 <p><span class="math display">\[r = \frac{\sum_{i=1}^{n} (y_i - \bar{y})(\hat{y}_i - \bar{\hat{y}})}{\sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2 \sum_{i=1}^{n} (\hat{y}_i - \bar{\hat{y}})^2}}\]</span></p>
+</section>
+<section id="linearity-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Linearity</h2>
+<p>The more linear the relationship between observed and predicted values, the better the model.</p>
 <p><strong>R<sup>2</sup></strong>:</p>
 <ul>
 <li>The proportion of variance explained by the variables in the model.</li>
 <li>When two variables are compared (e.g.&nbsp;observed vs predicted) it is the same as correlation squared.</li>
 <li>A value of 1 indicates a perfect linear relationship.</li>
 </ul>
-<p><span class="math display">\[R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span> <strong>Lin’s concordance correlation coefficient (<span class="math inline">\(\rho_c\)</span>)</strong>:</p>
+<p><span class="math display">\[R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}\]</span></p>
+</section>
+<section id="linearity-2" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Linearity</h2>
+<p>The more linear the relationship between observed and predicted values, the better the model.</p>
+<p><strong>Lin’s concordance correlation coefficient (<span class="math inline">\(\rho_c\)</span>)</strong>:</p>
 <ul>
 <li>A measure of agreement between two variables (based on covariance, variances, and difference in means).</li>
 <li>How well the points fit the 1:1 line.</li>
@@ -887,23 +921,14 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="limitations" class="slide level2">
 <h2>Limitations</h2>
-<p>No one metric is perfect.</p>
-<p>Each prediction below has an LCCC of 0.6.</p>
-<p><a href="https://www.sciencedirect.com/science/article/pii/S1574954124003625">Wadoux and Minasny 2024</a> <img data-src="images/LCCC.jpg"></p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>Use multiple metrics to test prediction quality, and always plot the predicted vs observed.</p>
-</div>
-</div>
-</div>
-</section></section>
+<p><br></p>
+<p>No one metric is perfect, so we must use multiple metrics to test prediction quality AND always plot predicted vs observed.</p>
+</section>
+<section id="limitations-1" class="slide level2">
+<h2>Limitations</h2>
+<p>e.g.&nbsp;in the following image from <a href="https://www.sciencedirect.com/science/article/pii/S1574954124003625">Wadoux and Minasny 2024</a>, each prediction below has an LCCC of 0.6.</p>
+
+<img data-src="images/LCCC.jpg" class="r-stretch"></section></section>
 <section>
 <section id="example-loyn-dataset" class="title-slide slide level1 center">
 <h1>Example: Loyn dataset</h1>
@@ -1098,7 +1123,10 @@ F-statistic: 13.17 on 6 and 38 DF,  p-value: 5.277e-08</code></pre>
 <section id="backwards-stepwise-selection" class="slide level2">
 <h2>Backwards stepwise selection</h2>
 <p>Use the <code>step()</code> function perform backwards stepwise selection. This function uses AIC to select the best model.</p>
-<p>Depending on the dataset splitting, the best model may be different each time we randomly sample the data. In this case we should all have the same results as we set the seed.</p>
+<p>Depending on the dataset splitting, the best model may be different each time we randomly sample the data. In this case we should all have the same results as we set the seed when subsetting.</p>
+</section>
+<section id="backwards-stepwise-selection-1" class="slide level2">
+<h2>Backwards stepwise selection</h2>
 <p>If we compare to the full model, the adjusted r-squared is slightly higher, and the AIC is lower.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>step_fit <span class="ot">&lt;-</span> <span class="fu">step</span>(full_fit, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1202,10 +1230,40 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <section id="assumptions---round-2" class="slide level2">
 <h2>Assumptions - Round 2</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>, <span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<section id="assumptions---round-2-1" class="slide level2">
+<h2>Assumptions - Round 2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<section id="assumptions---round-2-2" class="slide level2">
+<h2>Assumptions - Round 2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<section id="assumptions---round-2-3" class="slide level2">
+<h2>Assumptions - Round 2</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<section id="assumptions---round-2-using-plot-function" class="slide level2">
+<h2>Assumptions - Round 2 using <code>plot()</code> function</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb41-2"><a></a><span class="fu">plot</span>(step_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section></section>
 <section>
 <section id="model-validation" class="title-slide slide level1 center">
 <h1>Model validation</h1>
@@ -1216,16 +1274,16 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <p>Since the test data has not been transformed, we need to do that first.</p>
 <p>We then predict onto the training and test dataset using the reduced stepwise model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>loyn_test <span class="ot">&lt;-</span> loyn_test <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a></a>    <span class="fu">mutate</span>(</span>
-<span id="cb38-3"><a></a>        <span class="at">AREA_L10 =</span> <span class="fu">log10</span>(AREA),</span>
-<span id="cb38-4"><a></a>        <span class="at">LDIST_L10 =</span> <span class="fu">log10</span>(LDIST),</span>
-<span id="cb38-5"><a></a>        <span class="at">DIST_L10 =</span> <span class="fu">log10</span>(DIST)</span>
-<span id="cb38-6"><a></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb38-7"><a></a>    <span class="fu">select</span>(<span class="sc">-</span>AREA, <span class="sc">-</span>LDIST, <span class="sc">-</span>DIST)</span>
-<span id="cb38-8"><a></a></span>
-<span id="cb38-9"><a></a>loyn_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_train)</span>
-<span id="cb38-10"><a></a>loyn_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>loyn_test <span class="ot">&lt;-</span> loyn_test <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a></a>    <span class="fu">mutate</span>(</span>
+<span id="cb43-3"><a></a>        <span class="at">AREA_L10 =</span> <span class="fu">log10</span>(AREA),</span>
+<span id="cb43-4"><a></a>        <span class="at">LDIST_L10 =</span> <span class="fu">log10</span>(LDIST),</span>
+<span id="cb43-5"><a></a>        <span class="at">DIST_L10 =</span> <span class="fu">log10</span>(DIST)</span>
+<span id="cb43-6"><a></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-7"><a></a>    <span class="fu">select</span>(<span class="sc">-</span>AREA, <span class="sc">-</span>LDIST, <span class="sc">-</span>DIST)</span>
+<span id="cb43-8"><a></a></span>
+<span id="cb43-9"><a></a>loyn_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_train)</span>
+<span id="cb43-10"><a></a>loyn_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plotting-observed-vs-predicted" class="slide level2">
@@ -1233,59 +1291,142 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_train, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
-<span id="cb39-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb39-3"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb39-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
-<span id="cb39-5"><a></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
-<span id="cb39-6"><a></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb39-7"><a></a></span>
-<span id="cb39-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_test, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
-<span id="cb39-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb39-10"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb39-11"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
-<span id="cb39-12"><a></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
-<span id="cb39-13"><a></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb39-14"><a></a></span>
-<span id="cb39-15"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_train, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb44-2"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
+<span id="cb44-5"><a></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb44-7"><a></a></span>
+<span id="cb44-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(loyn_test, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb44-9"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-10"><a></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb44-11"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed ABUND"</span>, <span class="at">y =</span> <span class="st">"Predicted ABUND"</span>,</span>
+<span id="cb44-12"><a></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
+<span id="cb44-13"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb44-14"><a></a></span>
+<span id="cb44-15"><a></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<section id="training-dataset-confidence-interval" class="slide level2">
+<h2>Training dataset: Confidence Interval</h2>
+<p>For our trained model, we can plot the confidence interval to demonstrate the uncertainty in the mean response, with the model overlaid.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>train_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_train, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb45-2"><a></a></span>
+<span id="cb45-3"><a></a>p <span class="ot">&lt;-</span></span>
+<span id="cb45-4"><a></a>  <span class="fu">ggplot</span>(loyn_train, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb45-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb45-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb45-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb45-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed log(Ozone)"</span>, <span class="at">y =</span> <span class="st">"Predicted log(Ozone)"</span>) <span class="sc">+</span></span>
+<span id="cb45-9"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb45-10"><a></a></span>
+<span id="cb45-11"><a></a>p <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>) <span class="co"># want obs vs pred to be lm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<section id="test-dataset-prediction-interval" class="slide level2">
+<h2>Test dataset: Prediction interval</h2>
+<p>For our independent predictions, we can use the prediction interval to give an idea of the precision of the model.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>test_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(step_fit, <span class="at">newdata =</span> loyn_test, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb46-2"><a></a></span>
+<span id="cb46-3"><a></a>p <span class="ot">&lt;-</span></span>
+<span id="cb46-4"><a></a>  <span class="fu">ggplot</span>(loyn_test, <span class="fu">aes</span>(ABUND, pred)) <span class="sc">+</span></span>
+<span id="cb46-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb46-6"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb46-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb46-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed log(Ozone)"</span>, <span class="at">y =</span> <span class="st">"Predicted log(Ozone)"</span>) <span class="sc">+</span></span>
+<span id="cb46-9"><a></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb46-10"><a></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+
+</div>
+<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="test-dataset-prediction-interval-coverage" class="slide level2">
+<h2>Test dataset: Prediction interval coverage</h2>
+<p>We can also calculate the coverage of the prediction interval.</p>
+<p>Our prediction interval is 95%, so we expect 95% of our predictions to fall within it.</p>
+<ul>
+<li>&lt; 0.95, intervals are too narrow</li>
+<li>&nbsp;&gt;0.95, intervals are too wide</li>
+<li>approx 0.95, optimal model</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>covered <span class="ot">&lt;-</span> loyn_test<span class="sc">$</span>pred <span class="sc">&gt;=</span> test_pi[, <span class="st">"lwr"</span>] <span class="sc">&amp;</span> loyn_test<span class="sc">$</span>pred <span class="sc">&lt;=</span> test_pi[, <span class="st">"upr"</span>]</span>
+<span id="cb47-2"><a></a>coverage <span class="ot">&lt;-</span> <span class="fu">mean</span>(covered)</span>
+<span id="cb47-3"><a></a></span>
+<span id="cb47-4"><a></a>coverage</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>We don’t overlay CI and PI as we did earlier in the lecture because we have training and test datasets. CI is useful for the training set, PI is useful for our test set to indicate prediction quality of new values.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="calculating-metrics---error" class="slide level2">
 <h2>Calculating metrics - error</h2>
 <p>Generally the training dataset will have lower error and higher linearity than the test dataset. If this difference is very large – it suggests the model is not applicable to the test data and overfitting.</p>
+<p><br></p>
 <p>With error – lower is better. The following all measure error <strong>in the same units as the response variable</strong> (number of birds in each forest patch).</p>
-<h3 id="mean-error">Mean error</h3>
+</section>
+<section id="calculating-metrics---mean-error" class="slide level2">
+<h2>Calculating metrics - Mean error</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -1.65</code></pre>
 </div>
 </div>
 <p>We expect the ME for the training dataset to be near 0 – a well-fitted linear regression model will have positive and negative residuals balance each other out.</p>
-<h3 id="mean-absolute-error">Mean absolute error</h3>
+</section>
+<section id="calculating-metrics---mean-absolute-error" class="slide level2">
+<h2>Calculating metrics - Mean absolute error</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.43</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.21</code></pre>
 </div>
 </div>
-<h3 id="root-mean-squared-error-caret-package">Root mean squared error (<code>caret</code> package)</h3>
+</section>
+<section id="calculating-metrics---rmse" class="slide level2">
+<h2>Calculating metrics - RMSE</h2>
+<ul>
+<li>Root mean squared error via the <code>caret</code> package</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.02</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a><span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a><span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.72</code></pre>
 </div>
@@ -1295,36 +1436,45 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <h2>Calculating metrics – linearity</h2>
 <p>With linearity – higher is better.</p>
 <p>Both training and test datasets perform similarly, which is a good sign the model is not overfitting.</p>
-<h3 id="pearsons-correlation-coefficient-r">Pearson’s correlation coefficient <em>r</em></h3>
+</section>
+<section id="linearity-metrics---pearsons-correlation-coefficient-r" class="slide level2">
+<h2>Linearity metrics - Pearson’s correlation coefficient <em>r</em></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.82</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a><span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.82</code></pre>
 </div>
 </div>
-<h3 id="r2">R<sup>2</sup></h3>
+</section>
+<section id="linearity-metrics---r2" class="slide level2">
+<h2>Linearity metrics - R<sup>2</sup></h2>
 <p>Can either square the correlation coefficient or use the <code>R2()</code> function from the <code>caret</code> package.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a><span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a><span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.67</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a><span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.68</code></pre>
 </div>
 </div>
-<h3 id="lins-concordance-correlation-coefficient-ccc-epir-package">Lin’s concordance correlation coefficient (CCC) (<code>epiR</code> package)</h3>
+</section>
+<section id="linearity-metrics---lccc-aka-ccc" class="slide level2">
+<h2>Linearity metrics - LCCC (aka CCC)</h2>
+<ul>
+<li>Lin’s concordance correlation coefficient via the <code>epiR</code> package</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a><span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a><span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.81</code></pre>
 </div>
@@ -1335,35 +1485,35 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a><span class="co"># put all data into a tible and kable it</span></span>
-<span id="cb64-2"><a></a><span class="fu">tibble</span>(</span>
-<span id="cb64-3"><a></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
-<span id="cb64-4"><a></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
-<span id="cb64-5"><a></a>        <span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred),</span>
-<span id="cb64-6"><a></a>        <span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)</span>
-<span id="cb64-7"><a></a>    ),</span>
-<span id="cb64-8"><a></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
-<span id="cb64-9"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)),</span>
-<span id="cb64-10"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred))</span>
-<span id="cb64-11"><a></a>    ),</span>
-<span id="cb64-12"><a></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
-<span id="cb64-13"><a></a>        <span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
-<span id="cb64-14"><a></a>        <span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
-<span id="cb64-15"><a></a>    ),</span>
-<span id="cb64-16"><a></a>    <span class="at">cor =</span> <span class="fu">c</span>(</span>
-<span id="cb64-17"><a></a>        <span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
-<span id="cb64-18"><a></a>        <span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
-<span id="cb64-19"><a></a>    ),</span>
-<span id="cb64-20"><a></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
-<span id="cb64-21"><a></a>        <span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
-<span id="cb64-22"><a></a>        <span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
-<span id="cb64-23"><a></a>    ),</span>
-<span id="cb64-24"><a></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
-<span id="cb64-25"><a></a>        <span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
-<span id="cb64-26"><a></a>        <span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
-<span id="cb64-27"><a></a>    )</span>
-<span id="cb64-28"><a></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb64-29"><a></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a><span class="co"># put all data into a tible and kable it</span></span>
+<span id="cb73-2"><a></a><span class="fu">tibble</span>(</span>
+<span id="cb73-3"><a></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
+<span id="cb73-4"><a></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
+<span id="cb73-5"><a></a>        <span class="fu">mean</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb73-6"><a></a>        <span class="fu">mean</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb73-7"><a></a>    ),</span>
+<span id="cb73-8"><a></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
+<span id="cb73-9"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_train<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_train<span class="sc">$</span>pred)),</span>
+<span id="cb73-10"><a></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(loyn_test<span class="sc">$</span>ABUND <span class="sc">-</span> loyn_test<span class="sc">$</span>pred))</span>
+<span id="cb73-11"><a></a>    ),</span>
+<span id="cb73-12"><a></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
+<span id="cb73-13"><a></a>        <span class="fu">RMSE</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb73-14"><a></a>        <span class="fu">RMSE</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb73-15"><a></a>    ),</span>
+<span id="cb73-16"><a></a>    <span class="at">cor =</span> <span class="fu">c</span>(</span>
+<span id="cb73-17"><a></a>        <span class="fu">cor</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb73-18"><a></a>        <span class="fu">cor</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb73-19"><a></a>    ),</span>
+<span id="cb73-20"><a></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
+<span id="cb73-21"><a></a>        <span class="fu">R2</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred),</span>
+<span id="cb73-22"><a></a>        <span class="fu">R2</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)</span>
+<span id="cb73-23"><a></a>    ),</span>
+<span id="cb73-24"><a></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
+<span id="cb73-25"><a></a>        <span class="fu">epi.ccc</span>(loyn_train<span class="sc">$</span>ABUND, loyn_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
+<span id="cb73-26"><a></a>        <span class="fu">epi.ccc</span>(loyn_test<span class="sc">$</span>ABUND, loyn_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
+<span id="cb73-27"><a></a>    )</span>
+<span id="cb73-28"><a></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb73-29"><a></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top">
@@ -1401,6 +1551,7 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 </table>
 </div>
 </div>
+<p><br></p>
 <ul>
 <li>The model fit for the training dataset is marginally better (slight overfitting, but not a concern)</li>
 <li>Small differences are also expected due to the small sample size or the chosen <code>set.seed()</code></li>

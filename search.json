@@ -3322,7 +3322,14 @@
     "href": "lectures/L09/Lecture-09.html#predictions-in-r",
     "title": "Regression: predictive modelling",
     "section": "Predictions in R",
-    "text": "Predictions in R\n\nFirst, we need to create a new data frame with the predictor values we want to predict at – it must include all variables in the fitted model.\n\n\npredict_df &lt;- data.frame(Temp = 80, Solar.R = 145, Wind = 10.9)\n\n\nWe use the predict() function to obtain the predicted value.\nSpecifying interval = \"confidence\" or interval = \"prediction\" also calculates the confidence or prediction interval.\n\n\npredict(fit, newdata = predict_df) # the predicted value\n\n       1 \n3.365227 \n\npredict(fit, newdata = predict_df, interval = \"confidence\") # predicted value and CI\n\n       fit      lwr      upr\n1 3.365227 3.246265 3.484189\n\npredict(fit, newdata = predict_df, interval = \"prediction\") # predicted value and PI\n\n       fit      lwr      upr\n1 3.365227 2.350051 4.380404"
+    "text": "Predictions in R\n\nFirst, we need to create a new data frame with the predictor values we want to predict at – it must include all variables in the fitted model.\n\n\npredict_df &lt;- data.frame(Temp = 80, Solar.R = 145, Wind = 10.9)\n\n\nWe use the predict() function to obtain the predicted value.\nSpecifying interval = \"confidence\" or interval = \"prediction\" also calculates the confidence or prediction interval."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#predictions-in-r-1",
+    "href": "lectures/L09/Lecture-09.html#predictions-in-r-1",
+    "title": "Regression: predictive modelling",
+    "section": "Predictions in R",
+    "text": "Predictions in R\n\npredict(fit, newdata = predict_df) # the predicted value\n\n       1 \n3.365227 \n\npredict(fit, newdata = predict_df, interval = \"confidence\") # predicted value and CI\n\n       fit      lwr      upr\n1 3.365227 3.246265 3.484189\n\npredict(fit, newdata = predict_df, interval = \"prediction\") # predicted value and PI\n\n       fit      lwr      upr\n1 3.365227 2.350051 4.380404"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#visualising-ci-and-pi",
@@ -3392,21 +3399,21 @@
     "href": "lectures/L09/Lecture-09.html#data-splitting-1",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n(Training)\nSubset (Test)"
+    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-2",
     "href": "lectures/L09/Lecture-09.html#data-splitting-2",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n(Training)\nSubset (Test)\n\n\nSplit the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
+    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)\n\n\nSplit the existing dataset into training and test datasets (80:20, 70:30, 60:40, etc.)\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-3",
     "href": "lectures/L09/Lecture-09.html#data-splitting-3",
     "title": "Regression: predictive modelling",
     "section": "Data splitting",
-    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n(Training)\nSubset (Test)\n\n\nOnly possible for larger datasets (hundreds of observations)\nSplit the existing dataset into calibration, validation and test datasets (70:15:15, etc.)\n\nCalibration set: used to fit the model.\nValidation set: used to test model development (prevent overfitting).\nTest set: used to assess how well the model predicts new data."
+    "text": "Data splitting\n\n\n\n\n\n\n\n\nDataset\n  (Training)\nSubset (Test)\n\n\nOnly possible for larger datasets (hundreds of observations)\nSplit the existing dataset into calibration, validation and test datasets (70:15:15, etc.)\n\nCalibration set: used to fit the model.\nValidation set: used to test model development (prevent overfitting).\nTest set: used to assess how well the model predicts new data."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#data-splitting-4",
@@ -3448,7 +3455,7 @@
     "href": "lectures/L09/Lecture-09.html#k-fold-cross-validation-4",
     "title": "Regression: predictive modelling",
     "section": "k-fold cross-validation",
-    "text": "k-fold cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 1 Iteration 2 Iteration 3 3-fold cross-validation Fold 1 Fold 2 Fold 3\n\n\nLike data splitting, where existing data is split into two parts:\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data.\n\nThe difference is that the splitting is done multiple times, and the model is fit and validated multiple times.\nEach iteration or fold is used for testing once."
+    "text": "k-fold cross-validation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIteration 1\nIteration 2\nIteration 3\n3-fold cross-validation Fold 1 Fold 2 Fold 3\n\n\nLike data splitting, where existing data is split into two parts:\n\nTraining set: used to fit the model.\nTest set: used to assess how well the model predicts new data.\n\nThe difference is that the splitting is done multiple times, and the model is fit and validated multiple times.\nEach iteration or fold is used for testing once."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#k-fold-cross-validation-5",
@@ -3472,18 +3479,53 @@
     "text": "Visually\n\nPlot: observed (\\(y_i\\)) vs predicted (\\(\\hat y\\)) values\n\n\nggplot(data = airquality, aes(x = log(Ozone), y = pred)) +\n  geom_point() +\n  geom_abline(intercept = 0, slope = 1, color = \"red\") +\n  labs(x = \"Observed log(Ozone)\", y = \"Predicted log(Ozone)\") +\n  theme_classic()\n\n\nWe can also use metrics to quantify how well the model predicts new data:\n\nHow close points are to the 1:1 line\nHow linear the relationship is between observed and predicted values"
   },
   {
-    "objectID": "lectures/L09/Lecture-09.html#error",
-    "href": "lectures/L09/Lecture-09.html#error",
+    "objectID": "lectures/L09/Lecture-09.html#mean-error",
+    "href": "lectures/L09/Lecture-09.html#mean-error",
     "title": "Regression: predictive modelling",
-    "section": "Error",
-    "text": "Error\nThe smaller the error, the better the model.\nMean error: the average difference between observed and predicted values.\n\nCan be positive or negative to indicate over- or under-estimation (a measure of bias)\n\n\\[ME = \\frac{1}{n} \\sum_{i=1}^{n} y_i - \\hat{y}_i\\] (in \\(y\\) units)\nMean absolute error: the average (absolute) difference between observed and predicted values (residual).\n\\[MAE = \\frac{1}{n} \\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\] (in \\(y\\) units)\nMean squared error: the average of the squared residuals\n\nSquared so positive and negative errors do not cancel each other out\nPenalises poor predictions more\n\n\\[MSE = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2\\]\nRoot mean squared error: the standard deviation of the residuals\n\nSquaring the error penalises poor predictions more\n\n\\[RMSE = \\sqrt{\\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2}\\] (in \\(y\\) units)"
+    "section": "Mean Error",
+    "text": "Mean Error\n\nMean error: the average difference between observed and predicted values.\n\nCan be positive or negative to indicate over- or under-estimation (a measure of bias)\n\n\\[ME = \\frac{1}{n} \\sum_{i=1}^{n} y_i - \\hat{y}_i\\] (in \\(y\\) units)\nThe smaller the error, the better the model."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#mean-absolute-error",
+    "href": "lectures/L09/Lecture-09.html#mean-absolute-error",
+    "title": "Regression: predictive modelling",
+    "section": "Mean Absolute Error",
+    "text": "Mean Absolute Error\n\nMean absolute error: the average (absolute) difference between observed and predicted values (residual).\n\\[MAE = \\frac{1}{n} \\sum_{i=1}^{n} |y_i - \\hat{y}_i|\\] (in \\(y\\) units)\n\nThe smaller the error, the better the model."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#mean-square-error",
+    "href": "lectures/L09/Lecture-09.html#mean-square-error",
+    "title": "Regression: predictive modelling",
+    "section": "Mean Square Error",
+    "text": "Mean Square Error\n\nMean squared error: the average of the squared residuals\n\nSquared so positive and negative errors do not cancel each other out\nPenalises poor predictions more\n\n\\[MSE = \\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2\\]\n\nThe smaller the error, the better the model."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#root-mean-squared-error",
+    "href": "lectures/L09/Lecture-09.html#root-mean-squared-error",
+    "title": "Regression: predictive modelling",
+    "section": "Root Mean Squared Error",
+    "text": "Root Mean Squared Error\n\nRoot mean squared error: the standard deviation of the residuals\n\nSquaring the error penalises poor predictions more\n\n\\[RMSE = \\sqrt{\\frac{1}{n} \\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2}\\] (in \\(y\\) units)\n\nThe smaller the error, the better the model."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#linearity",
     "href": "lectures/L09/Lecture-09.html#linearity",
     "title": "Regression: predictive modelling",
     "section": "Linearity",
-    "text": "Linearity\nThe more linear the relationship between observed and predicted values, the better the model.\nPearson’s correlation coefficient (r):\n\nA measure of the strength and direction of a linear relationship between two variables.\nRanges from -1 to 1, with 0 indicating no relationship and 1 indicating a perfect positive linear relationship.\n\n\\[r = \\frac{\\sum_{i=1}^{n} (y_i - \\bar{y})(\\hat{y}_i - \\bar{\\hat{y}})}{\\sqrt{\\sum_{i=1}^{n} (y_i - \\bar{y})^2 \\sum_{i=1}^{n} (\\hat{y}_i - \\bar{\\hat{y}})^2}}\\]\nR2:\n\nThe proportion of variance explained by the variables in the model.\nWhen two variables are compared (e.g. observed vs predicted) it is the same as correlation squared.\nA value of 1 indicates a perfect linear relationship.\n\n\\[R^2 = 1 - \\frac{\\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2}\\] Lin’s concordance correlation coefficient (\\(\\rho_c\\)):\n\nA measure of agreement between two variables (based on covariance, variances, and difference in means).\nHow well the points fit the 1:1 line.\nA value of 0 indicates no agreement and 1 indicating perfect agreement.\n\n\\[LCCC = \\frac{2\\text{Cov}(X,Y)}{\\text{Var}(X) + \\text{Var}(Y) + (\\mu_X - \\mu_Y)^2}\\]"
+    "text": "Linearity\nThe more linear the relationship between observed and predicted values, the better the model.\nPearson’s correlation coefficient (r):\n\nA measure of the strength and direction of a linear relationship between two variables.\nRanges from -1 to 1, with 0 indicating no relationship and 1 indicating a perfect positive linear relationship.\n\n\\[r = \\frac{\\sum_{i=1}^{n} (y_i - \\bar{y})(\\hat{y}_i - \\bar{\\hat{y}})}{\\sqrt{\\sum_{i=1}^{n} (y_i - \\bar{y})^2 \\sum_{i=1}^{n} (\\hat{y}_i - \\bar{\\hat{y}})^2}}\\]"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#linearity-1",
+    "href": "lectures/L09/Lecture-09.html#linearity-1",
+    "title": "Regression: predictive modelling",
+    "section": "Linearity",
+    "text": "Linearity\nThe more linear the relationship between observed and predicted values, the better the model.\nR2:\n\nThe proportion of variance explained by the variables in the model.\nWhen two variables are compared (e.g. observed vs predicted) it is the same as correlation squared.\nA value of 1 indicates a perfect linear relationship.\n\n\\[R^2 = 1 - \\frac{\\sum_{i=1}^{n} (y_i - \\hat{y}_i)^2}{\\sum_{i=1}^{n} (y_i - \\bar{y})^2}\\]"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#linearity-2",
+    "href": "lectures/L09/Lecture-09.html#linearity-2",
+    "title": "Regression: predictive modelling",
+    "section": "Linearity",
+    "text": "Linearity\nThe more linear the relationship between observed and predicted values, the better the model.\nLin’s concordance correlation coefficient (\\(\\rho_c\\)):\n\nA measure of agreement between two variables (based on covariance, variances, and difference in means).\nHow well the points fit the 1:1 line.\nA value of 0 indicates no agreement and 1 indicating perfect agreement.\n\n\\[LCCC = \\frac{2\\text{Cov}(X,Y)}{\\text{Var}(X) + \\text{Var}(Y) + (\\mu_X - \\mu_Y)^2}\\]"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#lccc-vs-r-and-r2",
@@ -3497,7 +3539,14 @@
     "href": "lectures/L09/Lecture-09.html#limitations",
     "title": "Regression: predictive modelling",
     "section": "Limitations",
-    "text": "Limitations\nNo one metric is perfect.\nEach prediction below has an LCCC of 0.6.\nWadoux and Minasny 2024 \n\n\n\n\n\n\nTip\n\n\nUse multiple metrics to test prediction quality, and always plot the predicted vs observed."
+    "text": "Limitations\n\nNo one metric is perfect, so we must use multiple metrics to test prediction quality AND always plot predicted vs observed."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#limitations-1",
+    "href": "lectures/L09/Lecture-09.html#limitations-1",
+    "title": "Regression: predictive modelling",
+    "section": "Limitations",
+    "text": "Limitations\ne.g. in the following image from Wadoux and Minasny 2024, each prediction below has an LCCC of 0.6."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#about",
@@ -3574,7 +3623,14 @@
     "href": "lectures/L09/Lecture-09.html#backwards-stepwise-selection",
     "title": "Regression: predictive modelling",
     "section": "Backwards stepwise selection",
-    "text": "Backwards stepwise selection\nUse the step() function perform backwards stepwise selection. This function uses AIC to select the best model.\nDepending on the dataset splitting, the best model may be different each time we randomly sample the data. In this case we should all have the same results as we set the seed.\nIf we compare to the full model, the adjusted r-squared is slightly higher, and the AIC is lower.\n\nstep_fit &lt;- step(full_fit, direction = \"backward\")\n\nStart:  AIC=174.81\nABUND ~ YR.ISOL + GRAZE + ALT + AREA_L10 + LDIST_L10 + DIST_L10\n\n            Df Sum of Sq    RSS    AIC\n- ALT        1     14.67 1618.5 173.22\n- LDIST_L10  1     16.92 1620.8 173.28\n- DIST_L10   1     69.18 1673.0 174.71\n&lt;none&gt;                   1603.9 174.81\n- GRAZE      1     78.00 1681.9 174.94\n- YR.ISOL    1    126.48 1730.3 176.22\n- AREA_L10   1    867.44 2471.3 192.26\n\nStep:  AIC=173.22\nABUND ~ YR.ISOL + GRAZE + AREA_L10 + LDIST_L10 + DIST_L10\n\n            Df Sum of Sq    RSS    AIC\n- LDIST_L10  1     10.76 1629.3 171.52\n&lt;none&gt;                   1618.5 173.22\n- DIST_L10   1     85.56 1704.1 173.54\n- GRAZE      1     98.23 1716.8 173.87\n- YR.ISOL    1    117.80 1736.3 174.38\n- AREA_L10   1   1088.05 2706.6 194.35\n\nStep:  AIC=171.52\nABUND ~ YR.ISOL + GRAZE + AREA_L10 + DIST_L10\n\n           Df Sum of Sq    RSS    AIC\n&lt;none&gt;                  1629.3 171.52\n- GRAZE     1     93.97 1723.3 172.04\n- YR.ISOL   1    107.73 1737.0 172.40\n- DIST_L10  1    114.60 1743.9 172.57\n- AREA_L10  1   1161.66 2791.0 193.74"
+    "text": "Backwards stepwise selection\nUse the step() function perform backwards stepwise selection. This function uses AIC to select the best model.\nDepending on the dataset splitting, the best model may be different each time we randomly sample the data. In this case we should all have the same results as we set the seed when subsetting."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#backwards-stepwise-selection-1",
+    "href": "lectures/L09/Lecture-09.html#backwards-stepwise-selection-1",
+    "title": "Regression: predictive modelling",
+    "section": "Backwards stepwise selection",
+    "text": "Backwards stepwise selection\nIf we compare to the full model, the adjusted r-squared is slightly higher, and the AIC is lower.\n\nstep_fit &lt;- step(full_fit, direction = \"backward\")\n\nStart:  AIC=174.81\nABUND ~ YR.ISOL + GRAZE + ALT + AREA_L10 + LDIST_L10 + DIST_L10\n\n            Df Sum of Sq    RSS    AIC\n- ALT        1     14.67 1618.5 173.22\n- LDIST_L10  1     16.92 1620.8 173.28\n- DIST_L10   1     69.18 1673.0 174.71\n&lt;none&gt;                   1603.9 174.81\n- GRAZE      1     78.00 1681.9 174.94\n- YR.ISOL    1    126.48 1730.3 176.22\n- AREA_L10   1    867.44 2471.3 192.26\n\nStep:  AIC=173.22\nABUND ~ YR.ISOL + GRAZE + AREA_L10 + LDIST_L10 + DIST_L10\n\n            Df Sum of Sq    RSS    AIC\n- LDIST_L10  1     10.76 1629.3 171.52\n&lt;none&gt;                   1618.5 173.22\n- DIST_L10   1     85.56 1704.1 173.54\n- GRAZE      1     98.23 1716.8 173.87\n- YR.ISOL    1    117.80 1736.3 174.38\n- AREA_L10   1   1088.05 2706.6 194.35\n\nStep:  AIC=171.52\nABUND ~ YR.ISOL + GRAZE + AREA_L10 + DIST_L10\n\n           Df Sum of Sq    RSS    AIC\n&lt;none&gt;                  1629.3 171.52\n- GRAZE     1     93.97 1723.3 172.04\n- YR.ISOL   1    107.73 1737.0 172.40\n- DIST_L10  1    114.60 1743.9 172.57\n- AREA_L10  1   1161.66 2791.0 193.74"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#the-selected-model",
@@ -3588,7 +3644,35 @@
     "href": "lectures/L09/Lecture-09.html#assumptions---round-2",
     "title": "Regression: predictive modelling",
     "section": "Assumptions - Round 2",
-    "text": "Assumptions - Round 2\n\ncheck_model(step_fit, check = c(\"linearity\", \"qq\", \"homogeneity\", \"outliers\", \"vif\"))"
+    "text": "Assumptions - Round 2\n\ncheck_model(step_fit, check = c(\"linearity\"))"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#assumptions---round-2-1",
+    "href": "lectures/L09/Lecture-09.html#assumptions---round-2-1",
+    "title": "Regression: predictive modelling",
+    "section": "Assumptions - Round 2",
+    "text": "Assumptions - Round 2\n\ncheck_model(step_fit, check = c(\"qq\"))"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#assumptions---round-2-2",
+    "href": "lectures/L09/Lecture-09.html#assumptions---round-2-2",
+    "title": "Regression: predictive modelling",
+    "section": "Assumptions - Round 2",
+    "text": "Assumptions - Round 2\n\ncheck_model(step_fit, check = c(\"homogeneity\"))"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#assumptions---round-2-3",
+    "href": "lectures/L09/Lecture-09.html#assumptions---round-2-3",
+    "title": "Regression: predictive modelling",
+    "section": "Assumptions - Round 2",
+    "text": "Assumptions - Round 2\n\ncheck_model(step_fit, check = c(\"outliers\", \"vif\"))"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#assumptions---round-2-using-plot-function",
+    "href": "lectures/L09/Lecture-09.html#assumptions---round-2-using-plot-function",
+    "title": "Regression: predictive modelling",
+    "section": "Assumptions - Round 2 using plot() function",
+    "text": "Assumptions - Round 2 using plot() function\n\npar(mfrow=c(2,2))\nplot(step_fit)\n\npar(mfrow=c(1,1))"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#prepare-the-test-data",
@@ -3605,25 +3689,88 @@
     "text": "Plotting observed vs predicted\n\n\nCode\np1 &lt;- ggplot(loyn_train, aes(ABUND, pred)) +\n  geom_point() +\n  geom_abline(intercept = 0, slope = 1, color = \"red\") +\n  labs(x = \"Observed ABUND\", y = \"Predicted ABUND\",\n       title = \"Training\") +\n  theme_classic()\n\np2 &lt;- ggplot(loyn_test, aes(ABUND, pred)) +\n  geom_point() +\n  geom_abline(intercept = 0, slope = 1, color = \"red\") +\n  labs(x = \"Observed ABUND\", y = \"Predicted ABUND\",\n       title = \"Test\") +\n  theme_classic()\n\np1 + p2"
   },
   {
+    "objectID": "lectures/L09/Lecture-09.html#training-dataset-confidence-interval",
+    "href": "lectures/L09/Lecture-09.html#training-dataset-confidence-interval",
+    "title": "Regression: predictive modelling",
+    "section": "Training dataset: Confidence Interval",
+    "text": "Training dataset: Confidence Interval\nFor our trained model, we can plot the confidence interval to demonstrate the uncertainty in the mean response, with the model overlaid.\n\n\nCode\ntrain_ci &lt;- predict(step_fit, newdata = loyn_train, interval = \"confidence\")\n\np &lt;-\n  ggplot(loyn_train, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = train_ci, aes(fit, lwr), color = \"blue\", se = F) +\n  geom_smooth(data = train_ci, aes(fit, upr), color = \"blue\", se = F) +\n  labs(x = \"Observed log(Ozone)\", y = \"Predicted log(Ozone)\") +\n  theme_classic()\n\np + geom_abline(intercept = 0, slope = 1, color = \"maroon\") # want obs vs pred to be lm"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval",
+    "href": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval",
+    "title": "Regression: predictive modelling",
+    "section": "Test dataset: Prediction interval",
+    "text": "Test dataset: Prediction interval\nFor our independent predictions, we can use the prediction interval to give an idea of the precision of the model.\n\n\nCode\ntest_pi &lt;- predict(step_fit, newdata = loyn_test, interval = \"prediction\")\n\np &lt;-\n  ggplot(loyn_test, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = test_pi, aes(fit, lwr), color = \"red\", se = F) +\n  geom_smooth(data = test_pi, aes(fit, upr), color = \"red\", se = F) +\n  labs(x = \"Observed log(Ozone)\", y = \"Predicted log(Ozone)\") +\n  theme_classic()\np"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval-coverage",
+    "href": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval-coverage",
+    "title": "Regression: predictive modelling",
+    "section": "Test dataset: Prediction interval coverage",
+    "text": "Test dataset: Prediction interval coverage\nWe can also calculate the coverage of the prediction interval.\nOur prediction interval is 95%, so we expect 95% of our predictions to fall within it.\n\n&lt; 0.95, intervals are too narrow\n &gt;0.95, intervals are too wide\napprox 0.95, optimal model\n\n\ncovered &lt;- loyn_test$pred &gt;= test_pi[, \"lwr\"] & loyn_test$pred &lt;= test_pi[, \"upr\"]\ncoverage &lt;- mean(covered)\n\ncoverage\n\n[1] 1\n\n\n\n\n\n\n\n\nImportant\n\n\nWe don’t overlay CI and PI as we did earlier in the lecture because we have training and test datasets. CI is useful for the training set, PI is useful for our test set to indicate prediction quality of new values."
+  },
+  {
     "objectID": "lectures/L09/Lecture-09.html#calculating-metrics---error",
     "href": "lectures/L09/Lecture-09.html#calculating-metrics---error",
     "title": "Regression: predictive modelling",
     "section": "Calculating metrics - error",
-    "text": "Calculating metrics - error\nGenerally the training dataset will have lower error and higher linearity than the test dataset. If this difference is very large – it suggests the model is not applicable to the test data and overfitting.\nWith error – lower is better. The following all measure error in the same units as the response variable (number of birds in each forest patch).\nMean error\n\nmean(loyn_train$ABUND - loyn_train$pred) |&gt; round(2)\n\n[1] 0\n\nmean(loyn_test$ABUND - loyn_test$pred) |&gt; round(2)\n\n[1] -1.65\n\n\nWe expect the ME for the training dataset to be near 0 – a well-fitted linear regression model will have positive and negative residuals balance each other out.\nMean absolute error\n\nmean(abs(loyn_train$ABUND - loyn_train$pred)) |&gt; round(2)\n\n[1] 4.43\n\nmean(abs(loyn_test$ABUND - loyn_test$pred)) |&gt; round(2)\n\n[1] 5.21\n\n\nRoot mean squared error (caret package)\n\nRMSE(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 6.02\n\nRMSE(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 6.72"
+    "text": "Calculating metrics - error\nGenerally the training dataset will have lower error and higher linearity than the test dataset. If this difference is very large – it suggests the model is not applicable to the test data and overfitting.\n\nWith error – lower is better. The following all measure error in the same units as the response variable (number of birds in each forest patch)."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#calculating-metrics---mean-error",
+    "href": "lectures/L09/Lecture-09.html#calculating-metrics---mean-error",
+    "title": "Regression: predictive modelling",
+    "section": "Calculating metrics - Mean error",
+    "text": "Calculating metrics - Mean error\n\nmean(loyn_train$ABUND - loyn_train$pred) |&gt; round(2)\n\n[1] 0\n\nmean(loyn_test$ABUND - loyn_test$pred) |&gt; round(2)\n\n[1] -1.65\n\n\nWe expect the ME for the training dataset to be near 0 – a well-fitted linear regression model will have positive and negative residuals balance each other out."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#calculating-metrics---mean-absolute-error",
+    "href": "lectures/L09/Lecture-09.html#calculating-metrics---mean-absolute-error",
+    "title": "Regression: predictive modelling",
+    "section": "Calculating metrics - Mean absolute error",
+    "text": "Calculating metrics - Mean absolute error\n\nmean(abs(loyn_train$ABUND - loyn_train$pred)) |&gt; round(2)\n\n[1] 4.43\n\nmean(abs(loyn_test$ABUND - loyn_test$pred)) |&gt; round(2)\n\n[1] 5.21"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#calculating-metrics---rmse",
+    "href": "lectures/L09/Lecture-09.html#calculating-metrics---rmse",
+    "title": "Regression: predictive modelling",
+    "section": "Calculating metrics - RMSE",
+    "text": "Calculating metrics - RMSE\n\nRoot mean squared error via the caret package\n\n\nRMSE(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 6.02\n\nRMSE(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 6.72"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#calculating-metrics-linearity",
     "href": "lectures/L09/Lecture-09.html#calculating-metrics-linearity",
     "title": "Regression: predictive modelling",
     "section": "Calculating metrics – linearity",
-    "text": "Calculating metrics – linearity\nWith linearity – higher is better.\nBoth training and test datasets perform similarly, which is a good sign the model is not overfitting.\nPearson’s correlation coefficient r\n\ncor(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 0.82\n\ncor(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 0.82\n\n\nR2\nCan either square the correlation coefficient or use the R2() function from the caret package.\n\nR2(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 0.67\n\nR2(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 0.68\n\n\nLin’s concordance correlation coefficient (CCC) (epiR package)\n\nepi.ccc(loyn_train$ABUND, loyn_train$pred)$rho.c$est |&gt; round(2)\n\n[1] 0.8\n\nepi.ccc(loyn_test$ABUND, loyn_test$pred)$rho.c$est |&gt; round(2)\n\n[1] 0.81"
+    "text": "Calculating metrics – linearity\nWith linearity – higher is better.\nBoth training and test datasets perform similarly, which is a good sign the model is not overfitting."
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#linearity-metrics---pearsons-correlation-coefficient-r",
+    "href": "lectures/L09/Lecture-09.html#linearity-metrics---pearsons-correlation-coefficient-r",
+    "title": "Regression: predictive modelling",
+    "section": "Linearity metrics - Pearson’s correlation coefficient r",
+    "text": "Linearity metrics - Pearson’s correlation coefficient r\n\ncor(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 0.82\n\ncor(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 0.82"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#linearity-metrics---r2",
+    "href": "lectures/L09/Lecture-09.html#linearity-metrics---r2",
+    "title": "Regression: predictive modelling",
+    "section": "Linearity metrics - R2",
+    "text": "Linearity metrics - R2\nCan either square the correlation coefficient or use the R2() function from the caret package.\n\nR2(loyn_train$ABUND, loyn_train$pred) |&gt; round(2)\n\n[1] 0.67\n\nR2(loyn_test$ABUND, loyn_test$pred) |&gt; round(2)\n\n[1] 0.68"
+  },
+  {
+    "objectID": "lectures/L09/Lecture-09.html#linearity-metrics---lccc-aka-ccc",
+    "href": "lectures/L09/Lecture-09.html#linearity-metrics---lccc-aka-ccc",
+    "title": "Regression: predictive modelling",
+    "section": "Linearity metrics - LCCC (aka CCC)",
+    "text": "Linearity metrics - LCCC (aka CCC)\n\nLin’s concordance correlation coefficient via the epiR package\n\n\nepi.ccc(loyn_train$ABUND, loyn_train$pred)$rho.c$est |&gt; round(2)\n\n[1] 0.8\n\nepi.ccc(loyn_test$ABUND, loyn_test$pred)$rho.c$est |&gt; round(2)\n\n[1] 0.81"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#conclusions",
     "href": "lectures/L09/Lecture-09.html#conclusions",
     "title": "Regression: predictive modelling",
     "section": "Conclusions",
-    "text": "Conclusions\n\n\nCode\n# put all data into a tible and kable it\ntibble(\n    Dataset = c(\"Training\", \"Test\"),\n    ME = c(\n        mean(loyn_train$ABUND - loyn_train$pred),\n        mean(loyn_test$ABUND - loyn_test$pred)\n    ),\n    MAE = c(\n        mean(abs(loyn_train$ABUND - loyn_train$pred)),\n        mean(abs(loyn_test$ABUND - loyn_test$pred))\n    ),\n    RMSE = c(\n        RMSE(loyn_train$ABUND, loyn_train$pred),\n        RMSE(loyn_test$ABUND, loyn_test$pred)\n    ),\n    cor = c(\n        cor(loyn_train$ABUND, loyn_train$pred),\n        cor(loyn_test$ABUND, loyn_test$pred)\n    ),\n    R2 = c(\n        R2(loyn_train$ABUND, loyn_train$pred),\n        R2(loyn_test$ABUND, loyn_test$pred)\n    ),\n    LCCC = c(\n        epi.ccc(loyn_train$ABUND, loyn_train$pred)$rho.c$est,\n        epi.ccc(loyn_test$ABUND, loyn_test$pred)$rho.c$est\n    )\n) %&gt;%\n    knitr::kable(digits = 2)\n\n\n\n\n\nDataset\nME\nMAE\nRMSE\ncor\nR2\nLCCC\n\n\n\n\nTraining\n0.00\n4.43\n6.02\n0.82\n0.67\n0.80\n\n\nTest\n-1.65\n5.21\n6.72\n0.82\n0.68\n0.81\n\n\n\n\n\n\nThe model fit for the training dataset is marginally better (slight overfitting, but not a concern)\nSmall differences are also expected due to the small sample size or the chosen set.seed()\nThe model predicts bird abundance in forest patches in SE Victoria well (r = 0.82, LCCC = 0.81, MAE = 5.21 birds/patch, RMSE = 6.72 birds/patch)."
+    "text": "Conclusions\n\n\nCode\n# put all data into a tible and kable it\ntibble(\n    Dataset = c(\"Training\", \"Test\"),\n    ME = c(\n        mean(loyn_train$ABUND - loyn_train$pred),\n        mean(loyn_test$ABUND - loyn_test$pred)\n    ),\n    MAE = c(\n        mean(abs(loyn_train$ABUND - loyn_train$pred)),\n        mean(abs(loyn_test$ABUND - loyn_test$pred))\n    ),\n    RMSE = c(\n        RMSE(loyn_train$ABUND, loyn_train$pred),\n        RMSE(loyn_test$ABUND, loyn_test$pred)\n    ),\n    cor = c(\n        cor(loyn_train$ABUND, loyn_train$pred),\n        cor(loyn_test$ABUND, loyn_test$pred)\n    ),\n    R2 = c(\n        R2(loyn_train$ABUND, loyn_train$pred),\n        R2(loyn_test$ABUND, loyn_test$pred)\n    ),\n    LCCC = c(\n        epi.ccc(loyn_train$ABUND, loyn_train$pred)$rho.c$est,\n        epi.ccc(loyn_test$ABUND, loyn_test$pred)$rho.c$est\n    )\n) %&gt;%\n    knitr::kable(digits = 2)\n\n\n\n\n\nDataset\nME\nMAE\nRMSE\ncor\nR2\nLCCC\n\n\n\n\nTraining\n0.00\n4.43\n6.02\n0.82\n0.67\n0.80\n\n\nTest\n-1.65\n5.21\n6.72\n0.82\n0.68\n0.81\n\n\n\n\n\n\n\nThe model fit for the training dataset is marginally better (slight overfitting, but not a concern)\nSmall differences are also expected due to the small sample size or the chosen set.seed()\nThe model predicts bird abundance in forest patches in SE Victoria well (r = 0.82, LCCC = 0.81, MAE = 5.21 birds/patch, RMSE = 6.72 birds/patch)."
   },
   {
     "objectID": "tutorials/data-import.html",

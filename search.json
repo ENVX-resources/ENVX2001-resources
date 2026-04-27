@@ -858,21 +858,14 @@
     "href": "lectures/L09/Lecture-09.html#training-dataset-confidence-interval",
     "title": "Regression: predictive modelling",
     "section": "Training dataset: Confidence Interval",
-    "text": "Training dataset: Confidence Interval\nFor our trained model, we can plot the confidence interval to demonstrate the uncertainty in the mean response, with the model overlaid.\n\n\nCode\ntrain_ci &lt;- predict(step_fit, newdata = loyn_train, interval = \"confidence\")\n\np &lt;-\n  ggplot(loyn_train, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = train_ci, aes(fit, lwr), color = \"blue\", se = F) +\n  geom_smooth(data = train_ci, aes(fit, upr), color = \"blue\", se = F) +\n  labs(x = \"Observed log(Ozone)\", y = \"Predicted log(Ozone)\") +\n  theme_classic()\n\np + geom_abline(intercept = 0, slope = 1, color = \"maroon\") # want obs vs pred to be lm"
+    "text": "Training dataset: Confidence Interval\nFor our trained model, we can plot the confidence interval to demonstrate the uncertainty in the mean response, with the model overlaid.\n\n\nCode\ntrain_ci &lt;- predict(step_fit, newdata = loyn_train, interval = \"confidence\")\n\np &lt;-\n  ggplot(loyn_train, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = train_ci, aes(fit, lwr), color = \"blue\", se = F) +\n  geom_smooth(data = train_ci, aes(fit, upr), color = \"blue\", se = F) +\n  labs(x = \"Observed Abundance\", y = \"Predicted Abundance\") +\n  theme_classic()\n\np + geom_abline(intercept = 0, slope = 1, color = \"maroon\") # want obs vs pred to be lm"
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval",
     "href": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval",
     "title": "Regression: predictive modelling",
     "section": "Test dataset: Prediction interval",
-    "text": "Test dataset: Prediction interval\nFor our independent predictions, we can use the prediction interval to give an idea of the precision of the model.\n\n\nCode\ntest_pi &lt;- predict(step_fit, newdata = loyn_test, interval = \"prediction\")\n\np &lt;-\n  ggplot(loyn_test, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = test_pi, aes(fit, lwr), color = \"red\", se = F) +\n  geom_smooth(data = test_pi, aes(fit, upr), color = \"red\", se = F) +\n  labs(x = \"Observed log(Ozone)\", y = \"Predicted log(Ozone)\") +\n  theme_classic()\np"
-  },
-  {
-    "objectID": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval-coverage",
-    "href": "lectures/L09/Lecture-09.html#test-dataset-prediction-interval-coverage",
-    "title": "Regression: predictive modelling",
-    "section": "Test dataset: Prediction interval coverage",
-    "text": "Test dataset: Prediction interval coverage\nWe can also calculate the coverage of the prediction interval.\nOur prediction interval is 95%, so we expect 95% of our predictions to fall within it.\n\n&lt; 0.95, intervals are too narrow\n &gt;0.95, intervals are too wide\napprox 0.95, optimal model\n\n\ncovered &lt;- loyn_test$pred &gt;= test_pi[, \"lwr\"] & loyn_test$pred &lt;= test_pi[, \"upr\"]\ncoverage &lt;- mean(covered)\n\ncoverage\n\n[1] 1\n\n\n\n\n\n\n\n\nImportant\n\n\nWe don’t overlay CI and PI as we did earlier in the lecture because we have training and test datasets. CI is useful for the training set, PI is useful for our test set to indicate prediction quality of new values."
+    "text": "Test dataset: Prediction interval\nFor our independent predictions, we can use the prediction interval to give an idea of the precision of the model.\n\n\nCode\ntest_pi &lt;- predict(step_fit, newdata = loyn_test, interval = \"prediction\")\n\np &lt;-\n  ggplot(loyn_test, aes(ABUND, pred)) +\n  geom_point() + \n  geom_smooth(data = test_pi, aes(fit, lwr), color = \"red\", se = F) +\n  geom_smooth(data = test_pi, aes(fit, upr), color = \"red\", se = F) +\n  labs(x = \"Observed Abundance\", y = \"Predicted Abundance\") +\n  theme_classic()\np\n\n\n\n\n\n\n\n\n\nImportant\n\n\nWe don’t overlay CI and PI as we did earlier in the lecture because we have training and test datasets. CI is useful for the training set, PI is useful for our test set to indicate prediction quality of new values."
   },
   {
     "objectID": "lectures/L09/Lecture-09.html#calculating-metrics---error",
@@ -2095,51 +2088,79 @@
   {
     "objectID": "labs/Lab09/Lab09-regression-assessment.html",
     "href": "labs/Lab09/Lab09-regression-assessment.html",
-    "title": "ENVX2001 Lab - Predictive modelling",
+    "title": "Lab 09",
     "section": "",
-    "text": "In this lab, you will work towards achieving learning outcomes"
+    "text": "This week’s lab will give you some practice testing how well our models predict new values.\nNext week you will start on multivariate approaches.\n\n\nThis module links to the following unit learning outcomes:\n\nLO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data\nLO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R\nLO6. write statistical and modelling results as part of a scientific report\n\nIn this lab, we will learn how to:\n1. Use the parsimonious models we produced last week to predict new values\n2. Interpret key prediction quality metrics - do our models predict well?\n\n\n\nBy the end of this lab, you should be able to:\n\nSubset data into training and test sets\nFit models to the training set and make predictions\nPlot predicted vs observed values to understand the agreement between the two\nCalculate and interpret confidence and prediction intervals\nCalculate and interpret error metrics (mean error, MAE, RMSE)\nCalculate linearity metrics r2 and Lin’s correlation coefficient\n\n\n\n\nPlease work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.\n\n\nThis lab uses tidyverse, readxl, moments, psych, performance, caret, epiR. Install any you are missing by running the following in the console:\n\ninstall.packages(c(\"epiR\", \"caret\", \"tidyverse\", \"readxl\", \"moments\", \"psych\", \"performance\"))\n\nIf a package is already installed, R will simply reinstall it — no harm done."
   },
   {
     "objectID": "labs/Lab09/Lab09-regression-assessment.html#learning-outcomes",
     "href": "labs/Lab09/Lab09-regression-assessment.html#learning-outcomes",
-    "title": "ENVX2001 Lab - Predictive modelling",
+    "title": "Lab 09",
     "section": "",
-    "text": "In this lab, you will work towards achieving learning outcomes"
+    "text": "This module links to the following unit learning outcomes:\n\nLO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data\nLO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R\nLO6. write statistical and modelling results as part of a scientific report\n\nIn this lab, we will learn how to:\n1. Use the parsimonious models we produced last week to predict new values\n2. Interpret key prediction quality metrics - do our models predict well?"
   },
   {
-    "objectID": "labs/Lab09/Lab09-regression-assessment.html#lab-objectives",
-    "href": "labs/Lab09/Lab09-regression-assessment.html#lab-objectives",
-    "title": "ENVX2001 Lab - Predictive modelling",
-    "section": "Lab Objectives",
-    "text": "Lab Objectives\nIn this lab, we will:\n\n[]\n[]\n\n\n\n\n\n\n\nTip\n\n\n\nPlease work on this exercise by creating your own R Markdown file."
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#specific-goals",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#specific-goals",
+    "title": "Lab 09",
+    "section": "",
+    "text": "By the end of this lab, you should be able to:\n\nSubset data into training and test sets\nFit models to the training set and make predictions\nPlot predicted vs observed values to understand the agreement between the two\nCalculate and interpret confidence and prediction intervals\nCalculate and interpret error metrics (mean error, MAE, RMSE)\nCalculate linearity metrics r2 and Lin’s correlation coefficient"
   },
   {
-    "objectID": "labs/Lab09/Lab09-regression-assessment.html#exercise-1",
-    "href": "labs/Lab09/Lab09-regression-assessment.html#exercise-1",
-    "title": "ENVX2001 Lab - Predictive modelling",
-    "section": "Exercise 1:",
-    "text": "Exercise 1:"
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#preparation",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#preparation",
+    "title": "Lab 09",
+    "section": "",
+    "text": "Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.\n\n\nThis lab uses tidyverse, readxl, moments, psych, performance, caret, epiR. Install any you are missing by running the following in the console:\n\ninstall.packages(c(\"epiR\", \"caret\", \"tidyverse\", \"readxl\", \"moments\", \"psych\", \"performance\"))\n\nIf a package is already installed, R will simply reinstall it — no harm done."
   },
   {
-    "objectID": "labs/Lab09/Lab09-regression-assessment.html#exercise-2",
-    "href": "labs/Lab09/Lab09-regression-assessment.html#exercise-2",
-    "title": "ENVX2001 Lab - Predictive modelling",
-    "section": "Exercise 2:",
-    "text": "Exercise 2:"
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#data-recap",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#data-recap",
+    "title": "Lab 09",
+    "section": "Data recap",
+    "text": "Data recap\nThe california_streamflow dataset you were analysing contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.\nThe data is in the california_streamflow.xlsx file.\nVariables are as follows:\n\nlake_sabrina: Precipitation recorded at Lake Sabrina (mm)\npine_creek: Precipitation recorded at Big Pine Creek (mm),\nrock_creek: Precipitation recorded at Rock Creek (mm)\nrunoff_volume: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.\n\nNote the variables have already been log-transformed to increase normality of the residuals in the regressions.\nData source: Hollett, K.J., Danskin, F.M., McCaffrey, W.F., and Walti, S.L., 1991. Geology and water resources of Owens Valley, California. U.S. Geological Survey Water-Supply Paper 2370-H."
   },
   {
-    "objectID": "labs/Lab09/Lab09-regression-assessment.html#take-home-exercise",
-    "href": "labs/Lab09/Lab09-regression-assessment.html#take-home-exercise",
-    "title": "ENVX2001 Lab - Predictive modelling",
-    "section": "Take home exercise:",
-    "text": "Take home exercise:"
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#section",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#section",
+    "title": "Lab 09",
+    "section": "",
+    "text": "Exercise 1 - Making predictions\n(i) Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?\n(ii) Split the data into training and test subsets. We recommend an 80/20 training/test split.\n(iii) Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?\n(iv) Fit the linear model to the training subset using runoff_volume as the response, and pine_creek and rock_creek as the predictor variables.\n(v) Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?\n(vi) Use the model to predict using the training set and then using the test set.\n(vii) Have a look at what the predict() function has produced using the head() function. We should see a new column at the end of both dataframes containing the predictions from the model."
   },
   {
-    "objectID": "labs/Lab09/Lab09-regression-assessment.html#review",
-    "href": "labs/Lab09/Lab09-regression-assessment.html#review",
-    "title": "ENVX2001 Lab - Predictive modelling",
-    "section": "Review",
-    "text": "Review\n\nAttribution"
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#section-1",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#section-1",
+    "title": "Lab 09",
+    "section": "",
+    "text": "Exercise 2 - How well does our model predict new values?\n(i) Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?\n(ii) Overlay the confidence interval onto the training predicted vs observed plot. What does this tell us?\n(iii) Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?\n(iv) Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?\n(v) Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?\n(vi) Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?\nHINT: you can use the RMSE() function from the caret package\n(vii) Calculate the r2 value. What does this metric tell us about our model? Is the r2 good for our predictions?\nHINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the R2() function from the caret package.\n(viii) Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r2 value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?\nHINT: you can calculate the LCCC via the epiR package\n(ix) Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.\n\n\n\n\n\n\n\nTip\n\n\n\nBefore moving on to the next section, take a short break and stretch your legs."
+  },
+  {
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#data-recap-1",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#data-recap-1",
+    "title": "Lab 09",
+    "section": "Data recap",
+    "text": "Data recap\nThis dataset examines the adaptation of invasive capeweed (Arctotheca calendula) populations to aridity gradients across southern Australia. A common garden experiment was conducted from 2018-2019 with populations sourced from varying aridity levels, subjecting them to wet and dry treatments to measure traits related to drought escape, avoidance, and tolerance.\nThe dataset has been reduced to contain only the variables you will need to fit in the model. Furthermore, only the samples that received the wet treatment will be used for this analysis (n = 89 observations).\nThe dataset is in the plant_aridity.csv file.\nVariables are as follows:\n\ngrowth_rate: growth rate measured as differences in # of rosette leaves between zero and eight weeks after transplanting\ndays_to_flower: days to first flowering since transplant (days)\nspecific_leaf_area: specific leaf area as [leaf area (cm2) / dry mass (g)]\nroot_shoot_ratio: root-to-shoot ratio [root mass/shoot mass]\nchlorogenic_acid: concentration of chlorogenic acid (mg/g frwt sample)\nrel_fitness: Relative fitness of each plant, seed count divided by the mean seed count\n\nrel_fitness will be the response variable in your models, and the other variables will be the predictor variables.\nData source: Uesugi, Akane (2022). Data from: Multivariate selection mediated by aridity predicts divergence of drought resistant traits along natural aridity gradients of an invasive weed [Dataset]. Dryad. https://doi.org/10.5061/dryad.tht76hf17\nPaper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018."
+  },
+  {
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#section-2",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#section-2",
+    "title": "Lab 09",
+    "section": "",
+    "text": "Exercise 1 - Making predictions\n(i) Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?\n(ii) Before we do any splitting, make sure you log-transform relative_fitness by creating a new variable within the plant_aridity dataframe, as this is what we found was important in our model last week.\n(iii) Split the data into training and test subsets. We recommend an 80/20 training/test split.\n(iv) Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?\n(v) Fit the linear model to the training subset using log(rel_fitness) as the response, and growth_rate and chlorogenic_acid as the predictor variables.\n(vi) Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?\n(vii) Use the model to predict using the training set and then using the test set.\n(viii) Have a look at what the predict() function has produced using the head() function. We should see a new column at the end of both dataframes containing the predictions from the model."
+  },
+  {
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#section-3",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#section-3",
+    "title": "Lab 09",
+    "section": "",
+    "text": "Exercise 2 - How well does our model predict new values?\n(i) Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.\n(ii) Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?\n(iii) Calculate the confidence interval and backtransform it. Overlay the backtransformed confidence interval onto the training predicted vs observed plot. What does this tell us?\n(iv) Calculate the prediction interval and ensure you backtransform it. Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?\n(v) Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?\n(vi) Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?\n(vii) Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?\nHINT: you can use the RMSE() function from the caret package\n(viii) Calculate the r2 value. What does this metric tell us about our model? Is the r2 good for our predictions?\nHINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the R2() function from the caret package.\n(ix) Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?\nHINT: you can calculate the LCCC via the epiR package\n(x) Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model."
+  },
+  {
+    "objectID": "labs/Lab09/Lab09-regression-assessment.html#closing-thoughts",
+    "href": "labs/Lab09/Lab09-regression-assessment.html#closing-thoughts",
+    "title": "Lab 09",
+    "section": "Closing thoughts",
+    "text": "Closing thoughts\nYou have done a great job investigating how well our chosen models predict new values of the response.\nWe saw a good example of a model that predicts new values well with the california streamflow data, and a good example of a model that does not predict new values well with the plant aridity data.\nWe have also seen the importance of visualisation and metrics to assist us in understanding the prediction quality of our models. There is no single metric that will give us the magic answer; it is up to us to make an informed decision on how well our model can predict.\nThank you for all of your hard work and participation in this module. Keep up the great work and enjoy learning about multivariate approaches from next week!\nIf you have any questions, please approach your tutors or you are welcome to post to the Ed Discussion board.\n\nAttribution\nThis lab was developed using resources that are available under a Creative Commons Attribution 4.0 International license, made available on the SOLES Open Educational Resources repository."
   },
   {
     "objectID": "labs/Lab07/Lab07-regression-modelling.html",
@@ -3994,14 +4015,14 @@
     "href": "tutorials/tutorial09.html",
     "title": "Tutorial 09",
     "section": "",
-    "text": "NEED TO CREATE NEW TUT!!! MAKE CONSISTENT FROM LAST WEEK\nuse cars dataset?\nThis week’s lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.\nIn this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex.\nYou will learn how to:\n\nCheck for collinearity and influential observations in a MLR model\nRun partial F-tests to compare nested models\nImplement stepwise regression using the step() function in R"
+    "text": "NEED TO CREATE NEW TUT!!! MAKE CONSISTENT FROM LAST WEEK\nWhy are we separating the dataset?\nWhat if we want to know how well the model predicts new data, i.e. data that we did not use to fit the model?\nWe build the model with one dataset (calibration).\nWe validate the model’s predictions with an independent dataset.\nIf the model is good, we expect the predictions to be close to the actual values.\nIf the model is bad, we expect the predictions to be far from the actual values.\nThe dataset can be obtained by:\nCollecting new data.\nSplitting the existing data into two parts before model building.\nData splitting\nCross-validation\nuse cars dataset?\nThis week’s lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.\nIn this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex.\nYou will learn how to:\n\nCheck for collinearity and influential observations in a MLR model\nRun partial F-tests to compare nested models\nImplement stepwise regression using the step() function in R"
   },
   {
     "objectID": "tutorials/tutorial09.html#welcome-to-week-9",
     "href": "tutorials/tutorial09.html#welcome-to-week-9",
     "title": "Tutorial 09",
     "section": "",
-    "text": "NEED TO CREATE NEW TUT!!! MAKE CONSISTENT FROM LAST WEEK\nuse cars dataset?\nThis week’s lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.\nIn this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex.\nYou will learn how to:\n\nCheck for collinearity and influential observations in a MLR model\nRun partial F-tests to compare nested models\nImplement stepwise regression using the step() function in R"
+    "text": "NEED TO CREATE NEW TUT!!! MAKE CONSISTENT FROM LAST WEEK\nWhy are we separating the dataset?\nWhat if we want to know how well the model predicts new data, i.e. data that we did not use to fit the model?\nWe build the model with one dataset (calibration).\nWe validate the model’s predictions with an independent dataset.\nIf the model is good, we expect the predictions to be close to the actual values.\nIf the model is bad, we expect the predictions to be far from the actual values.\nThe dataset can be obtained by:\nCollecting new data.\nSplitting the existing data into two parts before model building.\nData splitting\nCross-validation\nuse cars dataset?\nThis week’s lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.\nIn this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex.\nYou will learn how to:\n\nCheck for collinearity and influential observations in a MLR model\nRun partial F-tests to compare nested models\nImplement stepwise regression using the step() function in R"
   },
   {
     "objectID": "tutorials/tutorial09.html#workflow-for-fitting-parsimonious-models",

@@ -8,7 +8,7 @@
 
 <meta name="description" content="The University of Sydney">
 
-<title>ENVX2001 Lab - Predictive modelling</title>
+<title>Lab 09</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -103,14 +138,14 @@ background: white;
 <link rel="stylesheet" href="../../site_libs/quarto-contrib/quarto-project/sandstone/assets/styles.css">
 </head>
 
-<body class="floating quarto-light">
+<body class="floating slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ENVX2001 Lab - Predictive modelling</h1>
+      <h1 class="title">Lab 09</h1>
             <p class="subtitle lead">ENVX2001 Applied Statistical Methods</p>
                   <div>
         <div class="description">
@@ -124,12 +159,6 @@ background: white;
   <div class="quarto-title-meta">
 
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">Semester 1, 2026</p>
-      </div>
-    </div>
     
       
     </div>
@@ -142,14 +171,45 @@ background: white;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link active" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
-  <li><a href="#lab-objectives" id="toc-lab-objectives" class="nav-link" data-scroll-target="#lab-objectives">Lab Objectives</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1:</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2:</a></li>
-  <li><a href="#take-home-exercise" id="toc-take-home-exercise" class="nav-link" data-scroll-target="#take-home-exercise">Take home exercise:</a></li>
-  <li><a href="#review" id="toc-review" class="nav-link" data-scroll-target="#review">Review</a>
+  <li><a href="#welcome-to-week-9---the-last-week-of-modelling" id="toc-welcome-to-week-9---the-last-week-of-modelling" class="nav-link active" data-scroll-target="#welcome-to-week-9---the-last-week-of-modelling">Welcome to week 9 - the last week of modelling!</a>
+  <ul class="collapse">
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#specific-goals" id="toc-specific-goals" class="nav-link" data-scroll-target="#specific-goals">Specific goals</a></li>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#making-predictions-with-california-streamflow-45-mins" id="toc-making-predictions-with-california-streamflow-45-mins" class="nav-link" data-scroll-target="#making-predictions-with-california-streamflow-45-mins">1. Making predictions with California streamflow (~ 45 mins)</a>
+  <ul class="collapse">
+  <li><a href="#data-recap" id="toc-data-recap" class="nav-link" data-scroll-target="#data-recap">Data recap</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-1---making-predictions" id="toc-exercise-1---making-predictions" class="nav-link" data-scroll-target="#exercise-1---making-predictions">Exercise 1 - Making predictions</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-2---how-well-does-our-model-predict-new-values" id="toc-exercise-2---how-well-does-our-model-predict-new-values" class="nav-link" data-scroll-target="#exercise-2---how-well-does-our-model-predict-new-values">Exercise 2 - How well does our model predict new values?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#making-predictions-with-the-plant-aridity-data-45-mins" id="toc-making-predictions-with-the-plant-aridity-data-45-mins" class="nav-link" data-scroll-target="#making-predictions-with-the-plant-aridity-data-45-mins">2. Making predictions with the plant aridity data (~ 45 mins)</a>
+  <ul class="collapse">
+  <li><a href="#data-recap-1" id="toc-data-recap-1" class="nav-link" data-scroll-target="#data-recap-1">Data recap</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-1---making-predictions-1" id="toc-exercise-1---making-predictions-1" class="nav-link" data-scroll-target="#exercise-1---making-predictions-1">Exercise 1 - Making predictions</a></li>
+  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
+  <ul class="collapse">
+  <li><a href="#exercise-2---how-well-does-our-model-predict-new-values-1" id="toc-exercise-2---how-well-does-our-model-predict-new-values-1" class="nav-link" data-scroll-target="#exercise-2---how-well-does-our-model-predict-new-values-1">Exercise 2 - How well does our model predict new values?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-thoughts" id="toc-closing-thoughts" class="nav-link" data-scroll-target="#closing-thoughts">Closing thoughts</a>
   <ul class="collapse">
   <li><a href="#attribution" id="toc-attribution" class="nav-link" data-scroll-target="#attribution">Attribution</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab09-regression-assessment.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -159,23 +219,556 @@ background: white;
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
+<section id="welcome-to-week-9---the-last-week-of-modelling" class="level1">
+<h1>Welcome to week 9 - the last week of modelling!</h1>
+<p>This week’s lab will give you some practice testing how well our models predict new values.</p>
+<p>Next week you will start on multivariate approaches.</p>
 <section id="learning-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
-<p>In this lab, you will work towards achieving learning outcomes</p>
-</section>
-<section id="lab-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="lab-objectives">Lab Objectives</h2>
-<p>In this lab, we will:</p>
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>This module links to the following unit learning outcomes:</p>
 <ul>
-<li>[]</li>
-<li>[]</li>
+<li><p>LO3. demonstrate proficiency in the use or the statistical programming language R to apply an ANOVA and fit regression models to experimental data</p></li>
+<li><p>LO5. interpret the output and understand conceptually how its derived of a regression, ANOVA and multivariate analysis that have been calculated by R</p></li>
+<li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
+<p>In this lab, we will learn how to:</p>
+<p><strong>1. Use the parsimonious models we produced last week to predict new values</strong></p>
+<p><strong>2. Interpret key prediction quality metrics - do our models predict well?</strong></p>
+</section>
+<section id="specific-goals" class="level2">
+<h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
+<p><strong>By the end of this lab, you should be able to:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Subset data into training and test sets</label></li>
+<li><label><input type="checkbox">Fit models to the training set and make predictions</label></li>
+<li><label><input type="checkbox">Plot predicted vs observed values to understand the agreement between the two</label></li>
+<li><label><input type="checkbox">Calculate and interpret confidence and prediction intervals</label></li>
+<li><label><input type="checkbox">Calculate and interpret error metrics (mean error, MAE, RMSE)</label></li>
+<li><label><input type="checkbox">Calculate linearity metrics r<sup>2</sup> and Lin’s correlation coefficient</label></li>
+</ul>
+</section>
+<section id="preparation" class="level2">
+<h2 class="anchored" data-anchor-id="preparation">Preparation</h2>
+<p>Please work on these exercises by creating your own Quarto file. You are welcome to write your responses up in the style of a report.</p>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>This lab uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>caret</code>, <code>epiR</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"epiR"</span>, <span class="st">"caret"</span>, <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If a package is already installed, R will simply reinstall it — no harm done.</p>
+</section>
+</section>
+</section>
+<section id="making-predictions-with-california-streamflow-45-mins" class="level1">
+<h1>1. Making predictions with California streamflow (~ 45 mins)</h1>
+<p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."> Last week we found that precipitation at Lake Sabrina was not a significant predictor of runoff volume near Bishop, California.</p>
+<p>Our Partial F-test between our full and reduced model resulted in a P-value&lt; 0.05, so we failed to reject the null hypothesis. This told us that there was no significant difference between full and reduced models, so we selected the reduced model as it was less complex and therefore more parsimonious.</p>
+<p>Our selected model was:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This week we will use this optimal model to predict new values of runoff volume near Bishop, California.</p>
+<p>We will then assess the prediction quality by comparing observed to predicted values and calculating validation metrics to assess how well this model predicts new values.</p>
+<section id="data-recap" class="level2">
+<h2 class="anchored" data-anchor-id="data-recap">Data recap</h2>
+<p>The california_streamflow dataset you were analysing contains 43 years of annual precipitation measurements (in mm) taken at (originally) 6 sites in the Owens Valley in California. You will focus on only 3 variables.</p>
+<p>The data is in the <strong>california_streamflow.xlsx</strong> file.</p>
+<p>Variables are as follows:</p>
+<ul>
+<li><code>lake_sabrina</code>: Precipitation recorded at Lake Sabrina (mm)</li>
+<li><code>pine_creek</code>: Precipitation recorded at Big Pine Creek (mm),</li>
+<li><code>rock_creek</code>: Precipitation recorded at Rock Creek (mm)</li>
+<li><code>runoff_volume</code>: Stream runoff volume measured at a site near Bishop, California (ML/year). This will be the response variable.</li>
+</ul>
+<p>Note the variables have already been log-transformed to increase normality of the residuals in the regressions.</p>
+<p>Data source: Hollett, K.J., Danskin, F.M., McCaffrey, W.F., and Walti, S.L., 1991. Geology and water resources of Owens Valley, California. U.S. Geological Survey Water-Supply Paper 2370-H.</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="exercise-1---making-predictions" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1---making-predictions">Exercise 1 - Making predictions</h3>
+<p><em>(i)</em> Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?</p>
+<p><em>(ii)</em> Split the data into training and test subsets. We recommend an 80/20 training/test split.</p>
+<p><em>(iii)</em> Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?</p>
+<p><em>(iv)</em> Fit the linear model to the training subset using runoff_volume as the response, and pine_creek and rock_creek as the predictor variables.</p>
+<p><em>(v)</em> Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?</p>
+<p><em>(vi)</em> Use the model to predict using the training set and then using the test set.</p>
+<p><em>(vii)</em> Have a look at what the <code>predict()</code> function has produced using the <code>head()</code> function. We should see a new column at the end of both dataframes containing the predictions from the model.</p>
+</section>
+<section id="solution" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution">Solution</h4>
+<section id="i-read-the-data-in.-what-is-the-sample-size-how-do-you-think-the-sample-size-might-impact-the-prediction-quality" class="level5">
+<h5 class="anchored" data-anchor-id="i-read-the-data-in.-what-is-the-sample-size-how-do-you-think-the-sample-size-might-impact-the-prediction-quality"><em>(i)</em> Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?</h5>
+<p>Read in the data</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># read in the data</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>stream_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/california_streamflow.xlsx"</span>, <span class="st">"streamflow"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">glimpse</span>(stream_data) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 43
+Columns: 4
+$ lake_sabrina  &lt;dbl&gt; 1.958717, 2.087881, 1.981175, 2.054169, 2.102934, 2.1568…
+$ pine_creek    &lt;dbl&gt; 2.017618, 2.282781, 2.383471, 2.451719, 2.618086, 2.3532…
+$ rock_creek    &lt;dbl&gt; 2.275823, 2.450548, 2.491194, 2.585246, 2.706948, 2.3159…
+$ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.9210…</code></pre>
+</div>
+</div>
+<p>From the glimpse() or str() function, we can see that the sample size (number of rows in this case) is 43.</p>
+<p>Generally, the more observations you use to train the model, the more accurate the predictions are expected to be. Our 43 observations is quite a small sample size and when we go to split this into training and test subsets, the training set will be smaller, so we need to understand our prediction quality may not be as good compared to a larger sample size.</p>
+<p>We will continue with splitting here, but another validation method we could use is Leave-One-Out Cross-validation.</p>
+</section>
+<section id="ii-split-the-data-into-training-and-test-subsets.-we-recommend-an-8020-trainingtest-split." class="level5">
+<h5 class="anchored" data-anchor-id="ii-split-the-data-into-training-and-test-subsets.-we-recommend-an-8020-trainingtest-split."><em>(ii)</em> Split the data into training and test subsets. We recommend an 80/20 training/test split.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(stream_data), <span class="at">size =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(stream_data)) <span class="co"># randomly sample 20% of rows in the dataset</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>stream_train <span class="ot">&lt;-</span> stream_data[<span class="sc">-</span>indexes, ] <span class="co"># remove the 20% - training dataset</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>stream_test <span class="ot">&lt;-</span> stream_data[indexes, ] <span class="co"># select the 20% - test dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="iii-check-the-sample-size-and-distribution-of-each-subset.-does-the-sample-size-of-each-subset-reflect-the-8020-split-are-the-distributions-mean-median-min-max-similar-between-the-two-subsets" class="level5">
+<h5 class="anchored" data-anchor-id="iii-check-the-sample-size-and-distribution-of-each-subset.-does-the-sample-size-of-each-subset-reflect-the-8020-split-are-the-distributions-mean-median-min-max-similar-between-the-two-subsets"><em>(iii)</em> Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">str</span>(stream_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [35 × 4] (S3: tbl_df/tbl/data.frame)
+ $ lake_sabrina : num [1:35] 2.09 1.98 2.05 2.1 2.16 ...
+ $ pine_creek   : num [1:35] 2.28 2.38 2.45 2.62 2.35 ...
+ $ rock_creek   : num [1:35] 2.45 2.49 2.59 2.71 2.32 ...
+ $ runoff_volume: num [1:35] 4.92 4.91 4.92 5.12 4.92 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">str</span>(stream_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [8 × 4] (S3: tbl_df/tbl/data.frame)
+ $ lake_sabrina : num [1:8] 2.13 1.96 2.09 2.19 2.1 ...
+ $ pine_creek   : num [1:8] 2.56 2.02 2.3 2.38 2.69 ...
+ $ rock_creek   : num [1:8] 2.52 2.28 2.29 2.37 2.76 ...
+ $ runoff_volume: num [1:8] 5.1 4.83 4.87 4.94 5.22 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">summary</span>(stream_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  lake_sabrina     pine_creek      rock_creek    runoff_volume  
+ Min.   :1.572   Min.   :2.012   Min.   :2.043   Min.   :4.712  
+ 1st Qu.:1.907   1st Qu.:2.297   1st Qu.:2.296   1st Qu.:4.853  
+ Median :2.050   Median :2.440   Median :2.451   Median :4.931  
+ Mean   :2.025   Mean   :2.461   Mean   :2.444   Mean   :4.958  
+ 3rd Qu.:2.140   3rd Qu.:2.631   3rd Qu.:2.588   3rd Qu.:5.056  
+ Max.   :2.483   Max.   :3.042   Max.   :2.800   Max.   :5.257  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">summary</span>(stream_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  lake_sabrina     pine_creek      rock_creek    runoff_volume  
+ Min.   :1.566   Min.   :2.018   Min.   :2.276   Min.   :4.825  
+ 1st Qu.:2.056   1st Qu.:2.322   1st Qu.:2.348   1st Qu.:4.899  
+ Median :2.116   Median :2.358   Median :2.471   Median :4.922  
+ Mean   :2.053   Mean   :2.395   Mean   :2.461   Mean   :4.970  
+ 3rd Qu.:2.170   3rd Qu.:2.544   3rd Qu.:2.524   3rd Qu.:5.016  
+ Max.   :2.222   Max.   :2.689   Max.   :2.765   Max.   :5.222  </code></pre>
+</div>
+</div>
+<p>Looks good, 35 obs in training set, 8 in test set. This is what we are after.</p>
+<p>We can see from the output of the <code>summary()</code> function that the distribution of each variable is similar between training and test subsets.</p>
+<p>Now we can fit the model to the steam_train subset.</p>
+</section>
+<section id="iv-fit-the-linear-model-to-the-training-subset-using-runoff_volume-as-the-response-and-pine_creek-and-rock_creek-as-the-predictor-variables." class="level5">
+<h5 class="anchored" data-anchor-id="iv-fit-the-linear-model-to-the-training-subset-using-runoff_volume-as-the-response-and-pine_creek-and-rock_creek-as-the-predictor-variables."><em>(iv)</em> Fit the linear model to the training subset using runoff_volume as the response, and pine_creek and rock_creek as the predictor variables.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>stream_train_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(runoff_volume <span class="sc">~</span> pine_creek <span class="sc">+</span> rock_creek, <span class="at">data =</span> stream_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We fit the model on training set ONLY as we do not want the model to be built using any of the test set. It needs to remain unseen by the model. That way we can gauge how well our model can predict new values.</p>
+</section>
+<section id="v-check-whether-assumptions-have-been-met-for-your-trained-model.-have-the-assumptions-been-met-or-do-we-need-to-explore-transformation" class="level5">
+<h5 class="anchored" data-anchor-id="v-check-whether-assumptions-have-been-met-for-your-trained-model.-have-the-assumptions-been-met-or-do-we-need-to-explore-transformation"><em>(v)</em> Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(stream_train_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(stream_train_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pine_creek rock_creek 
+  5.395163   5.395163 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">plot</span>(stream_train_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Collinearity: VIF is approx 5, so collinearity could be an issue, but it has not exceeded the less conservative accepted threshold of 10, so we don’t need to remove anything.</p></li>
+<li><p>Linear relationship: Points are evenly scattered in the plot, line is somewhat flat</p></li>
+<li><p>Independence: As far as we know, there is no issue.</p></li>
+<li><p>Normality: Points mostly follow the line, so all good</p></li>
+<li><p>Equal variances: No fanning, points evenly scattered.</p></li>
+<li><p>Outliers: Leverage plot indicates no points outside Cook’s distance so no issues here.</p></li>
+</ul>
+<p>Assumptions look ok, let’s continue!</p>
+</section>
+<section id="vi-use-the-model-to-predict-using-the-training-set-and-then-using-the-test-set." class="level5">
+<h5 class="anchored" data-anchor-id="vi-use-the-model-to-predict-using-the-training-set-and-then-using-the-test-set."><em>(vi)</em> Use the model to predict using the training set and then using the test set.</h5>
+<p>Then use model to predict</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>stream_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(stream_train_fit, <span class="at">newdata =</span> stream_train)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>stream_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(stream_train_fit, <span class="at">newdata =</span> stream_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="vii-have-a-look-at-what-the-predict-function-has-produced-using-the-head-function.-we-should-see-a-new-column-at-the-end-of-both-dataframes-containing-the-predictions-from-the-model." class="level5">
+<h5 class="anchored" data-anchor-id="vii-have-a-look-at-what-the-predict-function-has-produced-using-the-head-function.-we-should-see-a-new-column-at-the-end-of-both-dataframes-containing-the-predictions-from-the-model."><em>(vii)</em> Have a look at what the <code>predict()</code> function has produced using the <code>head()</code> function. We should see a new column at the end of both dataframes containing the predictions from the model.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">head</span>(stream_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  lake_sabrina pine_creek rock_creek runoff_volume  pred
+         &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;
+1         2.09       2.28       2.45          4.92  4.91
+2         1.98       2.38       2.49          4.91  4.96
+3         2.05       2.45       2.59          4.92  5.01
+4         2.10       2.62       2.71          5.12  5.10
+5         2.16       2.35       2.32          4.92  4.88
+6         2.28       2.37       2.39          4.92  4.91</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">head</span>(stream_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  lake_sabrina pine_creek rock_creek runoff_volume  pred
+         &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;
+1         2.13       2.56       2.52          5.10  5.02
+2         1.96       2.02       2.28          4.83  4.78
+3         2.09       2.30       2.29          4.87  4.86
+4         2.19       2.38       2.37          4.94  4.91
+5         2.10       2.69       2.76          5.22  5.14
+6         2.22       2.33       2.53          4.99  4.96</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<section id="exercise-2---how-well-does-our-model-predict-new-values" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2---how-well-does-our-model-predict-new-values">Exercise 2 - How well does our model predict new values?</h3>
+<p><em>(i)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</p>
+<p><em>(ii)</em> Overlay the confidence interval onto the training predicted vs observed plot. What does this tell us?</p>
+<p><em>(iii)</em> Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?</p>
+<p><em>(iv)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</p>
+<p><em>(v)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</p>
+<p><em>(vi)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</p>
+<p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
+<p><em>(vii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+<p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
+<p><em>(viii)</em> Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r<sup>2</sup> value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+<p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
+<p><em>(ix)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
+</section>
+<section id="solution-1" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
+<section id="i-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area" class="level5">
+<h5 class="anchored" data-anchor-id="i-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area"><em>(i)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(stream_train, <span class="fu">aes</span>(runoff_volume, pred)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed runoff volume (ML/year)"</span>, <span class="at">y =</span> <span class="st">"Predicted runoff volume (ML/year)"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(stream_test, <span class="fu">aes</span>(runoff_volume, pred)) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed runoff volume (ML/year)"</span>, <span class="at">y =</span> <span class="st">"Predicted runoff volume (ML/year)"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12"></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb25-14"><a href="#cb25-14"></a></span>
+<span id="cb25-15"><a href="#cb25-15"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For both training and test plots, we see the points follow the 1:1 line, indicating agreement between observed and predicted.</p>
+<p>If it were perfect prediction, we would expect the points to fit the 1:1 line exactly. We see our points are scattered a bit further away from the line, so we expect to see a moderate fit indicated by our metrics.</p>
+</section>
+<section id="ii-overlay-the-confidence-interval-onto-the-training-predicted-vs-observed-plot.-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="ii-overlay-the-confidence-interval-onto-the-training-predicted-vs-observed-plot.-what-does-this-tell-us"><em>(ii)</em> Overlay the confidence interval onto the training predicted vs observed plot. What does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Calculate the CI for the training set</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>train_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(stream_train_fit, <span class="at">newdata =</span> stream_train, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="fu">ggplot</span>(stream_train, <span class="fu">aes</span>(runoff_volume, pred)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="#cb26-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>) <span class="sc">+</span> <span class="co"># 1:1 line</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed runoff volume (ML/year)"</span>, <span class="at">y =</span> <span class="st">"Predicted runoff volume (ML/year)"</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Plotting the Confidence interval tells us that given the parameters, we are 95% certain that the mean response lies within the CI. The closer the CI is to the line, the better our model is fitted to the data.</p>
+<p>If the CI widens in certain regions of the plot, it may indicate model instabilty or a lack of points in that region. We can see in our plot that the CI does widen slightly towards the lower and upper regions of the plot area.</p>
+<p>NOTE: we only overlay the CI onto the plot produced for the training set as this is the data that our model was fitted to. The CI can only give us information about how well the model is estimating the true mean, not how well the model is predicting.</p>
+</section>
+<section id="iii-overlay-the-prediction-interval-onto-the-predicted-vs-observed-plot-produced-using-the-test-subset.-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="iii-overlay-the-prediction-interval-onto-the-predicted-vs-observed-plot-produced-using-the-test-subset.-what-does-this-tell-us"><em>(iii)</em> Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>test_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(stream_train_fit, <span class="at">newdata =</span> stream_test, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">ggplot</span>(stream_test, <span class="fu">aes</span>(runoff_volume, pred)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>)  <span class="sc">+</span> <span class="co"># 1:1 line +</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed runoff volume (ML/year)"</span>, <span class="at">y =</span> <span class="st">"Predicted runoff volume (ML/year)"</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">theme_classic</span>()  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The predictions obtained using the test data shows us how well the model can predict new values. This is possible because the model was only fitted with the training data, not the test data.</p>
+<p>We overlay the prediction interval onto the predicted vs observed plot for the test set, so we can see how many predictions fell within the prediction interval. At a 95% PI, we expect 95% of points to fall within the range. Fewer points falling within the range would indicate that the model is not very precise.</p>
+<p>In our plot, we can see that all of the points lie within the PI, which is good. The PI tells us likely range of where predictions will lie and in this case, as all predictions lie within the range, the model is looking like it predicts with a decent amount of precision.</p>
+</section>
+<section id="iv-calculate-the-mean-error-for-predictions-obtained-with-the-training-and-test-subsets.-are-they-similar-to-each-other-is-the-mean-error-close-to-0" class="level5">
+<h5 class="anchored" data-anchor-id="iv-calculate-the-mean-error-for-predictions-obtained-with-the-training-and-test-subsets.-are-they-similar-to-each-other-is-the-mean-error-close-to-0"><em>(iv)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">mean</span>(stream_train<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.355339e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">mean</span>(stream_test<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02236565</code></pre>
+</div>
+</div>
+<p>Mean error is close to zero for both and the values are similar between training and test subsets, indicating a stable model (no evidence of overfitting).</p>
+<p>Close to zero tells us the model isn’t over- or under-predicting.</p>
+<p>Positive values indicate the model is over-predicting</p>
+<p>Negative values indicate under-prediction.</p>
+<p>From our predicted vs observed plot, we can see most of the points sit under the 1:1 line, indicating that the model is overpredicting</p>
+</section>
+<section id="v-calculate-the-mean-absolute-error.-are-the-values-close-to-zero-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="v-calculate-the-mean-absolute-error.-are-the-values-close-to-zero-what-does-this-tell-us"><em>(v)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(stream_train<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_train<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03775411</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(stream_test<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_test<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04976594</code></pre>
+</div>
+</div>
+<p>The MAE is close to zero for predictions obtained for the test and training sets. This tells us that the prediction error is low overall. Mean Error gives us direction, but MAE can give us a better idea of the magnitude of the error.</p>
+</section>
+<section id="vi-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="vi-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions"><em>(vi)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</h5>
+<p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(caret)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lattice</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'caret'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    lift</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">RMSE</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.04553841</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">RMSE</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05815502</code></pre>
+</div>
+</div>
+<p>if RMSE is much larger than MAE, then model is making huge mistakes. In our case, the values aren’t too different to the MAE and they care close to zero so it tells us the model is predicting well. We can also see the values are similar between training and test predictions, indicating a stable model.</p>
+</section>
+<section id="vii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="vii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions"><em>(vii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</h5>
+<p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
+<p>Option 1: squaring the correlation coefficient:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>(<span class="fu">cor</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8898066</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>(<span class="fu">cor</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8128205</code></pre>
+</div>
+</div>
+<p>Option 2: <code>R2()</code> function from the <code>caret</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">R2</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8898066</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">R2</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8128205</code></pre>
+</div>
+</div>
+<p>The r<sup>2</sup> tells us about the strength of the relationship between observed and predicted values. The closer to 1, the better.</p>
+<p>In this case, we see that the r<sup>2</sup> for the training set is 0.89 and the test set is 0.81.</p>
+<p>Both values are close to 1, indicating a strong relationship.</p>
+<p>The r<sup>2</sup> for the training set is higher than the test set, suggesting the model may be overfitted and may not predict new values too well.</p>
+<p>This is different to our narrative with our error metrics so far, which highlights the importance of not relying on a single metric to make decisions.</p>
+</section>
+<section id="viii-calculate-lins-correlation-coefficient-for-our-predictions.-what-does-this-metric-tell-us-about-our-model-how-is-this-different-from-our-r2-value-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="viii-calculate-lins-correlation-coefficient-for-our-predictions.-what-does-this-metric-tell-us-about-our-model-how-is-this-different-from-our-r2-value-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions"><em>(viii)</em> Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r<sup>2</sup> value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?</h5>
+<p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">library</span>(epiR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: survival</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'survival'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:caret':
+
+    cluster</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Package epiR 2.0.89 is loaded</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Type help(epi.about) for summary information</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Type browseVignettes(package = 'epiR') to learn how to use epiR for applied epidemiological analyses</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">epi.ccc</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9416906</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">epi.ccc</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8679682</code></pre>
+</div>
+</div>
+<p>LCCC tells us about the strength of agreement between predicted and observed, or how well the points fit the 1:1 line in our plot. This is a bit different between our r<sup>2</sup> which instead tells us about the strength of the linear relationship between predicted and observed, and it may not always follow the 1:1 line.</p>
+<p>The LCCC for the predictions obtained using the training set is 0.94 and the LCCC for the predictions obtained using the test set is 0.87.</p>
+<p>Both of these values indicate a strong level of agreement between predicted and observed.</p>
+</section>
+<section id="ix-create-a-summary-table-of-the-metrics-above-and-use-it-to-make-a-conclusion-about-the-prediction-quality-of-our-model." class="level5">
+<h5 class="anchored" data-anchor-id="ix-create-a-summary-table-of-the-metrics-above-and-use-it-to-make-a-conclusion-about-the-prediction-quality-of-our-model."><em>(ix)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>training <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(stream_train<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-2"><a href="#cb66-2"></a>          <span class="fu">mean</span>(<span class="fu">abs</span>(stream_train<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_train<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-3"><a href="#cb66-3"></a>          <span class="fu">RMSE</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-4"><a href="#cb66-4"></a>          <span class="fu">R2</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-5"><a href="#cb66-5"></a>          <span class="fu">epi.ccc</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb66-6"><a href="#cb66-6"></a></span>
+<span id="cb66-7"><a href="#cb66-7"></a>test <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(stream_test<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-8"><a href="#cb66-8"></a>          <span class="fu">mean</span>(<span class="fu">abs</span>(stream_test<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_test<span class="sc">$</span>pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-9"><a href="#cb66-9"></a>          <span class="fu">RMSE</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-10"><a href="#cb66-10"></a>          <span class="fu">R2</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb66-11"><a href="#cb66-11"></a>          <span class="fu">epi.ccc</span>(stream_test<span class="sc">$</span>runoff_volume, stream_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb66-12"><a href="#cb66-12"></a></span>
+<span id="cb66-13"><a href="#cb66-13"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(training, test)</span>
+<span id="cb66-14"><a href="#cb66-14"></a><span class="fu">colnames</span>(table)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>)</span>
+<span id="cb66-15"><a href="#cb66-15"></a></span>
+<span id="cb66-16"><a href="#cb66-16"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mean Error"</span>, <span class="st">"MAE"</span>, <span class="st">"RMSE"</span>, <span class="st">"R^2^"</span>, <span class="st">"LCCC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-table.caption="Table 1. Summary of prediction quality metrics for training and test predictions.">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">t</span>(table), <span class="at">col.names =</span> labels, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Mean Error</th>
+<th style="text-align: center;">MAE</th>
+<th style="text-align: center;">RMSE</th>
+<th style="text-align: center;">R<sup>2</sup></th>
+<th style="text-align: center;">LCCC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Training</td>
+<td style="text-align: center;">0.000</td>
+<td style="text-align: center;">0.038</td>
+<td style="text-align: center;">0.046</td>
+<td style="text-align: center;">0.890</td>
+<td style="text-align: center;">0.942</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test</td>
+<td style="text-align: center;">0.022</td>
+<td style="text-align: center;">0.050</td>
+<td style="text-align: center;">0.058</td>
+<td style="text-align: center;">0.813</td>
+<td style="text-align: center;">0.868</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As we can see from Table 1, The errors are close to zero and the r<sup>2</sup> and LCCC values are close to 1, indicating that our model is predicting new values with a good level of accuracy and precision.</p>
+<p>There is a difference between metrics between the training and test subsets, with the training predictions having a lower error and higher r<sup>2</sup> and LCCC values compared to the test predictions. This suggests that our model may be overfitted to the training data, and may not predict new values as well as it predicts the training data.</p>
+</section>
+</section>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -186,25 +779,596 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please work on this exercise by creating your own R Markdown file.</p>
+<p>Before moving on to the next section, take a short break and stretch your legs.</p>
 </div>
 </div>
 </section>
-<section id="exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1:</h2>
 </section>
-<section id="exercise-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2:</h2>
+<section id="making-predictions-with-the-plant-aridity-data-45-mins" class="level1 page-columns page-full">
+<h1>2. Making predictions with the plant aridity data (~ 45 mins)</h1>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/AdobeStock_659883118.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Image of invasive capeweed. Source: Adobe Stock.</figcaption>
+</figure>
+</div>
+<p>We used this dataset last week as an example of model selection.</p>
+<p>As identified by the partial F-test and stepwise regression last week, we found that the reduced model was most appropriate, which includes <code>growth rate</code> and <code>chlorogenic_acid</code> as the predictors. This reduction in predictors made our model more significant, though it only explained 7% of variation in log(rel_fitness).</p>
+<p>Although the model does not explain much variation, we will use this data to get some practice making predictions, and to see what happens when we use a sub-optimal model.</p>
+<section id="data-recap-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-recap-1">Data recap</h2>
+<p>This dataset examines the adaptation of invasive capeweed (<em>Arctotheca calendula</em>) populations to aridity gradients across southern Australia. A common garden experiment was conducted from 2018-2019 with populations sourced from varying aridity levels, subjecting them to wet and dry treatments to measure traits related to drought escape, avoidance, and tolerance.</p>
+<p>The dataset has been reduced to contain only the variables you will need to fit in the model. Furthermore, only the samples that received the wet treatment will be used for this analysis (n = 89 observations).</p>
+<p>The dataset is in the <em>plant_aridity.csv</em> file.</p>
+<p>Variables are as follows:</p>
+<ul>
+<li><code>growth_rate</code>: growth rate measured as differences in # of rosette leaves between zero and eight weeks after transplanting</li>
+<li><code>days_to_flower</code>: days to first flowering since transplant (days)</li>
+<li><code>specific_leaf_area</code>: specific leaf area as [leaf area (cm2) / dry mass (g)]</li>
+<li><code>root_shoot_ratio</code>: root-to-shoot ratio [root mass/shoot mass]</li>
+<li><code>chlorogenic_acid</code>: concentration of chlorogenic acid (mg/g frwt sample)</li>
+<li><code>rel_fitness</code>: Relative fitness of each plant, seed count divided by the mean seed count</li>
+</ul>
+<p><code>rel_fitness</code> will be the response variable in your models, and the other variables will be the predictor variables.</p>
+<p>Data source: Uesugi, Akane (2022). Data from: Multivariate selection mediated by aridity predicts divergence of drought resistant traits along natural aridity gradients of an invasive weed [Dataset]. Dryad. https://doi.org/10.5061/dryad.tht76hf17</p>
+<p>Paper: Carvalho C, Davis R, Connallon T, Gleadow RM, Moore JL, Uesugi A. Multivariate selection mediated by aridity predicts divergence of drought-resistant traits along natural aridity gradients of an invasive weed. New Phytol. 2022 May;234(3):1088-1100. doi: 10.1111/nph.18018.</p>
 </section>
-<section id="take-home-exercise" class="level2">
-<h2 class="anchored" data-anchor-id="take-home-exercise">Take home exercise:</h2>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<section id="exercise-1---making-predictions-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-1---making-predictions-1">Exercise 1 - Making predictions</h3>
+<p><em>(i)</em> Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?</p>
+<p><em>(ii)</em> Before we do any splitting, make sure you log-transform <code>relative_fitness</code> by creating a new variable within the plant_aridity dataframe, as this is what we found was important in our model last week.</p>
+<p><em>(iii)</em> Split the data into training and test subsets. We recommend an 80/20 training/test split.</p>
+<p><em>(iv)</em> Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?</p>
+<p><em>(v)</em> Fit the linear model to the training subset using log(rel_fitness) as the response, and growth_rate and chlorogenic_acid as the predictor variables.</p>
+<p><em>(vi)</em> Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?</p>
+<p><em>(vii)</em> Use the model to predict using the training set and then using the test set.</p>
+<p><em>(viii)</em> Have a look at what the <code>predict()</code> function has produced using the <code>head()</code> function. We should see a new column at the end of both dataframes containing the predictions from the model.</p>
 </section>
-<section id="review" class="level2">
-<h2 class="anchored" data-anchor-id="review">Review</h2>
+<section id="solution-2" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-2">Solution</h4>
+<section id="i-read-the-data-in.-what-is-the-sample-size-how-do-you-think-the-sample-size-might-impact-the-prediction-quality-1" class="level5">
+<h5 class="anchored" data-anchor-id="i-read-the-data-in.-what-is-the-sample-size-how-do-you-think-the-sample-size-might-impact-the-prediction-quality-1"><em>(i)</em> Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?</h5>
+<p>Read in the data</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># read in the data</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a>plant_aridity <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/plant_aridity.csv"</span>)</span>
+<span id="cb68-3"><a href="#cb68-3"></a></span>
+<span id="cb68-4"><a href="#cb68-4"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb68-5"><a href="#cb68-5"></a><span class="fu">glimpse</span>(plant_aridity) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 89
+Columns: 6
+$ growth_rate        &lt;dbl&gt; 0.22067290, 1.43609443, 0.30935172, 0.22067290, 1.6…
+$ days_to_flower     &lt;dbl&gt; -0.4145824, -0.6269022, -0.2022626, 0.8593366, -0.8…
+$ root_shoot_ratio   &lt;dbl&gt; 1.20655643, 1.20445683, 0.96082859, 0.65232362, 0.6…
+$ specific_leaf_area &lt;dbl&gt; 0.247613399, 0.489085984, 0.792795063, 0.460665270,…
+$ chlorogenic_acid   &lt;dbl&gt; 0.06142098, 2.81363621, -0.31049431, -1.72474580, -…
+$ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.60986…</code></pre>
+</div>
+</div>
+<p>From the glimpse() or str() function, we can see that the sample size (number of rows in this case) is 89. This is a much better sample size than 43.</p>
+</section>
+<section id="ii-before-we-do-any-splitting-make-sure-you-log-transform-relative_fitness-by-creating-a-new-variable-within-the-plant_aridity-dataframe-as-this-is-what-we-found-was-important-in-our-model-last-week." class="level5">
+<h5 class="anchored" data-anchor-id="ii-before-we-do-any-splitting-make-sure-you-log-transform-relative_fitness-by-creating-a-new-variable-within-the-plant_aridity-dataframe-as-this-is-what-we-found-was-important-in-our-model-last-week."><em>(ii)</em> Before we do any splitting, make sure you log-transform <code>relative_fitness</code> by creating a new variable within the plant_aridity dataframe, as this is what we found was important in our model last week.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>plant_aridity <span class="ot">&lt;-</span> plant_aridity <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="#cb70-2"></a>  <span class="fu">mutate</span>(<span class="at">log_rel_fitness =</span> <span class="fu">log</span>(rel_fitness))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="iii-split-the-data-into-training-and-test-subsets.-we-recommend-an-8020-trainingtest-split." class="level5">
+<h5 class="anchored" data-anchor-id="iii-split-the-data-into-training-and-test-subsets.-we-recommend-an-8020-trainingtest-split."><em>(iii)</em> Split the data into training and test subsets. We recommend an 80/20 training/test split.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb71-2"><a href="#cb71-2"></a></span>
+<span id="cb71-3"><a href="#cb71-3"></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plant_aridity), <span class="at">size =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(plant_aridity)) <span class="co"># randomly sample 20% of rows in the dataset</span></span>
+<span id="cb71-4"><a href="#cb71-4"></a></span>
+<span id="cb71-5"><a href="#cb71-5"></a>plant_train <span class="ot">&lt;-</span> plant_aridity[<span class="sc">-</span>indexes, ] <span class="co"># remove the 20% - training dataset</span></span>
+<span id="cb71-6"><a href="#cb71-6"></a>plant_test <span class="ot">&lt;-</span> plant_aridity[indexes, ] <span class="co"># select the 20% - test dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="iv-check-the-sample-size-and-distribution-of-each-subset.-does-the-sample-size-of-each-subset-reflect-the-8020-split-are-the-distributions-mean-median-min-max-similar-between-the-two-subsets" class="level5">
+<h5 class="anchored" data-anchor-id="iv-check-the-sample-size-and-distribution-of-each-subset.-does-the-sample-size-of-each-subset-reflect-the-8020-split-are-the-distributions-mean-median-min-max-similar-between-the-two-subsets"><em>(iv)</em> Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">str</span>(plant_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   72 obs. of  7 variables:
+ $ growth_rate       : num  0.221 1.436 0.221 0.221 1.613 ...
+ $ days_to_flower    : num  -0.415 -0.627 0.859 -0.839 0.647 ...
+ $ root_shoot_ratio  : num  1.207 1.204 0.652 0.571 0.48 ...
+ $ specific_leaf_area: num  0.248 0.489 0.461 -0.103 -0.294 ...
+ $ chlorogenic_acid  : num  0.0614 2.8136 -1.7247 0.0288 1.3244 ...
+ $ rel_fitness       : num  1.254 0.682 2.436 2.163 1.848 ...
+ $ log_rel_fitness   : num  0.226 -0.383 0.891 0.771 0.614 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="fu">str</span>(plant_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   17 obs. of  7 variables:
+ $ growth_rate       : num  1.7856 0.4815 -0.0401 0.132 0.0485 ...
+ $ days_to_flower    : num  0.647 -0.415 0.859 -1.901 0.647 ...
+ $ root_shoot_ratio  : num  -0.639 -0.75 -0.328 -0.826 -0.101 ...
+ $ specific_leaf_area: num  -0.212 0.347 0.359 -0.39 -0.432 ...
+ $ chlorogenic_acid  : num  1.8815 0.00441 -2.0685 0.15035 1.23252 ...
+ $ rel_fitness       : num  4.35 2.453 1.772 1.56 0.908 ...
+ $ log_rel_fitness   : num  1.47 0.897 0.572 0.445 -0.097 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="fu">summary</span>(plant_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  growth_rate      days_to_flower     root_shoot_ratio  specific_leaf_area
+ Min.   :-1.5164   Min.   :-1.90082   Min.   :-0.9712   Min.   :-2.39281  
+ 1st Qu.: 0.1776   1st Qu.:-0.83922   1st Qu.:-0.7861   1st Qu.:-0.24240  
+ Median : 0.6119   Median :-0.20226   Median :-0.6350   Median : 0.07584  
+ Mean   : 0.5564   Mean   : 0.01006   Mean   :-0.4297   Mean   : 0.07279  
+ 3rd Qu.: 1.1127   3rd Qu.: 0.64702   3rd Qu.:-0.2699   3rd Qu.: 0.49422  
+ Max.   : 1.6969   Max.   : 2.98253   Max.   : 1.2066   Max.   : 2.44174  
+ chlorogenic_acid    rel_fitness     log_rel_fitness  
+ Min.   :-2.19566   Min.   :0.6817   Min.   :-0.3832  
+ 1st Qu.:-0.43865   1st Qu.:1.3343   1st Qu.: 0.2884  
+ Median : 0.05840   Median :1.8210   Median : 0.5994  
+ Mean   : 0.04882   Mean   :1.8289   Mean   : 0.5494  
+ 3rd Qu.: 0.71500   3rd Qu.:2.2550   3rd Qu.: 0.8131  
+ Max.   : 2.81364   Max.   :3.1298   Max.   : 1.1410  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">summary</span>(plant_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  growth_rate       days_to_flower    root_shoot_ratio  specific_leaf_area
+ Min.   :-1.34425   Min.   :-1.9008   Min.   :-0.9722   Min.   :-0.43195  
+ 1st Qu.:-0.04015   1st Qu.:-0.4146   1st Qu.:-0.6389   1st Qu.:-0.21161  
+ Median : 0.30935   Median : 0.6470   Median :-0.4631   Median : 0.03534  
+ Mean   : 0.43547   Mean   : 0.3098   Mean   :-0.3573   Mean   : 0.13271  
+ 3rd Qu.: 0.83099   3rd Qu.: 0.6470   3rd Qu.:-0.3281   3rd Qu.: 0.42179  
+ Max.   : 1.78559   Max.   : 2.9825   Max.   : 0.9608   Max.   : 0.79280  
+ chlorogenic_acid   rel_fitness     log_rel_fitness   
+ Min.   :-2.1821   Min.   :0.9076   Min.   :-0.09696  
+ 1st Qu.:-0.9356   1st Qu.:1.4158   1st Qu.: 0.34773  
+ Median :-0.3105   Median :1.7724   Median : 0.57235  
+ Mean   :-0.2064   Mean   :2.0265   Mean   : 0.63119  
+ 3rd Qu.: 0.9501   3rd Qu.:2.3400   3rd Qu.: 0.85014  
+ Max.   : 1.8815   Max.   :4.3504   Max.   : 1.47027  </code></pre>
+</div>
+</div>
+<p>Looks good, 72 obs in training set, 17 in test set. This is what we are after.</p>
+<p>We can see from the output of the <code>summary()</code> function that the distribution of each variable is similar between training and test subsets. This dataset contains all of the variables we used last week, but we only need to check the distributions of log(rel_fitness), growth_rate and chlorogenic_acid as these are the variables we will be using in our model.</p>
+<p>Now we can fit the model to the plant_train subset.</p>
+</section>
+<section id="v-fit-the-linear-model-to-the-training-subset-using-logrel_fitness-as-the-response-and-growth_rate-and-chlorogenic_acid-as-the-predictor-variables." class="level5">
+<h5 class="anchored" data-anchor-id="v-fit-the-linear-model-to-the-training-subset-using-logrel_fitness-as-the-response-and-growth_rate-and-chlorogenic_acid-as-the-predictor-variables."><em>(v)</em> Fit the linear model to the training subset using log(rel_fitness) as the response, and growth_rate and chlorogenic_acid as the predictor variables.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>plant_train_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_rel_fitness <span class="sc">~</span> growth_rate <span class="sc">+</span> chlorogenic_acid, <span class="at">data =</span> plant_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We fit the model on training set ONLY as we do not want the model to be built using any of the test set. It needs to remain unseen by the model. That way we can gauge how well our model can predict new values.</p>
+</section>
+<section id="vi-check-whether-assumptions-have-been-met-for-your-trained-model.-have-the-assumptions-been-met-or-do-we-need-to-explore-transformation" class="level5">
+<h5 class="anchored" data-anchor-id="vi-check-whether-assumptions-have-been-met-for-your-trained-model.-have-the-assumptions-been-met-or-do-we-need-to-explore-transformation"><em>(vi)</em> Check whether assumptions have been met for your trained model. Have the assumptions been met? or do we need to explore transformation?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(plant_train_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>car<span class="sc">::</span><span class="fu">vif</span>(plant_train_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     growth_rate chlorogenic_acid 
+        1.004839         1.004839 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb84-2"><a href="#cb84-2"></a><span class="fu">plot</span>(plant_train_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Collinearity: VIF is 1 for both growth_rate and chlorogenic_acid, so collinearity is not an issue.</p></li>
+<li><p>Linear relationship: Points are evenly scattered in the plot, line is somewhat flat</p></li>
+<li><p>Independence: As far as we know, there is no issue.</p></li>
+<li><p>Normality: Points mostly follow the line, so all good</p></li>
+<li><p>Equal variances: No fanning, points evenly scattered. Potential sloping trend, so interpret model with caution.</p></li>
+<li><p>Outliers: Leverage plot indicates no points outside Cook’s distance so no issues here.</p></li>
+</ul>
+<p>Assumptions look ok, let’s continue!</p>
+</section>
+<section id="vii-use-the-model-to-predict-using-the-training-set-and-then-using-the-test-set." class="level5">
+<h5 class="anchored" data-anchor-id="vii-use-the-model-to-predict-using-the-training-set-and-then-using-the-test-set."><em>(vii)</em> Use the model to predict using the training set and then using the test set.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>plant_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(plant_train_fit, <span class="at">newdata =</span> plant_train)</span>
+<span id="cb86-2"><a href="#cb86-2"></a></span>
+<span id="cb86-3"><a href="#cb86-3"></a>plant_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(plant_train_fit, <span class="at">newdata =</span> plant_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="viii-have-a-look-at-what-the-predict-function-has-produced-using-the-head-function.-we-should-see-a-new-column-at-the-end-of-both-dataframes-containing-the-predictions-from-the-model." class="level5">
+<h5 class="anchored" data-anchor-id="viii-have-a-look-at-what-the-predict-function-has-produced-using-the-head-function.-we-should-see-a-new-column-at-the-end-of-both-dataframes-containing-the-predictions-from-the-model."><em>(viii)</em> Have a look at what the <code>predict()</code> function has produced using the <code>head()</code> function. We should see a new column at the end of both dataframes containing the predictions from the model.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a><span class="fu">head</span>(plant_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  growth_rate days_to_flower root_shoot_ratio specific_leaf_area
+1  0.22067290     -0.4145824        1.2065564          0.2476134
+2  1.43609443     -0.6269022        1.2044568          0.4890860
+4  0.22067290      0.8593366        0.6523236          0.4606653
+6  0.22067290     -0.8392221        0.5709775         -0.1033320
+7  1.61345208      0.6470167        0.4800367         -0.2939835
+8  0.04853165      1.9209357        0.4633325         -0.6512270
+  chlorogenic_acid rel_fitness log_rel_fitness      pred
+1       0.06142098   1.2540924       0.2264121 0.5340569
+2       2.81363621   0.6817035      -0.3831605 0.1357157
+4      -1.72474580   2.4363840       0.8905150 0.8237292
+6       0.02882912   2.1628959       0.7714480 0.5393425
+7       1.32438765   1.8478601       0.6140283 0.3842395
+8      -0.37759474   1.2306966       0.2075804 0.5984561</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="fu">head</span>(plant_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   growth_rate days_to_flower root_shoot_ratio specific_leaf_area
+49  1.78559333      0.6470167       -0.6388931         -0.2116088
+65  0.48149297     -0.4145824       -0.7497444          0.3473387
+25 -0.04014717      0.8593366       -0.3281318          0.3589956
+74  0.13199407     -1.9008212       -0.8262325         -0.3899548
+18  0.04853165      0.6470167       -0.1005979         -0.4319468
+89 -1.34424753      0.6470167       -0.9722212          0.4217895
+   chlorogenic_acid rel_fitness log_rel_fitness      pred
+49      1.881502262   4.3503976      1.47026724 0.3006876
+65      0.004408809   2.4525190      0.89711565 0.5536034
+25     -2.068500271   1.7724290      0.57235093 0.8691772
+74      0.150354562   1.5598505      0.44458997 0.5161319
+18      1.232523844   0.9075934     -0.09695883 0.3373344
+89     -0.545461657   1.4158457      0.34772699 0.5706752</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<section id="exercise-2---how-well-does-our-model-predict-new-values-1" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-2---how-well-does-our-model-predict-new-values-1">Exercise 2 - How well does our model predict new values?</h3>
+<p><em>(i)</em> Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.</p>
+<p><em>(ii)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</p>
+<p><em>(iii)</em> Calculate the confidence interval and backtransform it. Overlay the backtransformed confidence interval onto the training predicted vs observed plot. What does this tell us?</p>
+<p><em>(iv)</em> Calculate the prediction interval and ensure you backtransform it. Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?</p>
+<p><em>(v)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</p>
+<p><em>(vi)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</p>
+<p><em>(vii)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</p>
+<p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
+<p><em>(viii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+<p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
+<p><em>(ix)</em> Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+<p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
+<p><em>(x)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
+</section>
+<section id="solution-3" class="level4 ans">
+<h4 class="anchored" data-anchor-id="solution-3">Solution</h4>
+<section id="i-before-we-continue-we-will-need-to-backtransform-our-predicted-and-observed-values-for-the-training-and-test-subsets-by-exponentiating-them." class="level5">
+<h5 class="anchored" data-anchor-id="i-before-we-continue-we-will-need-to-backtransform-our-predicted-and-observed-values-for-the-training-and-test-subsets-by-exponentiating-them."><em>(i)</em> Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.</h5>
+<p>This allows us to interpret the error metrics on the original scale of the response variable, rather than the log scale.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a>plant_train<span class="sc">$</span>exp_log_rel_fitness <span class="ot">&lt;-</span> <span class="fu">exp</span>(plant_train<span class="sc">$</span>log_rel_fitness)</span>
+<span id="cb91-2"><a href="#cb91-2"></a>plant_train<span class="sc">$</span>exp_pred <span class="ot">&lt;-</span> <span class="fu">exp</span>(plant_train<span class="sc">$</span>pred)</span>
+<span id="cb91-3"><a href="#cb91-3"></a></span>
+<span id="cb91-4"><a href="#cb91-4"></a><span class="fu">head</span>(plant_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  growth_rate days_to_flower root_shoot_ratio specific_leaf_area
+1  0.22067290     -0.4145824        1.2065564          0.2476134
+2  1.43609443     -0.6269022        1.2044568          0.4890860
+4  0.22067290      0.8593366        0.6523236          0.4606653
+6  0.22067290     -0.8392221        0.5709775         -0.1033320
+7  1.61345208      0.6470167        0.4800367         -0.2939835
+8  0.04853165      1.9209357        0.4633325         -0.6512270
+  chlorogenic_acid rel_fitness log_rel_fitness      pred exp_log_rel_fitness
+1       0.06142098   1.2540924       0.2264121 0.5340569           1.2540924
+2       2.81363621   0.6817035      -0.3831605 0.1357157           0.6817035
+4      -1.72474580   2.4363840       0.8905150 0.8237292           2.4363840
+6       0.02882912   2.1628959       0.7714480 0.5393425           2.1628959
+7       1.32438765   1.8478601       0.6140283 0.3842395           1.8478601
+8      -0.37759474   1.2306966       0.2075804 0.5984561           1.2306966
+  exp_pred
+1 1.705839
+2 1.145356
+4 2.278983
+6 1.714879
+7 1.468497
+8 1.819308</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>plant_test<span class="sc">$</span>exp_log_rel_fitness <span class="ot">&lt;-</span> <span class="fu">exp</span>(plant_test<span class="sc">$</span>log_rel_fitness)</span>
+<span id="cb93-2"><a href="#cb93-2"></a>plant_test<span class="sc">$</span>exp_pred <span class="ot">&lt;-</span> <span class="fu">exp</span>(plant_test<span class="sc">$</span>pred)</span>
+<span id="cb93-3"><a href="#cb93-3"></a></span>
+<span id="cb93-4"><a href="#cb93-4"></a><span class="fu">head</span>(plant_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   growth_rate days_to_flower root_shoot_ratio specific_leaf_area
+49  1.78559333      0.6470167       -0.6388931         -0.2116088
+65  0.48149297     -0.4145824       -0.7497444          0.3473387
+25 -0.04014717      0.8593366       -0.3281318          0.3589956
+74  0.13199407     -1.9008212       -0.8262325         -0.3899548
+18  0.04853165      0.6470167       -0.1005979         -0.4319468
+89 -1.34424753      0.6470167       -0.9722212          0.4217895
+   chlorogenic_acid rel_fitness log_rel_fitness      pred exp_log_rel_fitness
+49      1.881502262   4.3503976      1.47026724 0.3006876           4.3503976
+65      0.004408809   2.4525190      0.89711565 0.5536034           2.4525190
+25     -2.068500271   1.7724290      0.57235093 0.8691772           1.7724290
+74      0.150354562   1.5598505      0.44458997 0.5161319           1.5598505
+18      1.232523844   0.9075934     -0.09695883 0.3373344           0.9075934
+89     -0.545461657   1.4158457      0.34772699 0.5706752           1.4158457
+   exp_pred
+49 1.350787
+65 1.739510
+25 2.384948
+74 1.675534
+18 1.401208
+89 1.769461</code></pre>
+</div>
+</div>
+<p>Notice we are backtransforming rel_fitness and not using the original rel_fitness variable.</p>
+</section>
+<section id="ii-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area" class="level5">
+<h5 class="anchored" data-anchor-id="ii-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area"><em>(ii)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plant_train, <span class="fu">aes</span>(exp_log_rel_fitness, exp_pred)) <span class="sc">+</span></span>
+<span id="cb95-2"><a href="#cb95-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb95-3"><a href="#cb95-3"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb95-4"><a href="#cb95-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed relative fitness"</span>, <span class="at">y =</span> <span class="st">"Predicted relative fitness"</span>,</span>
+<span id="cb95-5"><a href="#cb95-5"></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
+<span id="cb95-6"><a href="#cb95-6"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb95-7"><a href="#cb95-7"></a></span>
+<span id="cb95-8"><a href="#cb95-8"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plant_test, <span class="fu">aes</span>(exp_log_rel_fitness, exp_pred)) <span class="sc">+</span></span>
+<span id="cb95-9"><a href="#cb95-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb95-10"><a href="#cb95-10"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb95-11"><a href="#cb95-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed relative fitness"</span>, <span class="at">y =</span> <span class="st">"Predicted relative fitness"</span>,</span>
+<span id="cb95-12"><a href="#cb95-12"></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
+<span id="cb95-13"><a href="#cb95-13"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb95-14"><a href="#cb95-14"></a></span>
+<span id="cb95-15"><a href="#cb95-15"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the training plot, we can see the points are quite scattered about the plot area, but follow the 1:1 line, indicating there is potentially weak agreement between observed and predicted.</p>
+<p>In the test plot, we see only a few points seem to weakly follow the 1:1 line, but there are also other points sitting further away from the line. The points aren’t following the line closely, and almost follow a horizontal trend, indicating a very poor relationship between observed and predicted.</p>
+<p>We can get alot of information from the plots, but we still need to verify our interpretations with metrics.</p>
+</section>
+<section id="iii-calculate-the-confidence-interval-and-backtransform-it.-overlay-the-backtransformed-confidence-interval-onto-the-training-predicted-vs-observed-plot.-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="iii-calculate-the-confidence-interval-and-backtransform-it.-overlay-the-backtransformed-confidence-interval-onto-the-training-predicted-vs-observed-plot.-what-does-this-tell-us"><em>(iii)</em> Calculate the confidence interval and backtransform it. Overlay the backtransformed confidence interval onto the training predicted vs observed plot. What does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a><span class="co"># Calculate the CI for the training set</span></span>
+<span id="cb96-2"><a href="#cb96-2"></a>train_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(plant_train_fit, <span class="at">newdata =</span> plant_train, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb96-3"><a href="#cb96-3"></a></span>
+<span id="cb96-4"><a href="#cb96-4"></a><span class="co"># BACKTRANSFORM THE CI</span></span>
+<span id="cb96-5"><a href="#cb96-5"></a>exp_train_ci <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">exp</span>(train_ci))</span>
+<span id="cb96-6"><a href="#cb96-6"></a></span>
+<span id="cb96-7"><a href="#cb96-7"></a></span>
+<span id="cb96-8"><a href="#cb96-8"></a><span class="fu">ggplot</span>(plant_train, <span class="fu">aes</span>(exp_log_rel_fitness, exp_pred)) <span class="sc">+</span></span>
+<span id="cb96-9"><a href="#cb96-9"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb96-10"><a href="#cb96-10"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> exp_train_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb96-11"><a href="#cb96-11"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> exp_train_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb96-12"><a href="#cb96-12"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>) <span class="sc">+</span> <span class="co"># 1:1 line</span></span>
+<span id="cb96-13"><a href="#cb96-13"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed relative fitness"</span>, <span class="at">y =</span> <span class="st">"Predicted relative fitness"</span>) <span class="sc">+</span></span>
+<span id="cb96-14"><a href="#cb96-14"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see in our plot that the CI widens towards the lower and upper regions of the plot area, supporting our understanding from last week that our model does not represent the true mean very well. and therefore we wouldn’t expect it to fit new values well.</p>
+</section>
+<section id="iv-calculate-the-prediction-interval-and-ensure-you-backtransform-it.-overlay-the-prediction-interval-onto-the-predicted-vs-observed-plot-produced-using-the-test-subset.-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="iv-calculate-the-prediction-interval-and-ensure-you-backtransform-it.-overlay-the-prediction-interval-onto-the-predicted-vs-observed-plot-produced-using-the-test-subset.-what-does-this-tell-us"><em>(iv)</em> Calculate the prediction interval and ensure you backtransform it. Overlay the prediction interval onto the predicted vs observed plot produced using the test subset. What does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a>test_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(plant_train_fit, <span class="at">newdata =</span> plant_test, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb98-2"><a href="#cb98-2"></a></span>
+<span id="cb98-3"><a href="#cb98-3"></a><span class="co"># Backtransform</span></span>
+<span id="cb98-4"><a href="#cb98-4"></a>exp_test_pi <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">exp</span>(test_pi))</span>
+<span id="cb98-5"><a href="#cb98-5"></a></span>
+<span id="cb98-6"><a href="#cb98-6"></a><span class="fu">ggplot</span>(plant_test, <span class="fu">aes</span>(exp_log_rel_fitness, exp_pred)) <span class="sc">+</span></span>
+<span id="cb98-7"><a href="#cb98-7"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb98-8"><a href="#cb98-8"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> exp_test_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb98-9"><a href="#cb98-9"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> exp_test_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb98-10"><a href="#cb98-10"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>)  <span class="sc">+</span> <span class="co"># 1:1 line +</span></span>
+<span id="cb98-11"><a href="#cb98-11"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed relative fitness"</span>, <span class="at">y =</span> <span class="st">"Predicted relative fitness"</span>) <span class="sc">+</span></span>
+<span id="cb98-12"><a href="#cb98-12"></a>  <span class="fu">theme_classic</span>()  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab09-regression-assessment_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is a contrast to our plots made with the california streamflow data, where all predictions sat within the PI.</p>
+<p>For this dataset, we can see there are some points lying outside the PI, which indicates that the model is not very precise. The PI also fans out towards higher values.</p>
+<p>At a 95% PI, we expect 95% of points to fall within the range and this is not the case for our predictions. Our plots are telling us that our model does not predict new values of relative fitness well at all.</p>
+</section>
+<section id="v-calculate-the-mean-error-for-predictions-obtained-with-the-training-and-test-subsets.-are-they-similar-to-each-other-is-the-mean-error-close-to-0" class="level5">
+<h5 class="anchored" data-anchor-id="v-calculate-the-mean-error-for-predictions-obtained-with-the-training-and-test-subsets.-are-they-similar-to-each-other-is-the-mean-error-close-to-0"><em>(v)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1"></a><span class="fu">mean</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_train<span class="sc">$</span>exp_pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.07499253</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1"></a><span class="fu">mean</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_test<span class="sc">$</span>exp_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1956564</code></pre>
+</div>
+</div>
+<p>Mean error is close to zero for both, but the mean error for the test set is slightly larger, indicating the model may be overfitted to the training data, and may not predict new values as well as it predicts the training data.</p>
+<p>Positive values indicate the model is over-predicting. This tells us the model predicts a value higher than the actual (observed) value. This is demonstrated quite well in our test plot, as most of the points lie above the 1:1 line, indicating over-prediction.</p>
+</section>
+<section id="vi-calculate-the-mean-absolute-error.-are-the-values-close-to-zero-what-does-this-tell-us" class="level5">
+<h5 class="anchored" data-anchor-id="vi-calculate-the-mean-absolute-error.-are-the-values-close-to-zero-what-does-this-tell-us"><em>(vi)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_train<span class="sc">$</span>exp_pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4205286</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_test<span class="sc">$</span>exp_pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7762083</code></pre>
+</div>
+</div>
+<p>The MAE is close to zero for predictions obtained for the test and training sets, but given the range of values for the original relative fitness variable (min = 0.68, max = 4.35), this is actually quite high.</p>
+</section>
+<section id="vii-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="vii-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions"><em>(vii)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</h5>
+<p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a><span class="fu">RMSE</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5149131</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1"></a><span class="fu">RMSE</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.052812</code></pre>
+</div>
+</div>
+<p>if RMSE is much larger than MAE, then model is making huge mistakes. In our case, the values are higher the MAE which tells us the model is not predicting too well. We can also see the values are not too similar between training and test predictions (keeping the range of the original values in mind), indicating a potential overfitting issue.</p>
+</section>
+<section id="viii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="viii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions"><em>(viii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</h5>
+<p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
+<p>Option 1: squaring the correlation coefficient:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a>(<span class="fu">cor</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2097541</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1"></a>(<span class="fu">cor</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1781784</code></pre>
+</div>
+</div>
+<p>Option 2: <code>R2()</code> function from the <code>caret</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1"></a><span class="fu">R2</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2097541</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1"></a><span class="fu">R2</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1781784</code></pre>
+</div>
+</div>
+<p>The r<sup>2</sup> tells us about the strength of the relationship between observed and predicted values. The closer to 1, the better.</p>
+<p>In this case, we see that the r<sup>2</sup> for the training set is 0.21 and the test set is 0.18. The values are close to zero, indicating a weak relationship between observed and predicted values.</p>
+<p>The r<sup>2</sup> for the training set is slightly higher than the test set, suggesting the model may be overfitted and may not predict new values too well, but this is only slight.</p>
+</section>
+<section id="ix-calculate-lins-correlation-coefficient-for-our-predictions.-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5">
+<h5 class="anchored" data-anchor-id="ix-calculate-lins-correlation-coefficient-for-our-predictions.-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions"><em>(ix)</em> Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</h5>
+<p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="fu">epi.ccc</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3580529</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1"></a><span class="fu">epi.ccc</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.2935286</code></pre>
+</div>
+</div>
+<p>The LCCC for the predictions obtained using the training set is 0.36 and the LCCC for the predictions obtained using the test set is -0.29.</p>
+<p>The LCCC for the training set is low, indicating a poor amount of agreement between observed and predicted. The LCCC for the test set is negative, which indicates a very poor level of agreement between observed and predicted. This is consistent with our plot, where we see the points do not follow the 1:1 line at all.</p>
+<p>A negative LCCC is a big warning sign that our model is not appropriate. No need for us to panic here as we knew the model did not explain much variation in the response variable at all.</p>
+</section>
+<section id="x-create-a-summary-table-of-the-metrics-above-and-use-it-to-make-a-conclusion-about-the-prediction-quality-of-our-model." class="level5">
+<h5 class="anchored" data-anchor-id="x-create-a-summary-table-of-the-metrics-above-and-use-it-to-make-a-conclusion-about-the-prediction-quality-of-our-model."><em>(x)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb124"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1"></a>training <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_train<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-2"><a href="#cb124-2"></a>          <span class="fu">mean</span>(<span class="fu">abs</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_train<span class="sc">$</span>exp_pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-3"><a href="#cb124-3"></a>          <span class="fu">RMSE</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-4"><a href="#cb124-4"></a>          <span class="fu">R2</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-5"><a href="#cb124-5"></a>          <span class="fu">epi.ccc</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb124-6"><a href="#cb124-6"></a></span>
+<span id="cb124-7"><a href="#cb124-7"></a>test <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">mean</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_test<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-8"><a href="#cb124-8"></a>          <span class="fu">mean</span>(<span class="fu">abs</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness <span class="sc">-</span> plant_test<span class="sc">$</span>exp_pred)) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-9"><a href="#cb124-9"></a>          <span class="fu">RMSE</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-10"><a href="#cb124-10"></a>          <span class="fu">R2</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred) <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb124-11"><a href="#cb124-11"></a>          <span class="fu">epi.ccc</span>(plant_test<span class="sc">$</span>exp_log_rel_fitness, plant_test<span class="sc">$</span>exp_pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>))</span>
+<span id="cb124-12"><a href="#cb124-12"></a></span>
+<span id="cb124-13"><a href="#cb124-13"></a>table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(training, test)</span>
+<span id="cb124-14"><a href="#cb124-14"></a><span class="fu">colnames</span>(table)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>)</span>
+<span id="cb124-15"><a href="#cb124-15"></a></span>
+<span id="cb124-16"><a href="#cb124-16"></a>labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mean Error"</span>, <span class="st">"MAE"</span>, <span class="st">"RMSE"</span>, <span class="st">"R^2^"</span>, <span class="st">"LCCC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-table.caption="Table 2. Summary of prediction quality metrics for backtransformed training and test predictions of relative fitness.">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">t</span>(table), <span class="at">col.names =</span> labels, <span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Mean Error</th>
+<th style="text-align: center;">MAE</th>
+<th style="text-align: center;">RMSE</th>
+<th style="text-align: center;">R<sup>2</sup></th>
+<th style="text-align: center;">LCCC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Training</td>
+<td style="text-align: center;">0.075</td>
+<td style="text-align: center;">0.421</td>
+<td style="text-align: center;">0.515</td>
+<td style="text-align: center;">0.210</td>
+<td style="text-align: center;">0.358</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test</td>
+<td style="text-align: center;">0.196</td>
+<td style="text-align: center;">0.776</td>
+<td style="text-align: center;">1.053</td>
+<td style="text-align: center;">0.178</td>
+<td style="text-align: center;">-0.294</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>As we can see from Table 2, The errors are close to zero, but are still relatively high on the scale of the response variable. The r<sup>2</sup> and LCCC values are closer to 0, indicating that our model is not predicting new values with much accuracy or precision.</p>
+<p>There is a difference between metrics between the training and test subsets, with the training predictions having a lower error and higher r<sup>2</sup> and LCCC values compared to the test predictions. This suggests that our model may be overfitted to the training data, and may not predict new values as well as it predicts the training data.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="closing-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="closing-thoughts">Closing thoughts</h2>
+<p>You have done a great job investigating how well our chosen models predict new values of the response.</p>
+<p>We saw a good example of a model that predicts new values well with the california streamflow data, and a good example of a model that does not predict new values well with the plant aridity data.</p>
+<p>We have also seen the importance of visualisation and metrics to assist us in understanding the prediction quality of our models. There is no single metric that will give us the magic answer; it is up to us to make an informed decision on how well our model can predict.</p>
+<p>Thank you for all of your hard work and participation in this module. Keep up the great work and enjoy learning about multivariate approaches from next week!</p>
+<p>If you have any questions, please approach your tutors or you are welcome to post to the Ed Discussion board.</p>
 <section id="attribution" class="level3">
 <h3 class="anchored" data-anchor-id="attribution">Attribution</h3>
+<p>This lab was developed using resources that are available under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>, made available on the <a href="https://github.com/usyd-soles-edu/">SOLES Open Educational Resources repository</a>.</p>
 
 
+</section>
 </section>
 </section>
 

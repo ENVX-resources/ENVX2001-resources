@@ -180,7 +180,7 @@ background: white;
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#making-predictions-with-california-streamflow-45-mins" id="toc-making-predictions-with-california-streamflow-45-mins" class="nav-link" data-scroll-target="#making-predictions-with-california-streamflow-45-mins">1. Making predictions with California streamflow (~ 45 mins)</a>
+  <li><a href="#making-predictions-with-california-streamflow-45-min" id="toc-making-predictions-with-california-streamflow-45-min" class="nav-link" data-scroll-target="#making-predictions-with-california-streamflow-45-min">1. Making predictions with California streamflow (~45 min)</a>
   <ul class="collapse">
   <li><a href="#data-recap" id="toc-data-recap" class="nav-link" data-scroll-target="#data-recap">Data recap</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
@@ -192,16 +192,16 @@ background: white;
   <li><a href="#exercise-2---how-well-does-our-model-predict-new-values" id="toc-exercise-2---how-well-does-our-model-predict-new-values" class="nav-link" data-scroll-target="#exercise-2---how-well-does-our-model-predict-new-values">Exercise 2 - How well does our model predict new values?</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#making-predictions-with-the-plant-aridity-data-45-mins" id="toc-making-predictions-with-the-plant-aridity-data-45-mins" class="nav-link" data-scroll-target="#making-predictions-with-the-plant-aridity-data-45-mins">2. Making predictions with the plant aridity data (~ 45 mins)</a>
+  <li><a href="#making-predictions-with-the-plant-aridity-data-45-min" id="toc-making-predictions-with-the-plant-aridity-data-45-min" class="nav-link" data-scroll-target="#making-predictions-with-the-plant-aridity-data-45-min">2. Making predictions with the plant aridity data (~45 min)</a>
   <ul class="collapse">
   <li><a href="#data-recap-1" id="toc-data-recap-1" class="nav-link" data-scroll-target="#data-recap-1">Data recap</a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a>
   <ul class="collapse">
-  <li><a href="#exercise-1---making-predictions-1" id="toc-exercise-1---making-predictions-1" class="nav-link" data-scroll-target="#exercise-1---making-predictions-1">Exercise 1 - Making predictions</a></li>
+  <li><a href="#exercise-3---making-predictions" id="toc-exercise-3---making-predictions" class="nav-link" data-scroll-target="#exercise-3---making-predictions">Exercise 3 - Making predictions</a></li>
   </ul></li>
   <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a>
   <ul class="collapse">
-  <li><a href="#exercise-2---how-well-does-our-model-predict-new-values-1" id="toc-exercise-2---how-well-does-our-model-predict-new-values-1" class="nav-link" data-scroll-target="#exercise-2---how-well-does-our-model-predict-new-values-1">Exercise 2 - How well does our model predict new values?</a></li>
+  <li><a href="#exercise-4---how-well-does-our-model-predict-new-values" id="toc-exercise-4---how-well-does-our-model-predict-new-values" class="nav-link" data-scroll-target="#exercise-4---how-well-does-our-model-predict-new-values">Exercise 4 - How well does our model predict new values?</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
@@ -243,7 +243,7 @@ background: white;
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
-<p><strong>By the end of this lab, you should be able to:</strong></p>
+<p>By the end of this lab, you should be able to:</p>
 <ul class="task-list">
 <li><label><input type="checkbox">Subset data into training and test sets</label></li>
 <li><label><input type="checkbox">Fit models to the training set and make predictions</label></li>
@@ -266,8 +266,8 @@ background: white;
 </section>
 </section>
 </section>
-<section id="making-predictions-with-california-streamflow-45-mins" class="level1">
-<h1>1. Making predictions with California streamflow (~ 45 mins)</h1>
+<section id="making-predictions-with-california-streamflow-45-min" class="level1">
+<h1>1. Making predictions with California streamflow (~45 min)</h1>
 <p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."> Last week we found that precipitation at Lake Sabrina was not a significant predictor of runoff volume near Bishop, California.</p>
 <p>Our Partial F-test between our full and reduced model resulted in a P-value&lt; 0.05, so we failed to reject the null hypothesis. This told us that there was no significant difference between full and reduced models, so we selected the reduced model as it was less complex and therefore more parsimonious.</p>
 <p>Our selected model was:</p>
@@ -320,23 +320,11 @@ background: white;
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
 <p><em>(ix)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
 </section>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Before moving on to the next section, take a short break and stretch your legs.</p>
-</div>
-</div>
+<p>Before we move on, now is a good time to take a 5-minute break.</p>
 </section>
 </section>
-<section id="making-predictions-with-the-plant-aridity-data-45-mins" class="level1 page-columns page-full">
-<h1>2. Making predictions with the plant aridity data (~ 45 mins)</h1>
+<section id="making-predictions-with-the-plant-aridity-data-45-min" class="level1 page-columns page-full">
+<h1>2. Making predictions with the plant aridity data (~45 min)</h1>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/AdobeStock_659883118.jpeg" class="img-fluid figure-img"></p>
@@ -366,8 +354,8 @@ Tip
 </section>
 <section id="section-2" class="level2">
 <h2 class="anchored" data-anchor-id="section-2"></h2>
-<section id="exercise-1---making-predictions-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-1---making-predictions-1">Exercise 1 - Making predictions</h3>
+<section id="exercise-3---making-predictions" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-3---making-predictions">Exercise 3 - Making predictions</h3>
 <p><em>(i)</em> Read the data in. What is the sample size? How do you think the sample size might impact the prediction quality?</p>
 <p><em>(ii)</em> Before we do any splitting, make sure you log-transform <code>relative_fitness</code> by creating a new variable within the plant_aridity dataframe, as this is what we found was important in our model last week.</p>
 <p><em>(iii)</em> Split the data into training and test subsets. We recommend an 80/20 training/test split.</p>
@@ -380,8 +368,8 @@ Tip
 </section>
 <section id="section-3" class="level2">
 <h2 class="anchored" data-anchor-id="section-3"></h2>
-<section id="exercise-2---how-well-does-our-model-predict-new-values-1" class="level3 question">
-<h3 class="anchored" data-anchor-id="exercise-2---how-well-does-our-model-predict-new-values-1">Exercise 2 - How well does our model predict new values?</h3>
+<section id="exercise-4---how-well-does-our-model-predict-new-values" class="level3 question">
+<h3 class="anchored" data-anchor-id="exercise-4---how-well-does-our-model-predict-new-values">Exercise 4 - How well does our model predict new values?</h3>
 <p><em>(i)</em> Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.</p>
 <p><em>(ii)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</p>
 <p><em>(iii)</em> Calculate the confidence interval and backtransform it. Overlay the backtransformed confidence interval onto the training predicted vs observed plot. What does this tell us?</p>

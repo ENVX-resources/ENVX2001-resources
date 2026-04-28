@@ -178,6 +178,7 @@ background: white;
   <li><a href="#preparation" id="toc-preparation" class="nav-link" data-scroll-target="#preparation">Preparation</a>
   <ul class="collapse">
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#making-predictions-with-california-streamflow-45-min" id="toc-making-predictions-with-california-streamflow-45-min" class="nav-link" data-scroll-target="#making-predictions-with-california-streamflow-45-min">1. Making predictions with California streamflow (~45 min)</a>
@@ -238,8 +239,10 @@ background: white;
 <li><p>LO6. write statistical and modelling results as part of a scientific report</p></li>
 </ul>
 <p>In this lab, we will learn how to:</p>
-<p><strong>1. Use the parsimonious models we produced last week to predict new values</strong></p>
-<p><strong>2. Interpret key prediction quality metrics - do our models predict well?</strong></p>
+<ol type="1">
+<li><p>Use the parsimonious models we produced last week to predict new values</p></li>
+<li><p>Interpret key prediction quality metrics - do our models predict well?</p></li>
+</ol>
 </section>
 <section id="specific-goals" class="level2">
 <h2 class="anchored" data-anchor-id="specific-goals">Specific goals</h2>
@@ -264,9 +267,34 @@ background: white;
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 </section>
+<section id="downloads" class="level3">
+<h3 class="anchored" data-anchor-id="downloads">Downloads</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Used in</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>california_streamflow.xlsx</code></td>
+<td>Section 1</td>
+<td><a href="data/california_streamflow.xlsx">Download</a></td>
+</tr>
+<tr class="even">
+<td><code>plant_aridity.csv</code></td>
+<td>Section 2</td>
+<td><a href="data/plant_aridity.csv">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Save both files into a folder called <code>data</code> inside your project folder.</p>
 </section>
 </section>
-<section id="making-predictions-with-california-streamflow-45-min" class="level1">
+</section>
+<section id="making-predictions-with-california-streamflow-45-min" class="level1 page-columns page-full">
 <h1>1. Making predictions with California streamflow (~45 min)</h1>
 <p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."> Last week we found that precipitation at Lake Sabrina was not a significant predictor of runoff volume near Bishop, California.</p>
 <p>Our Partial F-test between our full and reduced model resulted in a P-value&lt; 0.05, so we failed to reject the null hypothesis. This told us that there was no significant difference between full and reduced models, so we selected the reduced model as it was less complex and therefore more parsimonious.</p>
@@ -469,9 +497,9 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </section>
 </section>
 </section>
-<section id="section-1" class="level2">
+<section id="section-1" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="section-1"></h2>
-<section id="exercise-2---how-well-does-our-model-predict-new-values" class="level3 question">
+<section id="exercise-2---how-well-does-our-model-predict-new-values" class="level3 question page-columns page-full">
 <h3 class="anchored" data-anchor-id="exercise-2---how-well-does-our-model-predict-new-values">Exercise 2 - How well does our model predict new values?</h3>
 <p><em>(i)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</p>
 <p><em>(ii)</em> Overlay the confidence interval onto the training predicted vs observed plot. What does this tell us?</p>
@@ -479,14 +507,20 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <p><em>(iv)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</p>
 <p><em>(v)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</p>
 <p><em>(vi)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
-<p><em>(vii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+</div></div><p><em>(vii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
-<p><em>(viii)</em> Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r<sup>2</sup> value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+</div></div><p><em>(viii)</em> Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r<sup>2</sup> value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
-<p><em>(ix)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
+</div></div><p><em>(ix)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
 </section>
-<section id="solution-1" class="level4 ans">
+<section id="solution-1" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution-1">Solution</h4>
 <section id="i-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area" class="level5">
 <h5 class="anchored" data-anchor-id="i-plot-observed-vs-predicted-for-the-training-and-test-subsets.-do-the-points-follow-the-11-line-do-the-points-sit-close-to-the-line-or-are-they-scattered-about-the-plot-area"><em>(i)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</h5>
@@ -609,10 +643,12 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 </div>
 <p>The MAE is close to zero for predictions obtained for the test and training sets. This tells us that the prediction error is low overall. Mean Error gives us direction, but MAE can give us a better idea of the magnitude of the error.</p>
 </section>
-<section id="vi-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5">
+<section id="vi-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="vi-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions"><em>(vi)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
-<div class="cell">
+</div></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(caret)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: lattice</code></pre>
@@ -637,10 +673,12 @@ Attaching package: 'caret'</code></pre>
 </div>
 <p>if RMSE is much larger than MAE, then model is making huge mistakes. In our case, the values aren’t too different to the MAE and they care close to zero so it tells us the model is predicting well. We can also see the values are similar between training and test predictions, indicating a stable model.</p>
 </section>
-<section id="vii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5">
+<section id="vii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="vii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions"><em>(vii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
-<p>Option 1: squaring the correlation coefficient:</p>
+</div></div><p>Option 1: squaring the correlation coefficient:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>(<span class="fu">cor</span>(stream_train<span class="sc">$</span>runoff_volume, stream_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -668,10 +706,12 @@ Attaching package: 'caret'</code></pre>
 <p>The r<sup>2</sup> for the training set is higher than the test set, suggesting the model may be overfitted and may not predict new values too well.</p>
 <p>This is different to our narrative with our error metrics so far, which highlights the importance of not relying on a single metric to make decisions.</p>
 </section>
-<section id="viii-calculate-lins-correlation-coefficient-for-our-predictions.-what-does-this-metric-tell-us-about-our-model-how-is-this-different-from-our-r2-value-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5">
+<section id="viii-calculate-lins-correlation-coefficient-for-our-predictions.-what-does-this-metric-tell-us-about-our-model-how-is-this-different-from-our-r2-value-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="viii-calculate-lins-correlation-coefficient-for-our-predictions.-what-does-this-metric-tell-us-about-our-model-how-is-this-different-from-our-r2-value-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions"><em>(viii)</em> Calculate Lin’s Correlation Coefficient for our predictions. What does this metric tell us about our model? How is this different from our r<sup>2</sup> value? Do our values indicate strong agreement between observed and predicted for our training and test predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
-<div class="cell">
+</div></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">library</span>(epiR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: survival</code></pre>
@@ -1015,9 +1055,9 @@ $ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.6
 </section>
 </section>
 </section>
-<section id="section-3" class="level2">
+<section id="section-3" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="section-3"></h2>
-<section id="exercise-4---how-well-does-our-model-predict-new-values" class="level3 question">
+<section id="exercise-4---how-well-does-our-model-predict-new-values" class="level3 question page-columns page-full">
 <h3 class="anchored" data-anchor-id="exercise-4---how-well-does-our-model-predict-new-values">Exercise 4 - How well does our model predict new values?</h3>
 <p><em>(i)</em> Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.</p>
 <p><em>(ii)</em> Plot observed vs predicted for the training and test subsets. Do the points follow the 1:1 line? Do the points sit close to the line, or are they scattered about the plot area?</p>
@@ -1026,14 +1066,20 @@ $ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.6
 <p><em>(v)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</p>
 <p><em>(vi)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</p>
 <p><em>(vii)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
-<p><em>(viii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+</div></div><p><em>(viii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
-<p><em>(ix)</em> Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+</div></div><p><em>(ix)</em> Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
-<p><em>(x)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
+</div></div><p><em>(x)</em> Create a summary table of the metrics above and use it to make a conclusion about the prediction quality of our model.</p>
 </section>
-<section id="solution-3" class="level4 ans">
+<section id="solution-3" class="level4 ans page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution-3">Solution</h4>
 <section id="i-before-we-continue-we-will-need-to-backtransform-our-predicted-and-observed-values-for-the-training-and-test-subsets-by-exponentiating-them." class="level5">
 <h5 class="anchored" data-anchor-id="i-before-we-continue-we-will-need-to-backtransform-our-predicted-and-observed-values-for-the-training-and-test-subsets-by-exponentiating-them."><em>(i)</em> Before we continue, we will need to backtransform our predicted and observed values for the training and test subsets by exponentiating them.</h5>
@@ -1220,10 +1266,12 @@ $ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.6
 </div>
 <p>The MAE is close to zero for predictions obtained for the test and training sets, but given the range of values for the original relative fitness variable (min = 0.68, max = 4.35), this is actually quite high.</p>
 </section>
-<section id="vii-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5">
+<section id="vii-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="vii-calculate-the-root-mean-square-error.-are-the-values-close-to-zero-what-additional-information-can-this-tell-us-about-the-accuracy-of-our-predictions"><em>(vii)</em> Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
-<div class="cell">
+</div></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1"></a><span class="fu">RMSE</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5149131</code></pre>
@@ -1235,10 +1283,12 @@ $ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.6
 </div>
 <p>if RMSE is much larger than MAE, then model is making huge mistakes. In our case, the values are higher the MAE which tells us the model is not predicting too well. We can also see the values are not too similar between training and test predictions (keeping the range of the original values in mind), indicating a potential overfitting issue.</p>
 </section>
-<section id="viii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5">
+<section id="viii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="viii-calculate-the-r2-value.-what-does-this-metric-tell-us-about-our-model-is-the-r2-good-for-our-predictions"><em>(viii)</em> Calculate the r<sup>2</sup> value. What does this metric tell us about our model? Is the r<sup>2</sup> good for our predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
-<p>Option 1: squaring the correlation coefficient:</p>
+</div></div><p>Option 1: squaring the correlation coefficient:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1"></a>(<span class="fu">cor</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1264,10 +1314,12 @@ $ rel_fitness        &lt;dbl&gt; 1.2540924, 0.6817035, 1.3553394, 2.4363840, 1.6
 <p>In this case, we see that the r<sup>2</sup> for the training set is 0.21 and the test set is 0.18. The values are close to zero, indicating a weak relationship between observed and predicted values.</p>
 <p>The r<sup>2</sup> for the training set is slightly higher than the test set, suggesting the model may be overfitted and may not predict new values too well, but this is only slight.</p>
 </section>
-<section id="ix-calculate-lins-correlation-coefficient-for-our-predictions.-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5">
+<section id="ix-calculate-lins-correlation-coefficient-for-our-predictions.-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions" class="level5 page-columns page-full">
 <h5 class="anchored" data-anchor-id="ix-calculate-lins-correlation-coefficient-for-our-predictions.-do-our-values-indicate-strong-agreement-between-observed-and-predicted-for-our-training-and-test-predictions"><em>(ix)</em> Calculate Lin’s Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</h5>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
-<div class="cell">
+</div></div><div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1"></a><span class="fu">epi.ccc</span>(plant_train<span class="sc">$</span>exp_log_rel_fitness, plant_train<span class="sc">$</span>exp_pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3580529</code></pre>

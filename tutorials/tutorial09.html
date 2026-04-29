@@ -266,9 +266,9 @@ window.Quarto = {
 </section>
 <section id="packages" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">0.1</span> Packages</h2>
-<p>This tutorial uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code> and <code>car</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<p>This tutorial uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code>, <code>car</code>, <code>caret</code> and <code>epiR</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"caret"</span>, <span class="st">"epiR"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 <section id="downloads" class="level3">
@@ -361,7 +361,7 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <p>For the tutorial and lab sessions, we will be making a random split of the data, which is the most common method.</p>
 <p>Because the sample size is very small, we will use 80% of the data for training and 20% for testing. The more observations we have to train the model, the better.</p>
 <p>You are more than welcome to explore how model quality measures change based on changing ratio of training:test splits You can do this by changing the values in the chunk below. For now though, we will stick to the 80/20 split.</p>
-<p><em>(ii)</em> Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the test set.</p>
+<p><em>(ii)</em> Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the training set.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
@@ -371,7 +371,7 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <span id="cb4-6"><a href="#cb4-6"></a>dippers_test <span class="ot">&lt;-</span> dippers[indexes, ] <span class="co"># select the 20% - test dataset</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the code above, we first set a seed to ensure that we can reproduce the same random sample if we were to rerun the code chunk. Then we use the <code>sample()</code> function to randomly select 20% of the row indices from the dataset.</p>
-<p>We create the training dataset by removing these selected indices from the original dataset ( [-index,] says “exclude everything but these indices”), and we create the test dataset by selecting only those indices.</p>
+<p>We create the training dataset by removing these selected indices from the original dataset (<code>[-indexes, ]</code> says “exclude these indices, keep everything else”), and we create the test dataset by selecting only those indices.</p>
 <p><em>(iii)</em> Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split? Are the distributions (mean, median, min, max) similar between the two subsets?</p>
 <p>Once we have split the data, we need to check the subsets. First ensure the structure and number of observations in each subset is correct, and then check the distribution of the variables (max, mean, median, min) in each subset to ensure they are similar.</p>
 <div class="cell">
@@ -766,7 +766,7 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -5.181026e-16</code></pre>
+<pre><code>[1] -5.21188e-16</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -957,7 +957,7 @@ Attaching package: 'survival'</code></pre>
 </div>
 </div>
 <p>Drawing upon this table, we might say:</p>
-<p>“The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r<sup>2</sup> (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set, with a higher mean error (0.23), a lower MAE (0.30), lower RMSE (0.22), lower r<sup>2</sup> (0.25) and lower LCCC (0.41). This suggests that the model is overfitted to the training data and does not predict new values well.”</p>
+<p>“The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r<sup>2</sup> (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set. The r<sup>2</sup> dropped from 0.81 to 0.25 and the LCCC dropped from 0.89 to 0.41 — large drops that point to overfitting. The error metrics (mean error 0.23, MAE 0.30, RMSE 0.22) look superficially fine, but with only four test observations the absolute errors are not a reliable comparison to the 18 training observations.”</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1477,12 +1477,12 @@ Attaching package: 'survival'</code></pre>
 <span id="cb84-30"><a href="#cb84-30"></a></span>
 <span id="cb84-31"><a href="#cb84-31"></a><span class="fu">## Packages</span></span>
 <span id="cb84-32"><a href="#cb84-32"></a></span>
-<span id="cb84-33"><a href="#cb84-33"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span> and <span class="in">`car`</span>. Install any you are missing by running the following **in the console**:</span>
+<span id="cb84-33"><a href="#cb84-33"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span>, <span class="in">`car`</span>, <span class="in">`caret`</span> and <span class="in">`epiR`</span>. Install any you are missing by running the following **in the console**:</span>
 <span id="cb84-34"><a href="#cb84-34"></a></span>
 <span id="cb84-37"><a href="#cb84-37"></a><span class="in">```{r}</span></span>
 <span id="cb84-38"><a href="#cb84-38"></a><span class="co">#| eval: false</span></span>
 <span id="cb84-39"><a href="#cb84-39"></a></span>
-<span id="cb84-40"><a href="#cb84-40"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span>
+<span id="cb84-40"><a href="#cb84-40"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"caret"</span>, <span class="st">"epiR"</span>))</span>
 <span id="cb84-41"><a href="#cb84-41"></a><span class="in">```</span></span>
 <span id="cb84-42"><a href="#cb84-42"></a></span>
 <span id="cb84-43"><a href="#cb84-43"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
@@ -1568,7 +1568,7 @@ Attaching package: 'survival'</code></pre>
 <span id="cb84-125"><a href="#cb84-125"></a></span>
 <span id="cb84-126"><a href="#cb84-126"></a>You are more than welcome to explore how model quality measures change based on changing ratio of training:test splits You can do this by changing the values in the chunk below.  For now though, we will stick to the 80/20 split.</span>
 <span id="cb84-127"><a href="#cb84-127"></a></span>
-<span id="cb84-128"><a href="#cb84-128"></a>*(ii)* Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the test set.</span>
+<span id="cb84-128"><a href="#cb84-128"></a>*(ii)* Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the training set.</span>
 <span id="cb84-129"><a href="#cb84-129"></a></span>
 <span id="cb84-132"><a href="#cb84-132"></a><span class="in">```{r}</span></span>
 <span id="cb84-133"><a href="#cb84-133"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
@@ -1582,7 +1582,7 @@ Attaching package: 'survival'</code></pre>
 <span id="cb84-141"><a href="#cb84-141"></a>In the code above, we first set a seed to ensure that we can reproduce the same random sample if we were to rerun the code chunk. </span>
 <span id="cb84-142"><a href="#cb84-142"></a>Then we use the <span class="in">`sample()`</span> function to randomly select 20% of the row indices from the dataset. </span>
 <span id="cb84-143"><a href="#cb84-143"></a></span>
-<span id="cb84-144"><a href="#cb84-144"></a>We create the training dataset by removing these selected indices from the original dataset ( <span class="co">[</span><span class="ot">-index,</span><span class="co">]</span> says "exclude everything but these indices"), and we create the test dataset by selecting only those indices.</span>
+<span id="cb84-144"><a href="#cb84-144"></a>We create the training dataset by removing these selected indices from the original dataset (<span class="in">`[-indexes, ]`</span> says "exclude these indices, keep everything else"), and we create the test dataset by selecting only those indices.</span>
 <span id="cb84-145"><a href="#cb84-145"></a></span>
 <span id="cb84-146"><a href="#cb84-146"></a>*(iii)* Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split?  Are the distributions (mean, median, min, max) similar between the two subsets?</span>
 <span id="cb84-147"><a href="#cb84-147"></a></span>
@@ -1927,7 +1927,7 @@ Attaching package: 'survival'</code></pre>
 <span id="cb84-518"><a href="#cb84-518"></a></span>
 <span id="cb84-519"><a href="#cb84-519"></a>Drawing upon this table, we might say: </span>
 <span id="cb84-520"><a href="#cb84-520"></a></span>
-<span id="cb84-521"><a href="#cb84-521"></a>"The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r^2^ (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set, with a higher mean error (0.23), a lower MAE (0.30), lower RMSE (0.22), lower r^2^ (0.25) and lower LCCC (0.41). This suggests that the model is overfitted to the training data and does not predict new values well."</span>
+<span id="cb84-521"><a href="#cb84-521"></a>"The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r^2^ (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set. The r^2^ dropped from 0.81 to 0.25 and the LCCC dropped from 0.89 to 0.41 — large drops that point to overfitting. The error metrics (mean error 0.23, MAE 0.30, RMSE 0.22) look superficially fine, but with only four test observations the absolute errors are not a reliable comparison to the 18 training observations."</span>
 <span id="cb84-522"><a href="#cb84-522"></a></span>
 <span id="cb84-523"><a href="#cb84-523"></a>::: callout-note</span>
 <span id="cb84-524"><a href="#cb84-524"></a><span class="fu">## Checkpoint</span></span>

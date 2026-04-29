@@ -215,12 +215,14 @@ window.Quarto = {
    
   <ul>
   <li><a href="#welcome-to-week-9" id="toc-welcome-to-week-9" class="nav-link active" data-scroll-target="#welcome-to-week-9">Welcome to week 9!</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">0.1</span> Packages</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">0.2</span> The data</a></li>
   <li><a href="#data-splitting" id="toc-data-splitting" class="nav-link" data-scroll-target="#data-splitting"><span class="header-section-number">1</span> Data splitting</a></li>
   <li><a href="#setting-up-for-our-analysis" id="toc-setting-up-for-our-analysis" class="nav-link" data-scroll-target="#setting-up-for-our-analysis"><span class="header-section-number">2</span> Setting up for our analysis</a>
   <ul class="collapse">
   <li><a href="#workflow-for-fitting-parsimonious-models" id="toc-workflow-for-fitting-parsimonious-models" class="nav-link" data-scroll-target="#workflow-for-fitting-parsimonious-models"><span class="header-section-number">2.1</span> Workflow for fitting parsimonious models</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">2.2</span> Packages</a></li>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">2.3</span> The data</a></li>
+  <li><a href="#packages-1" id="toc-packages-1" class="nav-link" data-scroll-target="#packages-1"><span class="header-section-number">2.2</span> Packages</a></li>
+  <li><a href="#the-data-1" id="toc-the-data-1" class="nav-link" data-scroll-target="#the-data-1"><span class="header-section-number">2.3</span> The data</a></li>
   </ul></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a>
   <ul class="collapse">
@@ -260,16 +262,52 @@ window.Quarto = {
 <li>Observe the quality of the predictions using appropriate statistics and plots</li>
 </ol>
 </section>
+<section id="packages" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">0.1</span> Packages</h2>
+<p>This tutorial uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code> and <code>car</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If a package is already installed, R will simply reinstall it — no harm done.</p>
+</section>
+<section id="the-data" class="level2 page-columns page-full" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="the-data"><span class="header-section-number">0.2</span> The data</h2>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="images/AdobeStock_93907188.jpeg" class="img-fluid figure-img"></p>
+<figcaption class="margin-caption">Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.</figcaption>
+</figure>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/Dipper">Dippers</a> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers.</p>
+<p>Twenty-two sites were included in the survey. Some of the variables have been transformed.</p>
+<p>Data can be found in: <strong>Dippers.csv</strong></p>
+<p>The variables measured were:</p>
+<ul>
+<li><code>Altitude</code> site altitude</li>
+<li><code>Hardness</code> water hardness</li>
+<li><code>RiverSlope</code> river-bed slope</li>
+<li><code>LogCadd</code> the numbers of caddis fly larvae, transformed</li>
+<li><code>LogStone</code> the numbers of stonefly larvae, transformed</li>
+<li><code>LogMay</code> the numbers of mayfly larvae, transformed</li>
+<li><code>LogOther</code> the numbers of all other invertebrates collected, transformed</li>
+<li><code>Br_Dens</code> the number of breeding pairs of dippers per 10 km of river</li>
+</ul>
+<p>In the analyses, the four invertebrate variables were transformed using a <span class="math inline">log(x+1)</span> transformation.</p>
+<p><code>Br_Dens</code> will be the response variable in our models.</p>
+<p>Last week following use of the step() function, we found the most parsimonious model to be:</p>
+<p>Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther</p>
+<p>Assumptions were met and the model explained 76% of variation in dipper breeding pair density.</p>
+<p>We will use this model in our walkthrough today.</p>
+</section>
 <section id="data-splitting" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Data splitting</h1>
 <p>Making predictions involves substituting in new values of x into our model equation to get new values of y.</p>
 <p>We could use single values for each of our predictor variables and substitute them into the equation, but this is unrealistic and time consuming when we have a large number of observations. We therefore use a dataset containing our new observations of x to make the predictions and feed this into our model.</p>
 <p>To understand the true capability of our model to predict new values of y from values of x that have not been seen by the model, we need to test this on data that has not been used to fit the model. If we test our model on the same data used fit the model, we are likely to get an over-optimistic estimate of the model’s predictive performance, as the model has already seen this data.</p>
-<p>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset.</p>
-<p>The training set is what we use to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions. As the observed y value has been used in model fitting, the predictions made with this subset will often look quite good, so we do not assess the true predictive performance of the model using the training set alone. Instead we can compare the prediction quality statistics and plots with those of the test set to get an indication of overfitting.</p>
+<p>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset. For each subset, we feed the predictor values into the model to get predictions of the y variable. We can then compare the predicted y with the observed y contained within each subset to get an indication of how well our model is performing.</p>
+<p>We use the training set to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions. The predictions made with this subset will often look quite good, but this is because the observed y value has been used in model fitting; therefore we do not assess the true predictive performance of the model using the training set alone. Instead we can compare the prediction quality statistics and plots with those of the test set to get an indication of overfitting.</p>
 <p>The test subset is a set of values which are not used to fit the model, and is therefore unseen by the model. This allows us to pretend we have a new set of values, but then we have the advantage of the actual observed y variable sitting within the dataset too, so we are able to test how similar the predictions are to our real observation.</p>
-<p>We build the model with one dataset (calibration).</p>
-<p>We validate the model’s predictions with an independent dataset.</p>
+<p>We will run through this using last week’s data:</p>
 <p>If the model is good, we expect the predictions to be close to the actual values.</p>
 <p>If the model is bad, we expect the predictions to be far from the actual values.</p>
 <p>The dataset can be obtained by:</p>
@@ -306,16 +344,16 @@ window.Quarto = {
 <li>Using partial F-test is good, but slow.</li>
 </ul>
 </section>
-<section id="packages" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="packages"><span class="header-section-number">2.2</span> Packages</h2>
+<section id="packages-1" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="packages-1"><span class="header-section-number">2.2</span> Packages</h2>
 <p>This tutorial uses <code>tidyverse</code>, <code>readxl</code>, <code>moments</code>, <code>psych</code>, <code>performance</code> and <code>car</code>. Install any you are missing by running the following <strong>in the console</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If a package is already installed, R will simply reinstall it — no harm done.</p>
 </section>
-<section id="the-data" class="level2 page-columns page-full" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="the-data"><span class="header-section-number">2.3</span> The data</h2>
+<section id="the-data-1" class="level2 page-columns page-full" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-data-1"><span class="header-section-number">2.3</span> The data</h2>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/AdobeStock_93907188.jpeg" class="img-fluid figure-img"></p>
@@ -346,11 +384,11 @@ window.Quarto = {
 <h2 data-number="3.1" class="anchored" data-anchor-id="model-development"><span class="header-section-number">3.1</span> Model development</h2>
 <p><em>(i)</em> Read in the data and investigate the relationship between each of your variables. Describe the relationships, supported by values (correlation coefficient) and plots.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># read in the data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># read in the data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 22
 Columns: 8
@@ -363,8 +401,8 @@ $ LogMay     &lt;dbl&gt; 0.000, 3.401, 5.826, 5.749, 5.509, 5.749, 5.371, 0.000,
 $ LogOther   &lt;dbl&gt; 1.386, 1.609, 1.386, 1.386, 1.099, 3.045, 1.386, 2.944, 2.5…
 $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3.40,…</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'psych'</code></pre>
@@ -374,16 +412,16 @@ Attaching package: 'psych'</code></pre>
 
     %+%, alpha</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">pairs.panels</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">pairs.panels</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># can also get the same results separately</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">cor</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># can also get the same results separately</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">cor</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Altitude    Hardness  RiverSlope   LogCadd    LogStone
 Altitude    1.00000000 -0.08170082  0.49003652 0.1807820  0.47736562
@@ -404,11 +442,11 @@ LogMay      1.00000000  0.38820063  0.1562659
 LogOther    0.38820063  1.00000000 -0.1277591
 Br_Dens     0.15626585 -0.12775913  1.0000000</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">pairs</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">pairs</span>(dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -418,81 +456,81 @@ Br_Dens     0.15626585 -0.12775913  1.0000000</code></pre>
 <p>We can confirm if correlations between predictors may be an issue with the model by observing the Variance inflation factor (VIF) later on when we check our model assumptions.</p>
 <p><em>(ii)</em> Fit a multiple linear regression model to the data using all variables. Set <code>Br_Dens</code> as the response variable and the remaining variables as the predictors. This will be known as the ‘full model’.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># fit the full model</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Altitude <span class="sc">+</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># fit the full model</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Altitude <span class="sc">+</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>(iii)</em> Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</p>
 <p>The VIF will appear as one of the plots in the <code>check_model()</code> function, but it can also be helpful to get the values. You can use the <code>vif()</code> function from the <code>car</code> package to get the VIF values for each predictor variable.</p>
 <p>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(performance)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co"># Linearity</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># Linearity</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Normality</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Normality</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Equal variance</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Equal variance</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Outliers</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Outliers</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># VIF - visual</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># VIF - visual</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-5.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># VIF - numbers</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># comes from the car package</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co"># comes from the car package</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Altitude   Hardness RiverSlope    LogCadd   LogStone     LogMay   LogOther 
   1.589862   1.835610   2.030493   2.639160   2.489586   1.838431   2.341119 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="fu">plot</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">plot</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial09_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial09_files/figure-html/unnamed-chunk-5-6.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li><p>Linearity: The relationship between the predictors and the response variable appears to be linear, as the residuals are mostly scattered around the horizontal line at zero in the residuals vs fitted plot.</p></li>
@@ -506,7 +544,7 @@ Br_Dens     0.15626585 -0.12775913  1.0000000</code></pre>
 <p>Our threshold is 5, so given all of our VIFs are below this, we are not too concerned about collinearity. However, because they are close to the threshold it is something to keep in mind when interpreting the model parameters.</p>
 <p><em>(iv)</em> Make a note of the model parameters and fit statistics for the full model.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -540,11 +578,11 @@ F-statistic: 10.77 on 7 and 14 DF,  p-value: 0.0001085</code></pre>
 <p><em>(v)</em> Select the least significant predictor and remove it from the model.</p>
 <p>In this case, the least significant predictor is <code>Altitude</code> (P = 0.619). Remove it from the model and run the model again. This will be known as the ‘reduced model’.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>(vi)</em> Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">summary</span>(full_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -572,7 +610,7 @@ Residual standard error: 0.7208 on 14 degrees of freedom
 Multiple R-squared:  0.8433,    Adjusted R-squared:  0.765 
 F-statistic: 10.77 on 7 and 14 DF,  p-value: 0.0001085</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">summary</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">summary</span>(reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -625,7 +663,7 @@ F-statistic: 13.17 on 6 and 15 DF,  p-value: 3.139e-05</code></pre>
 <p><em>(ii)</em> Run the test</p>
 <p>Once we have established our hypotheses, we can perform the F-test using the <code>anova()</code> function to compare the full and reduced models.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">anova</span>(full_model, reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">anova</span>(full_model, reduced_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -662,7 +700,7 @@ Model 2: Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogMay +
 <p>When we have many predictors, this manual testing can become time consuming, so we can choose to use the <code>step()</code> function in R, which performs stepwise regression. This function will automatically remove the least significant predictor and test the model again, until it finds the best model based on the AIC criterion.</p>
 <p><em>(i)</em> Run the <code>step()</code> function on the full model to perform stepwise regression.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Start:  AIC=-8.35
 Br_Dens ~ Altitude + Hardness + RiverSlope + LogCadd + LogStone + 
@@ -706,7 +744,7 @@ Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther
 <p><em>(ii)</em> What is the final model that the <code>step()</code> function has produced? How does it compare to the full and reduced models?</p>
 <p>Since we have stored the step() output as an object, we can just call the object, which will show us the final model:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>step_model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>step_model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -717,9 +755,9 @@ Coefficients:
 (Intercept)     Hardness   RiverSlope      LogCadd     LogStone     LogOther  
    -0.72462      0.01181      0.06538      0.54880      0.51249     -0.26813  </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="do">## OR</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">summary</span>(step_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="do">## OR</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a><span class="fu">summary</span>(step_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -754,7 +792,7 @@ F-statistic: 15.59 on 5 and 16 DF,  p-value: 1.169e-05</code></pre>
 <p><em>(iii)</em> How does the AIC of the stepwise regression model compare to the full and reduced models?</p>
 <p>We can test this using the AIC() function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">AIC</span>(full_model, reduced_model, step_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">AIC</span>(full_model, reduced_model, step_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              df      AIC
 full_model     9 56.08470
@@ -1250,380 +1288,434 @@ step_model     7 53.91655</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1"></a><span class="co">---</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="an">title:</span><span class="co"> "Tutorial 09"</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="co"># reviewed-by: LP 2026</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a><span class="an">format:</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a><span class="co">  sandstone-html:</span></span>
-<span id="cb38-6"><a href="#cb38-6"></a><span class="co">    code-tools: true</span></span>
-<span id="cb38-7"><a href="#cb38-7"></a><span class="an">resources:</span></span>
-<span id="cb38-8"><a href="#cb38-8"></a><span class="co">  - data/Dippers.csv</span></span>
-<span id="cb38-9"><a href="#cb38-9"></a><span class="co">---</span></span>
-<span id="cb38-10"><a href="#cb38-10"></a></span>
-<span id="cb38-11"><a href="#cb38-11"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb38-12"><a href="#cb38-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb38-13"><a href="#cb38-13"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb38-14"><a href="#cb38-14"></a><span class="in">```</span></span>
-<span id="cb38-15"><a href="#cb38-15"></a></span>
-<span id="cb38-16"><a href="#cb38-16"></a><span class="fu">## Welcome to week 9! {.unnumbered}</span></span>
-<span id="cb38-17"><a href="#cb38-17"></a></span>
-<span id="cb38-18"><a href="#cb38-18"></a>This week's lecture introduced you to how we use models for prediction and how we assess the quality of the predictions.We will follow similar steps in today's tutorial and lab class. </span>
-<span id="cb38-19"><a href="#cb38-19"></a></span>
-<span id="cb38-20"><a href="#cb38-20"></a></span>
-<span id="cb38-21"><a href="#cb38-21"></a>In this tutorial we will cover the key steps to fit a model, use it to make predictions, and then check assumptions, and select the most appropriate model.</span>
-<span id="cb38-22"><a href="#cb38-22"></a></span>
-<span id="cb38-23"><a href="#cb38-23"></a>**You will learn how to:**</span>
-<span id="cb38-24"><a href="#cb38-24"></a></span>
-<span id="cb38-25"><a href="#cb38-25"></a><span class="ss">1.  </span>Split data into training and test subsets</span>
-<span id="cb38-26"><a href="#cb38-26"></a><span class="ss">2.  </span>Fit your model to the training data and check assumptions are met</span>
-<span id="cb38-27"><a href="#cb38-27"></a><span class="ss">3.  </span>Use the trained model to make predictions using the training and the test subsets</span>
-<span id="cb38-28"><a href="#cb38-28"></a><span class="ss">4.  </span>Observe the quality of the predictions using appropriate statistics and plots</span>
-<span id="cb38-29"><a href="#cb38-29"></a></span>
-<span id="cb38-30"><a href="#cb38-30"></a></span>
-<span id="cb38-31"><a href="#cb38-31"></a><span class="fu"># Data splitting</span></span>
-<span id="cb38-32"><a href="#cb38-32"></a></span>
-<span id="cb38-33"><a href="#cb38-33"></a>Making predictions involves substituting in new values of x into our model equation to get new values of y.</span>
-<span id="cb38-34"><a href="#cb38-34"></a></span>
-<span id="cb38-35"><a href="#cb38-35"></a>We could use single values for each of our predictor variables and substitute them into the equation, but this is unrealistic and time consuming when we have a large number of observations. We therefore use a dataset containing our new observations of x to make the predictions and feed this into our model. </span>
-<span id="cb38-36"><a href="#cb38-36"></a></span>
-<span id="cb38-37"><a href="#cb38-37"></a>To understand the true capability of our model to predict new values of y from values of x that have not been seen by the model, we need to test this on data that has not been used to fit the model. If we test our model on the same data used fit the model, we are likely to get an over-optimistic estimate of the model's predictive performance, as the model has already seen this data.</span>
-<span id="cb38-38"><a href="#cb38-38"></a></span>
-<span id="cb38-39"><a href="#cb38-39"></a>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset.</span>
-<span id="cb38-40"><a href="#cb38-40"></a></span>
-<span id="cb38-41"><a href="#cb38-41"></a>The training set is what we use to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions.  As the observed y value has been used in model fitting, the predictions made with this subset will often look quite good, so we do not assess the true predictive performance of the model using the training set alone. Instead we can compare the prediction quality statistics and plots with those of the test set to get an indication of overfitting.  </span>
-<span id="cb38-42"><a href="#cb38-42"></a></span>
-<span id="cb38-43"><a href="#cb38-43"></a>The test subset is a set of values which are not used to fit the model, and is therefore unseen by the model. This allows us to  pretend we have a new set of values, but then we have the advantage of the actual observed y variable sitting within the dataset too, so we are able to test how similar the predictions are to our real observation. </span>
-<span id="cb38-44"><a href="#cb38-44"></a></span>
-<span id="cb38-45"><a href="#cb38-45"></a></span>
-<span id="cb38-46"><a href="#cb38-46"></a></span>
-<span id="cb38-47"><a href="#cb38-47"></a>We build the model with one dataset (calibration).</span>
-<span id="cb38-48"><a href="#cb38-48"></a></span>
-<span id="cb38-49"><a href="#cb38-49"></a>We validate the model's predictions with an independent dataset.</span>
-<span id="cb38-50"><a href="#cb38-50"></a></span>
-<span id="cb38-51"><a href="#cb38-51"></a>If the model is good, we expect the predictions to be close to the actual values.</span>
-<span id="cb38-52"><a href="#cb38-52"></a></span>
-<span id="cb38-53"><a href="#cb38-53"></a>If the model is bad, we expect the predictions to be far from the actual values.</span>
-<span id="cb38-54"><a href="#cb38-54"></a></span>
-<span id="cb38-55"><a href="#cb38-55"></a>The dataset can be obtained by:</span>
-<span id="cb38-56"><a href="#cb38-56"></a></span>
-<span id="cb38-57"><a href="#cb38-57"></a>Collecting new data.</span>
-<span id="cb38-58"><a href="#cb38-58"></a></span>
-<span id="cb38-59"><a href="#cb38-59"></a>Splitting the existing data into two parts before model building.</span>
-<span id="cb38-60"><a href="#cb38-60"></a></span>
-<span id="cb38-61"><a href="#cb38-61"></a>Data splitting</span>
-<span id="cb38-62"><a href="#cb38-62"></a></span>
-<span id="cb38-63"><a href="#cb38-63"></a>Cross-validation</span>
-<span id="cb38-64"><a href="#cb38-64"></a></span>
-<span id="cb38-65"><a href="#cb38-65"></a>*use cars dataset?*</span>
-<span id="cb38-66"><a href="#cb38-66"></a></span>
-<span id="cb38-67"><a href="#cb38-67"></a>This week's lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.</span>
-<span id="cb38-68"><a href="#cb38-68"></a></span>
-<span id="cb38-69"><a href="#cb38-69"></a>In this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex. </span>
-<span id="cb38-70"><a href="#cb38-70"></a></span>
-<span id="cb38-71"><a href="#cb38-71"></a>**You will learn how to:**</span>
-<span id="cb38-72"><a href="#cb38-72"></a></span>
-<span id="cb38-73"><a href="#cb38-73"></a><span class="ss">1.  </span>Check for collinearity and influential observations in a MLR model</span>
-<span id="cb38-74"><a href="#cb38-74"></a><span class="ss">2.  </span>Run partial F-tests to compare nested models</span>
-<span id="cb38-75"><a href="#cb38-75"></a><span class="ss">3.  </span>Implement stepwise regression using the <span class="in">`step()`</span> function in R</span>
-<span id="cb38-76"><a href="#cb38-76"></a></span>
-<span id="cb38-77"><a href="#cb38-77"></a></span>
-<span id="cb38-78"><a href="#cb38-78"></a><span class="fu"># Setting up for our analysis</span></span>
-<span id="cb38-79"><a href="#cb38-79"></a></span>
-<span id="cb38-80"><a href="#cb38-80"></a><span class="fu">## Workflow for fitting parsimonious models</span></span>
-<span id="cb38-81"><a href="#cb38-81"></a></span>
-<span id="cb38-82"><a href="#cb38-82"></a>*1. Model development*</span>
-<span id="cb38-83"><a href="#cb38-83"></a></span>
-<span id="cb38-84"><a href="#cb38-84"></a><span class="ss">* </span>Start with full model and check assumptions (e.g. normality, homoscedasticity, linearity, etc.)</span>
-<span id="cb38-85"><a href="#cb38-85"></a><span class="ss">* </span>Look for additional issues (e.g. multicollinearity, outliers, etc.) </span>
-<span id="cb38-86"><a href="#cb38-86"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> -–&gt; correlations, leverage plot, VIF plots and statistics</span>
-<span id="cb38-87"><a href="#cb38-87"></a><span class="ss">* </span>Consider transformations (e.g. log, sqrt, etc.).</span>
-<span id="cb38-88"><a href="#cb38-88"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> --&gt; Response: if assumptions aren't met, transform the response variable</span>
-<span id="cb38-89"><a href="#cb38-89"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> --&gt; Predictors: it may help to explore transformations of skewed predictors before fitting the model to explore if there is a relationship present. Transforming predictors generally does not affect assumptions, but it can help to linearise relationships and make them easier to interpret.</span>
-<span id="cb38-90"><a href="#cb38-90"></a><span class="ss">* </span>Following any transformations, test assumptions again.</span>
-<span id="cb38-91"><a href="#cb38-91"></a></span>
-<span id="cb38-92"><a href="#cb38-92"></a>*2. Model selection*</span>
-<span id="cb38-93"><a href="#cb38-93"></a></span>
-<span id="cb38-94"><a href="#cb38-94"></a><span class="ss">- </span>Use VIF as an initial step to get rid of highly correlated predictors.</span>
-<span id="cb38-95"><a href="#cb38-95"></a><span class="ss">- </span>Perform variable selection using backward elimination (good and fast), because:</span>
-<span id="cb38-96"><a href="#cb38-96"></a><span class="ss">- </span>Using r^2^2 as a criterion is not recommended (it is not a good measure of model fit, only a good measure of variance explained).</span>
-<span id="cb38-97"><a href="#cb38-97"></a><span class="ss">- </span>Using partial F-test is good, but slow.</span>
-<span id="cb38-98"><a href="#cb38-98"></a></span>
-<span id="cb38-99"><a href="#cb38-99"></a><span class="fu">## Packages</span></span>
-<span id="cb38-100"><a href="#cb38-100"></a></span>
-<span id="cb38-101"><a href="#cb38-101"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span> and <span class="in">`car`</span>. Install any you are missing by running the following **in the console**:</span>
-<span id="cb38-102"><a href="#cb38-102"></a></span>
-<span id="cb38-105"><a href="#cb38-105"></a><span class="in">```{r}</span></span>
-<span id="cb38-106"><a href="#cb38-106"></a><span class="co">#| eval: false</span></span>
-<span id="cb38-107"><a href="#cb38-107"></a></span>
-<span id="cb38-108"><a href="#cb38-108"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span>
-<span id="cb38-109"><a href="#cb38-109"></a><span class="in">```</span></span>
-<span id="cb38-110"><a href="#cb38-110"></a></span>
-<span id="cb38-111"><a href="#cb38-111"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
-<span id="cb38-112"><a href="#cb38-112"></a></span>
-<span id="cb38-113"><a href="#cb38-113"></a><span class="fu">## The data</span></span>
-<span id="cb38-114"><a href="#cb38-114"></a></span>
-<span id="cb38-115"><a href="#cb38-115"></a><span class="al">![Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.](images/AdobeStock_93907188.jpeg)</span></span>
-<span id="cb38-116"><a href="#cb38-116"></a></span>
-<span id="cb38-117"><a href="#cb38-117"></a><span class="co">[</span><span class="ot">Dippers</span><span class="co">](https://en.wikipedia.org/wiki/Dipper)</span> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. </span>
-<span id="cb38-118"><a href="#cb38-118"></a></span>
-<span id="cb38-119"><a href="#cb38-119"></a>Twenty-two sites were included in the survey. Some of the variables have been transformed. </span>
-<span id="cb38-120"><a href="#cb38-120"></a></span>
-<span id="cb38-121"><a href="#cb38-121"></a>Data can be found in: **Dippers.csv**</span>
-<span id="cb38-122"><a href="#cb38-122"></a></span>
-<span id="cb38-123"><a href="#cb38-123"></a>The variables measured were:  </span>
-<span id="cb38-124"><a href="#cb38-124"></a></span>
-<span id="cb38-125"><a href="#cb38-125"></a><span class="ss">- </span><span class="in">`Altitude`</span> site altitude</span>
-<span id="cb38-126"><a href="#cb38-126"></a><span class="ss">- </span><span class="in">`Hardness`</span> water hardness</span>
-<span id="cb38-127"><a href="#cb38-127"></a><span class="ss">- </span><span class="in">`RiverSlope`</span> river-bed slope</span>
-<span id="cb38-128"><a href="#cb38-128"></a><span class="ss">- </span><span class="in">`LogCadd`</span> the numbers of caddis fly larvae, transformed</span>
-<span id="cb38-129"><a href="#cb38-129"></a><span class="ss">- </span><span class="in">`LogStone`</span> the numbers of stonefly larvae, transformed</span>
-<span id="cb38-130"><a href="#cb38-130"></a><span class="ss">- </span><span class="in">`LogMay`</span> the numbers of mayfly larvae, transformed</span>
-<span id="cb38-131"><a href="#cb38-131"></a><span class="ss">- </span><span class="in">`LogOther`</span> the numbers of all other invertebrates collected, transformed</span>
-<span id="cb38-132"><a href="#cb38-132"></a><span class="ss">- </span><span class="in">`Br_Dens`</span> the number of breeding pairs of dippers per 10 km of river  </span>
-<span id="cb38-133"><a href="#cb38-133"></a></span>
-<span id="cb38-134"><a href="#cb38-134"></a>In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.</span>
-<span id="cb38-135"><a href="#cb38-135"></a></span>
-<span id="cb38-136"><a href="#cb38-136"></a><span class="in">`Br_Dens`</span> will be the response variable in our models. </span>
-<span id="cb38-137"><a href="#cb38-137"></a></span>
-<span id="cb38-138"><a href="#cb38-138"></a><span class="fu"># Analysis</span></span>
-<span id="cb38-139"><a href="#cb38-139"></a></span>
-<span id="cb38-140"><a href="#cb38-140"></a><span class="fu">## Model development</span></span>
-<span id="cb38-141"><a href="#cb38-141"></a></span>
-<span id="cb38-142"><a href="#cb38-142"></a>*(i)* Read in the data and investigate the relationship between each of your variables. Describe the relationships, supported by values (correlation coefficient) and plots.</span>
-<span id="cb38-143"><a href="#cb38-143"></a></span>
-<span id="cb38-146"><a href="#cb38-146"></a><span class="in">```{r}</span></span>
-<span id="cb38-147"><a href="#cb38-147"></a><span class="co"># read in the data</span></span>
-<span id="cb38-148"><a href="#cb38-148"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
-<span id="cb38-149"><a href="#cb38-149"></a></span>
-<span id="cb38-150"><a href="#cb38-150"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb38-151"><a href="#cb38-151"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span>
-<span id="cb38-152"><a href="#cb38-152"></a></span>
-<span id="cb38-153"><a href="#cb38-153"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
-<span id="cb38-154"><a href="#cb38-154"></a><span class="fu">library</span>(psych)</span>
-<span id="cb38-155"><a href="#cb38-155"></a><span class="fu">pairs.panels</span>(dippers)</span>
-<span id="cb38-156"><a href="#cb38-156"></a></span>
-<span id="cb38-157"><a href="#cb38-157"></a><span class="co"># can also get the same results separately</span></span>
-<span id="cb38-158"><a href="#cb38-158"></a><span class="fu">cor</span>(dippers)</span>
-<span id="cb38-159"><a href="#cb38-159"></a><span class="fu">pairs</span>(dippers)</span>
-<span id="cb38-160"><a href="#cb38-160"></a></span>
-<span id="cb38-161"><a href="#cb38-161"></a><span class="in">```</span></span>
-<span id="cb38-162"><a href="#cb38-162"></a></span>
-<span id="cb38-163"><a href="#cb38-163"></a>Between Br_Dens and other variables, there are a number of relatively stong correlations, particularly with LogStone (r = 763), RiverSlope (r = 0.710) and LogCadd (r = 0.613). </span>
-<span id="cb38-164"><a href="#cb38-164"></a></span>
-<span id="cb38-165"><a href="#cb38-165"></a>There are also some strong correlations between the predictor variables themselves, particularly between RiverSlope and LogStone (r = 0.575) and LogOther and Hardness (r = 0.554). This could be an issue for our model, as collinearity can make it difficult to interpret the model parameters and can inflate the standard errors of the estimates.</span>
-<span id="cb38-166"><a href="#cb38-166"></a></span>
-<span id="cb38-167"><a href="#cb38-167"></a>We can confirm if correlations between predictors may be an issue with the model by observing the Variance inflation factor (VIF) later on when we check our model assumptions.</span>
-<span id="cb38-168"><a href="#cb38-168"></a></span>
-<span id="cb38-169"><a href="#cb38-169"></a>*(ii)* Fit a multiple linear regression model to the data using all variables. Set  <span class="in">`Br_Dens`</span> as the response variable and the remaining variables as the predictors.  This will be known as the 'full model'. </span>
-<span id="cb38-170"><a href="#cb38-170"></a></span>
-<span id="cb38-173"><a href="#cb38-173"></a><span class="in">```{r}</span></span>
-<span id="cb38-174"><a href="#cb38-174"></a><span class="co"># fit the full model</span></span>
-<span id="cb38-175"><a href="#cb38-175"></a></span>
-<span id="cb38-176"><a href="#cb38-176"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Altitude <span class="sc">+</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span>
-<span id="cb38-177"><a href="#cb38-177"></a></span>
-<span id="cb38-178"><a href="#cb38-178"></a><span class="in">```</span></span>
-<span id="cb38-179"><a href="#cb38-179"></a></span>
-<span id="cb38-180"><a href="#cb38-180"></a></span>
-<span id="cb38-181"><a href="#cb38-181"></a>*(iii)* Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</span>
-<span id="cb38-182"><a href="#cb38-182"></a></span>
-<span id="cb38-183"><a href="#cb38-183"></a>The VIF will appear as one of the plots in the <span class="in">`check_model()`</span> function, but it can also be helpful to get the values. You can use the <span class="in">`vif()`</span> function from the <span class="in">`car`</span> package to get the VIF values for each predictor variable. </span>
-<span id="cb38-184"><a href="#cb38-184"></a></span>
-<span id="cb38-185"><a href="#cb38-185"></a>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</span>
-<span id="cb38-186"><a href="#cb38-186"></a></span>
-<span id="cb38-189"><a href="#cb38-189"></a><span class="in">```{r}</span></span>
-<span id="cb38-190"><a href="#cb38-190"></a><span class="fu">library</span>(performance)</span>
-<span id="cb38-191"><a href="#cb38-191"></a></span>
-<span id="cb38-192"><a href="#cb38-192"></a><span class="co"># Linearity</span></span>
-<span id="cb38-193"><a href="#cb38-193"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
-<span id="cb38-194"><a href="#cb38-194"></a></span>
-<span id="cb38-195"><a href="#cb38-195"></a><span class="co"># Normality</span></span>
-<span id="cb38-196"><a href="#cb38-196"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
-<span id="cb38-197"><a href="#cb38-197"></a></span>
-<span id="cb38-198"><a href="#cb38-198"></a><span class="co"># Equal variance</span></span>
-<span id="cb38-199"><a href="#cb38-199"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
-<span id="cb38-200"><a href="#cb38-200"></a></span>
-<span id="cb38-201"><a href="#cb38-201"></a><span class="co"># Outliers</span></span>
-<span id="cb38-202"><a href="#cb38-202"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
-<span id="cb38-203"><a href="#cb38-203"></a></span>
-<span id="cb38-204"><a href="#cb38-204"></a><span class="co"># VIF - visual</span></span>
-<span id="cb38-205"><a href="#cb38-205"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span>
-<span id="cb38-206"><a href="#cb38-206"></a></span>
-<span id="cb38-207"><a href="#cb38-207"></a><span class="co"># VIF - numbers</span></span>
-<span id="cb38-208"><a href="#cb38-208"></a><span class="co"># comes from the car package</span></span>
-<span id="cb38-209"><a href="#cb38-209"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span>
-<span id="cb38-210"><a href="#cb38-210"></a></span>
-<span id="cb38-211"><a href="#cb38-211"></a></span>
-<span id="cb38-212"><a href="#cb38-212"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
-<span id="cb38-213"><a href="#cb38-213"></a></span>
-<span id="cb38-214"><a href="#cb38-214"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb38-215"><a href="#cb38-215"></a></span>
-<span id="cb38-216"><a href="#cb38-216"></a><span class="fu">plot</span>(full_model)</span>
-<span id="cb38-217"><a href="#cb38-217"></a></span>
-<span id="cb38-218"><a href="#cb38-218"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb38-219"><a href="#cb38-219"></a></span>
-<span id="cb38-220"><a href="#cb38-220"></a><span class="in">```</span></span>
-<span id="cb38-221"><a href="#cb38-221"></a></span>
-<span id="cb38-222"><a href="#cb38-222"></a><span class="ss">* </span>Linearity: The relationship between the predictors and the response variable appears to be linear, as the residuals are mostly scattered around the horizontal line at zero in the residuals vs fitted plot.</span>
-<span id="cb38-223"><a href="#cb38-223"></a></span>
-<span id="cb38-224"><a href="#cb38-224"></a><span class="ss">* </span>Independence: The residuals appear to be independent, as there is no clear pattern in the residuals vs fitted plot.</span>
-<span id="cb38-225"><a href="#cb38-225"></a></span>
-<span id="cb38-226"><a href="#cb38-226"></a><span class="ss">* </span>Normality: The residuals appear to be approximately normally distributed, as the points in the Q-Q plot roughly follow a straight line. When we look at the <span class="in">`check_model()`</span> version of the plot we a slight n-shape to the points, but this is only small compared to the overall distribution of the points, so we are not too concerned about this.</span>
-<span id="cb38-227"><a href="#cb38-227"></a></span>
-<span id="cb38-228"><a href="#cb38-228"></a><span class="ss">* </span>Equal variance: The residuals appear to have constant variance, as there is no clear pattern or fanning present in the standardised residuals vs fitted plot (scale-location in the base plot).</span>
-<span id="cb38-229"><a href="#cb38-229"></a></span>
-<span id="cb38-230"><a href="#cb38-230"></a><span class="ss">* </span>Leverage: No single observations lying outside the Cook's distance line, indicating no influential observations.</span>
-<span id="cb38-231"><a href="#cb38-231"></a></span>
-<span id="cb38-232"><a href="#cb38-232"></a>**VIF and collinearity**</span>
-<span id="cb38-233"><a href="#cb38-233"></a></span>
-<span id="cb38-234"><a href="#cb38-234"></a>VIF Thresholds vary, depending on who you ask. General rule is that if it is greater than 10, then you need to remove the associated predictor. Some conservative people prefer a value of 5, so we will go with this. </span>
-<span id="cb38-235"><a href="#cb38-235"></a></span>
-<span id="cb38-236"><a href="#cb38-236"></a>Our threshold is 5, so given all of our VIFs are below this, we are not too concerned about collinearity. However, because they are close to the threshold it is something to keep in mind when interpreting the model parameters.</span>
-<span id="cb38-237"><a href="#cb38-237"></a></span>
-<span id="cb38-238"><a href="#cb38-238"></a>*(iv)* Make a note of the model parameters and fit statistics for the full model. </span>
-<span id="cb38-239"><a href="#cb38-239"></a></span>
-<span id="cb38-242"><a href="#cb38-242"></a><span class="in">```{r}</span></span>
-<span id="cb38-243"><a href="#cb38-243"></a><span class="fu">summary</span>(full_model)</span>
-<span id="cb38-244"><a href="#cb38-244"></a><span class="in">```</span></span>
-<span id="cb38-245"><a href="#cb38-245"></a></span>
-<span id="cb38-246"><a href="#cb38-246"></a>We can see that there are two significant predictors (RiverSlope and LogStone) in the full model, but there are also a number of non-significant predictors. The adjusted R^2^ value is 0.77, which indicates that the model explains 77% of the variation in the response variable.</span>
-<span id="cb38-247"><a href="#cb38-247"></a></span>
-<span id="cb38-248"><a href="#cb38-248"></a>Because there are so many non-significant predictors in the model, we may want to consider removing some of them to produce a more parsimonious model. </span>
-<span id="cb38-249"><a href="#cb38-249"></a></span>
-<span id="cb38-250"><a href="#cb38-250"></a>*(v)*  Select the least significant predictor and remove it from the model. </span>
-<span id="cb38-251"><a href="#cb38-251"></a></span>
-<span id="cb38-252"><a href="#cb38-252"></a>In this case, the least significant predictor is <span class="in">`Altitude`</span> (P = 0.619). Remove it from the model and run the model again. This will be known as the 'reduced model'.</span>
-<span id="cb38-253"><a href="#cb38-253"></a></span>
-<span id="cb38-256"><a href="#cb38-256"></a><span class="in">```{r}</span></span>
-<span id="cb38-257"><a href="#cb38-257"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span>
-<span id="cb38-258"><a href="#cb38-258"></a></span>
-<span id="cb38-259"><a href="#cb38-259"></a><span class="in">```</span></span>
-<span id="cb38-260"><a href="#cb38-260"></a></span>
-<span id="cb38-261"><a href="#cb38-261"></a>*(vi)* Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</span>
-<span id="cb38-262"><a href="#cb38-262"></a></span>
-<span id="cb38-265"><a href="#cb38-265"></a><span class="in">```{r}</span></span>
-<span id="cb38-266"><a href="#cb38-266"></a><span class="fu">summary</span>(full_model)</span>
-<span id="cb38-267"><a href="#cb38-267"></a><span class="fu">summary</span>(reduced_model)</span>
-<span id="cb38-268"><a href="#cb38-268"></a><span class="in">```</span></span>
-<span id="cb38-269"><a href="#cb38-269"></a></span>
-<span id="cb38-270"><a href="#cb38-270"></a>Removing the <span class="in">`Altitude`</span> predictor from the model has slightly increased the adjusted R^2^ value. This is an improvement in terms of parsimony, but we will need to use hypothesis testing to determine whether the reduced model is a *significant* improvement on the full model. We can do this using an F-test. </span>
-<span id="cb38-271"><a href="#cb38-271"></a></span>
-<span id="cb38-272"><a href="#cb38-272"></a>::: callout-note</span>
-<span id="cb38-273"><a href="#cb38-273"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb38-274"><a href="#cb38-274"></a></span>
-<span id="cb38-275"><a href="#cb38-275"></a>You should now be able to prepare an appropriate model by refining it, checking your assumptions, and ensuring collinearity is not an issue.</span>
-<span id="cb38-276"><a href="#cb38-276"></a></span>
-<span id="cb38-277"><a href="#cb38-277"></a>:::</span>
-<span id="cb38-278"><a href="#cb38-278"></a></span>
-<span id="cb38-279"><a href="#cb38-279"></a><span class="fu">## Model selection with F-tests</span></span>
-<span id="cb38-280"><a href="#cb38-280"></a></span>
-<span id="cb38-281"><a href="#cb38-281"></a>We wil use the partial F-test to determine whether there is a significant difference between the models. </span>
-<span id="cb38-282"><a href="#cb38-282"></a></span>
-<span id="cb38-283"><a href="#cb38-283"></a>*(i)* State hypotheses</span>
-<span id="cb38-284"><a href="#cb38-284"></a></span>
-<span id="cb38-285"><a href="#cb38-285"></a>H0: no significant difference between the full and reduced models</span>
-<span id="cb38-286"><a href="#cb38-286"></a>H1: There is a significant difference between the full and reduced models</span>
-<span id="cb38-287"><a href="#cb38-287"></a></span>
-<span id="cb38-288"><a href="#cb38-288"></a>If we fail to reject H0, then we would opt for the reduced model as it is more parsimonious (i.e. it is explaining a similar amount of variation with fewer predictors). </span>
-<span id="cb38-289"><a href="#cb38-289"></a></span>
-<span id="cb38-290"><a href="#cb38-290"></a>If we reject H0, then we would opt for the full model as it is a significant improvement on the reduced model.</span>
-<span id="cb38-291"><a href="#cb38-291"></a></span>
-<span id="cb38-292"><a href="#cb38-292"></a>*(ii)* Run the test</span>
-<span id="cb38-293"><a href="#cb38-293"></a></span>
-<span id="cb38-294"><a href="#cb38-294"></a>Once we have established our hypotheses, we can perform the F-test using the <span class="in">`anova()`</span> function to compare the full and reduced models. </span>
-<span id="cb38-295"><a href="#cb38-295"></a></span>
-<span id="cb38-298"><a href="#cb38-298"></a><span class="in">```{r}</span></span>
-<span id="cb38-299"><a href="#cb38-299"></a><span class="fu">anova</span>(full_model, reduced_model)</span>
-<span id="cb38-300"><a href="#cb38-300"></a></span>
-<span id="cb38-301"><a href="#cb38-301"></a><span class="in">```</span></span>
-<span id="cb38-302"><a href="#cb38-302"></a></span>
-<span id="cb38-303"><a href="#cb38-303"></a>*(iii)* Are the models significantly different?</span>
-<span id="cb38-304"><a href="#cb38-304"></a></span>
-<span id="cb38-305"><a href="#cb38-305"></a>The P-value is 0.6186, which is larger than 0.05, so we fail to reject the null hypothesis.</span>
-<span id="cb38-306"><a href="#cb38-306"></a></span>
-<span id="cb38-307"><a href="#cb38-307"></a>This means that the full model is not a significant improvement on the reduced model, and we would opt for the reduced model as it is more parsimonious.</span>
-<span id="cb38-308"><a href="#cb38-308"></a></span>
-<span id="cb38-309"><a href="#cb38-309"></a></span>
-<span id="cb38-310"><a href="#cb38-310"></a>::: callout-note</span>
-<span id="cb38-311"><a href="#cb38-311"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb38-312"><a href="#cb38-312"></a></span>
-<span id="cb38-313"><a href="#cb38-313"></a>You should now be able to use an F-test to determine whether the reduced model is a significant improvement on the full model. </span>
-<span id="cb38-314"><a href="#cb38-314"></a></span>
-<span id="cb38-315"><a href="#cb38-315"></a>**Remember:** the F-test is only useful if comparing nested models. </span>
-<span id="cb38-316"><a href="#cb38-316"></a>:::</span>
-<span id="cb38-317"><a href="#cb38-317"></a></span>
-<span id="cb38-318"><a href="#cb38-318"></a><span class="fu"># Model selection using Stepwise regression</span></span>
-<span id="cb38-319"><a href="#cb38-319"></a></span>
-<span id="cb38-320"><a href="#cb38-320"></a>When we have many predictors, this manual testing can become time consuming, so we can choose to use the <span class="in">`step()`</span> function in R, which performs stepwise regression. This function will automatically remove the least significant predictor and test the model again, until it finds the best model based on the AIC criterion.</span>
-<span id="cb38-321"><a href="#cb38-321"></a></span>
-<span id="cb38-322"><a href="#cb38-322"></a>*(i)* Run the <span class="in">`step()`</span> function on the full model to perform stepwise regression.</span>
-<span id="cb38-323"><a href="#cb38-323"></a></span>
-<span id="cb38-326"><a href="#cb38-326"></a><span class="in">```{r}</span></span>
-<span id="cb38-327"><a href="#cb38-327"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
-<span id="cb38-328"><a href="#cb38-328"></a></span>
-<span id="cb38-329"><a href="#cb38-329"></a><span class="in">```</span></span>
-<span id="cb38-330"><a href="#cb38-330"></a></span>
-<span id="cb38-331"><a href="#cb38-331"></a>*(ii)* What is the final model that the <span class="in">`step()`</span> function has produced? How does it compare to the full and reduced models?</span>
-<span id="cb38-332"><a href="#cb38-332"></a></span>
-<span id="cb38-333"><a href="#cb38-333"></a>Since we have stored the step() output as an object, we can just call the object, which will show us the final model: </span>
-<span id="cb38-334"><a href="#cb38-334"></a></span>
-<span id="cb38-337"><a href="#cb38-337"></a><span class="in">```{r}</span></span>
-<span id="cb38-338"><a href="#cb38-338"></a>step_model</span>
-<span id="cb38-339"><a href="#cb38-339"></a></span>
-<span id="cb38-340"><a href="#cb38-340"></a><span class="do">## OR</span></span>
-<span id="cb38-341"><a href="#cb38-341"></a></span>
-<span id="cb38-342"><a href="#cb38-342"></a><span class="fu">summary</span>(step_model)</span>
-<span id="cb38-343"><a href="#cb38-343"></a><span class="in">```</span></span>
-<span id="cb38-344"><a href="#cb38-344"></a></span>
-<span id="cb38-345"><a href="#cb38-345"></a>We can see that the selected model is: </span>
-<span id="cb38-346"><a href="#cb38-346"></a></span>
-<span id="cb38-347"><a href="#cb38-347"></a>Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + </span>
-<span id="cb38-348"><a href="#cb38-348"></a>    LogOther</span>
-<span id="cb38-349"><a href="#cb38-349"></a>    </span>
-<span id="cb38-350"><a href="#cb38-350"></a>Or with the addition of the partial regression coefficients, our equation is: </span>
-<span id="cb38-351"><a href="#cb38-351"></a></span>
-<span id="cb38-352"><a href="#cb38-352"></a>Br_Dens = -0.725 + 0.012 * Hardness + 0.065 * RiverSlope + 0.549 * LogCadd + 0.512 * LogStone - 0.268 * LogOther</span>
-<span id="cb38-353"><a href="#cb38-353"></a></span>
-<span id="cb38-354"><a href="#cb38-354"></a>We can see there has also been a marginal change in the adjusted R^2^ value, which is now 0.7765, compared to 0.765 for the full model and 0.7766 for the reduced model. This supports the idea that the full model explained a similar amount of variation in the response compared to the simplest model obtained from the <span class="in">`step()`</span> function. Therefore it makes sense to select the simpler model. </span>
-<span id="cb38-355"><a href="#cb38-355"></a></span>
-<span id="cb38-356"><a href="#cb38-356"></a>*(iii)* How does the AIC of the stepwise regression model compare to the full and reduced models?</span>
-<span id="cb38-357"><a href="#cb38-357"></a></span>
-<span id="cb38-358"><a href="#cb38-358"></a>We can test this using the AIC() function: </span>
-<span id="cb38-359"><a href="#cb38-359"></a></span>
-<span id="cb38-362"><a href="#cb38-362"></a><span class="in">```{r}</span></span>
-<span id="cb38-363"><a href="#cb38-363"></a><span class="fu">AIC</span>(full_model, reduced_model, step_model)</span>
-<span id="cb38-364"><a href="#cb38-364"></a></span>
-<span id="cb38-365"><a href="#cb38-365"></a><span class="in">```</span></span>
-<span id="cb38-366"><a href="#cb38-366"></a></span>
-<span id="cb38-367"><a href="#cb38-367"></a>Full_model AIC = 56.1</span>
-<span id="cb38-368"><a href="#cb38-368"></a></span>
-<span id="cb38-369"><a href="#cb38-369"></a>Reduced_model AIC = 54.5</span>
-<span id="cb38-370"><a href="#cb38-370"></a></span>
-<span id="cb38-371"><a href="#cb38-371"></a>step_model AIC = 53.9</span>
-<span id="cb38-372"><a href="#cb38-372"></a></span>
-<span id="cb38-373"><a href="#cb38-373"></a>As we select the model with the smallest AIC, we can confirm that the model selected by the <span class="in">`step()`</span> function is better. </span>
-<span id="cb38-374"><a href="#cb38-374"></a></span>
-<span id="cb38-375"><a href="#cb38-375"></a>You may notice that the AIC values are different between the <span class="in">`step()`</span> function and the <span class="in">`AIC()`</span> function. This is because the <span class="in">`step()`</span> function uses a different method to calculate the AIC values, which is based on the likelihood of the model, while the <span class="in">`AIC()`</span> function uses a different method based on the residual sum of squares.</span>
-<span id="cb38-376"><a href="#cb38-376"></a></span>
-<span id="cb38-377"><a href="#cb38-377"></a>::: callout-note</span>
-<span id="cb38-378"><a href="#cb38-378"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb38-379"><a href="#cb38-379"></a></span>
-<span id="cb38-380"><a href="#cb38-380"></a>You should now be able to run the <span class="in">`step()`</span> function to select the most appropriate model. </span>
-<span id="cb38-381"><a href="#cb38-381"></a></span>
-<span id="cb38-382"><a href="#cb38-382"></a>:::</span>
-<span id="cb38-383"><a href="#cb38-383"></a></span>
-<span id="cb38-384"><a href="#cb38-384"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
-<span id="cb38-385"><a href="#cb38-385"></a></span>
-<span id="cb38-386"><a href="#cb38-386"></a>In this tutorial, we used the dippers dataset to get some practice testing model assumptions and checking for collinearity. We then used partial F-tests and stepwise regression to select a more parsimonious model. </span>
-<span id="cb38-387"><a href="#cb38-387"></a></span>
-<span id="cb38-388"><a href="#cb38-388"></a></span>
-<span id="cb38-389"><a href="#cb38-389"></a><span class="fu">### Example exam questions</span></span>
-<span id="cb38-390"><a href="#cb38-390"></a></span>
-<span id="cb38-391"><a href="#cb38-391"></a><span class="ss">1. </span>What assumptions do we need to check for when fitting a multiple linear regression?</span>
-<span id="cb38-392"><a href="#cb38-392"></a></span>
-<span id="cb38-393"><a href="#cb38-393"></a><span class="ss">2. </span>Why don't we just rely on the adjusted r^2^ to compare models?</span>
-<span id="cb38-394"><a href="#cb38-394"></a></span>
-<span id="cb38-395"><a href="#cb38-395"></a><span class="ss">3. </span>Can F-tests be run on non-nested models? Why or why not?</span>
-<span id="cb38-396"><a href="#cb38-396"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1"></a><span class="co">---</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="an">title:</span><span class="co"> "Tutorial 09"</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="co"># reviewed-by: LP 2026</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="an">format:</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a><span class="an">resources:</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a><span class="co">  - data/Dippers.csv</span></span>
+<span id="cb39-9"><a href="#cb39-9"></a><span class="co">---</span></span>
+<span id="cb39-10"><a href="#cb39-10"></a></span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb39-12"><a href="#cb39-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-13"><a href="#cb39-13"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb39-14"><a href="#cb39-14"></a><span class="in">```</span></span>
+<span id="cb39-15"><a href="#cb39-15"></a></span>
+<span id="cb39-16"><a href="#cb39-16"></a><span class="fu">## Welcome to week 9! {.unnumbered}</span></span>
+<span id="cb39-17"><a href="#cb39-17"></a></span>
+<span id="cb39-18"><a href="#cb39-18"></a>This week's lecture introduced you to how we use models for prediction and how we assess the quality of the predictions.We will follow similar steps in today's tutorial and lab class. </span>
+<span id="cb39-19"><a href="#cb39-19"></a></span>
+<span id="cb39-20"><a href="#cb39-20"></a></span>
+<span id="cb39-21"><a href="#cb39-21"></a>In this tutorial we will cover the key steps to fit a model, use it to make predictions, and then check assumptions, and select the most appropriate model.</span>
+<span id="cb39-22"><a href="#cb39-22"></a></span>
+<span id="cb39-23"><a href="#cb39-23"></a>**You will learn how to:**</span>
+<span id="cb39-24"><a href="#cb39-24"></a></span>
+<span id="cb39-25"><a href="#cb39-25"></a><span class="ss">1.  </span>Split data into training and test subsets</span>
+<span id="cb39-26"><a href="#cb39-26"></a><span class="ss">2.  </span>Fit your model to the training data and check assumptions are met</span>
+<span id="cb39-27"><a href="#cb39-27"></a><span class="ss">3.  </span>Use the trained model to make predictions using the training and the test subsets</span>
+<span id="cb39-28"><a href="#cb39-28"></a><span class="ss">4.  </span>Observe the quality of the predictions using appropriate statistics and plots</span>
+<span id="cb39-29"><a href="#cb39-29"></a></span>
+<span id="cb39-30"><a href="#cb39-30"></a></span>
+<span id="cb39-31"><a href="#cb39-31"></a></span>
+<span id="cb39-32"><a href="#cb39-32"></a><span class="fu">## Packages</span></span>
+<span id="cb39-33"><a href="#cb39-33"></a></span>
+<span id="cb39-34"><a href="#cb39-34"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span> and <span class="in">`car`</span>. Install any you are missing by running the following **in the console**:</span>
+<span id="cb39-35"><a href="#cb39-35"></a></span>
+<span id="cb39-38"><a href="#cb39-38"></a><span class="in">```{r}</span></span>
+<span id="cb39-39"><a href="#cb39-39"></a><span class="co">#| eval: false</span></span>
+<span id="cb39-40"><a href="#cb39-40"></a></span>
+<span id="cb39-41"><a href="#cb39-41"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span>
+<span id="cb39-42"><a href="#cb39-42"></a><span class="in">```</span></span>
+<span id="cb39-43"><a href="#cb39-43"></a></span>
+<span id="cb39-44"><a href="#cb39-44"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
+<span id="cb39-45"><a href="#cb39-45"></a></span>
+<span id="cb39-46"><a href="#cb39-46"></a><span class="fu">## The data</span></span>
+<span id="cb39-47"><a href="#cb39-47"></a></span>
+<span id="cb39-48"><a href="#cb39-48"></a><span class="al">![Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.](images/AdobeStock_93907188.jpeg)</span></span>
+<span id="cb39-49"><a href="#cb39-49"></a></span>
+<span id="cb39-50"><a href="#cb39-50"></a><span class="co">[</span><span class="ot">Dippers</span><span class="co">](https://en.wikipedia.org/wiki/Dipper)</span> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. </span>
+<span id="cb39-51"><a href="#cb39-51"></a></span>
+<span id="cb39-52"><a href="#cb39-52"></a>Twenty-two sites were included in the survey. Some of the variables have been transformed. </span>
+<span id="cb39-53"><a href="#cb39-53"></a></span>
+<span id="cb39-54"><a href="#cb39-54"></a>Data can be found in: **Dippers.csv**</span>
+<span id="cb39-55"><a href="#cb39-55"></a></span>
+<span id="cb39-56"><a href="#cb39-56"></a>The variables measured were:  </span>
+<span id="cb39-57"><a href="#cb39-57"></a></span>
+<span id="cb39-58"><a href="#cb39-58"></a><span class="ss">- </span><span class="in">`Altitude`</span> site altitude</span>
+<span id="cb39-59"><a href="#cb39-59"></a><span class="ss">- </span><span class="in">`Hardness`</span> water hardness</span>
+<span id="cb39-60"><a href="#cb39-60"></a><span class="ss">- </span><span class="in">`RiverSlope`</span> river-bed slope</span>
+<span id="cb39-61"><a href="#cb39-61"></a><span class="ss">- </span><span class="in">`LogCadd`</span> the numbers of caddis fly larvae, transformed</span>
+<span id="cb39-62"><a href="#cb39-62"></a><span class="ss">- </span><span class="in">`LogStone`</span> the numbers of stonefly larvae, transformed</span>
+<span id="cb39-63"><a href="#cb39-63"></a><span class="ss">- </span><span class="in">`LogMay`</span> the numbers of mayfly larvae, transformed</span>
+<span id="cb39-64"><a href="#cb39-64"></a><span class="ss">- </span><span class="in">`LogOther`</span> the numbers of all other invertebrates collected, transformed</span>
+<span id="cb39-65"><a href="#cb39-65"></a><span class="ss">- </span><span class="in">`Br_Dens`</span> the number of breeding pairs of dippers per 10 km of river  </span>
+<span id="cb39-66"><a href="#cb39-66"></a></span>
+<span id="cb39-67"><a href="#cb39-67"></a>In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.</span>
+<span id="cb39-68"><a href="#cb39-68"></a></span>
+<span id="cb39-69"><a href="#cb39-69"></a><span class="in">`Br_Dens`</span> will be the response variable in our models. </span>
+<span id="cb39-70"><a href="#cb39-70"></a></span>
+<span id="cb39-71"><a href="#cb39-71"></a>Last week following use of the step() function, we found the most parsimonious model to be:</span>
+<span id="cb39-72"><a href="#cb39-72"></a></span>
+<span id="cb39-73"><a href="#cb39-73"></a>Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther</span>
+<span id="cb39-74"><a href="#cb39-74"></a></span>
+<span id="cb39-75"><a href="#cb39-75"></a>Assumptions were met and the model explained 76% of variation in dipper breeding pair density. </span>
+<span id="cb39-76"><a href="#cb39-76"></a></span>
+<span id="cb39-77"><a href="#cb39-77"></a>We will use this model in our walkthrough today. </span>
+<span id="cb39-78"><a href="#cb39-78"></a></span>
+<span id="cb39-79"><a href="#cb39-79"></a><span class="fu"># Data splitting</span></span>
+<span id="cb39-80"><a href="#cb39-80"></a></span>
+<span id="cb39-81"><a href="#cb39-81"></a>Making predictions involves substituting in new values of x into our model equation to get new values of y.</span>
+<span id="cb39-82"><a href="#cb39-82"></a></span>
+<span id="cb39-83"><a href="#cb39-83"></a>We could use single values for each of our predictor variables and substitute them into the equation, but this is unrealistic and time consuming when we have a large number of observations. We therefore use a dataset containing our new observations of x to make the predictions and feed this into our model. </span>
+<span id="cb39-84"><a href="#cb39-84"></a></span>
+<span id="cb39-85"><a href="#cb39-85"></a>To understand the true capability of our model to predict new values of y from values of x that have not been seen by the model, we need to test this on data that has not been used to fit the model. If we test our model on the same data used fit the model, we are likely to get an over-optimistic estimate of the model's predictive performance, as the model has already seen this data.</span>
+<span id="cb39-86"><a href="#cb39-86"></a></span>
+<span id="cb39-87"><a href="#cb39-87"></a>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset.  For each subset, we feed the predictor values into the model to get predictions of the y variable. We can then compare the predicted y with the observed y contained within each subset to get an indication of how well our model is performing.</span>
+<span id="cb39-88"><a href="#cb39-88"></a></span>
+<span id="cb39-89"><a href="#cb39-89"></a>We use the training set to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions.  The predictions made with this subset will often look quite good, but this is because the observed y value has been used in model fitting; therefore we do not assess the true predictive performance of the model using the training set alone. Instead we can compare the prediction quality statistics and plots with those of the test set to get an indication of overfitting.  </span>
+<span id="cb39-90"><a href="#cb39-90"></a></span>
+<span id="cb39-91"><a href="#cb39-91"></a>The test subset is a set of values which are not used to fit the model, and is therefore unseen by the model. This allows us to  pretend we have a new set of values, but then we have the advantage of the actual observed y variable sitting within the dataset too, so we are able to test how similar the predictions are to our real observation. </span>
+<span id="cb39-92"><a href="#cb39-92"></a></span>
+<span id="cb39-93"><a href="#cb39-93"></a>We will run through this using last week's data: </span>
+<span id="cb39-94"><a href="#cb39-94"></a></span>
+<span id="cb39-95"><a href="#cb39-95"></a></span>
+<span id="cb39-96"><a href="#cb39-96"></a></span>
+<span id="cb39-97"><a href="#cb39-97"></a></span>
+<span id="cb39-98"><a href="#cb39-98"></a></span>
+<span id="cb39-99"><a href="#cb39-99"></a></span>
+<span id="cb39-100"><a href="#cb39-100"></a></span>
+<span id="cb39-101"><a href="#cb39-101"></a></span>
+<span id="cb39-102"><a href="#cb39-102"></a></span>
+<span id="cb39-103"><a href="#cb39-103"></a></span>
+<span id="cb39-104"><a href="#cb39-104"></a></span>
+<span id="cb39-105"><a href="#cb39-105"></a></span>
+<span id="cb39-106"><a href="#cb39-106"></a></span>
+<span id="cb39-107"><a href="#cb39-107"></a>If the model is good, we expect the predictions to be close to the actual values.</span>
+<span id="cb39-108"><a href="#cb39-108"></a></span>
+<span id="cb39-109"><a href="#cb39-109"></a>If the model is bad, we expect the predictions to be far from the actual values.</span>
+<span id="cb39-110"><a href="#cb39-110"></a></span>
+<span id="cb39-111"><a href="#cb39-111"></a>The dataset can be obtained by:</span>
+<span id="cb39-112"><a href="#cb39-112"></a></span>
+<span id="cb39-113"><a href="#cb39-113"></a>Collecting new data.</span>
+<span id="cb39-114"><a href="#cb39-114"></a></span>
+<span id="cb39-115"><a href="#cb39-115"></a>Splitting the existing data into two parts before model building.</span>
+<span id="cb39-116"><a href="#cb39-116"></a></span>
+<span id="cb39-117"><a href="#cb39-117"></a>Data splitting</span>
+<span id="cb39-118"><a href="#cb39-118"></a></span>
+<span id="cb39-119"><a href="#cb39-119"></a>Cross-validation</span>
+<span id="cb39-120"><a href="#cb39-120"></a></span>
+<span id="cb39-121"><a href="#cb39-121"></a>*use cars dataset?*</span>
+<span id="cb39-122"><a href="#cb39-122"></a></span>
+<span id="cb39-123"><a href="#cb39-123"></a>This week's lecture introduced you to variable selection and how to produce a more parsimonious model. We explored developing our models by fitting the full model, checking assumptions and deciding whether anything needed transformation. Once we were happy assumptions were met we could consider whether all of our predictors were useful in explaining the variation in our response variable.</span>
+<span id="cb39-124"><a href="#cb39-124"></a></span>
+<span id="cb39-125"><a href="#cb39-125"></a>In this tutorial, we will explore a new dataset and follow the steps of model selection to produce a model that explains a sufficient amount of variation, without being unnecessarily complex. </span>
+<span id="cb39-126"><a href="#cb39-126"></a></span>
+<span id="cb39-127"><a href="#cb39-127"></a>**You will learn how to:**</span>
+<span id="cb39-128"><a href="#cb39-128"></a></span>
+<span id="cb39-129"><a href="#cb39-129"></a><span class="ss">1.  </span>Check for collinearity and influential observations in a MLR model</span>
+<span id="cb39-130"><a href="#cb39-130"></a><span class="ss">2.  </span>Run partial F-tests to compare nested models</span>
+<span id="cb39-131"><a href="#cb39-131"></a><span class="ss">3.  </span>Implement stepwise regression using the <span class="in">`step()`</span> function in R</span>
+<span id="cb39-132"><a href="#cb39-132"></a></span>
+<span id="cb39-133"><a href="#cb39-133"></a></span>
+<span id="cb39-134"><a href="#cb39-134"></a><span class="fu"># Setting up for our analysis</span></span>
+<span id="cb39-135"><a href="#cb39-135"></a></span>
+<span id="cb39-136"><a href="#cb39-136"></a><span class="fu">## Workflow for fitting parsimonious models</span></span>
+<span id="cb39-137"><a href="#cb39-137"></a></span>
+<span id="cb39-138"><a href="#cb39-138"></a>*1. Model development*</span>
+<span id="cb39-139"><a href="#cb39-139"></a></span>
+<span id="cb39-140"><a href="#cb39-140"></a><span class="ss">* </span>Start with full model and check assumptions (e.g. normality, homoscedasticity, linearity, etc.)</span>
+<span id="cb39-141"><a href="#cb39-141"></a><span class="ss">* </span>Look for additional issues (e.g. multicollinearity, outliers, etc.) </span>
+<span id="cb39-142"><a href="#cb39-142"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> -–&gt; correlations, leverage plot, VIF plots and statistics</span>
+<span id="cb39-143"><a href="#cb39-143"></a><span class="ss">* </span>Consider transformations (e.g. log, sqrt, etc.).</span>
+<span id="cb39-144"><a href="#cb39-144"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> --&gt; Response: if assumptions aren't met, transform the response variable</span>
+<span id="cb39-145"><a href="#cb39-145"></a>  <span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span> --&gt; Predictors: it may help to explore transformations of skewed predictors before fitting the model to explore if there is a relationship present. Transforming predictors generally does not affect assumptions, but it can help to linearise relationships and make them easier to interpret.</span>
+<span id="cb39-146"><a href="#cb39-146"></a><span class="ss">* </span>Following any transformations, test assumptions again.</span>
+<span id="cb39-147"><a href="#cb39-147"></a></span>
+<span id="cb39-148"><a href="#cb39-148"></a>*2. Model selection*</span>
+<span id="cb39-149"><a href="#cb39-149"></a></span>
+<span id="cb39-150"><a href="#cb39-150"></a><span class="ss">- </span>Use VIF as an initial step to get rid of highly correlated predictors.</span>
+<span id="cb39-151"><a href="#cb39-151"></a><span class="ss">- </span>Perform variable selection using backward elimination (good and fast), because:</span>
+<span id="cb39-152"><a href="#cb39-152"></a><span class="ss">- </span>Using r^2^2 as a criterion is not recommended (it is not a good measure of model fit, only a good measure of variance explained).</span>
+<span id="cb39-153"><a href="#cb39-153"></a><span class="ss">- </span>Using partial F-test is good, but slow.</span>
+<span id="cb39-154"><a href="#cb39-154"></a></span>
+<span id="cb39-155"><a href="#cb39-155"></a><span class="fu">## Packages</span></span>
+<span id="cb39-156"><a href="#cb39-156"></a></span>
+<span id="cb39-157"><a href="#cb39-157"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span> and <span class="in">`car`</span>. Install any you are missing by running the following **in the console**:</span>
+<span id="cb39-158"><a href="#cb39-158"></a></span>
+<span id="cb39-161"><a href="#cb39-161"></a><span class="in">```{r}</span></span>
+<span id="cb39-162"><a href="#cb39-162"></a><span class="co">#| eval: false</span></span>
+<span id="cb39-163"><a href="#cb39-163"></a></span>
+<span id="cb39-164"><a href="#cb39-164"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>))</span>
+<span id="cb39-165"><a href="#cb39-165"></a><span class="in">```</span></span>
+<span id="cb39-166"><a href="#cb39-166"></a></span>
+<span id="cb39-167"><a href="#cb39-167"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
+<span id="cb39-168"><a href="#cb39-168"></a></span>
+<span id="cb39-169"><a href="#cb39-169"></a><span class="fu">## The data</span></span>
+<span id="cb39-170"><a href="#cb39-170"></a></span>
+<span id="cb39-171"><a href="#cb39-171"></a><span class="al">![Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.](images/AdobeStock_93907188.jpeg)</span></span>
+<span id="cb39-172"><a href="#cb39-172"></a></span>
+<span id="cb39-173"><a href="#cb39-173"></a><span class="co">[</span><span class="ot">Dippers</span><span class="co">](https://en.wikipedia.org/wiki/Dipper)</span> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. </span>
+<span id="cb39-174"><a href="#cb39-174"></a></span>
+<span id="cb39-175"><a href="#cb39-175"></a>Twenty-two sites were included in the survey. Some of the variables have been transformed. </span>
+<span id="cb39-176"><a href="#cb39-176"></a></span>
+<span id="cb39-177"><a href="#cb39-177"></a>Data can be found in: **Dippers.csv**</span>
+<span id="cb39-178"><a href="#cb39-178"></a></span>
+<span id="cb39-179"><a href="#cb39-179"></a>The variables measured were:  </span>
+<span id="cb39-180"><a href="#cb39-180"></a></span>
+<span id="cb39-181"><a href="#cb39-181"></a><span class="ss">- </span><span class="in">`Altitude`</span> site altitude</span>
+<span id="cb39-182"><a href="#cb39-182"></a><span class="ss">- </span><span class="in">`Hardness`</span> water hardness</span>
+<span id="cb39-183"><a href="#cb39-183"></a><span class="ss">- </span><span class="in">`RiverSlope`</span> river-bed slope</span>
+<span id="cb39-184"><a href="#cb39-184"></a><span class="ss">- </span><span class="in">`LogCadd`</span> the numbers of caddis fly larvae, transformed</span>
+<span id="cb39-185"><a href="#cb39-185"></a><span class="ss">- </span><span class="in">`LogStone`</span> the numbers of stonefly larvae, transformed</span>
+<span id="cb39-186"><a href="#cb39-186"></a><span class="ss">- </span><span class="in">`LogMay`</span> the numbers of mayfly larvae, transformed</span>
+<span id="cb39-187"><a href="#cb39-187"></a><span class="ss">- </span><span class="in">`LogOther`</span> the numbers of all other invertebrates collected, transformed</span>
+<span id="cb39-188"><a href="#cb39-188"></a><span class="ss">- </span><span class="in">`Br_Dens`</span> the number of breeding pairs of dippers per 10 km of river  </span>
+<span id="cb39-189"><a href="#cb39-189"></a></span>
+<span id="cb39-190"><a href="#cb39-190"></a>In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.</span>
+<span id="cb39-191"><a href="#cb39-191"></a></span>
+<span id="cb39-192"><a href="#cb39-192"></a><span class="in">`Br_Dens`</span> will be the response variable in our models. </span>
+<span id="cb39-193"><a href="#cb39-193"></a></span>
+<span id="cb39-194"><a href="#cb39-194"></a><span class="fu"># Analysis</span></span>
+<span id="cb39-195"><a href="#cb39-195"></a></span>
+<span id="cb39-196"><a href="#cb39-196"></a><span class="fu">## Model development</span></span>
+<span id="cb39-197"><a href="#cb39-197"></a></span>
+<span id="cb39-198"><a href="#cb39-198"></a>*(i)* Read in the data and investigate the relationship between each of your variables. Describe the relationships, supported by values (correlation coefficient) and plots.</span>
+<span id="cb39-199"><a href="#cb39-199"></a></span>
+<span id="cb39-202"><a href="#cb39-202"></a><span class="in">```{r}</span></span>
+<span id="cb39-203"><a href="#cb39-203"></a><span class="co"># read in the data</span></span>
+<span id="cb39-204"><a href="#cb39-204"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
+<span id="cb39-205"><a href="#cb39-205"></a></span>
+<span id="cb39-206"><a href="#cb39-206"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb39-207"><a href="#cb39-207"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span>
+<span id="cb39-208"><a href="#cb39-208"></a></span>
+<span id="cb39-209"><a href="#cb39-209"></a><span class="co"># Correlations and scatterplots all in one (+ histograms for each variable)</span></span>
+<span id="cb39-210"><a href="#cb39-210"></a><span class="fu">library</span>(psych)</span>
+<span id="cb39-211"><a href="#cb39-211"></a><span class="fu">pairs.panels</span>(dippers)</span>
+<span id="cb39-212"><a href="#cb39-212"></a></span>
+<span id="cb39-213"><a href="#cb39-213"></a><span class="co"># can also get the same results separately</span></span>
+<span id="cb39-214"><a href="#cb39-214"></a><span class="fu">cor</span>(dippers)</span>
+<span id="cb39-215"><a href="#cb39-215"></a><span class="fu">pairs</span>(dippers)</span>
+<span id="cb39-216"><a href="#cb39-216"></a></span>
+<span id="cb39-217"><a href="#cb39-217"></a><span class="in">```</span></span>
+<span id="cb39-218"><a href="#cb39-218"></a></span>
+<span id="cb39-219"><a href="#cb39-219"></a>Between Br_Dens and other variables, there are a number of relatively stong correlations, particularly with LogStone (r = 763), RiverSlope (r = 0.710) and LogCadd (r = 0.613). </span>
+<span id="cb39-220"><a href="#cb39-220"></a></span>
+<span id="cb39-221"><a href="#cb39-221"></a>There are also some strong correlations between the predictor variables themselves, particularly between RiverSlope and LogStone (r = 0.575) and LogOther and Hardness (r = 0.554). This could be an issue for our model, as collinearity can make it difficult to interpret the model parameters and can inflate the standard errors of the estimates.</span>
+<span id="cb39-222"><a href="#cb39-222"></a></span>
+<span id="cb39-223"><a href="#cb39-223"></a>We can confirm if correlations between predictors may be an issue with the model by observing the Variance inflation factor (VIF) later on when we check our model assumptions.</span>
+<span id="cb39-224"><a href="#cb39-224"></a></span>
+<span id="cb39-225"><a href="#cb39-225"></a>*(ii)* Fit a multiple linear regression model to the data using all variables. Set  <span class="in">`Br_Dens`</span> as the response variable and the remaining variables as the predictors.  This will be known as the 'full model'. </span>
+<span id="cb39-226"><a href="#cb39-226"></a></span>
+<span id="cb39-229"><a href="#cb39-229"></a><span class="in">```{r}</span></span>
+<span id="cb39-230"><a href="#cb39-230"></a><span class="co"># fit the full model</span></span>
+<span id="cb39-231"><a href="#cb39-231"></a></span>
+<span id="cb39-232"><a href="#cb39-232"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Altitude <span class="sc">+</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span>
+<span id="cb39-233"><a href="#cb39-233"></a></span>
+<span id="cb39-234"><a href="#cb39-234"></a><span class="in">```</span></span>
+<span id="cb39-235"><a href="#cb39-235"></a></span>
+<span id="cb39-236"><a href="#cb39-236"></a></span>
+<span id="cb39-237"><a href="#cb39-237"></a>*(iii)* Check the assumptions of your model. Do you need to transform any variables? What does the Variance Inflation Factor (VIF) tell you about the collinearity between predictor variables?</span>
+<span id="cb39-238"><a href="#cb39-238"></a></span>
+<span id="cb39-239"><a href="#cb39-239"></a>The VIF will appear as one of the plots in the <span class="in">`check_model()`</span> function, but it can also be helpful to get the values. You can use the <span class="in">`vif()`</span> function from the <span class="in">`car`</span> package to get the VIF values for each predictor variable. </span>
+<span id="cb39-240"><a href="#cb39-240"></a></span>
+<span id="cb39-241"><a href="#cb39-241"></a>The check_model function has been squishing plots, so it may be better at times to plot them individually. You may use the following code, adapted to your model object names:</span>
+<span id="cb39-242"><a href="#cb39-242"></a></span>
+<span id="cb39-245"><a href="#cb39-245"></a><span class="in">```{r}</span></span>
+<span id="cb39-246"><a href="#cb39-246"></a><span class="fu">library</span>(performance)</span>
+<span id="cb39-247"><a href="#cb39-247"></a></span>
+<span id="cb39-248"><a href="#cb39-248"></a><span class="co"># Linearity</span></span>
+<span id="cb39-249"><a href="#cb39-249"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
+<span id="cb39-250"><a href="#cb39-250"></a></span>
+<span id="cb39-251"><a href="#cb39-251"></a><span class="co"># Normality</span></span>
+<span id="cb39-252"><a href="#cb39-252"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
+<span id="cb39-253"><a href="#cb39-253"></a></span>
+<span id="cb39-254"><a href="#cb39-254"></a><span class="co"># Equal variance</span></span>
+<span id="cb39-255"><a href="#cb39-255"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
+<span id="cb39-256"><a href="#cb39-256"></a></span>
+<span id="cb39-257"><a href="#cb39-257"></a><span class="co"># Outliers</span></span>
+<span id="cb39-258"><a href="#cb39-258"></a><span class="fu">check_model</span>(full_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
+<span id="cb39-259"><a href="#cb39-259"></a></span>
+<span id="cb39-260"><a href="#cb39-260"></a><span class="co"># VIF - visual</span></span>
+<span id="cb39-261"><a href="#cb39-261"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(full_model))</span>
+<span id="cb39-262"><a href="#cb39-262"></a></span>
+<span id="cb39-263"><a href="#cb39-263"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb39-264"><a href="#cb39-264"></a><span class="co"># comes from the car package</span></span>
+<span id="cb39-265"><a href="#cb39-265"></a>car<span class="sc">::</span><span class="fu">vif</span>(full_model)</span>
+<span id="cb39-266"><a href="#cb39-266"></a></span>
+<span id="cb39-267"><a href="#cb39-267"></a></span>
+<span id="cb39-268"><a href="#cb39-268"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
+<span id="cb39-269"><a href="#cb39-269"></a></span>
+<span id="cb39-270"><a href="#cb39-270"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb39-271"><a href="#cb39-271"></a></span>
+<span id="cb39-272"><a href="#cb39-272"></a><span class="fu">plot</span>(full_model)</span>
+<span id="cb39-273"><a href="#cb39-273"></a></span>
+<span id="cb39-274"><a href="#cb39-274"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb39-275"><a href="#cb39-275"></a></span>
+<span id="cb39-276"><a href="#cb39-276"></a><span class="in">```</span></span>
+<span id="cb39-277"><a href="#cb39-277"></a></span>
+<span id="cb39-278"><a href="#cb39-278"></a><span class="ss">* </span>Linearity: The relationship between the predictors and the response variable appears to be linear, as the residuals are mostly scattered around the horizontal line at zero in the residuals vs fitted plot.</span>
+<span id="cb39-279"><a href="#cb39-279"></a></span>
+<span id="cb39-280"><a href="#cb39-280"></a><span class="ss">* </span>Independence: The residuals appear to be independent, as there is no clear pattern in the residuals vs fitted plot.</span>
+<span id="cb39-281"><a href="#cb39-281"></a></span>
+<span id="cb39-282"><a href="#cb39-282"></a><span class="ss">* </span>Normality: The residuals appear to be approximately normally distributed, as the points in the Q-Q plot roughly follow a straight line. When we look at the <span class="in">`check_model()`</span> version of the plot we a slight n-shape to the points, but this is only small compared to the overall distribution of the points, so we are not too concerned about this.</span>
+<span id="cb39-283"><a href="#cb39-283"></a></span>
+<span id="cb39-284"><a href="#cb39-284"></a><span class="ss">* </span>Equal variance: The residuals appear to have constant variance, as there is no clear pattern or fanning present in the standardised residuals vs fitted plot (scale-location in the base plot).</span>
+<span id="cb39-285"><a href="#cb39-285"></a></span>
+<span id="cb39-286"><a href="#cb39-286"></a><span class="ss">* </span>Leverage: No single observations lying outside the Cook's distance line, indicating no influential observations.</span>
+<span id="cb39-287"><a href="#cb39-287"></a></span>
+<span id="cb39-288"><a href="#cb39-288"></a>**VIF and collinearity**</span>
+<span id="cb39-289"><a href="#cb39-289"></a></span>
+<span id="cb39-290"><a href="#cb39-290"></a>VIF Thresholds vary, depending on who you ask. General rule is that if it is greater than 10, then you need to remove the associated predictor. Some conservative people prefer a value of 5, so we will go with this. </span>
+<span id="cb39-291"><a href="#cb39-291"></a></span>
+<span id="cb39-292"><a href="#cb39-292"></a>Our threshold is 5, so given all of our VIFs are below this, we are not too concerned about collinearity. However, because they are close to the threshold it is something to keep in mind when interpreting the model parameters.</span>
+<span id="cb39-293"><a href="#cb39-293"></a></span>
+<span id="cb39-294"><a href="#cb39-294"></a>*(iv)* Make a note of the model parameters and fit statistics for the full model. </span>
+<span id="cb39-295"><a href="#cb39-295"></a></span>
+<span id="cb39-298"><a href="#cb39-298"></a><span class="in">```{r}</span></span>
+<span id="cb39-299"><a href="#cb39-299"></a><span class="fu">summary</span>(full_model)</span>
+<span id="cb39-300"><a href="#cb39-300"></a><span class="in">```</span></span>
+<span id="cb39-301"><a href="#cb39-301"></a></span>
+<span id="cb39-302"><a href="#cb39-302"></a>We can see that there are two significant predictors (RiverSlope and LogStone) in the full model, but there are also a number of non-significant predictors. The adjusted R^2^ value is 0.77, which indicates that the model explains 77% of the variation in the response variable.</span>
+<span id="cb39-303"><a href="#cb39-303"></a></span>
+<span id="cb39-304"><a href="#cb39-304"></a>Because there are so many non-significant predictors in the model, we may want to consider removing some of them to produce a more parsimonious model. </span>
+<span id="cb39-305"><a href="#cb39-305"></a></span>
+<span id="cb39-306"><a href="#cb39-306"></a>*(v)*  Select the least significant predictor and remove it from the model. </span>
+<span id="cb39-307"><a href="#cb39-307"></a></span>
+<span id="cb39-308"><a href="#cb39-308"></a>In this case, the least significant predictor is <span class="in">`Altitude`</span> (P = 0.619). Remove it from the model and run the model again. This will be known as the 'reduced model'.</span>
+<span id="cb39-309"><a href="#cb39-309"></a></span>
+<span id="cb39-312"><a href="#cb39-312"></a><span class="in">```{r}</span></span>
+<span id="cb39-313"><a href="#cb39-313"></a>reduced_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogMay <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers)</span>
+<span id="cb39-314"><a href="#cb39-314"></a></span>
+<span id="cb39-315"><a href="#cb39-315"></a><span class="in">```</span></span>
+<span id="cb39-316"><a href="#cb39-316"></a></span>
+<span id="cb39-317"><a href="#cb39-317"></a>*(vi)* Is the reduced model an improvement on the full model? How can you tell? What statistics would you look at to determine this?</span>
+<span id="cb39-318"><a href="#cb39-318"></a></span>
+<span id="cb39-321"><a href="#cb39-321"></a><span class="in">```{r}</span></span>
+<span id="cb39-322"><a href="#cb39-322"></a><span class="fu">summary</span>(full_model)</span>
+<span id="cb39-323"><a href="#cb39-323"></a><span class="fu">summary</span>(reduced_model)</span>
+<span id="cb39-324"><a href="#cb39-324"></a><span class="in">```</span></span>
+<span id="cb39-325"><a href="#cb39-325"></a></span>
+<span id="cb39-326"><a href="#cb39-326"></a>Removing the <span class="in">`Altitude`</span> predictor from the model has slightly increased the adjusted R^2^ value. This is an improvement in terms of parsimony, but we will need to use hypothesis testing to determine whether the reduced model is a *significant* improvement on the full model. We can do this using an F-test. </span>
+<span id="cb39-327"><a href="#cb39-327"></a></span>
+<span id="cb39-328"><a href="#cb39-328"></a>::: callout-note</span>
+<span id="cb39-329"><a href="#cb39-329"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb39-330"><a href="#cb39-330"></a></span>
+<span id="cb39-331"><a href="#cb39-331"></a>You should now be able to prepare an appropriate model by refining it, checking your assumptions, and ensuring collinearity is not an issue.</span>
+<span id="cb39-332"><a href="#cb39-332"></a></span>
+<span id="cb39-333"><a href="#cb39-333"></a>:::</span>
+<span id="cb39-334"><a href="#cb39-334"></a></span>
+<span id="cb39-335"><a href="#cb39-335"></a><span class="fu">## Model selection with F-tests</span></span>
+<span id="cb39-336"><a href="#cb39-336"></a></span>
+<span id="cb39-337"><a href="#cb39-337"></a>We wil use the partial F-test to determine whether there is a significant difference between the models. </span>
+<span id="cb39-338"><a href="#cb39-338"></a></span>
+<span id="cb39-339"><a href="#cb39-339"></a>*(i)* State hypotheses</span>
+<span id="cb39-340"><a href="#cb39-340"></a></span>
+<span id="cb39-341"><a href="#cb39-341"></a>H0: no significant difference between the full and reduced models</span>
+<span id="cb39-342"><a href="#cb39-342"></a>H1: There is a significant difference between the full and reduced models</span>
+<span id="cb39-343"><a href="#cb39-343"></a></span>
+<span id="cb39-344"><a href="#cb39-344"></a>If we fail to reject H0, then we would opt for the reduced model as it is more parsimonious (i.e. it is explaining a similar amount of variation with fewer predictors). </span>
+<span id="cb39-345"><a href="#cb39-345"></a></span>
+<span id="cb39-346"><a href="#cb39-346"></a>If we reject H0, then we would opt for the full model as it is a significant improvement on the reduced model.</span>
+<span id="cb39-347"><a href="#cb39-347"></a></span>
+<span id="cb39-348"><a href="#cb39-348"></a>*(ii)* Run the test</span>
+<span id="cb39-349"><a href="#cb39-349"></a></span>
+<span id="cb39-350"><a href="#cb39-350"></a>Once we have established our hypotheses, we can perform the F-test using the <span class="in">`anova()`</span> function to compare the full and reduced models. </span>
+<span id="cb39-351"><a href="#cb39-351"></a></span>
+<span id="cb39-354"><a href="#cb39-354"></a><span class="in">```{r}</span></span>
+<span id="cb39-355"><a href="#cb39-355"></a><span class="fu">anova</span>(full_model, reduced_model)</span>
+<span id="cb39-356"><a href="#cb39-356"></a></span>
+<span id="cb39-357"><a href="#cb39-357"></a><span class="in">```</span></span>
+<span id="cb39-358"><a href="#cb39-358"></a></span>
+<span id="cb39-359"><a href="#cb39-359"></a>*(iii)* Are the models significantly different?</span>
+<span id="cb39-360"><a href="#cb39-360"></a></span>
+<span id="cb39-361"><a href="#cb39-361"></a>The P-value is 0.6186, which is larger than 0.05, so we fail to reject the null hypothesis.</span>
+<span id="cb39-362"><a href="#cb39-362"></a></span>
+<span id="cb39-363"><a href="#cb39-363"></a>This means that the full model is not a significant improvement on the reduced model, and we would opt for the reduced model as it is more parsimonious.</span>
+<span id="cb39-364"><a href="#cb39-364"></a></span>
+<span id="cb39-365"><a href="#cb39-365"></a></span>
+<span id="cb39-366"><a href="#cb39-366"></a>::: callout-note</span>
+<span id="cb39-367"><a href="#cb39-367"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb39-368"><a href="#cb39-368"></a></span>
+<span id="cb39-369"><a href="#cb39-369"></a>You should now be able to use an F-test to determine whether the reduced model is a significant improvement on the full model. </span>
+<span id="cb39-370"><a href="#cb39-370"></a></span>
+<span id="cb39-371"><a href="#cb39-371"></a>**Remember:** the F-test is only useful if comparing nested models. </span>
+<span id="cb39-372"><a href="#cb39-372"></a>:::</span>
+<span id="cb39-373"><a href="#cb39-373"></a></span>
+<span id="cb39-374"><a href="#cb39-374"></a><span class="fu"># Model selection using Stepwise regression</span></span>
+<span id="cb39-375"><a href="#cb39-375"></a></span>
+<span id="cb39-376"><a href="#cb39-376"></a>When we have many predictors, this manual testing can become time consuming, so we can choose to use the <span class="in">`step()`</span> function in R, which performs stepwise regression. This function will automatically remove the least significant predictor and test the model again, until it finds the best model based on the AIC criterion.</span>
+<span id="cb39-377"><a href="#cb39-377"></a></span>
+<span id="cb39-378"><a href="#cb39-378"></a>*(i)* Run the <span class="in">`step()`</span> function on the full model to perform stepwise regression.</span>
+<span id="cb39-379"><a href="#cb39-379"></a></span>
+<span id="cb39-382"><a href="#cb39-382"></a><span class="in">```{r}</span></span>
+<span id="cb39-383"><a href="#cb39-383"></a>step_model <span class="ot">&lt;-</span> <span class="fu">step</span>(full_model, <span class="at">direction =</span> <span class="st">"backward"</span>)</span>
+<span id="cb39-384"><a href="#cb39-384"></a></span>
+<span id="cb39-385"><a href="#cb39-385"></a><span class="in">```</span></span>
+<span id="cb39-386"><a href="#cb39-386"></a></span>
+<span id="cb39-387"><a href="#cb39-387"></a>*(ii)* What is the final model that the <span class="in">`step()`</span> function has produced? How does it compare to the full and reduced models?</span>
+<span id="cb39-388"><a href="#cb39-388"></a></span>
+<span id="cb39-389"><a href="#cb39-389"></a>Since we have stored the step() output as an object, we can just call the object, which will show us the final model: </span>
+<span id="cb39-390"><a href="#cb39-390"></a></span>
+<span id="cb39-393"><a href="#cb39-393"></a><span class="in">```{r}</span></span>
+<span id="cb39-394"><a href="#cb39-394"></a>step_model</span>
+<span id="cb39-395"><a href="#cb39-395"></a></span>
+<span id="cb39-396"><a href="#cb39-396"></a><span class="do">## OR</span></span>
+<span id="cb39-397"><a href="#cb39-397"></a></span>
+<span id="cb39-398"><a href="#cb39-398"></a><span class="fu">summary</span>(step_model)</span>
+<span id="cb39-399"><a href="#cb39-399"></a><span class="in">```</span></span>
+<span id="cb39-400"><a href="#cb39-400"></a></span>
+<span id="cb39-401"><a href="#cb39-401"></a>We can see that the selected model is: </span>
+<span id="cb39-402"><a href="#cb39-402"></a></span>
+<span id="cb39-403"><a href="#cb39-403"></a>Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + </span>
+<span id="cb39-404"><a href="#cb39-404"></a>    LogOther</span>
+<span id="cb39-405"><a href="#cb39-405"></a>    </span>
+<span id="cb39-406"><a href="#cb39-406"></a>Or with the addition of the partial regression coefficients, our equation is: </span>
+<span id="cb39-407"><a href="#cb39-407"></a></span>
+<span id="cb39-408"><a href="#cb39-408"></a>Br_Dens = -0.725 + 0.012 * Hardness + 0.065 * RiverSlope + 0.549 * LogCadd + 0.512 * LogStone - 0.268 * LogOther</span>
+<span id="cb39-409"><a href="#cb39-409"></a></span>
+<span id="cb39-410"><a href="#cb39-410"></a>We can see there has also been a marginal change in the adjusted R^2^ value, which is now 0.7765, compared to 0.765 for the full model and 0.7766 for the reduced model. This supports the idea that the full model explained a similar amount of variation in the response compared to the simplest model obtained from the <span class="in">`step()`</span> function. Therefore it makes sense to select the simpler model. </span>
+<span id="cb39-411"><a href="#cb39-411"></a></span>
+<span id="cb39-412"><a href="#cb39-412"></a>*(iii)* How does the AIC of the stepwise regression model compare to the full and reduced models?</span>
+<span id="cb39-413"><a href="#cb39-413"></a></span>
+<span id="cb39-414"><a href="#cb39-414"></a>We can test this using the AIC() function: </span>
+<span id="cb39-415"><a href="#cb39-415"></a></span>
+<span id="cb39-418"><a href="#cb39-418"></a><span class="in">```{r}</span></span>
+<span id="cb39-419"><a href="#cb39-419"></a><span class="fu">AIC</span>(full_model, reduced_model, step_model)</span>
+<span id="cb39-420"><a href="#cb39-420"></a></span>
+<span id="cb39-421"><a href="#cb39-421"></a><span class="in">```</span></span>
+<span id="cb39-422"><a href="#cb39-422"></a></span>
+<span id="cb39-423"><a href="#cb39-423"></a>Full_model AIC = 56.1</span>
+<span id="cb39-424"><a href="#cb39-424"></a></span>
+<span id="cb39-425"><a href="#cb39-425"></a>Reduced_model AIC = 54.5</span>
+<span id="cb39-426"><a href="#cb39-426"></a></span>
+<span id="cb39-427"><a href="#cb39-427"></a>step_model AIC = 53.9</span>
+<span id="cb39-428"><a href="#cb39-428"></a></span>
+<span id="cb39-429"><a href="#cb39-429"></a>As we select the model with the smallest AIC, we can confirm that the model selected by the <span class="in">`step()`</span> function is better. </span>
+<span id="cb39-430"><a href="#cb39-430"></a></span>
+<span id="cb39-431"><a href="#cb39-431"></a>You may notice that the AIC values are different between the <span class="in">`step()`</span> function and the <span class="in">`AIC()`</span> function. This is because the <span class="in">`step()`</span> function uses a different method to calculate the AIC values, which is based on the likelihood of the model, while the <span class="in">`AIC()`</span> function uses a different method based on the residual sum of squares.</span>
+<span id="cb39-432"><a href="#cb39-432"></a></span>
+<span id="cb39-433"><a href="#cb39-433"></a>::: callout-note</span>
+<span id="cb39-434"><a href="#cb39-434"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb39-435"><a href="#cb39-435"></a></span>
+<span id="cb39-436"><a href="#cb39-436"></a>You should now be able to run the <span class="in">`step()`</span> function to select the most appropriate model. </span>
+<span id="cb39-437"><a href="#cb39-437"></a></span>
+<span id="cb39-438"><a href="#cb39-438"></a>:::</span>
+<span id="cb39-439"><a href="#cb39-439"></a></span>
+<span id="cb39-440"><a href="#cb39-440"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb39-441"><a href="#cb39-441"></a></span>
+<span id="cb39-442"><a href="#cb39-442"></a>In this tutorial, we used the dippers dataset to get some practice testing model assumptions and checking for collinearity. We then used partial F-tests and stepwise regression to select a more parsimonious model. </span>
+<span id="cb39-443"><a href="#cb39-443"></a></span>
+<span id="cb39-444"><a href="#cb39-444"></a></span>
+<span id="cb39-445"><a href="#cb39-445"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb39-446"><a href="#cb39-446"></a></span>
+<span id="cb39-447"><a href="#cb39-447"></a><span class="ss">1. </span>What assumptions do we need to check for when fitting a multiple linear regression?</span>
+<span id="cb39-448"><a href="#cb39-448"></a></span>
+<span id="cb39-449"><a href="#cb39-449"></a><span class="ss">2. </span>Why don't we just rely on the adjusted r^2^ to compare models?</span>
+<span id="cb39-450"><a href="#cb39-450"></a></span>
+<span id="cb39-451"><a href="#cb39-451"></a><span class="ss">3. </span>Can F-tests be run on non-nested models? Why or why not?</span>
+<span id="cb39-452"><a href="#cb39-452"></a></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

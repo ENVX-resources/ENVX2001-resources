@@ -4025,6 +4025,20 @@
     "text": "This week’s lecture introduced you to how we use models for prediction and how we assess the quality of the predictions.We will follow similar steps in today’s tutorial and lab class.\nIn this tutorial we will cover the key steps to fit a model, use it to make predictions, and then check assumptions, and select the most appropriate model.\nYou will learn how to:\n\nSplit data into training and test subsets\nFit your model to the training data and check assumptions are met\nUse the trained model to make predictions using the training and the test subsets\nObserve the quality of the predictions using appropriate statistics and plots"
   },
   {
+    "objectID": "tutorials/tutorial09.html#packages",
+    "href": "tutorials/tutorial09.html#packages",
+    "title": "Tutorial 09",
+    "section": "0.1 Packages",
+    "text": "0.1 Packages\nThis tutorial uses tidyverse, readxl, moments, psych, performance and car. Install any you are missing by running the following in the console:\n\ninstall.packages(c(\"tidyverse\", \"readxl\", \"moments\", \"psych\", \"performance\", \"car\"))\n\nIf a package is already installed, R will simply reinstall it — no harm done."
+  },
+  {
+    "objectID": "tutorials/tutorial09.html#the-data",
+    "href": "tutorials/tutorial09.html#the-data",
+    "title": "Tutorial 09",
+    "section": "0.2 The data",
+    "text": "0.2 The data\n\n\n\nCute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.\n\n\nDippers are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers.\nTwenty-two sites were included in the survey. Some of the variables have been transformed.\nData can be found in: Dippers.csv\nThe variables measured were:\n\nAltitude site altitude\nHardness water hardness\nRiverSlope river-bed slope\nLogCadd the numbers of caddis fly larvae, transformed\nLogStone the numbers of stonefly larvae, transformed\nLogMay the numbers of mayfly larvae, transformed\nLogOther the numbers of all other invertebrates collected, transformed\nBr_Dens the number of breeding pairs of dippers per 10 km of river\n\nIn the analyses, the four invertebrate variables were transformed using a log(x+1) transformation.\nBr_Dens will be the response variable in our models.\nLast week following use of the step() function, we found the most parsimonious model to be:\nBr_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther\nAssumptions were met and the model explained 76% of variation in dipper breeding pair density.\nWe will use this model in our walkthrough today."
+  },
+  {
     "objectID": "tutorials/tutorial09.html#workflow-for-fitting-parsimonious-models",
     "href": "tutorials/tutorial09.html#workflow-for-fitting-parsimonious-models",
     "title": "Tutorial 09",
@@ -4032,15 +4046,15 @@
     "text": "2.1 Workflow for fitting parsimonious models\n1. Model development\n\nStart with full model and check assumptions (e.g. normality, homoscedasticity, linearity, etc.)\nLook for additional issues (e.g. multicollinearity, outliers, etc.)  -–&gt; correlations, leverage plot, VIF plots and statistics\nConsider transformations (e.g. log, sqrt, etc.).  –&gt; Response: if assumptions aren’t met, transform the response variable  –&gt; Predictors: it may help to explore transformations of skewed predictors before fitting the model to explore if there is a relationship present. Transforming predictors generally does not affect assumptions, but it can help to linearise relationships and make them easier to interpret.\nFollowing any transformations, test assumptions again.\n\n2. Model selection\n\nUse VIF as an initial step to get rid of highly correlated predictors.\nPerform variable selection using backward elimination (good and fast), because:\nUsing r22 as a criterion is not recommended (it is not a good measure of model fit, only a good measure of variance explained).\nUsing partial F-test is good, but slow."
   },
   {
-    "objectID": "tutorials/tutorial09.html#packages",
-    "href": "tutorials/tutorial09.html#packages",
+    "objectID": "tutorials/tutorial09.html#packages-1",
+    "href": "tutorials/tutorial09.html#packages-1",
     "title": "Tutorial 09",
     "section": "2.2 Packages",
     "text": "2.2 Packages\nThis tutorial uses tidyverse, readxl, moments, psych, performance and car. Install any you are missing by running the following in the console:\n\ninstall.packages(c(\"tidyverse\", \"readxl\", \"moments\", \"psych\", \"performance\", \"car\"))\n\nIf a package is already installed, R will simply reinstall it — no harm done."
   },
   {
-    "objectID": "tutorials/tutorial09.html#the-data",
-    "href": "tutorials/tutorial09.html#the-data",
+    "objectID": "tutorials/tutorial09.html#the-data-1",
+    "href": "tutorials/tutorial09.html#the-data-1",
     "title": "Tutorial 09",
     "section": "2.3 The data",
     "text": "2.3 The data\n\n\n\nCute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.\n\n\nDippers are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers.\nTwenty-two sites were included in the survey. Some of the variables have been transformed.\nData can be found in: Dippers.csv\nThe variables measured were:\n\nAltitude site altitude\nHardness water hardness\nRiverSlope river-bed slope\nLogCadd the numbers of caddis fly larvae, transformed\nLogStone the numbers of stonefly larvae, transformed\nLogMay the numbers of mayfly larvae, transformed\nLogOther the numbers of all other invertebrates collected, transformed\nBr_Dens the number of breeding pairs of dippers per 10 km of river\n\nIn the analyses, the four invertebrate variables were transformed using a log(x+1) transformation.\nBr_Dens will be the response variable in our models."

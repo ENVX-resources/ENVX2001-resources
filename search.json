@@ -441,6 +441,13 @@
     "text": "5 Exercises\nHere are some quick exercises to see if you can navigate your way around file paths in R.\n\nCreate a new folder called output inside the data folder and move the diatoms.xlsx file into it. How will you update the path in the read_excel() function to reflect this change?\nRename the output folder to raw.\nRename the data folder to diatoms and update the code."
   },
   {
+    "objectID": "lectures/L12/index.html",
+    "href": "lectures/L12/index.html",
+    "title": "Lecture 12",
+    "section": "",
+    "text": "Lecture 12 – Multidimensional scaling"
+  },
+  {
     "objectID": "lectures/L12/index.html#part-a",
     "href": "lectures/L12/index.html#part-a",
     "title": "Lecture 12",
@@ -453,6 +460,13 @@
     "title": "Lecture 12",
     "section": "Part B",
     "text": "Part B\nDownload PDF file.Download PDF"
+  },
+  {
+    "objectID": "lectures/L10/index.html",
+    "href": "lectures/L10/index.html",
+    "title": "Lecture 10",
+    "section": "",
+    "text": "Lecture 10 – Principal component analysis"
   },
   {
     "objectID": "lectures/L10/index.html#part-a",
@@ -1631,6 +1645,20 @@
     "text": "Is MLR model better?\n\nsjPlot::tab_model(fit_log, multi_fit, digits = 4, show.ci = FALSE)\n\n\n\n\n \nlog(Ozone)\nlog(Ozone)\n\n\nPredictors\nEstimates\np\nEstimates\np\n\n\n(Intercept)\n-1.8380\n&lt;0.001\n-0.2621\n0.637\n\n\nTemp\n0.0675\n&lt;0.001\n0.0492\n&lt;0.001\n\n\nSolar R\n\n\n0.0025\n&lt;0.001\n\n\nWind\n\n\n-0.0616\n&lt;0.001\n\n\nObservations\n116\n111\n\n\nR2 / R2 adjusted\n0.547 / 0.543\n0.664 / 0.655\n\n\n\n\n\n\nThe adjusted R^2 is higher for the MLR model…\nInterpretation of R^2 is the same as for simple linear regression: how much of the variation in the response variable is explained by the model\nAre all the variables/predictors needed? (next week)"
   },
   {
+    "objectID": "lectures/L05/index.html",
+    "href": "lectures/L05/index.html",
+    "title": "Lecture 05",
+    "section": "",
+    "text": "Lecture 05 – Experimental design\nDownload PDF file.Download PDF\nDownload Lecture Notes"
+  },
+  {
+    "objectID": "lectures/L03/index.html",
+    "href": "lectures/L03/index.html",
+    "title": "Lecture 03",
+    "section": "",
+    "text": "Lecture 03a – t-tests Full Screen | PDF\n\nLecture 03b – One-way ANOVA Full Screen | PDF"
+  },
+  {
     "objectID": "lectures/L03/Lecture-03a.html#introduction",
     "href": "lectures/L03/Lecture-03a.html#introduction",
     "title": "Lecture 03a – t-Tests",
@@ -1951,6 +1979,13 @@
     "title": "Lecture 02b – Sampling designs II",
     "section": "Thanks!",
     "text": "Thanks!\nQuestions?\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
+  },
+  {
+    "objectID": "lectures/L01/index.html",
+    "href": "lectures/L01/index.html",
+    "title": "Lecture 01",
+    "section": "",
+    "text": "Lecture 01a – Welcome Full Screen | PDF\n\nLecture 01b – The beginning is the end: a revision Full Screen | PDF"
   },
   {
     "objectID": "lectures/L01/Lecture-01a.html#staff",
@@ -3584,6 +3619,13 @@
     "text": "Thanks\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License"
   },
   {
+    "objectID": "lectures/L02/index.html",
+    "href": "lectures/L02/index.html",
+    "title": "Lecture 02",
+    "section": "",
+    "text": "Lecture 02a – Sampling designs Full Screen | PDF\n\nLecture 02a – Sampling designs II Full Screen | PDF"
+  },
+  {
     "objectID": "lectures/L03/Lecture-03b.html#from-two-groups-to-four",
     "href": "lectures/L03/Lecture-03b.html#from-two-groups-to-four",
     "title": "Lecture 03b – One-way ANOVA",
@@ -3743,6 +3785,48 @@
     "title": "Lecture 03b – One-way ANOVA",
     "section": "Thanks!",
     "text": "Thanks!\nQuestions?\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
+  },
+  {
+    "objectID": "lectures/L04/index.html",
+    "href": "lectures/L04/index.html",
+    "title": "Lecture 04",
+    "section": "",
+    "text": "Lecture 04 – Residual diagnostics & post hoc tests\nDownload PDF file.Download PDF\nDownload Lecture Notes"
+  },
+  {
+    "objectID": "lectures/L06/index.html",
+    "href": "lectures/L06/index.html",
+    "title": "Lecture 06",
+    "section": "",
+    "text": "Lecture 06 – ANOVA with blocking\nDownload PDF file.Download PDF\nDownload Lecture Notes"
+  },
+  {
+    "objectID": "lectures/L07/index.html",
+    "href": "lectures/L07/index.html",
+    "title": "Lecture 07",
+    "section": "",
+    "text": "Lecture 07 – Regression modelling: Full screen | PDF"
+  },
+  {
+    "objectID": "lectures/L08/index.html",
+    "href": "lectures/L08/index.html",
+    "title": "Lecture 08",
+    "section": "",
+    "text": "Lecture 08 – Regression model development Full screen | PDF"
+  },
+  {
+    "objectID": "lectures/L09/index.html",
+    "href": "lectures/L09/index.html",
+    "title": "Lecture 09",
+    "section": "",
+    "text": "Lecture 09 – Predictive modelling Full screen | PDF"
+  },
+  {
+    "objectID": "lectures/L11/index.html",
+    "href": "lectures/L11/index.html",
+    "title": "Lecture 11",
+    "section": "",
+    "text": "Lecture 11 – Clustering"
   },
   {
     "objectID": "lectures/L11/index.html#part-a",

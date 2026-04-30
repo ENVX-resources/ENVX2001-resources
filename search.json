@@ -441,6 +441,34 @@
     "text": "5 Exercises\nHere are some quick exercises to see if you can navigate your way around file paths in R.\n\nCreate a new folder called output inside the data folder and move the diatoms.xlsx file into it. How will you update the path in the read_excel() function to reflect this change?\nRename the output folder to raw.\nRename the data folder to diatoms and update the code."
   },
   {
+    "objectID": "lectures/L12/index.html#part-a",
+    "href": "lectures/L12/index.html#part-a",
+    "title": "Lecture 12",
+    "section": "Part A",
+    "text": "Part A\nDownload PDF file.Download PDF"
+  },
+  {
+    "objectID": "lectures/L12/index.html#part-b",
+    "href": "lectures/L12/index.html#part-b",
+    "title": "Lecture 12",
+    "section": "Part B",
+    "text": "Part B\nDownload PDF file.Download PDF"
+  },
+  {
+    "objectID": "lectures/L10/index.html#part-a",
+    "href": "lectures/L10/index.html#part-a",
+    "title": "Lecture 10",
+    "section": "Part A",
+    "text": "Part A\nDownload PDF file.Download PDF"
+  },
+  {
+    "objectID": "lectures/L10/index.html#part-b",
+    "href": "lectures/L10/index.html#part-b",
+    "title": "Lecture 10",
+    "section": "Part B",
+    "text": "Part B\nDownload PDF file.Download PDF"
+  },
+  {
     "objectID": "lectures/L09/Lecture-09.html#workflow",
     "href": "lectures/L09/Lecture-09.html#workflow",
     "title": "Regression: predictive modelling",
@@ -2601,7 +2629,7 @@
     "href": "index.html",
     "title": "ENVX2001 Resources",
     "section": "",
-    "text": "This site hosts lectures, tutorials, and labs for ENVX2001. Some content is still being developed and may be incomplete. Students can find all course material on Canvas.\nModule 1: Designed studies\n\n\n\n\n\n\n\n\n\n\nWeek\nLecture\nTutorial\nLab\n\n\n\n\n1\nIntroduction\nTutorial 01 \nLab 01 \n\n\n2\nSampling designs\nTutorial 02 \nLab 02 \n\n\n3\n1-way ANOVA\nTutorial 03 \nLab 03 \n\n\n4\nResidual diagnostics & post hoc tests\nTutorial 04 \nLab 04 \n\n\n5\nExperimental design\nTutorial 05 \nLab 05 \n\n\n6\nANOVA with blocking\nTutorial 06 \nLab 06 \n\n\n\n\nModule 2: Finding patterns in data\n\n\n\n\n\n\n\n\n\n\nWeek\nLecture\nTutorial\nLab\n\n\n\n\n7\nRegression modelling\nTutorial 07 \nLab 07 \n\n\n8\nRegression model development\nTutorial 08 \nLab 08 \n\n\n9\nRegression model assessment\nTutorial 09 \nLab 09 \n\n\n10\nPrinciple component analysis\nTutorial 10 \nLab 10 \n\n\n11\nClustering\nTutorial 11 \nLab 11 \n\n\n12\nMultidimensional scaling\nTutorial 12 \nLab 12"
+    "text": "This site hosts lectures, tutorials, and labs for ENVX2001. Some content is still being developed and may be incomplete. Students can find all course material on Canvas.\nModule 1: Designed studies\n\n\n\n\n\n\n\n\n\n\nWeek\nLecture\nTutorial\nLab\n\n\n\n\n1\nIntroduction\nTutorial 01 \nLab 01 \n\n\n2\nSampling designs\nTutorial 02 \nLab 02 \n\n\n3\n1-way ANOVA\nTutorial 03 \nLab 03 \n\n\n4\nResidual diagnostics & post hoc tests\nTutorial 04 \nLab 04 \n\n\n5\nExperimental design\nTutorial 05 \nLab 05 \n\n\n6\nANOVA with blocking\nTutorial 06 \nLab 06 \n\n\n\n\nModule 2: Finding patterns in data\n\n\n\n\n\n\n\n\n\n\nWeek\nLecture\nTutorial\nLab\n\n\n\n\n7\nRegression modelling\nTutorial 07 \nLab 07 \n\n\n8\nRegression model development\nTutorial 08 \nLab 08 \n\n\n9\nRegression model assessment\nTutorial 09 \nLab 09 \n\n\n10\nPrincipal component analysis\nTutorial 10 \nLab 10 \n\n\n11\nClustering\nTutorial 11 \nLab 11 \n\n\n12\nMultidimensional scaling\nTutorial 12 \nLab 12"
   },
   {
     "objectID": "labs/Lab02/Lab02-sampling-designs.html",
@@ -3715,6 +3743,20 @@
     "title": "Lecture 03b – One-way ANOVA",
     "section": "Thanks!",
     "text": "Thanks!\nQuestions?\nThis presentation is based on the SOLES Quarto reveal.js template and is licensed under a Creative Commons Attribution 4.0 International License."
+  },
+  {
+    "objectID": "lectures/L11/index.html#part-a",
+    "href": "lectures/L11/index.html#part-a",
+    "title": "Lecture 11",
+    "section": "Part A",
+    "text": "Part A\nDownload PDF file.Download PDF"
+  },
+  {
+    "objectID": "lectures/L11/index.html#part-b",
+    "href": "lectures/L11/index.html#part-b",
+    "title": "Lecture 11",
+    "section": "Part B",
+    "text": "Part B\nDownload PDF file.Download PDF"
   },
   {
     "objectID": "solutions.html",

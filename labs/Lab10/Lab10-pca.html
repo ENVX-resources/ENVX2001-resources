@@ -1159,6 +1159,68 @@ Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 </div>
 </div>
 </div>
+<section id="visualising-the-iris-pca" class="level4">
+<h4 class="anchored" data-anchor-id="visualising-the-iris-pca">Visualising the iris PCA</h4>
+<p>The PCA summary tells us how much variation each principal component explains, but the easiest way to understand the result is to plot the first two principal components.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>iris_scores <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  pca_iris<span class="sc">$</span>x,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="at">Species =</span> iris<span class="sc">$</span>Species</span>
+<span id="cb29-4"><a href="#cb29-4"></a>)</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="fu">head</span>(iris_scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        PC1        PC2         PC3          PC4 Species
+1 -2.684126 -0.3193972  0.02791483  0.002262437  setosa
+2 -2.714142  0.1770012  0.21046427  0.099026550  setosa
+3 -2.888991  0.1449494 -0.01790026  0.019968390  setosa
+4 -2.745343  0.3182990 -0.03155937 -0.075575817  setosa
+5 -2.728717 -0.3267545 -0.09007924 -0.061258593  setosa
+6 -2.280860 -0.7413304 -0.16867766 -0.024200858  setosa</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">ggplot</span>(iris_scores, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">colour =</span> Species, <span class="at">shape =</span> Species)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">title =</span> <span class="st">"PCA of iris flower measurements"</span>,</span>
+<span id="cb31-6"><a href="#cb31-6"></a>    <span class="at">x =</span> <span class="st">"PC1"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>    <span class="at">y =</span> <span class="st">"PC2"</span></span>
+<span id="cb31-8"><a href="#cb31-8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also use a scree plot to visualise how much variation is explained by each component.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">screeplot</span>(pca_iris, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Interpreting the iris PCA plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each point is one iris flower, plotted according to its scores on PC1 and PC2. Points close together have similar combinations of sepal and petal measurements.</p>
+<p>The plot usually shows that <em>Iris setosa</em> separates clearly from the other two species. This tells us that <em>setosa</em> has a distinct combination of floral traits, especially petal traits.</p>
+<p><em>Iris versicolor</em> and <em>Iris virginica</em> usually overlap more. This does not mean they are identical. It means their differences are weaker or more subtle along the main PCA axes.</p>
+<p>Because PC1 explains most of the variation and is strongly influenced by petal length and petal width, PC1 can be interpreted mainly as a petal-size axis.</p>
+</div>
+</div>
 <p>That’s it! You have just performed your first PCA. Do you think you can do the whole thing by yourself without any hints? Give it a try:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1174,7 +1236,7 @@ Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1183,11 +1245,11 @@ Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-32" class="callout-32-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Check the structure of <code>kangaroo_cropped</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">str</span>(kangaroo_cropped) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">str</span>(kangaroo_cropped) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   27 obs. of  5 variables:
  $ BLEN: int  1439 1315 1294 1377 1470 1612 1388 1575 1717 1587 ...
@@ -1200,11 +1262,11 @@ Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 <p>We have 5 response variables and they are all numeric, so we can proceed with multivariate analysis.</p>
 <p>Perform the PCA:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>pca_kangaroo <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(kangaroo_cropped)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>pca_kangaroo <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(kangaroo_cropped)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Extract the “rotation” column:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>pca_kangaroo<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>pca_kangaroo<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            PC1        PC2         PC3         PC4        PC5
 BLEN 0.58361875 -0.6506053 -0.16256188 -0.03837344 -0.4562927
@@ -1216,7 +1278,7 @@ PWID 0.09374119  0.2664444  0.73418931 -0.37562947 -0.4899883</code></pre>
 </div>
 <p>Summarise the results:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">summary</span>(pca_kangaroo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">summary</span>(pca_kangaroo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                             PC1     PC2      PC3      PC4      PC5
@@ -1228,7 +1290,86 @@ Cumulative Proportion    0.9765  0.9899  0.99499  0.99804  1.00000</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="visualising-the-kangaroo-pca" class="level4">
+<h4 class="anchored" data-anchor-id="visualising-the-kangaroo-pca">Visualising the kangaroo PCA</h4>
+<p>Now we can plot the first two principal components for the kangaroo skull measurements. This lets us ask whether Eastern and Western grey kangaroos separate in multivariate space.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>kangaroo_scores <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb40-2"><a href="#cb40-2"></a>  pca_kangaroo<span class="sc">$</span>x,</span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="at">SPECIES =</span> kangaroo<span class="sc">$</span>SPECIES</span>
+<span id="cb40-4"><a href="#cb40-4"></a>)</span>
+<span id="cb40-5"><a href="#cb40-5"></a></span>
+<span id="cb40-6"><a href="#cb40-6"></a>kangaroo_scores<span class="sc">$</span>Species_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb40-7"><a href="#cb40-7"></a>  kangaroo_scores<span class="sc">$</span>SPECIES,</span>
+<span id="cb40-8"><a href="#cb40-8"></a>  <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb40-9"><a href="#cb40-9"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Eastern grey kangaroo"</span>, <span class="st">"Western grey kangaroo"</span>)</span>
+<span id="cb40-10"><a href="#cb40-10"></a>)</span>
+<span id="cb40-11"><a href="#cb40-11"></a></span>
+<span id="cb40-12"><a href="#cb40-12"></a><span class="fu">head</span>(kangaroo_scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        PC1       PC2         PC3       PC4          PC5 SPECIES
+1 -177.9492 -28.98374  -0.8182144  1.002883  11.08936160       1
+2 -391.4927 -27.78651  20.5954724  4.805920   0.05712965       1
+3 -367.8895  38.90206  -3.8537775 -1.139604  -9.60774483       1
+4 -215.5638  37.97104   2.5400629 10.388536   1.40293896       1
+5 -109.2224   1.72792 -24.1063769 -1.580900  -4.22099102       1
+6  151.4246  13.60599   4.9915237 17.778047 -10.97671589       1
+           Species_name
+1 Eastern grey kangaroo
+2 Eastern grey kangaroo
+3 Eastern grey kangaroo
+4 Eastern grey kangaroo
+5 Eastern grey kangaroo
+6 Eastern grey kangaroo</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">ggplot</span>(kangaroo_scores, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">colour =</span> Species_name, <span class="at">shape =</span> Species_name)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-5"><a href="#cb42-5"></a>    <span class="at">title =</span> <span class="st">"PCA of kangaroo skull measurements"</span>,</span>
+<span id="cb42-6"><a href="#cb42-6"></a>    <span class="at">x =</span> <span class="st">"PC1"</span>,</span>
+<span id="cb42-7"><a href="#cb42-7"></a>    <span class="at">y =</span> <span class="st">"PC2"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8"></a>    <span class="at">colour =</span> <span class="st">"Species"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb42-10"><a href="#cb42-10"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A biplot shows both the sample scores and the variable loadings in the same figure.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">biplot</span>(pca_kangaroo, <span class="at">xlabs =</span> kangaroo<span class="sc">$</span>SPECIES)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Interpreting the kangaroo PCA plot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The kangaroo PCA plot is different from the iris plot. PC1 explains almost all of the variation, and the points usually form one long cloud rather than two clearly separated species groups.</p>
+<p>This tells us that the dominant pattern in the skull measurements is overall skull size. Kangaroos with larger skulls tend to have larger values for most skull measurements.</p>
+<p>Because the two species overlap strongly, these skull measurements do not clearly separate Eastern and Western grey kangaroos in the PCA. The PCA is mainly finding a size gradient, not a species-separation gradient.</p>
+<p>This is an important lesson: PCA finds the strongest source of variation in the data, but that source of variation is not always the grouping variable we are interested in.</p>
+</div>
+</div>
 <p>How did you go?</p>
+</section>
 </section>
 </section>
 <section id="part-3-admiring-your-handiwork" class="level2 page-columns page-full">
@@ -1249,7 +1390,7 @@ Cumulative Proportion    0.9765  0.9899  0.99499  0.99804  1.00000</code></pre>
 <h3 class="anchored" data-anchor-id="exercise-new-year-new-me-new-variables">Exercise: New Year, New Me, New Variables</h3>
 <p>As a reminder, here are the results from our beer PCA:</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1258,10 +1399,10 @@ Cumulative Proportion    0.9765  0.9899  0.99499  0.99804  1.00000</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">round</span>(pca_beer<span class="sc">$</span>rotation,<span class="dv">6</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">round</span>(pca_beer<span class="sc">$</span>rotation,<span class="dv">6</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              PC1       PC2      PC3       PC4       PC5       PC6       PC7
 cost    -0.302309 -0.454046 0.084258  0.784602 -0.031082 -0.255689 -0.115793
@@ -1277,7 +1418,7 @@ taste   -0.390233  0.399636 0.042278  0.077508 -0.714212 -0.091785  0.402108</co
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1286,10 +1427,10 @@ taste   -0.390233  0.399636 0.042278  0.077508 -0.714212 -0.091785  0.402108</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div id="callout-35" class="callout-35-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">summary</span>(pca_beer) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">summary</span>(pca_beer) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
@@ -1338,7 +1479,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1347,7 +1488,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-36" class="callout-36-contents callout-collapse collapse">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>All 7 original variables went into creating PC4. However, some variables contributed more than others.</p>
 <p>For instance, cost and alcohol contributed the most (with loadings of +0.78 and -0.58 respectively), while reputation contributed the least (with a loading of only 0.02).</p>
@@ -1373,7 +1514,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1382,7 +1523,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-38" class="callout-38-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Reputation contributed positively to PC1 (+0.40), but every other variable contributed negatively. The strength of the contributions are spread quite evenly between the variables.</p>
 </div>
@@ -1406,7 +1547,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1415,7 +1556,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-40" class="callout-40-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Here’s what I went with for PCs 1 to 4:</p>
 <p>PC2 = “drunk for buck”. This axis separates customers who prefer to judge a beer on its taste, colour, and aroma from those who prefer to get as much alcohol as possible for the least amount of money.</p>
@@ -1449,7 +1590,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1459,7 +1600,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1483,7 +1624,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1492,11 +1633,11 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-42" class="callout-42-contents callout-collapse collapse">
+<div id="callout-44" class="callout-44-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>To remind you, here is the summary for <code>pca_beer</code> we extracted earlier:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">summary</span>(pca_beer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">summary</span>(pca_beer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
@@ -1512,11 +1653,11 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <p>To make a scree plot, we will use base R instead of ggplot (one of the few instances where I recommend base R over ggplot). The function we will use is called <code>screeplot()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">screeplot</span>(pca_beer, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="fu">screeplot</span>(pca_beer, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lab10-pca_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1541,7 +1682,7 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 <p>The outputs of this factor analysis are similar to those of a PCA; but instead of creating PCs, <code>factanal</code> creates <strong>latent variables</strong> (also called factors).</p>
 <p>Here is <code>factanal</code> applied to our <code>beer</code> dataset. See if you can spot some key differences between the loadings tables of this analysis and the PCA we performed earlier.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-45-contents" aria-controls="callout-45" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1550,11 +1691,11 @@ Cumulative Proportion  0.4733 0.8470 0.92905 0.96332 0.98252 0.99473 1.00000</co
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-43" class="callout-43-contents callout-collapse collapse">
+<div id="callout-45" class="callout-45-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(beer, <span class="dv">3</span>, <span class="at">rotation=</span><span class="st">"varimax"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2"></a>fa1<span class="sc">$</span>loadings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(beer, <span class="dv">3</span>, <span class="at">rotation=</span><span class="st">"varimax"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2"></a>fa1<span class="sc">$</span>loadings</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
@@ -1577,7 +1718,7 @@ Cumulative Var   0.398   0.775   0.857</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-44-contents" aria-controls="callout-44" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-46-contents" aria-controls="callout-46" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1586,7 +1727,7 @@ Cumulative Var   0.398   0.775   0.857</code></pre>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-44" class="callout-44-contents callout-collapse collapse">
+<div id="callout-46" class="callout-46-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It seems that the factors from our factor analysis are a little bit easier to interpret than the PCs from our PCA. This is because the varimax rotation constructed each factor so that they are influenced by only a few of the original variables.</p>
 <p>Recall that in our PCA, all 7 original variables contributed to PC1 in roughly equal proportions. In our factor analysis, however, Factor 1 is made up mostly of colour, aroma, and taste, with very little contribution from the other four variables.</p>

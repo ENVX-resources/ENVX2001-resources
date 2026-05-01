@@ -294,7 +294,7 @@ background: white;
 </section>
 <section id="making-predictions-with-california-streamflow-45-min" class="level1 page-columns page-full">
 <h1>1. Making predictions with California streamflow (~45 min)</h1>
-<p><img src="images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."> Last week we found that precipitation at Lake Sabrina was not a significant predictor of runoff volume near Bishop, California.</p>
+<p><img src="../../assets/images/AdobeStock_668401555.jpeg" class="img-fluid" alt="Little Lakes Valley in the Eastern Sierra Nevada Mountains outside of Bishop, California. Source: Adobe Stock."> Last week we found that precipitation at Lake Sabrina was not a significant predictor of runoff volume near Bishop, California.</p>
 <p>Our Partial F-test between our full and reduced model resulted in a P-value&lt; 0.05, so we failed to reject the null hypothesis. This told us that there was no significant difference between full and reduced models, so we selected the reduced model as it was less complex and therefore more parsimonious.</p>
 <p>Our selected model was:</p>
 <div class="cell">
@@ -614,7 +614,7 @@ $ runoff_volume &lt;dbl&gt; 4.825412, 4.920867, 4.911735, 4.924242, 5.120841, 4.
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">mean</span>(stream_train<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5.355339e-16</code></pre>
+<pre><code>[1] -6.317367e-16</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">mean</span>(stream_test<span class="sc">$</span>runoff_volume <span class="sc">-</span> stream_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -814,7 +814,7 @@ Attaching package: 'survival'</code></pre>
 <h1>2. Making predictions with the plant aridity data (~45 min)</h1>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="images/AdobeStock_659883118.jpeg" class="img-fluid figure-img"></p>
+<p><img src="../../assets/images/AdobeStock_659883118.jpeg" class="img-fluid figure-img"></p>
 <figcaption class="margin-caption">Image of invasive capeweed. Source: Adobe Stock.</figcaption>
 </figure>
 </div>

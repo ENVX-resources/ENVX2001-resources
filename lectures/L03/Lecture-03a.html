@@ -222,7 +222,7 @@ Januar Harianto
 </div>
 </div>
 
-  <p class="date">Apr 2026</p>
+  <p class="date">May 2026</p>
 </section>
 <section>
 <section id="the-t-test-revision" class="title-slide slide level1 center">
@@ -259,7 +259,7 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="fragment">
+<img data-src="Lecture-03a_files/figure-html/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><div class="fragment">
 <p>The boxplot suggests a difference. To test, you would run <code>t.test()</code> and check the p-value. <strong>What is the test actually computing?</strong></p>
 </div>
 </section></section>
@@ -494,19 +494,19 @@ W = 0.94636, p-value = 0.4691</code></pre>
 <span id="cb14-3"><a></a><span class="fu">qqnorm</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed2"</span>], <span class="at">main =</span> <span class="st">"Breed 2"</span>)</span>
 <span id="cb14-4"><a></a><span class="fu">qqline</span>(cattle<span class="sc">$</span>weight[cattle<span class="sc">$</span>breed <span class="sc">==</span> <span class="st">"Breed2"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="Lecture-03a_files/figure-html/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03a_files/figure-revealjs/unnamed-chunk-7-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="Lecture-03a_files/figure-html/unnamed-chunk-7-2.png" class="quarto-figure quarto-figure-center" width="672"></p>
 </figure>
 </div>
 </div>
@@ -804,44 +804,6 @@ mean in group Breed1 mean in group Breed2
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

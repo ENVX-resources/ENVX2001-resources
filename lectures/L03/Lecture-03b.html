@@ -222,7 +222,7 @@ Januar Harianto
 </div>
 </div>
 
-  <p class="date">Apr 2026</p>
+  <p class="date">May 2026</p>
 </section>
 <section>
 <section id="from-t-tests-to-anova" class="title-slide slide level1 center">
@@ -325,7 +325,7 @@ Januar Harianto
 </details>
 
 </div>
-<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>What do the boxplots suggest?</p>
+<img data-src="Lecture-03b_files/figure-html/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><p>What do the boxplots suggest?</p>
 </section>
 <section id="terminology" class="slide level2">
 <h2>Terminology</h2>
@@ -438,14 +438,14 @@ Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="Lecture-03b_files/figure-html/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-6-2.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="Lecture-03b_files/figure-html/unnamed-chunk-6-2.png" class="quarto-figure quarto-figure-center" width="672"></p>
 </figure>
 </div>
 </div>
@@ -498,7 +498,7 @@ Bartlett's K-squared = 0.85164, df = 3, p-value = 0.8371</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Do four separate means (left) explain the data better than a single overall mean (right)?</p>
+<img data-src="Lecture-03b_files/figure-html/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><p>Do four separate means (left) explain the data better than a single overall mean (right)?</p>
 </section>
 <section id="two-sources-of-variation" class="slide level2">
 <h2>Two sources of variation</h2>
@@ -737,7 +737,7 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
 <span id="cb18-2"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight gain (g)"</span>, <span class="at">y =</span> <span class="st">"Diet"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-03b_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<img data-src="Lecture-03b_files/figure-html/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center r-stretch" width="672"><ul>
 <li>Each point is the estimated mean for that diet</li>
 <li>The arrows represent comparison intervals (adjusted CIs)</li>
 <li>Groups with <strong>overlapping</strong> arrows are <strong>not</strong> significantly different</li>
@@ -975,44 +975,6 @@ Conf-level adjustment: tukey method for comparing a family of 4 estimates </code
     window._ojs.selfContained = false;
     window._ojs.runtime.interpretFromScriptTags();
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

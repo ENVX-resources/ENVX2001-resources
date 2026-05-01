@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Professor Mathew Crowther">
 
 <title>Tutorial 10: PCA and Factor Analysis</title>
 <style>
@@ -142,7 +143,7 @@ background: white;
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tutorial 10: PCA and Factor Analysis</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tutorial 10: PCA and Factor Analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
             <p class="subtitle lead">ENVX2001 – Applied Statistical Methods</p>
                       </div>
   </div>
@@ -150,6 +151,12 @@ background: white;
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Professor Mathew Crowther </p>
+            </div>
+    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -173,16 +180,18 @@ background: white;
   <ul class="collapse">
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">1.1</span> Setup</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data"><span class="header-section-number">1.2</span> Load the data</a></li>
-  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">1.3</span> Correlation matrix</a></li>
-  <li><a href="#bartletts-test-of-sphericity" id="toc-bartletts-test-of-sphericity" class="nav-link" data-scroll-target="#bartletts-test-of-sphericity"><span class="header-section-number">1.4</span> Bartlett’s Test of Sphericity</a></li>
-  <li><a href="#principal-components-analysis" id="toc-principal-components-analysis" class="nav-link" data-scroll-target="#principal-components-analysis"><span class="header-section-number">1.5</span> Principal Components Analysis</a></li>
-  <li><a href="#loadings" id="toc-loadings" class="nav-link" data-scroll-target="#loadings"><span class="header-section-number">1.6</span> Loadings</a></li>
-  <li><a href="#screeplot" id="toc-screeplot" class="nav-link" data-scroll-target="#screeplot"><span class="header-section-number">1.7</span> Screeplot</a></li>
-  <li><a href="#principal-component-scores" id="toc-principal-component-scores" class="nav-link" data-scroll-target="#principal-component-scores"><span class="header-section-number">1.8</span> Principal Component Scores</a></li>
-  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">1.9</span> Biplot</a></li>
-  <li><a href="#anova-on-pc-scores" id="toc-anova-on-pc-scores" class="nav-link" data-scroll-target="#anova-on-pc-scores"><span class="header-section-number">1.10</span> ANOVA on PC scores</a></li>
-  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">1.11</span> Boxplot</a></li>
-  <li><a href="#factor-analysis-with-varimax-rotation" id="toc-factor-analysis-with-varimax-rotation" class="nav-link" data-scroll-target="#factor-analysis-with-varimax-rotation"><span class="header-section-number">1.12</span> Factor Analysis with Varimax Rotation</a></li>
+  <li><a href="#description-of-the-variables" id="toc-description-of-the-variables" class="nav-link" data-scroll-target="#description-of-the-variables"><span class="header-section-number">1.3</span> Description of the variables</a></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">1.4</span> Correlation matrix</a></li>
+  <li><a href="#bartletts-test-of-sphericity" id="toc-bartletts-test-of-sphericity" class="nav-link" data-scroll-target="#bartletts-test-of-sphericity"><span class="header-section-number">1.5</span> Bartlett’s Test of Sphericity</a></li>
+  <li><a href="#principal-components-analysis" id="toc-principal-components-analysis" class="nav-link" data-scroll-target="#principal-components-analysis"><span class="header-section-number">1.6</span> Principal Components Analysis</a></li>
+  <li><a href="#loadings" id="toc-loadings" class="nav-link" data-scroll-target="#loadings"><span class="header-section-number">1.7</span> Loadings</a></li>
+  <li><a href="#screeplot" id="toc-screeplot" class="nav-link" data-scroll-target="#screeplot"><span class="header-section-number">1.8</span> Screeplot</a></li>
+  <li><a href="#principal-component-scores" id="toc-principal-component-scores" class="nav-link" data-scroll-target="#principal-component-scores"><span class="header-section-number">1.9</span> Principal Component Scores</a></li>
+  <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">1.10</span> Biplot</a></li>
+  <li><a href="#regression-using-pc-scores" id="toc-regression-using-pc-scores" class="nav-link" data-scroll-target="#regression-using-pc-scores"><span class="header-section-number">1.11</span> Regression using PC scores</a></li>
+  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot"><span class="header-section-number">1.12</span> Scatterplot</a></li>
+  <li><a href="#factor-analysis-with-varimax-rotation" id="toc-factor-analysis-with-varimax-rotation" class="nav-link" data-scroll-target="#factor-analysis-with-varimax-rotation"><span class="header-section-number">1.13</span> Factor Analysis with Varimax Rotation</a></li>
+  <li><a href="#final-interpretation" id="toc-final-interpretation" class="nav-link" data-scroll-target="#final-interpretation"><span class="header-section-number">1.14</span> Final interpretation</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial10.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -200,37 +209,16 @@ background: white;
 
 <section id="pca-and-factor-analysis" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> PCA and Factor Analysis</h1>
-<p>Students in class gave “Characteristics of a good ecology lecturer”. They scored from 1-10 on a range of characteristics:</p>
+<p>This tutorial uses football-player performance data from Wilson et al.&nbsp;(2017), <em>Skill not athleticism predicts individual variation in match performance of soccer players</em>. The study measured semi-professional football players from the University of Queensland Football Club and asked whether morphology, balance, athleticism and motor skill predicted performance in soccer-tennis and 11-a-side matches.</p>
+<p><img src="images/football.jpg" class="img-fluid"></p>
+<p>In the paper, the authors measured:</p>
 <ul>
-<li>accessible</li>
-<li>attractive</li>
-<li>Wide range of topics</li>
-<li>Do teaching research</li>
-<li>Dress well</li>
-<li>Complex issues</li>
-<li>Example exam questions</li>
-<li>Notes before</li>
-<li>humour</li>
-<li>Easy marking</li>
-<li>Move around lecture</li>
-<li>Detailed lecture notes</li>
-<li>Clear objective to lecture</li>
-<li>Solicit questions</li>
-<li>Use textbook closely</li>
-<li>Focus on primary research</li>
-<li>Use their own research</li>
-<li>Teach in team</li>
-<li>Understand principles of teaching</li>
-<li>Use pointers</li>
-<li>respected</li>
+<li><strong>Balance</strong>: average time before losing balance while standing on high-density foam with eyes closed.</li>
+<li><strong>Athletic performance</strong>: 1500 m speed, wall-squat endurance, jump distance, 40 m sprint speed and agility-course speed.</li>
+<li><strong>Motor skill</strong>: dribbling speed, juggling ability, volley accuracy, passing accuracy and heading accuracy.</li>
 </ul>
-<p>The students also indicated whether they were:</p>
-<ul>
-<li>a gender (male/female)</li>
-<li>studied mainly a system (marine/terrestrial)</li>
-<li>studied mainly an organismal group (plants/animals)</li>
-</ul>
-<p>We are going to use principal components analysis and factor analysis to interpret this dataset.</p>
+<p>The key biological question is whether complex match performance is better explained by general athletic capacity or football-specific motor skill.</p>
+<p>We are going to use principal components analysis and factor analysis to interpret the multivariate structure of these player performance traits.</p>
 <section id="setup" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">1.1</span> Setup</h2>
 <p>Load these packages to make the plots look better:</p>
@@ -242,660 +230,366 @@ background: white;
 </section>
 <section id="load-the-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="load-the-data"><span class="header-section-number">1.2</span> Load the data</h2>
-<p>First open your dataset:</p>
+<p>First open your dataset. The CSV file should be saved in the same folder as this <code>.qmd</code> file.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>lecturers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/lecturers.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>players <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_player_performance.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="correlation-matrix" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">1.3</span> Correlation matrix</h2>
-<p>Let’s first do a correlation matrix:</p>
+<p>Check the variable names:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">cor</span>(lecturers[, <span class="dv">8</span><span class="sc">:</span><span class="dv">28</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">names</span>(players)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                         accessible  attractive   wide_range
-accessible               1.00000000 -0.61876084  0.190062066
-attractive              -0.61876084  1.00000000 -0.011570169
-wide_range               0.19006207 -0.01157017  1.000000000
-teaching.based_research  0.24021638 -0.21382943  0.462870058
-Dress_nicely            -0.53198037  0.81887024 -0.022848836
-focus_on_complex_issues  0.28252341 -0.04447540  0.567443460
-gives_example           -0.23669223  0.23435837  0.065815857
-gives_out_note          -0.31173854  0.36819405 -0.187661524
-sense_of_humour         -0.29068273  0.33747896  0.081503385
-mark_easily             -0.34976811  0.44361281 -0.158545138
-moves_around            -0.23371225  0.18475768 -0.087292839
-offers_lecture_notes    -0.25762452  0.28256570 -0.070931605
-clear_objective         -0.21819811  0.14978520 -0.176518448
-solicit_questions        0.10349600 -0.07667948 -0.022123679
-text_book                0.03170769  0.02849978 -0.241108100
-primary_research         0.14147306 -0.06238516 -0.009628388
-own_research            -0.01089281  0.15175696  0.157013029
-teach_in_team            0.09004589 -0.13904104  0.005163136
-understand_principles   -0.08521319 -0.01080764 -0.097173242
-use_a_pointer           -0.51717009  0.25526667 -0.131935123
-well_respected          -0.12789662  0.04222022  0.037698097
-                        teaching.based_research Dress_nicely
-accessible                           0.24021638 -0.531980374
-attractive                          -0.21382943  0.818870242
-wide_range                           0.46287006 -0.022848836
-teaching.based_research              1.00000000 -0.079662581
-Dress_nicely                        -0.07966258  1.000000000
-focus_on_complex_issues              0.36612054 -0.074522662
-gives_example                       -0.23626944  0.207509283
-gives_out_note                      -0.13154529  0.349298764
-sense_of_humour                     -0.37115541  0.326981372
-mark_easily                         -0.26802282  0.293513890
-moves_around                         0.35915941  0.175612992
-offers_lecture_notes                -0.26062206  0.304730151
-clear_objective                     -0.10137698  0.162176313
-solicit_questions                    0.06997014 -0.047353486
-text_book                           -0.02511112  0.065661794
-primary_research                     0.08627931 -0.125765210
-own_research                         0.24450347  0.131114596
-teach_in_team                        0.05621459 -0.081891992
-understand_principles                0.13360929  0.003830791
-use_a_pointer                       -0.40503932  0.246189390
-well_respected                      -0.21574299  0.082434616
-                        focus_on_complex_issues gives_example gives_out_note
-accessible                           0.28252341   -0.23669223    -0.31173854
-attractive                          -0.04447540    0.23435837     0.36819405
-wide_range                           0.56744346    0.06581586    -0.18766152
-teaching.based_research              0.36612054   -0.23626944    -0.13154529
-Dress_nicely                        -0.07452266    0.20750928     0.34929876
-focus_on_complex_issues              1.00000000   -0.15606162    -0.31138949
-gives_example                       -0.15606162    1.00000000     0.41459959
-gives_out_note                      -0.31138949    0.41459959     1.00000000
-sense_of_humour                     -0.07005663    0.22759892     0.25028755
-mark_easily                         -0.18475242    0.18880641     0.39259669
-moves_around                         0.06116819   -0.15496603     0.26746010
-offers_lecture_notes                 0.04438636    0.67139954     0.32650197
-clear_objective                     -0.05740760    0.22152350     0.49329825
-solicit_questions                    0.12547982   -0.10034117     0.37306647
-text_book                           -0.14904151    0.23189356     0.41705241
-primary_research                     0.33824172   -0.05502391    -0.00258233
-own_research                         0.21007669   -0.03858742     0.11486585
-teach_in_team                       -0.05016868    0.22073735     0.07101795
-understand_principles                0.12582565    0.06367067     0.09564742
-use_a_pointer                       -0.19722690    0.29421612     0.42798936
-well_respected                      -0.15321258    0.20022401     0.24197769
-                        sense_of_humour  mark_easily moves_around
-accessible                  -0.29068273 -0.349768108 -0.233712249
-attractive                   0.33747896  0.443612809  0.184757685
-wide_range                   0.08150339 -0.158545138 -0.087292839
-teaching.based_research     -0.37115541 -0.268022817  0.359159406
-Dress_nicely                 0.32698137  0.293513890  0.175612992
-focus_on_complex_issues     -0.07005663 -0.184752419  0.061168190
-gives_example                0.22759892  0.188806413 -0.154966026
-gives_out_note               0.25028755  0.392596691  0.267460102
-sense_of_humour              1.00000000  0.279195853  0.147981262
-mark_easily                  0.27919585  1.000000000 -0.102624026
-moves_around                 0.14798126 -0.102624026  1.000000000
-offers_lecture_notes         0.40350521  0.004540766  0.116586008
-clear_objective              0.30494267  0.241714172  0.328029643
-solicit_questions            0.22196924  0.221507736  0.357039548
-text_book                    0.11515826  0.493885950  0.018944976
-primary_research            -0.11402253  0.013988221  0.201361759
-own_research                 0.19400676 -0.136905883  0.521788320
-teach_in_team               -0.13889755 -0.029214646 -0.002012914
-understand_principles        0.08973153  0.029511600  0.281044416
-use_a_pointer                0.60147995  0.200483903  0.247735287
-well_respected               0.31777004  0.204840208  0.107275533
-                        offers_lecture_notes clear_objective solicit_questions
-accessible                      -0.257624516     -0.21819811       0.103495996
-attractive                       0.282565698      0.14978520      -0.076679483
-wide_range                      -0.070931605     -0.17651845      -0.022123679
-teaching.based_research         -0.260622062     -0.10137698       0.069970142
-Dress_nicely                     0.304730151      0.16217631      -0.047353486
-focus_on_complex_issues          0.044386363     -0.05740760       0.125479819
-gives_example                    0.671399539      0.22152350      -0.100341166
-gives_out_note                   0.326501972      0.49329825       0.373066471
-sense_of_humour                  0.403505211      0.30494267       0.221969236
-mark_easily                      0.004540766      0.24171417       0.221507736
-moves_around                     0.116586008      0.32802964       0.357039548
-offers_lecture_notes             1.000000000      0.51135418       0.134906607
-clear_objective                  0.511354179      1.00000000       0.667857876
-solicit_questions                0.134906607      0.66785788       1.000000000
-text_book                        0.241763186      0.50985104       0.514856144
-primary_research                 0.027238866     -0.05933422       0.008953955
-own_research                     0.014724611      0.04037952       0.313649567
-teach_in_team                    0.134589361      0.09431599       0.129502715
-understand_principles            0.204933977      0.52773521       0.525180942
-use_a_pointer                    0.475656687      0.48740938       0.245720968
-well_respected                   0.173541917      0.20806935       0.217669413
-                           text_book primary_research own_research
-accessible               0.031707686      0.141473062  -0.01089281
-attractive               0.028499784     -0.062385161   0.15175696
-wide_range              -0.241108100     -0.009628388   0.15701303
-teaching.based_research -0.025111119      0.086279306   0.24450347
-Dress_nicely             0.065661794     -0.125765210   0.13111460
-focus_on_complex_issues -0.149041509      0.338241715   0.21007669
-gives_example            0.231893556     -0.055023907  -0.03858742
-gives_out_note           0.417052411     -0.002582330   0.11486585
-sense_of_humour          0.115158256     -0.114022533   0.19400676
-mark_easily              0.493885950      0.013988221  -0.13690588
-moves_around             0.018944976      0.201361759   0.52178832
-offers_lecture_notes     0.241763186      0.027238866   0.01472461
-clear_objective          0.509851042     -0.059334220   0.04037952
-solicit_questions        0.514856144      0.008953955   0.31364957
-text_book                1.000000000     -0.092231864  -0.11384268
-primary_research        -0.092231864      1.000000000   0.35299282
-own_research            -0.113842676      0.352992824   1.00000000
-teach_in_team            0.176402014     -0.085933891  -0.08668898
-understand_principles    0.287773155      0.017218953   0.06370238
-use_a_pointer            0.001337384     -0.149851010   0.15399945
-well_respected           0.274222528      0.016210854  -0.10140227
-                        teach_in_team understand_principles use_a_pointer
-accessible                0.090045886          -0.085213191  -0.517170092
-attractive               -0.139041035          -0.010807636   0.255266673
-wide_range                0.005163136          -0.097173242  -0.131935123
-teaching.based_research   0.056214590           0.133609295  -0.405039321
-Dress_nicely             -0.081891992           0.003830791   0.246189390
-focus_on_complex_issues  -0.050168682           0.125825652  -0.197226905
-gives_example             0.220737347           0.063670673   0.294216117
-gives_out_note            0.071017950           0.095647419   0.427989355
-sense_of_humour          -0.138897546           0.089731525   0.601479950
-mark_easily              -0.029214646           0.029511600   0.200483903
-moves_around             -0.002012914           0.281044416   0.247735287
-offers_lecture_notes      0.134589361           0.204933977   0.475656687
-clear_objective           0.094315990           0.527735214   0.487409381
-solicit_questions         0.129502715           0.525180942   0.245720968
-text_book                 0.176402014           0.287773155   0.001337384
-primary_research         -0.085933891           0.017218953  -0.149851010
-own_research             -0.086688981           0.063702380   0.153999453
-teach_in_team             1.000000000           0.101857142  -0.016777680
-understand_principles     0.101857142           1.000000000   0.104631048
-use_a_pointer            -0.016777680           0.104631048   1.000000000
-well_respected            0.545915684           0.207782811   0.318541502
-                        well_respected
-accessible                 -0.12789662
-attractive                  0.04222022
-wide_range                  0.03769810
-teaching.based_research    -0.21574299
-Dress_nicely                0.08243462
-focus_on_complex_issues    -0.15321258
-gives_example               0.20022401
-gives_out_note              0.24197769
-sense_of_humour             0.31777004
-mark_easily                 0.20484021
-moves_around                0.10727553
-offers_lecture_notes        0.17354192
-clear_objective             0.20806935
-solicit_questions           0.21766941
-text_book                   0.27422253
-primary_research            0.01621085
-own_research               -0.10140227
-teach_in_team               0.54591568
-understand_principles       0.20778281
-use_a_pointer               0.31854150
-well_respected              1.00000000</code></pre>
+<pre><code> [1] "player"  "balance" "X1500m"  "squat"   "jump"    "sprint"  "agility"
+ [8] "drib"    "jugg"    "voll"    "pass"    "head"   </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>Corrmatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(lecturers[, <span class="dv">8</span><span class="sc">:</span><span class="dv">28</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because R changes column names that begin with a number, <code>1500m</code> may appear as <code>X1500m</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">head</span>(players)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  player balance   X1500m squat jump   sprint  agility     drib     jugg
+1      1   6.485 4.297994   361 2.67 7.272727 3.601286 2.545455 14.80000
+2      2  25.000 4.602194   100 2.55 7.214200 3.530339 2.554162 26.50000
+3      3   3.920 3.916449    87 2.51 6.430868 3.412034 2.471042 10.11111
+4      4  20.000 3.605769    85 2.36 6.700168 3.227666 2.175814 14.50000
+5      5  46.700 4.065041   141 2.52 6.920415 3.446154 2.471042  8.40000
+6      6  60.000 3.778338   172 2.53 6.666667 3.530339 2.621416 21.15385
+      voll     pass     head
+1 11.76471 20.40816 15.15152
+2 11.00000 31.40816 14.49275
+3 11.76471 17.85714 14.49275
+4 12.80855 18.87122 13.70566
+5 10.73989 21.81725 16.55008
+6 11.62791 24.39024 15.38462</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">str</span>(players)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   24 obs. of  12 variables:
+ $ player : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ balance: num  6.49 25 3.92 20 46.7 ...
+ $ X1500m : num  4.3 4.6 3.92 3.61 4.07 ...
+ $ squat  : int  361 100 87 85 141 172 80 216 81 189 ...
+ $ jump   : num  2.67 2.55 2.51 2.36 2.52 2.53 2.19 2.38 2.42 2.72 ...
+ $ sprint : num  7.27 7.21 6.43 6.7 6.92 ...
+ $ agility: num  3.6 3.53 3.41 3.23 3.45 ...
+ $ drib   : num  2.55 2.55 2.47 2.18 2.47 ...
+ $ jugg   : num  14.8 26.5 10.1 14.5 8.4 ...
+ $ voll   : num  11.8 11 11.8 12.8 10.7 ...
+ $ pass   : num  20.4 31.4 17.9 18.9 21.8 ...
+ $ head   : num  15.2 14.5 14.5 13.7 16.6 ...</code></pre>
+</div>
 </div>
 </section>
-<section id="bartletts-test-of-sphericity" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="bartletts-test-of-sphericity"><span class="header-section-number">1.4</span> Bartlett’s Test of Sphericity</h2>
-<p>Now we can do the Bartlett’s Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.</p>
+<section id="description-of-the-variables" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="description-of-the-variables"><span class="header-section-number">1.3</span> Description of the variables</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">BARTLETT</span>(Corrmatrix, <span class="at">N =</span> <span class="dv">34</span>, <span class="at">cor_method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(players)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     player         balance          X1500m          squat       
+ Min.   : 1.00   Min.   : 3.92   Min.   :3.606   Min.   : 79.00  
+ 1st Qu.: 6.75   1st Qu.:12.00   1st Qu.:3.940   1st Qu.: 84.75  
+ Median :12.50   Median :22.92   Median :4.364   Median :103.00  
+ Mean   :12.50   Mean   :25.48   Mean   :4.283   Mean   :131.50  
+ 3rd Qu.:18.25   3rd Qu.:34.99   3rd Qu.:4.549   3rd Qu.:166.00  
+ Max.   :24.00   Max.   :60.00   Max.   :4.854   Max.   :361.00  
+      jump           sprint         agility           drib      
+ Min.   :2.050   Min.   :6.231   Min.   :3.228   Min.   :2.176  
+ 1st Qu.:2.360   1st Qu.:6.650   1st Qu.:3.379   1st Qu.:2.504  
+ Median :2.465   Median :6.932   Median :3.497   Median :2.548  
+ Mean   :2.439   Mean   :6.889   Mean   :3.466   Mean   :2.553  
+ 3rd Qu.:2.535   3rd Qu.:7.175   3rd Qu.:3.545   3rd Qu.:2.632  
+ Max.   :2.720   Max.   :7.491   Max.   :3.666   Max.   :2.784  
+      jugg             voll             pass            head       
+ Min.   : 7.842   Min.   : 7.804   Min.   :10.81   Min.   : 4.182  
+ 1st Qu.:10.659   1st Qu.: 9.501   1st Qu.:20.41   1st Qu.:14.296  
+ Median :14.082   Median :11.250   Median :28.67   Median :15.268  
+ Mean   :15.900   Mean   :11.017   Mean   :29.77   Mean   :14.973  
+ 3rd Qu.:18.990   3rd Qu.:12.544   3rd Qu.:38.00   3rd Qu.:17.712  
+ Max.   :39.857   Max.   :13.889   Max.   :50.00   Max.   :19.231  </code></pre>
+</div>
+</div>
+<p>The variables are:</p>
+<ul>
+<li><code>balance</code>: static balance score</li>
+<li><code>X1500m</code>: speed over 1500 m</li>
+<li><code>squat</code>: wall-squat endurance time</li>
+<li><code>jump</code>: standing jump distance</li>
+<li><code>sprint</code>: 40 m sprint speed</li>
+<li><code>agility</code>: speed through an agility course</li>
+<li><code>drib</code>: dribbling speed through an agility course</li>
+<li><code>jugg</code>: juggling or keep-up ability</li>
+<li><code>voll</code>: volley-kick accuracy</li>
+<li><code>pass</code>: passing accuracy</li>
+<li><code>head</code>: heading accuracy</li>
+</ul>
+<p>Higher values generally indicate better performance on that trait.</p>
+</section>
+<section id="correlation-matrix" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">1.4</span> Correlation matrix</h2>
+<p>Let’s first do a correlation matrix. We exclude the player ID column and analyse the performance traits only.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             balance       X1500m        squat         jump      sprint
+balance  1.000000000 -0.120666590  0.056071952  0.005165273  0.14975877
+X1500m  -0.120666590  1.000000000  0.159548821  0.096566292  0.34226606
+squat    0.056071952  0.159548821  1.000000000  0.432157704  0.30883252
+jump     0.005165273  0.096566292  0.432157704  1.000000000  0.33871992
+sprint   0.149758766  0.342266059  0.308832520  0.338719924  1.00000000
+agility -0.229848417  0.168169479  0.445175401  0.571266808  0.16286933
+drib     0.470845996  0.356356256  0.159653733  0.154769848  0.29294354
+jugg     0.187921370  0.155839614  0.004928929  0.280997027 -0.07650198
+voll     0.397624644  0.006100075  0.153281966  0.025642532  0.32241412
+pass     0.416714230  0.155833542 -0.042274047 -0.006327859  0.25026128
+head    -0.006255931  0.032500939  0.122024732  0.081488984 -0.10767999
+            agility       drib         jugg         voll         pass
+balance -0.22984842 0.47084600  0.187921370  0.397624644  0.416714230
+X1500m   0.16816948 0.35635626  0.155839614  0.006100075  0.155833542
+squat    0.44517540 0.15965373  0.004928929  0.153281966 -0.042274047
+jump     0.57126681 0.15476985  0.280997027  0.025642532 -0.006327859
+sprint   0.16286933 0.29294354 -0.076501981  0.322414125  0.250261285
+agility  1.00000000 0.02135601  0.185489117 -0.303537885 -0.015220367
+drib     0.02135601 1.00000000  0.346830908  0.313925571  0.507806703
+jugg     0.18548912 0.34683091  1.000000000  0.107128520  0.112221815
+voll    -0.30353789 0.31392557  0.107128520  1.000000000  0.530011484
+pass    -0.01522037 0.50780670  0.112221815  0.530011484  1.000000000
+head     0.36781797 0.07426933  0.235577420  0.394861742  0.341212829
+                head
+balance -0.006255931
+X1500m   0.032500939
+squat    0.122024732
+jump     0.081488984
+sprint  -0.107679989
+agility  0.367817975
+drib     0.074269329
+jugg     0.235577420
+voll     0.394861742
+pass     0.341212829
+head     1.000000000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>Corrmatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A correlation matrix lets us see which traits tend to vary together. For example, if several skill traits are positively correlated, this suggests that some players have generally high technical ability across multiple football-specific tasks.</p>
+</section>
+<section id="bartletts-test-of-sphericity" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="bartletts-test-of-sphericity"><span class="header-section-number">1.5</span> Bartlett’s Test of Sphericity</h2>
+<p>Now we can do Bartlett’s Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">BARTLETT</span>(Corrmatrix, <span class="at">N =</span> <span class="fu">nrow</span>(players), <span class="at">cor_method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ✔ The Bartlett's test of sphericity was significant at an alpha level of .05.
   These data are probably suitable for factor analysis.
 
-  𝜒²(210) = 355.07, p &lt; .001</code></pre>
+  𝜒²(55) = 81.19, p = 0.012</code></pre>
 </div>
 </div>
+<p>A significant result means the variables are sufficiently correlated for a dimension-reduction method such as PCA or factor analysis.</p>
 </section>
-<section id="principal-components-analysis" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="principal-components-analysis"><span class="header-section-number">1.5</span> Principal Components Analysis</h2>
+<section id="principal-components-analysis" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="principal-components-analysis"><span class="header-section-number">1.6</span> Principal Components Analysis</h2>
 <p>Note: to make this a PCA based on a correlation matrix, we have to scale the variables, hence <code>scale = TRUE</code>. There are two main principal components functions, but they are very similar. Note <code>prcomp</code> calls the loadings “rotations”, not to be confused with rotations below.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>pca1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(lecturers[, <span class="dv">8</span><span class="sc">:</span><span class="dv">28</span>], <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>pca2 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(lecturers[, <span class="dv">8</span><span class="sc">:</span><span class="dv">28</span>], <span class="at">cor =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>pca1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>pca2 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">cor =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">summary</span>(pca1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">summary</span>(pca1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
-                          PC1    PC2    PC3     PC4     PC5     PC6     PC7
-Standard deviation     2.2206 1.6616 1.5324 1.29807 1.19561 1.12098 1.08311
-Proportion of Variance 0.2348 0.1315 0.1118 0.08024 0.06807 0.05984 0.05586
-Cumulative Proportion  0.2348 0.3663 0.4781 0.55833 0.62641 0.68624 0.74211
-                          PC8     PC9    PC10    PC11   PC12    PC13    PC14
-Standard deviation     1.0737 0.95681 0.79545 0.73119 0.7055 0.65580 0.50887
-Proportion of Variance 0.0549 0.04359 0.03013 0.02546 0.0237 0.02048 0.01233
-Cumulative Proportion  0.7970 0.84060 0.87073 0.89619 0.9199 0.94037 0.95270
-                          PC15    PC16    PC17    PC18    PC19    PC20    PC21
-Standard deviation     0.49817 0.47309 0.42640 0.36970 0.32493 0.24020 0.19872
-Proportion of Variance 0.01182 0.01066 0.00866 0.00651 0.00503 0.00275 0.00188
-Cumulative Proportion  0.96452 0.97518 0.98384 0.99034 0.99537 0.99812 1.00000</code></pre>
+                          PC1    PC2    PC3    PC4     PC5     PC6     PC7
+Standard deviation     1.6999 1.4767 1.1795 1.0726 1.02453 0.80985 0.79892
+Proportion of Variance 0.2627 0.1982 0.1265 0.1046 0.09542 0.05962 0.05803
+Cumulative Proportion  0.2627 0.4609 0.5874 0.6920 0.78742 0.84704 0.90507
+                           PC8     PC9    PC10    PC11
+Standard deviation     0.60575 0.55566 0.52948 0.29702
+Proportion of Variance 0.03336 0.02807 0.02549 0.00802
+Cumulative Proportion  0.93842 0.96649 0.99198 1.00000</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">summary</span>(pca2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">summary</span>(pca2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
-                          Comp.1    Comp.2    Comp.3     Comp.4     Comp.5
-Standard deviation     2.2205654 1.6615887 1.5324030 1.29806969 1.19560985
-Proportion of Variance 0.2348053 0.1314703 0.1118219 0.08023738 0.06807062
-Cumulative Proportion  0.2348053 0.3662756 0.4780975 0.55833484 0.62640546
-                           Comp.6     Comp.7     Comp.8     Comp.9    Comp.10
-Standard deviation     1.12097809 1.08311410 1.07371597 0.95680927 0.79544930
-Proportion of Variance 0.05983771 0.05586363 0.05489838 0.04359448 0.03013046
-Cumulative Proportion  0.68624317 0.74210679 0.79700517 0.84059965 0.87073010
-                          Comp.11    Comp.12    Comp.13    Comp.14    Comp.15
-Standard deviation     0.73119377 0.70551609 0.65579857 0.50886890 0.49817027
-Proportion of Variance 0.02545925 0.02370252 0.02047961 0.01233084 0.01181779
-Cumulative Proportion  0.89618936 0.91989188 0.94037149 0.95270232 0.96452011
-                         Comp.16     Comp.17     Comp.18     Comp.19
-Standard deviation     0.4730918 0.426395520 0.369702631 0.324933440
-Proportion of Variance 0.0106579 0.008657769 0.006508573 0.005027702
-Cumulative Proportion  0.9751780 0.983835781 0.990344355 0.995372057
-                           Comp.20     Comp.21
-Standard deviation     0.240198751 0.198724365
-Proportion of Variance 0.002747402 0.001880542
-Cumulative Proportion  0.998119458 1.000000000</code></pre>
+                          Comp.1    Comp.2    Comp.3    Comp.4     Comp.5
+Standard deviation     1.6999027 1.4766764 1.1794865 1.0726210 1.02452713
+Proportion of Variance 0.2626972 0.1982339 0.1264717 0.1045924 0.09542326
+Cumulative Proportion  0.2626972 0.4609311 0.5874028 0.6919951 0.78741840
+                           Comp.6    Comp.7    Comp.8     Comp.9    Comp.10
+Standard deviation     0.80984729 0.7989246 0.6057459 0.55566144 0.52948396
+Proportion of Variance 0.05962297 0.0580255 0.0333571 0.02806906 0.02548666
+Cumulative Proportion  0.84704137 0.9050669 0.9384240 0.96649302 0.99197968
+                           Comp.11
+Standard deviation     0.297024364
+Proportion of Variance 0.008020316
+Cumulative Proportion  1.000000000</code></pre>
 </div>
 </div>
+<p>The first principal component describes the major axis of variation among players. In the Wilson et al.&nbsp;paper, separate PCAs were used to summarise athletic performance and motor skill. Here, we are doing one combined PCA across balance, athletic performance and motor skill traits, so the first few components may separate general performance, athleticism and football-specific skill.</p>
 </section>
-<section id="loadings" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="loadings"><span class="header-section-number">1.6</span> Loadings</h2>
+<section id="loadings" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="loadings"><span class="header-section-number">1.7</span> Loadings</h2>
 <p>Let’s look at the loadings. Called “rotations” in <code>prcomp</code> and “loadings” in <code>princomp</code>. They are the Pearson’s correlation between that variable and that Principal Component.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pca1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>pca1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Standard deviations (1, .., p=21):
- [1] 2.2205654 1.6615887 1.5324030 1.2980697 1.1956099 1.1209781 1.0831141
- [8] 1.0737160 0.9568093 0.7954493 0.7311938 0.7055161 0.6557986 0.5088689
-[15] 0.4981703 0.4730918 0.4263955 0.3697026 0.3249334 0.2401988 0.1987244
+<pre><code>Standard deviations (1, .., p=11):
+ [1] 1.6999027 1.4766764 1.1794865 1.0726210 1.0245271 0.8098473 0.7989246
+ [8] 0.6057459 0.5556614 0.5294840 0.2970244
 
-Rotation (n x k) = (21 x 21):
-                                PC1         PC2         PC3          PC4
-accessible              -0.27105784  0.21481141  0.22284903 -0.109380126
-attractive               0.25953819 -0.19001404 -0.35322829  0.047967149
-wide_range              -0.11796047  0.14523503 -0.23536689 -0.465316942
-teaching.based_research -0.17807186  0.33523672 -0.16973235 -0.005540905
-Dress_nicely             0.24737662 -0.15550598 -0.32565089  0.019172145
-focus_on_complex_issues -0.13467331  0.28837561 -0.24412817 -0.297540766
-gives_example            0.22797978 -0.11739164  0.06984178 -0.437201342
-gives_out_note           0.32056620  0.04438472  0.02749136  0.100499687
-sense_of_humour          0.27564472 -0.03120757 -0.13957405 -0.145704311
-mark_easily              0.23686285 -0.11243202  0.08113616  0.196601185
-moves_around             0.13236700  0.32827473 -0.27087444  0.213497862
-offers_lecture_notes     0.28307512  0.02357872 -0.01627849 -0.372830743
-clear_objective          0.31573398  0.26378859  0.12826236  0.066194937
-solicit_questions        0.18991164  0.43659484  0.13380240  0.160366349
-text_book                0.21299001  0.16712512  0.33485831  0.124899445
-primary_research        -0.05608411  0.19206706 -0.16387602  0.001745603
-own_research             0.04318371  0.28387549 -0.37836892  0.056442158
-teach_in_team            0.04818137  0.11021896  0.29523823 -0.327405642
-understand_principles    0.14556568  0.33936721  0.10777339  0.053017840
-use_a_pointer            0.32019196 -0.03811643 -0.08101559 -0.080227102
-well_respected           0.19384039  0.06977679  0.22029921 -0.263146206
-                                 PC5         PC6          PC7         PC8
-accessible              -0.006862732  0.20175545  0.075192964  0.13471983
-attractive              -0.304217305 -0.05278985 -0.006014137 -0.01346850
-wide_range              -0.251311171  0.08634713 -0.331523146  0.07096692
-teaching.based_research -0.307853355 -0.22290900 -0.040540304 -0.27328747
-Dress_nicely            -0.299180706 -0.12573075 -0.046516486 -0.12380132
-focus_on_complex_issues -0.170654964  0.29340602 -0.050872762  0.07474147
-gives_example           -0.075647764  0.06855598  0.364935010 -0.17131172
-gives_out_note          -0.125013318 -0.08366732  0.223406707  0.02145305
-sense_of_humour          0.216056466  0.21464296 -0.328598912  0.27397871
-mark_easily             -0.421810061  0.15983061 -0.046406386  0.38018642
-moves_around             0.166526391 -0.35024271  0.055092321 -0.07707096
-offers_lecture_notes     0.146235397  0.18757528  0.287000528 -0.27400475
-clear_objective          0.060342195  0.17777324 -0.032682046 -0.21837583
-solicit_questions       -0.005900941  0.14588578 -0.182965113  0.09074671
-text_book               -0.356204508  0.15361788  0.084096939  0.02338965
-primary_research         0.039054189  0.06897414  0.592731543  0.45913721
-own_research             0.156844077 -0.09496398  0.160942737  0.20826388
-teach_in_team           -0.096207102 -0.54758870  0.037625674  0.05473642
-understand_principles    0.010243773  0.05372028 -0.114475017 -0.27603888
-use_a_pointer            0.411769112  0.01616452 -0.180288938  0.05917537
-well_respected           0.013159486 -0.40377696 -0.183055505  0.39655405
-                                PC9        PC10        PC11         PC12
-accessible               0.23711499  0.41979852  0.03945146  0.148881566
-attractive              -0.16438427  0.20365082  0.06904042 -0.107432225
-wide_range               0.22155409 -0.26438749 -0.03259079 -0.018048262
-teaching.based_research  0.19889412 -0.24510749 -0.11135378  0.247899071
-Dress_nicely            -0.10406494  0.38639604  0.08377430  0.098387712
-focus_on_complex_issues -0.28979913  0.00432150  0.36226348 -0.066562002
-gives_example            0.19510676 -0.15342441 -0.35973985 -0.159175284
-gives_out_note           0.41895610 -0.21289394  0.20038838  0.006019332
-sense_of_humour          0.09730489  0.19787809 -0.29410062  0.309619454
-mark_easily             -0.04288340 -0.25885827 -0.05713892 -0.143735223
-moves_around             0.02114182 -0.04788447  0.02682634  0.353171999
-offers_lecture_notes    -0.07931457  0.16874959  0.11255136  0.207814735
-clear_objective         -0.04989256 -0.08180409  0.29595319  0.009127372
-solicit_questions        0.10754501  0.13028684  0.14132328 -0.276862219
-text_book                0.12628767  0.17521009 -0.12180066  0.267854799
-primary_research        -0.30348754 -0.18921946  0.01954047  0.138689169
-own_research             0.28543090  0.27973695 -0.29907250 -0.427500246
-teach_in_team           -0.07446630  0.20427502  0.21413563 -0.322896702
-understand_principles   -0.49690454 -0.08895650 -0.50033599 -0.189676003
-use_a_pointer            0.09757553 -0.27912944  0.22992547 -0.115886008
-well_respected          -0.19000184 -0.03498965 -0.08926599  0.276488059
-                               PC13        PC14         PC15         PC16
-accessible               0.29231904  0.29580819 -0.222218786  0.095682695
-attractive               0.10512874  0.20004636  0.069413634 -0.326657310
-wide_range               0.14339377 -0.15578216 -0.042633744 -0.346118318
-teaching.based_research -0.16129758 -0.08569727 -0.291561886  0.304862272
-Dress_nicely             0.22024728 -0.29025496 -0.196064822  0.331319175
-focus_on_complex_issues -0.11651678  0.21121417  0.380088085  0.275036237
-gives_example           -0.02596566  0.13003779  0.073844050 -0.048615414
-gives_out_note           0.52366782  0.22815294  0.150396690  0.187752138
-sense_of_humour         -0.09102492  0.24787583 -0.269328590  0.077361879
-mark_easily             -0.30618081  0.26528469 -0.239118638  0.067806707
-moves_around            -0.19413727  0.41519824  0.163481854 -0.233951595
-offers_lecture_notes    -0.18626080 -0.01943147 -0.008128194 -0.028997162
-clear_objective          0.02299500 -0.21161788 -0.392005665 -0.377275931
-solicit_questions        0.07959209 -0.06601352  0.067535709 -0.098815936
-text_book               -0.31596633 -0.28217199  0.346092878  0.063696048
-primary_research         0.11269387 -0.18656539 -0.263215477 -0.012502540
-own_research            -0.14671997 -0.23213427  0.082887276  0.001508984
-teach_in_team           -0.23420220  0.19002827 -0.271548974  0.056217287
-understand_principles    0.29771815  0.14826763 -0.020146024  0.175848894
-use_a_pointer           -0.10543967 -0.11603812 -0.008762183  0.433779829
-well_respected           0.22357927 -0.22236358  0.251201419 -0.060389007
-                                PC17         PC18        PC19        PC20
-accessible              -0.487523780 -0.092943639  0.11623660 -0.08184741
-attractive              -0.106937105 -0.195239242  0.45086924 -0.09762660
-wide_range               0.009616636  0.068156323  0.05963088 -0.34244915
-teaching.based_research  0.006376281  0.018683190  0.22919635  0.23688191
-Dress_nicely            -0.124236446  0.174946567 -0.38290347 -0.11111538
-focus_on_complex_issues  0.057689702 -0.197551507 -0.21480326  0.19658872
-gives_example           -0.206970055  0.030539850 -0.40647428 -0.01600380
-gives_out_note           0.321857496 -0.107588372  0.08121002  0.10250939
-sense_of_humour          0.430141107 -0.113398698 -0.08853507  0.02641527
-mark_easily             -0.269651092  0.167631153  0.01976224  0.19779113
-moves_around            -0.207902119  0.101506396 -0.24054414 -0.20539739
-offers_lecture_notes     0.024256519  0.371837654  0.41986631  0.20173823
-clear_objective         -0.097333800 -0.419634434 -0.21848656  0.23314508
-solicit_questions        0.094290088  0.606166863 -0.05758082 -0.04550053
-text_book                0.072364215 -0.254638772  0.07071928 -0.35855399
-primary_research         0.130404141  0.041767487  0.01625913 -0.25697656
-own_research            -0.068753059 -0.196939862  0.08026083  0.24801010
-teach_in_team            0.247146896 -0.095095343  0.00645715 -0.19776650
-understand_principles   -0.001605969 -0.075193184  0.12987739 -0.13337875
-use_a_pointer           -0.352414119 -0.113600108  0.19774694 -0.34608373
-well_respected          -0.231089402  0.008802903  0.03736378  0.36974689
-                                PC21
-accessible              -0.002932735
-attractive               0.405148279
-wide_range              -0.308435374
-teaching.based_research  0.335322467
-Dress_nicely            -0.150318850
-focus_on_complex_issues  0.045604055
-gives_example            0.338040434
-gives_out_note          -0.184254445
-sense_of_humour          0.144536843
-mark_easily             -0.277239849
-moves_around            -0.151918843
-offers_lecture_notes    -0.289119982
-clear_objective         -0.008051690
-solicit_questions        0.367111373
-text_book               -0.026709294
-primary_research         0.123144467
-own_research            -0.206478451
-teach_in_team           -0.055864220
-understand_principles   -0.183080778
-use_a_pointer            0.121125177
-well_respected           0.079347988</code></pre>
+Rotation (n x k) = (11 x 11):
+              PC1         PC2         PC3         PC4         PC5         PC6
+balance 0.2936386 -0.35087385 -0.05458821 -0.01236935 -0.50256454  0.22417684
+X1500m  0.2299058  0.15552197 -0.28197657 -0.42123014  0.58080664 -0.18787938
+squat   0.2547779  0.35550940 -0.14404714  0.34331707 -0.16954618 -0.19781100
+jump    0.2656109  0.43501720 -0.01783357  0.04579993 -0.35433245 -0.03857511
+sprint  0.3261362  0.10208432 -0.52353137  0.20056752  0.10706161 -0.05512777
+agility 0.1673372  0.55847807  0.21211288  0.02473830  0.03452894  0.42295776
+drib    0.4327319 -0.14166176 -0.12392103 -0.36532953 -0.05741543  0.19918699
+jugg    0.2447494  0.06217972  0.37349976 -0.55564980 -0.25869776 -0.42767336
+voll    0.3619836 -0.32312886  0.07293446  0.39291316  0.07224943 -0.49119815
+pass    0.3945243 -0.28979483  0.10341401  0.06052617  0.23371625  0.47674183
+head    0.2392728  0.04926387  0.63756754  0.24769351  0.33626830 -0.02753477
+                PC7         PC8          PC9        PC10        PC11
+balance  0.20538168 -0.54118171  0.365326098 -0.12428219 -0.02713210
+X1500m   0.18718969 -0.15409295  0.479562718 -0.01307712 -0.06663040
+squat    0.65671346  0.09650932 -0.081047782  0.33932493  0.19978295
+jump    -0.42236751  0.37267671  0.478977025 -0.18468479  0.17304917
+sprint  -0.42420682 -0.39669448 -0.404284981 -0.05135179  0.22582954
+agility -0.01039040 -0.22522259 -0.142378623  0.02285589 -0.60231545
+drib     0.25091726  0.42491622 -0.384734195 -0.45697622 -0.02280376
+jugg    -0.15523189 -0.17263458 -0.237654632  0.35303879  0.05601670
+voll    -0.10513326  0.15078192  0.048968103 -0.04463885 -0.56584548
+pass    -0.17259657  0.22907881  0.099702647  0.59253599  0.14422004
+head     0.07178534 -0.20375286 -0.003474513 -0.38133775  0.40809767</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">loadings</span>(pca2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">loadings</span>(pca2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
-                        Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8
-accessible               0.271  0.215  0.223  0.109         0.202         0.135
-attractive              -0.260 -0.190 -0.353         0.304                     
-wide_range               0.118  0.145 -0.235  0.465  0.251        -0.332       
-teaching.based_research  0.178  0.335 -0.170         0.308 -0.223        -0.273
-Dress_nicely            -0.247 -0.156 -0.326         0.299 -0.126        -0.124
-focus_on_complex_issues  0.135  0.288 -0.244  0.298  0.171  0.293              
-gives_example           -0.228 -0.117         0.437                0.365 -0.171
-gives_out_note          -0.321               -0.100  0.125         0.223       
-sense_of_humour         -0.276        -0.140  0.146 -0.216  0.215 -0.329  0.274
-mark_easily             -0.237 -0.112        -0.197  0.422  0.160         0.380
-moves_around            -0.132  0.328 -0.271 -0.213 -0.167 -0.350              
-offers_lecture_notes    -0.283                0.373 -0.146  0.188  0.287 -0.274
-clear_objective         -0.316  0.264  0.128                0.178        -0.218
-solicit_questions       -0.190  0.437  0.134 -0.160         0.146 -0.183       
-text_book               -0.213  0.167  0.335 -0.125  0.356  0.154              
-primary_research                0.192 -0.164                       0.593  0.459
-own_research                    0.284 -0.378        -0.157         0.161  0.208
-teach_in_team                   0.110  0.295  0.327        -0.548              
-understand_principles   -0.146  0.339  0.108                      -0.114 -0.276
-use_a_pointer           -0.320                      -0.412        -0.180       
-well_respected          -0.194         0.220  0.263        -0.404 -0.183  0.397
-                        Comp.9 Comp.10 Comp.11 Comp.12 Comp.13 Comp.14 Comp.15
-accessible               0.237  0.420           0.149   0.292   0.296   0.222 
-attractive              -0.164  0.204          -0.107   0.105   0.200         
-wide_range               0.222 -0.264                   0.143  -0.156         
-teaching.based_research  0.199 -0.245  -0.111   0.248  -0.161           0.292 
-Dress_nicely            -0.104  0.386                   0.220  -0.290   0.196 
-focus_on_complex_issues -0.290          0.362          -0.117   0.211  -0.380 
-gives_example            0.195 -0.153  -0.360  -0.159           0.130         
-gives_out_note           0.419 -0.213   0.200           0.524   0.228  -0.150 
-sense_of_humour                 0.198  -0.294   0.310           0.248   0.269 
-mark_easily                    -0.259          -0.144  -0.306   0.265   0.239 
-moves_around                                    0.353  -0.194   0.415  -0.163 
-offers_lecture_notes            0.169   0.113   0.208  -0.186                 
-clear_objective                         0.296                  -0.212   0.392 
-solicit_questions        0.108  0.130   0.141  -0.277                         
-text_book                0.126  0.175  -0.122   0.268  -0.316  -0.282  -0.346 
-primary_research        -0.303 -0.189           0.139   0.113  -0.187   0.263 
-own_research             0.285  0.280  -0.299  -0.428  -0.147  -0.232         
-teach_in_team                   0.204   0.214  -0.323  -0.234   0.190   0.272 
-understand_principles   -0.497         -0.500  -0.190   0.298   0.148         
-use_a_pointer                  -0.279   0.230  -0.116  -0.105  -0.116         
-well_respected          -0.190                  0.276   0.224  -0.222  -0.251 
-                        Comp.16 Comp.17 Comp.18 Comp.19 Comp.20 Comp.21
-accessible                       0.488           0.116                 
-attractive              -0.327   0.107   0.195   0.451          -0.405 
-wide_range              -0.346                           0.342   0.308 
-teaching.based_research  0.305                   0.229  -0.237  -0.335 
-Dress_nicely             0.331   0.124  -0.175  -0.383   0.111   0.150 
-focus_on_complex_issues  0.275           0.198  -0.215  -0.197         
-gives_example                    0.207          -0.406          -0.338 
-gives_out_note           0.188  -0.322   0.108          -0.103   0.184 
-sense_of_humour                 -0.430   0.113                  -0.145 
-mark_easily                      0.270  -0.168          -0.198   0.277 
-moves_around            -0.234   0.208  -0.102  -0.241   0.205   0.152 
-offers_lecture_notes                    -0.372   0.420  -0.202   0.289 
-clear_objective         -0.377           0.420  -0.218  -0.233         
-solicit_questions                       -0.606                  -0.367 
-text_book                                0.255           0.359         
-primary_research                -0.130                   0.257  -0.123 
-own_research                             0.197          -0.248   0.206 
-teach_in_team                   -0.247                   0.198         
-understand_principles    0.176                   0.130   0.133   0.183 
-use_a_pointer            0.434   0.352   0.114   0.198   0.346  -0.121 
-well_respected                   0.231                  -0.370         
+        Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9 Comp.10
+balance  0.294  0.351                0.503  0.224  0.205  0.541  0.365  0.124 
+X1500m   0.230 -0.156  0.282  0.421 -0.581 -0.188  0.187  0.154  0.480        
+squat    0.255 -0.356  0.144 -0.343  0.170 -0.198  0.657               -0.339 
+jump     0.266 -0.435                0.354        -0.422 -0.373  0.479  0.185 
+sprint   0.326 -0.102  0.524 -0.201 -0.107        -0.424  0.397 -0.404        
+agility  0.167 -0.558 -0.212                0.423         0.225 -0.142        
+drib     0.433  0.142  0.124  0.365         0.199  0.251 -0.425 -0.385  0.457 
+jugg     0.245        -0.373  0.556  0.259 -0.428 -0.155  0.173 -0.238 -0.353 
+voll     0.362  0.323        -0.393        -0.491 -0.105 -0.151               
+pass     0.395  0.290 -0.103        -0.234  0.477 -0.173 -0.229        -0.593 
+head     0.239        -0.638 -0.248 -0.336                0.204         0.381 
+        Comp.11
+balance        
+X1500m         
+squat   -0.200 
+jump    -0.173 
+sprint  -0.226 
+agility  0.602 
+drib           
+jugg           
+voll     0.566 
+pass    -0.144 
+head    -0.408 
 
                Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6 Comp.7 Comp.8 Comp.9
 SS loadings     1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000  1.000
-Proportion Var  0.048  0.048  0.048  0.048  0.048  0.048  0.048  0.048  0.048
-Cumulative Var  0.048  0.095  0.143  0.190  0.238  0.286  0.333  0.381  0.429
-               Comp.10 Comp.11 Comp.12 Comp.13 Comp.14 Comp.15 Comp.16 Comp.17
-SS loadings      1.000   1.000   1.000   1.000   1.000   1.000   1.000   1.000
-Proportion Var   0.048   0.048   0.048   0.048   0.048   0.048   0.048   0.048
-Cumulative Var   0.476   0.524   0.571   0.619   0.667   0.714   0.762   0.810
-               Comp.18 Comp.19 Comp.20 Comp.21
-SS loadings      1.000   1.000   1.000   1.000
-Proportion Var   0.048   0.048   0.048   0.048
-Cumulative Var   0.857   0.905   0.952   1.000</code></pre>
+Proportion Var  0.091  0.091  0.091  0.091  0.091  0.091  0.091  0.091  0.091
+Cumulative Var  0.091  0.182  0.273  0.364  0.455  0.545  0.636  0.727  0.818
+               Comp.10 Comp.11
+SS loadings      1.000   1.000
+Proportion Var   0.091   0.091
+Cumulative Var   0.909   1.000</code></pre>
 </div>
 </div>
+<p>Interpretation:</p>
+<ul>
+<li>Variables with large positive or negative loadings contribute strongly to that component.</li>
+<li>If all traits load in the same direction on PC1, PC1 can be interpreted as general player performance.</li>
+<li>If athletic traits load in one direction and skill traits load in another, the component may represent a contrast between athletic capacity and football-specific skill.</li>
+</ul>
 </section>
-<section id="screeplot" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="screeplot"><span class="header-section-number">1.7</span> Screeplot</h2>
+<section id="screeplot" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="screeplot"><span class="header-section-number">1.8</span> Screeplot</h2>
 <p>To do a screeplot, follow the commands below. Note this is the standard deviations, which are just square root of the variances or eigenvalues.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">screeplot</span>(pca1, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">screeplot</span>(pca1, <span class="at">type =</span> <span class="st">"lines"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial10_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial10_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>The screeplot helps decide how many components are worth interpreting. A common rule of thumb is to keep components before the curve flattens out.</p>
 </section>
-<section id="principal-component-scores" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="principal-component-scores"><span class="header-section-number">1.8</span> Principal Component Scores</h2>
+<section id="principal-component-scores" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="principal-component-scores"><span class="header-section-number">1.9</span> Principal Component Scores</h2>
 <p>To get your principal components scores for plotting and analysis, do the following:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>pca1<span class="sc">$</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>pca1<span class="sc">$</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>               PC1         PC2        PC3        PC4         PC5          PC6
- [1,]  0.834364400 -0.44633674 -0.7389322  0.6505980  0.67162071 -0.059426515
- [2,] -0.057591233  2.43259604  0.3643921  0.1044273 -1.35364156 -1.513379283
- [3,] -1.414356172 -0.85486631  0.2591048 -0.7950895  0.39445964 -0.362282532
- [4,] -3.007651543 -1.54426710  1.8013306 -1.4495208 -0.06900951 -0.378437639
- [5,] -0.913357854  0.15572053  1.9852660  0.2647465  0.05455313 -0.190589811
- [6,]  2.715375811 -0.61458292  1.2581973  0.6291478  1.66664928  0.980101358
- [7,] -3.260274779 -1.46022078 -1.3182136 -1.5445289  2.59801832  1.373084699
- [8,]  1.690020920  4.10059174 -0.8286511 -2.7204201 -0.89839668  0.477869956
- [9,] -2.017591018 -0.19055562  1.2282190 -0.1591693 -1.81724286 -0.504760633
-[10,]  2.684027310 -0.28238921 -2.7053968 -0.6373616  1.24913045  0.114945320
-[11,]  1.602080176  1.73848677 -0.7560946 -0.1669273  1.46214681 -1.241067456
-[12,]  3.864282071  0.91902758 -3.0506154 -0.3116270  0.14774890 -1.707816527
-[13,] -1.537400621  0.79553155  0.2734490  2.2991348 -1.33509038  1.020459263
-[14,] -3.180580364 -1.55370059 -1.1043790  0.3994455 -0.21820422 -0.416321249
-[15,]  0.251424671 -0.87357501  0.8416185  1.3248859  1.62509470 -1.332946815
-[16,]  2.892895033 -0.54107588 -0.4987349  0.5314171 -0.40738282 -0.008629769
-[17,]  2.025139659  0.87994104  2.1794942  1.4021183 -1.10315491 -1.185333328
-[18,] -4.509205462  2.93089784 -2.9570995  3.4152682  0.56608967  1.421754123
-[19,] -0.363910804  0.59536235  1.0533136 -0.1849003 -0.12823425 -0.808435775
-[20,]  0.513833400  1.34820539  1.7227901 -1.3132714 -1.04480943  0.987729132
-[21,]  0.671318696 -1.57314535  0.3233421 -0.3775963  1.07805278  0.122220926
-[22,] -1.199789658 -0.75223096  0.2125650 -1.9753352 -0.38988416  2.577574944
-[23,]  2.699925571 -4.05301101 -2.2580650  0.1089181 -2.08232998  0.035139868
-[24,]  3.671607537 -2.76308860  2.3108314  1.9763565 -0.12222446  1.145347105
-[25,]  1.708338444  1.14870366  0.1941423 -0.8978228  0.53891069  1.218476886
-[26,]  0.697044049 -0.09475043 -0.9235260  0.5556583  1.51777743 -0.726583470
-[27,] -3.637428809 -1.19350763 -0.2178772 -1.3363292 -0.26449368 -3.193959083
-[28,]  0.919217152  1.59671229  1.9213986  0.1968770  0.58065254  0.264448784
-[29,] -0.012679393  2.32518659  0.2155462  0.3501560 -0.47396645  0.658332807
-[30,] -2.075112687 -0.04538414  0.2156446 -1.0632633  0.42197992  0.038464825
-[31,] -2.320188992 -0.57228262 -0.1349819  2.0161446 -0.36632609 -0.152398000
-[32,]  0.005054503 -1.40748778 -2.5517407 -0.5548639 -3.02867573  0.937512584
-[33,]  0.061169986 -0.15050467  1.6836625 -0.7372732  0.53018221  0.408905305
-              PC7         PC8         PC9          PC10        PC11        PC12
- [1,]  0.94163613  1.01611660  0.65086100  0.7049538165 -0.12679861  1.07464589
- [2,]  2.49608290 -1.03057653  0.99789650 -0.6955702786  0.62054036  0.43728658
- [3,] -1.14833452 -0.13690605  1.56172193 -1.0103974039 -0.22663448 -0.62688596
- [4,]  1.55864777 -2.37965647 -1.88594310  0.1842266066  0.56734997 -0.37865892
- [5,] -0.90420171 -1.46124279 -0.41077774  0.7877696717  0.87274235 -0.40364293
- [6,] -0.48508037 -0.39417790 -1.03586330 -0.5943650505 -0.20101933  0.39114013
- [7,]  0.92263413  0.27756052  0.64943390  0.6951735358  0.85851959 -0.18227075
- [8,]  1.01619589  1.42931518 -0.35783368 -0.0705759673  0.38608546 -0.45604663
- [9,] -3.06056251  0.01542140  0.97910235 -0.3689951357 -0.81042854  0.29905809
-[10,] -1.15019858 -2.22756355  1.92108719  1.1858684843  0.03051034 -0.44295070
-[11,] -1.38076963  0.10114808 -1.28404266  0.4344189806  0.24591922 -0.18193776
-[12,]  0.63745807 -0.33245072 -0.46272040 -0.4907654143 -0.49725530  0.06959804
-[13,]  0.50021492  1.64298989 -0.02204408 -0.0008218307 -0.32919047 -1.47757160
-[14,]  0.96910614 -0.33466161  1.43687692 -0.8126002209 -1.05968338 -0.42468108
-[15,]  0.80890447 -0.52662610 -0.88626822  0.4773237243 -0.83842767  0.73180898
-[16,]  0.99711436  1.01401737 -0.40202982  0.1817443327 -0.53794142 -0.60055239
-[17,]  0.20967322 -0.58311856  0.70515256 -0.0396632716  0.45009864  0.68839301
-[18,] -0.81537520 -0.85666393 -0.94273181  0.0414522567  0.07186325  0.63521158
-[19,] -0.39788697  0.90638787 -0.41749861  0.8035047424 -0.32339287 -0.65225431
-[20,] -1.71530837 -0.05810388 -0.44792612  0.6080155185  0.04950397  0.22979058
-[21,] -0.17473258 -0.49430919 -0.74983375 -2.3172182635 -0.86711224 -0.89907281
-[22,]  0.96335825  0.59588805 -0.69173585  0.7875438802 -1.58060139  0.69952356
-[23,] -0.79226369  0.31761740 -1.80001880 -0.5911334313  0.33709088  0.50027519
-[24,]  0.66242150  0.79456398  1.28229789  1.1369072252  0.36494912  0.29993320
-[25,]  0.11491096 -0.67752131  1.55591224 -0.9531517638 -0.43306504  0.96727700
-[26,] -0.97171844  2.00236186  0.03915553  0.0979107090  1.01294064 -0.86467646
-[27,] -0.10713776  1.13254478  0.06800519  1.3104870153 -0.78844151  0.38194366
-[28,] -0.11368363 -1.13303668 -0.44515516 -0.0309968966 -0.05286304 -0.17959227
-[29,]  0.03995439 -0.06103477 -0.17348145  0.3417751499 -1.22149166 -0.09463653
-[30,] -0.61338026  1.72693492 -0.07276041 -1.2660686396  1.38200547  1.95263797
-[31,]  0.79663725  0.35281020  0.08109498 -0.5131215937  0.67712222 -0.13873520
-[32,] -0.05972762 -1.30023954  0.11504776  0.5298008516  1.06058730 -0.29503060
-[33,]  0.25541147  0.66221148  0.44501905 -0.5534313394  0.90651818 -1.05932657
-             PC13        PC14        PC15         PC16         PC17
- [1,]  1.04550104  0.30220825 -0.26493487  0.990718773 -0.161522621
- [2,] -0.51140324  0.23962723  0.04514841 -0.864576510  0.021378514
- [3,] -0.45367844  0.47042709  0.44536737  0.117387548  1.132044168
- [4,]  0.76623701  0.33414241 -0.06674780  0.005890288 -0.317090528
- [5,] -0.22473438  1.02668595 -1.11036905  0.253771120  0.573823233
- [6,] -0.21758119  0.35417045  0.55539524  0.380784887  0.577014348
- [7,] -1.13189958 -0.40654870  0.30620976  0.183130027 -0.149934970
- [8,]  0.48772693 -0.20754494  0.30040817  0.432882057 -0.190155729
- [9,]  0.47865039  0.06044313  0.29758301  0.065987000 -0.412015158
-[10,] -0.03562393  0.19804842  0.33881205 -0.396898429 -0.531313384
-[11,] -0.90180692 -0.34546312 -0.75620771  0.625598888 -0.544476288
-[12,]  0.30509441  0.08813338 -0.58059025 -0.035026694  0.625823661
-[13,] -0.73594105  0.53970030 -0.79585891  0.555871566 -0.252855797
-[14,] -0.21555707 -0.91839176 -1.10063830 -0.346724418 -0.207470713
-[15,]  0.72072562 -0.64024769 -0.07151878 -0.333963902  0.392495606
-[16,]  0.13959352  0.68049473  0.84486635 -0.265106061 -0.372669045
-[17,] -1.02024905 -0.87052303  0.58413566  0.839988817  0.250265142
-[18,]  0.77126745 -0.26031481  0.33705965 -0.046675725  0.049282576
-[19,]  0.70815779  0.48976813  0.01791635 -0.847195425 -0.125274155
-[20,]  0.62144737 -0.75001136 -0.14219657 -0.508865779  0.007346965
-[21,]  0.41210426 -0.10629725  0.27929458  0.308950842 -0.697452881
-[22,] -0.59841689  0.14146264  0.02533706 -0.177525294  0.552971887
-[23,] -0.77530358 -0.21170311 -0.19235313 -0.271578336 -0.009956336
-[24,]  0.33558108 -0.22233178 -0.25908437 -0.300951777 -0.380190914
-[25,]  0.64085526  0.78994926 -0.57225157  0.361706690 -0.160414591
-[26,]  0.13507319  0.08748313  0.02580035 -0.785383761  0.456930349
-[27,] -0.10431199  0.13635919  0.47578097  0.572230799 -0.118992564
-[28,] -1.18521749 -0.05682740  0.35960572 -0.270080750 -0.621317543
-[29,] -0.75999067 -0.33173999  0.05271739 -0.414813487  0.312481307
-[30,] -0.34096948  0.30426194 -0.35124709 -0.539719364 -0.359452130
-[31,]  0.15560337  0.44934089  0.86956307  0.051061891 -0.041440723
-[32,]  0.35869730 -0.18428438  0.18487185  0.420292080  0.248554770
-[33,]  1.13036896 -1.18047718 -0.08187461  0.238832439  0.453583546
-              PC18         PC19          PC20         PC21
- [1,]  0.512534055  0.403637255 -0.2288274019 -0.180597545
- [2,]  0.929440714  0.048122004  0.2051146098 -0.271152883
- [3,]  0.403516656 -0.074179505 -0.2401958070 -0.046316428
- [4,] -0.380413260 -0.016801083  0.0236080284  0.075154120
- [5,] -0.121436088  0.216713273 -0.2532722027  0.163180806
- [6,]  0.016193332 -0.176022291  0.8096079044 -0.052570563
- [7,] -0.041349452  0.491356049  0.1502223084 -0.205615503
- [8,] -0.169826040 -0.182268894 -0.0271317045  0.331935144
- [9,] -0.170416032  0.311027931  0.4390800414 -0.032482679
-[10,] -0.228929235 -0.629795038 -0.1373141246  0.072909759
-[11,]  0.223418908 -0.399313078  0.1457129024 -0.346000339
-[12,] -0.361282411  0.136577651  0.1213875759  0.000801914
-[13,]  0.048394699 -0.297878346  0.0857017322 -0.076965204
-[14,] -0.556266739  0.183329956  0.1575056075  0.005626377
-[15,]  0.003248088 -0.275646771 -0.0488034493 -0.010278083
-[16,] -0.569143575  0.610124017  0.0001699299 -0.165370989
-[17,] -0.876273716  0.145493206 -0.3407035497 -0.133229363
-[18,]  0.139800530  0.266416571 -0.0612808299  0.138282533
-[19,] -0.288699113 -0.005113258  0.1267147465 -0.263464768
-[20,]  0.261595957  0.070258777 -0.3355360658 -0.432480871
-[21,]  0.478432361 -0.146679334 -0.3985086902 -0.071646635
-[22,] -0.090751620 -0.213675088 -0.1815364089 -0.142428632
-[23,]  0.266768773  0.195774478 -0.1770461524  0.191720088
-[24,]  0.354865033 -0.239914062  0.0937794098  0.244839284
-[25,] -0.161337294  0.208473109 -0.0508044281  0.105092550
-[26,] -0.040945263  0.377943641 -0.1672829144  0.091569499
-[27,]  0.419873948 -0.083337959  0.0482601803  0.312179849
-[28,]  0.322418197  0.609269862 -0.0166547989  0.337744117
-[29,]  0.091695107 -0.301130070 -0.0161094691  0.322694249
-[30,] -0.412731002 -0.414631089  0.0294813311  0.084790553
-[31,] -0.298987891 -0.721677547 -0.2130771535 -0.111634161
-[32,]  0.187128445 -0.059177362  0.2716590271 -0.102730154
-[33,]  0.109463929 -0.037277006  0.1860798156  0.166443959</code></pre>
+<pre><code>              PC1         PC2         PC3          PC4         PC5         PC6
+ [1,]  1.22265294  3.21272139 -0.84513278  1.729875647 -0.41800665 -1.16536979
+ [2,]  1.01549076  0.72909627 -0.07487739 -1.126299782  0.08030236 -0.44330634
+ [3,] -1.95431230  0.13616424  0.62019420  0.683133943 -0.08692596 -0.65692178
+ [4,] -2.74171773 -1.49202883  0.50124852  1.735454370 -0.78052160 -1.85418850
+ [5,] -0.29218316 -0.08747326 -0.11988125  1.108831773 -0.99391905  0.32842292
+ [6,]  0.91997987 -0.28734416  0.84641464  0.232906297 -2.57193000  0.29232622
+ [7,] -0.95858539 -2.60131264  1.43635426  0.990763299  0.22009132  0.24168604
+ [8,]  0.04244428  0.86220012 -1.13368412  0.678632536 -0.23885615  0.30250751
+ [9,] -1.12244287 -0.06955280  1.12603291  0.288229193 -0.12664793  1.91010162
+[10,]  3.39686967  0.83136647 -0.43475555  1.121845842  0.67921147  0.65544911
+[11,]  1.10678403 -2.25184331 -2.80892930 -1.372109965 -1.76088086  0.26168616
+[12,]  1.62463419 -0.31440598 -0.62813600 -0.915492585 -0.10688046 -1.21576231
+[13,] -0.57673686  1.50371749  1.09522239  0.357669243 -0.40536591  1.07877742
+[14,] -2.45940301  1.55096778 -1.73104596 -0.815402453  0.44465656 -0.23066431
+[15,] -1.83385997 -1.38084282 -0.43730279 -0.678128599  0.95811502  0.19042700
+[16,]  0.42353253 -0.66991754  0.33476898  1.159555934  1.82618886  0.02417214
+[17,]  2.33632926 -2.16227916 -0.18130741 -0.003407567  0.72452040  0.03044801
+[18,] -1.18106445  1.01946486 -1.42004479  0.469515124 -0.72656471  0.99789886
+[19,] -0.28781540  1.77196130  0.32939063 -1.408868336  0.66689434 -0.33260253
+[20,]  0.77348049  0.82720824  3.03423799 -2.239773715 -1.30000966 -0.51164628
+[21,]  2.10946365 -1.29318452  0.20187351  0.034487363  0.57647043  0.44954616
+[22,] -3.17285972 -0.60941350 -0.65733911 -1.356394009  0.79164937  0.24990229
+[23,]  0.16649597  1.91778410  0.60759087 -0.489210312  1.41139229  0.25681745
+[24,]  1.44282322 -1.14305374  0.33910755 -0.185813240  1.13701651 -0.85970707
+              PC7         PC8          PC9        PC10        PC11
+ [1,]  1.06626147  0.74992918 -0.609228418  0.46483136  0.17305201
+ [2,] -1.09718405 -0.55422064  0.020706681  0.30612703 -0.11318983
+ [3,] -0.48184786  1.35102821  0.176215524 -0.67519862 -0.43378351
+ [4,] -1.06403599 -0.28180079  0.378695770  0.62881031  0.21732729
+ [5,]  0.19619194 -0.83106823  0.854657258 -0.89586615  0.36499683
+ [6,]  0.70036296 -0.63152387  0.184658562 -0.46021429 -0.40732572
+ [7,]  0.47708118  0.29020781 -0.199234399 -0.10259401  0.08118763
+ [8,]  1.15124813 -0.95643173 -0.276070905 -0.34757651  0.10353943
+ [9,] -0.72084050  0.16806957  0.038709675  1.07069258  0.30262699
+[10,] -0.65278915  0.16655620  0.932371171  0.05236096 -0.10214435
+[11,] -0.12849364  0.55873899  0.297675862  0.89339944 -0.12124663
+[12,]  0.78971314  0.03142220 -0.228192952  0.24684205  0.39712028
+[13,]  0.84348491  0.35975295 -0.505277549  0.58132253 -0.50547940
+[14,] -0.33609876 -0.32114157  0.801087448 -0.11434646 -0.54458835
+[15,]  0.95117438 -0.59904114 -0.831463657  0.01884134 -0.16940143
+[16,]  0.03885635 -1.02979447 -0.006515691  0.66914191 -0.25696656
+[17,] -0.25250279 -0.04466779 -0.360784257 -0.27940159  0.17394913
+[18,] -1.68675889  0.24054300 -1.225329831 -0.62610765  0.31313624
+[19,] -0.98192696 -0.61152963 -0.431957026 -0.35399954  0.06783876
+[20,] -0.05633572 -0.03278367 -0.008561725  0.05457287  0.13508982
+[21,]  0.02130256  0.74598418  0.172521694 -0.78114525 -0.03614367
+[22,]  1.20492210  0.59954232  0.449245111 -0.24242268  0.33615101
+[23,]  0.36131351  0.36550291  0.878867693  0.12037610  0.36393275
+[24,] -0.34309832  0.26672601 -0.502796039 -0.22844571 -0.33967872</code></pre>
 </div>
 </div>
 <p>So to combine them with the original variables, do this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>lecturerpcscores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(lecturers, pca1<span class="sc">$</span>x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>playerpcscores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(players, pca1<span class="sc">$</span>x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Each player now has a score on each principal component. These scores tell us where each player sits on the multivariate axes of football performance.</p>
 </section>
-<section id="biplot" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="biplot"><span class="header-section-number">1.9</span> Biplot</h2>
-<p>We can produce a biplot in ggplot2, using the factor gender as the colour:</p>
+<section id="biplot" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="biplot"><span class="header-section-number">1.10</span> Biplot</h2>
+<p>We can produce a biplot in ggplot2. Here the player number is used as a label.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">autoplot</span>(pca1, <span class="at">data =</span> lecturerpcscores, <span class="at">colour =</span> <span class="st">'gender'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">autoplot</span>(pca1, <span class="at">data =</span> playerpcscores, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.label =</span> <span class="st">"player"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
 ℹ Please use tidy evaluation idioms with `aes()`.
@@ -906,131 +600,196 @@ Cumulative Var   0.857   0.905   0.952   1.000</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial10_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial10_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We could add the loadings, but they are a bit messy, best to look at loadings or rotations tables.</p>
+<p>We could add the loadings, but they can be a bit messy. It is often best to look at the loadings or rotations tables directly.</p>
 <p>You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.</p>
 </section>
-<section id="anova-on-pc-scores" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="anova-on-pc-scores"><span class="header-section-number">1.10</span> ANOVA on PC scores</h2>
-<p>You can use this file to do the ANOVAs, you will have to do yourself. For example for differences in PC scores for gender:</p>
+<section id="regression-using-pc-scores" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="regression-using-pc-scores"><span class="header-section-number">1.11</span> Regression using PC scores</h2>
+<p>In the lecturer dataset, we used ANOVA to test whether PC scores differed among groups. This football dataset does not include grouping variables such as team grade or playing position, so here we use a regression example instead.</p>
+<p>For example, we can ask whether PC1 is associated with juggling ability:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>AOV1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(lecturerpcscores<span class="sc">$</span>PC1 <span class="sc">~</span> gender, <span class="at">data =</span> lecturerpcscores)</span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">summary</span>(AOV1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
-gender       1    4.6   4.596    0.93  0.342
-Residuals   31  153.2   4.942               </code></pre>
-</div>
-</div>
-<p>You can do something similar for your projects and regression, using your PC scores as the predictors.</p>
-</section>
-<section id="boxplot" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">1.11</span> Boxplot</h2>
-<p>To do a boxplot of variables use ggplot2:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(lecturerpcscores, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">y =</span> PC1)) <span class="sc">+</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial10_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="factor-analysis-with-varimax-rotation" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="factor-analysis-with-varimax-rotation"><span class="header-section-number">1.12</span> Factor Analysis with Varimax Rotation</h2>
-<p>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(lecturers[, <span class="dv">8</span><span class="sc">:</span><span class="dv">28</span>], <span class="dv">10</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2"></a>fa1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>LM1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PC1 <span class="sc">~</span> jugg, <span class="at">data =</span> playerpcscores)</span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">summary</span>(LM1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-factanal(x = lecturers[, 8:28], factors = 10, rotation = "varimax")
+lm(formula = PC1 ~ jugg, data = playerpcscores)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.6088 -1.1795  0.1164  0.8217  3.7469 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept) -1.51001    0.77408  -1.951   0.0639 .
+jugg         0.09497    0.04425   2.146   0.0432 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.581 on 22 degrees of freedom
+Multiple R-squared:  0.1731,    Adjusted R-squared:  0.1355 
+F-statistic: 4.605 on 1 and 22 DF,  p-value: 0.04316</code></pre>
+</div>
+</div>
+<p>This is only an example. In a full analysis, you might use PC scores as predictors of match success, soccer-tennis score or network centrality.</p>
+</section>
+<section id="scatterplot" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">1.12</span> Scatterplot</h2>
+<p>To do a scatterplot of variables use ggplot2:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(playerpcscores, <span class="fu">aes</span>(<span class="at">x =</span> jugg, <span class="at">y =</span> PC1)) <span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Juggling ability"</span>, <span class="at">y =</span> <span class="st">"PC1 score"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial10_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="factor-analysis-with-varimax-rotation" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="factor-analysis-with-varimax-rotation"><span class="header-section-number">1.13</span> Factor Analysis with Varimax Rotation</h2>
+<p>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax.</p>
+<p>Here we start with three factors because the paper describes three broad biological domains: balance, athletic performance and motor skill.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>fa1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+factanal(x = players[, 2:12], factors = 3, rotation = "varimax")
 
 Uniquenesses:
-             accessible              attractive              wide_range 
-                  0.381                   0.005                   0.005 
-teaching.based_research            Dress_nicely focus_on_complex_issues 
-                  0.005                   0.283                   0.332 
-          gives_example          gives_out_note         sense_of_humour 
-                  0.005                   0.448                   0.473 
-            mark_easily            moves_around    offers_lecture_notes 
-                  0.005                   0.294                   0.141 
-        clear_objective       solicit_questions               text_book 
-                  0.244                   0.005                   0.310 
-       primary_research            own_research           teach_in_team 
-                  0.310                   0.237                   0.548 
-  understand_principles           use_a_pointer          well_respected 
-                  0.584                   0.067                   0.005 
+balance  X1500m   squat    jump  sprint agility    drib    jugg    voll    pass 
+  0.722   0.920   0.656   0.524   0.504   0.005   0.706   0.913   0.171   0.607 
+   head 
+  0.005 
 
 Loadings:
-                        Factor1 Factor2 Factor3 Factor4 Factor5 Factor6 Factor7
-accessible                      -0.583  -0.426   0.222  -0.110          -0.130 
-attractive                       0.961   0.106                           0.158 
-wide_range              -0.177                   0.952                         
-teaching.based_research                 -0.356   0.374  -0.114                 
-Dress_nicely                     0.829   0.100                                 
-focus_on_complex_issues  0.116                   0.674          -0.163  -0.141 
-gives_example                    0.122   0.112           0.955   0.163   0.132 
-gives_out_note           0.362   0.290   0.216  -0.196   0.305   0.125   0.261 
-sense_of_humour          0.127   0.229   0.599   0.125                   0.108 
-mark_easily              0.150   0.298   0.143                           0.910 
-moves_around             0.326   0.244   0.186  -0.102  -0.155          -0.194 
-offers_lecture_notes     0.362   0.240   0.333           0.667          -0.232 
-clear_objective          0.768   0.109   0.343           0.169                 
-solicit_questions        0.880  -0.139   0.130   0.109  -0.156           0.169 
-text_book                0.611          -0.141  -0.152   0.166   0.202   0.427 
-primary_research                                                               
-own_research             0.100                   0.129          -0.112  -0.102 
-teach_in_team            0.154          -0.103           0.155   0.614         
-understand_principles    0.608                                   0.155         
-use_a_pointer            0.164   0.146   0.902  -0.142   0.165                 
-well_respected           0.133           0.287                   0.931   0.101 
-                        Factor8 Factor9 Factor10
-accessible                                      
-attractive                      -0.121          
-wide_range               0.102   0.137  -0.126  
-teaching.based_research  0.158   0.819          
-Dress_nicely                                    
-focus_on_complex_issues                  0.369  
-gives_example                                   
-gives_out_note           0.244          -0.120  
-sense_of_humour                 -0.226          
-mark_easily             -0.113  -0.106          
-moves_around             0.429   0.444   0.217  
-offers_lecture_notes    -0.159           0.167  
-clear_objective                                 
-solicit_questions        0.326                  
-text_book               -0.146                  
-primary_research         0.213           0.790  
-own_research             0.784   0.119   0.255  
-teach_in_team                                   
-understand_principles            0.110          
-use_a_pointer            0.109                  
-well_respected                  -0.100          
+        Factor1 Factor2 Factor3
+balance  0.524                 
+X1500m   0.105   0.261         
+squat    0.112   0.567   0.102 
+jump             0.687         
+sprint   0.441   0.525  -0.158 
+agility -0.444   0.801   0.395 
+drib     0.468   0.273         
+jugg             0.168   0.226 
+voll     0.849           0.322 
+pass     0.538   0.133   0.292 
+head                     0.993 
 
-               Factor1 Factor2 Factor3 Factor4 Factor5 Factor6 Factor7 Factor8
-SS loadings      2.654   2.398   1.996   1.705   1.667   1.423   1.325   1.137
-Proportion Var   0.126   0.114   0.095   0.081   0.079   0.068   0.063   0.054
-Cumulative Var   0.126   0.241   0.336   0.417   0.496   0.564   0.627   0.681
-               Factor9 Factor10
-SS loadings      1.039    0.970
-Proportion Var   0.049    0.046
-Cumulative Var   0.731    0.777
+               Factor1 Factor2 Factor3
+SS loadings      1.935   1.905   1.427
+Proportion Var   0.176   0.173   0.130
+Cumulative Var   0.176   0.349   0.479
 
-Test of the hypothesis that 10 factors are sufficient.
-The chi square statistic is 28.56 on 45 degrees of freedom.
-The p-value is 0.973 </code></pre>
+Test of the hypothesis that 3 factors are sufficient.
+The chi square statistic is 19.84 on 25 degrees of freedom.
+The p-value is 0.755 </code></pre>
 </div>
 </div>
+<p>The rotated factor loadings may help identify clusters of variables. For example:</p>
+<ul>
+<li>one factor may represent athletic performance</li>
+<li>one factor may represent football-specific motor skill</li>
+<li>one factor may represent balance or a narrower technical component</li>
+</ul>
+<p>Try changing the number of factors and compare whether the interpretation becomes clearer or less clear:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a>fa2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+factanal(x = players[, 2:12], factors = 2, rotation = "varimax")
 
+Uniquenesses:
+balance  X1500m   squat    jump  sprint agility    drib    jugg    voll    pass 
+  0.669   0.932   0.747   0.633   0.805   0.005   0.629   0.894   0.359   0.497 
+   head 
+  0.712 
+
+Loadings:
+        Factor1 Factor2
+balance  0.573         
+X1500m   0.133   0.224 
+squat            0.497 
+jump             0.606 
+sprint   0.336   0.286 
+agility -0.320   0.945 
+drib     0.570   0.216 
+jugg     0.194   0.262 
+voll     0.799         
+pass     0.677   0.212 
+head     0.253   0.473 
+
+               Factor1 Factor2
+SS loadings       2.09   2.027
+Proportion Var    0.19   0.184
+Cumulative Var    0.19   0.374
+
+Test of the hypothesis that 2 factors are sufficient.
+The chi square statistic is 33.83 on 34 degrees of freedom.
+The p-value is 0.476 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2"></a>fa4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+factanal(x = players[, 2:12], factors = 4, rotation = "varimax")
+
+Uniquenesses:
+balance  X1500m   squat    jump  sprint agility    drib    jugg    voll    pass 
+  0.677   0.839   0.618   0.511   0.521   0.005   0.005   0.815   0.005   0.555 
+   head 
+  0.101 
+
+Loadings:
+        Factor1 Factor2 Factor3 Factor4
+balance  0.423           0.367         
+X1500m           0.167   0.364         
+squat            0.602                 
+jump             0.686   0.117         
+sprint   0.338   0.541   0.150  -0.220 
+agility -0.485   0.747   0.116   0.434 
+drib     0.291           0.950         
+jugg                     0.353   0.229 
+voll     0.966                   0.235 
+pass     0.465           0.394   0.264 
+head     0.176                   0.929 
+
+               Factor1 Factor2 Factor3 Factor4
+SS loadings      1.804   1.742   1.510   1.293
+Proportion Var   0.164   0.158   0.137   0.118
+Cumulative Var   0.164   0.322   0.460   0.577
+
+Test of the hypothesis that 4 factors are sufficient.
+The chi square statistic is 9.89 on 17 degrees of freedom.
+The p-value is 0.908 </code></pre>
+</div>
+</div>
+</section>
+<section id="final-interpretation" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="final-interpretation"><span class="header-section-number">1.14</span> Final interpretation</h2>
+<p>Wilson et al.&nbsp;found that motor skill was a stronger predictor of soccer-tennis and 11-a-side match performance than general athleticism. In this tutorial, PCA and factor analysis are used to explore the same biological idea from the trait data: whether football players vary mostly along a general performance axis, or whether athletic and technical skill traits form separate multivariate dimensions.</p>
+
+
+<!-- -->
 
 </section>
 </section>
@@ -1106,6 +865,57 @@ The p-value is 0.973 </code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1435,7 +1245,242 @@ The p-value is 0.973 </code></pre>
       }
     }
   });
-  </script>
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">---</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="an">title:</span><span class="co"> "Tutorial 10: PCA and Factor Analysis"</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="an">author:</span><span class="co"> "Professor Mathew Crowther"</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="an">format:</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="an">resources:</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a><span class="co">  - data/football_player_performance.csv</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a><span class="co">  - images/football.jpg</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a><span class="co">---</span></span>
+<span id="cb41-11"><a href="#cb41-11"></a></span>
+<span id="cb41-12"><a href="#cb41-12"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-14"><a href="#cb41-14"></a><span class="in">```</span></span>
+<span id="cb41-15"><a href="#cb41-15"></a></span>
+<span id="cb41-16"><a href="#cb41-16"></a><span class="fu"># PCA and Factor Analysis</span></span>
+<span id="cb41-17"><a href="#cb41-17"></a></span>
+<span id="cb41-18"><a href="#cb41-18"></a>This tutorial uses football-player performance data from Wilson et al. (2017), *Skill not athleticism predicts individual variation in match performance of soccer players*. The study measured semi-professional football players from the University of Queensland Football Club and asked whether morphology, balance, athleticism and motor skill predicted performance in soccer-tennis and 11-a-side matches.</span>
+<span id="cb41-19"><a href="#cb41-19"></a></span>
+<span id="cb41-20"><a href="#cb41-20"></a><span class="al">![](images/football.jpg)</span></span>
+<span id="cb41-21"><a href="#cb41-21"></a></span>
+<span id="cb41-22"><a href="#cb41-22"></a></span>
+<span id="cb41-23"><a href="#cb41-23"></a>In the paper, the authors measured:</span>
+<span id="cb41-24"><a href="#cb41-24"></a></span>
+<span id="cb41-25"><a href="#cb41-25"></a><span class="ss">- </span>**Balance**: average time before losing balance while standing on high-density foam with eyes closed.</span>
+<span id="cb41-26"><a href="#cb41-26"></a><span class="ss">- </span>**Athletic performance**: 1500 m speed, wall-squat endurance, jump distance, 40 m sprint speed and agility-course speed.</span>
+<span id="cb41-27"><a href="#cb41-27"></a><span class="ss">- </span>**Motor skill**: dribbling speed, juggling ability, volley accuracy, passing accuracy and heading accuracy.</span>
+<span id="cb41-28"><a href="#cb41-28"></a></span>
+<span id="cb41-29"><a href="#cb41-29"></a>The key biological question is whether complex match performance is better explained by general athletic capacity or football-specific motor skill.</span>
+<span id="cb41-30"><a href="#cb41-30"></a></span>
+<span id="cb41-31"><a href="#cb41-31"></a>We are going to use principal components analysis and factor analysis to interpret the multivariate structure of these player performance traits.</span>
+<span id="cb41-32"><a href="#cb41-32"></a></span>
+<span id="cb41-33"><a href="#cb41-33"></a><span class="fu">## Setup</span></span>
+<span id="cb41-34"><a href="#cb41-34"></a></span>
+<span id="cb41-35"><a href="#cb41-35"></a>Load these packages to make the plots look better:</span>
+<span id="cb41-36"><a href="#cb41-36"></a></span>
+<span id="cb41-39"><a href="#cb41-39"></a><span class="in">```{r}</span></span>
+<span id="cb41-40"><a href="#cb41-40"></a><span class="co">#| message: false</span></span>
+<span id="cb41-41"><a href="#cb41-41"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-42"><a href="#cb41-42"></a><span class="fu">library</span>(EFAtools)</span>
+<span id="cb41-43"><a href="#cb41-43"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb41-44"><a href="#cb41-44"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb41-45"><a href="#cb41-45"></a><span class="in">```</span></span>
+<span id="cb41-46"><a href="#cb41-46"></a></span>
+<span id="cb41-47"><a href="#cb41-47"></a><span class="fu">## Load the data</span></span>
+<span id="cb41-48"><a href="#cb41-48"></a></span>
+<span id="cb41-49"><a href="#cb41-49"></a>First open your dataset. The CSV file should be saved in the same folder as this <span class="in">`.qmd`</span> file.</span>
+<span id="cb41-50"><a href="#cb41-50"></a></span>
+<span id="cb41-53"><a href="#cb41-53"></a><span class="in">```{r}</span></span>
+<span id="cb41-54"><a href="#cb41-54"></a>players <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_player_performance.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-55"><a href="#cb41-55"></a><span class="in">```</span></span>
+<span id="cb41-56"><a href="#cb41-56"></a></span>
+<span id="cb41-57"><a href="#cb41-57"></a>Check the variable names:</span>
+<span id="cb41-58"><a href="#cb41-58"></a></span>
+<span id="cb41-61"><a href="#cb41-61"></a><span class="in">```{r}</span></span>
+<span id="cb41-62"><a href="#cb41-62"></a><span class="fu">names</span>(players)</span>
+<span id="cb41-63"><a href="#cb41-63"></a><span class="in">```</span></span>
+<span id="cb41-64"><a href="#cb41-64"></a></span>
+<span id="cb41-65"><a href="#cb41-65"></a>Because R changes column names that begin with a number, <span class="in">`1500m`</span> may appear as <span class="in">`X1500m`</span>.</span>
+<span id="cb41-66"><a href="#cb41-66"></a></span>
+<span id="cb41-69"><a href="#cb41-69"></a><span class="in">```{r}</span></span>
+<span id="cb41-70"><a href="#cb41-70"></a><span class="fu">head</span>(players)</span>
+<span id="cb41-71"><a href="#cb41-71"></a><span class="fu">str</span>(players)</span>
+<span id="cb41-72"><a href="#cb41-72"></a><span class="in">```</span></span>
+<span id="cb41-73"><a href="#cb41-73"></a></span>
+<span id="cb41-74"><a href="#cb41-74"></a><span class="fu">## Description of the variables</span></span>
+<span id="cb41-75"><a href="#cb41-75"></a></span>
+<span id="cb41-78"><a href="#cb41-78"></a><span class="in">```{r}</span></span>
+<span id="cb41-79"><a href="#cb41-79"></a><span class="fu">summary</span>(players)</span>
+<span id="cb41-80"><a href="#cb41-80"></a><span class="in">```</span></span>
+<span id="cb41-81"><a href="#cb41-81"></a></span>
+<span id="cb41-82"><a href="#cb41-82"></a>The variables are:</span>
+<span id="cb41-83"><a href="#cb41-83"></a></span>
+<span id="cb41-84"><a href="#cb41-84"></a><span class="ss">- </span><span class="in">`balance`</span>: static balance score</span>
+<span id="cb41-85"><a href="#cb41-85"></a><span class="ss">- </span><span class="in">`X1500m`</span>: speed over 1500 m</span>
+<span id="cb41-86"><a href="#cb41-86"></a><span class="ss">- </span><span class="in">`squat`</span>: wall-squat endurance time</span>
+<span id="cb41-87"><a href="#cb41-87"></a><span class="ss">- </span><span class="in">`jump`</span>: standing jump distance</span>
+<span id="cb41-88"><a href="#cb41-88"></a><span class="ss">- </span><span class="in">`sprint`</span>: 40 m sprint speed</span>
+<span id="cb41-89"><a href="#cb41-89"></a><span class="ss">- </span><span class="in">`agility`</span>: speed through an agility course</span>
+<span id="cb41-90"><a href="#cb41-90"></a><span class="ss">- </span><span class="in">`drib`</span>: dribbling speed through an agility course</span>
+<span id="cb41-91"><a href="#cb41-91"></a><span class="ss">- </span><span class="in">`jugg`</span>: juggling or keep-up ability</span>
+<span id="cb41-92"><a href="#cb41-92"></a><span class="ss">- </span><span class="in">`voll`</span>: volley-kick accuracy</span>
+<span id="cb41-93"><a href="#cb41-93"></a><span class="ss">- </span><span class="in">`pass`</span>: passing accuracy</span>
+<span id="cb41-94"><a href="#cb41-94"></a><span class="ss">- </span><span class="in">`head`</span>: heading accuracy</span>
+<span id="cb41-95"><a href="#cb41-95"></a></span>
+<span id="cb41-96"><a href="#cb41-96"></a>Higher values generally indicate better performance on that trait.</span>
+<span id="cb41-97"><a href="#cb41-97"></a></span>
+<span id="cb41-98"><a href="#cb41-98"></a><span class="fu">## Correlation matrix</span></span>
+<span id="cb41-99"><a href="#cb41-99"></a></span>
+<span id="cb41-100"><a href="#cb41-100"></a>Let's first do a correlation matrix. We exclude the player ID column and analyse the performance traits only.</span>
+<span id="cb41-101"><a href="#cb41-101"></a></span>
+<span id="cb41-104"><a href="#cb41-104"></a><span class="in">```{r}</span></span>
+<span id="cb41-105"><a href="#cb41-105"></a><span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb41-106"><a href="#cb41-106"></a>Corrmatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb41-107"><a href="#cb41-107"></a><span class="in">```</span></span>
+<span id="cb41-108"><a href="#cb41-108"></a></span>
+<span id="cb41-109"><a href="#cb41-109"></a>A correlation matrix lets us see which traits tend to vary together. For example, if several skill traits are positively correlated, this suggests that some players have generally high technical ability across multiple football-specific tasks.</span>
+<span id="cb41-110"><a href="#cb41-110"></a></span>
+<span id="cb41-111"><a href="#cb41-111"></a><span class="fu">## Bartlett's Test of Sphericity</span></span>
+<span id="cb41-112"><a href="#cb41-112"></a></span>
+<span id="cb41-113"><a href="#cb41-113"></a>Now we can do Bartlett's Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.</span>
+<span id="cb41-114"><a href="#cb41-114"></a></span>
+<span id="cb41-117"><a href="#cb41-117"></a><span class="in">```{r}</span></span>
+<span id="cb41-118"><a href="#cb41-118"></a><span class="fu">BARTLETT</span>(Corrmatrix, <span class="at">N =</span> <span class="fu">nrow</span>(players), <span class="at">cor_method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>))</span>
+<span id="cb41-119"><a href="#cb41-119"></a><span class="in">```</span></span>
+<span id="cb41-120"><a href="#cb41-120"></a></span>
+<span id="cb41-121"><a href="#cb41-121"></a>A significant result means the variables are sufficiently correlated for a dimension-reduction method such as PCA or factor analysis.</span>
+<span id="cb41-122"><a href="#cb41-122"></a></span>
+<span id="cb41-123"><a href="#cb41-123"></a><span class="fu">## Principal Components Analysis</span></span>
+<span id="cb41-124"><a href="#cb41-124"></a></span>
+<span id="cb41-125"><a href="#cb41-125"></a>Note: to make this a PCA based on a correlation matrix, we have to scale the variables, hence <span class="in">`scale = TRUE`</span>. There are two main principal components functions, but they are very similar. Note <span class="in">`prcomp`</span> calls the loadings "rotations", not to be confused with rotations below.</span>
+<span id="cb41-126"><a href="#cb41-126"></a></span>
+<span id="cb41-129"><a href="#cb41-129"></a><span class="in">```{r}</span></span>
+<span id="cb41-130"><a href="#cb41-130"></a>pca1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-131"><a href="#cb41-131"></a>pca2 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">cor =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-132"><a href="#cb41-132"></a><span class="in">```</span></span>
+<span id="cb41-133"><a href="#cb41-133"></a></span>
+<span id="cb41-136"><a href="#cb41-136"></a><span class="in">```{r}</span></span>
+<span id="cb41-137"><a href="#cb41-137"></a><span class="fu">summary</span>(pca1)</span>
+<span id="cb41-138"><a href="#cb41-138"></a><span class="fu">summary</span>(pca2)</span>
+<span id="cb41-139"><a href="#cb41-139"></a><span class="in">```</span></span>
+<span id="cb41-140"><a href="#cb41-140"></a></span>
+<span id="cb41-141"><a href="#cb41-141"></a>The first principal component describes the major axis of variation among players. In the Wilson et al. paper, separate PCAs were used to summarise athletic performance and motor skill. Here, we are doing one combined PCA across balance, athletic performance and motor skill traits, so the first few components may separate general performance, athleticism and football-specific skill.</span>
+<span id="cb41-142"><a href="#cb41-142"></a></span>
+<span id="cb41-143"><a href="#cb41-143"></a><span class="fu">## Loadings</span></span>
+<span id="cb41-144"><a href="#cb41-144"></a></span>
+<span id="cb41-145"><a href="#cb41-145"></a>Let's look at the loadings. Called "rotations" in <span class="in">`prcomp`</span> and "loadings" in <span class="in">`princomp`</span>. They are the Pearson's correlation between that variable and that Principal Component.</span>
+<span id="cb41-146"><a href="#cb41-146"></a></span>
+<span id="cb41-149"><a href="#cb41-149"></a><span class="in">```{r}</span></span>
+<span id="cb41-150"><a href="#cb41-150"></a>pca1</span>
+<span id="cb41-151"><a href="#cb41-151"></a><span class="fu">loadings</span>(pca2)</span>
+<span id="cb41-152"><a href="#cb41-152"></a><span class="in">```</span></span>
+<span id="cb41-153"><a href="#cb41-153"></a></span>
+<span id="cb41-154"><a href="#cb41-154"></a>Interpretation:</span>
+<span id="cb41-155"><a href="#cb41-155"></a></span>
+<span id="cb41-156"><a href="#cb41-156"></a><span class="ss">- </span>Variables with large positive or negative loadings contribute strongly to that component.</span>
+<span id="cb41-157"><a href="#cb41-157"></a><span class="ss">- </span>If all traits load in the same direction on PC1, PC1 can be interpreted as general player performance.</span>
+<span id="cb41-158"><a href="#cb41-158"></a><span class="ss">- </span>If athletic traits load in one direction and skill traits load in another, the component may represent a contrast between athletic capacity and football-specific skill.</span>
+<span id="cb41-159"><a href="#cb41-159"></a></span>
+<span id="cb41-160"><a href="#cb41-160"></a><span class="fu">## Screeplot</span></span>
+<span id="cb41-161"><a href="#cb41-161"></a></span>
+<span id="cb41-162"><a href="#cb41-162"></a>To do a screeplot, follow the commands below. Note this is the standard deviations, which are just square root of the variances or eigenvalues.</span>
+<span id="cb41-163"><a href="#cb41-163"></a></span>
+<span id="cb41-166"><a href="#cb41-166"></a><span class="in">```{r}</span></span>
+<span id="cb41-167"><a href="#cb41-167"></a><span class="fu">screeplot</span>(pca1, <span class="at">type =</span> <span class="st">"lines"</span>)</span>
+<span id="cb41-168"><a href="#cb41-168"></a><span class="in">```</span></span>
+<span id="cb41-169"><a href="#cb41-169"></a></span>
+<span id="cb41-170"><a href="#cb41-170"></a>The screeplot helps decide how many components are worth interpreting. A common rule of thumb is to keep components before the curve flattens out.</span>
+<span id="cb41-171"><a href="#cb41-171"></a></span>
+<span id="cb41-172"><a href="#cb41-172"></a><span class="fu">## Principal Component Scores</span></span>
+<span id="cb41-173"><a href="#cb41-173"></a></span>
+<span id="cb41-174"><a href="#cb41-174"></a>To get your principal components scores for plotting and analysis, do the following:</span>
+<span id="cb41-175"><a href="#cb41-175"></a></span>
+<span id="cb41-178"><a href="#cb41-178"></a><span class="in">```{r}</span></span>
+<span id="cb41-179"><a href="#cb41-179"></a>pca1<span class="sc">$</span>x</span>
+<span id="cb41-180"><a href="#cb41-180"></a><span class="in">```</span></span>
+<span id="cb41-181"><a href="#cb41-181"></a></span>
+<span id="cb41-182"><a href="#cb41-182"></a>So to combine them with the original variables, do this:</span>
+<span id="cb41-183"><a href="#cb41-183"></a></span>
+<span id="cb41-186"><a href="#cb41-186"></a><span class="in">```{r}</span></span>
+<span id="cb41-187"><a href="#cb41-187"></a>playerpcscores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(players, pca1<span class="sc">$</span>x)</span>
+<span id="cb41-188"><a href="#cb41-188"></a><span class="in">```</span></span>
+<span id="cb41-189"><a href="#cb41-189"></a></span>
+<span id="cb41-190"><a href="#cb41-190"></a>Each player now has a score on each principal component. These scores tell us where each player sits on the multivariate axes of football performance.</span>
+<span id="cb41-191"><a href="#cb41-191"></a></span>
+<span id="cb41-192"><a href="#cb41-192"></a><span class="fu">## Biplot</span></span>
+<span id="cb41-193"><a href="#cb41-193"></a></span>
+<span id="cb41-194"><a href="#cb41-194"></a>We can produce a biplot in ggplot2. Here the player number is used as a label.</span>
+<span id="cb41-195"><a href="#cb41-195"></a></span>
+<span id="cb41-198"><a href="#cb41-198"></a><span class="in">```{r}</span></span>
+<span id="cb41-199"><a href="#cb41-199"></a><span class="fu">autoplot</span>(pca1, <span class="at">data =</span> playerpcscores, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.label =</span> <span class="st">"player"</span>)</span>
+<span id="cb41-200"><a href="#cb41-200"></a><span class="in">```</span></span>
+<span id="cb41-201"><a href="#cb41-201"></a></span>
+<span id="cb41-202"><a href="#cb41-202"></a>We could add the loadings, but they can be a bit messy. It is often best to look at the loadings or rotations tables directly.</span>
+<span id="cb41-203"><a href="#cb41-203"></a></span>
+<span id="cb41-204"><a href="#cb41-204"></a>You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.</span>
+<span id="cb41-205"><a href="#cb41-205"></a></span>
+<span id="cb41-206"><a href="#cb41-206"></a><span class="fu">## Regression using PC scores</span></span>
+<span id="cb41-207"><a href="#cb41-207"></a></span>
+<span id="cb41-208"><a href="#cb41-208"></a>In the lecturer dataset, we used ANOVA to test whether PC scores differed among groups. This football dataset does not include grouping variables such as team grade or playing position, so here we use a regression example instead.</span>
+<span id="cb41-209"><a href="#cb41-209"></a></span>
+<span id="cb41-210"><a href="#cb41-210"></a>For example, we can ask whether PC1 is associated with juggling ability:</span>
+<span id="cb41-211"><a href="#cb41-211"></a></span>
+<span id="cb41-214"><a href="#cb41-214"></a><span class="in">```{r}</span></span>
+<span id="cb41-215"><a href="#cb41-215"></a>LM1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PC1 <span class="sc">~</span> jugg, <span class="at">data =</span> playerpcscores)</span>
+<span id="cb41-216"><a href="#cb41-216"></a><span class="fu">summary</span>(LM1)</span>
+<span id="cb41-217"><a href="#cb41-217"></a><span class="in">```</span></span>
+<span id="cb41-218"><a href="#cb41-218"></a></span>
+<span id="cb41-219"><a href="#cb41-219"></a>This is only an example. In a full analysis, you might use PC scores as predictors of match success, soccer-tennis score or network centrality.</span>
+<span id="cb41-220"><a href="#cb41-220"></a></span>
+<span id="cb41-221"><a href="#cb41-221"></a><span class="fu">## Scatterplot</span></span>
+<span id="cb41-222"><a href="#cb41-222"></a></span>
+<span id="cb41-223"><a href="#cb41-223"></a>To do a scatterplot of variables use ggplot2:</span>
+<span id="cb41-224"><a href="#cb41-224"></a></span>
+<span id="cb41-227"><a href="#cb41-227"></a><span class="in">```{r}</span></span>
+<span id="cb41-228"><a href="#cb41-228"></a><span class="fu">ggplot</span>(playerpcscores, <span class="fu">aes</span>(<span class="at">x =</span> jugg, <span class="at">y =</span> PC1)) <span class="sc">+</span></span>
+<span id="cb41-229"><a href="#cb41-229"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-230"><a href="#cb41-230"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb41-231"><a href="#cb41-231"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Juggling ability"</span>, <span class="at">y =</span> <span class="st">"PC1 score"</span>)</span>
+<span id="cb41-232"><a href="#cb41-232"></a><span class="in">```</span></span>
+<span id="cb41-233"><a href="#cb41-233"></a></span>
+<span id="cb41-234"><a href="#cb41-234"></a><span class="fu">## Factor Analysis with Varimax Rotation</span></span>
+<span id="cb41-235"><a href="#cb41-235"></a></span>
+<span id="cb41-236"><a href="#cb41-236"></a>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax.</span>
+<span id="cb41-237"><a href="#cb41-237"></a></span>
+<span id="cb41-238"><a href="#cb41-238"></a>Here we start with three factors because the paper describes three broad biological domains: balance, athletic performance and motor skill.</span>
+<span id="cb41-239"><a href="#cb41-239"></a></span>
+<span id="cb41-242"><a href="#cb41-242"></a><span class="in">```{r}</span></span>
+<span id="cb41-243"><a href="#cb41-243"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb41-244"><a href="#cb41-244"></a>fa1</span>
+<span id="cb41-245"><a href="#cb41-245"></a><span class="in">```</span></span>
+<span id="cb41-246"><a href="#cb41-246"></a></span>
+<span id="cb41-247"><a href="#cb41-247"></a>The rotated factor loadings may help identify clusters of variables. For example:</span>
+<span id="cb41-248"><a href="#cb41-248"></a></span>
+<span id="cb41-249"><a href="#cb41-249"></a><span class="ss">- </span>one factor may represent athletic performance</span>
+<span id="cb41-250"><a href="#cb41-250"></a><span class="ss">- </span>one factor may represent football-specific motor skill</span>
+<span id="cb41-251"><a href="#cb41-251"></a><span class="ss">- </span>one factor may represent balance or a narrower technical component</span>
+<span id="cb41-252"><a href="#cb41-252"></a></span>
+<span id="cb41-253"><a href="#cb41-253"></a>Try changing the number of factors and compare whether the interpretation becomes clearer or less clear:</span>
+<span id="cb41-254"><a href="#cb41-254"></a></span>
+<span id="cb41-257"><a href="#cb41-257"></a><span class="in">```{r}</span></span>
+<span id="cb41-258"><a href="#cb41-258"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb41-259"><a href="#cb41-259"></a>fa2</span>
+<span id="cb41-260"><a href="#cb41-260"></a><span class="in">```</span></span>
+<span id="cb41-261"><a href="#cb41-261"></a></span>
+<span id="cb41-264"><a href="#cb41-264"></a><span class="in">```{r}</span></span>
+<span id="cb41-265"><a href="#cb41-265"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb41-266"><a href="#cb41-266"></a>fa4</span>
+<span id="cb41-267"><a href="#cb41-267"></a><span class="in">```</span></span>
+<span id="cb41-268"><a href="#cb41-268"></a></span>
+<span id="cb41-269"><a href="#cb41-269"></a><span class="fu">## Final interpretation</span></span>
+<span id="cb41-270"><a href="#cb41-270"></a></span>
+<span id="cb41-271"><a href="#cb41-271"></a>Wilson et al. found that motor skill was a stronger predictor of soccer-tennis and 11-a-side match performance than general athleticism. In this tutorial, PCA and factor analysis are used to explore the same biological idea from the trait data: whether football players vary mostly along a general performance axis, or whether athletic and technical skill traits form separate multivariate dimensions.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

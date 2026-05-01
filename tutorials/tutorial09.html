@@ -704,6 +704,9 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 : There are other near singularities as well. 0.56946</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning in sqrt(sum.squares/one.delta): NaNs produced</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -725,6 +728,9 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,
 : There are other near singularities as well. 0.56946</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in sqrt(sum.squares/one.delta): NaNs produced</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -762,11 +768,11 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <p>In addition to deciding how good the values are for a subset, we also need to compare the values between the training and test subsets so we can assess whether the model is overfitting to the training data.</p>
 <p><em>(i)</em> Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -5.21188e-16</code></pre>
+<pre><code>[1] 3.083953e-16</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2340847</code></pre>
 </div>
@@ -774,11 +780,11 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <p>Mean error is close to zero for both and the values are somewhat different between training and test subsets, suggesting overfitting.</p>
 <p><em>(ii)</em> Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5559311</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2979841</code></pre>
 </div>
@@ -789,7 +795,7 @@ $ Br_Dens    &lt;dbl&gt; 3.60, 4.30, 3.80, 3.40, 3.80, 4.50, 4.30, 5.00, 4.50, 3
 <div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can use the <code>RMSE()</code> function from the <code>caret</code> package</p>
 </div></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">library</span>(caret)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">library</span>(caret)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: lattice</code></pre>
 </div>
@@ -802,11 +808,11 @@ Attaching package: 'caret'</code></pre>
 
     lift</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6393146</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4379149</code></pre>
 </div>
@@ -822,22 +828,22 @@ Attaching package: 'caret'</code></pre>
 <p>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <code>R2()</code> function from the <code>caret</code> package.</p>
 </div></div><p>Option 1: squaring the correlation coefficient:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>(<span class="fu">cor</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>(<span class="fu">cor</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8089057</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>(<span class="fu">cor</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>(<span class="fu">cor</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2543809</code></pre>
 </div>
 </div>
 <p>Option 2: <code>R2()</code> function from the <code>caret</code> package.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8089057</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2543809</code></pre>
 </div>
@@ -850,7 +856,7 @@ Attaching package: 'caret'</code></pre>
 <div class="no-row-height column-margin column-container"><div class="">
 <p>HINT: you can calculate the LCCC via the <code>epiR</code> package</p>
 </div></div><div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">library</span>(epiR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">library</span>(epiR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: survival</code></pre>
 </div>
@@ -875,11 +881,11 @@ Attaching package: 'survival'</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.8943591</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4131343</code></pre>
 </div>
@@ -895,31 +901,31 @@ Attaching package: 'survival'</code></pre>
 <div class="cell" data-table-caption="Table 1. Summary of prediction quality metrics for training and test subsets.">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="co"># put all data into a tible and kable it</span></span>
-<span id="cb83-2"><a href="#cb83-2"></a><span class="fu">tibble</span>(</span>
-<span id="cb83-3"><a href="#cb83-3"></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
-<span id="cb83-4"><a href="#cb83-4"></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
-<span id="cb83-5"><a href="#cb83-5"></a>        <span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb83-6"><a href="#cb83-6"></a>        <span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb83-7"><a href="#cb83-7"></a>    ),</span>
-<span id="cb83-8"><a href="#cb83-8"></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
-<span id="cb83-9"><a href="#cb83-9"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)),</span>
-<span id="cb83-10"><a href="#cb83-10"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred))</span>
-<span id="cb83-11"><a href="#cb83-11"></a>    ),</span>
-<span id="cb83-12"><a href="#cb83-12"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
-<span id="cb83-13"><a href="#cb83-13"></a>        <span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb83-14"><a href="#cb83-14"></a>        <span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb83-15"><a href="#cb83-15"></a>    ),</span>
-<span id="cb83-16"><a href="#cb83-16"></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
-<span id="cb83-17"><a href="#cb83-17"></a>        <span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb83-18"><a href="#cb83-18"></a>        <span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb83-19"><a href="#cb83-19"></a>    ),</span>
-<span id="cb83-20"><a href="#cb83-20"></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
-<span id="cb83-21"><a href="#cb83-21"></a>        <span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
-<span id="cb83-22"><a href="#cb83-22"></a>        <span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
-<span id="cb83-23"><a href="#cb83-23"></a>    )</span>
-<span id="cb83-24"><a href="#cb83-24"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb83-25"><a href="#cb83-25"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="co"># put all data into a tible and kable it</span></span>
+<span id="cb85-2"><a href="#cb85-2"></a><span class="fu">tibble</span>(</span>
+<span id="cb85-3"><a href="#cb85-3"></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
+<span id="cb85-4"><a href="#cb85-4"></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
+<span id="cb85-5"><a href="#cb85-5"></a>        <span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb85-6"><a href="#cb85-6"></a>        <span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb85-7"><a href="#cb85-7"></a>    ),</span>
+<span id="cb85-8"><a href="#cb85-8"></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
+<span id="cb85-9"><a href="#cb85-9"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)),</span>
+<span id="cb85-10"><a href="#cb85-10"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred))</span>
+<span id="cb85-11"><a href="#cb85-11"></a>    ),</span>
+<span id="cb85-12"><a href="#cb85-12"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
+<span id="cb85-13"><a href="#cb85-13"></a>        <span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb85-14"><a href="#cb85-14"></a>        <span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb85-15"><a href="#cb85-15"></a>    ),</span>
+<span id="cb85-16"><a href="#cb85-16"></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
+<span id="cb85-17"><a href="#cb85-17"></a>        <span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb85-18"><a href="#cb85-18"></a>        <span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb85-19"><a href="#cb85-19"></a>    ),</span>
+<span id="cb85-20"><a href="#cb85-20"></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
+<span id="cb85-21"><a href="#cb85-21"></a>        <span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
+<span id="cb85-22"><a href="#cb85-22"></a>        <span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
+<span id="cb85-23"><a href="#cb85-23"></a>    )</span>
+<span id="cb85-24"><a href="#cb85-24"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb85-25"><a href="#cb85-25"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -1443,514 +1449,514 @@ Attaching package: 'survival'</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb84-1"><a href="#cb84-1"></a><span class="co">---</span></span>
-<span id="cb84-2"><a href="#cb84-2"></a><span class="an">title:</span><span class="co"> "Tutorial 09"</span></span>
-<span id="cb84-3"><a href="#cb84-3"></a><span class="co"># reviewed-by: LP 2026</span></span>
-<span id="cb84-4"><a href="#cb84-4"></a><span class="an">format:</span></span>
-<span id="cb84-5"><a href="#cb84-5"></a><span class="co">  sandstone-html:</span></span>
-<span id="cb84-6"><a href="#cb84-6"></a><span class="co">    code-tools: true</span></span>
-<span id="cb84-7"><a href="#cb84-7"></a><span class="an">resources:</span></span>
-<span id="cb84-8"><a href="#cb84-8"></a><span class="co">  - data/Dippers.csv</span></span>
-<span id="cb84-9"><a href="#cb84-9"></a><span class="co">---</span></span>
-<span id="cb84-10"><a href="#cb84-10"></a></span>
-<span id="cb84-11"><a href="#cb84-11"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb84-12"><a href="#cb84-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb84-13"><a href="#cb84-13"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb84-14"><a href="#cb84-14"></a><span class="in">```</span></span>
-<span id="cb84-15"><a href="#cb84-15"></a></span>
-<span id="cb84-16"><a href="#cb84-16"></a><span class="fu">## Welcome to week 9! {.unnumbered}</span></span>
-<span id="cb84-17"><a href="#cb84-17"></a></span>
-<span id="cb84-18"><a href="#cb84-18"></a>This week's lecture introduced you to how we use models for prediction and how we assess the quality of the predictions.We will follow similar steps in today's tutorial and lab class. </span>
-<span id="cb84-19"><a href="#cb84-19"></a></span>
-<span id="cb84-20"><a href="#cb84-20"></a></span>
-<span id="cb84-21"><a href="#cb84-21"></a>In this tutorial we will cover the key steps to fit a model, use it to make predictions, and then check assumptions, and select the most appropriate model.</span>
-<span id="cb84-22"><a href="#cb84-22"></a></span>
-<span id="cb84-23"><a href="#cb84-23"></a>**You will learn how to:**</span>
-<span id="cb84-24"><a href="#cb84-24"></a></span>
-<span id="cb84-25"><a href="#cb84-25"></a><span class="ss">1.  </span>Split data into training and test subsets</span>
-<span id="cb84-26"><a href="#cb84-26"></a><span class="ss">2.  </span>Fit your model to the training data and check assumptions are met</span>
-<span id="cb84-27"><a href="#cb84-27"></a><span class="ss">3.  </span>Use the trained model to make predictions using the training and the test subsets</span>
-<span id="cb84-28"><a href="#cb84-28"></a><span class="ss">4.  </span>Observe the quality of the predictions using appropriate statistics and plots</span>
-<span id="cb84-29"><a href="#cb84-29"></a></span>
-<span id="cb84-30"><a href="#cb84-30"></a></span>
-<span id="cb84-31"><a href="#cb84-31"></a><span class="fu">## Packages</span></span>
-<span id="cb84-32"><a href="#cb84-32"></a></span>
-<span id="cb84-33"><a href="#cb84-33"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span>, <span class="in">`car`</span>, <span class="in">`caret`</span> and <span class="in">`epiR`</span>. Install any you are missing by running the following **in the console**:</span>
-<span id="cb84-34"><a href="#cb84-34"></a></span>
-<span id="cb84-37"><a href="#cb84-37"></a><span class="in">```{r}</span></span>
-<span id="cb84-38"><a href="#cb84-38"></a><span class="co">#| eval: false</span></span>
-<span id="cb84-39"><a href="#cb84-39"></a></span>
-<span id="cb84-40"><a href="#cb84-40"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"caret"</span>, <span class="st">"epiR"</span>))</span>
-<span id="cb84-41"><a href="#cb84-41"></a><span class="in">```</span></span>
-<span id="cb84-42"><a href="#cb84-42"></a></span>
-<span id="cb84-43"><a href="#cb84-43"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
-<span id="cb84-44"><a href="#cb84-44"></a></span>
-<span id="cb84-45"><a href="#cb84-45"></a><span class="fu">### Downloads</span></span>
-<span id="cb84-46"><a href="#cb84-46"></a></span>
-<span id="cb84-47"><a href="#cb84-47"></a><span class="pp">|</span> File <span class="pp">|</span> Used in <span class="pp">|</span> Download <span class="pp">|</span></span>
-<span id="cb84-48"><a href="#cb84-48"></a><span class="pp">|---|---|---|</span></span>
-<span id="cb84-49"><a href="#cb84-49"></a><span class="pp">|</span> <span class="in">`Dippers.csv`</span> <span class="pp">|</span> all exercises <span class="pp">|</span> <span class="co">[</span><span class="ot">Download</span><span class="co">](data/Dippers.csv)</span> <span class="pp">|</span></span>
-<span id="cb84-50"><a href="#cb84-50"></a></span>
-<span id="cb84-51"><a href="#cb84-51"></a>Save the file into a folder called <span class="in">`data`</span> inside your project folder.</span>
-<span id="cb84-52"><a href="#cb84-52"></a></span>
-<span id="cb84-53"><a href="#cb84-53"></a></span>
-<span id="cb84-54"><a href="#cb84-54"></a><span class="fu">## The data</span></span>
-<span id="cb84-55"><a href="#cb84-55"></a></span>
-<span id="cb84-56"><a href="#cb84-56"></a><span class="al">![Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.](images/AdobeStock_93907188.jpeg)</span></span>
-<span id="cb84-57"><a href="#cb84-57"></a></span>
-<span id="cb84-58"><a href="#cb84-58"></a><span class="co">[</span><span class="ot">Dippers</span><span class="co">](https://en.wikipedia.org/wiki/Dipper)</span> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. </span>
-<span id="cb84-59"><a href="#cb84-59"></a></span>
-<span id="cb84-60"><a href="#cb84-60"></a>Twenty-two sites were included in the survey. Some of the variables have been transformed. </span>
-<span id="cb84-61"><a href="#cb84-61"></a></span>
-<span id="cb84-62"><a href="#cb84-62"></a>Data can be found in: **Dippers.csv**</span>
-<span id="cb84-63"><a href="#cb84-63"></a></span>
-<span id="cb84-64"><a href="#cb84-64"></a>The variables measured were:  </span>
-<span id="cb84-65"><a href="#cb84-65"></a></span>
-<span id="cb84-66"><a href="#cb84-66"></a><span class="ss">- </span><span class="in">`Altitude`</span> site altitude</span>
-<span id="cb84-67"><a href="#cb84-67"></a><span class="ss">- </span><span class="in">`Hardness`</span> water hardness</span>
-<span id="cb84-68"><a href="#cb84-68"></a><span class="ss">- </span><span class="in">`RiverSlope`</span> river-bed slope</span>
-<span id="cb84-69"><a href="#cb84-69"></a><span class="ss">- </span><span class="in">`LogCadd`</span> the numbers of caddis fly larvae, transformed</span>
-<span id="cb84-70"><a href="#cb84-70"></a><span class="ss">- </span><span class="in">`LogStone`</span> the numbers of stonefly larvae, transformed</span>
-<span id="cb84-71"><a href="#cb84-71"></a><span class="ss">- </span><span class="in">`LogMay`</span> the numbers of mayfly larvae, transformed</span>
-<span id="cb84-72"><a href="#cb84-72"></a><span class="ss">- </span><span class="in">`LogOther`</span> the numbers of all other invertebrates collected, transformed</span>
-<span id="cb84-73"><a href="#cb84-73"></a><span class="ss">- </span><span class="in">`Br_Dens`</span> the number of breeding pairs of dippers per 10 km of river  </span>
-<span id="cb84-74"><a href="#cb84-74"></a></span>
-<span id="cb84-75"><a href="#cb84-75"></a>In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.</span>
-<span id="cb84-76"><a href="#cb84-76"></a></span>
-<span id="cb84-77"><a href="#cb84-77"></a><span class="in">`Br_Dens`</span> will be the response variable in our models. </span>
-<span id="cb84-78"><a href="#cb84-78"></a></span>
-<span id="cb84-79"><a href="#cb84-79"></a>Last week following use of the step() function, we found the most parsimonious model to be:</span>
-<span id="cb84-80"><a href="#cb84-80"></a></span>
-<span id="cb84-81"><a href="#cb84-81"></a>**Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther**</span>
-<span id="cb84-82"><a href="#cb84-82"></a></span>
-<span id="cb84-83"><a href="#cb84-83"></a>Model assumptions were met and the model explained 76% of variation in dipper breeding pair density, which was quite good. </span>
-<span id="cb84-84"><a href="#cb84-84"></a></span>
-<span id="cb84-85"><a href="#cb84-85"></a>We will use this model in our walkthrough today. </span>
-<span id="cb84-86"><a href="#cb84-86"></a></span>
-<span id="cb84-87"><a href="#cb84-87"></a><span class="fu"># Analysis walkthrough</span></span>
-<span id="cb84-88"><a href="#cb84-88"></a></span>
-<span id="cb84-89"><a href="#cb84-89"></a><span class="fu">## Data splitting</span></span>
-<span id="cb84-90"><a href="#cb84-90"></a></span>
-<span id="cb84-91"><a href="#cb84-91"></a>Making predictions involves substituting in new values of x into our model equation to get new values of y.</span>
-<span id="cb84-92"><a href="#cb84-92"></a></span>
-<span id="cb84-93"><a href="#cb84-93"></a>We could use single values for each of our predictor variables and substitute them into the equation, but this is unrealistic and time consuming when we have a large number of observations. We therefore use a dataset containing our new observations of x to make the predictions and feed this into our model. </span>
-<span id="cb84-94"><a href="#cb84-94"></a></span>
-<span id="cb84-95"><a href="#cb84-95"></a>To understand the ability our model to predict new values of y from values of x previously unseen by the model, we need to test this on data that has not been used to fit the model. </span>
-<span id="cb84-96"><a href="#cb84-96"></a></span>
-<span id="cb84-97"><a href="#cb84-97"></a>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset.  For each subset, we feed the predictor values into the model to get predictions of the y variable. We can then compare the predicted y with the observed y contained within each subset to get an indication of how well our model is performing.</span>
-<span id="cb84-98"><a href="#cb84-98"></a></span>
-<span id="cb84-99"><a href="#cb84-99"></a>*(i)* Read in the dippers dataset and check the data. How many observations are there?</span>
-<span id="cb84-100"><a href="#cb84-100"></a></span>
-<span id="cb84-103"><a href="#cb84-103"></a><span class="in">```{r}</span></span>
-<span id="cb84-104"><a href="#cb84-104"></a><span class="co"># read in the data</span></span>
-<span id="cb84-105"><a href="#cb84-105"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
-<span id="cb84-106"><a href="#cb84-106"></a></span>
-<span id="cb84-107"><a href="#cb84-107"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb84-108"><a href="#cb84-108"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span>
-<span id="cb84-109"><a href="#cb84-109"></a><span class="in">```</span></span>
-<span id="cb84-110"><a href="#cb84-110"></a></span>
-<span id="cb84-111"><a href="#cb84-111"></a>We can see there are 22 observations with 8 variables; all numeric as expected. The number of observations will help inform how we set up our training and test subsets. </span>
-<span id="cb84-112"><a href="#cb84-112"></a></span>
-<span id="cb84-113"><a href="#cb84-113"></a>There are different ways of splitting data, but what you choose generally depends on your dataset and the question you are trying to answer.</span>
-<span id="cb84-114"><a href="#cb84-114"></a></span>
-<span id="cb84-115"><a href="#cb84-115"></a>For example, we might split our dataset based on: </span>
-<span id="cb84-116"><a href="#cb84-116"></a></span>
-<span id="cb84-117"><a href="#cb84-117"></a><span class="ss">- </span>a random selection of observations (random sampling)</span>
-<span id="cb84-118"><a href="#cb84-118"></a><span class="ss">- </span>certain factors or groups within the dataset (stratified sampling)</span>
-<span id="cb84-119"><a href="#cb84-119"></a><span class="ss">- </span>spatial location</span>
-<span id="cb84-120"><a href="#cb84-120"></a><span class="ss">- </span>time </span>
-<span id="cb84-121"><a href="#cb84-121"></a></span>
-<span id="cb84-122"><a href="#cb84-122"></a>For the tutorial and lab sessions, we will be making a random split of the data, which is the most common method. </span>
-<span id="cb84-123"><a href="#cb84-123"></a></span>
-<span id="cb84-124"><a href="#cb84-124"></a>Because the sample size is very small, we will use 80% of the data for training and 20% for testing. The more observations we have to train the model, the better. </span>
-<span id="cb84-125"><a href="#cb84-125"></a></span>
-<span id="cb84-126"><a href="#cb84-126"></a>You are more than welcome to explore how model quality measures change based on changing ratio of training:test splits You can do this by changing the values in the chunk below.  For now though, we will stick to the 80/20 split.</span>
-<span id="cb84-127"><a href="#cb84-127"></a></span>
-<span id="cb84-128"><a href="#cb84-128"></a>*(ii)* Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the training set.</span>
-<span id="cb84-129"><a href="#cb84-129"></a></span>
-<span id="cb84-132"><a href="#cb84-132"></a><span class="in">```{r}</span></span>
-<span id="cb84-133"><a href="#cb84-133"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb84-134"><a href="#cb84-134"></a></span>
-<span id="cb84-135"><a href="#cb84-135"></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dippers), <span class="at">size =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(dippers)) <span class="co"># randomly sample 20% of rows in the dataset</span></span>
-<span id="cb84-136"><a href="#cb84-136"></a></span>
-<span id="cb84-137"><a href="#cb84-137"></a>dippers_train <span class="ot">&lt;-</span> dippers[<span class="sc">-</span>indexes, ] <span class="co"># remove the 20% - training dataset</span></span>
-<span id="cb84-138"><a href="#cb84-138"></a>dippers_test <span class="ot">&lt;-</span> dippers[indexes, ] <span class="co"># select the 20% - test dataset</span></span>
-<span id="cb84-139"><a href="#cb84-139"></a><span class="in">```</span></span>
-<span id="cb84-140"><a href="#cb84-140"></a></span>
-<span id="cb84-141"><a href="#cb84-141"></a>In the code above, we first set a seed to ensure that we can reproduce the same random sample if we were to rerun the code chunk. </span>
-<span id="cb84-142"><a href="#cb84-142"></a>Then we use the <span class="in">`sample()`</span> function to randomly select 20% of the row indices from the dataset. </span>
-<span id="cb84-143"><a href="#cb84-143"></a></span>
-<span id="cb84-144"><a href="#cb84-144"></a>We create the training dataset by removing these selected indices from the original dataset (<span class="in">`[-indexes, ]`</span> says "exclude these indices, keep everything else"), and we create the test dataset by selecting only those indices.</span>
-<span id="cb84-145"><a href="#cb84-145"></a></span>
-<span id="cb84-146"><a href="#cb84-146"></a>*(iii)* Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split?  Are the distributions (mean, median, min, max) similar between the two subsets?</span>
-<span id="cb84-147"><a href="#cb84-147"></a></span>
-<span id="cb84-148"><a href="#cb84-148"></a>Once we have split the data, we need to check the subsets. First ensure the structure and number of observations in each subset is correct, and then check the distribution of the variables (max, mean, median, min) in each subset to ensure they are similar.</span>
-<span id="cb84-149"><a href="#cb84-149"></a></span>
-<span id="cb84-152"><a href="#cb84-152"></a><span class="in">```{r}</span></span>
-<span id="cb84-153"><a href="#cb84-153"></a><span class="fu">str</span>(dippers_train)</span>
-<span id="cb84-154"><a href="#cb84-154"></a><span class="fu">str</span>(dippers_test)</span>
-<span id="cb84-155"><a href="#cb84-155"></a></span>
-<span id="cb84-156"><a href="#cb84-156"></a><span class="fu">summary</span>(dippers_train)</span>
-<span id="cb84-157"><a href="#cb84-157"></a><span class="fu">summary</span>(dippers_test)</span>
-<span id="cb84-158"><a href="#cb84-158"></a><span class="in">```</span></span>
-<span id="cb84-159"><a href="#cb84-159"></a></span>
-<span id="cb84-160"><a href="#cb84-160"></a>We can see that the training dataset contains 18 observations and the test dataset contains 4 observations, which is very small, so we don't expect to get very reliable information from the prediction quality statistics, but it still worth continuing to understand the process and see how we go. </span>
-<span id="cb84-161"><a href="#cb84-161"></a></span>
-<span id="cb84-162"><a href="#cb84-162"></a>Because of the limited sample size, we can see that the max and min values vary, but the distributions aren't too different (e.g. we don't have our response in one subset following a log distribution and the other following a normal distribution.) </span>
-<span id="cb84-163"><a href="#cb84-163"></a></span>
-<span id="cb84-164"><a href="#cb84-164"></a>From here we can proceed to model fitting. </span>
-<span id="cb84-165"><a href="#cb84-165"></a></span>
-<span id="cb84-166"><a href="#cb84-166"></a>::: callout-note</span>
-<span id="cb84-167"><a href="#cb84-167"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb84-168"><a href="#cb84-168"></a></span>
-<span id="cb84-169"><a href="#cb84-169"></a>You should now be able to split observations into training and test subsets. </span>
-<span id="cb84-170"><a href="#cb84-170"></a></span>
-<span id="cb84-171"><a href="#cb84-171"></a>:::</span>
-<span id="cb84-172"><a href="#cb84-172"></a></span>
-<span id="cb84-173"><a href="#cb84-173"></a><span class="fu">## Fit the model to the training data</span></span>
-<span id="cb84-174"><a href="#cb84-174"></a></span>
-<span id="cb84-175"><a href="#cb84-175"></a>We only use the training data to fit the model. For this tutorial we will use the model we optimised last week: </span>
-<span id="cb84-176"><a href="#cb84-176"></a></span>
-<span id="cb84-177"><a href="#cb84-177"></a>**Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther**</span>
-<span id="cb84-178"><a href="#cb84-178"></a></span>
-<span id="cb84-179"><a href="#cb84-179"></a>*(i)* Fit the linear model to the training subset using Br_Dens as the response, and Hardness, RiverSlope, LogCadd, LogStone, and LogOther as the predictor variables. </span>
-<span id="cb84-180"><a href="#cb84-180"></a></span>
-<span id="cb84-183"><a href="#cb84-183"></a><span class="in">```{r}</span></span>
-<span id="cb84-184"><a href="#cb84-184"></a><span class="co"># fit the model to the training data</span></span>
-<span id="cb84-185"><a href="#cb84-185"></a></span>
-<span id="cb84-186"><a href="#cb84-186"></a>train_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers_train)</span>
-<span id="cb84-187"><a href="#cb84-187"></a></span>
-<span id="cb84-188"><a href="#cb84-188"></a><span class="in">```</span></span>
-<span id="cb84-189"><a href="#cb84-189"></a></span>
-<span id="cb84-190"><a href="#cb84-190"></a>*(ii)* Check the model assumptions. Could they tell us much despite the small sample size?</span>
-<span id="cb84-191"><a href="#cb84-191"></a></span>
-<span id="cb84-192"><a href="#cb84-192"></a>We can do a quick assumption check to ensure the model is appropriate for the training data, but we won't go through this in detail as we have already done this for the full dataset last week. </span>
-<span id="cb84-193"><a href="#cb84-193"></a></span>
-<span id="cb84-196"><a href="#cb84-196"></a><span class="in">```{r}</span></span>
-<span id="cb84-197"><a href="#cb84-197"></a><span class="fu">library</span>(performance)</span>
-<span id="cb84-198"><a href="#cb84-198"></a><span class="co"># Linearity</span></span>
-<span id="cb84-199"><a href="#cb84-199"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
-<span id="cb84-200"><a href="#cb84-200"></a></span>
-<span id="cb84-201"><a href="#cb84-201"></a><span class="co"># Normality</span></span>
-<span id="cb84-202"><a href="#cb84-202"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
-<span id="cb84-203"><a href="#cb84-203"></a></span>
-<span id="cb84-204"><a href="#cb84-204"></a><span class="co"># Equal variance</span></span>
-<span id="cb84-205"><a href="#cb84-205"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
-<span id="cb84-206"><a href="#cb84-206"></a></span>
-<span id="cb84-207"><a href="#cb84-207"></a><span class="co"># Outliers</span></span>
-<span id="cb84-208"><a href="#cb84-208"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
-<span id="cb84-209"><a href="#cb84-209"></a></span>
-<span id="cb84-210"><a href="#cb84-210"></a><span class="co"># VIF - visual</span></span>
-<span id="cb84-211"><a href="#cb84-211"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(train_model))</span>
-<span id="cb84-212"><a href="#cb84-212"></a></span>
-<span id="cb84-213"><a href="#cb84-213"></a><span class="co"># VIF - numbers</span></span>
-<span id="cb84-214"><a href="#cb84-214"></a><span class="co"># comes from the car package</span></span>
-<span id="cb84-215"><a href="#cb84-215"></a>car<span class="sc">::</span><span class="fu">vif</span>(train_model)</span>
-<span id="cb84-216"><a href="#cb84-216"></a></span>
-<span id="cb84-217"><a href="#cb84-217"></a></span>
-<span id="cb84-218"><a href="#cb84-218"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
-<span id="cb84-219"><a href="#cb84-219"></a></span>
-<span id="cb84-220"><a href="#cb84-220"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb84-221"><a href="#cb84-221"></a></span>
-<span id="cb84-222"><a href="#cb84-222"></a><span class="fu">plot</span>(train_model)</span>
-<span id="cb84-223"><a href="#cb84-223"></a></span>
-<span id="cb84-224"><a href="#cb84-224"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb84-225"><a href="#cb84-225"></a></span>
-<span id="cb84-226"><a href="#cb84-226"></a><span class="in">```</span></span>
-<span id="cb84-227"><a href="#cb84-227"></a></span>
-<span id="cb84-228"><a href="#cb84-228"></a>One could argue that our assumptions have not been met (residuals do not appear to be linear or perfectly normal), but given the small sample size, it is difficult to accurately assess the assumptions. We can say that the assumptions are not grossly violated, but we should be cautious when interpreting the results.</span>
-<span id="cb84-229"><a href="#cb84-229"></a></span>
-<span id="cb84-230"><a href="#cb84-230"></a><span class="fu">## Making predictions</span></span>
-<span id="cb84-231"><a href="#cb84-231"></a></span>
-<span id="cb84-232"><a href="#cb84-232"></a>We have already used the the training set to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions.  The predictions made with this subset will often look quite good, but this is because the observed y value has been used in model fitting. </span>
-<span id="cb84-233"><a href="#cb84-233"></a></span>
-<span id="cb84-234"><a href="#cb84-234"></a>The test subset is a set of values which are not used to fit the model, and is therefore unseen by the model. This allows us to pretend we have a new set of values, but then we have the advantage of the actual observed y variable sitting within the dataset too, so we are able to test how similar the predictions are to our real observations. </span>
-<span id="cb84-235"><a href="#cb84-235"></a></span>
-<span id="cb84-236"><a href="#cb84-236"></a>*(i)* Use the <span class="in">`predict()`</span> function to obtain new estimates of Br_Dens using the training and test subsets. </span>
-<span id="cb84-237"><a href="#cb84-237"></a></span>
-<span id="cb84-240"><a href="#cb84-240"></a><span class="in">```{r}</span></span>
-<span id="cb84-241"><a href="#cb84-241"></a>dippers_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_train)</span>
-<span id="cb84-242"><a href="#cb84-242"></a></span>
-<span id="cb84-243"><a href="#cb84-243"></a>dippers_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_test)</span>
-<span id="cb84-244"><a href="#cb84-244"></a><span class="in">```</span></span>
-<span id="cb84-245"><a href="#cb84-245"></a></span>
-<span id="cb84-246"><a href="#cb84-246"></a></span>
-<span id="cb84-247"><a href="#cb84-247"></a>*(ii)* Have a look at the subsets. You should see a new column has been created, named <span class="in">`pred`</span> in both datasets.</span>
-<span id="cb84-248"><a href="#cb84-248"></a></span>
-<span id="cb84-251"><a href="#cb84-251"></a><span class="in">```{r}</span></span>
-<span id="cb84-252"><a href="#cb84-252"></a><span class="fu">head</span>(dippers_train)</span>
-<span id="cb84-253"><a href="#cb84-253"></a><span class="fu">head</span>(dippers_test)</span>
-<span id="cb84-254"><a href="#cb84-254"></a><span class="in">```</span></span>
-<span id="cb84-255"><a href="#cb84-255"></a></span>
-<span id="cb84-256"><a href="#cb84-256"></a>In each of the subsets, the <span class="in">`Br_Dens`</span> column will serve as the 'observed' values, and the <span class="in">`pred`</span> column will serve as the 'predicted' values. You will use these to assess prediction quality in the next steps. </span>
-<span id="cb84-257"><a href="#cb84-257"></a></span>
-<span id="cb84-258"><a href="#cb84-258"></a>::: callout-note</span>
-<span id="cb84-259"><a href="#cb84-259"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb84-260"><a href="#cb84-260"></a></span>
-<span id="cb84-261"><a href="#cb84-261"></a>You should now be able to fit your model to the training data and make predictions using training and test subsets.  </span>
-<span id="cb84-262"><a href="#cb84-262"></a></span>
-<span id="cb84-263"><a href="#cb84-263"></a>:::</span>
-<span id="cb84-264"><a href="#cb84-264"></a></span>
-<span id="cb84-265"><a href="#cb84-265"></a><span class="fu">## Prediction quality: Observed vs Predicted plots</span></span>
-<span id="cb84-266"><a href="#cb84-266"></a></span>
-<span id="cb84-267"><a href="#cb84-267"></a>Once we have obtained our predictions, it is important to obtain a visual understanding of how our predicted and observed values compare. We can do this using a scatterplot of observed vs predicted values with a 1:1 line overlaid. </span>
-<span id="cb84-268"><a href="#cb84-268"></a></span>
-<span id="cb84-269"><a href="#cb84-269"></a>*(i)* Create a scatterplot of observed vs predicted values for the training and test subsets, with a 1:1 line overlaid.</span>
-<span id="cb84-270"><a href="#cb84-270"></a></span>
-<span id="cb84-273"><a href="#cb84-273"></a><span class="in">```{r}</span></span>
-<span id="cb84-274"><a href="#cb84-274"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb84-275"><a href="#cb84-275"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_train, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
-<span id="cb84-276"><a href="#cb84-276"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb84-277"><a href="#cb84-277"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb84-278"><a href="#cb84-278"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, </span>
-<span id="cb84-279"><a href="#cb84-279"></a>       <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>,</span>
-<span id="cb84-280"><a href="#cb84-280"></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
-<span id="cb84-281"><a href="#cb84-281"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb84-282"><a href="#cb84-282"></a></span>
-<span id="cb84-283"><a href="#cb84-283"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_test, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
-<span id="cb84-284"><a href="#cb84-284"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb84-285"><a href="#cb84-285"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb84-286"><a href="#cb84-286"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, </span>
-<span id="cb84-287"><a href="#cb84-287"></a>       <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>,</span>
-<span id="cb84-288"><a href="#cb84-288"></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
-<span id="cb84-289"><a href="#cb84-289"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb84-290"><a href="#cb84-290"></a></span>
-<span id="cb84-291"><a href="#cb84-291"></a>p1 <span class="sc">+</span> p2</span>
-<span id="cb84-292"><a href="#cb84-292"></a><span class="in">```</span></span>
-<span id="cb84-293"><a href="#cb84-293"></a></span>
-<span id="cb84-294"><a href="#cb84-294"></a>For the training set, the points are quite close to the 1:1 line, which suggests that the model is doing a good job of predicting the observed values.</span>
-<span id="cb84-295"><a href="#cb84-295"></a></span>
-<span id="cb84-296"><a href="#cb84-296"></a>For the test set, the points are further away from the 1:1 line, which suggests that the model is not doing a good job of predicting the observed values, but it is important to also acknowledge that there are only four points present in the plot, so our understanding of the prediction quality is limited. </span>
-<span id="cb84-297"><a href="#cb84-297"></a></span>
-<span id="cb84-298"><a href="#cb84-298"></a></span>
-<span id="cb84-299"><a href="#cb84-299"></a><span class="fu">## Prediction quality: precision</span></span>
-<span id="cb84-300"><a href="#cb84-300"></a></span>
-<span id="cb84-301"><a href="#cb84-301"></a>When using the predict() function, we can also obtain confidence and prediction intervals for the predictions. This gives us an indication of how precise our predictions and the model are. </span>
-<span id="cb84-302"><a href="#cb84-302"></a></span>
-<span id="cb84-303"><a href="#cb84-303"></a>*(i)* Use the <span class="in">`predict()`</span> function to obtain confidence intervals when predicting with the training set, and prediction intervals when predicting using the test subset.</span>
-<span id="cb84-304"><a href="#cb84-304"></a></span>
-<span id="cb84-307"><a href="#cb84-307"></a><span class="in">```{r}</span></span>
-<span id="cb84-308"><a href="#cb84-308"></a>train_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_train, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb84-309"><a href="#cb84-309"></a></span>
-<span id="cb84-310"><a href="#cb84-310"></a>test_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_test, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
-<span id="cb84-311"><a href="#cb84-311"></a><span class="in">```</span></span>
-<span id="cb84-312"><a href="#cb84-312"></a></span>
-<span id="cb84-313"><a href="#cb84-313"></a>*(ii)* Have a look at the confidence and prediction intervals using the head() function. </span>
-<span id="cb84-314"><a href="#cb84-314"></a></span>
-<span id="cb84-317"><a href="#cb84-317"></a><span class="in">```{r}</span></span>
-<span id="cb84-318"><a href="#cb84-318"></a><span class="fu">head</span>(train_ci)</span>
-<span id="cb84-319"><a href="#cb84-319"></a><span class="fu">head</span>(test_pi)</span>
-<span id="cb84-320"><a href="#cb84-320"></a><span class="in">```</span></span>
-<span id="cb84-321"><a href="#cb84-321"></a></span>
-<span id="cb84-322"><a href="#cb84-322"></a>For both train_ci and test_pi, there are three columns. The first contains the estimate (our predicted value), the second contains the lower bound of the relevant interval, and the third contains the upper bound of the relevant interval. These are much easier to interpret when shown in a plot.</span>
-<span id="cb84-323"><a href="#cb84-323"></a></span>
-<span id="cb84-324"><a href="#cb84-324"></a>*(iii)* Create a plot of observed vs predicted values for the training and test subsets, with the confidence and prediction intervals overlaid. What do these plots tell us?</span>
-<span id="cb84-325"><a href="#cb84-325"></a></span>
-<span id="cb84-328"><a href="#cb84-328"></a><span class="in">```{r}</span></span>
-<span id="cb84-329"><a href="#cb84-329"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb84-330"><a href="#cb84-330"></a></span>
-<span id="cb84-331"><a href="#cb84-331"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_train, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
-<span id="cb84-332"><a href="#cb84-332"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb84-333"><a href="#cb84-333"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb84-334"><a href="#cb84-334"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb84-335"><a href="#cb84-335"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>) <span class="sc">+</span> <span class="co"># 1:1 line</span></span>
-<span id="cb84-336"><a href="#cb84-336"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>) <span class="sc">+</span></span>
-<span id="cb84-337"><a href="#cb84-337"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb84-338"><a href="#cb84-338"></a></span>
-<span id="cb84-339"><a href="#cb84-339"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_test, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
-<span id="cb84-340"><a href="#cb84-340"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb84-341"><a href="#cb84-341"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb84-342"><a href="#cb84-342"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
-<span id="cb84-343"><a href="#cb84-343"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>)  <span class="sc">+</span> <span class="co"># 1:1 line +</span></span>
-<span id="cb84-344"><a href="#cb84-344"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>) <span class="sc">+</span></span>
-<span id="cb84-345"><a href="#cb84-345"></a>  <span class="fu">theme_classic</span>()  </span>
-<span id="cb84-346"><a href="#cb84-346"></a></span>
-<span id="cb84-347"><a href="#cb84-347"></a>p1 <span class="sc">+</span> p2</span>
-<span id="cb84-348"><a href="#cb84-348"></a><span class="in">```</span></span>
-<span id="cb84-349"><a href="#cb84-349"></a></span>
-<span id="cb84-350"><a href="#cb84-350"></a>The confidence intervals give us an indication of how precise our estimate of the mean response is for a given set of predictor values, while the prediction intervals give us an indication of how precise our predictions are for individual observations.</span>
-<span id="cb84-351"><a href="#cb84-351"></a></span>
-<span id="cb84-352"><a href="#cb84-352"></a>You should see that the confidence intervals are narrower than the prediction intervals, which is what we would expect.</span>
-<span id="cb84-353"><a href="#cb84-353"></a></span>
-<span id="cb84-354"><a href="#cb84-354"></a>The straighter the lines, the better and if the lines fan out, it may be an indication that the model is not performing well for certain ranges of the predictor variables. </span>
-<span id="cb84-355"><a href="#cb84-355"></a></span>
-<span id="cb84-356"><a href="#cb84-356"></a>Overall, we can say that the model is doing a reasonable job of predicting the observed values in the training set, but it is not doing a so well at predicting the observed values in the test set.</span>
-<span id="cb84-357"><a href="#cb84-357"></a></span>
-<span id="cb84-358"><a href="#cb84-358"></a></span>
-<span id="cb84-359"><a href="#cb84-359"></a><span class="fu">## Prediction quality: accuracy</span></span>
-<span id="cb84-360"><a href="#cb84-360"></a></span>
-<span id="cb84-361"><a href="#cb84-361"></a>We can compare the predicted and observed values for training and test subsets using appropriate metrics to get an indication of the accuracy of the predictions.</span>
-<span id="cb84-362"><a href="#cb84-362"></a></span>
-<span id="cb84-363"><a href="#cb84-363"></a>Before we start, we know that the predictions for the training set will generally look better than those for the test set, because the model has been fitted to the training data, so it is not surprising that the predictions are more accurate for this subset.</span>
-<span id="cb84-364"><a href="#cb84-364"></a></span>
-<span id="cb84-365"><a href="#cb84-365"></a>But if the metrics and plots for the training set look substantially better than those for the test set, we could say the model has been overfitted to the training set observations and therefore does not predict new values well. </span>
-<span id="cb84-366"><a href="#cb84-366"></a></span>
-<span id="cb84-367"><a href="#cb84-367"></a>There are two types of metrics we will cover this week: error and linearity. </span>
-<span id="cb84-368"><a href="#cb84-368"></a></span>
-<span id="cb84-369"><a href="#cb84-369"></a><span class="fu">### Error metrics</span></span>
-<span id="cb84-370"><a href="#cb84-370"></a></span>
-<span id="cb84-371"><a href="#cb84-371"></a>There are a number of error metrics we can use to assess the accuracy of our predictions. These include:</span>
-<span id="cb84-372"><a href="#cb84-372"></a></span>
-<span id="cb84-373"><a href="#cb84-373"></a><span class="ss">- </span>Mean Error (Bias)</span>
-<span id="cb84-374"><a href="#cb84-374"></a><span class="ss">- </span>Mean Absolute Error (MAE)</span>
-<span id="cb84-375"><a href="#cb84-375"></a><span class="ss">- </span>Root Mean Square Error (RMSE) </span>
-<span id="cb84-376"><a href="#cb84-376"></a></span>
-<span id="cb84-377"><a href="#cb84-377"></a>The closer the metrics are to 0, the better the predictions are, but since the metrics are in the same units as the response, we may also need to take the range of values into account. </span>
-<span id="cb84-378"><a href="#cb84-378"></a></span>
-<span id="cb84-379"><a href="#cb84-379"></a>For example, </span>
-<span id="cb84-380"><a href="#cb84-380"></a></span>
-<span id="cb84-381"><a href="#cb84-381"></a><span class="ss">- </span>If we had a dataset with values that ranged from 0 to 100, then an error of 0.5 would be really good. </span>
-<span id="cb84-382"><a href="#cb84-382"></a></span>
-<span id="cb84-383"><a href="#cb84-383"></a><span class="ss">- </span>If we had a dataset with values that ranged from 0 to 1, then an error of 0.5 would be quite bad.</span>
-<span id="cb84-384"><a href="#cb84-384"></a></span>
-<span id="cb84-385"><a href="#cb84-385"></a>In addition to deciding how good the values are for a subset, we also need to compare the values between the training and test subsets so we can assess whether the model is overfitting to the training data.</span>
-<span id="cb84-386"><a href="#cb84-386"></a></span>
-<span id="cb84-387"><a href="#cb84-387"></a></span>
-<span id="cb84-388"><a href="#cb84-388"></a>*(i)* Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0? </span>
-<span id="cb84-389"><a href="#cb84-389"></a></span>
-<span id="cb84-392"><a href="#cb84-392"></a><span class="in">```{r}</span></span>
-<span id="cb84-393"><a href="#cb84-393"></a><span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred) </span>
-<span id="cb84-394"><a href="#cb84-394"></a><span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred) </span>
-<span id="cb84-395"><a href="#cb84-395"></a><span class="in">```</span></span>
-<span id="cb84-396"><a href="#cb84-396"></a></span>
-<span id="cb84-397"><a href="#cb84-397"></a>Mean error is close to zero for both and the values are somewhat different between training and test subsets, suggesting overfitting. </span>
-<span id="cb84-398"><a href="#cb84-398"></a></span>
-<span id="cb84-399"><a href="#cb84-399"></a>*(ii)* Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</span>
-<span id="cb84-400"><a href="#cb84-400"></a></span>
-<span id="cb84-403"><a href="#cb84-403"></a><span class="in">```{r}</span></span>
-<span id="cb84-404"><a href="#cb84-404"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)) </span>
-<span id="cb84-405"><a href="#cb84-405"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)) </span>
-<span id="cb84-406"><a href="#cb84-406"></a><span class="in">```</span></span>
-<span id="cb84-407"><a href="#cb84-407"></a></span>
-<span id="cb84-408"><a href="#cb84-408"></a>The MAE is close to zero for predictions obtained for the test and training sets. This tells us that the prediction error is low overall. Mean Error gives us direction, but MAE can give us a better idea of the magnitude of the error. </span>
-<span id="cb84-409"><a href="#cb84-409"></a></span>
-<span id="cb84-410"><a href="#cb84-410"></a>*(iii)* Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</span>
-<span id="cb84-411"><a href="#cb84-411"></a></span>
-<span id="cb84-412"><a href="#cb84-412"></a>::: {.column-margin}</span>
-<span id="cb84-413"><a href="#cb84-413"></a>HINT: you can use the <span class="in">`RMSE()`</span> function from the <span class="in">`caret`</span> package</span>
-<span id="cb84-414"><a href="#cb84-414"></a>:::</span>
-<span id="cb84-415"><a href="#cb84-415"></a></span>
-<span id="cb84-418"><a href="#cb84-418"></a><span class="in">```{r}</span></span>
-<span id="cb84-419"><a href="#cb84-419"></a><span class="fu">library</span>(caret)</span>
-<span id="cb84-420"><a href="#cb84-420"></a><span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)</span>
-<span id="cb84-421"><a href="#cb84-421"></a><span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)  </span>
-<span id="cb84-422"><a href="#cb84-422"></a><span class="in">```</span></span>
-<span id="cb84-423"><a href="#cb84-423"></a></span>
-<span id="cb84-424"><a href="#cb84-424"></a>If the RMSE is much larger than MAE, then the model is making huge mistakes. In our case, the values aren't too different to the MAE and they are close to zero so it tells us the model is predicting well. We can also see the values are similar between training and test predictions, indicating a stable model. </span>
-<span id="cb84-425"><a href="#cb84-425"></a></span>
-<span id="cb84-426"><a href="#cb84-426"></a><span class="fu">### Linearity</span></span>
-<span id="cb84-427"><a href="#cb84-427"></a></span>
-<span id="cb84-428"><a href="#cb84-428"></a>The linearity metrics help us understand whether the model is predicting consistently (i.e. linear relationship between predicted and observed), and whether the predictions are close to the 1:1 line (i.e. agreement between predicted and observed).</span>
-<span id="cb84-429"><a href="#cb84-429"></a></span>
-<span id="cb84-430"><a href="#cb84-430"></a>*(i)* Calculate the r^2^ value. What does this metric tell us about our model? Is the r^2^ good for our predictions?</span>
-<span id="cb84-431"><a href="#cb84-431"></a></span>
-<span id="cb84-432"><a href="#cb84-432"></a>::: {.column-margin}</span>
-<span id="cb84-433"><a href="#cb84-433"></a>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <span class="in">`R2()`</span> function from the <span class="in">`caret`</span> package.</span>
-<span id="cb84-434"><a href="#cb84-434"></a>:::</span>
-<span id="cb84-435"><a href="#cb84-435"></a></span>
-<span id="cb84-436"><a href="#cb84-436"></a>Option 1: squaring the correlation coefficient: </span>
-<span id="cb84-437"><a href="#cb84-437"></a></span>
-<span id="cb84-440"><a href="#cb84-440"></a><span class="in">```{r}</span></span>
-<span id="cb84-441"><a href="#cb84-441"></a>(<span class="fu">cor</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span>
-<span id="cb84-442"><a href="#cb84-442"></a>(<span class="fu">cor</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span>
-<span id="cb84-443"><a href="#cb84-443"></a><span class="in">```</span></span>
-<span id="cb84-444"><a href="#cb84-444"></a></span>
-<span id="cb84-445"><a href="#cb84-445"></a>Option 2: <span class="in">`R2()`</span> function from the <span class="in">`caret`</span> package.</span>
-<span id="cb84-446"><a href="#cb84-446"></a></span>
-<span id="cb84-449"><a href="#cb84-449"></a><span class="in">```{r}</span></span>
-<span id="cb84-450"><a href="#cb84-450"></a><span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred) </span>
-<span id="cb84-451"><a href="#cb84-451"></a><span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred) </span>
-<span id="cb84-452"><a href="#cb84-452"></a><span class="in">```</span></span>
-<span id="cb84-453"><a href="#cb84-453"></a></span>
-<span id="cb84-454"><a href="#cb84-454"></a>The r^2^ tells us about the strength of the relationship between observed and predicted values. The closer to 1, the better. </span>
-<span id="cb84-455"><a href="#cb84-455"></a></span>
-<span id="cb84-456"><a href="#cb84-456"></a>In this case, we see that the r^2^ for the training set is 0.81, which is high and indicates the model is making consistent predictions. The r^2^ for the test set is 0.25 which indicates a weak relationship between observed and predicted values, suggesting the model is not predicting new values well at all. </span>
-<span id="cb84-457"><a href="#cb84-457"></a></span>
-<span id="cb84-458"><a href="#cb84-458"></a>This inconsistency between predicted and observed is suggesting that the training model has indeed been overfitted and this is why we are seeing such poor predictions. </span>
-<span id="cb84-459"><a href="#cb84-459"></a></span>
-<span id="cb84-460"><a href="#cb84-460"></a>*(ii)* Calculate Lin's Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</span>
-<span id="cb84-461"><a href="#cb84-461"></a></span>
-<span id="cb84-462"><a href="#cb84-462"></a>::: {.column-margin}</span>
-<span id="cb84-463"><a href="#cb84-463"></a>HINT: you can calculate the LCCC via the <span class="in">`epiR`</span> package</span>
-<span id="cb84-464"><a href="#cb84-464"></a>:::</span>
-<span id="cb84-465"><a href="#cb84-465"></a></span>
-<span id="cb84-468"><a href="#cb84-468"></a><span class="in">```{r}</span></span>
-<span id="cb84-469"><a href="#cb84-469"></a><span class="fu">library</span>(epiR)</span>
-<span id="cb84-470"><a href="#cb84-470"></a><span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span>
-<span id="cb84-471"><a href="#cb84-471"></a><span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span>
-<span id="cb84-472"><a href="#cb84-472"></a><span class="in">```</span></span>
-<span id="cb84-473"><a href="#cb84-473"></a></span>
-<span id="cb84-474"><a href="#cb84-474"></a>LCCC tells us about the strength of agreement between predicted and observed, or how well the points fit the 1:1 line in our plot. This is a bit different between our r^2^ which instead tells us about the strength of the linear relationship between predicted and observed, and it may not always follow the 1:1 line. </span>
-<span id="cb84-475"><a href="#cb84-475"></a></span>
-<span id="cb84-476"><a href="#cb84-476"></a>The LCCC for the predictions obtained using the training set is 0.89, which indicates a strong amount of agreement between observed and predicted values. In contrast, the LCCC for the predictions obtained using the test set is 0.41, suggesting poor agreement between predicted and observed values. </span>
-<span id="cb84-477"><a href="#cb84-477"></a></span>
-<span id="cb84-478"><a href="#cb84-478"></a>This disparity is supporting what we have said so far that the model is overfitted to the training data and is not predicting new values well. </span>
-<span id="cb84-479"><a href="#cb84-479"></a></span>
-<span id="cb84-480"><a href="#cb84-480"></a></span>
-<span id="cb84-481"><a href="#cb84-481"></a><span class="fu">### Place everything into a nice summary table for presentation</span></span>
-<span id="cb84-482"><a href="#cb84-482"></a></span>
-<span id="cb84-483"><a href="#cb84-483"></a>When writing reports and papers, it is best to present your results as a neat table and refer back to it within the text. This is much easier for readers to understand than having to read through a list of numbers in the text.</span>
-<span id="cb84-484"><a href="#cb84-484"></a></span>
-<span id="cb84-485"><a href="#cb84-485"></a>*(i)* Create a table summarising the prediction quality metrics for the training and test subsets. Have a go at writing up a few sentences interpreting the results in the table.</span>
-<span id="cb84-486"><a href="#cb84-486"></a></span>
-<span id="cb84-489"><a href="#cb84-489"></a><span class="in">```{r}</span></span>
-<span id="cb84-490"><a href="#cb84-490"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb84-491"><a href="#cb84-491"></a><span class="co">#| table-caption: "Table 1. Summary of prediction quality metrics for training and test subsets."</span></span>
-<span id="cb84-492"><a href="#cb84-492"></a><span class="co"># put all data into a tible and kable it</span></span>
-<span id="cb84-493"><a href="#cb84-493"></a><span class="fu">tibble</span>(</span>
-<span id="cb84-494"><a href="#cb84-494"></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
-<span id="cb84-495"><a href="#cb84-495"></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
-<span id="cb84-496"><a href="#cb84-496"></a>        <span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb84-497"><a href="#cb84-497"></a>        <span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb84-498"><a href="#cb84-498"></a>    ),</span>
-<span id="cb84-499"><a href="#cb84-499"></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
-<span id="cb84-500"><a href="#cb84-500"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)),</span>
-<span id="cb84-501"><a href="#cb84-501"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred))</span>
-<span id="cb84-502"><a href="#cb84-502"></a>    ),</span>
-<span id="cb84-503"><a href="#cb84-503"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
-<span id="cb84-504"><a href="#cb84-504"></a>        <span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb84-505"><a href="#cb84-505"></a>        <span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb84-506"><a href="#cb84-506"></a>    ),</span>
-<span id="cb84-507"><a href="#cb84-507"></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
-<span id="cb84-508"><a href="#cb84-508"></a>        <span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
-<span id="cb84-509"><a href="#cb84-509"></a>        <span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
-<span id="cb84-510"><a href="#cb84-510"></a>    ),</span>
-<span id="cb84-511"><a href="#cb84-511"></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
-<span id="cb84-512"><a href="#cb84-512"></a>        <span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
-<span id="cb84-513"><a href="#cb84-513"></a>        <span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
-<span id="cb84-514"><a href="#cb84-514"></a>    )</span>
-<span id="cb84-515"><a href="#cb84-515"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb84-516"><a href="#cb84-516"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb84-517"><a href="#cb84-517"></a><span class="in">```</span></span>
-<span id="cb84-518"><a href="#cb84-518"></a></span>
-<span id="cb84-519"><a href="#cb84-519"></a>Drawing upon this table, we might say: </span>
-<span id="cb84-520"><a href="#cb84-520"></a></span>
-<span id="cb84-521"><a href="#cb84-521"></a>"The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r^2^ (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set. The r^2^ dropped from 0.81 to 0.25 and the LCCC dropped from 0.89 to 0.41 — large drops that point to overfitting. The error metrics (mean error 0.23, MAE 0.30, RMSE 0.22) look superficially fine, but with only four test observations the absolute errors are not a reliable comparison to the 18 training observations."</span>
-<span id="cb84-522"><a href="#cb84-522"></a></span>
-<span id="cb84-523"><a href="#cb84-523"></a>::: callout-note</span>
-<span id="cb84-524"><a href="#cb84-524"></a><span class="fu">## Checkpoint</span></span>
-<span id="cb84-525"><a href="#cb84-525"></a></span>
-<span id="cb84-526"><a href="#cb84-526"></a>You should now be able to assess the prediction quality of a model using metrics and plots. </span>
-<span id="cb84-527"><a href="#cb84-527"></a></span>
-<span id="cb84-528"><a href="#cb84-528"></a>:::</span>
-<span id="cb84-529"><a href="#cb84-529"></a></span>
-<span id="cb84-530"><a href="#cb84-530"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
-<span id="cb84-531"><a href="#cb84-531"></a></span>
-<span id="cb84-532"><a href="#cb84-532"></a>In this tutorial, we used the dippers dataset to get some practice data splitting, prediction and assessing the quality of the predictions. </span>
-<span id="cb84-533"><a href="#cb84-533"></a></span>
-<span id="cb84-534"><a href="#cb84-534"></a>This will hopefully set you up for the lab exercises, where you will use similar code to answer the questions. </span>
-<span id="cb84-535"><a href="#cb84-535"></a></span>
-<span id="cb84-536"><a href="#cb84-536"></a>Great work everyone!</span>
-<span id="cb84-537"><a href="#cb84-537"></a></span>
-<span id="cb84-538"><a href="#cb84-538"></a></span>
-<span id="cb84-539"><a href="#cb84-539"></a><span class="fu">### Example exam questions</span></span>
-<span id="cb84-540"><a href="#cb84-540"></a></span>
-<span id="cb84-541"><a href="#cb84-541"></a><span class="ss">1. </span>State two reasons why we might we choose to split our dataset instead of obtaining new observations to serve as a validation subset?</span>
-<span id="cb84-542"><a href="#cb84-542"></a></span>
-<span id="cb84-543"><a href="#cb84-543"></a><span class="ss">2. </span>Why do we look at more than one metric when interpreting prediction quality?</span>
-<span id="cb84-544"><a href="#cb84-544"></a></span>
-<span id="cb84-545"><a href="#cb84-545"></a><span class="ss">3. </span>When looking at an observed vs predicted plot, what can we conclude about our model if all of our points follow the 1:1 line?</span>
-<span id="cb84-546"><a href="#cb84-546"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb86-1"><a href="#cb86-1"></a><span class="co">---</span></span>
+<span id="cb86-2"><a href="#cb86-2"></a><span class="an">title:</span><span class="co"> "Tutorial 09"</span></span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="co"># reviewed-by: LP 2026</span></span>
+<span id="cb86-4"><a href="#cb86-4"></a><span class="an">format:</span></span>
+<span id="cb86-5"><a href="#cb86-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb86-6"><a href="#cb86-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb86-7"><a href="#cb86-7"></a><span class="an">resources:</span></span>
+<span id="cb86-8"><a href="#cb86-8"></a><span class="co">  - data/Dippers.csv</span></span>
+<span id="cb86-9"><a href="#cb86-9"></a><span class="co">---</span></span>
+<span id="cb86-10"><a href="#cb86-10"></a></span>
+<span id="cb86-11"><a href="#cb86-11"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb86-12"><a href="#cb86-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb86-13"><a href="#cb86-13"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb86-14"><a href="#cb86-14"></a><span class="in">```</span></span>
+<span id="cb86-15"><a href="#cb86-15"></a></span>
+<span id="cb86-16"><a href="#cb86-16"></a><span class="fu">## Welcome to week 9! {.unnumbered}</span></span>
+<span id="cb86-17"><a href="#cb86-17"></a></span>
+<span id="cb86-18"><a href="#cb86-18"></a>This week's lecture introduced you to how we use models for prediction and how we assess the quality of the predictions.We will follow similar steps in today's tutorial and lab class. </span>
+<span id="cb86-19"><a href="#cb86-19"></a></span>
+<span id="cb86-20"><a href="#cb86-20"></a></span>
+<span id="cb86-21"><a href="#cb86-21"></a>In this tutorial we will cover the key steps to fit a model, use it to make predictions, and then check assumptions, and select the most appropriate model.</span>
+<span id="cb86-22"><a href="#cb86-22"></a></span>
+<span id="cb86-23"><a href="#cb86-23"></a>**You will learn how to:**</span>
+<span id="cb86-24"><a href="#cb86-24"></a></span>
+<span id="cb86-25"><a href="#cb86-25"></a><span class="ss">1.  </span>Split data into training and test subsets</span>
+<span id="cb86-26"><a href="#cb86-26"></a><span class="ss">2.  </span>Fit your model to the training data and check assumptions are met</span>
+<span id="cb86-27"><a href="#cb86-27"></a><span class="ss">3.  </span>Use the trained model to make predictions using the training and the test subsets</span>
+<span id="cb86-28"><a href="#cb86-28"></a><span class="ss">4.  </span>Observe the quality of the predictions using appropriate statistics and plots</span>
+<span id="cb86-29"><a href="#cb86-29"></a></span>
+<span id="cb86-30"><a href="#cb86-30"></a></span>
+<span id="cb86-31"><a href="#cb86-31"></a><span class="fu">## Packages</span></span>
+<span id="cb86-32"><a href="#cb86-32"></a></span>
+<span id="cb86-33"><a href="#cb86-33"></a>This tutorial uses <span class="in">`tidyverse`</span>, <span class="in">`readxl`</span>, <span class="in">`moments`</span>, <span class="in">`psych`</span>, <span class="in">`performance`</span>, <span class="in">`car`</span>, <span class="in">`caret`</span> and <span class="in">`epiR`</span>. Install any you are missing by running the following **in the console**:</span>
+<span id="cb86-34"><a href="#cb86-34"></a></span>
+<span id="cb86-37"><a href="#cb86-37"></a><span class="in">```{r}</span></span>
+<span id="cb86-38"><a href="#cb86-38"></a><span class="co">#| eval: false</span></span>
+<span id="cb86-39"><a href="#cb86-39"></a></span>
+<span id="cb86-40"><a href="#cb86-40"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"moments"</span>, <span class="st">"psych"</span>, <span class="st">"performance"</span>, <span class="st">"car"</span>, <span class="st">"caret"</span>, <span class="st">"epiR"</span>))</span>
+<span id="cb86-41"><a href="#cb86-41"></a><span class="in">```</span></span>
+<span id="cb86-42"><a href="#cb86-42"></a></span>
+<span id="cb86-43"><a href="#cb86-43"></a>If a package is already installed, R will simply reinstall it — no harm done.</span>
+<span id="cb86-44"><a href="#cb86-44"></a></span>
+<span id="cb86-45"><a href="#cb86-45"></a><span class="fu">### Downloads</span></span>
+<span id="cb86-46"><a href="#cb86-46"></a></span>
+<span id="cb86-47"><a href="#cb86-47"></a><span class="pp">|</span> File <span class="pp">|</span> Used in <span class="pp">|</span> Download <span class="pp">|</span></span>
+<span id="cb86-48"><a href="#cb86-48"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb86-49"><a href="#cb86-49"></a><span class="pp">|</span> <span class="in">`Dippers.csv`</span> <span class="pp">|</span> all exercises <span class="pp">|</span> <span class="co">[</span><span class="ot">Download</span><span class="co">](data/Dippers.csv)</span> <span class="pp">|</span></span>
+<span id="cb86-50"><a href="#cb86-50"></a></span>
+<span id="cb86-51"><a href="#cb86-51"></a>Save the file into a folder called <span class="in">`data`</span> inside your project folder.</span>
+<span id="cb86-52"><a href="#cb86-52"></a></span>
+<span id="cb86-53"><a href="#cb86-53"></a></span>
+<span id="cb86-54"><a href="#cb86-54"></a><span class="fu">## The data</span></span>
+<span id="cb86-55"><a href="#cb86-55"></a></span>
+<span id="cb86-56"><a href="#cb86-56"></a><span class="al">![Cute little Dipper (bird) standing on a rock by the water. Image source: markmedcalf via Adobe Stock.](images/AdobeStock_93907188.jpeg)</span></span>
+<span id="cb86-57"><a href="#cb86-57"></a></span>
+<span id="cb86-58"><a href="#cb86-58"></a><span class="co">[</span><span class="ot">Dippers</span><span class="co">](https://en.wikipedia.org/wiki/Dipper)</span> are thrush-sized birds living mainly in the upper reaches of rivers, which feed on benthic invertebrates by probing the river beds with their beaks. The dataset in this exercise contains data from a biological survey which examined the nature of the variables thought to influence the breeding of British dippers. </span>
+<span id="cb86-59"><a href="#cb86-59"></a></span>
+<span id="cb86-60"><a href="#cb86-60"></a>Twenty-two sites were included in the survey. Some of the variables have been transformed. </span>
+<span id="cb86-61"><a href="#cb86-61"></a></span>
+<span id="cb86-62"><a href="#cb86-62"></a>Data can be found in: **Dippers.csv**</span>
+<span id="cb86-63"><a href="#cb86-63"></a></span>
+<span id="cb86-64"><a href="#cb86-64"></a>The variables measured were:  </span>
+<span id="cb86-65"><a href="#cb86-65"></a></span>
+<span id="cb86-66"><a href="#cb86-66"></a><span class="ss">- </span><span class="in">`Altitude`</span> site altitude</span>
+<span id="cb86-67"><a href="#cb86-67"></a><span class="ss">- </span><span class="in">`Hardness`</span> water hardness</span>
+<span id="cb86-68"><a href="#cb86-68"></a><span class="ss">- </span><span class="in">`RiverSlope`</span> river-bed slope</span>
+<span id="cb86-69"><a href="#cb86-69"></a><span class="ss">- </span><span class="in">`LogCadd`</span> the numbers of caddis fly larvae, transformed</span>
+<span id="cb86-70"><a href="#cb86-70"></a><span class="ss">- </span><span class="in">`LogStone`</span> the numbers of stonefly larvae, transformed</span>
+<span id="cb86-71"><a href="#cb86-71"></a><span class="ss">- </span><span class="in">`LogMay`</span> the numbers of mayfly larvae, transformed</span>
+<span id="cb86-72"><a href="#cb86-72"></a><span class="ss">- </span><span class="in">`LogOther`</span> the numbers of all other invertebrates collected, transformed</span>
+<span id="cb86-73"><a href="#cb86-73"></a><span class="ss">- </span><span class="in">`Br_Dens`</span> the number of breeding pairs of dippers per 10 km of river  </span>
+<span id="cb86-74"><a href="#cb86-74"></a></span>
+<span id="cb86-75"><a href="#cb86-75"></a>In the analyses, the four invertebrate variables were transformed using a $log(x+1)$ transformation.</span>
+<span id="cb86-76"><a href="#cb86-76"></a></span>
+<span id="cb86-77"><a href="#cb86-77"></a><span class="in">`Br_Dens`</span> will be the response variable in our models. </span>
+<span id="cb86-78"><a href="#cb86-78"></a></span>
+<span id="cb86-79"><a href="#cb86-79"></a>Last week following use of the step() function, we found the most parsimonious model to be:</span>
+<span id="cb86-80"><a href="#cb86-80"></a></span>
+<span id="cb86-81"><a href="#cb86-81"></a>**Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther**</span>
+<span id="cb86-82"><a href="#cb86-82"></a></span>
+<span id="cb86-83"><a href="#cb86-83"></a>Model assumptions were met and the model explained 76% of variation in dipper breeding pair density, which was quite good. </span>
+<span id="cb86-84"><a href="#cb86-84"></a></span>
+<span id="cb86-85"><a href="#cb86-85"></a>We will use this model in our walkthrough today. </span>
+<span id="cb86-86"><a href="#cb86-86"></a></span>
+<span id="cb86-87"><a href="#cb86-87"></a><span class="fu"># Analysis walkthrough</span></span>
+<span id="cb86-88"><a href="#cb86-88"></a></span>
+<span id="cb86-89"><a href="#cb86-89"></a><span class="fu">## Data splitting</span></span>
+<span id="cb86-90"><a href="#cb86-90"></a></span>
+<span id="cb86-91"><a href="#cb86-91"></a>Making predictions involves substituting in new values of x into our model equation to get new values of y.</span>
+<span id="cb86-92"><a href="#cb86-92"></a></span>
+<span id="cb86-93"><a href="#cb86-93"></a>We could use single values for each of our predictor variables and substitute them into the equation, but this is unrealistic and time consuming when we have a large number of observations. We therefore use a dataset containing our new observations of x to make the predictions and feed this into our model. </span>
+<span id="cb86-94"><a href="#cb86-94"></a></span>
+<span id="cb86-95"><a href="#cb86-95"></a>To understand the ability our model to predict new values of y from values of x previously unseen by the model, we need to test this on data that has not been used to fit the model. </span>
+<span id="cb86-96"><a href="#cb86-96"></a></span>
+<span id="cb86-97"><a href="#cb86-97"></a>It is common practice to split the data we have into two parts: a training (or calibration) subset and a test (or validation) subset.  For each subset, we feed the predictor values into the model to get predictions of the y variable. We can then compare the predicted y with the observed y contained within each subset to get an indication of how well our model is performing.</span>
+<span id="cb86-98"><a href="#cb86-98"></a></span>
+<span id="cb86-99"><a href="#cb86-99"></a>*(i)* Read in the dippers dataset and check the data. How many observations are there?</span>
+<span id="cb86-100"><a href="#cb86-100"></a></span>
+<span id="cb86-103"><a href="#cb86-103"></a><span class="in">```{r}</span></span>
+<span id="cb86-104"><a href="#cb86-104"></a><span class="co"># read in the data</span></span>
+<span id="cb86-105"><a href="#cb86-105"></a>dippers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Dippers.csv"</span>)</span>
+<span id="cb86-106"><a href="#cb86-106"></a></span>
+<span id="cb86-107"><a href="#cb86-107"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb86-108"><a href="#cb86-108"></a><span class="fu">glimpse</span>(dippers) <span class="co"># check the data</span></span>
+<span id="cb86-109"><a href="#cb86-109"></a><span class="in">```</span></span>
+<span id="cb86-110"><a href="#cb86-110"></a></span>
+<span id="cb86-111"><a href="#cb86-111"></a>We can see there are 22 observations with 8 variables; all numeric as expected. The number of observations will help inform how we set up our training and test subsets. </span>
+<span id="cb86-112"><a href="#cb86-112"></a></span>
+<span id="cb86-113"><a href="#cb86-113"></a>There are different ways of splitting data, but what you choose generally depends on your dataset and the question you are trying to answer.</span>
+<span id="cb86-114"><a href="#cb86-114"></a></span>
+<span id="cb86-115"><a href="#cb86-115"></a>For example, we might split our dataset based on: </span>
+<span id="cb86-116"><a href="#cb86-116"></a></span>
+<span id="cb86-117"><a href="#cb86-117"></a><span class="ss">- </span>a random selection of observations (random sampling)</span>
+<span id="cb86-118"><a href="#cb86-118"></a><span class="ss">- </span>certain factors or groups within the dataset (stratified sampling)</span>
+<span id="cb86-119"><a href="#cb86-119"></a><span class="ss">- </span>spatial location</span>
+<span id="cb86-120"><a href="#cb86-120"></a><span class="ss">- </span>time </span>
+<span id="cb86-121"><a href="#cb86-121"></a></span>
+<span id="cb86-122"><a href="#cb86-122"></a>For the tutorial and lab sessions, we will be making a random split of the data, which is the most common method. </span>
+<span id="cb86-123"><a href="#cb86-123"></a></span>
+<span id="cb86-124"><a href="#cb86-124"></a>Because the sample size is very small, we will use 80% of the data for training and 20% for testing. The more observations we have to train the model, the better. </span>
+<span id="cb86-125"><a href="#cb86-125"></a></span>
+<span id="cb86-126"><a href="#cb86-126"></a>You are more than welcome to explore how model quality measures change based on changing ratio of training:test splits You can do this by changing the values in the chunk below.  For now though, we will stick to the 80/20 split.</span>
+<span id="cb86-127"><a href="#cb86-127"></a></span>
+<span id="cb86-128"><a href="#cb86-128"></a>*(ii)* Take a random sample from the larger dataset containing 20% of observations. This will be the test set. The remaining 80% will be the training set.</span>
+<span id="cb86-129"><a href="#cb86-129"></a></span>
+<span id="cb86-132"><a href="#cb86-132"></a><span class="in">```{r}</span></span>
+<span id="cb86-133"><a href="#cb86-133"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb86-134"><a href="#cb86-134"></a></span>
+<span id="cb86-135"><a href="#cb86-135"></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dippers), <span class="at">size =</span> <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">nrow</span>(dippers)) <span class="co"># randomly sample 20% of rows in the dataset</span></span>
+<span id="cb86-136"><a href="#cb86-136"></a></span>
+<span id="cb86-137"><a href="#cb86-137"></a>dippers_train <span class="ot">&lt;-</span> dippers[<span class="sc">-</span>indexes, ] <span class="co"># remove the 20% - training dataset</span></span>
+<span id="cb86-138"><a href="#cb86-138"></a>dippers_test <span class="ot">&lt;-</span> dippers[indexes, ] <span class="co"># select the 20% - test dataset</span></span>
+<span id="cb86-139"><a href="#cb86-139"></a><span class="in">```</span></span>
+<span id="cb86-140"><a href="#cb86-140"></a></span>
+<span id="cb86-141"><a href="#cb86-141"></a>In the code above, we first set a seed to ensure that we can reproduce the same random sample if we were to rerun the code chunk. </span>
+<span id="cb86-142"><a href="#cb86-142"></a>Then we use the <span class="in">`sample()`</span> function to randomly select 20% of the row indices from the dataset. </span>
+<span id="cb86-143"><a href="#cb86-143"></a></span>
+<span id="cb86-144"><a href="#cb86-144"></a>We create the training dataset by removing these selected indices from the original dataset (<span class="in">`[-indexes, ]`</span> says "exclude these indices, keep everything else"), and we create the test dataset by selecting only those indices.</span>
+<span id="cb86-145"><a href="#cb86-145"></a></span>
+<span id="cb86-146"><a href="#cb86-146"></a>*(iii)* Check the sample size and distribution of each subset. Does the sample size of each subset reflect the 80/20 split?  Are the distributions (mean, median, min, max) similar between the two subsets?</span>
+<span id="cb86-147"><a href="#cb86-147"></a></span>
+<span id="cb86-148"><a href="#cb86-148"></a>Once we have split the data, we need to check the subsets. First ensure the structure and number of observations in each subset is correct, and then check the distribution of the variables (max, mean, median, min) in each subset to ensure they are similar.</span>
+<span id="cb86-149"><a href="#cb86-149"></a></span>
+<span id="cb86-152"><a href="#cb86-152"></a><span class="in">```{r}</span></span>
+<span id="cb86-153"><a href="#cb86-153"></a><span class="fu">str</span>(dippers_train)</span>
+<span id="cb86-154"><a href="#cb86-154"></a><span class="fu">str</span>(dippers_test)</span>
+<span id="cb86-155"><a href="#cb86-155"></a></span>
+<span id="cb86-156"><a href="#cb86-156"></a><span class="fu">summary</span>(dippers_train)</span>
+<span id="cb86-157"><a href="#cb86-157"></a><span class="fu">summary</span>(dippers_test)</span>
+<span id="cb86-158"><a href="#cb86-158"></a><span class="in">```</span></span>
+<span id="cb86-159"><a href="#cb86-159"></a></span>
+<span id="cb86-160"><a href="#cb86-160"></a>We can see that the training dataset contains 18 observations and the test dataset contains 4 observations, which is very small, so we don't expect to get very reliable information from the prediction quality statistics, but it still worth continuing to understand the process and see how we go. </span>
+<span id="cb86-161"><a href="#cb86-161"></a></span>
+<span id="cb86-162"><a href="#cb86-162"></a>Because of the limited sample size, we can see that the max and min values vary, but the distributions aren't too different (e.g. we don't have our response in one subset following a log distribution and the other following a normal distribution.) </span>
+<span id="cb86-163"><a href="#cb86-163"></a></span>
+<span id="cb86-164"><a href="#cb86-164"></a>From here we can proceed to model fitting. </span>
+<span id="cb86-165"><a href="#cb86-165"></a></span>
+<span id="cb86-166"><a href="#cb86-166"></a>::: callout-note</span>
+<span id="cb86-167"><a href="#cb86-167"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb86-168"><a href="#cb86-168"></a></span>
+<span id="cb86-169"><a href="#cb86-169"></a>You should now be able to split observations into training and test subsets. </span>
+<span id="cb86-170"><a href="#cb86-170"></a></span>
+<span id="cb86-171"><a href="#cb86-171"></a>:::</span>
+<span id="cb86-172"><a href="#cb86-172"></a></span>
+<span id="cb86-173"><a href="#cb86-173"></a><span class="fu">## Fit the model to the training data</span></span>
+<span id="cb86-174"><a href="#cb86-174"></a></span>
+<span id="cb86-175"><a href="#cb86-175"></a>We only use the training data to fit the model. For this tutorial we will use the model we optimised last week: </span>
+<span id="cb86-176"><a href="#cb86-176"></a></span>
+<span id="cb86-177"><a href="#cb86-177"></a>**Br_Dens ~ Hardness + RiverSlope + LogCadd + LogStone + LogOther**</span>
+<span id="cb86-178"><a href="#cb86-178"></a></span>
+<span id="cb86-179"><a href="#cb86-179"></a>*(i)* Fit the linear model to the training subset using Br_Dens as the response, and Hardness, RiverSlope, LogCadd, LogStone, and LogOther as the predictor variables. </span>
+<span id="cb86-180"><a href="#cb86-180"></a></span>
+<span id="cb86-183"><a href="#cb86-183"></a><span class="in">```{r}</span></span>
+<span id="cb86-184"><a href="#cb86-184"></a><span class="co"># fit the model to the training data</span></span>
+<span id="cb86-185"><a href="#cb86-185"></a></span>
+<span id="cb86-186"><a href="#cb86-186"></a>train_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Br_Dens <span class="sc">~</span> Hardness <span class="sc">+</span> RiverSlope <span class="sc">+</span> LogCadd <span class="sc">+</span> LogStone <span class="sc">+</span> LogOther, <span class="at">data =</span> dippers_train)</span>
+<span id="cb86-187"><a href="#cb86-187"></a></span>
+<span id="cb86-188"><a href="#cb86-188"></a><span class="in">```</span></span>
+<span id="cb86-189"><a href="#cb86-189"></a></span>
+<span id="cb86-190"><a href="#cb86-190"></a>*(ii)* Check the model assumptions. Could they tell us much despite the small sample size?</span>
+<span id="cb86-191"><a href="#cb86-191"></a></span>
+<span id="cb86-192"><a href="#cb86-192"></a>We can do a quick assumption check to ensure the model is appropriate for the training data, but we won't go through this in detail as we have already done this for the full dataset last week. </span>
+<span id="cb86-193"><a href="#cb86-193"></a></span>
+<span id="cb86-196"><a href="#cb86-196"></a><span class="in">```{r}</span></span>
+<span id="cb86-197"><a href="#cb86-197"></a><span class="fu">library</span>(performance)</span>
+<span id="cb86-198"><a href="#cb86-198"></a><span class="co"># Linearity</span></span>
+<span id="cb86-199"><a href="#cb86-199"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span>
+<span id="cb86-200"><a href="#cb86-200"></a></span>
+<span id="cb86-201"><a href="#cb86-201"></a><span class="co"># Normality</span></span>
+<span id="cb86-202"><a href="#cb86-202"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>, <span class="st">"normality"</span>))</span>
+<span id="cb86-203"><a href="#cb86-203"></a></span>
+<span id="cb86-204"><a href="#cb86-204"></a><span class="co"># Equal variance</span></span>
+<span id="cb86-205"><a href="#cb86-205"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span>
+<span id="cb86-206"><a href="#cb86-206"></a></span>
+<span id="cb86-207"><a href="#cb86-207"></a><span class="co"># Outliers</span></span>
+<span id="cb86-208"><a href="#cb86-208"></a><span class="fu">check_model</span>(train_model, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"pp_check"</span>))</span>
+<span id="cb86-209"><a href="#cb86-209"></a></span>
+<span id="cb86-210"><a href="#cb86-210"></a><span class="co"># VIF - visual</span></span>
+<span id="cb86-211"><a href="#cb86-211"></a><span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_collinearity</span>(train_model))</span>
+<span id="cb86-212"><a href="#cb86-212"></a></span>
+<span id="cb86-213"><a href="#cb86-213"></a><span class="co"># VIF - numbers</span></span>
+<span id="cb86-214"><a href="#cb86-214"></a><span class="co"># comes from the car package</span></span>
+<span id="cb86-215"><a href="#cb86-215"></a>car<span class="sc">::</span><span class="fu">vif</span>(train_model)</span>
+<span id="cb86-216"><a href="#cb86-216"></a></span>
+<span id="cb86-217"><a href="#cb86-217"></a></span>
+<span id="cb86-218"><a href="#cb86-218"></a><span class="do">#### ALTERNATIVE: plot() function to check assumptions </span></span>
+<span id="cb86-219"><a href="#cb86-219"></a></span>
+<span id="cb86-220"><a href="#cb86-220"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb86-221"><a href="#cb86-221"></a></span>
+<span id="cb86-222"><a href="#cb86-222"></a><span class="fu">plot</span>(train_model)</span>
+<span id="cb86-223"><a href="#cb86-223"></a></span>
+<span id="cb86-224"><a href="#cb86-224"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb86-225"><a href="#cb86-225"></a></span>
+<span id="cb86-226"><a href="#cb86-226"></a><span class="in">```</span></span>
+<span id="cb86-227"><a href="#cb86-227"></a></span>
+<span id="cb86-228"><a href="#cb86-228"></a>One could argue that our assumptions have not been met (residuals do not appear to be linear or perfectly normal), but given the small sample size, it is difficult to accurately assess the assumptions. We can say that the assumptions are not grossly violated, but we should be cautious when interpreting the results.</span>
+<span id="cb86-229"><a href="#cb86-229"></a></span>
+<span id="cb86-230"><a href="#cb86-230"></a><span class="fu">## Making predictions</span></span>
+<span id="cb86-231"><a href="#cb86-231"></a></span>
+<span id="cb86-232"><a href="#cb86-232"></a>We have already used the the training set to fit the model and check assumptions. We can also use this subset to make predictions and check the quality of the predictions.  The predictions made with this subset will often look quite good, but this is because the observed y value has been used in model fitting. </span>
+<span id="cb86-233"><a href="#cb86-233"></a></span>
+<span id="cb86-234"><a href="#cb86-234"></a>The test subset is a set of values which are not used to fit the model, and is therefore unseen by the model. This allows us to pretend we have a new set of values, but then we have the advantage of the actual observed y variable sitting within the dataset too, so we are able to test how similar the predictions are to our real observations. </span>
+<span id="cb86-235"><a href="#cb86-235"></a></span>
+<span id="cb86-236"><a href="#cb86-236"></a>*(i)* Use the <span class="in">`predict()`</span> function to obtain new estimates of Br_Dens using the training and test subsets. </span>
+<span id="cb86-237"><a href="#cb86-237"></a></span>
+<span id="cb86-240"><a href="#cb86-240"></a><span class="in">```{r}</span></span>
+<span id="cb86-241"><a href="#cb86-241"></a>dippers_train<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_train)</span>
+<span id="cb86-242"><a href="#cb86-242"></a></span>
+<span id="cb86-243"><a href="#cb86-243"></a>dippers_test<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_test)</span>
+<span id="cb86-244"><a href="#cb86-244"></a><span class="in">```</span></span>
+<span id="cb86-245"><a href="#cb86-245"></a></span>
+<span id="cb86-246"><a href="#cb86-246"></a></span>
+<span id="cb86-247"><a href="#cb86-247"></a>*(ii)* Have a look at the subsets. You should see a new column has been created, named <span class="in">`pred`</span> in both datasets.</span>
+<span id="cb86-248"><a href="#cb86-248"></a></span>
+<span id="cb86-251"><a href="#cb86-251"></a><span class="in">```{r}</span></span>
+<span id="cb86-252"><a href="#cb86-252"></a><span class="fu">head</span>(dippers_train)</span>
+<span id="cb86-253"><a href="#cb86-253"></a><span class="fu">head</span>(dippers_test)</span>
+<span id="cb86-254"><a href="#cb86-254"></a><span class="in">```</span></span>
+<span id="cb86-255"><a href="#cb86-255"></a></span>
+<span id="cb86-256"><a href="#cb86-256"></a>In each of the subsets, the <span class="in">`Br_Dens`</span> column will serve as the 'observed' values, and the <span class="in">`pred`</span> column will serve as the 'predicted' values. You will use these to assess prediction quality in the next steps. </span>
+<span id="cb86-257"><a href="#cb86-257"></a></span>
+<span id="cb86-258"><a href="#cb86-258"></a>::: callout-note</span>
+<span id="cb86-259"><a href="#cb86-259"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb86-260"><a href="#cb86-260"></a></span>
+<span id="cb86-261"><a href="#cb86-261"></a>You should now be able to fit your model to the training data and make predictions using training and test subsets.  </span>
+<span id="cb86-262"><a href="#cb86-262"></a></span>
+<span id="cb86-263"><a href="#cb86-263"></a>:::</span>
+<span id="cb86-264"><a href="#cb86-264"></a></span>
+<span id="cb86-265"><a href="#cb86-265"></a><span class="fu">## Prediction quality: Observed vs Predicted plots</span></span>
+<span id="cb86-266"><a href="#cb86-266"></a></span>
+<span id="cb86-267"><a href="#cb86-267"></a>Once we have obtained our predictions, it is important to obtain a visual understanding of how our predicted and observed values compare. We can do this using a scatterplot of observed vs predicted values with a 1:1 line overlaid. </span>
+<span id="cb86-268"><a href="#cb86-268"></a></span>
+<span id="cb86-269"><a href="#cb86-269"></a>*(i)* Create a scatterplot of observed vs predicted values for the training and test subsets, with a 1:1 line overlaid.</span>
+<span id="cb86-270"><a href="#cb86-270"></a></span>
+<span id="cb86-273"><a href="#cb86-273"></a><span class="in">```{r}</span></span>
+<span id="cb86-274"><a href="#cb86-274"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb86-275"><a href="#cb86-275"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_train, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
+<span id="cb86-276"><a href="#cb86-276"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb86-277"><a href="#cb86-277"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb86-278"><a href="#cb86-278"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, </span>
+<span id="cb86-279"><a href="#cb86-279"></a>       <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>,</span>
+<span id="cb86-280"><a href="#cb86-280"></a>       <span class="at">title =</span> <span class="st">"Training"</span>) <span class="sc">+</span></span>
+<span id="cb86-281"><a href="#cb86-281"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb86-282"><a href="#cb86-282"></a></span>
+<span id="cb86-283"><a href="#cb86-283"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_test, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
+<span id="cb86-284"><a href="#cb86-284"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb86-285"><a href="#cb86-285"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb86-286"><a href="#cb86-286"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, </span>
+<span id="cb86-287"><a href="#cb86-287"></a>       <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>,</span>
+<span id="cb86-288"><a href="#cb86-288"></a>       <span class="at">title =</span> <span class="st">"Test"</span>) <span class="sc">+</span></span>
+<span id="cb86-289"><a href="#cb86-289"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb86-290"><a href="#cb86-290"></a></span>
+<span id="cb86-291"><a href="#cb86-291"></a>p1 <span class="sc">+</span> p2</span>
+<span id="cb86-292"><a href="#cb86-292"></a><span class="in">```</span></span>
+<span id="cb86-293"><a href="#cb86-293"></a></span>
+<span id="cb86-294"><a href="#cb86-294"></a>For the training set, the points are quite close to the 1:1 line, which suggests that the model is doing a good job of predicting the observed values.</span>
+<span id="cb86-295"><a href="#cb86-295"></a></span>
+<span id="cb86-296"><a href="#cb86-296"></a>For the test set, the points are further away from the 1:1 line, which suggests that the model is not doing a good job of predicting the observed values, but it is important to also acknowledge that there are only four points present in the plot, so our understanding of the prediction quality is limited. </span>
+<span id="cb86-297"><a href="#cb86-297"></a></span>
+<span id="cb86-298"><a href="#cb86-298"></a></span>
+<span id="cb86-299"><a href="#cb86-299"></a><span class="fu">## Prediction quality: precision</span></span>
+<span id="cb86-300"><a href="#cb86-300"></a></span>
+<span id="cb86-301"><a href="#cb86-301"></a>When using the predict() function, we can also obtain confidence and prediction intervals for the predictions. This gives us an indication of how precise our predictions and the model are. </span>
+<span id="cb86-302"><a href="#cb86-302"></a></span>
+<span id="cb86-303"><a href="#cb86-303"></a>*(i)* Use the <span class="in">`predict()`</span> function to obtain confidence intervals when predicting with the training set, and prediction intervals when predicting using the test subset.</span>
+<span id="cb86-304"><a href="#cb86-304"></a></span>
+<span id="cb86-307"><a href="#cb86-307"></a><span class="in">```{r}</span></span>
+<span id="cb86-308"><a href="#cb86-308"></a>train_ci <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_train, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb86-309"><a href="#cb86-309"></a></span>
+<span id="cb86-310"><a href="#cb86-310"></a>test_pi <span class="ot">&lt;-</span> <span class="fu">predict</span>(train_model, <span class="at">newdata =</span> dippers_test, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb86-311"><a href="#cb86-311"></a><span class="in">```</span></span>
+<span id="cb86-312"><a href="#cb86-312"></a></span>
+<span id="cb86-313"><a href="#cb86-313"></a>*(ii)* Have a look at the confidence and prediction intervals using the head() function. </span>
+<span id="cb86-314"><a href="#cb86-314"></a></span>
+<span id="cb86-317"><a href="#cb86-317"></a><span class="in">```{r}</span></span>
+<span id="cb86-318"><a href="#cb86-318"></a><span class="fu">head</span>(train_ci)</span>
+<span id="cb86-319"><a href="#cb86-319"></a><span class="fu">head</span>(test_pi)</span>
+<span id="cb86-320"><a href="#cb86-320"></a><span class="in">```</span></span>
+<span id="cb86-321"><a href="#cb86-321"></a></span>
+<span id="cb86-322"><a href="#cb86-322"></a>For both train_ci and test_pi, there are three columns. The first contains the estimate (our predicted value), the second contains the lower bound of the relevant interval, and the third contains the upper bound of the relevant interval. These are much easier to interpret when shown in a plot.</span>
+<span id="cb86-323"><a href="#cb86-323"></a></span>
+<span id="cb86-324"><a href="#cb86-324"></a>*(iii)* Create a plot of observed vs predicted values for the training and test subsets, with the confidence and prediction intervals overlaid. What do these plots tell us?</span>
+<span id="cb86-325"><a href="#cb86-325"></a></span>
+<span id="cb86-328"><a href="#cb86-328"></a><span class="in">```{r}</span></span>
+<span id="cb86-329"><a href="#cb86-329"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb86-330"><a href="#cb86-330"></a></span>
+<span id="cb86-331"><a href="#cb86-331"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_train, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
+<span id="cb86-332"><a href="#cb86-332"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb86-333"><a href="#cb86-333"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb86-334"><a href="#cb86-334"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> train_ci, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb86-335"><a href="#cb86-335"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>) <span class="sc">+</span> <span class="co"># 1:1 line</span></span>
+<span id="cb86-336"><a href="#cb86-336"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>) <span class="sc">+</span></span>
+<span id="cb86-337"><a href="#cb86-337"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb86-338"><a href="#cb86-338"></a></span>
+<span id="cb86-339"><a href="#cb86-339"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dippers_test, <span class="fu">aes</span>(Br_Dens, pred)) <span class="sc">+</span></span>
+<span id="cb86-340"><a href="#cb86-340"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb86-341"><a href="#cb86-341"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, lwr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb86-342"><a href="#cb86-342"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> test_pi, <span class="fu">aes</span>(fit, upr), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> F) <span class="sc">+</span></span>
+<span id="cb86-343"><a href="#cb86-343"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"maroon"</span>)  <span class="sc">+</span> <span class="co"># 1:1 line +</span></span>
+<span id="cb86-344"><a href="#cb86-344"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Observed number of breeding pairs of dippers"</span>, <span class="at">y =</span> <span class="st">"Predicted number of breeding pairs of dippers"</span>) <span class="sc">+</span></span>
+<span id="cb86-345"><a href="#cb86-345"></a>  <span class="fu">theme_classic</span>()  </span>
+<span id="cb86-346"><a href="#cb86-346"></a></span>
+<span id="cb86-347"><a href="#cb86-347"></a>p1 <span class="sc">+</span> p2</span>
+<span id="cb86-348"><a href="#cb86-348"></a><span class="in">```</span></span>
+<span id="cb86-349"><a href="#cb86-349"></a></span>
+<span id="cb86-350"><a href="#cb86-350"></a>The confidence intervals give us an indication of how precise our estimate of the mean response is for a given set of predictor values, while the prediction intervals give us an indication of how precise our predictions are for individual observations.</span>
+<span id="cb86-351"><a href="#cb86-351"></a></span>
+<span id="cb86-352"><a href="#cb86-352"></a>You should see that the confidence intervals are narrower than the prediction intervals, which is what we would expect.</span>
+<span id="cb86-353"><a href="#cb86-353"></a></span>
+<span id="cb86-354"><a href="#cb86-354"></a>The straighter the lines, the better and if the lines fan out, it may be an indication that the model is not performing well for certain ranges of the predictor variables. </span>
+<span id="cb86-355"><a href="#cb86-355"></a></span>
+<span id="cb86-356"><a href="#cb86-356"></a>Overall, we can say that the model is doing a reasonable job of predicting the observed values in the training set, but it is not doing a so well at predicting the observed values in the test set.</span>
+<span id="cb86-357"><a href="#cb86-357"></a></span>
+<span id="cb86-358"><a href="#cb86-358"></a></span>
+<span id="cb86-359"><a href="#cb86-359"></a><span class="fu">## Prediction quality: accuracy</span></span>
+<span id="cb86-360"><a href="#cb86-360"></a></span>
+<span id="cb86-361"><a href="#cb86-361"></a>We can compare the predicted and observed values for training and test subsets using appropriate metrics to get an indication of the accuracy of the predictions.</span>
+<span id="cb86-362"><a href="#cb86-362"></a></span>
+<span id="cb86-363"><a href="#cb86-363"></a>Before we start, we know that the predictions for the training set will generally look better than those for the test set, because the model has been fitted to the training data, so it is not surprising that the predictions are more accurate for this subset.</span>
+<span id="cb86-364"><a href="#cb86-364"></a></span>
+<span id="cb86-365"><a href="#cb86-365"></a>But if the metrics and plots for the training set look substantially better than those for the test set, we could say the model has been overfitted to the training set observations and therefore does not predict new values well. </span>
+<span id="cb86-366"><a href="#cb86-366"></a></span>
+<span id="cb86-367"><a href="#cb86-367"></a>There are two types of metrics we will cover this week: error and linearity. </span>
+<span id="cb86-368"><a href="#cb86-368"></a></span>
+<span id="cb86-369"><a href="#cb86-369"></a><span class="fu">### Error metrics</span></span>
+<span id="cb86-370"><a href="#cb86-370"></a></span>
+<span id="cb86-371"><a href="#cb86-371"></a>There are a number of error metrics we can use to assess the accuracy of our predictions. These include:</span>
+<span id="cb86-372"><a href="#cb86-372"></a></span>
+<span id="cb86-373"><a href="#cb86-373"></a><span class="ss">- </span>Mean Error (Bias)</span>
+<span id="cb86-374"><a href="#cb86-374"></a><span class="ss">- </span>Mean Absolute Error (MAE)</span>
+<span id="cb86-375"><a href="#cb86-375"></a><span class="ss">- </span>Root Mean Square Error (RMSE) </span>
+<span id="cb86-376"><a href="#cb86-376"></a></span>
+<span id="cb86-377"><a href="#cb86-377"></a>The closer the metrics are to 0, the better the predictions are, but since the metrics are in the same units as the response, we may also need to take the range of values into account. </span>
+<span id="cb86-378"><a href="#cb86-378"></a></span>
+<span id="cb86-379"><a href="#cb86-379"></a>For example, </span>
+<span id="cb86-380"><a href="#cb86-380"></a></span>
+<span id="cb86-381"><a href="#cb86-381"></a><span class="ss">- </span>If we had a dataset with values that ranged from 0 to 100, then an error of 0.5 would be really good. </span>
+<span id="cb86-382"><a href="#cb86-382"></a></span>
+<span id="cb86-383"><a href="#cb86-383"></a><span class="ss">- </span>If we had a dataset with values that ranged from 0 to 1, then an error of 0.5 would be quite bad.</span>
+<span id="cb86-384"><a href="#cb86-384"></a></span>
+<span id="cb86-385"><a href="#cb86-385"></a>In addition to deciding how good the values are for a subset, we also need to compare the values between the training and test subsets so we can assess whether the model is overfitting to the training data.</span>
+<span id="cb86-386"><a href="#cb86-386"></a></span>
+<span id="cb86-387"><a href="#cb86-387"></a></span>
+<span id="cb86-388"><a href="#cb86-388"></a>*(i)* Calculate the mean error for predictions obtained with the training and test subsets. Are they similar to each other? Is the Mean Error close to 0? </span>
+<span id="cb86-389"><a href="#cb86-389"></a></span>
+<span id="cb86-392"><a href="#cb86-392"></a><span class="in">```{r}</span></span>
+<span id="cb86-393"><a href="#cb86-393"></a><span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred) </span>
+<span id="cb86-394"><a href="#cb86-394"></a><span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred) </span>
+<span id="cb86-395"><a href="#cb86-395"></a><span class="in">```</span></span>
+<span id="cb86-396"><a href="#cb86-396"></a></span>
+<span id="cb86-397"><a href="#cb86-397"></a>Mean error is close to zero for both and the values are somewhat different between training and test subsets, suggesting overfitting. </span>
+<span id="cb86-398"><a href="#cb86-398"></a></span>
+<span id="cb86-399"><a href="#cb86-399"></a>*(ii)* Calculate the Mean Absolute Error. Are the values close to zero? what does this tell us?</span>
+<span id="cb86-400"><a href="#cb86-400"></a></span>
+<span id="cb86-403"><a href="#cb86-403"></a><span class="in">```{r}</span></span>
+<span id="cb86-404"><a href="#cb86-404"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)) </span>
+<span id="cb86-405"><a href="#cb86-405"></a><span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)) </span>
+<span id="cb86-406"><a href="#cb86-406"></a><span class="in">```</span></span>
+<span id="cb86-407"><a href="#cb86-407"></a></span>
+<span id="cb86-408"><a href="#cb86-408"></a>The MAE is close to zero for predictions obtained for the test and training sets. This tells us that the prediction error is low overall. Mean Error gives us direction, but MAE can give us a better idea of the magnitude of the error. </span>
+<span id="cb86-409"><a href="#cb86-409"></a></span>
+<span id="cb86-410"><a href="#cb86-410"></a>*(iii)* Calculate the Root Mean Square Error. Are the values close to zero? what additional information can this tell us about the accuracy of our predictions?</span>
+<span id="cb86-411"><a href="#cb86-411"></a></span>
+<span id="cb86-412"><a href="#cb86-412"></a>::: {.column-margin}</span>
+<span id="cb86-413"><a href="#cb86-413"></a>HINT: you can use the <span class="in">`RMSE()`</span> function from the <span class="in">`caret`</span> package</span>
+<span id="cb86-414"><a href="#cb86-414"></a>:::</span>
+<span id="cb86-415"><a href="#cb86-415"></a></span>
+<span id="cb86-418"><a href="#cb86-418"></a><span class="in">```{r}</span></span>
+<span id="cb86-419"><a href="#cb86-419"></a><span class="fu">library</span>(caret)</span>
+<span id="cb86-420"><a href="#cb86-420"></a><span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)</span>
+<span id="cb86-421"><a href="#cb86-421"></a><span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)  </span>
+<span id="cb86-422"><a href="#cb86-422"></a><span class="in">```</span></span>
+<span id="cb86-423"><a href="#cb86-423"></a></span>
+<span id="cb86-424"><a href="#cb86-424"></a>If the RMSE is much larger than MAE, then the model is making huge mistakes. In our case, the values aren't too different to the MAE and they are close to zero so it tells us the model is predicting well. We can also see the values are similar between training and test predictions, indicating a stable model. </span>
+<span id="cb86-425"><a href="#cb86-425"></a></span>
+<span id="cb86-426"><a href="#cb86-426"></a><span class="fu">### Linearity</span></span>
+<span id="cb86-427"><a href="#cb86-427"></a></span>
+<span id="cb86-428"><a href="#cb86-428"></a>The linearity metrics help us understand whether the model is predicting consistently (i.e. linear relationship between predicted and observed), and whether the predictions are close to the 1:1 line (i.e. agreement between predicted and observed).</span>
+<span id="cb86-429"><a href="#cb86-429"></a></span>
+<span id="cb86-430"><a href="#cb86-430"></a>*(i)* Calculate the r^2^ value. What does this metric tell us about our model? Is the r^2^ good for our predictions?</span>
+<span id="cb86-431"><a href="#cb86-431"></a></span>
+<span id="cb86-432"><a href="#cb86-432"></a>::: {.column-margin}</span>
+<span id="cb86-433"><a href="#cb86-433"></a>HINT: you can either calculate this by squaring the correlation coefficient between observed and predicted, or you can use the <span class="in">`R2()`</span> function from the <span class="in">`caret`</span> package.</span>
+<span id="cb86-434"><a href="#cb86-434"></a>:::</span>
+<span id="cb86-435"><a href="#cb86-435"></a></span>
+<span id="cb86-436"><a href="#cb86-436"></a>Option 1: squaring the correlation coefficient: </span>
+<span id="cb86-437"><a href="#cb86-437"></a></span>
+<span id="cb86-440"><a href="#cb86-440"></a><span class="in">```{r}</span></span>
+<span id="cb86-441"><a href="#cb86-441"></a>(<span class="fu">cor</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb86-442"><a href="#cb86-442"></a>(<span class="fu">cor</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred))<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb86-443"><a href="#cb86-443"></a><span class="in">```</span></span>
+<span id="cb86-444"><a href="#cb86-444"></a></span>
+<span id="cb86-445"><a href="#cb86-445"></a>Option 2: <span class="in">`R2()`</span> function from the <span class="in">`caret`</span> package.</span>
+<span id="cb86-446"><a href="#cb86-446"></a></span>
+<span id="cb86-449"><a href="#cb86-449"></a><span class="in">```{r}</span></span>
+<span id="cb86-450"><a href="#cb86-450"></a><span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred) </span>
+<span id="cb86-451"><a href="#cb86-451"></a><span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred) </span>
+<span id="cb86-452"><a href="#cb86-452"></a><span class="in">```</span></span>
+<span id="cb86-453"><a href="#cb86-453"></a></span>
+<span id="cb86-454"><a href="#cb86-454"></a>The r^2^ tells us about the strength of the relationship between observed and predicted values. The closer to 1, the better. </span>
+<span id="cb86-455"><a href="#cb86-455"></a></span>
+<span id="cb86-456"><a href="#cb86-456"></a>In this case, we see that the r^2^ for the training set is 0.81, which is high and indicates the model is making consistent predictions. The r^2^ for the test set is 0.25 which indicates a weak relationship between observed and predicted values, suggesting the model is not predicting new values well at all. </span>
+<span id="cb86-457"><a href="#cb86-457"></a></span>
+<span id="cb86-458"><a href="#cb86-458"></a>This inconsistency between predicted and observed is suggesting that the training model has indeed been overfitted and this is why we are seeing such poor predictions. </span>
+<span id="cb86-459"><a href="#cb86-459"></a></span>
+<span id="cb86-460"><a href="#cb86-460"></a>*(ii)* Calculate Lin's Correlation Coefficient for our predictions. Do our values indicate strong agreement between observed and predicted for our training and test predictions?</span>
+<span id="cb86-461"><a href="#cb86-461"></a></span>
+<span id="cb86-462"><a href="#cb86-462"></a>::: {.column-margin}</span>
+<span id="cb86-463"><a href="#cb86-463"></a>HINT: you can calculate the LCCC via the <span class="in">`epiR`</span> package</span>
+<span id="cb86-464"><a href="#cb86-464"></a>:::</span>
+<span id="cb86-465"><a href="#cb86-465"></a></span>
+<span id="cb86-468"><a href="#cb86-468"></a><span class="in">```{r}</span></span>
+<span id="cb86-469"><a href="#cb86-469"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb86-470"><a href="#cb86-470"></a><span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span>
+<span id="cb86-471"><a href="#cb86-471"></a><span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est </span>
+<span id="cb86-472"><a href="#cb86-472"></a><span class="in">```</span></span>
+<span id="cb86-473"><a href="#cb86-473"></a></span>
+<span id="cb86-474"><a href="#cb86-474"></a>LCCC tells us about the strength of agreement between predicted and observed, or how well the points fit the 1:1 line in our plot. This is a bit different between our r^2^ which instead tells us about the strength of the linear relationship between predicted and observed, and it may not always follow the 1:1 line. </span>
+<span id="cb86-475"><a href="#cb86-475"></a></span>
+<span id="cb86-476"><a href="#cb86-476"></a>The LCCC for the predictions obtained using the training set is 0.89, which indicates a strong amount of agreement between observed and predicted values. In contrast, the LCCC for the predictions obtained using the test set is 0.41, suggesting poor agreement between predicted and observed values. </span>
+<span id="cb86-477"><a href="#cb86-477"></a></span>
+<span id="cb86-478"><a href="#cb86-478"></a>This disparity is supporting what we have said so far that the model is overfitted to the training data and is not predicting new values well. </span>
+<span id="cb86-479"><a href="#cb86-479"></a></span>
+<span id="cb86-480"><a href="#cb86-480"></a></span>
+<span id="cb86-481"><a href="#cb86-481"></a><span class="fu">### Place everything into a nice summary table for presentation</span></span>
+<span id="cb86-482"><a href="#cb86-482"></a></span>
+<span id="cb86-483"><a href="#cb86-483"></a>When writing reports and papers, it is best to present your results as a neat table and refer back to it within the text. This is much easier for readers to understand than having to read through a list of numbers in the text.</span>
+<span id="cb86-484"><a href="#cb86-484"></a></span>
+<span id="cb86-485"><a href="#cb86-485"></a>*(i)* Create a table summarising the prediction quality metrics for the training and test subsets. Have a go at writing up a few sentences interpreting the results in the table.</span>
+<span id="cb86-486"><a href="#cb86-486"></a></span>
+<span id="cb86-489"><a href="#cb86-489"></a><span class="in">```{r}</span></span>
+<span id="cb86-490"><a href="#cb86-490"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb86-491"><a href="#cb86-491"></a><span class="co">#| table-caption: "Table 1. Summary of prediction quality metrics for training and test subsets."</span></span>
+<span id="cb86-492"><a href="#cb86-492"></a><span class="co"># put all data into a tible and kable it</span></span>
+<span id="cb86-493"><a href="#cb86-493"></a><span class="fu">tibble</span>(</span>
+<span id="cb86-494"><a href="#cb86-494"></a>    <span class="at">Dataset =</span> <span class="fu">c</span>(<span class="st">"Training"</span>, <span class="st">"Test"</span>),</span>
+<span id="cb86-495"><a href="#cb86-495"></a>    <span class="at">ME =</span> <span class="fu">c</span>(</span>
+<span id="cb86-496"><a href="#cb86-496"></a>        <span class="fu">mean</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb86-497"><a href="#cb86-497"></a>        <span class="fu">mean</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb86-498"><a href="#cb86-498"></a>    ),</span>
+<span id="cb86-499"><a href="#cb86-499"></a>    <span class="at">MAE =</span> <span class="fu">c</span>(</span>
+<span id="cb86-500"><a href="#cb86-500"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_train<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_train<span class="sc">$</span>pred)),</span>
+<span id="cb86-501"><a href="#cb86-501"></a>        <span class="fu">mean</span>(<span class="fu">abs</span>(dippers_test<span class="sc">$</span>Br_Dens <span class="sc">-</span> dippers_test<span class="sc">$</span>pred))</span>
+<span id="cb86-502"><a href="#cb86-502"></a>    ),</span>
+<span id="cb86-503"><a href="#cb86-503"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(</span>
+<span id="cb86-504"><a href="#cb86-504"></a>        <span class="fu">RMSE</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb86-505"><a href="#cb86-505"></a>        <span class="fu">RMSE</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb86-506"><a href="#cb86-506"></a>    ),</span>
+<span id="cb86-507"><a href="#cb86-507"></a>    <span class="at">R2 =</span> <span class="fu">c</span>(</span>
+<span id="cb86-508"><a href="#cb86-508"></a>        <span class="fu">R2</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred),</span>
+<span id="cb86-509"><a href="#cb86-509"></a>        <span class="fu">R2</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)</span>
+<span id="cb86-510"><a href="#cb86-510"></a>    ),</span>
+<span id="cb86-511"><a href="#cb86-511"></a>    <span class="at">LCCC =</span> <span class="fu">c</span>(</span>
+<span id="cb86-512"><a href="#cb86-512"></a>        <span class="fu">epi.ccc</span>(dippers_train<span class="sc">$</span>Br_Dens, dippers_train<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est,</span>
+<span id="cb86-513"><a href="#cb86-513"></a>        <span class="fu">epi.ccc</span>(dippers_test<span class="sc">$</span>Br_Dens, dippers_test<span class="sc">$</span>pred)<span class="sc">$</span>rho.c<span class="sc">$</span>est</span>
+<span id="cb86-514"><a href="#cb86-514"></a>    )</span>
+<span id="cb86-515"><a href="#cb86-515"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb86-516"><a href="#cb86-516"></a>    knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb86-517"><a href="#cb86-517"></a><span class="in">```</span></span>
+<span id="cb86-518"><a href="#cb86-518"></a></span>
+<span id="cb86-519"><a href="#cb86-519"></a>Drawing upon this table, we might say: </span>
+<span id="cb86-520"><a href="#cb86-520"></a></span>
+<span id="cb86-521"><a href="#cb86-521"></a>"The model performed well at predicting the observed values in the training set (Table 1), with a low mean error (&lt;0.01), low MAE (0.56), low RMSE (0.64), high r^2^ (0.81) and high LCCC (0.89). However, the model did not perform well at predicting the observed values in the test set. The r^2^ dropped from 0.81 to 0.25 and the LCCC dropped from 0.89 to 0.41 — large drops that point to overfitting. The error metrics (mean error 0.23, MAE 0.30, RMSE 0.22) look superficially fine, but with only four test observations the absolute errors are not a reliable comparison to the 18 training observations."</span>
+<span id="cb86-522"><a href="#cb86-522"></a></span>
+<span id="cb86-523"><a href="#cb86-523"></a>::: callout-note</span>
+<span id="cb86-524"><a href="#cb86-524"></a><span class="fu">## Checkpoint</span></span>
+<span id="cb86-525"><a href="#cb86-525"></a></span>
+<span id="cb86-526"><a href="#cb86-526"></a>You should now be able to assess the prediction quality of a model using metrics and plots. </span>
+<span id="cb86-527"><a href="#cb86-527"></a></span>
+<span id="cb86-528"><a href="#cb86-528"></a>:::</span>
+<span id="cb86-529"><a href="#cb86-529"></a></span>
+<span id="cb86-530"><a href="#cb86-530"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
+<span id="cb86-531"><a href="#cb86-531"></a></span>
+<span id="cb86-532"><a href="#cb86-532"></a>In this tutorial, we used the dippers dataset to get some practice data splitting, prediction and assessing the quality of the predictions. </span>
+<span id="cb86-533"><a href="#cb86-533"></a></span>
+<span id="cb86-534"><a href="#cb86-534"></a>This will hopefully set you up for the lab exercises, where you will use similar code to answer the questions. </span>
+<span id="cb86-535"><a href="#cb86-535"></a></span>
+<span id="cb86-536"><a href="#cb86-536"></a>Great work everyone!</span>
+<span id="cb86-537"><a href="#cb86-537"></a></span>
+<span id="cb86-538"><a href="#cb86-538"></a></span>
+<span id="cb86-539"><a href="#cb86-539"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb86-540"><a href="#cb86-540"></a></span>
+<span id="cb86-541"><a href="#cb86-541"></a><span class="ss">1. </span>State two reasons why we might we choose to split our dataset instead of obtaining new observations to serve as a validation subset?</span>
+<span id="cb86-542"><a href="#cb86-542"></a></span>
+<span id="cb86-543"><a href="#cb86-543"></a><span class="ss">2. </span>Why do we look at more than one metric when interpreting prediction quality?</span>
+<span id="cb86-544"><a href="#cb86-544"></a></span>
+<span id="cb86-545"><a href="#cb86-545"></a><span class="ss">3. </span>When looking at an observed vs predicted plot, what can we conclude about our model if all of our points follow the 1:1 line?</span>
+<span id="cb86-546"><a href="#cb86-546"></a></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

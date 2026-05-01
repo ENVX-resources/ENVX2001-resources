@@ -220,7 +220,7 @@ Liana Pozza
 </div>
 </div>
 
-  <p class="date">Apr 2026</p>
+  <p class="date">May 2026</p>
 </section>
 <section class="slide level2">
 
@@ -446,7 +446,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-5-1.png" width="672" class="r-stretch"></section>
 <section id="visualising-with-geom_smooth" class="slide level2">
 <h2>Visualising with <code>geom_smooth()</code></h2>
 <div class="columns">
@@ -472,7 +472,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><img data-src="Lecture-09_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -491,7 +491,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+<p><img data-src="Lecture-09_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -969,7 +969,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb14-5" class="hljs-ln-code"><a></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><p>We can also use metrics to quantify how well the model predicts new data:</p>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-8-1.png" width="672" class="r-stretch"><p>We can also use metrics to quantify how well the model predicts new data:</p>
 <ul>
 <li>How close points are to the 1:1 line</li>
 <li>How <em>linear</em> the relationship is between observed and predicted values</li>
@@ -1080,7 +1080,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-9-1.png" width="672" class="r-stretch"></section>
 <section id="limitations" class="slide level2">
 <h2>Limitations</h2>
 <p><br></p>
@@ -1181,7 +1181,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"><ul>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-13-1.png" width="672" class="r-stretch"><ul>
 <li>Looks like <code>AREA</code> <code>LDIST</code> and <code>DIST</code> are skewed – we will transform them so that they are more normally distributed.</li>
 </ul>
 </section>
@@ -1232,7 +1232,7 @@ F-statistic: 70.62 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-16-1.png" width="672" class="r-stretch"></section>
 <section id="full-model" class="slide level2">
 <h2>Full model</h2>
 <p>We start with a full model that includes all the predictors.</p>
@@ -1273,7 +1273,7 @@ F-statistic: 13.17 on 6 and 38 DF,  p-value: 5.277e-08</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>performance<span class="sc">::</span><span class="fu">check_model</span>(full_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>, <span class="st">"qq"</span>, <span class="st">"homogeneity"</span>, <span class="st">"outliers"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-18-1.png" width="672" class="r-stretch"></section>
 <section id="assumptions---round-1-1" class="slide level2">
 <h2>Assumptions - Round 1</h2>
 <p>We check multicollinearity with variable inflation factors (VIF) - VIFs are all &lt; 10, so there is no multicollinearity. All assumptions are thus met.</p>
@@ -1281,7 +1281,7 @@ F-statistic: 13.17 on 6 and 38 DF,  p-value: 5.277e-08</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">check_model</span>(full_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-19-1.png" width="672" class="r-stretch"></section>
 <section id="backwards-stepwise-selection" class="slide level2">
 <h2>Backwards stepwise selection</h2>
 <p>Use the <code>step()</code> function perform backwards stepwise selection. This function uses AIC to select the best model.</p>
@@ -1395,28 +1395,28 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"linearity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-23-1.png" width="672" class="r-stretch"></section>
 <section id="assumptions---round-2-1" class="slide level2">
 <h2>Assumptions - Round 2</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"qq"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-24-1.png" width="672" class="r-stretch"></section>
 <section id="assumptions---round-2-2" class="slide level2">
 <h2>Assumptions - Round 2</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"homogeneity"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-25-1.png" width="672" class="r-stretch"></section>
 <section id="assumptions---round-2-3" class="slide level2">
 <h2>Assumptions - Round 2</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">check_model</span>(step_fit, <span class="at">check =</span> <span class="fu">c</span>(<span class="st">"outliers"</span>, <span class="st">"vif"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-26-1.png" width="672" class="r-stretch"></section>
 <section id="assumptions---round-2-using-plot-function" class="slide level2">
 <h2>Assumptions - Round 2 using <code>plot()</code> function</h2>
 <div class="cell">
@@ -1425,7 +1425,7 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-27-1.png" width="672" class="r-stretch"></section></section>
 <section>
 <section id="model-validation" class="title-slide slide level1 center">
 <h1>Model validation</h1>
@@ -1471,7 +1471,7 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-29-1.png" width="672" class="r-stretch"></section>
 <section id="training-dataset-confidence-interval" class="slide level2">
 <h2>Training dataset: Confidence Interval</h2>
 <p>For our trained model, we can plot the confidence interval to demonstrate the uncertainty in the mean response, with the model overlaid.</p>
@@ -1492,7 +1492,7 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-30-1.png" width="672" class="r-stretch"></section>
 <section id="test-dataset-prediction-interval" class="slide level2">
 <h2>Test dataset: Prediction interval</h2>
 <p>For our independent predictions, we can use the prediction interval to give an idea of the precision of the model.</p>
@@ -1512,7 +1512,7 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
 </details>
 
 </div>
-<img data-src="Lecture-09_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"><div class="callout callout-important callout-titled callout-style-default">
+<img data-src="Lecture-09_files/figure-html/unnamed-chunk-31-1.png" width="672" class="r-stretch"><div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1904,44 +1904,6 @@ F-statistic: 20.31 on 4 and 40 DF,  p-value: 3.365e-09</code></pre>
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

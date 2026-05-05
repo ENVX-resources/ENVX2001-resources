@@ -188,10 +188,14 @@ background: white;
   <li><a href="#screeplot" id="toc-screeplot" class="nav-link" data-scroll-target="#screeplot"><span class="header-section-number">1.8</span> Screeplot</a></li>
   <li><a href="#principal-component-scores" id="toc-principal-component-scores" class="nav-link" data-scroll-target="#principal-component-scores"><span class="header-section-number">1.9</span> Principal Component Scores</a></li>
   <li><a href="#biplot" id="toc-biplot" class="nav-link" data-scroll-target="#biplot"><span class="header-section-number">1.10</span> Biplot</a></li>
-  <li><a href="#regression-using-pc-scores" id="toc-regression-using-pc-scores" class="nav-link" data-scroll-target="#regression-using-pc-scores"><span class="header-section-number">1.11</span> Regression using PC scores</a></li>
-  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot"><span class="header-section-number">1.12</span> Scatterplot</a></li>
-  <li><a href="#factor-analysis-with-varimax-rotation" id="toc-factor-analysis-with-varimax-rotation" class="nav-link" data-scroll-target="#factor-analysis-with-varimax-rotation"><span class="header-section-number">1.13</span> Factor Analysis with Varimax Rotation</a></li>
-  <li><a href="#final-interpretation" id="toc-final-interpretation" class="nav-link" data-scroll-target="#final-interpretation"><span class="header-section-number">1.14</span> Final interpretation</a></li>
+  <li><a href="#regression-goals-vs-pca" id="toc-regression-goals-vs-pca" class="nav-link" data-scroll-target="#regression-goals-vs-pca"><span class="header-section-number">1.11</span> Regression: Goals vs PCA</a>
+  <ul class="collapse">
+  <li><a href="#simple-regression-goals-vs-pc1" id="toc-simple-regression-goals-vs-pc1" class="nav-link" data-scroll-target="#simple-regression-goals-vs-pc1">Simple regression: Goals vs PC1</a></li>
+  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot">Scatterplot</a></li>
+  <li><a href="#key-point" id="toc-key-point" class="nav-link" data-scroll-target="#key-point">Key point</a></li>
+  </ul></li>
+  <li><a href="#factor-analysis-with-varimax-rotation" id="toc-factor-analysis-with-varimax-rotation" class="nav-link" data-scroll-target="#factor-analysis-with-varimax-rotation"><span class="header-section-number">1.12</span> Factor Analysis with Varimax Rotation</a></li>
+  <li><a href="#final-interpretation" id="toc-final-interpretation" class="nav-link" data-scroll-target="#final-interpretation"><span class="header-section-number">1.13</span> Final interpretation</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial10.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -230,7 +234,8 @@ background: white;
 </section>
 <section id="load-the-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="load-the-data"><span class="header-section-number">1.2</span> Load the data</h2>
-<p>First open your dataset. The CSV file should be saved in the same folder as this <code>.qmd</code> file.</p>
+<p>First open the player performance dataset. The CSV file is saved in the <code>data</code> folder.</p>
+<p>Later in the tutorial, we will also use a second independent dataset, <code>football_goals_20_games_24_players.csv</code>, to practise prediction using regression.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>players <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_player_performance.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -608,63 +613,114 @@ Cumulative Var   0.909   1.000</code></pre>
 <p>We could add the loadings, but they can be a bit messy. It is often best to look at the loadings or rotations tables directly.</p>
 <p>You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.</p>
 </section>
-<section id="regression-using-pc-scores" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="regression-using-pc-scores"><span class="header-section-number">1.11</span> Regression using PC scores</h2>
-<p>In the lecturer dataset, we used ANOVA to test whether PC scores differed among groups. This football dataset does not include grouping variables such as team grade or playing position, so here we use a regression example instead.</p>
-<p>For example, we can ask whether PC1 is associated with juggling ability:</p>
+<section id="regression-goals-vs-pca" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="regression-goals-vs-pca"><span class="header-section-number">1.11</span> Regression: Goals vs PCA</h2>
+<p>We now use a simple regression to link the PCA results to an outcome variable.</p>
+<p>We will relate <strong>goals scored over 20 games</strong> to the first principal component (PC1), which represents overall performance.</p>
+<p>Read in the goals dataset:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>LM1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PC1 <span class="sc">~</span> jugg, <span class="at">data =</span> playerpcscores)</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="fu">summary</span>(LM1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>goals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_goals_20_games_24_players.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For simplicity, we will match players by row order and combine the goals dataset with the PCA scores. We avoid using the object name <code>data</code>, because <code>data()</code> is also a built-in R function.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>pca_scores <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca1<span class="sc">$</span>x)</span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co"># Keep only PC1 for this regression</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>pca_scores <span class="ot">&lt;-</span> pca_scores[, <span class="st">"PC1"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb32-5"><a href="#cb32-5"></a></span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="co"># Check that the PCA data and goals data have the same number of players</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a><span class="fu">nrow</span>(pca_scores)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">nrow</span>(goals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb36-2"><a href="#cb36-2"></a>  pca_scores,</span>
+<span id="cb36-3"><a href="#cb36-3"></a>  goals</span>
+<span id="cb36-4"><a href="#cb36-4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="simple-regression-goals-vs-pc1" class="level3">
+<h3 class="anchored" data-anchor-id="simple-regression-goals-vs-pc1">Simple regression: Goals vs PC1</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>LM_goals_PC1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(goals_20_games <span class="sc">~</span> PC1, <span class="at">data =</span> combined)</span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="fu">summary</span>(LM_goals_PC1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = PC1 ~ jugg, data = playerpcscores)
+lm(formula = goals_20_games ~ PC1, data = combined)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.6088 -1.1795  0.1164  0.8217  3.7469 
+-2.6108 -0.9792  0.1929  0.8037  3.4207 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept) -1.51001    0.77408  -1.951   0.0639 .
-jugg         0.09497    0.04425   2.146   0.0432 *
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  7.58333    0.33493  22.642   &lt;2e-16 ***
+PC1         -0.09529    0.20127  -0.473    0.641    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.581 on 22 degrees of freedom
-Multiple R-squared:  0.1731,    Adjusted R-squared:  0.1355 
-F-statistic: 4.605 on 1 and 22 DF,  p-value: 0.04316</code></pre>
+Residual standard error: 1.641 on 22 degrees of freedom
+Multiple R-squared:  0.01009,   Adjusted R-squared:  -0.03491 
+F-statistic: 0.2241 on 1 and 22 DF,  p-value: 0.6406</code></pre>
 </div>
 </div>
-<p>This is only an example. In a full analysis, you might use PC scores as predictors of match success, soccer-tennis score or network centrality.</p>
+<p>Interpretation:</p>
+<ul>
+<li>The response variable is <code>goals_20_games</code></li>
+<li>The predictor is <code>PC1</code></li>
+<li>A positive relationship means players with higher overall performance (PC1) score more goals</li>
+</ul>
 </section>
-<section id="scatterplot" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">1.12</span> Scatterplot</h2>
-<p>To do a scatterplot of variables use ggplot2:</p>
+<section id="scatterplot" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot">Scatterplot</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">ggplot</span>(playerpcscores, <span class="fu">aes</span>(<span class="at">x =</span> jugg, <span class="at">y =</span> PC1)) <span class="sc">+</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Juggling ability"</span>, <span class="at">y =</span> <span class="st">"PC1 score"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> goals_20_games)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-6"><a href="#cb39-6"></a>    <span class="at">x =</span> <span class="st">"PC1 (overall performance)"</span>,</span>
+<span id="cb39-7"><a href="#cb39-7"></a>    <span class="at">y =</span> <span class="st">"Goals over 20 games"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8"></a>    <span class="at">title =</span> <span class="st">"Do higher-performing players score more goals?"</span></span>
+<span id="cb39-9"><a href="#cb39-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial10_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="tutorial10_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Interpretation:</p>
+<ul>
+<li>Each point is a player</li>
+<li>Points close together have similar performance and goal output</li>
+<li>The slope shows whether better overall players tend to score more goals</li>
+</ul>
 </section>
-<section id="factor-analysis-with-varimax-rotation" class="level2" data-number="1.13">
-<h2 data-number="1.13" class="anchored" data-anchor-id="factor-analysis-with-varimax-rotation"><span class="header-section-number">1.13</span> Factor Analysis with Varimax Rotation</h2>
+<section id="key-point" class="level3">
+<h3 class="anchored" data-anchor-id="key-point">Key point</h3>
+<p>This links PCA to prediction:</p>
+<ul>
+<li>PCA identifies the main performance axis (PC1)</li>
+<li>Regression tests whether that axis predicts goals</li>
+</ul>
+</section>
+</section>
+<section id="factor-analysis-with-varimax-rotation" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="factor-analysis-with-varimax-rotation"><span class="header-section-number">1.12</span> Factor Analysis with Varimax Rotation</h2>
 <p>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax.</p>
 <p>Here we start with three factors because the paper describes three broad biological domains: balance, athletic performance and motor skill.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a>fa1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>fa1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -708,8 +764,8 @@ The p-value is 0.755 </code></pre>
 </ul>
 <p>Try changing the number of factors and compare whether the interpretation becomes clearer or less clear:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb37-2"><a href="#cb37-2"></a>fa2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2"></a>fa2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -746,8 +802,8 @@ The p-value is 0.476 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a>fa4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2"></a>fa4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -784,9 +840,10 @@ The p-value is 0.908 </code></pre>
 </div>
 </div>
 </section>
-<section id="final-interpretation" class="level2" data-number="1.14">
-<h2 data-number="1.14" class="anchored" data-anchor-id="final-interpretation"><span class="header-section-number">1.14</span> Final interpretation</h2>
+<section id="final-interpretation" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="final-interpretation"><span class="header-section-number">1.13</span> Final interpretation</h2>
 <p>Wilson et al.&nbsp;found that motor skill was a stronger predictor of soccer-tennis and 11-a-side match performance than general athleticism. In this tutorial, PCA and factor analysis are used to explore the same biological idea from the trait data: whether football players vary mostly along a general performance axis, or whether athletic and technical skill traits form separate multivariate dimensions.</p>
+<p>The independent goals dataset then extends the tutorial into prediction. Instead of asking only how traits group together, the regression asks whether a player’s score on the main PCA axis predicts goals scored over 20 games.</p>
 
 
 <!-- -->
@@ -1246,239 +1303,290 @@ The p-value is 0.908 </code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">---</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a><span class="an">title:</span><span class="co"> "Tutorial 10: PCA and Factor Analysis"</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a><span class="an">author:</span><span class="co"> "Professor Mathew Crowther"</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a><span class="an">format:</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a><span class="co">  sandstone-html:</span></span>
-<span id="cb41-6"><a href="#cb41-6"></a><span class="co">    code-tools: true</span></span>
-<span id="cb41-7"><a href="#cb41-7"></a><span class="an">resources:</span></span>
-<span id="cb41-8"><a href="#cb41-8"></a><span class="co">  - data/football_player_performance.csv</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a><span class="co">  - images/football.jpg</span></span>
-<span id="cb41-10"><a href="#cb41-10"></a><span class="co">---</span></span>
-<span id="cb41-11"><a href="#cb41-11"></a></span>
-<span id="cb41-12"><a href="#cb41-12"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb41-13"><a href="#cb41-13"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-14"><a href="#cb41-14"></a><span class="in">```</span></span>
-<span id="cb41-15"><a href="#cb41-15"></a></span>
-<span id="cb41-16"><a href="#cb41-16"></a><span class="fu"># PCA and Factor Analysis</span></span>
-<span id="cb41-17"><a href="#cb41-17"></a></span>
-<span id="cb41-18"><a href="#cb41-18"></a>This tutorial uses football-player performance data from Wilson et al. (2017), *Skill not athleticism predicts individual variation in match performance of soccer players*. The study measured semi-professional football players from the University of Queensland Football Club and asked whether morphology, balance, athleticism and motor skill predicted performance in soccer-tennis and 11-a-side matches.</span>
-<span id="cb41-19"><a href="#cb41-19"></a></span>
-<span id="cb41-20"><a href="#cb41-20"></a><span class="al">![](images/football.jpg)</span></span>
-<span id="cb41-21"><a href="#cb41-21"></a></span>
-<span id="cb41-22"><a href="#cb41-22"></a></span>
-<span id="cb41-23"><a href="#cb41-23"></a>In the paper, the authors measured:</span>
-<span id="cb41-24"><a href="#cb41-24"></a></span>
-<span id="cb41-25"><a href="#cb41-25"></a><span class="ss">- </span>**Balance**: average time before losing balance while standing on high-density foam with eyes closed.</span>
-<span id="cb41-26"><a href="#cb41-26"></a><span class="ss">- </span>**Athletic performance**: 1500 m speed, wall-squat endurance, jump distance, 40 m sprint speed and agility-course speed.</span>
-<span id="cb41-27"><a href="#cb41-27"></a><span class="ss">- </span>**Motor skill**: dribbling speed, juggling ability, volley accuracy, passing accuracy and heading accuracy.</span>
-<span id="cb41-28"><a href="#cb41-28"></a></span>
-<span id="cb41-29"><a href="#cb41-29"></a>The key biological question is whether complex match performance is better explained by general athletic capacity or football-specific motor skill.</span>
-<span id="cb41-30"><a href="#cb41-30"></a></span>
-<span id="cb41-31"><a href="#cb41-31"></a>We are going to use principal components analysis and factor analysis to interpret the multivariate structure of these player performance traits.</span>
-<span id="cb41-32"><a href="#cb41-32"></a></span>
-<span id="cb41-33"><a href="#cb41-33"></a><span class="fu">## Setup</span></span>
-<span id="cb41-34"><a href="#cb41-34"></a></span>
-<span id="cb41-35"><a href="#cb41-35"></a>Load these packages to make the plots look better:</span>
-<span id="cb41-36"><a href="#cb41-36"></a></span>
-<span id="cb41-39"><a href="#cb41-39"></a><span class="in">```{r}</span></span>
-<span id="cb41-40"><a href="#cb41-40"></a><span class="co">#| message: false</span></span>
-<span id="cb41-41"><a href="#cb41-41"></a><span class="co">#| warning: false</span></span>
-<span id="cb41-42"><a href="#cb41-42"></a><span class="fu">library</span>(EFAtools)</span>
-<span id="cb41-43"><a href="#cb41-43"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb41-44"><a href="#cb41-44"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb41-45"><a href="#cb41-45"></a><span class="in">```</span></span>
-<span id="cb41-46"><a href="#cb41-46"></a></span>
-<span id="cb41-47"><a href="#cb41-47"></a><span class="fu">## Load the data</span></span>
-<span id="cb41-48"><a href="#cb41-48"></a></span>
-<span id="cb41-49"><a href="#cb41-49"></a>First open your dataset. The CSV file should be saved in the same folder as this <span class="in">`.qmd`</span> file.</span>
-<span id="cb41-50"><a href="#cb41-50"></a></span>
-<span id="cb41-53"><a href="#cb41-53"></a><span class="in">```{r}</span></span>
-<span id="cb41-54"><a href="#cb41-54"></a>players <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_player_performance.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-55"><a href="#cb41-55"></a><span class="in">```</span></span>
-<span id="cb41-56"><a href="#cb41-56"></a></span>
-<span id="cb41-57"><a href="#cb41-57"></a>Check the variable names:</span>
-<span id="cb41-58"><a href="#cb41-58"></a></span>
-<span id="cb41-61"><a href="#cb41-61"></a><span class="in">```{r}</span></span>
-<span id="cb41-62"><a href="#cb41-62"></a><span class="fu">names</span>(players)</span>
-<span id="cb41-63"><a href="#cb41-63"></a><span class="in">```</span></span>
-<span id="cb41-64"><a href="#cb41-64"></a></span>
-<span id="cb41-65"><a href="#cb41-65"></a>Because R changes column names that begin with a number, <span class="in">`1500m`</span> may appear as <span class="in">`X1500m`</span>.</span>
-<span id="cb41-66"><a href="#cb41-66"></a></span>
-<span id="cb41-69"><a href="#cb41-69"></a><span class="in">```{r}</span></span>
-<span id="cb41-70"><a href="#cb41-70"></a><span class="fu">head</span>(players)</span>
-<span id="cb41-71"><a href="#cb41-71"></a><span class="fu">str</span>(players)</span>
-<span id="cb41-72"><a href="#cb41-72"></a><span class="in">```</span></span>
-<span id="cb41-73"><a href="#cb41-73"></a></span>
-<span id="cb41-74"><a href="#cb41-74"></a><span class="fu">## Description of the variables</span></span>
-<span id="cb41-75"><a href="#cb41-75"></a></span>
-<span id="cb41-78"><a href="#cb41-78"></a><span class="in">```{r}</span></span>
-<span id="cb41-79"><a href="#cb41-79"></a><span class="fu">summary</span>(players)</span>
-<span id="cb41-80"><a href="#cb41-80"></a><span class="in">```</span></span>
-<span id="cb41-81"><a href="#cb41-81"></a></span>
-<span id="cb41-82"><a href="#cb41-82"></a>The variables are:</span>
-<span id="cb41-83"><a href="#cb41-83"></a></span>
-<span id="cb41-84"><a href="#cb41-84"></a><span class="ss">- </span><span class="in">`balance`</span>: static balance score</span>
-<span id="cb41-85"><a href="#cb41-85"></a><span class="ss">- </span><span class="in">`X1500m`</span>: speed over 1500 m</span>
-<span id="cb41-86"><a href="#cb41-86"></a><span class="ss">- </span><span class="in">`squat`</span>: wall-squat endurance time</span>
-<span id="cb41-87"><a href="#cb41-87"></a><span class="ss">- </span><span class="in">`jump`</span>: standing jump distance</span>
-<span id="cb41-88"><a href="#cb41-88"></a><span class="ss">- </span><span class="in">`sprint`</span>: 40 m sprint speed</span>
-<span id="cb41-89"><a href="#cb41-89"></a><span class="ss">- </span><span class="in">`agility`</span>: speed through an agility course</span>
-<span id="cb41-90"><a href="#cb41-90"></a><span class="ss">- </span><span class="in">`drib`</span>: dribbling speed through an agility course</span>
-<span id="cb41-91"><a href="#cb41-91"></a><span class="ss">- </span><span class="in">`jugg`</span>: juggling or keep-up ability</span>
-<span id="cb41-92"><a href="#cb41-92"></a><span class="ss">- </span><span class="in">`voll`</span>: volley-kick accuracy</span>
-<span id="cb41-93"><a href="#cb41-93"></a><span class="ss">- </span><span class="in">`pass`</span>: passing accuracy</span>
-<span id="cb41-94"><a href="#cb41-94"></a><span class="ss">- </span><span class="in">`head`</span>: heading accuracy</span>
-<span id="cb41-95"><a href="#cb41-95"></a></span>
-<span id="cb41-96"><a href="#cb41-96"></a>Higher values generally indicate better performance on that trait.</span>
-<span id="cb41-97"><a href="#cb41-97"></a></span>
-<span id="cb41-98"><a href="#cb41-98"></a><span class="fu">## Correlation matrix</span></span>
-<span id="cb41-99"><a href="#cb41-99"></a></span>
-<span id="cb41-100"><a href="#cb41-100"></a>Let's first do a correlation matrix. We exclude the player ID column and analyse the performance traits only.</span>
-<span id="cb41-101"><a href="#cb41-101"></a></span>
-<span id="cb41-104"><a href="#cb41-104"></a><span class="in">```{r}</span></span>
-<span id="cb41-105"><a href="#cb41-105"></a><span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
-<span id="cb41-106"><a href="#cb41-106"></a>Corrmatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
-<span id="cb41-107"><a href="#cb41-107"></a><span class="in">```</span></span>
-<span id="cb41-108"><a href="#cb41-108"></a></span>
-<span id="cb41-109"><a href="#cb41-109"></a>A correlation matrix lets us see which traits tend to vary together. For example, if several skill traits are positively correlated, this suggests that some players have generally high technical ability across multiple football-specific tasks.</span>
-<span id="cb41-110"><a href="#cb41-110"></a></span>
-<span id="cb41-111"><a href="#cb41-111"></a><span class="fu">## Bartlett's Test of Sphericity</span></span>
-<span id="cb41-112"><a href="#cb41-112"></a></span>
-<span id="cb41-113"><a href="#cb41-113"></a>Now we can do Bartlett's Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.</span>
-<span id="cb41-114"><a href="#cb41-114"></a></span>
-<span id="cb41-117"><a href="#cb41-117"></a><span class="in">```{r}</span></span>
-<span id="cb41-118"><a href="#cb41-118"></a><span class="fu">BARTLETT</span>(Corrmatrix, <span class="at">N =</span> <span class="fu">nrow</span>(players), <span class="at">cor_method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>))</span>
-<span id="cb41-119"><a href="#cb41-119"></a><span class="in">```</span></span>
-<span id="cb41-120"><a href="#cb41-120"></a></span>
-<span id="cb41-121"><a href="#cb41-121"></a>A significant result means the variables are sufficiently correlated for a dimension-reduction method such as PCA or factor analysis.</span>
-<span id="cb41-122"><a href="#cb41-122"></a></span>
-<span id="cb41-123"><a href="#cb41-123"></a><span class="fu">## Principal Components Analysis</span></span>
-<span id="cb41-124"><a href="#cb41-124"></a></span>
-<span id="cb41-125"><a href="#cb41-125"></a>Note: to make this a PCA based on a correlation matrix, we have to scale the variables, hence <span class="in">`scale = TRUE`</span>. There are two main principal components functions, but they are very similar. Note <span class="in">`prcomp`</span> calls the loadings "rotations", not to be confused with rotations below.</span>
-<span id="cb41-126"><a href="#cb41-126"></a></span>
-<span id="cb41-129"><a href="#cb41-129"></a><span class="in">```{r}</span></span>
-<span id="cb41-130"><a href="#cb41-130"></a>pca1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-131"><a href="#cb41-131"></a>pca2 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">cor =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb41-132"><a href="#cb41-132"></a><span class="in">```</span></span>
-<span id="cb41-133"><a href="#cb41-133"></a></span>
-<span id="cb41-136"><a href="#cb41-136"></a><span class="in">```{r}</span></span>
-<span id="cb41-137"><a href="#cb41-137"></a><span class="fu">summary</span>(pca1)</span>
-<span id="cb41-138"><a href="#cb41-138"></a><span class="fu">summary</span>(pca2)</span>
-<span id="cb41-139"><a href="#cb41-139"></a><span class="in">```</span></span>
-<span id="cb41-140"><a href="#cb41-140"></a></span>
-<span id="cb41-141"><a href="#cb41-141"></a>The first principal component describes the major axis of variation among players. In the Wilson et al. paper, separate PCAs were used to summarise athletic performance and motor skill. Here, we are doing one combined PCA across balance, athletic performance and motor skill traits, so the first few components may separate general performance, athleticism and football-specific skill.</span>
-<span id="cb41-142"><a href="#cb41-142"></a></span>
-<span id="cb41-143"><a href="#cb41-143"></a><span class="fu">## Loadings</span></span>
-<span id="cb41-144"><a href="#cb41-144"></a></span>
-<span id="cb41-145"><a href="#cb41-145"></a>Let's look at the loadings. Called "rotations" in <span class="in">`prcomp`</span> and "loadings" in <span class="in">`princomp`</span>. They are the Pearson's correlation between that variable and that Principal Component.</span>
-<span id="cb41-146"><a href="#cb41-146"></a></span>
-<span id="cb41-149"><a href="#cb41-149"></a><span class="in">```{r}</span></span>
-<span id="cb41-150"><a href="#cb41-150"></a>pca1</span>
-<span id="cb41-151"><a href="#cb41-151"></a><span class="fu">loadings</span>(pca2)</span>
-<span id="cb41-152"><a href="#cb41-152"></a><span class="in">```</span></span>
-<span id="cb41-153"><a href="#cb41-153"></a></span>
-<span id="cb41-154"><a href="#cb41-154"></a>Interpretation:</span>
-<span id="cb41-155"><a href="#cb41-155"></a></span>
-<span id="cb41-156"><a href="#cb41-156"></a><span class="ss">- </span>Variables with large positive or negative loadings contribute strongly to that component.</span>
-<span id="cb41-157"><a href="#cb41-157"></a><span class="ss">- </span>If all traits load in the same direction on PC1, PC1 can be interpreted as general player performance.</span>
-<span id="cb41-158"><a href="#cb41-158"></a><span class="ss">- </span>If athletic traits load in one direction and skill traits load in another, the component may represent a contrast between athletic capacity and football-specific skill.</span>
-<span id="cb41-159"><a href="#cb41-159"></a></span>
-<span id="cb41-160"><a href="#cb41-160"></a><span class="fu">## Screeplot</span></span>
-<span id="cb41-161"><a href="#cb41-161"></a></span>
-<span id="cb41-162"><a href="#cb41-162"></a>To do a screeplot, follow the commands below. Note this is the standard deviations, which are just square root of the variances or eigenvalues.</span>
-<span id="cb41-163"><a href="#cb41-163"></a></span>
-<span id="cb41-166"><a href="#cb41-166"></a><span class="in">```{r}</span></span>
-<span id="cb41-167"><a href="#cb41-167"></a><span class="fu">screeplot</span>(pca1, <span class="at">type =</span> <span class="st">"lines"</span>)</span>
-<span id="cb41-168"><a href="#cb41-168"></a><span class="in">```</span></span>
-<span id="cb41-169"><a href="#cb41-169"></a></span>
-<span id="cb41-170"><a href="#cb41-170"></a>The screeplot helps decide how many components are worth interpreting. A common rule of thumb is to keep components before the curve flattens out.</span>
-<span id="cb41-171"><a href="#cb41-171"></a></span>
-<span id="cb41-172"><a href="#cb41-172"></a><span class="fu">## Principal Component Scores</span></span>
-<span id="cb41-173"><a href="#cb41-173"></a></span>
-<span id="cb41-174"><a href="#cb41-174"></a>To get your principal components scores for plotting and analysis, do the following:</span>
-<span id="cb41-175"><a href="#cb41-175"></a></span>
-<span id="cb41-178"><a href="#cb41-178"></a><span class="in">```{r}</span></span>
-<span id="cb41-179"><a href="#cb41-179"></a>pca1<span class="sc">$</span>x</span>
-<span id="cb41-180"><a href="#cb41-180"></a><span class="in">```</span></span>
-<span id="cb41-181"><a href="#cb41-181"></a></span>
-<span id="cb41-182"><a href="#cb41-182"></a>So to combine them with the original variables, do this:</span>
-<span id="cb41-183"><a href="#cb41-183"></a></span>
-<span id="cb41-186"><a href="#cb41-186"></a><span class="in">```{r}</span></span>
-<span id="cb41-187"><a href="#cb41-187"></a>playerpcscores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(players, pca1<span class="sc">$</span>x)</span>
-<span id="cb41-188"><a href="#cb41-188"></a><span class="in">```</span></span>
-<span id="cb41-189"><a href="#cb41-189"></a></span>
-<span id="cb41-190"><a href="#cb41-190"></a>Each player now has a score on each principal component. These scores tell us where each player sits on the multivariate axes of football performance.</span>
-<span id="cb41-191"><a href="#cb41-191"></a></span>
-<span id="cb41-192"><a href="#cb41-192"></a><span class="fu">## Biplot</span></span>
-<span id="cb41-193"><a href="#cb41-193"></a></span>
-<span id="cb41-194"><a href="#cb41-194"></a>We can produce a biplot in ggplot2. Here the player number is used as a label.</span>
-<span id="cb41-195"><a href="#cb41-195"></a></span>
-<span id="cb41-198"><a href="#cb41-198"></a><span class="in">```{r}</span></span>
-<span id="cb41-199"><a href="#cb41-199"></a><span class="fu">autoplot</span>(pca1, <span class="at">data =</span> playerpcscores, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.label =</span> <span class="st">"player"</span>)</span>
-<span id="cb41-200"><a href="#cb41-200"></a><span class="in">```</span></span>
-<span id="cb41-201"><a href="#cb41-201"></a></span>
-<span id="cb41-202"><a href="#cb41-202"></a>We could add the loadings, but they can be a bit messy. It is often best to look at the loadings or rotations tables directly.</span>
-<span id="cb41-203"><a href="#cb41-203"></a></span>
-<span id="cb41-204"><a href="#cb41-204"></a>You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.</span>
-<span id="cb41-205"><a href="#cb41-205"></a></span>
-<span id="cb41-206"><a href="#cb41-206"></a><span class="fu">## Regression using PC scores</span></span>
-<span id="cb41-207"><a href="#cb41-207"></a></span>
-<span id="cb41-208"><a href="#cb41-208"></a>In the lecturer dataset, we used ANOVA to test whether PC scores differed among groups. This football dataset does not include grouping variables such as team grade or playing position, so here we use a regression example instead.</span>
-<span id="cb41-209"><a href="#cb41-209"></a></span>
-<span id="cb41-210"><a href="#cb41-210"></a>For example, we can ask whether PC1 is associated with juggling ability:</span>
-<span id="cb41-211"><a href="#cb41-211"></a></span>
-<span id="cb41-214"><a href="#cb41-214"></a><span class="in">```{r}</span></span>
-<span id="cb41-215"><a href="#cb41-215"></a>LM1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PC1 <span class="sc">~</span> jugg, <span class="at">data =</span> playerpcscores)</span>
-<span id="cb41-216"><a href="#cb41-216"></a><span class="fu">summary</span>(LM1)</span>
-<span id="cb41-217"><a href="#cb41-217"></a><span class="in">```</span></span>
-<span id="cb41-218"><a href="#cb41-218"></a></span>
-<span id="cb41-219"><a href="#cb41-219"></a>This is only an example. In a full analysis, you might use PC scores as predictors of match success, soccer-tennis score or network centrality.</span>
-<span id="cb41-220"><a href="#cb41-220"></a></span>
-<span id="cb41-221"><a href="#cb41-221"></a><span class="fu">## Scatterplot</span></span>
-<span id="cb41-222"><a href="#cb41-222"></a></span>
-<span id="cb41-223"><a href="#cb41-223"></a>To do a scatterplot of variables use ggplot2:</span>
-<span id="cb41-224"><a href="#cb41-224"></a></span>
-<span id="cb41-227"><a href="#cb41-227"></a><span class="in">```{r}</span></span>
-<span id="cb41-228"><a href="#cb41-228"></a><span class="fu">ggplot</span>(playerpcscores, <span class="fu">aes</span>(<span class="at">x =</span> jugg, <span class="at">y =</span> PC1)) <span class="sc">+</span></span>
-<span id="cb41-229"><a href="#cb41-229"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-230"><a href="#cb41-230"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb41-231"><a href="#cb41-231"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Juggling ability"</span>, <span class="at">y =</span> <span class="st">"PC1 score"</span>)</span>
-<span id="cb41-232"><a href="#cb41-232"></a><span class="in">```</span></span>
-<span id="cb41-233"><a href="#cb41-233"></a></span>
-<span id="cb41-234"><a href="#cb41-234"></a><span class="fu">## Factor Analysis with Varimax Rotation</span></span>
-<span id="cb41-235"><a href="#cb41-235"></a></span>
-<span id="cb41-236"><a href="#cb41-236"></a>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax.</span>
-<span id="cb41-237"><a href="#cb41-237"></a></span>
-<span id="cb41-238"><a href="#cb41-238"></a>Here we start with three factors because the paper describes three broad biological domains: balance, athletic performance and motor skill.</span>
-<span id="cb41-239"><a href="#cb41-239"></a></span>
-<span id="cb41-242"><a href="#cb41-242"></a><span class="in">```{r}</span></span>
-<span id="cb41-243"><a href="#cb41-243"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb41-244"><a href="#cb41-244"></a>fa1</span>
-<span id="cb41-245"><a href="#cb41-245"></a><span class="in">```</span></span>
-<span id="cb41-246"><a href="#cb41-246"></a></span>
-<span id="cb41-247"><a href="#cb41-247"></a>The rotated factor loadings may help identify clusters of variables. For example:</span>
-<span id="cb41-248"><a href="#cb41-248"></a></span>
-<span id="cb41-249"><a href="#cb41-249"></a><span class="ss">- </span>one factor may represent athletic performance</span>
-<span id="cb41-250"><a href="#cb41-250"></a><span class="ss">- </span>one factor may represent football-specific motor skill</span>
-<span id="cb41-251"><a href="#cb41-251"></a><span class="ss">- </span>one factor may represent balance or a narrower technical component</span>
-<span id="cb41-252"><a href="#cb41-252"></a></span>
-<span id="cb41-253"><a href="#cb41-253"></a>Try changing the number of factors and compare whether the interpretation becomes clearer or less clear:</span>
-<span id="cb41-254"><a href="#cb41-254"></a></span>
-<span id="cb41-257"><a href="#cb41-257"></a><span class="in">```{r}</span></span>
-<span id="cb41-258"><a href="#cb41-258"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb41-259"><a href="#cb41-259"></a>fa2</span>
-<span id="cb41-260"><a href="#cb41-260"></a><span class="in">```</span></span>
-<span id="cb41-261"><a href="#cb41-261"></a></span>
-<span id="cb41-264"><a href="#cb41-264"></a><span class="in">```{r}</span></span>
-<span id="cb41-265"><a href="#cb41-265"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
-<span id="cb41-266"><a href="#cb41-266"></a>fa4</span>
-<span id="cb41-267"><a href="#cb41-267"></a><span class="in">```</span></span>
-<span id="cb41-268"><a href="#cb41-268"></a></span>
-<span id="cb41-269"><a href="#cb41-269"></a><span class="fu">## Final interpretation</span></span>
-<span id="cb41-270"><a href="#cb41-270"></a></span>
-<span id="cb41-271"><a href="#cb41-271"></a>Wilson et al. found that motor skill was a stronger predictor of soccer-tennis and 11-a-side match performance than general athleticism. In this tutorial, PCA and factor analysis are used to explore the same biological idea from the trait data: whether football players vary mostly along a general performance axis, or whether athletic and technical skill traits form separate multivariate dimensions.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1"></a><span class="co">---</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a><span class="an">title:</span><span class="co"> "Tutorial 10: PCA and Factor Analysis"</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="an">author:</span><span class="co"> "Professor Mathew Crowther"</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a><span class="an">format:</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a><span class="co">  sandstone-html:</span></span>
+<span id="cb47-6"><a href="#cb47-6"></a><span class="co">    code-tools: true</span></span>
+<span id="cb47-7"><a href="#cb47-7"></a><span class="an">resources:</span></span>
+<span id="cb47-8"><a href="#cb47-8"></a><span class="co">  - data/football_player_performance.csv</span></span>
+<span id="cb47-9"><a href="#cb47-9"></a><span class="co">  - data/football_goals_20_games_24_players.csv</span></span>
+<span id="cb47-10"><a href="#cb47-10"></a><span class="co">  - images/football.jpg</span></span>
+<span id="cb47-11"><a href="#cb47-11"></a><span class="co">---</span></span>
+<span id="cb47-12"><a href="#cb47-12"></a></span>
+<span id="cb47-13"><a href="#cb47-13"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-15"><a href="#cb47-15"></a><span class="in">```</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a></span>
+<span id="cb47-17"><a href="#cb47-17"></a><span class="fu"># PCA and Factor Analysis</span></span>
+<span id="cb47-18"><a href="#cb47-18"></a></span>
+<span id="cb47-19"><a href="#cb47-19"></a>This tutorial uses football-player performance data from Wilson et al. (2017), *Skill not athleticism predicts individual variation in match performance of soccer players*. The study measured semi-professional football players from the University of Queensland Football Club and asked whether morphology, balance, athleticism and motor skill predicted performance in soccer-tennis and 11-a-side matches.</span>
+<span id="cb47-20"><a href="#cb47-20"></a></span>
+<span id="cb47-21"><a href="#cb47-21"></a><span class="al">![](images/football.jpg)</span></span>
+<span id="cb47-22"><a href="#cb47-22"></a></span>
+<span id="cb47-23"><a href="#cb47-23"></a></span>
+<span id="cb47-24"><a href="#cb47-24"></a>In the paper, the authors measured:</span>
+<span id="cb47-25"><a href="#cb47-25"></a></span>
+<span id="cb47-26"><a href="#cb47-26"></a><span class="ss">- </span>**Balance**: average time before losing balance while standing on high-density foam with eyes closed.</span>
+<span id="cb47-27"><a href="#cb47-27"></a><span class="ss">- </span>**Athletic performance**: 1500 m speed, wall-squat endurance, jump distance, 40 m sprint speed and agility-course speed.</span>
+<span id="cb47-28"><a href="#cb47-28"></a><span class="ss">- </span>**Motor skill**: dribbling speed, juggling ability, volley accuracy, passing accuracy and heading accuracy.</span>
+<span id="cb47-29"><a href="#cb47-29"></a></span>
+<span id="cb47-30"><a href="#cb47-30"></a>The key biological question is whether complex match performance is better explained by general athletic capacity or football-specific motor skill.</span>
+<span id="cb47-31"><a href="#cb47-31"></a></span>
+<span id="cb47-32"><a href="#cb47-32"></a>We are going to use principal components analysis and factor analysis to interpret the multivariate structure of these player performance traits.</span>
+<span id="cb47-33"><a href="#cb47-33"></a></span>
+<span id="cb47-34"><a href="#cb47-34"></a><span class="fu">## Setup</span></span>
+<span id="cb47-35"><a href="#cb47-35"></a></span>
+<span id="cb47-36"><a href="#cb47-36"></a>Load these packages to make the plots look better:</span>
+<span id="cb47-37"><a href="#cb47-37"></a></span>
+<span id="cb47-40"><a href="#cb47-40"></a><span class="in">```{r}</span></span>
+<span id="cb47-41"><a href="#cb47-41"></a><span class="co">#| message: false</span></span>
+<span id="cb47-42"><a href="#cb47-42"></a><span class="co">#| warning: false</span></span>
+<span id="cb47-43"><a href="#cb47-43"></a><span class="fu">library</span>(EFAtools)</span>
+<span id="cb47-44"><a href="#cb47-44"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb47-45"><a href="#cb47-45"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb47-46"><a href="#cb47-46"></a><span class="in">```</span></span>
+<span id="cb47-47"><a href="#cb47-47"></a></span>
+<span id="cb47-48"><a href="#cb47-48"></a><span class="fu">## Load the data</span></span>
+<span id="cb47-49"><a href="#cb47-49"></a></span>
+<span id="cb47-50"><a href="#cb47-50"></a>First open the player performance dataset. The CSV file is saved in the <span class="in">`data`</span> folder.</span>
+<span id="cb47-51"><a href="#cb47-51"></a></span>
+<span id="cb47-52"><a href="#cb47-52"></a>Later in the tutorial, we will also use a second independent dataset, <span class="in">`football_goals_20_games_24_players.csv`</span>, to practise prediction using regression.</span>
+<span id="cb47-53"><a href="#cb47-53"></a></span>
+<span id="cb47-56"><a href="#cb47-56"></a><span class="in">```{r}</span></span>
+<span id="cb47-57"><a href="#cb47-57"></a>players <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_player_performance.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-58"><a href="#cb47-58"></a><span class="in">```</span></span>
+<span id="cb47-59"><a href="#cb47-59"></a></span>
+<span id="cb47-60"><a href="#cb47-60"></a>Check the variable names:</span>
+<span id="cb47-61"><a href="#cb47-61"></a></span>
+<span id="cb47-64"><a href="#cb47-64"></a><span class="in">```{r}</span></span>
+<span id="cb47-65"><a href="#cb47-65"></a><span class="fu">names</span>(players)</span>
+<span id="cb47-66"><a href="#cb47-66"></a><span class="in">```</span></span>
+<span id="cb47-67"><a href="#cb47-67"></a></span>
+<span id="cb47-68"><a href="#cb47-68"></a>Because R changes column names that begin with a number, <span class="in">`1500m`</span> may appear as <span class="in">`X1500m`</span>.</span>
+<span id="cb47-69"><a href="#cb47-69"></a></span>
+<span id="cb47-72"><a href="#cb47-72"></a><span class="in">```{r}</span></span>
+<span id="cb47-73"><a href="#cb47-73"></a><span class="fu">head</span>(players)</span>
+<span id="cb47-74"><a href="#cb47-74"></a><span class="fu">str</span>(players)</span>
+<span id="cb47-75"><a href="#cb47-75"></a><span class="in">```</span></span>
+<span id="cb47-76"><a href="#cb47-76"></a></span>
+<span id="cb47-77"><a href="#cb47-77"></a><span class="fu">## Description of the variables</span></span>
+<span id="cb47-78"><a href="#cb47-78"></a></span>
+<span id="cb47-81"><a href="#cb47-81"></a><span class="in">```{r}</span></span>
+<span id="cb47-82"><a href="#cb47-82"></a><span class="fu">summary</span>(players)</span>
+<span id="cb47-83"><a href="#cb47-83"></a><span class="in">```</span></span>
+<span id="cb47-84"><a href="#cb47-84"></a></span>
+<span id="cb47-85"><a href="#cb47-85"></a>The variables are:</span>
+<span id="cb47-86"><a href="#cb47-86"></a></span>
+<span id="cb47-87"><a href="#cb47-87"></a><span class="ss">- </span><span class="in">`balance`</span>: static balance score</span>
+<span id="cb47-88"><a href="#cb47-88"></a><span class="ss">- </span><span class="in">`X1500m`</span>: speed over 1500 m</span>
+<span id="cb47-89"><a href="#cb47-89"></a><span class="ss">- </span><span class="in">`squat`</span>: wall-squat endurance time</span>
+<span id="cb47-90"><a href="#cb47-90"></a><span class="ss">- </span><span class="in">`jump`</span>: standing jump distance</span>
+<span id="cb47-91"><a href="#cb47-91"></a><span class="ss">- </span><span class="in">`sprint`</span>: 40 m sprint speed</span>
+<span id="cb47-92"><a href="#cb47-92"></a><span class="ss">- </span><span class="in">`agility`</span>: speed through an agility course</span>
+<span id="cb47-93"><a href="#cb47-93"></a><span class="ss">- </span><span class="in">`drib`</span>: dribbling speed through an agility course</span>
+<span id="cb47-94"><a href="#cb47-94"></a><span class="ss">- </span><span class="in">`jugg`</span>: juggling or keep-up ability</span>
+<span id="cb47-95"><a href="#cb47-95"></a><span class="ss">- </span><span class="in">`voll`</span>: volley-kick accuracy</span>
+<span id="cb47-96"><a href="#cb47-96"></a><span class="ss">- </span><span class="in">`pass`</span>: passing accuracy</span>
+<span id="cb47-97"><a href="#cb47-97"></a><span class="ss">- </span><span class="in">`head`</span>: heading accuracy</span>
+<span id="cb47-98"><a href="#cb47-98"></a></span>
+<span id="cb47-99"><a href="#cb47-99"></a>Higher values generally indicate better performance on that trait.</span>
+<span id="cb47-100"><a href="#cb47-100"></a></span>
+<span id="cb47-101"><a href="#cb47-101"></a><span class="fu">## Correlation matrix</span></span>
+<span id="cb47-102"><a href="#cb47-102"></a></span>
+<span id="cb47-103"><a href="#cb47-103"></a>Let's first do a correlation matrix. We exclude the player ID column and analyse the performance traits only.</span>
+<span id="cb47-104"><a href="#cb47-104"></a></span>
+<span id="cb47-107"><a href="#cb47-107"></a><span class="in">```{r}</span></span>
+<span id="cb47-108"><a href="#cb47-108"></a><span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb47-109"><a href="#cb47-109"></a>Corrmatrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb47-110"><a href="#cb47-110"></a><span class="in">```</span></span>
+<span id="cb47-111"><a href="#cb47-111"></a></span>
+<span id="cb47-112"><a href="#cb47-112"></a>A correlation matrix lets us see which traits tend to vary together. For example, if several skill traits are positively correlated, this suggests that some players have generally high technical ability across multiple football-specific tasks.</span>
+<span id="cb47-113"><a href="#cb47-113"></a></span>
+<span id="cb47-114"><a href="#cb47-114"></a><span class="fu">## Bartlett's Test of Sphericity</span></span>
+<span id="cb47-115"><a href="#cb47-115"></a></span>
+<span id="cb47-116"><a href="#cb47-116"></a>Now we can do Bartlett's Test of Sphericity. This test compares the correlation matrix to an identity matrix. If it is significant, it is worth doing a PCA.</span>
+<span id="cb47-117"><a href="#cb47-117"></a></span>
+<span id="cb47-120"><a href="#cb47-120"></a><span class="in">```{r}</span></span>
+<span id="cb47-121"><a href="#cb47-121"></a><span class="fu">BARTLETT</span>(Corrmatrix, <span class="at">N =</span> <span class="fu">nrow</span>(players), <span class="at">cor_method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>))</span>
+<span id="cb47-122"><a href="#cb47-122"></a><span class="in">```</span></span>
+<span id="cb47-123"><a href="#cb47-123"></a></span>
+<span id="cb47-124"><a href="#cb47-124"></a>A significant result means the variables are sufficiently correlated for a dimension-reduction method such as PCA or factor analysis.</span>
+<span id="cb47-125"><a href="#cb47-125"></a></span>
+<span id="cb47-126"><a href="#cb47-126"></a><span class="fu">## Principal Components Analysis</span></span>
+<span id="cb47-127"><a href="#cb47-127"></a></span>
+<span id="cb47-128"><a href="#cb47-128"></a>Note: to make this a PCA based on a correlation matrix, we have to scale the variables, hence <span class="in">`scale = TRUE`</span>. There are two main principal components functions, but they are very similar. Note <span class="in">`prcomp`</span> calls the loadings "rotations", not to be confused with rotations below.</span>
+<span id="cb47-129"><a href="#cb47-129"></a></span>
+<span id="cb47-132"><a href="#cb47-132"></a><span class="in">```{r}</span></span>
+<span id="cb47-133"><a href="#cb47-133"></a>pca1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-134"><a href="#cb47-134"></a>pca2 <span class="ot">&lt;-</span> <span class="fu">princomp</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">cor =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-135"><a href="#cb47-135"></a><span class="in">```</span></span>
+<span id="cb47-136"><a href="#cb47-136"></a></span>
+<span id="cb47-139"><a href="#cb47-139"></a><span class="in">```{r}</span></span>
+<span id="cb47-140"><a href="#cb47-140"></a><span class="fu">summary</span>(pca1)</span>
+<span id="cb47-141"><a href="#cb47-141"></a><span class="fu">summary</span>(pca2)</span>
+<span id="cb47-142"><a href="#cb47-142"></a><span class="in">```</span></span>
+<span id="cb47-143"><a href="#cb47-143"></a></span>
+<span id="cb47-144"><a href="#cb47-144"></a>The first principal component describes the major axis of variation among players. In the Wilson et al. paper, separate PCAs were used to summarise athletic performance and motor skill. Here, we are doing one combined PCA across balance, athletic performance and motor skill traits, so the first few components may separate general performance, athleticism and football-specific skill.</span>
+<span id="cb47-145"><a href="#cb47-145"></a></span>
+<span id="cb47-146"><a href="#cb47-146"></a><span class="fu">## Loadings</span></span>
+<span id="cb47-147"><a href="#cb47-147"></a></span>
+<span id="cb47-148"><a href="#cb47-148"></a>Let's look at the loadings. Called "rotations" in <span class="in">`prcomp`</span> and "loadings" in <span class="in">`princomp`</span>. They are the Pearson's correlation between that variable and that Principal Component.</span>
+<span id="cb47-149"><a href="#cb47-149"></a></span>
+<span id="cb47-152"><a href="#cb47-152"></a><span class="in">```{r}</span></span>
+<span id="cb47-153"><a href="#cb47-153"></a>pca1</span>
+<span id="cb47-154"><a href="#cb47-154"></a><span class="fu">loadings</span>(pca2)</span>
+<span id="cb47-155"><a href="#cb47-155"></a><span class="in">```</span></span>
+<span id="cb47-156"><a href="#cb47-156"></a></span>
+<span id="cb47-157"><a href="#cb47-157"></a>Interpretation:</span>
+<span id="cb47-158"><a href="#cb47-158"></a></span>
+<span id="cb47-159"><a href="#cb47-159"></a><span class="ss">- </span>Variables with large positive or negative loadings contribute strongly to that component.</span>
+<span id="cb47-160"><a href="#cb47-160"></a><span class="ss">- </span>If all traits load in the same direction on PC1, PC1 can be interpreted as general player performance.</span>
+<span id="cb47-161"><a href="#cb47-161"></a><span class="ss">- </span>If athletic traits load in one direction and skill traits load in another, the component may represent a contrast between athletic capacity and football-specific skill.</span>
+<span id="cb47-162"><a href="#cb47-162"></a></span>
+<span id="cb47-163"><a href="#cb47-163"></a><span class="fu">## Screeplot</span></span>
+<span id="cb47-164"><a href="#cb47-164"></a></span>
+<span id="cb47-165"><a href="#cb47-165"></a>To do a screeplot, follow the commands below. Note this is the standard deviations, which are just square root of the variances or eigenvalues.</span>
+<span id="cb47-166"><a href="#cb47-166"></a></span>
+<span id="cb47-169"><a href="#cb47-169"></a><span class="in">```{r}</span></span>
+<span id="cb47-170"><a href="#cb47-170"></a><span class="fu">screeplot</span>(pca1, <span class="at">type =</span> <span class="st">"lines"</span>)</span>
+<span id="cb47-171"><a href="#cb47-171"></a><span class="in">```</span></span>
+<span id="cb47-172"><a href="#cb47-172"></a></span>
+<span id="cb47-173"><a href="#cb47-173"></a>The screeplot helps decide how many components are worth interpreting. A common rule of thumb is to keep components before the curve flattens out.</span>
+<span id="cb47-174"><a href="#cb47-174"></a></span>
+<span id="cb47-175"><a href="#cb47-175"></a><span class="fu">## Principal Component Scores</span></span>
+<span id="cb47-176"><a href="#cb47-176"></a></span>
+<span id="cb47-177"><a href="#cb47-177"></a>To get your principal components scores for plotting and analysis, do the following:</span>
+<span id="cb47-178"><a href="#cb47-178"></a></span>
+<span id="cb47-181"><a href="#cb47-181"></a><span class="in">```{r}</span></span>
+<span id="cb47-182"><a href="#cb47-182"></a>pca1<span class="sc">$</span>x</span>
+<span id="cb47-183"><a href="#cb47-183"></a><span class="in">```</span></span>
+<span id="cb47-184"><a href="#cb47-184"></a></span>
+<span id="cb47-185"><a href="#cb47-185"></a>So to combine them with the original variables, do this:</span>
+<span id="cb47-186"><a href="#cb47-186"></a></span>
+<span id="cb47-189"><a href="#cb47-189"></a><span class="in">```{r}</span></span>
+<span id="cb47-190"><a href="#cb47-190"></a>playerpcscores <span class="ot">&lt;-</span> <span class="fu">cbind</span>(players, pca1<span class="sc">$</span>x)</span>
+<span id="cb47-191"><a href="#cb47-191"></a><span class="in">```</span></span>
+<span id="cb47-192"><a href="#cb47-192"></a></span>
+<span id="cb47-193"><a href="#cb47-193"></a>Each player now has a score on each principal component. These scores tell us where each player sits on the multivariate axes of football performance.</span>
+<span id="cb47-194"><a href="#cb47-194"></a></span>
+<span id="cb47-195"><a href="#cb47-195"></a><span class="fu">## Biplot</span></span>
+<span id="cb47-196"><a href="#cb47-196"></a></span>
+<span id="cb47-197"><a href="#cb47-197"></a>We can produce a biplot in ggplot2. Here the player number is used as a label.</span>
+<span id="cb47-198"><a href="#cb47-198"></a></span>
+<span id="cb47-201"><a href="#cb47-201"></a><span class="in">```{r}</span></span>
+<span id="cb47-202"><a href="#cb47-202"></a><span class="fu">autoplot</span>(pca1, <span class="at">data =</span> playerpcscores, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.label =</span> <span class="st">"player"</span>)</span>
+<span id="cb47-203"><a href="#cb47-203"></a><span class="in">```</span></span>
+<span id="cb47-204"><a href="#cb47-204"></a></span>
+<span id="cb47-205"><a href="#cb47-205"></a>We could add the loadings, but they can be a bit messy. It is often best to look at the loadings or rotations tables directly.</span>
+<span id="cb47-206"><a href="#cb47-206"></a></span>
+<span id="cb47-207"><a href="#cb47-207"></a>You can make the plot using different symbols, change background etc through reading the ggplot2 documentation.</span>
+<span id="cb47-208"><a href="#cb47-208"></a></span>
+<span id="cb47-209"><a href="#cb47-209"></a><span class="fu">## Regression: Goals vs PCA</span></span>
+<span id="cb47-210"><a href="#cb47-210"></a></span>
+<span id="cb47-211"><a href="#cb47-211"></a>We now use a simple regression to link the PCA results to an outcome variable.</span>
+<span id="cb47-212"><a href="#cb47-212"></a></span>
+<span id="cb47-213"><a href="#cb47-213"></a>We will relate **goals scored over 20 games** to the first principal component (PC1), which represents overall performance.</span>
+<span id="cb47-214"><a href="#cb47-214"></a></span>
+<span id="cb47-215"><a href="#cb47-215"></a>Read in the goals dataset:</span>
+<span id="cb47-216"><a href="#cb47-216"></a></span>
+<span id="cb47-219"><a href="#cb47-219"></a><span class="in">```{r}</span></span>
+<span id="cb47-220"><a href="#cb47-220"></a>goals <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/football_goals_20_games_24_players.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-221"><a href="#cb47-221"></a><span class="in">```</span></span>
+<span id="cb47-222"><a href="#cb47-222"></a></span>
+<span id="cb47-223"><a href="#cb47-223"></a>For simplicity, we will match players by row order and combine the goals dataset with the PCA scores. We avoid using the object name <span class="in">`data`</span>, because <span class="in">`data()`</span> is also a built-in R function.</span>
+<span id="cb47-224"><a href="#cb47-224"></a></span>
+<span id="cb47-227"><a href="#cb47-227"></a><span class="in">```{r}</span></span>
+<span id="cb47-228"><a href="#cb47-228"></a>pca_scores <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca1<span class="sc">$</span>x)</span>
+<span id="cb47-229"><a href="#cb47-229"></a></span>
+<span id="cb47-230"><a href="#cb47-230"></a><span class="co"># Keep only PC1 for this regression</span></span>
+<span id="cb47-231"><a href="#cb47-231"></a>pca_scores <span class="ot">&lt;-</span> pca_scores[, <span class="st">"PC1"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb47-232"><a href="#cb47-232"></a></span>
+<span id="cb47-233"><a href="#cb47-233"></a><span class="co"># Check that the PCA data and goals data have the same number of players</span></span>
+<span id="cb47-234"><a href="#cb47-234"></a><span class="fu">nrow</span>(pca_scores)</span>
+<span id="cb47-235"><a href="#cb47-235"></a><span class="fu">nrow</span>(goals)</span>
+<span id="cb47-236"><a href="#cb47-236"></a></span>
+<span id="cb47-237"><a href="#cb47-237"></a>combined <span class="ot">&lt;-</span> <span class="fu">cbind</span>(</span>
+<span id="cb47-238"><a href="#cb47-238"></a>  pca_scores,</span>
+<span id="cb47-239"><a href="#cb47-239"></a>  goals</span>
+<span id="cb47-240"><a href="#cb47-240"></a>)</span>
+<span id="cb47-241"><a href="#cb47-241"></a><span class="in">```</span></span>
+<span id="cb47-242"><a href="#cb47-242"></a></span>
+<span id="cb47-243"><a href="#cb47-243"></a><span class="fu">### Simple regression: Goals vs PC1</span></span>
+<span id="cb47-244"><a href="#cb47-244"></a></span>
+<span id="cb47-247"><a href="#cb47-247"></a><span class="in">```{r}</span></span>
+<span id="cb47-248"><a href="#cb47-248"></a>LM_goals_PC1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(goals_20_games <span class="sc">~</span> PC1, <span class="at">data =</span> combined)</span>
+<span id="cb47-249"><a href="#cb47-249"></a><span class="fu">summary</span>(LM_goals_PC1)</span>
+<span id="cb47-250"><a href="#cb47-250"></a><span class="in">```</span></span>
+<span id="cb47-251"><a href="#cb47-251"></a></span>
+<span id="cb47-252"><a href="#cb47-252"></a>Interpretation:</span>
+<span id="cb47-253"><a href="#cb47-253"></a></span>
+<span id="cb47-254"><a href="#cb47-254"></a><span class="ss">- </span>The response variable is <span class="in">`goals_20_games`</span></span>
+<span id="cb47-255"><a href="#cb47-255"></a><span class="ss">- </span>The predictor is <span class="in">`PC1`</span></span>
+<span id="cb47-256"><a href="#cb47-256"></a><span class="ss">- </span>A positive relationship means players with higher overall performance (PC1) score more goals</span>
+<span id="cb47-257"><a href="#cb47-257"></a></span>
+<span id="cb47-258"><a href="#cb47-258"></a><span class="fu">### Scatterplot</span></span>
+<span id="cb47-259"><a href="#cb47-259"></a></span>
+<span id="cb47-262"><a href="#cb47-262"></a><span class="in">```{r}</span></span>
+<span id="cb47-263"><a href="#cb47-263"></a><span class="fu">ggplot</span>(combined, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> goals_20_games)) <span class="sc">+</span></span>
+<span id="cb47-264"><a href="#cb47-264"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb47-265"><a href="#cb47-265"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb47-266"><a href="#cb47-266"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb47-267"><a href="#cb47-267"></a>  <span class="fu">labs</span>(</span>
+<span id="cb47-268"><a href="#cb47-268"></a>    <span class="at">x =</span> <span class="st">"PC1 (overall performance)"</span>,</span>
+<span id="cb47-269"><a href="#cb47-269"></a>    <span class="at">y =</span> <span class="st">"Goals over 20 games"</span>,</span>
+<span id="cb47-270"><a href="#cb47-270"></a>    <span class="at">title =</span> <span class="st">"Do higher-performing players score more goals?"</span></span>
+<span id="cb47-271"><a href="#cb47-271"></a>  )</span>
+<span id="cb47-272"><a href="#cb47-272"></a><span class="in">```</span></span>
+<span id="cb47-273"><a href="#cb47-273"></a></span>
+<span id="cb47-274"><a href="#cb47-274"></a>Interpretation:</span>
+<span id="cb47-275"><a href="#cb47-275"></a></span>
+<span id="cb47-276"><a href="#cb47-276"></a><span class="ss">- </span>Each point is a player</span>
+<span id="cb47-277"><a href="#cb47-277"></a><span class="ss">- </span>Points close together have similar performance and goal output</span>
+<span id="cb47-278"><a href="#cb47-278"></a><span class="ss">- </span>The slope shows whether better overall players tend to score more goals</span>
+<span id="cb47-279"><a href="#cb47-279"></a></span>
+<span id="cb47-280"><a href="#cb47-280"></a><span class="fu">### Key point</span></span>
+<span id="cb47-281"><a href="#cb47-281"></a></span>
+<span id="cb47-282"><a href="#cb47-282"></a>This links PCA to prediction:</span>
+<span id="cb47-283"><a href="#cb47-283"></a></span>
+<span id="cb47-284"><a href="#cb47-284"></a><span class="ss">- </span>PCA identifies the main performance axis (PC1)</span>
+<span id="cb47-285"><a href="#cb47-285"></a><span class="ss">- </span>Regression tests whether that axis predicts goals</span>
+<span id="cb47-286"><a href="#cb47-286"></a></span>
+<span id="cb47-287"><a href="#cb47-287"></a><span class="fu">## Factor Analysis with Varimax Rotation</span></span>
+<span id="cb47-288"><a href="#cb47-288"></a></span>
+<span id="cb47-289"><a href="#cb47-289"></a>To do a Varimax rotation on your principal components, follow these commands. Do a factor analysis with the rotation being Varimax.</span>
+<span id="cb47-290"><a href="#cb47-290"></a></span>
+<span id="cb47-291"><a href="#cb47-291"></a>Here we start with three factors because the paper describes three broad biological domains: balance, athletic performance and motor skill.</span>
+<span id="cb47-292"><a href="#cb47-292"></a></span>
+<span id="cb47-295"><a href="#cb47-295"></a><span class="in">```{r}</span></span>
+<span id="cb47-296"><a href="#cb47-296"></a>fa1 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">3</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb47-297"><a href="#cb47-297"></a>fa1</span>
+<span id="cb47-298"><a href="#cb47-298"></a><span class="in">```</span></span>
+<span id="cb47-299"><a href="#cb47-299"></a></span>
+<span id="cb47-300"><a href="#cb47-300"></a>The rotated factor loadings may help identify clusters of variables. For example:</span>
+<span id="cb47-301"><a href="#cb47-301"></a></span>
+<span id="cb47-302"><a href="#cb47-302"></a><span class="ss">- </span>one factor may represent athletic performance</span>
+<span id="cb47-303"><a href="#cb47-303"></a><span class="ss">- </span>one factor may represent football-specific motor skill</span>
+<span id="cb47-304"><a href="#cb47-304"></a><span class="ss">- </span>one factor may represent balance or a narrower technical component</span>
+<span id="cb47-305"><a href="#cb47-305"></a></span>
+<span id="cb47-306"><a href="#cb47-306"></a>Try changing the number of factors and compare whether the interpretation becomes clearer or less clear:</span>
+<span id="cb47-307"><a href="#cb47-307"></a></span>
+<span id="cb47-310"><a href="#cb47-310"></a><span class="in">```{r}</span></span>
+<span id="cb47-311"><a href="#cb47-311"></a>fa2 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">2</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb47-312"><a href="#cb47-312"></a>fa2</span>
+<span id="cb47-313"><a href="#cb47-313"></a><span class="in">```</span></span>
+<span id="cb47-314"><a href="#cb47-314"></a></span>
+<span id="cb47-317"><a href="#cb47-317"></a><span class="in">```{r}</span></span>
+<span id="cb47-318"><a href="#cb47-318"></a>fa4 <span class="ot">&lt;-</span> <span class="fu">factanal</span>(players[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="dv">4</span>, <span class="at">rotation =</span> <span class="st">"varimax"</span>)</span>
+<span id="cb47-319"><a href="#cb47-319"></a>fa4</span>
+<span id="cb47-320"><a href="#cb47-320"></a><span class="in">```</span></span>
+<span id="cb47-321"><a href="#cb47-321"></a></span>
+<span id="cb47-322"><a href="#cb47-322"></a><span class="fu">## Final interpretation</span></span>
+<span id="cb47-323"><a href="#cb47-323"></a></span>
+<span id="cb47-324"><a href="#cb47-324"></a>Wilson et al. found that motor skill was a stronger predictor of soccer-tennis and 11-a-side match performance than general athleticism. In this tutorial, PCA and factor analysis are used to explore the same biological idea from the trait data: whether football players vary mostly along a general performance axis, or whether athletic and technical skill traits form separate multivariate dimensions.</span>
+<span id="cb47-325"><a href="#cb47-325"></a></span>
+<span id="cb47-326"><a href="#cb47-326"></a>The independent goals dataset then extends the tutorial into prediction. Instead of asking only how traits group together, the regression asks whether a player's score on the main PCA axis predicts goals scored over 20 games.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

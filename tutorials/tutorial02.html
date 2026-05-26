@@ -77,9 +77,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-9fa6dbbe6219e357c3a17d5a2c09c803.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-7278299327f02d2322d90678f67156e9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-222364389b7a706a1610f6d60a7f08ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-222364389b7a706a1610f6d60a7f08ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-222364389b7a706a1610f6d60a7f08ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.js"></script>
 <link href="../site_libs/quarto-contrib/progressive-sections-1.0.0/progressive-sections.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -229,7 +229,10 @@ window.Quarto = {
   <li><a href="#part-b-split-by-population" id="toc-part-b-split-by-population" class="nav-link" data-scroll-target="#part-b-split-by-population">Part B — Split by population</a></li>
   <li><a href="#part-c-connection-to-the-lab" id="toc-part-c-connection-to-the-lab" class="nav-link" data-scroll-target="#part-c-connection-to-the-lab">Part C — Connection to the lab</a></li>
   </ul></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a>
+  <ul class="collapse">
+  <li><a href="#example-exam-questions" id="toc-example-exam-questions" class="nav-link" data-scroll-target="#example-exam-questions">Example exam questions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="tutorial02.pdf"><i class="bi bi-file-pdf"></i>Typst (sandstone)</a></li></ul></div></nav>
@@ -485,10 +488,18 @@ Figure&nbsp;1: Ear conch length by population
 <section id="wrap-up" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="wrap-up">Wrap-up</h2>
 <p>In this tutorial you computed confidence intervals and saw why sample size and group structure both matter. You will use these ideas in the lab.</p>
+<section id="example-exam-questions" class="level3">
+<h3 class="anchored" data-anchor-id="example-exam-questions">Example exam questions</h3>
+<ol type="1">
+<li><p>A fellow student says: “If a 95% confidence interval for mean body length is [18.2, 22.6] mm, then there is a 95% probability that the true population mean lies within this interval.” Explain why this statement is incorrect, and provide a more accurate interpretation of what the 95% refers to.</p></li>
+<li><p>A wildlife survey estimates mean wing length of a bird species across two regions. Region A (<span class="math inline">n = 40</span>): mean = 115 mm, 95% CI [112, 118]. Region B (<span class="math inline">n = 15</span>): mean = 112 mm, 95% CI [106, 118]. A student concludes: “Since the confidence intervals overlap, the two region means must not differ.” Is this reasoning sound? Explain why or why not.</p></li>
+<li><p>A researcher measures soil pH at 60 sites across a national park. A 95% confidence interval for the mean pH is [5.8, 6.4]. If the researcher takes a second, independent sample of 60 sites from the same park, will the new 95% confidence interval necessarily contain 6.1, the midpoint of the first interval? Explain your reasoning.</p></li>
+</ol>
 
 
 <!-- -->
 
+</section>
 </section>
 </section>
 
@@ -1105,6 +1116,14 @@ Figure&nbsp;1: Ear conch length by population
 <span id="cb17-177"><a href="#cb17-177"></a><span class="fu">## Wrap-up {.unnumbered}</span></span>
 <span id="cb17-178"><a href="#cb17-178"></a></span>
 <span id="cb17-179"><a href="#cb17-179"></a>In this tutorial you computed confidence intervals and saw why sample size and group structure both matter. You will use these ideas in the lab.</span>
+<span id="cb17-180"><a href="#cb17-180"></a></span>
+<span id="cb17-181"><a href="#cb17-181"></a><span class="fu">### Example exam questions</span></span>
+<span id="cb17-182"><a href="#cb17-182"></a></span>
+<span id="cb17-183"><a href="#cb17-183"></a><span class="ss">1.  </span>A fellow student says: "If a 95% confidence interval for mean body length is <span class="co">[</span><span class="ot">18.2, 22.6</span><span class="co">]</span> mm, then there is a 95% probability that the true population mean lies within this interval." Explain why this statement is incorrect, and provide a more accurate interpretation of what the 95% refers to.</span>
+<span id="cb17-184"><a href="#cb17-184"></a></span>
+<span id="cb17-185"><a href="#cb17-185"></a><span class="ss">2.  </span>A wildlife survey estimates mean wing length of a bird species across two regions. Region A ($n = 40$): mean = 115 mm, 95% CI <span class="co">[</span><span class="ot">112, 118</span><span class="co">]</span>. Region B ($n = 15$): mean = 112 mm, 95% CI <span class="co">[</span><span class="ot">106, 118</span><span class="co">]</span>. A student concludes: "Since the confidence intervals overlap, the two region means must not differ." Is this reasoning sound? Explain why or why not.</span>
+<span id="cb17-186"><a href="#cb17-186"></a></span>
+<span id="cb17-187"><a href="#cb17-187"></a><span class="ss">3.  </span>A researcher measures soil pH at 60 sites across a national park. A 95% confidence interval for the mean pH is <span class="co">[</span><span class="ot">5.8, 6.4</span><span class="co">]</span>. If the researcher takes a second, independent sample of 60 sites from the same park, will the new 95% confidence interval necessarily contain 6.1, the midpoint of the first interval? Explain your reasoning.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
